@@ -1,0 +1,12 @@
+# General configuration
+version: 1.0
+author: H2lsoft
+website: http://www.nuts-cms.com
+email: contact@h2lsoft.com
+webupdate: yes
+info: configure seach engine for your website
+info_fr: configurer le moteur de recherche pour votre site web
+langs: en, fr
+system required: >= 1.0
+actions: info
+default_action: info

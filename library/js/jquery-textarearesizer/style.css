@@ -1,0 +1,28 @@
+/* CSS Document */
+div.grippie {
+	background:url(grippie.png) no-repeat scroll 50% 2px;
+	background-position:center;
+	/*border-color:#DDDDDD;
+	border-style:solid;
+	border-width:0pt 1px 1px;*/
+	cursor:s-resize;
+	height:9px;
+	overflow:hidden;
+	/* margin-left:150px; */
+	margin-left:0px;
+}
+
+
+div.grippie:hover {
+
+	background-color: #e5e5e5;
+
+}
+
+
+.resizable-textarea textarea {
+	display:block;
+	margin-bottom:0pt;
+	width:300px;
+	height: 20%;
+}

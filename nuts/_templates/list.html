@@ -1,0 +1,307 @@
+
+
+
+<div id="list_container">
+
+<!-- search -->
+<bloc::search>
+
+
+<fieldset>
+	<legend><img src="img/icon-search.gif" align="absmiddle" /> <a href="javascript:;" onclick="$('#list_search_content').slideToggle('fast');$('#list_search_content select').eq(0).focus();">{$nuts_lang_msg[11]}</a></legend>
+	<div id="list_search_content">
+	<form id="search_form" action="#" method="get">
+
+		<bloc::fields>
+		<p>
+		<label class="tt" title="{help}">{label}</label>
+
+			<select name="{name}_operator" id="{name}_operator">
+				<option value="_equal_" selected="selected">=</option>
+				<option value="_not_equal_">!=</option>
+				<option value="_gt_">&gt;</option>
+				<option value="_gtequal_">&gt;=</option>
+				<option value="_lt_">&lt;</option>
+				<option value="_ltequal_">&lt;=</option>
+
+				<option value="_begin_">{$nuts_lang_msg[12]}</option>
+				<option value="_not_begin_">{$nuts_lang_msg[13]}</option>
+				<option value="_countains_">{$nuts_lang_msg[14]}</option>
+				<option value="_not_countains_">{$nuts_lang_msg[15]}</option>
+			</select>
+			<script>
+			if("{ $_GET['{name}_operator'] }" != ''){
+				$('#{name}_operator').val("{ $_GET['{name}_operator'] }");
+			}
+			</script>
+
+			<bloc::text>
+				<input type="text" name="{name}" id="se_{name}" value="{ $_GET['{name}'] }" class="{class}" onfocus="this.select()" />
+
+				<bloc::datetime>
+				<script>
+					$("#se_{name}").attr('autocomplete', 'off');
+					inputDate("se_{name}", "{type}")
+				</script>
+				</bloc::datetime>
+
+			</bloc::text>
+
+
+			<bloc::select>
+			<select name="{name}" id="{name}" class="{class}">
+				<option value=""></option>
+
+				<bloc::options>
+					<option value="{value}">{label}</option>
+				</bloc::options>
+
+			</select>
+			<script>$('#{name}').val("{ $_GET['{name}'] }");</script>
+			</bloc::select>
+
+		</p>
+		</bloc::fields>
+
+		<!-- bottom -->
+		<p id="search_bottom">
+			<a href="javascript:;" onclick="$('#search_form').submit();"><img src="img/icon-search.gif" /> {$nuts_lang_msg[16]}</a>
+			<a href="javascript:;" onclick="$('#list_search_content').slideToggle('fast');">{$nuts_lang_msg[26]}</a>
+			<a href="javascript:document.forms['search_form'].reset();/*$('#list_search_content').slideToggle('fast');*/system_goto('?mod={$plugin->name}&do={$plugin->action}', 'list');">{$nuts_lang_msg[17]}</a>
+		</p>
+		<!-- bottom -->
+
+	</form>
+	</div>
+	<script type="text/javascript">
+		var search_uri = "index.php?mod={$plugin->name}&do={$plugin->action}&user_se=1&";
+		var ajax_ac_uri = "index.php?mod={$plugin->name}&do={$plugin->action}&ajax_ac=1&ajax_ac_col=";
+		<bloc::search_display>
+		$('#list_search_content').show();
+		</bloc::search_display>
+
+		$('#search_form input, #search_form select').keydown(function(e){
+			if(e.keyCode == 13 || e.keyCode == 27)
+				$('#list_search_content').slideUp('fast');
+		});
+	</script>
+
+
+</fieldset>
+
+<fieldset style="position:static; margin-bottom:10px; visibility:hidden">
+	<legend><img src="img/icon-search.gif" align="absmiddle" /> {$nuts_lang_msg[11]}</legend>
+</fieldset>
+
+</bloc::search>
+<!-- search -->
+
+
+<bloc::add>
+<div id="add">
+
+	<bloc::buttons>
+	<input type="button" id="{name}" name="{name}" value="{label}" onclick="{onclick}" />
+	</bloc::buttons>
+
+	<bloc::add_button>
+	<input type="button" id="list_add_button" value="{add_button_label}" onclick="formIt('{$nuts_lang_msg[20]}', '?mod={$plugin->name}&do=add&{add_parameters}');" />
+	</bloc::add_button>
+
+</div>
+<script type="text/javascript">
+if("{$_GET['popup']}" == 1)
+	$('#add').css('margin-top', '-10px');
+</script>
+
+</bloc::add>
+
+
+
+<div id="list">
+<!-- ajax::list -->
+
+
+<bloc::waiting_user_searching>
+<div id="norecord">
+	&uarr; <a href="javascript:;" onclick="$('#list_search_content').slideDown();">{waiting_user_searching_message}</a>
+</div>
+</bloc::waiting_user_searching>
+
+
+< bloc::data>
+
+<table id="list" cellpadding="3" cellspacing="1" style="{list_style_width}">
+<caption>{$nuts_lang_msg[4]}</caption>
+<thead>
+<tr>
+	<bloc::th_view>
+	<th style="width:15px;" class="noprint">&nbsp;</th>
+	</bloc::th_view>
+
+	<bloc::th>
+	<th class="{class}" style="text-align:{style};">{name} {order_by}</th>
+	</bloc::th>
+</tr>
+</thead>
+
+<tbody>
+
+
+
+< bloc::loop>
+<tr sel_color="{_NavColor}" id="ls_tr_{ID}" class="row">
+
+	<bloc::td_view>
+	<td noclick="1"  class="noprint" style="width:15px;"><a class="tt" href="javascript:formIt('{$nuts_lang_msg[28]} - #{ID}', '?mod={$plugin->name}&do=view&ID={ID}');" title="{$nuts_lang_msg[8]}"><img src="img/list_view.png" /></a></td>
+	</bloc::td_view>
+
+	<bloc::td>
+	<td class="{class}" noclick="{noclick}" style="text-align:{style};">{ {name} }</td>
+	</bloc::td>
+</tr>
+< /bloc::loop>
+
+
+
+
+</tbody>
+
+<tfoot>
+
+<!-- total_count -->
+< bloc::total_count>
+<tr>
+	<td colspan="{nb_cols}" class="total_count">
+
+		< bloc::total_count_row>
+		<b>{total} :</b> {sum} {sum_after}<br />
+		< /bloc::total_count_row>
+
+	</td>
+</tr>
+< /bloc::total_count>
+<!-- /total_count -->
+
+
+<tr>
+	<td colspan="{nb_cols}" style="padding-right:18px;">
+
+		<!-- pager_record_select -->
+		<bloc::pager_record_select>
+		<div style="float:left; font-weight: normal">
+
+			<select id="pager_rec" style="font-size:10px; padding: 0;">
+				<option value="10">10</option>
+				<option value="20">20</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+			</select>
+
+			{$nuts_lang_msg[57]}
+			<script>
+			$('#pager_rec').val("{$_GET['pager_rec']}");
+
+
+			$('#pager_rec').change(function(v){
+
+				v = $(this).val();
+				// construct uri and replace tpg by new value
+				uri = getLastUri();
+				if(strpos(uri, 'pager_rec={$_GET['pager_rec']}') == false)
+					uri += '&pager_rec='+v;
+				else
+					uri = str_replace('pager_rec={$_GET['pager_rec']}', 'pager_rec='+v, uri);
+
+				system_goto(uri, 'list');
+			});
+			</script>
+
+		</div>
+		</bloc::pager_record_select>
+		<!-- /pager_record_select -->
+
+
+		<!-- refresh & excel -->
+		<div style="float:right;">
+
+
+			<bloc::excel_export>
+			<a class="tt" href="{$_SERVER['PHP_SELF']}?{$_SERVER['QUERY_STRING']}&nuts_export=excel" title="{$nuts_lang_msg[51]}"><img src="img/icon-excel.png" /></a>
+			</bloc::excel_export>
+
+			<a class="tt" href="javascript:window.print();" title="{$nuts_lang_msg[52]}"><img src="img/icon-print.png" /></a>
+			<span style="position:relative; top:-4px;">|</span>
+
+			<a class="tt" href="javascript:system_refresh();" title="{$nuts_lang_msg[50]}"><img src="img/icon-refresh.png" /></a>
+<!--			<a class="tt" href="javascript:;" onclick="if(!list_full_length){list_full_length=true;}else{list_full_length=false;} system_refresh();" title="{$nuts_lang_msg[53]}" title="{$nuts_lang_msg[53]}"><img src="img/icon-expand.png" /></a>-->
+
+		</div>
+		<!-- refresh & excel -->
+
+		<!-- pager -->
+		<bloc::pager>
+		< bloc::previous>
+		<a href="javascript:system_goto('{_Url}', 'list');" class="np"><img src="img/icon-previous.png" align="absmiddle" style="position:relative; top:-1px;" /> {$nuts_lang_msg[18]}</a>
+		< /bloc::previous>
+
+		{$nuts_lang_msg[5]}:
+				<input type="text" name="user_tpg" id="user_tpg" value="{_PageNumber}" onclick="this.select();" />
+				<script>
+
+				$("#user_tpg").attr('val', '{_PageNumber}');
+				$("#user_tpg").keypress(function (e) {
+					if(e.which == 13)
+					{
+						v = parseInt($('#user_tpg').attr('value'));
+						if(isNaN(v))v = 1;
+
+						// construct uri and replace tpg by new value
+						uri = getLastUri();
+						if(strpos(uri, 'tpg={$_GET['tpg']}') == false)
+							uri += '&tpg='+v;
+						else
+							uri = str_replace('tpg={$_GET['tpg']}', 'tpg='+v, uri);
+
+						system_goto(uri, 'list');
+					}
+				});
+				</script>
+
+		 /
+		 {_PageCount}
+
+ 		< bloc::next>
+		<a href="javascript:system_goto('{_Url}', 'list');" class="np">{$nuts_lang_msg[19]} <img src="img/icon-next.png" align="absmiddle" style="position:relative; top:-1px;" /></a>
+		< /bloc::next>
+		</bloc::pager>
+		<!-- /pager -->
+
+	</td>
+</tr>
+</tfoot>
+
+</table>
+
+
+< bloc::norecord>
+<div id="norecord">
+	{$nuts_lang_msg[6]}
+</div>
+< /bloc::norecord>
+
+<script type="text/javascript" src="{CONST::WEBSITE_URL}/nuts/_templates/list_func.js"></script>
+< /bloc::data>
+
+<bloc::js>
+	<script src="{CONST::PLUGIN_URL}/list.js"></script>
+</bloc::js>
+<!-- /ajax::list -->
+
+
+<script type="text/javascript" src="{CONST::WEBSITE_URL}/nuts/_templates/list_common.js"></script>
+
+</div>
+
+
+</div>

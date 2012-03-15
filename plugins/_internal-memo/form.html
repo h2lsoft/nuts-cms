@@ -1,0 +1,23 @@
+<textarea id="nuts_my_notes">{notes}</textarea>
+
+<script type="text/javascript">
+
+$('body, #content').css('margin', 0);
+$('body, #content').css('padding', 0);
+
+$('#nuts_my_notes').width($(window).width()-50);
+$('#nuts_my_notes').height($(window).height()-50);
+$('#nuts_my_notes').tabby();
+
+
+$('#nuts_my_notes').focus();
+
+window.onresize = function (){
+	$('#nuts_my_notes').width($(window).width()-50);
+	$('#nuts_my_notes').height($(window).height()-50);
+}
+
+window.onbeforeunload = function(){
+	$.post('index.php?mod=_internal-memo&do=edit', {text:$('#nuts_my_notes').val()});
+}
+</script>

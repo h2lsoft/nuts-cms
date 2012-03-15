@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+		{#include("library/themes/default/_header.html");}
+</head>
+<body>
+	
+	<!-- global -->
+	<div id="global" class="container_12">
+		
+		<!-- sub_header -->
+		<div id="sub_header" class="grid_12">			
+			{#include("library/themes/default/_login_box.html");}
+		</div>
+		<div class="clear"></div>
+		<!-- /sub_header -->
+		
+		
+		<!-- header -->
+		<div id="header" class="grid_9">
+			<a href="/" class="logo">{CONST::WEBSITE_NAME}</a>			
+		</div>
+		<div id="top_search" class="grid_3">
+			{#include("library/themes/default/_top_search.html");}
+		</div>
+		<div class="clear"></div>
+		<!-- /header -->
+		
+		<!-- top_menu -->
+		<div id="top_menu" class="container_12">
+			{@NUTS    TYPE='MENU'    CONTENT='ALL CHILDRENS'    FROM='Main menu'    ZONE_ID='0'    OUTPUT='LI>UL'    CSS='zone_0'    ATTRIBUTES=''    INCLUDE_PARENT='0'}
+		</div>
+		<div class="clear"></div>
+		<!-- /top_menu -->
+		
+		
+		{#if(!$page->isHome)}
+		<!-- navbar -->		
+		<div id="navbar" class="container_12">
+			&raquo; <a href="/">Home</a> {@NUTS    TYPE='NAVBAR'    SEPARATOR=' &raquo; '}
+		</div>		
+		<div class="clear"></div>
+		<!-- /navbar -->
+		{#endif}
+		
+
+		<!-- content -->
+		<div id="content" class="container_12">
+			{$NUTS_CONTENT}
+		</div>
+		<div class="clear"></div>
+		<!-- /content -->
+		
+		
+		{#include("library/themes/default/_footer.html");}
+		
+		
+	</div>
+	<!-- /global -->	
+	
+		
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Dewplayer</title>
+
+<!-- Quelques styles CSS -->
+<style type="text/css">
+html {
+  font-family:"Myriad","Myriad Pro",Georgia,Helvetica,Sans-serif;
+  background:url(dewplayer.jpg) no-repeat bottom right;
+  height:100%;
+  padding:0;
+  margin:0;
+}
+body {
+  height:100%;
+  padding:0;
+  margin:0;
+}
+h1 {
+  color:#eee;
+  padding-top:3em;
+  padding-bottom:2em;
+  margin:0;
+}
+#content {
+  margin-left:15%;
+  width:500px;
+  text-align:center;
+}
+#hint {
+  color:#666;
+  margin-left:15%;
+  width:300px;
+  text-align:left;
+  margin-top:3em;
+}
+</style>
+
+<!-- Appel à la librairie SWFObject (fichier à placer également sur le serveur) -->
+<script type="text/javascript" src="swfobject.js"></script>
+
+</head>
+
+<body>
+
+<div id="content">
+	
+	<h1><img src="dewplayer.png" alt="Dewplayer" /></h1>
+  
+  <div id="dewplayer_content">
+  <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" width="135" height="50" id="dewplayer" type="application/x-shockwave-flash">
+  <param name="allowScriptAccess" value="sameDomain" />
+  <param name="movie" value="dewplayer-stream.swf?mp3=http://str0.creacast.com:80/pharefm&ext=.mp3" />
+  <param name="quality" value="high" />
+  <param name="bgcolor" value="#ffffff" />
+  <param name="wmode" value="transparent" />
+  <embed src="dewplayer-stream.swf?mp3=http://str0.creacast.com:80/pharefm&ext=.mp3" wmode="transparent" quality="high" bgcolor="#ffffff" width="135" height="50" name="dewplayer"  allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+  </object>
+  </div>
+
+</div>
+
+  <!-- Remarques -->
+  <div id="hint">
+    Si vous obtenez des avertissements JavaScript, ne testez pas en local (file://) mais à distance sur votre serveur (http://)
+  </div>
+
+<script type="text/javascript">
+var flashvars = {
+  mp3: "http://str0.creacast.com:80/pharefm&ext=.mp3"
+};
+var params = {
+  wmode: "transparent"
+};
+var attributes = {
+  id: "dewplayer"
+};
+swfobject.embedSWF("dewplayer-stream.swf", "dewplayer_content", "135", "50", "9.0.0", false, flashvars, params, attributes);
+</script>
+
+</body>
+</html>
+

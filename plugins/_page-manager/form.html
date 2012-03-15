@@ -1,0 +1,666 @@
+<form id="former" action="index.php?mod={$plugin->name}&do={$plugin->action}&_action=save_page" method="post"  onsubmit="WYSIWYGhackSubmit();">
+
+<!-- pager_content -->
+<div id="pager_content" style="">
+
+
+<!-- page -->
+<div id="page_tree_context">
+<ul>
+	<li id="page_tree_context_pID"></li>
+	<li><a href="javascript:previewPage(-1);"><img src="../library/js/jquery-simpletree/images/page_preview.png" align="absmiddle" /> {$lang_msg[14]}</a></li>
+
+	<li><hr size="1" noshade="noshade" /></li>
+	<li><a href="javascript:addPage(-1);"><img src="../library/js/jquery-simpletree/images/page_add.png" align="absmiddle" /> {$lang_msg[58]}</a></li>
+	<li><a href="javascript:editPage(0);"><img src="../library/js/jquery-simpletree/images/page_edit.png" align="absmiddle" />  {$lang_msg[3]}</a></li>
+
+	<li><hr size="1" noshade="noshade" /></li>
+	<li><a href="javascript:renamePage();"><img src="img/icon-rename.png" align="absmiddle" /> {$lang_msg[96]}</a></li>
+	<li><a href="javascript:duplicatePage();"><img src="../library/js/jquery-simpletree/images/page_duplicate.png" align="absmiddle" /> {$lang_msg[83]}</a></li>
+	<li><a href="javascript:deletePage();"><img src="../library/js/jquery-simpletree/images/page_delete.png" align="absmiddle" /> {$lang_msg[4]}</a></li>
+
+	<li><hr size="1" noshade="noshade" /></li>
+	<li><a href="javascript:optionPage();"><img src="img/widget.png" align="absmiddle" /> Options</a></li>
+	<li><hr size="1" noshade="noshade" /></li>
+
+	<li><a href="javascript:linkPageDirect();"><img src="../library/js/jquery-simpletree/images/page_link.png" align="absmiddle" /> {$lang_msg[55]}</a></li>
+	<li><a href="javascript:linkPage();"><img src="../library/js/jquery-simpletree/images/page_link.png" align="absmiddle" /> {$lang_msg[2]}</a></li>
+	<li><a href="javascript:linkPages();"><img src="../library/js/jquery-simpletree/images/page_link.png" align="absmiddle" /> {$lang_msg[59]}</a></li>
+	<li><a href="javascript:linkZone();"><img src="../library/js/jquery-simpletree/images/page_link.png" align="absmiddle" /> {$lang_msg[61]}</a></li>
+    <li><hr size="1" noshade="noshade" /></li>
+
+	<li><a href="javascript:" onclick="$('#page_tree_context').hide();"><img src="../library/js/jquery-simpletree/images/cross.png" align="absmiddle" /> {$nuts_lang_msg[22]}</a></li>
+</ul>
+</div>
+
+<div id="page_tree_loader">
+	<img src="img/ajax-loader.gif" />
+</div>
+
+
+<!-- page tree -->
+<div id="page_options">
+	{$lang_msg[5]}
+	<select id="Language" name="Language" onchange="selectSetOptionStyle('Language'); $('#dID').val(''); reloadPage()">
+		{$select_language}
+	</select>
+
+	{$lang_msg[6]}
+	<select id="ZoneID" name="ZoneID" onchange="$('#dID').val(''); reloadPage()">
+		{$select_zone_id}
+	</select>
+
+	{$lang_msg[7]}
+	<select id="Status" name="Status" onchange="selectSetOptionClass('Status'); $('#dID').val(''); reloadPage();">
+		<option value="">{$lang_msg[54]} ()</option>
+		<option class="icon_published" value="PUBLISHED">{$lang_msg[27]} ()</option>
+		<option class="icon_draft" value="DRAFT">{$lang_msg[28]} ()</option>
+		<option class="icon_moderate" value="WAITING MODERATION">{$lang_msg[29]} ()</option>
+	</select>
+
+	#ID
+	<input type="text" name="dID" id="dID" style="text-align:center; width:3em;" value="{$_GET['pID']}" onclick="this.select()" autocomplete="off" />
+	<a style="display:none;" id="a_dID_delete" href="javascript:$('#dID').val('');reloadPage();"><img src="img/list_delete.png" style="height: 16px;" align="absmiddle" alt="" /></a>
+
+	<br />
+	<br />
+
+	<img src="../library/js/jquery-simpletree/images/page_add.png" align="absmiddle" /> <a href="javascript:addPage(0);">{$lang_msg[8]}</a>|
+	<img src="../library/js/jquery-simpletree/images/arrow_refresh.png" align="absmiddle" /> <a href="javascript:reloadPage();">{$lang_msg[9]}</a>|
+	<img id="img_tree_drag" src="img/icon-drag_off.png" align="absmiddle" /> <a  id="a_tree_drag" href="javascript:dragPage();">drag off</a>
+
+</div>
+
+
+
+
+<!-- page tree -->
+<div id="page_tree" onclick="hideContext()">
+</div>
+<!-- /page tree -->
+
+<!-- page form -->
+<div id="page_form" style="overflow:hidden; margin-top:-32px;">
+
+	<p id="page_navigation" style=" ">
+		<a href="javascript:;" onclick="$('#Status').val(''); selectSetOptionClass('Status'); $('#dID').val(''); reloadPage();"><img src="img/icon-home.png" alt="Home" align="absmiddle" /></a>
+		<span id="page_navigation_urls"></span>
+	</p>
+
+
+	<ul class="ui-tabs-nav">
+		<li class="ui-tabs-nav-item ui-tabs-selected"><a href="#tab0">{$lang_msg[10]}</a></li>
+		<li class="ui-tabs-nav-item"><a href="#tab1">{$lang_msg[11]}</a></li>
+		<li class="ui-tabs-nav-item"><a href="#tab2">{$lang_msg[12]}</a></li>
+
+		<li class="ui-tabs-nav-item"><a href="#tab3" id="tab_blocks">{$lang_msg[62]}</a></li>
+
+		<li class="ui-tabs-nav-item"><a href="#tab4" id="tab_variables">{$lang_msg[45]}</a></li>
+		<li class="ui-tabs-nav-item"><a href="#tab6" id="tab_options">Options</a></li>
+		<li class="ui-tabs-nav-item"><a href="#tab5" id="tab_comments">{$lang_msg[13]}</a></li>
+	</ul>
+    <div id="preview"> <a href="javascript:;" onclick="previewPage(0);">{$lang_msg[14]}</a> <img src="img/icon-preview.gif" align="absmiddle" /></div>
+
+
+	<!-- information -->
+	<div id="tab0" class="ui-tabs-panel">
+		<p>
+			<label>{$lang_msg[99]} <span class="required">*</span></label>
+			<input type="text" autocomplete="off" name="MenuName" id="MenuName" value="" onclick="this.select()" />
+		</p>
+
+		<p>
+			<label title="{$lang_msg[18]}">{$lang_msg[17]}</label>
+
+			<!-- tpls -->
+			<div id="tpls_preview">
+
+				<bloc::tpls_preview>
+					<div>
+						<img src="{CONST::NUTS_LIBRARY_URL}/themes/{theme}/_preview/{tpl_preview}" val="{tpl_name_file}" onclick="$('#former #Template').val('{tpl_name_file}');$('#tpls_preview img').removeClass();$(this).addClass('tpl_selected')" />
+						<span>{tpl_nameX}</span>
+					</div>
+				</bloc::tpls_preview>
+
+			</div>
+			<!-- /tpls -->
+
+			<select id="Template" name="Template" style="display: none;">
+				<option value=""></option>
+				{$select_tpls}
+			</select>
+
+		</p>
+
+
+		<p>
+			<label>{$lang_msg[7]} <span class="required">*</span></label>
+			<select id="State" name="State" onchange="selectSetOptionClass('State');">
+				<option class="icon_published" value="PUBLISHED">{$lang_msg[27]}</option>
+				<option class="icon_draft" value="DRAFT">{$lang_msg[28]}</option>
+				<option class="icon_moderate" value="WAITING MODERATION">{$lang_msg[29]}</option>
+			</select>
+		</p>
+		<p>
+			<label>{$lang_msg[6]}</label>
+
+			<select id="PageZoneID" name="PageZoneID">
+				{$select_zone_id}
+			</select>
+
+		</p>
+
+
+		<br />
+
+		<fieldset id="fieldset_Dates">
+			<legend>{$lang_msg[89]}</legend>
+
+			<p>
+				<label title="{$lang_msg[92]}">{$lang_msg[90]}</label>
+				<select id="DateStartOption" name="DateStartOption" onchange="updatePublishingDate()">
+					<option value="YES">{$nuts_lang_msg[30]}</option>
+					<option value="NO">{$nuts_lang_msg[31]}</option>
+				</select>
+
+				<input type="text" id="DateStart" name="DateStart" value="" />
+				<script>inputDate('DateStart', 'datetime');</script>
+			</p>
+
+			<p>
+				<label title="{$lang_msg[93]}">{$lang_msg[91]}</label>
+				<select id="DateEndOption" name="DateEndOption"  onchange="updatePublishingDate()">
+					<option value="YES">{$nuts_lang_msg[30]}</option>
+					<option value="NO">{$nuts_lang_msg[31]}</option>
+				</select>
+
+				<input type="text" id="DateEnd" name="DateEnd" value="" />
+				<script>inputDate('DateEnd', 'datetime');</script>
+			</p>
+
+		</fieldset>
+
+		<p>
+			<label>Note</label>
+			<textarea id="Note" name="Note" style="height:100px;"></textarea>
+		</p>
+		<fieldset>
+			<legend>{$lang_msg[34]}</legend>
+			<p>
+				<label>{$lang_msg[35]}</label>
+				<span id="lAuthor"></span>
+			</p>
+
+			<p>
+				<label>{$lang_msg[36]}</label>
+				<span id="lDateCreation"></span>
+			</p>
+
+			<p>
+				<label>{$lang_msg[37]}</label>
+				<span id="lDateUpdate"></span>
+			</p>
+
+		</fieldset>
+		<p>&nbsp;</p>
+
+
+
+	</div>
+	<!-- information -->
+
+	<!-- media -->
+	<div id="tab1" class="ui-tabs-panel ui-tabs-hide">
+
+
+	<fieldset id="fieldset_Meta">
+		<legend>{$lang_msg[38]}</legend>
+
+		<p>
+			<label>{$lang_msg[39]}</label>
+			<input type="text"  autocomplete="off" name="MetaTitle" id="MetaTitle" value="" onclick="this.select()" />
+		</p>
+		<p>
+			<label>{$lang_msg[40]}</label>
+			<input type="text"  autocomplete="off" name="MetaKeywords" id="MetaKeywords" value="" onclick="this.select()" />
+		</p>
+		<p>
+			<label>{$lang_msg[41]}</label>
+			<textarea name="MetaDescription" id="MetaDescription" onclick="this.select()"></textarea>
+		</p>
+		<p>
+			<label>Robots</label>
+
+			<select id="MetaRobots">
+				<option value=""></option>
+				<option value="noindex">noindex</option>
+				<option value="nofollow">nofollow</option>
+				<option value="noindex, nofollow">noindex, nofollow</option>
+				<option value="index, nofollow">index, nofollow</option>
+				<option value="noindex, follow">noindex, follow</option>
+			</select>
+
+		</p>
+
+	</fieldset>
+
+
+
+	</div>
+	<!-- media -->
+
+	<!-- content -->
+	<div id="tab2" class="ui-tabs-panel ui-tabs-hide">
+		<p>
+			<label>{$lang_msg[46]}</label>
+			<input type="text" name="H1" id="H1" value="" class="ucfirst"  autocomplete="off" onclick="this.select()" />
+		</p>
+		<p>
+			<label title="{$lang_msg[48]}">{$lang_msg[47]}</label>
+			<textarea name="ContentResume" id="ContentResume" class="mceEditor processed"></textarea>
+		</p>
+		<p>
+			<label>{$lang_msg[49]}</label>
+			<textarea style="height:350px;" name="Content" id="Content" class="mceEditor processed"></textarea>
+		</p>
+		<p>&nbsp;</p>
+	</div>
+	<!-- content -->
+
+	<!-- blocks -->
+	<div id="tab3" class="ui-tabs-panel ui-tabs-hide">
+	   <bloc::custom_blocks>
+	   <p>
+		   <label>{custom_block_nameX}</label>
+		   <select name="cf2Block{custom_block_name}[]" id="cf2Block{custom_block_name}" multiple title="{$lang_msg[63]}">
+
+		   <bloc::custom_block_options>
+			   <option value="{custom_block_val}" image_preview="{image_preview}">{custom_block_val_name}</option>
+		   </bloc::custom_block_options>
+
+		   </select>
+	   </p>
+	   </bloc::custom_blocks>
+
+		<script>
+		var page_manager_block_preview_url = {page_manager_block_preview_url};
+		</script>
+
+
+
+	</div>
+	<!-- blocks -->
+
+	<!-- variables -->
+	<div id="tab4" class="ui-tabs-panel ui-tabs-hide"></div>
+	<!-- /variables -->
+
+
+	<!-- comments -->
+	<div id="tab5" class="ui-tabs-panel ui-tabs-hide">
+
+		<div id="comment_new">
+			<input type="button" id="CommentNew" value="{$lang_msg[71]}" onclick="commentPostToggle()"/>
+
+			<!-- comment_post -->
+			<div id="comment_post">
+			<table id="comment_post_table" cellpadding="3" cellspacing="0">
+				<tr>
+					<td width="100">{$lang_msg[72]} <span class="required">*</span></td>
+					<td><input type="text" name="CommentName" id="CommentName" value="{$_SESSION['FirstName']} {$_SESSION['LastName']}" /></td>
+				</tr>
+				<tr>
+					<td valign="top">{$lang_msg[73]} <span class="required">*</span></td>
+					<td>
+						<textarea id="CommentText" name="CommentText"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="right">
+						<input type="button" id="CommentSubmit" value="Submit comment" onclick="commentPostSubmit();" />
+					</td>
+				</tr>
+			</table>
+			</div>
+			<!-- /comment_post -->
+
+		</div>
+
+		<div id="comments"></div>
+
+	</div>
+	<!-- /comments -->
+
+
+	<!-- options -->
+	<div id="tab6" class="ui-tabs-panel ui-tabs-hide">
+		<p>
+			<label>{$lang_msg[16]} <span class="required">*</span></label>
+			<select id="ContentType" name="ContentType">
+				{$select_content_type}
+			</select>
+		</p>
+		<p>
+			<label title="{$lang_msg[24]}">{$lang_msg[23]}</label>
+			<input type="text"  autocomplete="off" name="VirtualPagename" id="VirtualPagename" value="" onclick="this.select()" />
+		</p>
+		<p>
+			<label title="{$lang_msg[26]}">{$lang_msg[25]}</label>
+			<select id="MenuVisible" name="MenuVisible">
+				<option value="YES">{$nuts_lang_msg[30]}</option>
+				<option value="NO">{$nuts_lang_msg[31]}</option>
+			</select>
+		</p>
+		<p>
+			<label title="{$lang_msg[20]}">{$lang_msg[19]}</label>
+			<select id="TopBar" name="TopBar">
+				<option value="YES">{$nuts_lang_msg[30]}</option>
+				<option value="NO">{$nuts_lang_msg[31]}</option>
+			</select>
+		</p>
+		<p>
+			<label title="{$lang_msg[22]}">{$lang_msg[21]}</label>
+			<select id="BottomBar" name="BottomBar">
+				<option value="YES">{$nuts_lang_msg[30]}</option>
+				<option value="NO">{$nuts_lang_msg[31]}</option>
+			</select>
+		</p>
+
+		<p>
+			<label title="{$lang_msg[31]}">{$lang_msg[30]}</label>
+			<textarea name="Tags" id="Tags" onclick="this.select()"></textarea>
+		</p>
+
+		<p>
+			<label title="{$lang_msg[33]}">{$lang_msg[32]}</label>
+			<select id="Comments" name="Comments" onchange="updateCommentTab()">
+				<option value="YES">{$nuts_lang_msg[30]}</option>
+				<option value="NO">{$nuts_lang_msg[31]}</option>
+			</select>
+		</p>
+		<p>
+			<label title="{$lang_msg[70]}">{$lang_msg[69]}</label>
+			<input type="text"  autocomplete="off" name="CacheTime" id="CacheTime" value="" onclick="this.select()" style="text-align: center; width: 65px;" />
+		</p>
+
+
+
+
+
+		<fieldset id="fieldset_Media">
+		<legend>{$lang_msg[42]}</legend>
+		<p>
+			<label title="{$lang_msg[44]}">{$lang_msg[43]}</label>
+			<select id="HeaderImage" name="HeaderImage" onchange="updateHeaderImg()">
+				<option value=""></option>
+				{$select_header_img}
+			</select>
+		</p>
+
+		<div id="HeaderImagePreview"></div>
+		<script>
+		function updateHeaderImg()
+		{
+			v = $('#HeaderImage').val();
+
+			if(!$('#HeaderImage').is(":visible"))
+				v = "";
+
+			str = '';
+			if(v != '')
+			{
+				str = '<img src="{CONST::NUTS_HEADER_IMAGES_URL}/'+v+'" />';
+			}
+
+			$('#HeaderImagePreview').html(str);
+
+		}
+		</script>
+		</fieldset>
+
+
+		<fieldset id="fieldset_Variables">
+			<legend>{$lang_msg[45]}</legend>
+
+
+		<!-- variables -->
+		<bloc::custom_fields>
+			<p>
+			<label title="{custom_fields_help}">{custom_fields_label}</label>
+
+			<bloc::custom_fields_text>
+				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" onclick="this.select()" />
+			</bloc::custom_fields_text>
+
+			<bloc::custom_fields_date>
+				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" onclick="this.select()" />
+				<script>inputDate("cf{custom_fields_name}", 'date')</script>
+			</bloc::custom_fields_date>
+
+			<bloc::custom_fields_datetime>
+				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" onclick="this.select()" />
+				<script>inputDate("cf{custom_fields_name}", 'datetime')</script>
+			</bloc::custom_fields_datetime>
+
+			<bloc::custom_fields_textarea>
+				<textarea name="cf{custom_fields_name}" id="cf{custom_fields_name}" onclick="this.select()"/></textarea>
+			</bloc::custom_fields_textarea>
+
+			<bloc::custom_fields_select>
+				<select name="cf{custom_fields_name}" id="cf{custom_fields_name}">
+					<option value=""></option>
+					<bloc::custom_fields_select_options>
+					<option value="{custom_fields_opt}">{custom_fields_opt}</option>
+					</bloc::custom_fields_select_options>
+				</select>
+			</bloc::custom_fields_select>
+
+			<bloc::custom_fields_boolean>
+				<select name="cf{custom_fields_name}" id="cf{custom_fields_name}">
+					<option value="YES">{$nuts_lang_msg[30]}</option>
+					<option value="NO">{$nuts_lang_msg[31]}</option>
+				</select>
+			</bloc::custom_fields_boolean>
+
+			<bloc::custom_fields_booleanX>
+				<select name="cf{custom_fields_name}" id="cf{custom_fields_name}">
+					<option value="NO">{$nuts_lang_msg[31]}</option>
+					<option value="YES">{$nuts_lang_msg[30]}</option>
+				</select>
+			</bloc::custom_fields_booleanX>
+
+			<bloc::custom_fields_image>
+				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" onclick="this.select()" />
+
+				<a href="javascript:;" class="tt" title="{$nuts_lang_msg[87]}" onclick="imgBrowser('cf{custom_fields_name}','{custom_fields_folder}');"><img align="absmiddle" src="img/icon-folder.png"/></a>
+				<a href="javascript:;" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('cf{custom_fields_name}');"><img align="absmiddle" src="img/icon-preview-mini.gif"/></a>
+
+			</bloc::custom_fields_image>
+
+			<bloc::custom_fields_file>
+				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" onclick="this.select()" />
+				<a class="tt" title="{$nuts_lang_msg[87]}" href="javascript:allBrowser('cf{custom_fields_name}', '{custom_fields_folder}');"><img align="absmiddle" src="img/icon-folder.png"/></a>
+				<a href="javascript:;" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('cf{custom_fields_name}');"><img src="img/icon-file.png" align="absmiddle" /></a>
+			</bloc::custom_fields_file>
+
+			<bloc::custom_fields_colorpicker>
+				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" onclick="this.select()" style="width:50px;"  maxlength="7" class="widget_colorpicker"  onclick="startColorPicker(this)" onkeyup="maskedHex(this)"  />
+			</bloc::custom_fields_colorpicker>
+			</p>
+		</bloc::custom_fields>
+		<!-- /variables -->
+
+</fieldset>
+
+
+		<!-- resticted access -->
+		<fieldset id="fieldset_Access">
+			<legend>Front-office - {$lang_msg[80]}</legend>
+
+			<p>
+				<label title="{$lang_msg[84]}">{$lang_msg[80]}</label>
+				<select id="AccessRestricted" name="AccessRestricted">
+					<option value="NO">{$nuts_lang_msg[31]}</option>
+					<option value="YES">{$nuts_lang_msg[30]}</option>
+				</select>
+			</p>
+
+			<p>
+				<label>{$lang_msg[81]}</label>
+				<select id="PageAccess" name="PageAccess[]" multiple size="5" class="checkbox-list">
+
+					<bloc::page_access>
+					<option value="{GroupID}">{GroupName}</option>
+					</bloc::page_access>
+
+				</select>
+			</p>
+
+		</fieldset>
+		<!-- /resticted access -->
+
+
+
+		<fieldset id="fieldset_Sitemap">
+
+			<legend>Sitemap Generator</legend>
+			<p>
+				<label>Sitemap</label>
+				<select id="Sitemap" name="Sitemap">
+					<option value="YES">{$nuts_lang_msg[30]}</option>
+					<option value="NO">{$nuts_lang_msg[31]}</option>
+				</select>
+			</p>
+			<p>
+				<label>Changefreq</label>
+				<select id="SitemapChangefreq" name="SitemapChangefreq">
+					<option value="hourly">hourly</option>
+					<option value="daily">daily</option>
+					<option value="weekly">weekly</option>
+					<option value="monthly">monthly</option>
+					<option value="always">always</option>
+					<option value="never">never</option>
+				</select>
+			</p>
+			<p>
+				<label>Priority</label>
+				<select id="SitemapPriority" name="SitemapPriority">
+					<option value="0.1">0.1</option>
+					<option value="0.2">0.2</option>
+					<option value="0.3">0.3</option>
+					<option value="0.4">0.4</option>
+					<option value="0.5">0.5</option>
+					<option value="0.6">0.6</option>
+					<option value="0.7">0.7</option>
+					<option value="0.8">0.8</option>
+					<option value="0.9">0.9</option>
+					<option value="1.0">1.0</option>
+				</select>
+			</p>
+
+			<fieldset id="fieldset_SitemapOptions">
+				<legend>Options</legend>
+				<p>
+					<label title="{$lang_msg[86]}">Page Type</label>
+					<select id="SitemapPageType" name="SitemapPageType">
+						<option value="NORMAL">Normal</option>
+						<option value="TUNNEL">Tunnel</option>
+					</select>
+				</p>
+				<p>
+					<label title="{$lang_msg[87]}">Url Regex 1</label>
+					<input type="text" autocomplete="off" name="SitemapUrlRegex1" id="SitemapUrlRegex1" value="" />
+				</p>
+				<p>
+					<label title="{$lang_msg[88]}">Url Regex 2</label>
+					<input type="text" autocomplete="off" name="SitemapUrlRegex2" id="SitemapUrlRegex2" value="" />
+				</p>
+			</fieldset>
+
+
+	</fieldset>
+
+
+
+
+
+	</div>
+	<!-- /options -->
+
+
+</div>
+
+<div id="page_options_bottom">
+
+	<input id="btn_submit" type="submit" value="{$nuts_lang_msg[21]}" />
+	<input type="checkbox" id="chk_Close" value="1" checked /> {$lang_msg[57]}
+
+	&nbsp; &nbsp;  &nbsp; &nbsp;
+	<input id="btn_cancel" type="button" value="{$nuts_lang_msg[22]}" onclick="cancelPageVerification()" />
+</div>
+<!-- page form -->
+
+</div>
+<!-- /pager_content -->
+
+<!-- page -->
+</form>
+
+
+<script>
+var currentTheme = "{$theme}";
+var tree_static_url = "index.php?mod={$plugin->name}&do={$plugin->action}";
+var lang_msg_56 = "{$lang_msg[56]}";
+var lang_msg_50 = "{$lang_msg[50]}";
+var lang_msg_51 = "{$lang_msg[51]}";
+var lang_msg_60 = "{$lang_msg[60]}";
+var lang_msg_65 = "{$lang_msg[65]}";
+var lang_msg_67 = "{$lang_msg[67]}";
+var lang_msg_68 = "{$lang_msg[68]}";
+var lang_msg_74 = "{$lang_msg[74]}";
+var lang_msg_75 = "{$lang_msg[75]}";
+var lang_msg_76 = "{$lang_msg[76]}";
+var lang_msg_77 = "{$lang_msg[77]}";
+var lang_msg_78 = "{$lang_msg[78]}";
+var lang_msg_79 = "{$lang_msg[79]}";
+var lang_msg_82 = "{$lang_msg[82]}";
+var lang_msg_85 = "{$lang_msg[85]}";
+var lang_msg_94 = "{$lang_msg[94]}";
+var lang_msg_95 = "{$lang_msg[95]}";
+var lang_msg_97 = "{$lang_msg[97]}";
+var lang_msg_98 = "{$lang_msg[98]}";
+
+var nuts_lang_msg_21 = "{$nuts_lang_msg[21]}";
+var nuts_lang_msg_23 = "{$nuts_lang_msg[23]}";
+
+var formerOnSubmit = "{$javascript_onsubmit_function}";
+
+var from_mode = "{$_GET['from']}";
+var from_mode_action = "{$_GET['from_action']}";
+var from_tab_selected = "{$_GET['tab_selected']}";
+</script>
+
+<script>var hfs = explode(',', "{$hidden_fields}");</script>
+
+<script src="../plugins/{$plugin->name}/custom.js"></script>
+<script src="../plugins/{$plugin->name}/comments.js"></script>
+<script src="../plugins/{$plugin->name}/tree_func.js"></script>
+<script src="../plugins/{$plugin->name}/init.js"></script>
+
+
+
+<script>
+$('body').click(function(){
+    hideContext();
+})
+</script>
+
+<script>
+reloadPage();
+loadRichEditor(currentTheme);
+helperInit('#page_form');
+</script>
+
+<!-- for block image preview -->
+<div id="image_preview" style="position: absolute; top:0; left:0; width: 150px; height: 100px;"></div>
+

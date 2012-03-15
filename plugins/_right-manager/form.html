@@ -1,0 +1,206 @@
+<form id="former" action="index.php?mod={$plugin->name}&do={$plugin->action}&NutsGroupID={$_GET['NutsGroupID']}" method="post">
+
+<div id="form_error">
+	<img src="img/icon-error.gif" align="absmiddle" />  {$nuts_lang_msg[37]}
+</div>
+
+<div id="form_ok">
+	<img src="img/icon-accept.gif" align="absmiddle" /> {$nuts_lang_msg[38]}
+</div>
+
+
+{$lang_msg[1]}
+<select id="NutsGroupID" name="NutsGroupID" onchange="updateGroup()">
+{$select_groups}
+</select>
+<input type="hidden" id="NutsGroupName" name="NutsGroupName" value="{$NutsGroupName}">
+
+<input id="btn_submit" type="submit" value="{$nuts_lang_msg[21]}" class="button" />
+
+<div id="right_options">
+	Plugins	<label><input type="radio" id="display0" name="display" value="all" checked="checked" onclick="updateOption()" /> {$lang_msg[3]}</label>
+		<label><input type="radio" id="display1" name="display" value="private" onclick="updateOption()" /> {$lang_msg[4]}</label>
+		<label><input type="radio" id="display2" name="display" value="public" onclick="updateOption()" /> {$lang_msg[5]}</label>
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+function updateGroup()
+{
+	v = $('#NutsGroupID').val();
+	uri = "index.php?mod={$plugin->name}&do={$plugin->action}&NutsGroupID="+v;
+	uri += "&display="+$("input[name='display']:checked").val();
+    uri += "&popup={$_GET['popup']}";
+
+	system_goto(uri, 'content');
+}
+
+v = "{$_GET['NutsGroupID']}";
+if(v == "" || v == 0)
+{
+	$('#btn_submit').hide();
+	$('#right_options').hide();
+}
+else
+{
+	$('#right_options').show();
+	$('#btn_submit').show();
+	v = parseInt(v);
+	$('#NutsGroupID').val(v);
+	updateOption();
+}
+
+
+$(function() {
+
+    type_checked = "{$_GET['display']}";
+
+    if(type_checked == 'private')
+    {
+        $('#display1').attr('checked', true);
+        updateOption()
+    }
+    if(type_checked == 'public')
+    {
+        $('#display2').attr('checked', true);
+        updateOption()
+    }
+
+});
+
+function updateCheck(right, checked_state)
+{
+	$('td[right="'+right+'"] input').attr('checked', checked_state);
+}
+
+function updateOption()
+{
+	v = $('#right_options input:checked').val();
+
+	if(v == 'all')
+	{
+		$('#rights tr').show();
+		return;
+	}
+
+	if(v == 'private')
+	{
+		$('#rights tr[type=private]').show();
+		$('#rights tr[type=public]').hide();
+		return;
+	}
+
+	if(v == 'public')
+	{
+		$('#rights tr[type=private]').hide();
+		$('#rights tr[type=public]').show();
+		return;
+	}
+
+}
+
+
+</script>
+
+
+
+<div id="ctn" style="margin-top: 10px;">
+
+<bloc::ctn>
+<table id="rights" cellspacing="1">
+
+
+<!-- category -->
+<bloc::category>
+<tr type="category">
+	<th colspan="2">{Category} ({category_count})</th>
+</tr>
+
+
+	<!-- rights -->
+	<bloc::rights>
+	<tr type="{type}">
+		<td width="120" class="label" style="white-space:nowrap;">
+			<label>
+				<input type="checkbox" onclick="updateCheck('{name}', this.checked);" /> <img alt="{name}" src="/plugins/{p_name}/icon.png" /> {name}
+			</label>
+
+		</td>
+		<td class="content" right="{name}">
+
+			<!-- right -->
+			<bloc::right>
+			<label><input type="checkbox" name="right[{r_name}][]" value="{r}" {checked} onclick="if('{$_GET['NutsGroupID']}' == 1 && !this.checked){alert('{$lang_msg[2]}'); this.checked=true;}"> {r}</label>
+			</bloc::right>
+			<!-- /right -->
+
+		</td>
+	</tr>
+	</bloc::rights>
+	<!-- /rights -->
+
+</bloc::category>
+<!-- /category -->
+
+
+
+
+
+
+
+
+</table>
+</bloc::ctn>
+
+</div>
+
+
+<script>
+var options = {
+	beforeSubmit:  showRequest,  // pre-submit callback
+	success:       showResponse  // post-submit callback
+};
+$('#former').ajaxForm(options);
+
+
+// pre-submit callback
+function showRequest(formData, jqForm, options) {
+
+	var queryString = $.param(formData);
+    // jqForm is a jQuery object encapsulating the form element.  To access the
+    // DOM element for the form do this:
+    // var formElement = jqForm[0];
+	$('#btn_submit').attr('value', "{$nuts_lang_msg[23]}");
+ 	$('#btn_submit').attr("disabled", true);
+	$('#ctn').fadeTo(0, 0.33);
+
+    return true;
+}
+
+// post-submit callback
+function showResponse(responseText, statusText)
+{
+	if(responseText == 'ok')
+	{
+		// $('#form_error').hide();
+		// $('#form_ok').slideDown('normal');
+		notify('ok', "{$nuts_lang_msg[38]}");
+	}
+	else
+	{
+		// $('#form_ok').hide();
+		// $('#form_error').slideDown('normal');
+		notify('error', "{$nuts_lang_msg[37]}");
+	}
+
+	$('#ctn').fadeTo(0.33, 1);
+	$('#btn_submit').attr('value', "{$nuts_lang_msg[21]}");
+ 	$('#btn_submit').removeAttr("disabled");
+}
+</script>
+
+</form>

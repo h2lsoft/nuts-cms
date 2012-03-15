@@ -1,0 +1,12 @@
+# General configuration
+version: 1.0
+author: H2lsoft
+website: http://www.nuts-cms.com
+email: contact@h2lsoft.com
+webupdate: yes
+info: manage your content page versionning
+info_fr: gérer votre versionning de vos pages
+langs: en
+system required: >= 1.0
+actions: list, viewer
+default_action: list

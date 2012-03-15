@@ -1,0 +1,45 @@
+<!-- ajax::form -->
+<bloc::before_confirm>
+<div id="delete">
+<br />
+{$nuts_lang_msg[33]}
+<br />
+<br />
+<p>
+	<input type="button" value="{$nuts_lang_msg[30]}" onclick="sendIt()" style="min-width:100px;color:green; border-color:green;" />
+	&nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; 
+	<input type="button" value="{$nuts_lang_msg[31]}" onclick="$('#form_window').dialog('close');"  style="min-width:100px;color:red;  border-color:red;" />
+</p>
+
+</div>
+<script>
+function sendIt()
+{
+	// send by ajax and get it
+	$('#delete').load('?mod={$plugin->name}&do=delete&ID={$_GET['ID']}&ajax=1&target=form', {submitted:1}, 
+		function (text){
+		}
+	);
+	
+}
+</script>
+
+</bloc::before_confirm>
+
+<bloc::after_confirm_ok>
+	<img src="img/form_valid.png" />
+	<br />
+	<br />
+	{$nuts_lang_msg[34]}<br />
+	<br />
+	<input type="button" value="{$nuts_lang_msg[26]}" onclick="$('#form_window').dialog('close');RTERefresh();" />
+	
+	<script>
+	system_refresh();
+	RTERefresh();
+	setTimeout("$('#form_window').dialog('close')", 2000);
+	</script>
+		
+</bloc::after_confirm_ok>
+
+<!-- /ajax::form -->

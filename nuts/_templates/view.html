@@ -1,0 +1,49 @@
+<!-- ajax::form -->
+<div id="form">
+
+	<div id="form_content">
+	<bloc::fieldset_start>
+	<fieldset id="fieldset_{name}">
+		<legend>{legend}</legend>
+	</bloc::fieldset_start>
+
+	<bloc::f>
+	<p id="col{name}">
+		<label>{label}</label>
+
+		{ {name} }
+
+	</p>
+	</bloc::f>
+
+
+	<bloc::fieldset_end>
+	</fieldset>
+	</bloc::fieldset_end>
+
+	<p class="bottom" style="background:none;">
+		<input type="button" name="btn_print" id="btn_print" value="{$nuts_lang_msg[52]}" onclick="printDialog();" /> &nbsp; &nbsp;  &nbsp; &nbsp;
+		<input type="button" name="btn_cancel" id="btn_cancel" value="{$nuts_lang_msg[26]}" onclick="$('#form_window').dialog('close');" />
+	</p>
+
+
+	</div>
+
+
+
+<bloc::js>
+	<script type="javascript" src="{js_file}"></script>
+</bloc::js>
+
+</div>
+<script type="text/javascript">
+function updateFormContentHeight(err)
+{
+	// h = $(window).height()-125;
+	h = $(window).height();
+	$('#form_content').height(h);
+}
+updateFormContentHeight(false);
+</script>
+
+<!-- /ajax::form -->

@@ -1,0 +1,118 @@
+<!-- nuts_login -->
+<div id="nuts_login">
+
+	<!-- nuts form form -->
+	<form class="nuts_form" name="form" id="form" method="post" action="">
+
+
+	<div id="form_error">
+		<bloc::form_error>
+		<p>{msg}</p>
+		</bloc::form_error>
+	</div>
+
+		<div id="layout_form_form" class="layout_form">
+			<div id="wrapper_form_form" class="wrapper_form">
+				<div class="caption">{caption}</div>
+
+					<div id="wrapper_NutsLogin" class="wrapper">
+						<span class="label"><i18n>{login_label}</i18n> <span class="required">*</span>  :</span>
+						<input type="text" name="uLogin" id="uLogin"  />
+					</div>
+					<div id="wrapper_NutsPassword" class="wrapper">
+						<span class="label"><i18n>{password_label}</i18n> <span class="required">*</span>  :</span>
+						<input type="password" name="uPassword" id="uPassword"  />
+					</div>
+					<div class="wrapper form_required">
+						<span class="required">*</span> {required_fields_label}
+					</div>
+
+					<div class="wrapper form_bottom">
+						<a href="javascript:;" onclick="$('#nuts_login_lost_password').slideToggle('normal', function(){$('#uEmail').focus();});">{lost_passwd_label}</a>
+						<input type="submit" class="submit" value="{submit_label}" />
+					</div>
+
+			</div>
+		</div>
+
+
+
+	<!-- nuts_login_lost_password -->
+	<div id="nuts_login_lost_password" style="display:none;">
+
+		<div id="layout_form_form_lost" class="layout_form">
+			<div id="wrapper_form_form_lost" class="wrapper_form">
+				<div class="caption">{lost_passwd_label}</div>
+
+					<!-- form_error -->
+					<div class="lost_password_form_message">
+
+					</div>
+					<!-- /form_error -->
+
+					<div id="wrapper_NutsEmail" class="wrapper">
+						<span class="label"><i18n>Email</i18n> <span class="required">*</span>  :</span>
+						<input type="text" name="uEmail" id="uEmail" onkeypress="if(event.keyCode == 13){lostPassword();return false;}"  />
+						<input type="button" class="submit" onclick="lostPassword();" value="{submit_label}" />
+					</div>
+					&nbsp;
+			</div>
+			&nbsp;
+		</div>
+		&nbsp;
+
+	</div>
+	<!-- /layout_form_form -->
+
+	</form>
+
+	<script type="text/javascript">
+	if($('div#form_error p').length == 0)$('div#form_error').remove();
+	if("{$_GET['lost_password']}" == 1)
+	{
+		$('div#layout_form_form').remove();
+		$('div#nuts_login_lost_password').show();
+	}
+
+
+	function lostPassword(){
+
+		$("#nuts_login_lost_password .submit").hide();
+
+		uri = "/{@PAGE_LANGUAGE}/{@PAGE_ID}.html";
+		$.get(uri, {action:'lost_password', Email:$('#uEmail').val()}, function(data){
+
+				data = explode('@@@', data);
+				resp = data[0];
+				if(resp != 'ok' && resp != 'ko')
+					$("#nuts_login_lost_password .lost_password_form_message").text("Unknow error").show();
+				else
+				{
+					$("#nuts_login_lost_password .lost_password_form_message").removeClass('lost_password_form_message_ok');
+					if(resp == 'ok')
+						$("#nuts_login_lost_password .lost_password_form_message").addClass('lost_password_form_message_ok');
+					$("#nuts_login_lost_password .lost_password_form_message").text(data[1]).show();
+				}
+
+
+				$("#nuts_login_lost_password .submit").show();
+
+
+		}, 'text');
+
+
+	}
+
+
+	</script>
+
+	<!-- /nuts form form -->
+
+
+
+
+
+
+</div>
+<!-- /nuts_login -->
+

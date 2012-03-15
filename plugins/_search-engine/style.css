@@ -1,0 +1,24 @@
+#nuts_search_engine {}
+
+#nuts_search_engine_box {padding-bottom: 20px;}
+#nuts_search_engine_box .input {width: 300px; background-image: url(btn_search_main.gif); background-repeat: no-repeat; padding-left: 20px; }
+#nuts_search_engine_box .submit {}
+
+#nuts_search_engine .norecord {text-align: center; padding-top: 50px;}
+
+#nuts_search_engine .result {margin-bottom: 15px;}
+#nuts_search_engine .result .title {font-weight: bold; font-size: 14px; background-image: url(arrow_next.gif); background-repeat: no-repeat; padding-left: 18px; }
+#nuts_search_engine .result .resume {}
+#nuts_search_engine .result .url {color:#0E774A;}
+
+
+#nuts_search_engine #pager {width: 100%; text-align: center;}
+#nuts_search_engine #pager a.pager_start {}
+#nuts_search_engine #pager a.pager_previous {}
+#nuts_search_engine #pager a.pager_next {}
+#nuts_search_engine #pager a.pager_end {}
+
+#nuts_search_engine #pager a {margin-left: 2px;}
+#nuts_search_engine #pager a.selected {color:red;}
+
+

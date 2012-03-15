@@ -1,0 +1,42 @@
+/** nuts newsletter: these styles are used in front office copy theme or include this css */
+#nuts_newsletter {	
+	width: 250px;
+	padding: 10px;
+	padding-top: 0px;
+	text-align: center;
+	margin-top: 20px;
+	background-color: #FFDFEA;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+
+}
+
+#nuts_newsletter p {
+	text-align: left;
+	font-weight: bold;
+	color:#4F7BA4;
+	font-size: 14px;
+	padding: 0px;
+
+	border-bottom: 1px solid #D852AD;
+
+}
+
+#nuts_newsletter .nuts_newsletter_error {
+	padding: 3px;
+	border: 1px solid red;
+	background-color: yellow;
+	margin-bottom: 5px;
+}
+
+#nuts_newsletter .nuts_newsletter_ok {
+	padding: 3px;
+	color: green;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+#nuts_newsletter #nEmail {
+	
+}

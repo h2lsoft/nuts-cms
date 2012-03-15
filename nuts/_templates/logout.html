@@ -1,0 +1,21 @@
+<div id="logout_window">
+<br />
+{$nuts_lang_msg[76]}
+<br />
+<br />
+<p>
+	<input type="button" value="{$nuts_lang_msg[2]}" onclick="logout()" style="min-width:100px;color:red;  border-color:red;" />
+
+	&nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;
+
+	<input type="button" value="{$nuts_lang_msg[22]}" onclick="$('#form_window').dialog('close');"  style="min-width:100px; color:green; border-color:green;" />
+	
+</p>
+
+</div>
+<script type="text/javascript">
+function logout()
+{
+	document.location.href='index.php?mod=logout';
+}
+</script>

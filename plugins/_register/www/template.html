@@ -1,0 +1,84 @@
+<form method="post" id="registration_form" name="registration_form" class="nuts_form" action="">
+
+	<bloc::form_error_all>
+	<div id="form_error">
+		<bloc::form_error>
+		<p>{msg}</p>
+		</bloc::form_error>
+	</div>
+	</bloc::form_error_all>
+	
+
+	
+	<div class="layout_form" id="layout_form_registration_form">
+		<div class="wrapper_form" id="wrapper_form_registration_form">
+			
+			<div class="caption">
+				{label_caption}
+			</div>
+			
+			<!-- Company -->
+			<div class="wrapper" id="wrapper_Company">
+				<span class="label">{label_company} :</span> <input type="text" id="Company" name="Company" />
+			</div>
+			<!-- /Company -->
+			
+			<!-- FirstName -->
+			<div class="wrapper" id="wrapper_FirstName">
+				<span class="label">{label_first_name} <span class="required">*</span> :</span> <input type="text" id="FirstName" name="FirstName" />
+			</div>
+			<!-- /FirstName -->
+			
+			<!-- LastName -->
+			<div class="wrapper" id="wrapper_LastName">
+				<span class="label">{label_last_name} <span class="required">*</span> :</span> <input type="text" id="LastName" name="LastName" />
+			</div>
+			<!-- /LastName -->
+			
+			<!-- Email -->
+			<div class="wrapper" id="wrapper_Email">
+				<span class="label">{label_email} <span class="required">*</span> :</span> <input type="text" id="Email" name="Email" />
+			</div>
+			<!-- /Email -->
+			
+			<bloc::login>
+			<!-- Login -->
+			<div class="wrapper" id="wrapper_Login">
+				<span class="label">{label_login} <span class="required">*</span> :</span> <input type="text" id="Login" name="Login" />
+			</div>
+			<!-- /Login -->
+			</bloc::login>
+
+			<!-- Password -->
+			<div class="wrapper" id="wrapper_Password">
+				<span class="label">{label_password} <span class="required">*</span> :</span> <input type="password" id="Password" name="Password" />
+			</div>
+			<!-- /Password -->
+			
+			<!-- Password2 -->
+			<div class="wrapper" id="wrapper_Password2">
+				<span class="label">{label_password} 2 <span class="required">*</span> :</span> <input type="password" id="Password2" name="Password2" />
+			</div>			
+			<!-- /Password2 -->
+			
+			<bloc::captcha>
+				<!-- captcha -->
+				<div class="wrapper form_captcha">
+					<span class="label">{label_security_code} <span class="required">*</span> :</span> 
+					{$TPLN_CAPTCHA_FIELD}				
+				</div>
+				<!-- /captcha -->
+			</bloc::captcha>
+			
+			<div class="wrapper form_required">
+				<span class="required">*</span> {label_required_fields}
+			</div>
+			
+			<div class="wrapper form_bottom">
+				<input type="submit" class="submit" value="{label_submit}" />
+			</div>
+			
+		</div>
+	</div>
+	
+</form>

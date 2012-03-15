@@ -1,0 +1,44 @@
+
+<div style="margin-bottom: 1px; padding:5px; border:1px solid orange; background-color: lightgoldenrodyellow;">
+	<img align="absmiddle" src="/nuts/img/icon-tag-moderator.png" alt=" " /> <b>Don't forget to add or change system owner user in configuration file, current user is `{$system_correct_user}`</b>
+</div>
+
+
+<div id="console">
+
+<b>Your version:</b> {CONST::NUTS_VERSION}<br />
+Last version: {$last_version}<br />
+Next version: {$next_version}<br />
+<br />
+
+
+<input id="btn_update" type="button" value="Update engine (recommanded before update)" onclick="updater(-1)" style="float:left; margin-right: 10px;" />
+
+<input id="btn_update" type="button" value="Launch update version {$next_version} &raquo;" onclick="updater(1)" style="display:{$btn_display};"  />
+<br />
+<br />
+<strong>Output:</strong><br />
+<span>{$output}</span>
+
+
+
+</div>
+
+<script>
+function updater(step)
+{
+	if(step == 0)
+	{
+		$('#btn_update').css('display', 'block');
+	}
+	else if(step == -1)
+	{
+		system_goto('index.php?mod=_updater&do=exec&step=-1','content');
+	}	
+	else if(step == 1)
+	{
+		system_goto('index.php?mod=_updater&do=exec&step=1','content');
+	}
+	
+}
+</script>

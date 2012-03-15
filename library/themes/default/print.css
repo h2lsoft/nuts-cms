@@ -1,0 +1,11 @@
+#global {margin-left: 0; margin-right: 0;}
+
+#sub_header,
+#header,
+#top_search,
+#top_menu,
+#navbar,
+#right,
+#bottom_menu,
+#footer
+	{display: none;}

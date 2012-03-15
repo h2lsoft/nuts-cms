@@ -1,0 +1,72 @@
+<b>Nuts Variables</b><hr />
+- {@THEME_URL}: url of the current theme
+
+- {@PAGE_ID}: page ID
+
+- {@PAGE_LANGUAGE}: page language
+
+- {@PAGE_TITLE}: page meta title
+
+- {@PAGE_KEYWORDS}: page meta keywords
+
+- {@PAGE_DESCRIPTION}: page meta description
+
+- {@PAGE_H1}: page H1
+
+- {@PAGE_CONTENT}: page content
+
+- {@PAGE_CONTENT_RESUME}: page resume
+
+- {@PAGE_AUTHOR_FIRSTNAME}: return page author firstname
+
+- {@PAGE_AUTHOR_LASTNAME}: return page author lastname
+
+- {@PAGE_AUTHOR_EMAIL}: return page author email
+
+- {@PAGE_DATE_CREATE::php date format}: return page date creation (ex: `{@PAGE_DATE_CREATE::d/m/Y}`)
+
+- {@PAGE_DATE_UPDATE::php date format}: return page date creation (ex: `{@PAGE_DATE_UPDATE::d/m/Y}`)
+
+			
+
+<b>Nuts Commands (tab caracter as separator)</b><hr />
+- {@NUTS	TYPE='PAGE'	CONTENT='URL'	ID='?'} : page url
+
+- {@NUTS	TYPE='PAGE'	CONTENT='MENU_NAME'	ID='?'} : page name in the menu
+
+- {@NUTS	TYPE='MENU'	CONTENT='ALL CHILDRENS'	ID='196'	OUTPUT='LI>UL'	CSS='?'	ATTRIBUTES=''	INCLUDE_PARENT='0|1'}: page menu with children page
+
+- {@NUTS	TYPE='MENU'	CONTENT='ALL CHILDRENS'	OUTPUT='LI>UL'	CSS='?'	ATTRIBUTES=''	INCLUDE_PARENT='0|1'}: zone menu with children page
+
+- {@NUTS	TYPE='PLUGIN'	NAME='?'[	PARAMETERS='test1,test2']}: execute plugin PARAMETERS is optionnal use with $nuts->plugin_embed[plugin_name]
+
+- {@NUTS	TYPE='NAVBAR'	SEPARATOR='|'}: execute navbar
+
+- {@NUTS	TYPE='REGION'	NAME='?'}: parse a region
+
+- {@NUTS	TYPE='GALLERY'	NAME='?'}: generate a specific gallery images
+
+- {@NUTS	TYPE='BLOCK'	GROUP='?'}: generate all blocs defined in a specific page
+
+- {@NUTS	TYPE='BLOCK'	NAME='?'}: parse with content of a block
+
+- {@NUTS	TYPE='MEDIA'	OBJECT='AUDIO'	NAME='?'}: parse with content of a media type audio
+
+- {@NUTS	TYPE='MEDIA'	OBJECT='VIDEO'	NAME='?'}: parse with content of a media type video
+
+
+
+
+
+<b>Nuts Hacks</b><hr />
+- {#include('  ');}: include a specific page
+
+- {#if(php_condition)}
+	some text
+  {#elseif(php_condition)}
+    some text
+  {#endif}
+
+- {$NUTS_CONTENT&shy;}: replace with current php content useful for plugin
+
+- {$page->vars[array_key]&shy;}: touch a specific page value

@@ -1,0 +1,117 @@
+<div id="nuts_comments">
+
+	<h3>{CommentNb} {CommentsFor} "{@PAGE_H1}"</h3>
+
+	<bloc::nuts_comments>
+	<table class="comment{comment_admin_class}" id="comment{ID}">
+	<tr>
+		<td class="col1">
+			<p class="comment_avatar"><a href="http://www.gravatar.com" target="_blank"><img src="{Avatar}" class="comment_avatar_image" alt="" /></a></p>
+		</td>
+		
+		<td class="col2">
+			<p class="comment_author">{CommentAuthor} :</p>
+			<p class="comment_date">{CommentDate} <span class="num">#{CommentID}</span></p>
+			<span class="comment_text">{CommentText}</span>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="reply">			
+			<a href="#form_post_comment" onclick="citeIt('{ID}', '{CAuthor}');" title="{CiteComment}">{Cite}</a>
+			<a href="#form_post_comment" title="{ReplyComment}">{Reply}</a>
+		</td>
+	</tr>
+	</table>
+	</bloc::nuts_comments>	
+
+</div>
+
+<script type="text/javascript">
+if($("#nuts_comments .comment").length == 0)
+	$("#nuts_comments").hide();
+
+function citeIt(ID, Author){
+
+	v = '[blockquote]';
+	v += '[span]'+Author+' : [/span]\n\n';
+	v += $('#comment'+ID+' .comment_text').text()+'\n';
+	v += '[/blockquote]\n\n';
+
+	$('#form_post_comment #Comment').val(v).focus();
+}
+</script>
+
+
+<form id="form_post_comment" action="#form_post_comment" name="form_post_comment" method="post">
+	<h3>{AddNewPostFor} "{@PAGE_H1}"</h3>
+
+	<bloc::form_error>
+		<p class="form_post_error_message">{msg}</p>
+	</bloc::form_error>
+	
+	<p>
+		<label>{Name} <span class="required">*</span></label>
+		<input type="text" name="Name" id="Name" value="{$_COOKIE['nuts_suscriber']['Author']}" />
+	</p>
+	<p>
+		<label>{Email} ({NotPublished}) <span class="required">*</span></label>
+		<input type="text" name="Email" id="Email" value="{$_COOKIE['nuts_suscriber']['Email']}" />
+	</p>
+	<p>
+		<label>{Website}</label>
+		<input type="text" name="Website" id="Website" value="{$_COOKIE['nuts_suscriber']['Website']}" />
+	</p>
+	<p>
+		<textarea id="Comment" name="Comment" cols="" rows="10"></textarea>
+	</p>
+
+	<bloc::captcha>
+	<p class="captcha">
+		<label>{SecurityCode}</label>
+		{$GLOBALS['tpln_captcha']}
+	</p>
+	</bloc::captcha>
+
+	<p class="comment_allowed_tags">
+		{AllowedTags} <span> {html_tags} </span>
+	</p>
+	
+	<p class="comment_submit">
+		<input type="submit" name="Submit" id="Submit" value="{SubmitComment}" />
+	</p>
+
+</form>
+
+<bloc::form_valid>
+<a id="form_post_comment"></a>
+<div id="nuts_comment_form_valid">
+	{FormValid}
+</div>
+	
+<script type="text/javascript">
+function createCommentCookie(name,value,days) {
+
+	if(days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+}
+createCommentCookie('nuts_suscriber[Author]',"{$_POST['Name']}", 365);
+createCommentCookie('nuts_suscriber[Email]',"{$_POST['Email']}", 365);
+createCommentCookie('nuts_suscriber[Website]',"{$_POST['Website']}", 365);
+
+function refreshCurrentPage(){
+
+	uri = document.location.href;
+	if(uri.indexOf('#') != -1)
+		uri = uri.substr(0, uri.indexOf('#'));
+	document.location.href = uri;
+}
+
+setTimeout('refreshCurrentPage();', 3000);
+
+</script>
+</bloc::form_valid>

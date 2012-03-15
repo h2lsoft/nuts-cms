@@ -1,0 +1,1 @@
+place you php script to auto include in front script index.php

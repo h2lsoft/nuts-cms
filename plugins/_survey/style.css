@@ -1,0 +1,62 @@
+/** nuts survey: these style are used in front office copy theme or include this css */
+.nuts_survey {
+
+	border: 1px solid #D852AD;
+	padding:0;
+	width: 150px;
+
+}
+
+.nuts_survey p.nuts_survey_title {
+
+	background-color: #D852AD;
+	padding: 5px;
+	color: white;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 0px;
+
+}
+
+.nuts_survey .nuts_survey_options {
+	padding: 5px;
+}
+
+.nuts_survey .nuts_survey_results {
+	padding-left: 7px;
+	padding-right: 7px;
+}
+
+.nuts_survey .nuts_survey_bottom {
+	text-align: right;
+	font-weight: bold;
+	color: #D852AD;
+
+}
+
+.nuts_survey .nuts_survey_bar {
+	display: block;
+	background-color: #D852AD;
+	width: 200px;
+	height: 14px;
+	text-align: center;
+	color:white;
+	font-size: 10px;
+	white-space: nowrap;
+	font-weight: bold;
+
+}
+
+.nuts_survey .nuts_survey_bar_bkg {
+
+	background-color: #e5e5e5;
+	width: 100%;
+	display: block;
+	height: 14px;
+	margin-bottom: 2px;
+}
+
+.nuts_survey .nuts_survey_bar_bkg:hover {
+	background-color: #ccc;
+	cursor: help;
+}

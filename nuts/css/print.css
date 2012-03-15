@@ -1,0 +1,30 @@
+#header,
+#menu,
+ul#navbar,
+#bottom,
+
+#list_container fieldset,
+#list_container #add,
+
+#list tfoot div,
+#list tfoot a.np
+{display:none;}
+
+
+/*
+#list th {background-color:#ccc;}
+#list th, #list td {border:1px solid #ccc;}
+*/
+
+
+
+#list_container td:last-child {padding-right:0;}
+
+#list_container caption {font-weight:bold;}
+
+
+body {background:none;}
+#user_tpg {border:0; background-image:none; font-weight:bold;}
+
+.noprint {display:none;}
+

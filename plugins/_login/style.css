@@ -1,0 +1,33 @@
+#nuts_login input[type=text],
+#nuts_login input[type=password]
+	{width: 250px;}
+
+#nuts_login .caption {font-weight: bold; font-size:14px;}
+#nuts_login #uLogin {}
+#nuts_login #uPassword {}
+#nuts_login .form_bottom {text-align: center;}
+#nuts_login .submit {float: none; margin-right: 0px; margin-left: 20px;}
+#nuts_login #layout_form_form {padding-bottom: 20px;}
+
+
+#nuts_login  #nuts_login_lost_password {
+	margin-top: 10px;
+	
+}
+
+#nuts_login  #nuts_login_lost_password .lost_password_form_message {
+
+	color: red;
+	padding: 3px;
+	font-weight: bold;
+
+}
+
+#nuts_login  #nuts_login_lost_password .lost_password_form_message_ok {
+
+	color: green;
+	
+}
+
+
+#nuts_login  #nuts_login_lost_password .submit {float: none; margin-right: 0px; margin-left: 0px;}

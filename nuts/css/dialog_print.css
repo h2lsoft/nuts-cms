@@ -1,0 +1,45 @@
+body {background-color: #fff; 
+	  margin:0px;
+	  width:auto;
+	  height:auto;
+}
+
+.ui-dialog-titlebar-close {display:none;}
+.bottom {display:none;}
+#form_window {height:auto; width:960px; background-color: #fff;}
+.WYSIWYG_toolbar {visibility: hidden;}
+.required {display:none;}
+
+input[type=text],
+input[type=file],
+input[type=password],
+select,
+textarea  {background:none !important;
+		   border:0px !important;
+		   width:565px;
+}
+
+textarea {
+	white-space: pre;	
+}
+
+
+
+select {
+	overflow:hidden !important;
+}
+
+fieldset {padding:5px; -moz-border-radius: 8px; margin-top:10px; margin-bottom:10px; width:750px;}
+legend {font-weight:bold; margin-left:10px; padding-left:5px; padding-right:5px; color:#3333FF;}
+
+label {width:auto; /*display:block;*/ float:left; text-align:right; padding-right:10px; font-weight:bold;}
+p {margin:3px; padding:0; min-width:550px;}
+.date {background-image:url(calendar.png); background-repeat:no-repeat; background-position:right;}
+.datetime {background-image:url(calendar.png); background-repeat:no-repeat; background-position:right;}
+
+p > input[type=file] {display:none;}
+
+
+p > label {width: 120px; white-space: nowrap; padding-right: 5px; margin-right: 10px; /*background-color: #e5e5e5;*/}
+/* p:nth-child(odd) {background-color: #e5e5e5;} */
+

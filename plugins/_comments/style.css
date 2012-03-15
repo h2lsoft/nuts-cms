@@ -1,0 +1,33 @@
+/** nuts comments: these styles are used in front office copy theme or include this css */
+#nuts_comments .comment {border:1px solid #ccc; width: 100%; margin-bottom: 10px;}
+#nuts_comments .comment_admin {border:1px solid #C93F9E;}
+
+#nuts_comments .comment .col1 {width:10px; padding: 5px;  white-space: nowrap; vertical-align: top;}
+
+#nuts_comments .comment .comment_author {font-size: 14px; font-weight: bold; padding: 0; margin: 0;}
+#nuts_comments .comment .comment_avatar {text-align: center; padding-top: 0; margin-top: 0;}
+#nuts_comments .comment .comment_date {font-size: 10px; padding-top: 0; margin-top: 0; color:#999; }
+#nuts_comments .comment .comment_text {}
+#nuts_comments .comment blockquote {border: 1px solid #ccc;  border-left-width: 5px;  background-color: #e5e5e5;  padding: 5px; margin-left: 0; margin-bottom: 0;}
+#nuts_comments .comment blockquote span {font-weight: bold;}
+#nuts_comments .comment code {border: 1px solid #ccc;  border-left-width: 5px;  background-color: #e5e5e5;  padding: 5px; margin-left: 0; margin-bottom: 0;}
+
+#nuts_comments .comment .col2 {vertical-align: top; padding-left: 10px; padding-top: 0;}
+
+#nuts_comments .comment .reply {text-align: right; }
+#nuts_comments .comment .reply a {margin-right: 10px;}
+
+
+/* form post */
+#form_post_comment h3 {border-bottom: 1px solid #C93F9E; padding-bottom: 10px;}
+#form_post_comment .form_post_error_message {color:red; font-weight: bold;}
+#form_post_comment .required {color:red; font-weight: bold;}
+#form_post_comment p label {display: block; width: 150px; float: left; white-space: nowrap;}
+#form_post_comment input[type=text]{width:250px;}
+#form_post_comment textarea {width:100%; height: 250px;}
+#form_post_comment #tpln_captcha {width:115px; margin-left: 160px; text-align: center; letter-spacing: 12px;}
+#form_post_comment .comment_allowed_tags {}
+#form_post_comment .comment_allowed_tags span {background-color: yellow; white-space: pre;}
+#form_post_comment .comment_submit {}
+
+#nuts_comment_form_valid {text-align: center; line-height: 120px; height: 120px;}

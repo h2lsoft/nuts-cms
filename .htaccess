@@ -1,0 +1,59 @@
+################################################
+##			Php configuration				 ###
+################################################
+
+#php_flag register_globals Off
+#php_flag magic_quotes_gpc Off
+#php_flag allow_url_fopen On
+#php_value default_charset Utf-8
+
+## developpement version ######################
+#php_flag display_errors On
+#php_value error_reporting  6143
+## end of developpement version ###############
+
+
+################################################
+##				Rewriting					 ###
+################################################
+
+Options -Indexes
+
+RewriteEngine On
+Options +Multiviews
+
+# force redirection domain without www (no duplicate content for Google) ##
+RewriteCond %{HTTP_HOST} ^mydomain.com$
+RewriteRule ^(.*) http://www.mydomain.com/  [QSA,L,R=301]
+###########################################################################
+
+
+## normal rewriting #################################
+<FilesMatch "^(fr|en|de|es|it|ru|jp)$">
+    ForceType application/x-httpd-php
+</FilesMatch>
+
+## special rewriting for suPhp #################################
+# RewriteRule ^(en|fr|de|es|it|ru)	index.php [L]
+###############################################################
+
+
+## files type protection #######################################################
+
+# Protection of *.yml
+<Files ~ "\.yml$">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Protection of *.inc.php
+<Files ~ "\.inc\.php$">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Protection of *.class.php
+<Files ~ "\.class\.php$">
+    Order allow,deny
+    Deny from all
+</Files>

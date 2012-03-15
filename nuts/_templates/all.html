@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>		
+	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.nuts-cms.com/rss.php" />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="robots" content="noindex, nofollow" />
+	<link rel="icon" href="favicon.ico" />
+
+	<title>{CONST::APP_TITLE} - {CONST::WEBSITE_NAME}</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/style.css?t={$timer}" media="all" />
+	<link rel="stylesheet" type="text/css" href="css/print.css?t={$timer}" media="print" />
+
+	<script type="text/javascript" src="../library/js/php.js"></script>
+	<script type="text/javascript" src="nuts.js?t={$timer}"></script>
+	<script type="text/javascript" src="nuts_grid.js?t={$timer}"></script>
+	
+	<!-- richeditor -->
+	<script type="text/javascript">
+	var APP_TITLE = "{CONST::APP_TITLE}";
+	var WEBSITE_URL = "{CONST::WEBSITE_URL}";
+	var NUTS_THEMES_URL = "{CONST::NUTS_THEMES_URL}";
+	var PHPSESSID = "{$PHPSESSID}";
+	var TinyMceConfig = "{$_SESSION['TinyMceConfig']}";
+	var nutsUserLang = "{$NutsUserLang}";
+	var nutsCurrentPageLang = "{$NutsUserLang}";
+	var current_theme = "{$current_theme}";
+
+	var nuts_lang_msg_61 = "{$nuts_lang_msg[61]}";
+	var nuts_lang_msg_62 = "{$nuts_lang_msg[62]}";
+	var nuts_lang_msg_65 = "{$nuts_lang_msg[65]}";
+	var nuts_lang_msg_66 = "{$nuts_lang_msg[66]}";
+	var nuts_lang_msg_69 = "{$nuts_lang_msg[69]}";
+	var nuts_lang_msg_70 = "{$nuts_lang_msg[70]}";
+	var nuts_lang_msg_71 = "{$nuts_lang_msg[71]}";
+	var nuts_lang_msg_17 = "{$nuts_lang_msg[17]}";
+
+	var nuts_lang_msg_72 = "{$nuts_lang_msg[72]}";
+	var nuts_lang_msg_73 = "{$nuts_lang_msg[73]}";
+
+	if("{$_GET['popup']}" == 1)list_full_length = true;	
+	</script>
+
+    <script type="text/javascript" src="../library/js/tiny_mce/tiny_mce.js?t={$timer}"></script>	
+	<script type="text/javascript" src="tinymce_config.js?t={$timer}"></script>
+	
+	<!-- ui -->
+	<script type="text/javascript" src="../library/js/browser_detect.js"></script>
+	<script type="text/javascript" src="../library/js/jquery.js"></script>
+ 
+	<script type="text/javascript" src="../library/js/jquery.rightClick.js"></script>
+	<script type="text/javascript" src="../library/js/jquery.hotkeys.min.js"></script>
+	<script type="text/javascript" src="../library/js/jquery.textarea.js"></script>
+		
+	<script src="../library/js/jquery.form.js"  type="text/javascript"></script>
+	<script src="../library/js/jquery-ui/jquery-ui-personalized-1.5.1.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="../library/js/jquery-ui/themes/custom/jquery-ui-themeroller.css" />
+
+	<script src="../library/js/jquery-textarearesizer/jquery.textarearesizer.js"  type="text/javascript"></script>
+	<link rel="stylesheet" href="../library/js/jquery-textarearesizer/style.css" />
+
+	<script src="../library/js/jquery-simpletree/js/jquery.simple.tree.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="../library/js/jquery-simpletree/style.css" />
+	
+	<script src="../library/js/jscalendar/calendar.js" type="text/javascript"></script>
+	<script src="../library/js/jscalendar/lang/calendar-{$NutsUserLang}.js" type="text/javascript"></script>
+	<script src="../library/js/jscalendar/calendar-setup.js" type="text/javascript"></script>
+
+	<script src="../library/js/asmselect/jquery.asmselect.js?t={$timer}" type="text/javascript"></script>
+	<link rel="stylesheet" href="../library/js/asmselect/jquery.asmselect.css?t={$timer}" />
+
+	<script type="text/javascript" src="../library/js/jquery-autocomplete/jquery.autocomplete.js"></script>
+	<link rel="stylesheet" href="../library/js/jquery-autocomplete/jquery.autocomplete.css" />
+	<link rel="stylesheet" href="../library/js/jquery-autocomplete/jquery.autocomplete_nuts.css" />	
+
+	<script src="../library/js/jquery.cookie.js"  type="text/javascript"></script>
+
+	<!-- color picker -->
+	<script type="text/javascript" src="../library/js/colorpicker/js/colorPicker.js"></script>
+	<link rel="stylesheet" href="../library/js/colorpicker/css/colorPicker.css" />	
+	<!-- /color picker -->
+
+	<!-- ui -->
+
+	<!-- tooltip -->
+	<link rel="stylesheet" href="../library/js/jquery-tooltip/jquery.tooltip.css" />
+	<script src="../library/js/jquery-tooltip/lib/jquery.bgiframe.js" type="text/javascript"></script>
+	<script src="../library/js/jquery-tooltip/jquery.tooltip.js" type="text/javascript"></script>
+	<!-- tooltip -->
+
+	<!-- mask -->
+	<script src="../library/js/jquery.maskedinput.pack.js" type="text/javascript"></script>
+	<!-- mask -->
+	
+	<!-- m_uploader -->
+	<link rel="stylesheet"  href="../library/js/m_uploader/fileuploader.css"/>
+	<script src="../library/js/m_uploader/fileuploader.js" type="text/javascript"></script>
+	<!-- /m_uploader -->
+	
+	
+	<!-- codemirror -->
+	<link rel="stylesheet"  href="../library/js/codemirror/lib/codemirror.css">
+	<script type="text/javascript" src="../library/js/codemirror/lib/codemirror.js"></script>
+	
+	<script type="text/javascript" src="../library/js/codemirror/mode/clike/clike.js"></script>
+	<script type="text/javascript" src="../library/js/codemirror/mode/xml/xml.js"></script>
+	<script type="text/javascript" src="../library/js/codemirror/mode/javascript/javascript.js"></script>
+	<script type="text/javascript" src="../library/js/codemirror/mode/css/css.js"></script>
+	<script type="text/javascript" src="../library/js/codemirror/mode/mysql/mysql.js"></script>
+	<script type="text/javascript" src="../library/js/codemirror/mode/php/php.js"></script>	
+	
+	<!-- /codemirror -->
+	
+
+	<link rel="stylesheet" type="text/css" href="css/custom.css" media="screen" />
+	{#include("_inc/custom.html");}
+	
+</head>
+
+<body>
+
+<!-- notify_it -->
+<div id="notify_it"></div>
+<!-- /notify_it -->
+	
+
+<!-- ajax loader -->
+<div id="ajax_loader">
+	<img src="img/ajax-loader.gif" align="absmiddle" /> Loading...
+</div>
+<!-- /ajax loader -->
+
+
+
+
+
+
+<!-- header -->
+<div id="header" style="{popup_display}">
+
+	<!-- logout -->
+	<div id="logout">
+
+		<bloc::gravatar>
+		<div id="gravatar">
+			<a href="http://www.gravatar.com" target="_blank"><img src="http://www.gravatar.com/avatar/{email_hash}?s=60&d={gravatar_encoded}" /></a>
+		</div>
+		</bloc::gravatar>
+	
+		<span class="login">{$nuts_lang_msg[0]}, {$_SESSION['FirstName']} {$_SESSION['LastName']} (#{$_SESSION['NutsUserID']})</span><br />
+		<span class="time"></span><br />
+		
+		<span class="internal_message">
+			<a href="javascript:;" onclick="popup2('index.php?mod=_internal-messaging&do=list&popup=1&parent_refresh=0');">{$nuts_lang_msg[65]}</a>
+		</span><br />
+
+		
+		
+		<!-- writing_toolbar -->
+		<div id="writing_toolbar">
+			
+			<bloc::wrinting_page>
+			<a href="javascript:system_goto('index.php?mod=_page-manager&do=exec', 'content');" class="tt"  title="{$nuts_lang_msg[82]}"><img src="img/write_toolbar_pen.png" /></a>
+			</bloc::wrinting_page>
+			
+			<bloc::wrinting_news>
+			<a href="javascript:system_goto('index.php?mod=_news&do=list', 'content');" class="tt news"  title="{$nuts_lang_msg[83]}"><img src="img/write_toolbar_news.png" /></a>
+			</bloc::wrinting_news>
+			
+		</div>
+		<!-- /writing_toolbar -->
+		
+		
+		
+		<a class="tt" title="My Notes" href="javascript:;" onclick="popup2('index.php?mod=_internal-memo&do=edit&popup=1&parent_refresh=0');">
+			<img class="user_online" style="width:16px;" src="img/notes-icon-gray.gif" />
+		</a>			
+			
+		-
+		
+		<a class="tt" href="javascript:;" onclick="viewOnlineUsers(false);" onblur="viewOnlineUsers(true);" title="{$nuts_lang_msg[67]}"><img src="img/top_users.gif" class="user_online" alt="{$nuts_lang_msg[67]}" /></a> <span id="user_online_count">0</span>
+		
+		&nbsp;
+		
+		<div id="user_online_list"></div>
+		
+		
+		[ 
+			<a  class="tt" href="javascript:;" onclick="popup2('{CONST::WEBSITE_URL}');" title="{$nuts_lang_msg[68]}"><img src="img/icon-home.png" alt="" class="logout_icon_home" /></a>  |
+			<a href="javascript:logoutForm('{$nuts_lang_msg[2]}');">{$nuts_lang_msg[2]}</a>
+		]
+		
+	</div>
+	<!-- logout -->
+
+	<span><a href="index.php"><img src="{$nutsBackLogo}" alt="Nuts Cms" align="left" /></a></span>
+
+</div>
+<!-- header -->
+
+{#if(@!isset($_GET['popup']))}
+<!-- menu -->
+<div id="menu" style="{popup_display}">
+	{$menu}
+</div>
+
+<!-- top_search -->
+<div id="top_search" style="{popup_display}">
+	<input autocomplete="false" spellcheck="false" type="text" name="top_search" id="top_search_input" value="{$nuts_lang_msg[11]}..." onclick="this.value='';" onblur="if(this.value=='')this.value='{$nuts_lang_msg[11]}...';" accesskey="s" />
+</div>
+
+<script>
+var plugin_list_ac = {plugin_list_ac};
+$("#top_search_input").autocomplete(plugin_list_ac, {
+		width: 310,
+		max: 10,
+		highlight: false,
+		autoFill: true,
+		minChars: 1,
+		scroll: true,
+		matchContains: true,		
+		scrollHeight: 300,
+
+		formatMatch: function(row, i, max) {
+			return row.label;
+		},
+
+		formatItem: function(row, i, max) {
+
+			plugin_label = row.label;
+			plugin_name = row.name;
+			plugin_url = row.url;			
+
+			if(!empty(plugin_name) && !empty(plugin_label))
+				return "<img src=\"/plugins/"+plugin_name+"/icon.png\" style=\"height:24px; vertical-align:middle;\" /> " + plugin_label;
+		},
+
+		formatResult: function(row) {
+			return row.label;
+		}		
+	});
+
+	$("#top_search_input").result(function(event, row, formatted) {
+
+		plugin_label = row.label;
+		plugin_name = row.name;
+		plugin_url = row.url;
+		plugin_default_action = row.default_action;
+
+		if(!empty(plugin_url))
+		{
+			if(plugin_url.indexOf('http') != 1 &&  plugin_url.indexOf('ftp') != 1  &&  plugin_url.indexOf('mailto') != 1)
+				document.location.href = plugin_url;
+			else
+				popup2(plugin_url);
+		}
+		else
+		{
+			system_goto('index.php?mod='+plugin_name+'&do='+plugin_default_action, 'content');
+		}
+		
+		$("#top_search_input").val("{$nuts_lang_msg[11]}...");
+
+	});
+
+</script>
+<!-- /top_search -->
+
+<script>initMainMenu();</script>
+<!-- menu -->
+
+{#endif}
+
+
+
+<div id="content">
+<!-- ajax::content -->
+
+	<!-- navbar -->
+	<ul id="navbar" style="{popup_display}">
+		<bloc::navbar>
+		<li><img src="img/icon-arrow.png" align="absbottom" style="position:relative; top:-1px;" /> <a href="index.php?mod={mod}&do={do}" onclick="system_goto('index.php?mod={mod}&do={do}','content'); return false;">{name}</a> &nbsp;</li>
+		</bloc::navbar>
+	</ul>
+	<!-- navbar -->
+
+	<!-- text -->
+	<div id="text">
+
+		<table id="main_title" style="{popup_display}">
+			<tr>
+				<td class="col_logo">
+					<img src="{CONST::NUTS_PLUGINS_URL}/{$plugin->name}/icon.png" class="plugin_logo" />
+				</td>
+				<td class="col_title">
+					<a href="javascript:system_goto('?mod={$plugin->name}&do={$plugin->configuration['default_action']}', 'content');">{$plugin->real_name}</a>
+					<span>{$plugin->description}</span>
+				</td>
+				<td class="col_configuration">
+					<bloc::admin_configuration_image>
+						<a href="javascript:popupModal('{config_url}', 'Configuration', 1024, 768, '');" title="Configuration"><img src="img/configuration_24x24.png" alt="Configuration" align="absbottom" /></a>
+					</bloc::admin_configuration_image>
+				</td>
+			</tr>
+		</table>
+
+		{$plugin->render}
+
+	</div>
+	<!-- text -->
+
+<!-- /ajax::content -->
+</div>
+
+
+
+<!-- bottom -->
+<div id="bottom" style="{popup_display}">
+
+	<bloc::trademark>
+	 Nuts&#8482; CMS v{CONST::NUTS_VERSION} {$nuts_lang_msg[42]}  <a href="http://www.nuts-cms.com" target="_blank">official website</a> <br />
+	</bloc::trademark>
+
+	{$nuts_lang_msg[43]}  <a href="http://www.google.com/chrome" target="_blank"><img src="img/get_chrome.png" align="absmiddle" /></a> <a href="http://getfirefox.com" target="_blank"><img src="img/get_firefox.png" align="absmiddle" /></a> - Rss <a href="http://www.nuts-cms.com/rss.php" target="_blank"><img src="img/rss.gif" alt="Nuts CMS - Rss" align="absmiddle" /></a>
+	
+	<!-- top_return -->
+	<div id="top_return">
+		<a onclick="$(window).scrollTop(0);" href="javascript:;">top ^</a>
+	</div>
+	<!-- /top_return -->
+	
+</div>
+<!-- bottom -->
+
+<!-- form window -->
+<div id="form_window" style="display:none"></div>
+<!-- form window -->
+
+
+<!-- canvas -->
+<div id="nuts_canvas" onclick="imageBoxClose()"></div>
+<div id="nuts_canvas_content" onclick="imageBoxClose()"></div>
+<!-- canvas -->
+
+
+<script>
+initTime();
+setPluginTitle();
+ajaxHistoricCheckChanges();
+
+// escape to close
+if("{$_GET['popup']}" == 1)
+{
+	$('body').css('background-image', 'none');
+	$('#add').css('margin-top', '-10px');
+	
+	
+	$(document).keyup(function(event){
+		// ESC key
+		if(event.keyCode == 27){
+			if((c=confirm(nuts_lang_msg_62))){
+				window.close();
+			}
+		}
+    });
+	
+	if("{$_GET['parent_refresh']}" == "" && window.opener != null && window.opener != undefined && typeof window.opener.system_refresh == 'function')
+	{
+		
+		// prevent Chrome bug
+		window.onload = function() {			
+			if(strtolower(BrowserDetect.browser) == 'chrome')			
+				window.opener.system_refresh();
+		};
+		
+		// normal with FF
+		window.onbeforeunload = function() {			
+			if(strtolower(BrowserDetect.browser) == 'firefox')	
+				window.opener.system_refresh();					
+		};
+		
+		
+	}
+	
+}
+else
+{	
+	privateBoxRefresh();		
+	$("#logout a.tt").tooltip({track: false,  delay: 0, showURL: false, showBody: " - ", opacity: 0.55});
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+#nuts_logon_restricted_access {
+
+	width: 100%;
+	border: 1px solid #ccc;
+	border: 4px solid #dad7d0;
+	background-color: #efefef;
+	text-align: center;
+
+	padding-top: 150px;
+	height: 100px;
+
+	background-image: url(forbidden.gif);
+	background-repeat: no-repeat;
+	background-position: center 10px;
+
+	font-weight: bold;
+
+	
+}

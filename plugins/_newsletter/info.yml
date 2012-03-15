@@ -1,0 +1,12 @@
+# General configuration
+version: 1.0
+author: H2lsoft
+website: http://www.nuts-cms.com
+email: contact@h2lsoft.com
+webupdate: yes
+info: manage your newsletter
+info_fr: gérer vos newsletters
+langs: en, fr
+system required: >= 1.0
+actions: list, add, view
+default_action: list

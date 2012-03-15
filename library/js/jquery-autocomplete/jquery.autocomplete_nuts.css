@@ -1,0 +1,16 @@
+.ac_results {
+	border: 1px solid #999;
+}
+
+.ac_loading {
+	background: white url(indicator.gif) right center no-repeat !important;
+}
+
+.ac_odd {
+	background-color: white;
+}
+
+.ac_over {
+	background-color: blue;
+	color:white;
+}

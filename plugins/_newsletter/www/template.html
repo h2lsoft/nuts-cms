@@ -1,0 +1,50 @@
+<div id="nuts_newsletter">
+
+	<p>Newsletter</p>
+
+	<div class="nuts_newsletter_error" style="display:none;">{error1}</div>
+	<div class="nuts_newsletter_error" style="display:none;">{error2}</div>
+	<div class="nuts_newsletter_error" style="display:none;">{error3}</div>
+	<div class="nuts_newsletter_ok" style="display:none;">{ok}</div>
+
+
+
+	<input type="text" name="nEmail" id="nEmail" value="" placeholder="my@email.com" /> <input type="button" value="ok" id="NutsButtonOk" />
+	<input type="hidden" name="Language" id="Language" value="{@PAGE_LANGUAGE}" />
+	<input type="hidden" name="MailingListID" id="MailingListID" value="1" />
+
+</div>
+
+<script type="text/javascript">
+$('#nuts_newsletter #NutsButtonOk').click(function(){
+
+	if($('#nEmail').val() == $('#nEmail').attr('placeholder'))
+		$('#nEmail').val("");
+
+	$(this).val(' ... ');
+	$(this).attr('disabled', true);
+	$.post("/plugins/_newsletter/www/newsletter.php?action=suscribe", {Email: $('#nuts_newsletter #nEmail').val(), Language: $('#nuts_newsletter #Language').val(), MailingListID: $('#nuts_newsletter #MailingListID').val()}, function(data){
+
+		$('#nuts_newsletter .nuts_newsletter_error, #nuts_newsletter .nuts_newsletter_ok').hide();
+		if(data != 'ok')
+		{
+			index = parseInt(data);
+			index = index * -1;
+			index = index - 1;
+
+			$("#nuts_newsletter .nuts_newsletter_error").eq(index).slideDown('fast');
+			$('#nuts_newsletter #NutsButtonOk').val('Ok');
+			$('#nuts_newsletter #NutsButtonOk').attr('disabled', false);
+		}
+		else
+		{
+			$('#nuts_newsletter #nEmail').val('');
+			$('#nuts_newsletter .nuts_newsletter_ok').slideDown('fast');
+			$('#nuts_newsletter #nEmail').hide();
+			$('#nuts_newsletter #NutsButtonOk').hide();
+		}
+
+	});
+
+});
+</script>

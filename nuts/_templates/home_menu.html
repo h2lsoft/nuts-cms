@@ -1,0 +1,36 @@
+<div id="home">
+
+<!-- parent -->
+<bloc::parent>
+<table cellspacing="0">
+<tr>
+	<th>{name}</th>
+</tr>
+<tr>	
+	<td>
+	
+	<!-- child -->
+	<bloc::child>
+	<div class="mod" style="{style}" title="{mod_title}">
+	<a href="{c_uri}" target="{c_target}"> <img src="{CONST::WEBSITE_URL}/plugins/{c_name}/icon.png"  width="32" height="32" />
+	<br />{c_rname}
+	</a>
+	</div>
+	
+	{br}
+	
+	</bloc::child>
+	<!-- child -->
+		
+	</td>
+</tr>
+</table>
+</bloc::parent>
+<!-- parent -->
+
+
+</div>
+
+<script type="text/javascript">
+// $("#home .mod[title!='']").tooltip({top: 30, left:-50, track: false, delay: 800, showURL: false, showBody: " ** ",opacity: 0.85});
+</script>

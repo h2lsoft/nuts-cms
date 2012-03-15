@@ -1,0 +1,1 @@
+here images for news plugin

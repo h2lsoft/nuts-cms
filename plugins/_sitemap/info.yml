@@ -1,0 +1,12 @@
+# General configuration
+version: 1.0
+author: H2lsoft
+website: http://www.nuts-cms.com
+email: contact@h2lsoft.com
+webupdate: yes
+info: generate automatically your website sitemap
+info_fr: générer automatiquement le sitemap de votre site
+langs: en, fr
+system required: >= 1.0
+actions: info
+default_action: info
