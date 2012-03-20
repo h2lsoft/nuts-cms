@@ -1,5 +1,8 @@
 <?php
 
+$include_plugin_css = true; // inlude bundle css dynamically
+
+
 $comments_template = 'template.html'; // leave blank to use default plugin template
 $comments_admin_email = "admin@website.com"; // email to receive notification (separated by commas)
 $comments_email_notify_from = "comments@website.com";

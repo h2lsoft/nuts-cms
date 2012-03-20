@@ -32,6 +32,8 @@ else
 
 	// display & apply translation
 	$plugin->openPluginTemplate();
+	if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_comments/style.css');
+
 
 	if(!$comments_captcha)
 		$plugin->eraseBloc ('captcha');
@@ -44,7 +46,7 @@ else
 
 	// loops comments
 	$sql = "SELECT *, UNIX_TIMESTAMP(Date) AS tDate FROM NutsPageComment WHERE Deleted = 'NO' AND Visible = 'YES' AND NutsPageID = {$plugin->vars['ID']} ORDER BY Date";
-	$plugin->doQuery($sql);	
+	$plugin->doQuery($sql);
 	if($plugin->dbNumRows() == 0)
 	{
 		$plugin->eraseBloc("nuts_comments");
@@ -70,7 +72,7 @@ else
 
 			$plugin->parse("nuts_comments.CAuthor", addslashes($row["Name"]));
 			$plugin->parse("nuts_comments.CommentAuthor", $author);
-			$plugin->parse("nuts_comments.CommentDate", date($comments_date_format, $row['tDate']));			
+			$plugin->parse("nuts_comments.CommentDate", date($comments_date_format, $row['tDate']));
 			$plugin->parse("nuts_comments.CommentText", $row['Message']);
 			$plugin->parse("nuts_comments.CommentID", $k);
 
@@ -84,7 +86,7 @@ else
 			$plugin->loop("nuts_comments");
 			$k++;
 		}
-	}	
+	}
 
 	// form
 	$plugin->notEmpty("Name");
@@ -92,7 +94,7 @@ else
 	$plugin->email("Email");
 	$plugin->notEmpty("Comment");
 	$plugin->url("Website");
-	
+
 	// words forbidden
 	if($_POST)
 	{
@@ -107,10 +109,10 @@ else
 				$plugin->addError("Comment", $err_lang);
 				break;
 			}
-		}		
+		}
 	}
-	
-	
+
+
 
 	$html_tags = ' - ';
 	if(!empty($comments_message_allowed_tags))
@@ -155,7 +157,7 @@ else
 
 		// make clikable
 		$comment = $nuts->clickable($comment);
-		
+
 		$IP = $plugin->getIP();
 		$IP_long = ip2long($IP);
 
@@ -175,7 +177,7 @@ else
 		$plugin->mailSubject($comments_email_subject.' '.$p_lng['MailSubject']." `{$plugin->vars['H1']}` (#{$plugin->vars['ID']})");
 
 		include(WEBSITE_PATH.'/plugins/_email/config.inc.php');
-		
+
 
 		$tos = explode(',', $comments_admin_email);
 		foreach($tos as $to)
@@ -189,7 +191,7 @@ else
 			$message = str_replace('{H1}', $plugin->vars['H1'], $message);
 			$message = str_replace('{IP}', long2ip($IP_long), $message);
 			$message = str_replace('{Website}', $_POST['Website'], $message);
-			
+
 			// gravatar
 			$email = $_POST['Email'];
 			$default = (empty($comments_avatar_default_image_url)) ? WEBSITE_URL.'/plugins/_comments/www/anonymous.gif': $comments_avatar_default_image_url;
@@ -213,12 +215,12 @@ else
 
 			// send message
 			$plugin->mailTo($to);
-			$message = str_replace('[BODY]', $message, $HTML_TEMPLATE);			
+			$message = str_replace('[BODY]', $message, $HTML_TEMPLATE);
 			$plugin->mailBody($message, 'HTML');
 			$plugin->mailSend();
 		}
 	}
-	
+
 	$plugin->setNutsContent();
 }
 
