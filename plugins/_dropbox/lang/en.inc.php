@@ -1,6 +1,6 @@
 <?php
 
-$lang_msg[0] = "Drop box"; // plugin name
+$lang_msg[0] = "Files box"; // plugin name
 
 $lang_msg[1] = "Name";
 $lang_msg[2] = "Description";
