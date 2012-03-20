@@ -1207,12 +1207,34 @@ class Page extends NutsCore
 		$out = $this->addNutsMaintenanceToolbar($out);
 
 		// add special meta robots
-		// <editor-fold defaultstate="collapsed" desc="">
 		if(!empty($this->vars['MetaRobots']))
 		{
 			$out = str_replace('<head>', '<head>'.CR.TAB.TAB.'<meta name="robots" content="'.$this->vars['MetaRobots'].'" />'.CR, $out);
 		}
-		// </editor-fold>
+
+		// add dynamically header file
+		if(count($this->header_files_added))
+		{
+			$str = "\n\t<!-- dynamic plugins insertion -->";
+			foreach($this->header_files_added as $hf)
+			{
+				if($hf['type'] == 'css')
+				{
+					$str .= "\n\t<link href=\"{$hf['url']}\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />";
+				}
+				elseif($hf['type'] == 'js')
+				{
+					$str .= "\n\t<script type=\"text/javascript\"  src=\"{$hf['url']}\"></script>";
+				}
+				else
+				{
+					$str .= "\n\t{$hf['url']}";
+				}
+			}
+			$str .= "\n\t<!-- /dynamic plugins insertion -->";
+
+			$out = str_replace('<head>', "<head>$str\n", $out);
+		}
 
 
 		// output content ##############################################################################
@@ -2819,6 +2841,18 @@ EOF;
 	public function addPattern($pattern, $replacement)
 	{
 		$this->patterns[$pattern] = $replacement;
+	}
+
+
+	private $header_files_added = array();
+
+	/**
+	 * Add dynamically a file after <head> node
+	 * @param string $type must be css, js, custom
+	 */
+	public function addHeaderFile($type, $url)
+	{
+		$this->header_files_added[] = array('type' => strtolower($type), 'url' => $url);
 	}
 
 
