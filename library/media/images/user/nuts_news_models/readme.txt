@@ -1,0 +1,1 @@
+news models image folder
