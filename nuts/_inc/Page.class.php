@@ -194,7 +194,7 @@ class Page extends NutsCore
 				$str .= " AND {$add_table_name}Active = 'YES'";
 			}
 		}
-		
+
 		return $str;
 	}
 
@@ -263,7 +263,7 @@ class Page extends NutsCore
 			die(file_get_contents(NUTS_ERROR404_TEMPLATE));
 		}
 
-		
+
 		// header("Location: /error404.php?uri=".base64_encode($_SERVER['REQUEST_URI']));
 		exit();
 	}
@@ -343,7 +343,7 @@ class Page extends NutsCore
 		// force uri get
 		$url_tmp = @parse_url($_SERVER['REQUEST_URI']);
 		if(!$url_tmp)$this->error404();
-		
+
 		if(isset($url_tmp['query']))
 			parse_str($url_tmp['query'], $_GET);
 
@@ -1043,7 +1043,7 @@ class Page extends NutsCore
 									$rep = sprintf('<ul id="%s">'."\n", $cmd2['CSS']);
 									foreach($rs as $r)
 									{
-										$class_selected = ($this->pageID != $r['ID']) ? '' : ' class="selected"';	
+										$class_selected = ($this->pageID != $r['ID']) ? '' : ' class="selected"';
 										$rep .= sprintf('<li id="%s%s" %s><a href="%s">%s</a>'."\n", $cmd2['CSS'], $r['ID'], $class_selected, $this->getUrl($r['ID'], $r['Language'], $r['VirtualPagename']), $r['MenuName']);
 										$rep .= "\t".$this->getMenu($r['ID'], 'LI', $cmd2['CSS'], $cmd2['ATTRIBUTES'], 1)."\n";
 										$rep .= "\t</li>\n";
@@ -1213,7 +1213,7 @@ class Page extends NutsCore
 			$out = str_replace('<head>', '<head>'.CR.TAB.TAB.'<meta name="robots" content="'.$this->vars['MetaRobots'].'" />'.CR, $out);
 		}
 		// </editor-fold>
-		
+
 
 		// output content ##############################################################################
 		if($this->cacheIsPossible())
@@ -1476,7 +1476,7 @@ class Page extends NutsCore
 			if(!empty($m['MenuName']))
 			{
 				$str .= $separator;
-				$str .= ' <a href="';				
+				$str .= ' <a href="';
 
 				// last one no string
 				if($i == count($r2)-1)
@@ -1485,7 +1485,7 @@ class Page extends NutsCore
 				}
 				else
 				{
-					$uri = $this->getUrl($m['ID'], $m['Language'], $m['VirtualPageName']);					
+					$uri = $this->getUrl($m['ID'], $m['Language'], $m['VirtualPageName']);
 				}
 
 				$str .= $uri;
@@ -1576,7 +1576,7 @@ class Page extends NutsCore
 									$sql_access_restricted
 
 									".$this->sqlAdded());
-			//if($output == 'LI' || $output == 'LI>UL')									
+			//if($output == 'LI' || $output == 'LI>UL')
 			$pattern = $chars.'<li id="%s%s" %s>'."\n".'<a href="%s" %s>%s</a>'."\n".$chars.'</li>'."\n";
 			//else
 				//$pattern = $output;
@@ -1585,11 +1585,11 @@ class Page extends NutsCore
 			$r[$qID] = $this->dbFetch();
 			$attr_tmp = $this->getMenuAttribute($r, $qID);
 			$attr_tmp = trim($attr_tmp);
-			
-			$class_selected = ($this->pageID != $r[$qID]['ID']) ? '' : ' class="selected"';					
+
+			$class_selected = ($this->pageID != $r[$qID]['ID']) ? '' : ' class="selected"';
 			$str .= sprintf($pattern, $css,  $r[$qID]['ID'], $class_selected, $this->getUrl($r[$qID]['ID'], $r[$qID]['Language'], $r[$qID]['VirtualPagename']), $attr_tmp, $r[$qID]['MenuName']);
 		}
-		
+
 		// parsing
 		$sql = "SELECT
 						ID,
@@ -1618,15 +1618,15 @@ class Page extends NutsCore
 		while($r[$qID] = $this->dbFetch())
 		{
 			$attr_tmp = $this->getMenuAttribute($r, $qID);
-			
+
 			//if($output == 'LI' || $output == 'LI>UL')
 				$pattern = $chars.'	<li id="%s%s" %s><a href="%s" %s>%s</a>';
 			//else
 				//$pattern = $output;
-			
-			$class_selected = ($this->pageID != $r[$qID]['ID']) ? '' : ' class="selected"';	
+
+			$class_selected = ($this->pageID != $r[$qID]['ID']) ? '' : ' class="selected"';
 			$str .= sprintf($pattern, $css,  $r[$qID]['ID'], $class_selected, $this->getUrl($r[$qID]['ID'], $r[$qID]['Language'], $r[$qID]['VirtualPagename']), $attr_tmp, $r[$qID]['MenuName']);
-			
+
 			//echo str_repeat(' ', $level)."- {$r[$qID]['MenuName']}\n";
 
 			// childrens found ?
@@ -1674,7 +1674,7 @@ class Page extends NutsCore
 	private function setNutsCommentMarkup($label, $content)
 	{
 		$label = trim($label);
-		
+
 		$str = "<!-- nuts $label -->\n";
 		$str .= $content;
 		$str .= "\n<!-- /nuts $label -->\n";
@@ -1715,8 +1715,8 @@ class Page extends NutsCore
 					$attr_tmp = ' '.$n.'=""';
 				}
 			}
-		}		
-		
+		}
+
 		return $attr_tmp;
 	}
 
@@ -1925,11 +1925,11 @@ class Page extends NutsCore
 	{
 		$cj = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
 		$cjx = array('Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
-			
+
 		$cm = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
 		$cmx = array('Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre');
-		
-		
+
+
 		switch($cmd)
 		{
 			case 'THEME_URL':
@@ -1993,14 +1993,14 @@ class Page extends NutsCore
 			// page date **********************************************************
 			case strpos($cmd, 'PAGE_DATE_CREATE::') !== false:
 				$cmd2 = str_replace('PAGE_DATE_CREATE::', '', $cmd);
-				$rep = date($cmd2, $this->vars['DateCreationStamp']);			
-				
+				$rep = date($cmd2, $this->vars['DateCreationStamp']);
+
 				if($this->language == 'fr')
 				{
 					$rep = str_replace($cj, $cjx, $rep);
 					$rep = str_replace($cm, $cmx, $rep);
 				}
-				
+
 			break;
 
 			case strpos($cmd, 'PAGE_DATE_UPDATE::') !== false:
@@ -2013,14 +2013,14 @@ class Page extends NutsCore
 				{
 					$cmd2 = str_replace('PAGE_DATE_UPDATE::', '', $cmd);
 					$rep = date($cmd2, $this->vars['DateUpdateStamp']);
-					
+
 					if($this->language == 'fr')
 					{
 						$rep = str_replace($cj, $cjx, $rep);
 						$rep = str_replace($cm, $cmx, $rep);
-					}					
+					}
 				}
-				
+
 			break;
 
 			// pager ********************************************************
@@ -2281,7 +2281,7 @@ class Page extends NutsCore
 						$option = $option;
 						$option_val = $option;
 					}
-					
+
 					$option = trim($option);
 
 					if($field['I18N'] == 'YES')
@@ -2309,10 +2309,10 @@ class Page extends NutsCore
 					{
 						$option = $option;
 						$option_val = $option;
-					}					
+					}
 					$option = trim($option);
-										
-					
+
+
 					if($field['I18N'] == 'YES')
 						$option = '<i18n>'.$option.'</i18n>';
                    	$input .= '<option value="'.$option_val.'">'.$option.'</option>'."\n";
@@ -2424,12 +2424,12 @@ class Page extends NutsCore
 		elseif($this->language == 'fr')
 		{
 			$cancel_label = "Annuler";
-			$submit_label = "Envoyer";			
+			$submit_label = "Envoyer";
 		}
-		
-		
-		
-		
+
+
+
+
 		$form['fields'] .= "\n<div class=\"wrapper form_bottom\">\n";
 		$form['fields'] .= '<input type="reset" class="reset" value="'.$cancel_label.'" />';
 		$form['fields'] .= '<input type="submit" class="submit" value="'.$submit_label.'" />';
@@ -2598,11 +2598,11 @@ EOF;
 
 				// send email
 				$this->mailCharset('UTF-8');
-				
+
 				if(empty($form['FormValidMailerFrom']))$form['FormValidMailerFrom'] = NUTS_EMAIL_NO_REPLY;
 				if(empty($form['FormValidMailerTo']))$form['FormValidMailerTo'] = NUTS_ADMIN_EMAIL;
-				
-				$this->mailFrom($form['FormValidMailerFrom']);				
+
+				$this->mailFrom($form['FormValidMailerFrom']);
 				$this->mailSubject($form['FormValidMailerSubject']);
 				$this->mailBody($body, 'HTML');
 
@@ -2636,7 +2636,7 @@ EOF;
 														'Date' => 'NOW()',
 														'Data' => $body_table,
 														'DataSerialize' => $csv));
-			}			
+			}
 		}
 
 		$str = $this->output();
@@ -2853,7 +2853,7 @@ EOF;
 &nbsp;&nbsp;|&nbsp;&nbsp;
 			<img  alt="" src="/library/js/jquery-simpletree/images/page_edit.png" style="width:16px; vertical-align:middle;" /> <a id="nuts_page_link" style="color:black!important;text-decoration:none!important;" href="/nuts/index.php?mod=_page-manager&amp;do=exec&amp;pID={$this->pageID}&amp;popup=1&amp;parent_refresh=0&amp;from=iframe">$edit_lbl (#{$this->pageID})</a>
 EOF;
-			
+
 		// page options
 		$page_option_lbl = 'Options';
 		$page_option = <<<EOF
@@ -2874,15 +2874,15 @@ EOF;
 &nbsp;&nbsp;|&nbsp;&nbsp;
 			<img  alt="" src="/library/js/jquery-simpletree/images/page_add.png" style="width:16px; vertical-align:middle;" /> <a id="nuts_page_link3" style="color:black!important;text-decoration:none!important;" href="/nuts/index.php?mod=_page-manager&amp;do=exec&amp;pID={$this->pageID}&amp;popup=1&amp;parent_refresh=0&amp;from=iframe&amp;from_action=add_sub_page">$add_sub_lbl</a>
 EOF;
-		
+
 		// show elements
-		$se_sub_lbl = ($_SESSION['Language'] == 'fr') ? 'Afficher éléments' : 'Show elements';	
+		$se_sub_lbl = ($_SESSION['Language'] == 'fr') ? 'Afficher éléments' : 'Show elements';
 		$se_sub_option = <<<EOF
- 
+
 			<label style="-webkit-user-select:none; -moz-user-select:none;"><input type="checkbox" id="nuts_elements" onclick="nutsToggleElements(this.checked);"> $se_sub_lbl</label>
 EOF;
-		
-		// $out = preg_replace('/<!-- nuts (.*) -->/sU', '<!-- nuts $1 --><span class="nuts_elements" style="'.$nuts_elements_styles.'">$1</div>', $out);		
+
+		// $out = preg_replace('/<!-- nuts (.*) -->/sU', '<!-- nuts $1 --><span class="nuts_elements" style="'.$nuts_elements_styles.'">$1</div>', $out);
 		preg_match_all('/<!-- nuts (.*) -->/sU', $out, $matches);
 		if(count($matches) >= 2)
 		{
@@ -2894,9 +2894,9 @@ EOF;
 				$out = str_replace($sub, $rep, $out);
 			}
 		}
-				
-		
-		
+
+		$refresh_lbl = ($_SESSION['Language'] == 'fr') ? 'Rafraîchir' : 'Refresh';
+
 
 		// no editable page
 		if($this->pageID == 0)
@@ -2904,7 +2904,7 @@ EOF;
 			$edit_option = '';
 			$add_option = '';
 			$add_sub_option = '';
-			$page_option = '';			
+			$page_option = '';
 		}
 
 		$toolbar = <<<EOF
@@ -2917,6 +2917,10 @@ EOF;
 			$add_option
 			$add_sub_option
 			$se_sub_option
+
+
+			&nbsp;&nbsp;|&nbsp;&nbsp;<img alt="" src="/nuts/img/icon-refresh.png" style="width:16px; vertical-align:middle;" /> <a style="color:black!important;text-decoration:none!important;" href="javascript:history.go(0);">$refresh_lbl</a>
+
 		</div>
 		<script type="text/javascript">
 		$('#nuts_elements').attr('checked', false);
@@ -2938,9 +2942,9 @@ EOF;
 											'margin-top'		: 30
 
 										});
-										
+
 		function nutsToggleElements(show)
-		{			
+		{
 			$('.nuts_elements').toggle();
 		}
 
@@ -2951,7 +2955,7 @@ EOF;
 
 		return $out;
 	}
-	
+
 	/**
 	 * Add Maintenance toolbar
 	 * @param string $out
@@ -2961,24 +2965,24 @@ EOF;
 	{
 		if(!WEBSITE_MAINTENANCE)
 			return $out;
-		
+
 		$curIP = $this->getIP();
 		$lng = ($this->language == 'fr') ? "Site en maintenance, votre ip `$curIP` est autorisée" : "Website is in maintenance, your ip `$curIP` is allowed";
-		
-		
+
+
 		$toolbar = <<<EOF
-		
+
 		<div id="nuts_maintenance_toolbar" style="font-weight:bold; background-color:red; border-top:2px solid pink; color:white; text-align:center; padding:5px; width:99%; position: fixed; bottom:0; ">
 			$lng
 		</div>
-		
+
 EOF;
-		
+
 		$out = str_replace('</body>', $toolbar.'</body>', $out);
 		return $out;
 	}
-	
-	
+
+
 	/**
 	 * Return parent page ID or false
 	 * @param int $pageID default current page
@@ -2988,19 +2992,19 @@ EOF;
 	{
 		$pageID = (int)$pageID;
 		if(!$pageID)$pageID = $this->pageID;
-		
+
 		$sql = "SELECT NutsPageID FROM NutsPage WHERE ID = $pageID AND Deleted = 'NO' AND State = 'PUBLISHED'";
 		$this->doQuery($sql);
-		
+
 		$parentPageID = 0;
-		
+
 		if($this->dbNumRows())
 			$parentPageID = (int)$this->dbGetOne();
-		
-		return $parentPageID;		
+
+		return $parentPageID;
 	}
-	
-	
+
+
 	/**
 	 * Return parent page Url or empty string
 	 * @param int $pageID default current page
@@ -3010,17 +3014,17 @@ EOF;
 	{
 		$pageID = (int)$pageID;
 		if(!$pageID)$pageID = $this->pageID;
-		
+
 		$parentPageUrl = "";
-		
+
 		if(($parentPageID = $this->getParentPageID()))
 		{
 			$parentPageUrl = $this->getUrl($parentPageID);
 		}
-		
-		return $parentPageUrl;		
+
+		return $parentPageUrl;
 	}
-	
+
 	/**
 	 * Return children page ID or false
 	 * @param int $pageID default current page
@@ -3030,17 +3034,17 @@ EOF;
 	{
 		$pageID = (int)$pageID;
 		if(!$pageID)$pageID = $this->pageID;
-		
+
 		$sql = "SELECT ID FROM NutsPage WHERE NutsPageID = $pageID AND Deleted = 'NO' AND State = 'PUBLISHED' ORDER BY Position LIMIT 1";
 		$this->doQuery($sql);
-		
+
 		$childrenPageID = 0;
-		
+
 		if($this->dbNumRows())
 			$childrenPageID = (int)$this->dbGetOne();
-		
-		return $childrenPageID;		
-	}	
+
+		return $childrenPageID;
+	}
 
 	/**
 	 * Return children page Url or empty string
@@ -3051,17 +3055,17 @@ EOF;
 	{
 		$pageID = (int)$pageID;
 		if(!$pageID)$pageID = $this->pageID;
-		
+
 		$childrenPageUrl = "";
-		
+
 		if(($childrenPageID = $this->getChildrenPageID()))
 		{
 			$childrenPageUrl = $this->getUrl($childrenPageID);
 		}
-		
-		return $childrenPageUrl;		
+
+		return $childrenPageUrl;
 	}
-	
+
 
 }
 
