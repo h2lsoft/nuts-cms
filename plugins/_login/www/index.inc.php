@@ -83,6 +83,8 @@ else
 if(empty($template))$template = 'template.html';
 $plugin->openPluginTemplate($template);
 
+if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_login/style.css');
+
 if($plugin->itemExists('caption'))$plugin->parse("caption", $caption);
 if($plugin->itemExists('login_label'))$plugin->parse("login_label", $login_label);
 if($plugin->itemExists('password_label'))$plugin->parse("password_label", $password_label);

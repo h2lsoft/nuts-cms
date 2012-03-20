@@ -1,5 +1,7 @@
 <?php
 
+$include_plugin_css = true; // inlude bundle css dynamically
+
 $template = ''; // custom template (empty = default template)
 $trace_mode = false; // allow to track user default action
 
