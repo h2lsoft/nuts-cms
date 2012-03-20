@@ -153,13 +153,14 @@ function blockPreview(selectID, imageUrl)
 {
 	pos = $('#'+selectID).position();
 
-	$('#image_preview').css('background-color', "white");
-	$('#image_preview').css('border', "1px solid #ccc");
+	$('#image_preview').css('overflow', "hidden");
+    $('#image_preview').css('background-color', "#e5e5e5");
+    $('#image_preview').css('border', "1px solid #ccc");
 	$('#image_preview').css('top', pos.top);
 	$('#image_preview').css('left', pos.left+10+$('#'+selectID).width());
 
 	img = '<img src="'+imageUrl+'" style="width:150px;" />'
-	$('#image_preview').html(img);
+    $('#image_preview').html(img);
 	$('#image_preview').show();
 }
 
