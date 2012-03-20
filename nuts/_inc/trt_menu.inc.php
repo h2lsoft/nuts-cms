@@ -11,13 +11,13 @@ $mod_parsed = 0;
 foreach($mods_group as $group)
 {
 	// get all childs
-	$sql = "SELECT 
+	$sql = "SELECT
 					NutsMenu.*
-			FROM 
+			FROM
 					NutsMenu,
 					NutsMenuRight
-			WHERE 
-					NutsMenuRight.NutsMenuID = NutsMenu.ID  AND 
+			WHERE
+					NutsMenuRight.NutsMenuID = NutsMenu.ID  AND
 					Category = ".($i+1)." AND
 					NutsMenuRight.NutsGroupID = {$_SESSION['NutsGroupID']} AND
 					NutsMenu.Visible = 'YES'
@@ -27,11 +27,11 @@ foreach($mods_group as $group)
 					NutsMenu.Position";
 	$nuts->doQuery($sql);
 	$res = $nuts->getRowsCount();
-	
-	
+
+
 	if($res == 0)
 	{
-		// $nuts->loop('parent.child');		
+		// $nuts->loop('parent.child');
 	}
 	else
 	{
@@ -39,18 +39,18 @@ foreach($mods_group as $group)
 		if($for == 'MAIN')
 		{
 			$nuts->parse('parent.color', $group['color']);
-		
+
 			$color_sel = '';
 			/*if($plugin->Categorie == ($i+1))
 				$color_sel = $group['color'];*/
-			
-			$nuts->parse('parent.color_sel', $color_sel);	
-		}		
-		
+
+			$nuts->parse('parent.color_sel', $color_sel);
+		}
+
 		while($row = $nuts->dbFetch())
 		{
 			$mod_parsed++;
-			
+
 			$yaml = Spyc::YAMLLoad(WEBSITE_PATH.'/plugins/'.$row['Name'].'/info.yml');
 			$langs = array_map('trim', explode(',',$yaml['langs']));
 
@@ -62,7 +62,7 @@ foreach($mods_group as $group)
 				include(WEBSITE_PATH.'/plugins/'.$row['Name'].'/lang/'.$NutsUserLang.'.inc.php');
 			}
 			else
-			{				
+			{
 				include(WEBSITE_PATH.'/plugins/'.$row['Name'].'/lang/'.$default_lang.'.inc.php');
 			}
 
@@ -110,13 +110,13 @@ foreach($mods_group as $group)
 
 				$nuts->parse('parent.child.mod_title', $mod_title, '|trim');
 			}
-		
+
 			// get icone plugin
 			$nuts->parse('parent.child.c_name', $row['Name']);
-			
+
 			// get real name of each module
 			$nuts->parse('parent.child.c_rname', $lang_msg[0]);
-			
+
 			// external menu ?
 			if(empty($row['ExternalUrl']))
 			{
@@ -124,21 +124,21 @@ foreach($mods_group as $group)
 				$url = 'index.php?mod='.$row['Name'].'&do='.$yaml['default_action'];
 				$nuts->parse('parent.child.c_uri', "javascript:system_goto('".$url."', 'content');");
 				$nuts->parse('parent.child.c_target', '');
-				
-				if($for == 'MAIN')$nuts->parse('parent.child.c_uri_direct', $url);				
+
+				if($for == 'MAIN')$nuts->parse('parent.child.c_uri_direct', $url);
 			}
 			else
 			{
 				$nuts->parse('parent.child.c_uri', $row['ExternalUrl']);
-				
+
 				$blank = (preg_match('#^(http|ftp|mailto)#i', $row['ExternalUrl'])) ? '_blank' : '';
 				$nuts->parse('parent.child.c_target', $blank);
-				
-				
-				if($for == 'MAIN')$nuts->parse('parent.child.c_uri_direct', $row['ExternalUrl']);	
+
+
+				if($for == 'MAIN')$nuts->parse('parent.child.c_uri_direct', $row['ExternalUrl']);
 			}
-			
-			// hr ?				
+
+			// hr ?
 			if($for == 'MAIN')
 			{
 				$break_before = '';
@@ -148,7 +148,7 @@ foreach($mods_group as $group)
 				$break_after = '';
 				if($row['BreakAfter'] == 1)$break_after = '<hr />';
 				$nuts->parse('parent.child.break_after', $break_after);
-				
+
 			}
 			else
 			{
@@ -162,10 +162,10 @@ foreach($mods_group as $group)
 				if($row['BreakAfter'] == 1)$style .= '';
 				$nuts->parse('parent.child.style', $style);
 			}
-												
+
 			$nuts->loop('parent.child');
 		}
-		
+
 		$nuts->loop('parent');
 	}
 
@@ -177,7 +177,7 @@ if(!$mod_parsed)
 	if($for == 'MAIN')
 		$nuts->eraseBloc('parent');
 	else
-		$nuts->parseBloc('parent', '<div id="nuts_no_plugin">'.$nuts_lang_msg[77].'</div>');	
+		$nuts->parseBloc('parent', '<div id="nuts_no_plugin">'.$nuts_lang_msg[77].'</div>');
 }
 
 $menu = $nuts->output();
@@ -187,14 +187,7 @@ if($for == 'MAIN')
 {
 	$contact_url = 'http://www.nuts-cms.com/en/20-contact-us.html';
 	$website_url = 'http://www.nuts-cms.com';
-	
-	if($NutsUserLang == 'fr')
-	{
-		$contact_url = 'http://www.nuts-cms.com/fr/141-nous-contacter.html';
-		$website_url .= '/fr/';
-	}
-	
-	
+
 	$help_menu = <<<EOF
 
    <li onmouseout="this.style.backgroundColor='';" onmouseover="this.style.backgroundColor='#DC57B1';" style=""><a>?</a>
@@ -202,10 +195,10 @@ if($for == 'MAIN')
 		<!-- child -->
 		<ul style="border-color: #DC57B1;" class="ulc">
 		<li>
-			<a target="_blank" href="http://bugtracker.h2lsoft.com/index.php?do=newtask&project=24"> <img width="16" height="16" src="/nuts/img/bug_48.png" align="bottom"> {$nuts_lang_msg[58]}</a>
+			<a target="_blank" href="https://github.com/h2lsoft/Nuts-CMS/issues"> <img width="16" height="16" src="/nuts/img/bug_48.png" align="bottom"> {$nuts_lang_msg[58]}</a>
 		</li>
 		<li>
-			<a target="_blank" href="http://bugtracker.h2lsoft.com/index.php?do=newtask&project=24"> <img width="16" height="16" src="/nuts/img/suggest_48.png"> {$nuts_lang_msg[59]}</a>
+			<a target="_blank" href="https://github.com/h2lsoft/Nuts-CMS/issues"> <img width="16" height="16" src="/nuts/img/suggest_48.png"> {$nuts_lang_msg[59]}</a>
 			<hr />
 		</li>
 		<li>
