@@ -8,5 +8,5 @@ info: generate your own plugins
 info_fr: génerer votre plugin
 langs: en
 system required: >= 1.0
-actions: list, add, view
+actions: list
 default_action: list
