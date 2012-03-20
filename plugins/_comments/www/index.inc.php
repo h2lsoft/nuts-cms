@@ -34,7 +34,6 @@ else
 	$plugin->openPluginTemplate();
 	if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_comments/style.css');
 
-
 	if(!$comments_captcha)
 		$plugin->eraseBloc ('captcha');
 
