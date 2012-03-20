@@ -26,7 +26,7 @@ foreach($plugins_list as $plg)
 	$plugin_list .= '<option value="'.$plg.'">'.$plg.'</option>'."\n";
 }
 $plugin->formAddFieldSelectHtml('Name', '', true, $plugin_list);
-$plugin->formAddFieldText('Position', '', 'notEmpty|onlyDigit', '', 'width:3em; text-align:center', '', '', $lang_msg[1]);
+$plugin->formAddFieldText('Position', '', true, '', 'width:3em; text-align:center', '', '', $lang_msg[1]);
 $plugin->formAddFieldText('ExternalUrl', '', false);
 
 $options = array();
