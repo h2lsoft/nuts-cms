@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>		
+<head>
 	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
 	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.nuts-cms.com/rss.php" />
 
@@ -9,14 +9,14 @@
 	<link rel="icon" href="favicon.ico" />
 
 	<title>{CONST::APP_TITLE} - {CONST::WEBSITE_NAME}</title>
-	
+
 	<link rel="stylesheet" type="text/css" href="css/style.css?t={$timer}" media="all" />
 	<link rel="stylesheet" type="text/css" href="css/print.css?t={$timer}" media="print" />
 
 	<script type="text/javascript" src="../library/js/php.js"></script>
 	<script type="text/javascript" src="nuts.js?t={$timer}"></script>
 	<script type="text/javascript" src="nuts_grid.js?t={$timer}"></script>
-	
+
 	<!-- richeditor -->
 	<script type="text/javascript">
 	var APP_TITLE = "{CONST::APP_TITLE}";
@@ -40,20 +40,20 @@
 	var nuts_lang_msg_72 = "{$nuts_lang_msg[72]}";
 	var nuts_lang_msg_73 = "{$nuts_lang_msg[73]}";
 
-	if("{$_GET['popup']}" == 1)list_full_length = true;	
+	if("{$_GET['popup']}" == 1)list_full_length = true;
 	</script>
 
-    <script type="text/javascript" src="../library/js/tiny_mce/tiny_mce.js?t={$timer}"></script>	
+    <script type="text/javascript" src="../library/js/tiny_mce/tiny_mce.js?t={$timer}"></script>
 	<script type="text/javascript" src="tinymce_config.js?t={$timer}"></script>
-	
+
 	<!-- ui -->
 	<script type="text/javascript" src="../library/js/browser_detect.js"></script>
 	<script type="text/javascript" src="../library/js/jquery.js"></script>
- 
+
 	<script type="text/javascript" src="../library/js/jquery.rightClick.js"></script>
 	<script type="text/javascript" src="../library/js/jquery.hotkeys.min.js"></script>
 	<script type="text/javascript" src="../library/js/jquery.textarea.js"></script>
-		
+
 	<script src="../library/js/jquery.form.js"  type="text/javascript"></script>
 	<script src="../library/js/jquery-ui/jquery-ui-personalized-1.5.1.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="../library/js/jquery-ui/themes/custom/jquery-ui-themeroller.css" />
@@ -63,7 +63,7 @@
 
 	<script src="../library/js/jquery-simpletree/js/jquery.simple.tree.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="../library/js/jquery-simpletree/style.css" />
-	
+
 	<script src="../library/js/jscalendar/calendar.js" type="text/javascript"></script>
 	<script src="../library/js/jscalendar/lang/calendar-{$NutsUserLang}.js" type="text/javascript"></script>
 	<script src="../library/js/jscalendar/calendar-setup.js" type="text/javascript"></script>
@@ -73,13 +73,13 @@
 
 	<script type="text/javascript" src="../library/js/jquery-autocomplete/jquery.autocomplete.js"></script>
 	<link rel="stylesheet" href="../library/js/jquery-autocomplete/jquery.autocomplete.css" />
-	<link rel="stylesheet" href="../library/js/jquery-autocomplete/jquery.autocomplete_nuts.css" />	
+	<link rel="stylesheet" href="../library/js/jquery-autocomplete/jquery.autocomplete_nuts.css" />
 
 	<script src="../library/js/jquery.cookie.js"  type="text/javascript"></script>
 
 	<!-- color picker -->
 	<script type="text/javascript" src="../library/js/colorpicker/js/colorPicker.js"></script>
-	<link rel="stylesheet" href="../library/js/colorpicker/css/colorPicker.css" />	
+	<link rel="stylesheet" href="../library/js/colorpicker/css/colorPicker.css" />
 	<!-- /color picker -->
 
 	<!-- ui -->
@@ -93,30 +93,30 @@
 	<!-- mask -->
 	<script src="../library/js/jquery.maskedinput.pack.js" type="text/javascript"></script>
 	<!-- mask -->
-	
+
 	<!-- m_uploader -->
 	<link rel="stylesheet"  href="../library/js/m_uploader/fileuploader.css"/>
 	<script src="../library/js/m_uploader/fileuploader.js" type="text/javascript"></script>
 	<!-- /m_uploader -->
-	
-	
+
+
 	<!-- codemirror -->
 	<link rel="stylesheet"  href="../library/js/codemirror/lib/codemirror.css">
 	<script type="text/javascript" src="../library/js/codemirror/lib/codemirror.js"></script>
-	
+
 	<script type="text/javascript" src="../library/js/codemirror/mode/clike/clike.js"></script>
 	<script type="text/javascript" src="../library/js/codemirror/mode/xml/xml.js"></script>
 	<script type="text/javascript" src="../library/js/codemirror/mode/javascript/javascript.js"></script>
 	<script type="text/javascript" src="../library/js/codemirror/mode/css/css.js"></script>
 	<script type="text/javascript" src="../library/js/codemirror/mode/mysql/mysql.js"></script>
-	<script type="text/javascript" src="../library/js/codemirror/mode/php/php.js"></script>	
-	
+	<script type="text/javascript" src="../library/js/codemirror/mode/php/php.js"></script>
+
 	<!-- /codemirror -->
-	
+
 
 	<link rel="stylesheet" type="text/css" href="css/custom.css" media="screen" />
 	{#include("_inc/custom.html");}
-	
+
 </head>
 
 <body>
@@ -124,7 +124,7 @@
 <!-- notify_it -->
 <div id="notify_it"></div>
 <!-- /notify_it -->
-	
+
 
 <!-- ajax loader -->
 <div id="ajax_loader">
@@ -148,50 +148,50 @@
 			<a href="http://www.gravatar.com" target="_blank"><img src="http://www.gravatar.com/avatar/{email_hash}?s=60&d={gravatar_encoded}" /></a>
 		</div>
 		</bloc::gravatar>
-	
+
 		<span class="login">{$nuts_lang_msg[0]}, {$_SESSION['FirstName']} {$_SESSION['LastName']} (#{$_SESSION['NutsUserID']})</span><br />
 		<span class="time"></span><br />
-		
+
 		<span class="internal_message">
 			<a href="javascript:;" onclick="popup2('index.php?mod=_internal-messaging&do=list&popup=1&parent_refresh=0');">{$nuts_lang_msg[65]}</a>
 		</span><br />
 
-		
-		
+
+
 		<!-- writing_toolbar -->
 		<div id="writing_toolbar">
-			
+
 			<bloc::wrinting_page>
 			<a href="javascript:system_goto('index.php?mod=_page-manager&do=exec', 'content');" class="tt"  title="{$nuts_lang_msg[82]}"><img src="img/write_toolbar_pen.png" /></a>
 			</bloc::wrinting_page>
-			
+
 			<bloc::wrinting_news>
 			<a href="javascript:system_goto('index.php?mod=_news&do=list', 'content');" class="tt news"  title="{$nuts_lang_msg[83]}"><img src="img/write_toolbar_news.png" /></a>
 			</bloc::wrinting_news>
-			
+
 		</div>
 		<!-- /writing_toolbar -->
-		
-		
-		
+
+
+
 		<a class="tt" title="My Notes" href="javascript:;" onclick="popup2('index.php?mod=_internal-memo&do=edit&popup=1&parent_refresh=0');">
 			<img class="user_online" style="width:16px;" src="img/notes-icon-gray.gif" />
-		</a>			
-			
+		</a>
+
 		-
-		
+
 		<a class="tt" href="javascript:;" onclick="viewOnlineUsers(false);" onblur="viewOnlineUsers(true);" title="{$nuts_lang_msg[67]}"><img src="img/top_users.gif" class="user_online" alt="{$nuts_lang_msg[67]}" /></a> <span id="user_online_count">0</span>
-		
+
 		&nbsp;
-		
+
 		<div id="user_online_list"></div>
-		
-		
-		[ 
+
+
+		[
 			<a  class="tt" href="javascript:;" onclick="popup2('{CONST::WEBSITE_URL}');" title="{$nuts_lang_msg[68]}"><img src="img/icon-home.png" alt="" class="logout_icon_home" /></a>  |
 			<a href="javascript:logoutForm('{$nuts_lang_msg[2]}');">{$nuts_lang_msg[2]}</a>
 		]
-		
+
 	</div>
 	<!-- logout -->
 
@@ -220,7 +220,7 @@ $("#top_search_input").autocomplete(plugin_list_ac, {
 		autoFill: true,
 		minChars: 1,
 		scroll: true,
-		matchContains: true,		
+		matchContains: true,
 		scrollHeight: 300,
 
 		formatMatch: function(row, i, max) {
@@ -231,7 +231,7 @@ $("#top_search_input").autocomplete(plugin_list_ac, {
 
 			plugin_label = row.label;
 			plugin_name = row.name;
-			plugin_url = row.url;			
+			plugin_url = row.url;
 
 			if(!empty(plugin_name) && !empty(plugin_label))
 				return "<img src=\"/plugins/"+plugin_name+"/icon.png\" style=\"height:24px; vertical-align:middle;\" /> " + plugin_label;
@@ -239,7 +239,7 @@ $("#top_search_input").autocomplete(plugin_list_ac, {
 
 		formatResult: function(row) {
 			return row.label;
-		}		
+		}
 	});
 
 	$("#top_search_input").result(function(event, row, formatted) {
@@ -260,7 +260,7 @@ $("#top_search_input").autocomplete(plugin_list_ac, {
 		{
 			system_goto('index.php?mod='+plugin_name+'&do='+plugin_default_action, 'content');
 		}
-		
+
 		$("#top_search_input").val("{$nuts_lang_msg[11]}...");
 
 	});
@@ -324,13 +324,13 @@ $("#top_search_input").autocomplete(plugin_list_ac, {
 	</bloc::trademark>
 
 	{$nuts_lang_msg[43]}  <a href="http://www.google.com/chrome" target="_blank"><img src="img/get_chrome.png" align="absmiddle" /></a> <a href="http://getfirefox.com" target="_blank"><img src="img/get_firefox.png" align="absmiddle" /></a> - Rss <a href="http://www.nuts-cms.com/rss.php" target="_blank"><img src="img/rss.gif" alt="Nuts CMS - Rss" align="absmiddle" /></a>
-	
+
 	<!-- top_return -->
 	<div id="top_return">
 		<a onclick="$(window).scrollTop(0);" href="javascript:;">top ^</a>
 	</div>
 	<!-- /top_return -->
-	
+
 </div>
 <!-- bottom -->
 
@@ -355,8 +355,8 @@ if("{$_GET['popup']}" == 1)
 {
 	$('body').css('background-image', 'none');
 	$('#add').css('margin-top', '-10px');
-	
-	
+
+
 	$(document).keyup(function(event){
 		// ESC key
 		if(event.keyCode == 27){
@@ -365,29 +365,29 @@ if("{$_GET['popup']}" == 1)
 			}
 		}
     });
-	
+
 	if("{$_GET['parent_refresh']}" == "" && window.opener != null && window.opener != undefined && typeof window.opener.system_refresh == 'function')
 	{
-		
+
 		// prevent Chrome bug
-		window.onload = function() {			
-			if(strtolower(BrowserDetect.browser) == 'chrome')			
+		window.onload = function() {
+			if(strtolower(BrowserDetect.browser) == 'chrome')
 				window.opener.system_refresh();
 		};
-		
+
 		// normal with FF
-		window.onbeforeunload = function() {			
-			if(strtolower(BrowserDetect.browser) == 'firefox')	
-				window.opener.system_refresh();					
+		window.onbeforeunload = function() {
+			if(strtolower(BrowserDetect.browser) == 'firefox')
+				window.opener.system_refresh();
 		};
-		
-		
+
+
 	}
-	
+
 }
 else
-{	
-	privateBoxRefresh();		
+{
+	privateBoxRefresh();
 	$("#logout a.tt").tooltip({track: false,  delay: 0, showURL: false, showBody: " - ", opacity: 0.55});
 }
 </script>
