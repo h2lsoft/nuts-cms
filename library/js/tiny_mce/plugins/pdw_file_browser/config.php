@@ -319,7 +319,7 @@ foreach($filetypes as $filetype => $mimes)
 define('STARTINGPATH', DOCUMENTROOT . $uploadpath); //DON'T EDIT
 
 //Check if upload folder exists
-if(!@is_dir(STARTINGPATH)) die('Upload folder doesn\'t exist or $uploadpath in config.php is set wrong!');
+if(!@is_dir(STARTINGPATH)) die("Error: folder `$uploadpath` doesn't exist");
 
 //Check if editor is set
 if(!isset($editor)) die('The variable $editor in config.php is not set!');
