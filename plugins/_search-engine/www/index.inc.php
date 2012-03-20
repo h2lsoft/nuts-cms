@@ -16,6 +16,10 @@ if(!empty($spider_template))
 else
 	$plugin->openPluginTemplate();
 
+if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_search-engine/style.css');
+
+
+
 // pager
 $start_lbl = ($page->language == 'fr') ? 'Début' : 'Start';
 if($plugin->itemExists('start_lbl'))$plugin->parse("start_lbl", $start_lbl);
