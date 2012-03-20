@@ -23,11 +23,11 @@ if(@$_GET['action'] == 'get_templates')
 	$nuts->DoQuery("SELECT ID, Name, Description FROM NutsRteTemplate WHERE Deleted = 'NO' ORDER BY Name");
 	$str = '';
 	while($row = $nuts->dbFetch())
-    {		
+    {
 		if(!empty($str))$str .= ",\n";
 		$str .= '["'.$row['Name'].'", "'.NUTS_JS_URL.'/tiny_mce.php?action=get_template&ID='.$row['ID'].'", "'.$row['Description'].'"]';
 	}
-	
+
 	echo $str."\n";
 	echo '];';
 	die();
@@ -51,10 +51,10 @@ elseif(@$_GET['action'] == 'get_links')
 
 	$str = '';
 
-	// we charge distinct language actived	
+	// we charge distinct language actived
 	$nuts->DoQuery("SELECT LanguageDefault, Languages FROM NutsTemplateConfiguration WHERE ID = 1");
 	$rec = $nuts->dbFetch();
-	
+
 	$languages = array();
 	$languages[] = $rec['LanguageDefault'];
 	if(!empty($rec['Languages']))
@@ -63,7 +63,7 @@ elseif(@$_GET['action'] == 'get_links')
 		$tmp = array_map('trim', $tmp);
 		$languages = array_merge($languages, $tmp);
 	}
-	
+
 
 	// get distinct zoneID for this language
 	$zone_ids = array(0);
@@ -103,7 +103,7 @@ elseif(@$_GET['action'] == 'get_links')
 			{
 				$name = str_replace("'", "\'", $pg['MenuName']);
 				$name = str_replace('"', '`', $pg['MenuName']);
-				
+
 				$url = nutsGetPageUrl($pg['ID'], $lng, $pg['VirtualPagename']);
 				if(!empty($str))$str .= ",\n";
 				$str .= '["'.$name.'", "'.$url.'"]';
@@ -146,12 +146,12 @@ elseif(@$_GET['action'] == 'get_links')
 									{
 										$name = str_replace("'", "\'", $pg4['MenuName']);
 										$name = str_replace('"', '`', $pg4['MenuName']);
-										
+
 										$url = nutsGetPageUrl($pg4['ID'], $lng, $pg4['VirtualPagename']);
 										if(!empty($str))$str .= ",\n";
 										$str .= '[" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&#150; '.$name.'", "'.$url.'"]';
 									}
-									
+
 								}
 
 								$nuts->dbSetQueryID($qID3);
@@ -164,7 +164,7 @@ elseif(@$_GET['action'] == 'get_links')
 
 				$nuts->dbSetQueryID($qID1);
 			}
-			
+
 			$nuts->dbSetQueryID($qID);
 		}
 	}
@@ -207,7 +207,7 @@ function menu_survey()
     {
         $ID = $row['ID'];
         $title = str_replace("'", '`', $row['Title']);
-		
+
         $code = sprintf("{@NUTS    TYPE='SURVEY'    ID='%s'    TITLE='%s'}", $ID, $title);
 
 		echo 'sub.add({title : "'.$title.'", onclick : function() {
@@ -226,7 +226,7 @@ function menu_pattern()
     echo 'sub = m.addMenu({title : "Nuts patterns"});';
 
     while($row = $nuts->dbFetch())
-    {        
+    {
         $name = $row['Name'];
         $pattern = $row['Pattern'];
 
@@ -332,7 +332,7 @@ function menu_plugin()
 	{
 		 $plugin = str_replace($dir_plugin."/", '', $plugin);
 		 if(!in_array($plugin, array('_page-manager','_news')) && is_dir($dir_plugin."/".$plugin."/www"))
-			 $new_plugins[] = $plugin;		 
+			 $new_plugins[] = $plugin;
 	}
 
 
@@ -351,7 +351,7 @@ function menu_plugin()
         echo 'sub.add({title : "'.$plugin.'", onclick : function() {
 						tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
 
-					}});';        
+					}});';
     }
 }
 
@@ -426,7 +426,7 @@ function menu_media()
 		<style type="text/css">
 		tr.mceLast {height:25px !important;}
 		</style>
-		
+
         <script type="text/javascript" src="jquery.js"></script>
 		<script type="text/javascript" src="php.js"></script>
 		<script type="text/javascript" src="../../nuts/nuts.js"></script>
@@ -435,10 +435,10 @@ function menu_media()
 		<script type="text/javascript" src="tiny_mce/tiny_mce.js"></script>
 		<!-- <script type="text/javascript" src="<?php echo NUTS_JS_URL; ?>/tiny_mce/plugins/tinybrowser/tb_tinymce.js.php"></script> -->
 		<script type="text/javascript">
-		function filebrowser(field_name, url, type, win) 
-		{			
+		function filebrowser(field_name, url, type, win)
+		{
 			fileBrowserURL = "<?php echo WEBSITE_URL; ?>/library/js/tiny_mce/plugins/pdw_file_browser/index.php?editor=tinymce&filter="+type;
-      
+
 			tinyMCE.activeEditor.windowManager.open({
 				title: "PDW File Browser",
 				url: fileBrowserURL,
@@ -452,12 +452,12 @@ function menu_media()
 					window : win,
 					input : field_name
 				}
-			);  
+			);
 		}
 		</script>
 
         <script>
-		
+
 
 		// Creates a new plugin class and a custom listbox
 		tinymce.create('tinymce.plugins.NutsPlugins', {
@@ -472,19 +472,19 @@ function menu_media()
 
 						c.onRenderMenu.add(function(c, m) {
 										var sub;
-										<?php												
+										<?php
 												menu_zone();
-												menu_region();												
-												menu_block();												
+												menu_region();
+												menu_block();
 												menu_plugin();
 												menu_form();
 												menu_survey();
 												menu_pattern();
-												
+
 												// user
 												menu_gallery();
-												menu_media();						
-												
+												menu_media();
+
 												include('tiny_mce_custom_menu.inc.php');
 										?>
 						});
@@ -510,15 +510,15 @@ function menu_media()
 //				skin_variant : "silver",
 				editor_selector : "mceEditor",
 				paste_text_use_dialog: true,
-				
-		
+
+
 				theme_advanced_toolbar_location : "top",
 				theme_advanced_toolbar_align : "left",
 				theme_advanced_statusbar_location : "bottom",
 				theme_advanced_resizing : true,
 				content_css : "/library/themes/editor_css.php?t=<?php echo $_GET['theme']; ?>&tstmp=<?php echo @$_GET['t']; ?>",
 				document_base_url : "<?php echo WEBSITE_URL; ?>/",
-				
+
 				relative_urls : false,
 				remove_script_host : true,
 				file_browser_callback : "filebrowser",
@@ -527,7 +527,7 @@ function menu_media()
 
 				template_external_list_url : "<?php echo NUTS_JS_URL ?>/tiny_mce.php?action=get_templates",
 				external_link_list_url : "<?php echo NUTS_JS_URL ?>/tiny_mce.php?action=get_links",
-				
+
 				theme_advanced_resizing_use_cookie : false,
 				theme_advanced_resize_horizontal : false,
 				theme_advanced_resizing : false,
@@ -537,13 +537,13 @@ function menu_media()
 
 				plugins : "-NutsPlugins,template,imgmap,spellchecker,safari,style,layer,table,advhr,advimage,advlink,preview,media,searchreplace,print,contextmenu,paste,directionality,visualchars,nonbreaking,xhtmlxtras,code2,inlinepopups,save,wordcount2,gtranslate",
 //				extended_valid_elements : "img[usemap|class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|style],map[id|name|style],area[shape|alt|coords|href|target|style]",
-				theme_advanced_buttons1 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,undo,redo,|,charmap,advhr,|,sub,sup,|,visualchars,visualaid,|,print,spellchecker,cleanup,|,gtranslate,wordcount2,|,code2,preview,|,save,cancel,|,exit",
+				theme_advanced_buttons1 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,undo,redo,|,charmap,advhr,|,sub,sup,|,visualchars,visualaid,|,print,spellchecker,cleanup,|,gtranslate,wordcount2,|,code2,code,preview,|,save,cancel,|,exit",
 				theme_advanced_buttons2 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,|,styleprops,cite,|,link,unlink,anchor,|,forecolor,backcolor,|,removeformat,attribs",
 				theme_advanced_buttons3 : "NutsPlugins,template,|,image,imgmap,media,|,tablecontrols,formatselect,styleselect,fontselect,fontsizeselect",
-				
-				
+
+
 				spellchecker_languages : "<?php echo nutsGetSpellcheckerLanguages(); ?>",
-				
+
 
 				// begin tinymce custom
 				<?php
@@ -553,12 +553,12 @@ echo $nuts->dbGetOne();
 
 				?>
 				// end tinymce custom
-				
+
 				save_onsavecallback : function(){my_save(true);},
 				save_oncancelcallback: "my_cancel",
 
                 setup : function(ed) {
-                  
+
 					ed.addButton('exit', {
                         title : '<?php echo $lang_msg[68]; ?>',
                         image : '/nuts/img/exit.gif',
@@ -601,8 +601,8 @@ echo $nuts->dbGetOne();
 
 				window.opener.$('#chk_Close').attr('checked', false);
 				window.opener.$('#close_after').attr('checked', false);
-				
-				window.opener.$('#former').submit();				
+
+				window.opener.$('#former').submit();
 			}
 
 		}
