@@ -30,4 +30,7 @@ $news_thumb_bkg_color = array(255,255,255); // bkg image color with constraint
 $news_thumb_width = 320;
 $news_thumb_height = 80;
 
+$include_plugin_css = true; // include bundle css dynamically
+
+
 ?>
