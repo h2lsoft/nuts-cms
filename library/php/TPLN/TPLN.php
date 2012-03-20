@@ -15,56 +15,53 @@ if(TPLN_DBUG_CLASS)include_once('dBug.php');
 include_once('lang/error_'.TPLN_LANG.'.inc.php'); // language file
 include_once('plugin/form/lang.inc.php'); // form language file
 
-/******************* Structure des plugins ***************************************
+/******************* Plugins structure *******************************************
 - TPLN
-	|- DB
-			|- Form
-					|- Mail
-							|- Rss
-*********************************************************************************** @author H2LSOFT */
+|- DB
+|- Form
+|- Mail
+|- Rss
+ ************************************************************************************/
 include_once('plugin/image/image.class.php');
 include_once('plugin/rss/rss.class.php');
 include_once('plugin/mail/mail.class.php');
 include_once('plugin/form/form.class.php');
 include_once('plugin/db/db.class.php');
 
-/******************* Structure d'un fichier ***************************************
+/******************* File structure **********************************************
 
-f - f_no - name                 - string     // nom de fichier
-- cache_name           - string     // nom du fichier en cache
-- buffer               - string     // contenu du fichier
-- items                - array      // contient tous les items
-- constant_items		   - array		// contient les constantes
-- php_items            - array      // contient les items avec $
-- cmd_items            - array      // contient tous les items includes
-- create_cached_file   - bool       // crée le fichier en cache ?
-- time_started         - long int   // début du chrono
-- cache_expire         - bool       // expiration du cache ?
-- execution_time       - long int   // temps d'execution
+f - f_no - name                - string     // file name
+- cache_name          - string     // file name for cache
+- buffer               - string     // file content
+- items                - array      // items in file
+- constant_items	   - array		// constants in file
+- php_items            - array      // php items in file (begin with $)
+- cmd_items            - array      // include items
+- create_cached_file   - bool       // file from cache
+- time_started         - long int   // chrono start
+- cache_expire         - bool       // cache exporation
+- execution_time       - long int   // time execution
 - chrono_started       - long int   // chrono started
 
-Attention par reference pour les vérifications et performances
+- shortcut_blocs        - array
+|_ all              - array      // all bloc names
+|_ used             - array      // all bloc used
+|_ name             - none
+|_ items       		- array      // bloc items
 
-- shortcut_blocs       - array      //
-|_ all              - array      // contient le nom de tous les blocs
-|_ used             - array      // contient les blocs appel�s par l'utilsateur
-|_ name             - none       // contient le nom du bloc
-|_ items       - array      // contient les items
+- def_blocs            - array
 
-- def_blocs            - array      // contiens tous les blocs structur�s
-                         // definis par l'utisateur lors d'un appel'
-                         // voir plus bas leurs structures
-* @author H2LSOFT */
+ */
 
-/******************* Structure d'un bloc ***************************************
+/******************* Bloc Structure ***************************************
 
-def_blocs - name                  - string     // nom du bloc
-|_ structure          - string     // contenu du bloc
-|_ parsed             - array      // contiens les sessions de blocs
-|_ is_looped          - boolean    // loop ?
-|_ children           - array      // contiens les bloc enfants
+def_blocs - name          - string
+|_ structure          - string
+|_ parsed             - array
+|_ is_looped          - boolean
+|_ children           - array
 
-************************************************************************************* @author H2LSOFT */
+ **************************************************************************************/
 class TPLN extends DB
 {
 	protected $def_tpl = array(); // templates list defined with a name
@@ -115,10 +112,10 @@ class TPLN extends DB
 				clearstatcache();
 			}
 		}
-				
-		
-		
-		
+
+
+
+
 	}
 
 	/**
@@ -205,9 +202,9 @@ class TPLN extends DB
 		/*if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
 			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 		else*/if(isset($_SERVER['HTTP_CLIENT_IP']))
-			$ip = $_SERVER['HTTP_CLIENT_IP'];
-		else
-			$ip = $_SERVER['REMOTE_ADDR'];
+		$ip = $_SERVER['HTTP_CLIENT_IP'];
+	else
+		$ip = $_SERVER['REMOTE_ADDR'];
 
 		return $ip;
 	}
@@ -269,21 +266,21 @@ class TPLN extends DB
 	protected function structItems()
 	{
 		$p_var = array('_UrlBng',
-				'_UrlPrev',
-				'_UrlNext',
-				'_UrlEnd',
-				'_UrlPageNav',
-				'_PageNumber',
-				'_PageCount',
-				'_First',
-				'_Last',
-				'_Count',
-				'_NavColor',
-				'_Chrono',
-				'_Logo',
-				'_Version',
-				'_Field',
-				'_QueryCount');
+			'_UrlPrev',
+			'_UrlNext',
+			'_UrlEnd',
+			'_UrlPageNav',
+			'_PageNumber',
+			'_PageCount',
+			'_First',
+			'_Last',
+			'_Count',
+			'_NavColor',
+			'_Chrono',
+			'_Logo',
+			'_Version',
+			'_Field',
+			'_QueryCount');
 
 		$tab = '<b>Variable(s) found:</b> '.count($this->f[$this->f_no]['items'])."<br>\n";
 
@@ -405,26 +402,26 @@ class TPLN extends DB
 		$err_msg = $_err["$err_no"];
 		$err_msg = str_replace(
 
-				array('[:FILE:]', '[:BLOC:]', '[:ITEM:]'),
-				array($file, $bloc, $item),
-				$err_msg);
+			array('[:FILE:]', '[:BLOC:]', '[:ITEM:]'),
+			array($file, $bloc, $item),
+			$err_msg);
 
 		$this->error_msg = "<B>TPLN error $err_no:</B> $err_msg";
-		
+
 		// add url clickable
 		$uri = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 		$this->error_msg .= ' (<a href="'.$uri.'" target="_blank">'.$uri.'</a>'.')';
-		
+
 		// add stack
 		$this->error_msg .= "<br /><br />";
 		$backtrace1 = debug_backtrace();
-		$backtrace1 = array_reverse($backtrace1);		
+		$backtrace1 = array_reverse($backtrace1);
 		if(count($backtrace1) > 0)
 		{
-			
+
 			$this->error_msg .= "<b>Stack</b>\n";
 			$this->error_msg .= "<pre style='border:1px solid #ccc; padding:5px;'>";
-			
+
 			$init = false;
 			foreach($backtrace1 as $k => $v)
 			{
@@ -432,12 +429,12 @@ class TPLN extends DB
 					$this->error_msg .= "<b> &bull; {$v['file']} in line {$v['line']}</b>\n";
 				else
 					$this->error_msg .= " &bull; {$v['file']} in line {$v['line']}\n";
-					
+
 				$init = true;
 			}
-			
+
 			$this->error_msg .= "</pre>";
-		}		
+		}
 
 		// assign use handler
 		if(in_array($err_no, array(0, 9, 10, 11, 12, 13)))
@@ -482,13 +479,13 @@ class TPLN extends DB
 			$body = date('[Y-m-d H:i] ')." TPLN has detected an error\n\n";
 			$body .= $err_msg.' in '.$_SERVER['SCRIPT_FILENAME']."\n\n\n";
 			$body .= "Url <a href=\"$url\">$url</a>\n";
-			
+
 			$body .= "===========================================\n";
 			$body .= 'TPLN version '.TPLN_VERSION."\n";
 			$body .= 'IP: '.$this->GetIP()." (<a href=\"http://www.geoiptool.com/en/?IP=".$this->GetIP()."\">information</a>)"."\n";
 			$body .= "Server: {$_SERVER['SERVER_NAME']} ({$_SERVER['SERVER_ADDR']})"."\n";
-								
-			
+
+
 
 			$body = str_replace("\n", "<br />", $body);
 
@@ -536,7 +533,7 @@ class TPLN extends DB
 				fclose($fp);
 			}
 		}
-		
+
 		// error signaled
 		if(!@in_array($this->error_msg, $this->error_signaled))
 		{
@@ -552,9 +549,9 @@ class TPLN extends DB
 			}
 			else
 			{
-				trigger_error($err_msg, $this->error_user_level);			
+				trigger_error($err_msg, $this->error_user_level);
 				$this->error_signaled[] = $this->error_msg;
-			}	
+			}
 		}
 	}
 
@@ -589,7 +586,7 @@ class TPLN extends DB
 	 * @author H2LSOFT */
 	protected function initTemplateVars()
 	{
-		
+
 		// initialisation of variables types for EALL **************************
 		$this->f[$this->f_no]['name'] = null;
 		$this->f[$this->f_no]['cache_name'] = null;
@@ -703,12 +700,13 @@ class TPLN extends DB
 			$this->f[$this->f_no]['buffer'] = $this->getFile($this->f[$this->f_no]['name']);
 
 		// remplaces the constants
-		$this->parseConstants();		
+		$this->parseConstants();
 
 		// remplaces the variables with $
 		if(TPLN_PARSE_GLOBALS)$this->ParseGlobals();
 		// remplaces the files to include
 		$this->captureIncludeCmd(); // captures the commandes include
+
 		// parsing and evaluation if necessary
 		if(count($this->f[$this->f_no]['cmd_items']) > 0)
 		{
@@ -765,9 +763,9 @@ class TPLN extends DB
 		{
 			$this->f[$this->f_no]['buffer'] = str_replace(
 				array(
-						"<bloc::{$this->f[$this->f_no]['shortcut_blocs']['all'][$i]}>",
-						"</bloc::{$this->f[$this->f_no]['shortcut_blocs']['all'][$i]}>"
-					), '', $this->f[$this->f_no]['buffer']); // bloc before/after
+					"<bloc::{$this->f[$this->f_no]['shortcut_blocs']['all'][$i]}>",
+					"</bloc::{$this->f[$this->f_no]['shortcut_blocs']['all'][$i]}>"
+				), '', $this->f[$this->f_no]['buffer']); // bloc before/after
 		}
 	}
 
@@ -1011,7 +1009,6 @@ class TPLN extends DB
 			$replace = '$'.$item;
 			//if(!eregi("\(", $replace)) // protection security of methods and functions !
 			if(strpos($replace, "(") === false) // protection security of methods and functions !
-
 			{
 				@eval("\$tmp = $replace;");
 				$item = '$'.$item;
@@ -2101,32 +2098,38 @@ class TPLN extends DB
 	protected function parsePhpCommands()
 	{
 		// parse the if
-		$motif = "#{\#(.*|^include)}#";
+		// $motif = "#{\#(.*)\)}#i";
+		$motif = "/{#(if|else|elseif|else|endif)(.*)}/sUi";
 		preg_match_all($motif, $this->f[$this->f_no]['buffer'], $matches);
-
-		if(count($matches) == 2 && $matches[1] > 0)
+		if(count($matches) == 3 && $matches[0] > 0)
 		{
 			// replace by the globals variables
-			foreach($matches[1] as $m)
+			foreach($matches[0] as $m)
 			{
 				$m2 = $m;
 				preg_match_all('#\$([[:alnum:]|\_]*)#', $m, $ms);
-
 				if(count($ms) == 2)
 				{
 					foreach($ms[0] as $tm)
 					{
-						if(!in_array($tm, array('$_GET', '$_POST', '$_COOKIE', '$_SERVER', '$_SESSION', '$_REQUEST')))
+						if(!empty($tm) && !in_array($tm, array('$_GET', '$_POST', '$_COOKIE', '$_SERVER', '$_SESSION', '$_REQUEST')))
 							$m2 = str_replace($tm, '$GLOBALS["'.str_replace('$','',$tm).'"]', $m);
 					}
 				}
-				$this->f[$this->f_no]['buffer'] = str_replace("{#$m}", "{#$m2}", $this->f[$this->f_no]['buffer']);
+
+				$this->f[$this->f_no]['buffer'] = str_replace($m, $m2, $this->f[$this->f_no]['buffer']);
+
+				// replace commands
+				$cmd2 = $m2;
+				$cmd2 = str_ireplace('{#if(', '<?php if(', $cmd2);
+				$cmd2 = str_ireplace('{#elseif(', '<?php elseif(', $cmd2);
+				$cmd2 = str_ireplace(')}', '): ?>', $cmd2);
+				$cmd2 = str_ireplace('{#else}', '<?php else : ?>', $cmd2);
+				$cmd2 = str_ireplace('{#endif}', '<?php endif; ?>', $cmd2);
+
+				$this->f[$this->f_no]['buffer'] = str_replace($m2, $cmd2, $this->f[$this->f_no]['buffer']);
 			}
 
-			$this->f[$this->f_no]['buffer'] = str_replace("{#else}", "{#else:}", $this->f[$this->f_no]['buffer']);
-			$this->f[$this->f_no]['buffer'] = str_replace('{#endif}', '{#endif;}', $this->f[$this->f_no]['buffer']);
-			$this->f[$this->f_no]['buffer'] = preg_replace("#{\#(.*)\)}#", "{#$1):}", $this->f[$this->f_no]['buffer']);
-			$this->f[$this->f_no]['buffer'] = preg_replace($motif, "<?php $1 ?>" ,$this->f[$this->f_no]['buffer']);
 			$this->f[$this->f_no]['buffer'] = $this->evalHtml($this->f[$this->f_no]['buffer']);
 		}
 	}
@@ -2294,7 +2297,7 @@ class TPLN extends DB
 			else
 				$cur_path = join('.', $cur_arr);
 
-// definition of all the fathers
+			// definition of all the fathers
 			if(!$this->isDefined($cur_path, 'NOITEM'))
 			{
 				$this->savePath($cur_path);
@@ -2366,7 +2369,7 @@ class TPLN extends DB
 		if(get_magic_quotes_gpc())$string = stripslashes($string);
 
 		$string = str_replace(array("&lt;", "&gt;"), array("&amp;lt;", "&amp;gt;",), $string);
-		
+
 		// fix &entitiy\n;
 		$string = preg_replace('#(&\#*\w+)[\s\r\n]+;#U', "$1;", $string);
 		// $string = @html_entity_decode($string, ENT_COMPAT, "UTF-8");
