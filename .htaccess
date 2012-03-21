@@ -18,8 +18,7 @@
 ################################################
 
 Options -Indexes
-
-RewriteEngine On
+# RewriteEngine On
 Options +Multiviews
 
 # force redirection domain without www (no duplicate content for Google) ##
@@ -27,14 +26,13 @@ RewriteCond %{HTTP_HOST} ^mydomain.com$
 RewriteRule ^(.*) http://www.mydomain.com/  [QSA,L,R=301]
 ###########################################################################
 
-
 ## normal rewriting #################################
 <FilesMatch "^(fr|en|de|es|it|ru|jp)$">
-    ForceType application/x-httpd-php
+     ForceType application/x-httpd-php
 </FilesMatch>
 
 ## special rewriting for suPhp #################################
-# RewriteRule ^(en|fr|de|es|it|ru)	index.php [L]
+RewriteRule ^(en|fr|de|es|it|ru)	index.php [L]
 ###############################################################
 
 
