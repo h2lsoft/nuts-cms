@@ -74,25 +74,18 @@ function initWYSIWYGOption()
         str += sep;
 
 		// gallery
-		str += ' <img class="rte_button tt" title="'+nuts_lang_msg_72+'" src="img/icon-preview-mini.gif" align="absmiddle" onclick="javascript:popup2(\'index.php?mod=_gallery&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
+		str += ' <img class="rte_button" title="'+nuts_lang_msg_72+'" src="img/icon-preview-mini.gif" align="absmiddle" onclick="popup2(\'index.php?mod=_gallery&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
+		str += ' <img class="rte_button" src="img/icon-media.png" align="absmiddle" title="'+nuts_lang_msg_73+'" onclick="popup2(\'index.php?mod=_media&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
+		str += ' <img class="rte_button" src="/nuts/img/widget.png" title="Widgets" align="absmiddle" onclick="widgetsWindowOpen(\''+id+'\');" />';
 
-		// media
-		str += ' <img class="rte_button tt" src="img/icon-media.png" align="absmiddle" title="'+nuts_lang_msg_73+'" onclick="javascript:popup2(\'index.php?mod=_media&do=list&popup=1&parent_refresh=no&parentID='+id+'\'); />';
-
-		// widgets
-		str += ' <img class="rte_button tt" title="Widgets" src="img/widget.png" align="absmiddle" onclick="javascript:widgetsWindowOpen(\''+id+'\');" />';
-
-        // Source
+        // rte
         str += sep;
         str += '<img src="img/icon-code_editor.png" align="absmiddle" />';
         str += ' <a href="javascript:openWYSIWYG(\''+id+'\');" tabindex="0">Rich Editor</a>'
 
-        // Richeditor
+        // source
         str += sep;
         str += ' <input tabindex="-1" style="margin-top:2px" type="checkbox" id="iframe_radio_'+id+'" onclick="WYSIWYGToggleIt(\''+id+'\');" /> Source';
-
-
-
 
 		str += '</div>';
 		str += '</p>';
