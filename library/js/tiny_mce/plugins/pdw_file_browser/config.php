@@ -29,6 +29,7 @@ THE SOFTWARE.
 $str = explode('library', $_SERVER['SCRIPT_FILENAME']);
 include_once($str[0].'nuts/config.inc.php');
 include_once(WEBSITE_PATH.'/nuts/config_auto.inc.php');
+include_once(WEBSITE_PATH.'/nuts/headers.inc.php');
 //**************************************************
 
 
@@ -258,33 +259,30 @@ $extension_whitelist .= ",pdf,zip,doc,docx,xls,xlsx,ppt,pptx"; // Others
 $filetypes = array();
 
 // images
-$filetypes['jpg'] = array('image/jpeg', 'image/pjpeg');
-$filetypes['gif'] = array('image/gif');
-$filetypes['png'] = array('image/png');
+// $filetypes['jpg'] = array('image/jpeg', 'image/pjpeg');
+// $filetypes['gif'] = array('image/gif');
+//$filetypes['png'] = array('image/png');
 
 // audio
-$filetypes['mp3'] = array('audio/mpeg', 'audio/mpeg3', 'audio/x-mpeg-3', 'video/mpeg', 'video/x-mpeg');
+// $filetypes['mp3'] = array('audio/mpeg', 'audio/mpeg3', 'audio/x-mpeg-3', 'video/mpeg', 'video/x-mpeg');
 
 // video
-$filetypes['mp4'] = array('audio/mp4');
-$filetypes['swf'] = array('application/x-shockwave-flash');
-$filetypes['flv'] = array('video/x-flv', 'video/flv');
+// $filetypes['mp4'] = array('audio/mp4');
+// $filetypes['swf'] = array('application/x-shockwave-flash');
+// $filetypes['flv'] = array('video/x-flv', 'video/flv');
 
 // other
-$filetypes['pdf'] = array('application/pdf','application/x-pdf', 'application/octet-stream');
-$filetypes['zip'] = array('application/x-compressed', 'application/zip', 'application/octet-stream', 'application/x-zip-compressed');
+// $filetypes['pdf'] = array('application/pdf','application/x-pdf', 'application/octet-stream');
+// $filetypes['zip'] = array('application/x-compressed', 'application/zip', 'application/octet-stream', 'application/x-zip-compressed');
 
-$filetypes['doc'] = array('application/msword');
-$filetypes['docx'] = array('application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+// $filetypes['doc'] = array('application/msword');
+// $filetypes['docx'] = array('application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
 
-$filetypes['xls'] = array('application/x-excel', 'application/vnd.ms-excel');
-$filetypes['xlsx'] = array('application/x-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+// $filetypes['xls'] = array('application/x-excel', 'application/vnd.ms-excel');
+// $filetypes['xlsx'] = array('application/x-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 
-$filetypes['ppt'] = array('application/powerpoint', 'application/mspowerpoint', 'application/powerpoint', 'application/vnd.ms-powerpoint', 'application/x-mspowerpoint', 'application/mspowerpoint');
-$filetypes['pptx'] = array('application/powerpoint', 'application/mspowerpoint', 'application/powerpoint', 'application/vnd.ms-powerpoint', 'application/x-mspowerpoint', 'application/mspowerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation');
-
-
-
+// $filetypes['ppt'] = array('application/powerpoint', 'application/mspowerpoint', 'application/powerpoint', 'application/vnd.ms-powerpoint', 'application/x-mspowerpoint', 'application/mspowerpoint');
+// $filetypes['pptx'] = array('application/powerpoint', 'application/mspowerpoint', 'application/powerpoint', 'application/vnd.ms-powerpoint', 'application/x-mspowerpoint', 'application/mspowerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation')
 
 
 
