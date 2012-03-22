@@ -28,8 +28,9 @@ THE SOFTWARE.
 // hack for nuts ***********************************
 $str = explode('library', $_SERVER['SCRIPT_FILENAME']);
 include_once($str[0].'nuts/config.inc.php');
-include_once(WEBSITE_PATH.'/nuts/config_auto.inc.php');
 include_once(WEBSITE_PATH.'/nuts/headers.inc.php');
+$nuts = new NutsCore();
+$nuts->dbConnect();
 //**************************************************
 
 
@@ -60,6 +61,7 @@ if(@!$_SESSION['NutsUserID'])
 {
 	die("Error: you are not allowed to access");
 }
+
 
 
 /*
@@ -256,35 +258,18 @@ $extension_whitelist .= ",mp4,flv,swf,srt"; // Video
 $extension_whitelist .= ",pdf,zip,doc,docx,xls,xlsx,ppt,pptx"; // Others
 */
 
+$cfg_files = Query::factory()->select('Extension, Mimes')
+							 ->from('NutsFileExplorerMimesType')
+							 ->executeAndGetAll();
 $filetypes = array();
+foreach($cfg_files as $f){
 
-// images
-// $filetypes['jpg'] = array('image/jpeg', 'image/pjpeg');
-// $filetypes['gif'] = array('image/gif');
-//$filetypes['png'] = array('image/png');
+	$mimes = explode(CR, trim($f['Mimes']));
+	$mimes = array_map('trim', $mimes);
+	$filetypes[strtolower(trim($f['Extension']))] = $mimes;
+}
 
-// audio
-// $filetypes['mp3'] = array('audio/mpeg', 'audio/mpeg3', 'audio/x-mpeg-3', 'video/mpeg', 'video/x-mpeg');
-
-// video
-// $filetypes['mp4'] = array('audio/mp4');
-// $filetypes['swf'] = array('application/x-shockwave-flash');
-// $filetypes['flv'] = array('video/x-flv', 'video/flv');
-
-// other
-// $filetypes['pdf'] = array('application/pdf','application/x-pdf', 'application/octet-stream');
-// $filetypes['zip'] = array('application/x-compressed', 'application/zip', 'application/octet-stream', 'application/x-zip-compressed');
-
-// $filetypes['doc'] = array('application/msword');
-// $filetypes['docx'] = array('application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-
-// $filetypes['xls'] = array('application/x-excel', 'application/vnd.ms-excel');
-// $filetypes['xlsx'] = array('application/x-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-
-// $filetypes['ppt'] = array('application/powerpoint', 'application/mspowerpoint', 'application/powerpoint', 'application/vnd.ms-powerpoint', 'application/x-mspowerpoint', 'application/mspowerpoint');
-// $filetypes['pptx'] = array('application/powerpoint', 'application/mspowerpoint', 'application/powerpoint', 'application/vnd.ms-powerpoint', 'application/x-mspowerpoint', 'application/mspowerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation')
-
-
+$nuts->dbClose();
 
 
 
@@ -296,14 +281,7 @@ $filetypes = array();
 $absolute_url = false; // When FALSE url will be returned absolute without hostname, like /upload/file.jpg.
 $absolute_url_disabled = false; // When TRUE changing from absolute to relative is not possible.
 
-
-
-
-
-
-
 //--------------------------DON'T EDIT BEYOND THIS LINE ----------------------------------
-
 $filetypes_exts = array();
 $filetypes_mimes = array();
 foreach($filetypes as $filetype => $mimes)
