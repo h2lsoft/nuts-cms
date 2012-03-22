@@ -1,10 +1,6 @@
 <?php
 /**
- * This examples show you a select example
- * of CRUD with has many
- * 
- * Author has many Book
- * 
+ * Query Component Sample
  */
 
 // headers *************************************************************************
@@ -12,22 +8,25 @@ include("../../nuts/config.inc.php");
 include("../../nuts/headers.inc.php");
 
 // execution *************************************************************************
-
-// include class
-include("Author.class.php");
-include("Book.class.php");
-
 $job = new NutsCore();
 $job->dbConnect();
 
-$author = NutsORM::factory('Author');
+$logs = Query::factory()->select("ID, Action, Resume")
+						->from('NutsLog')
+						->order_by("ID DESC")
+						->limit(10)
+						->executeAndGetAll();
 
-// create ann author
-
-
-
+foreach($logs as $log)
+{
+	echo "ID: {$log['ID']}<br>";
+	echo "Action: {$log['Action']}<br>";
+	echo "Resume: {$log['Resume']}<br>";
+	echo "<hr>";
+}
 
 $job->dbClose();
+
 
 
 

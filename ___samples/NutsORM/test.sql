@@ -13,7 +13,6 @@ CREATE TABLE `Author` (
   KEY `Deleted` (`Deleted`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-
 CREATE TABLE `Book` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `AuthorID` int(11) DEFAULT NULL,
