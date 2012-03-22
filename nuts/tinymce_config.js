@@ -12,9 +12,21 @@ function getIFrameDocument(aID){
   }
 }
 
+function getIFrameWindow(aID){
+    if (document.getElementById(aID).contentWindow){
+        return document.getElementById(aID).contentWindow;
+    } else {
+        // IE
+        return document.frames[aID];
+    }
+}
+
+
 
 function initWYSIWYGOption()
 {
+    sep = '&nbsp;|&nbsp;';
+
 	$('textarea.mceEditor').each(function (){
 		id = this.id;
 
@@ -41,55 +53,52 @@ function initWYSIWYGOption()
 		msg += 'Ctrl + Z: Undo\\n';
 		msg += 'Ctrl + Y: Redo\\n';
 
-		str += '<img onmouseover="$(body).css(\'cursor\', \'help\');" onmouseout="$(body).css(\'cursor\', \'default\');" title="Help" src="img/icon-help.png" align="absmiddle"  onclick="alert(\''+msg+'\')" />';
+		str += '<img class="rte_button" onmouseover="$(body).css(\'cursor\', \'help\');" onmouseout="$(body).css(\'cursor\', \'default\');" title="Help" src="img/icon-help.png" align="absmiddle"  onclick="alert(\''+msg+'\')" />';
 
 		// repaint
-		str += '&nbsp;<img title="Repaint" onclick="javascript:refreshWYSIWYG(\''+id+'\');" src="img/icon-refresh.png" align="absmiddle" />';
+        str += sep;
+        str += '<img  class="rte_button" title="Repaint" onclick="javascript:refreshWYSIWYG(\''+id+'\');" src="img/icon-refresh.png" align="absmiddle" />';
 
-		// Richeditor
-		str += '&nbsp;| <img src="img/icon-code_editor.png" align="absmiddle" />&nbsp;';
-		//str += '<a href="javascript:document.getElementById(\'_WYSIWYG_'+id+'\').click();">';
-		str += '<a tabindex="-1" href="javascript:openWYSIWYG(\''+id+'\');">';
-		str += 'Rich Editor';
-		str += '</a>';
 
-		// images
-		str += ' &nbsp; ';
-		str += '<img src="img/icon-preview-mini.gif" align="absmiddle" />&nbsp;';
-		str += '<a title="Gallery" tabindex="-1" href="javascript:;" onclick="javascript:popup2(\'index.php?mod=_gallery&do=list&popup=1&parent_refresh=no&parentID='+id+'\');">';
-		str += nuts_lang_msg_72;
-		str += '</a>';
+        // simple rte
+        str += sep;
+		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'bold\');" src="img/rte/b.gif" align="absmiddle" />';
+		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'italic\');" src="img/rte/i.gif" align="absmiddle" />';
+		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'underline\');" src="img/rte/u.gif" align="absmiddle" />';
+        str += sep;
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertUnorderedList\');" src="img/rte/ul.gif" align="absmiddle" />';
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertOrderedList\');" src="img/rte/ol.gif" align="absmiddle" />';
+        str += sep;
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'link\');" src="img/rte/link.gif" align="absmiddle" />';
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'unlink\');" src="img/rte/unlink.gif" align="absmiddle" />';
+        str += sep;
+
+		// gallery
+		str += ' <img class="rte_button tt" title="'+nuts_lang_msg_72+'" src="img/icon-preview-mini.gif" align="absmiddle" onclick="javascript:popup2(\'index.php?mod=_gallery&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
 
 		// media
-		str += ' &nbsp; ';
-		str += '<img src="img/icon-media.png" align="absmiddle" />&nbsp;';
-		str += '<a title="Media" tabindex="-1" href="javascript:;" onclick="javascript:popup2(\'index.php?mod=_media&do=list&popup=1&parent_refresh=no&parentID='+id+'\');">';
-		str += nuts_lang_msg_73;
-		str += '</a>';
+		str += ' <img class="rte_button tt" src="img/icon-media.png" align="absmiddle" title="'+nuts_lang_msg_73+'" onclick="javascript:popup2(\'index.php?mod=_media&do=list&popup=1&parent_refresh=no&parentID='+id+'\'); />';
 
 		// widgets
-		str += ' &nbsp; ';
-		str += '<img src="img/widget.png" align="absmiddle" />&nbsp;';
-		// str += '<a title="Widgets" class="thickbox" title="Widgets" tabindex="-1" href="javascript:;" onclick="javascript:popup2(\'widgets.php?parentID='+id+'\', \'\', 1024, 650, \'resizable=no,location=no,statusbar=no\');">';
-		str += '<a tabindex="-1" href="javascript:widgetsWindowOpen(\''+id+'\');">';
-		str += 'Widgets';
-		str += '</a>';
-		str += ' &nbsp; | ';
+		str += ' <img class="rte_button tt" title="Widgets" src="img/widget.png" align="absmiddle" onclick="javascript:widgetsWindowOpen(\''+id+'\');" />';
+
+        // Source
+        str += sep;
+        str += '<img src="img/icon-code_editor.png" align="absmiddle" />';
+        str += ' <a href="javascript:openWYSIWYG(\''+id+'\');" tabindex="0">Rich Editor</a>'
+
+        // Richeditor
+        str += sep;
+        str += ' <input tabindex="-1" style="margin-top:2px" type="checkbox" id="iframe_radio_'+id+'" onclick="WYSIWYGToggleIt(\''+id+'\');" /> Source';
 
 
 
-		// Source
-		str += ' <input tabindex="-1" style="margin-top:2px" type="checkbox" id="iframe_radio_'+id+'" onclick="WYSIWYGToggleIt(\''+id+'\');" /> Source';
 
 		str += '</div>';
 		str += '</p>';
 
 		// $('#'+id).before('<p><label>&nbsp;</label>'+str+'</p>');
 		$('textarea#'+id).parent('p:visible').before(str);
-
-
-
-
 	});
 
 }
@@ -417,7 +426,27 @@ function WYSIWYGAddText(id, txt)
 
 
 
+function cmdWYSIWYG(id, action, data)
+{
+    // source mode no command
+    if($('#iframe_radio_'+id).is(':checked'))return;
 
+
+    if(action == 'link')
+    {
+        var url = prompt("URL", 'http://');
+
+        // On vérifie qu'on a bien tapé quelque chose
+        if (url != null && url != '') {
+            action = 'createLink';
+            data = url;
+        }
+    }
+
+
+    getIFrameDocument('iframe_'+id).execCommand(action, false, data);
+    getIFrameWindow('iframe_'+id).focus();
+}
 
 
 // deprecated ********************************************************
