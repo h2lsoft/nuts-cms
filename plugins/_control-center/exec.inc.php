@@ -6,9 +6,9 @@
 $cfg_file = WEBSITE_PATH.'/nuts/config.inc.php';
 
 // action *************************************************************************
-if(@$_GET['_action'] == 'maintenance' || @$_GET['_action'] == 'error404' || @$_GET['_action'] == 'log_error_404' || @$_GET['_action'] == 'log_error_nuts_tags' ||
+if(@$_GET['_action'] == 'maintenance' || @$_GET['_action'] == 'error404' || @$_GET['_action'] == 'error500' || @$_GET['_action'] == 'log_error_404' || @$_GET['_action'] == 'log_error_nuts_tags' ||
    @$_GET['_action'] == 'html_compress' || @$_GET['_action'] == 'html_compress_time' || @$_GET['_action'] == 'firebug' || @$_GET['_action'] == 'tidy')
-{	
+{
 	$val = $_GET['val'];
 
 	$contents = file_get_contents($cfg_file);
@@ -33,6 +33,13 @@ if(@$_GET['_action'] == 'maintenance' || @$_GET['_action'] == 'error404' || @$_G
 	{
 		$rep = "define('NUTS_ERROR404_TEMPLATE', '".NUTS_ERROR404_TEMPLATE."');";
 		$rep2 = "define('NUTS_ERROR404_TEMPLATE', '".$val."');";
+	}
+
+	// error 500
+	elseif($_GET['_action'] == 'error500')
+	{
+		$rep = "define('NUTS_ERROR_PAGE_REDIRECT', \"".NUTS_ERROR_PAGE_REDIRECT."\");";
+		$rep2 = "define('NUTS_ERROR_PAGE_REDIRECT', \"".$val."\");";
 	}
 
 	// log error 404
@@ -134,7 +141,7 @@ elseif(@$_GET['_action'] == 'ip_allowed')
 	$nval = join(", ", $val);
 
 	$contents = file_get_contents($cfg_file);
-	
+
 	// catch define('WEBSITE_MAINTENANCE_IPS', '');
 	$rep = "define('WEBSITE_MAINTENANCE_IPS', '".WEBSITE_MAINTENANCE_IPS."');";
 	$rep2 = "define('WEBSITE_MAINTENANCE_IPS', '".$nval."');";
@@ -173,7 +180,7 @@ elseif(@$_GET['_action'] == 'unblock')
 	$date = $_GET['date'];
 	$ip = $_GET['ip'];
 
-	$sql = "DELETE FROM 
+	$sql = "DELETE FROM
 						NutsLog
 			WHERE
 					Application = '_system' AND
@@ -186,7 +193,7 @@ elseif(@$_GET['_action'] == 'unblock')
 	// add plugin trace
 	$plugin->trace("unblock ip `$ip` at $date");
 
-	
+
 	die("ok@@@IP `$ip` unblocked for $date");
 
 }
@@ -320,6 +327,8 @@ $nuts->parse('img_tidy_extension', $img_tidy_extension);
 // error 404
 $nuts->parse('error404', NUTS_ERROR404_TEMPLATE);
 
+// error 500
+$nuts->parse('error500', NUTS_ERROR_PAGE_REDIRECT);
 
 // ip allowed
 $ips_a = WEBSITE_MAINTENANCE_IPS;

@@ -6,7 +6,7 @@
 
 <div id="form_ok">
 	<img src="img/icon-accept.gif" align="absmiddle" /> <span>Ok</span>
-</div>	
+</div>
 
 <fieldset>
 	<legend>Website</legend>
@@ -28,7 +28,7 @@
 		<a class="tt" title="Save" href="javascript:updater('ip_allowed');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
 		&nbsp;&nbsp;&nbsp; Your ip: `{IpUser}`
 	</p>
-	
+
 	<p>
 		<label>Error 404 (template or http)
 			<small>don't forget to add `ErrorDocument 404 http://` into your htaccess file</small>
@@ -36,6 +36,16 @@
 		<input type="text" id="Error404" value="{error404}" />
 		<a class="tt" title="Save" href="javascript:updater('error404');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
 	</p>
+
+    <p style="clear: both; padding-top: 10px;">
+        <label>Error 500 page
+            <br />
+            <small>Redirect page in case of system error (empty = display error message or you can put /error.php)</small>
+        </label>
+        <input type="text" id="Error500" value="{error500}" />
+        <a class="tt" title="Save" href="javascript:updater('error500');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
+    </p>
+
 
 	</fieldset>
 
@@ -134,7 +144,7 @@
 			<a href="{error_url}" target="_blank" title="Visit website"><img src="img/icon-web.gif"  align="absbottom"/></a>
 			<a href="javascript:updater('log', {WebErrorID});" title="Delete this message"><img src="img/list_delete.png" align="absbottom" style="width:16px;" /></a>
 		<br />
-		</span>		
+		</span>
 	</bloc::website_errors>
 
 	</p>
@@ -150,7 +160,7 @@
 		<label>{Date} - </label><a href="http://www.geoiptool.com/en/?IP={IpOk}" title="localize IP" target="_blank">{IpOk}</a> [<a href="javascript:updater('unblock', '{IpOk}', '{Date}', '{IpID}');">Unblock</a>] <br />
 	</p>
 	</bloc::ips_blocked>
-	
+
 </fieldset>
 
 <fieldset>
@@ -175,7 +185,7 @@
 		<img src="img/icon-{res}.gif" /> <img src="img/icon-{type}.png" /> {file}<br />
 	</bloc::files>
 	</p>
-	
+
 </fieldset>
 
 
@@ -223,7 +233,7 @@ function updater(target, ip, date, IpID){
 
 		val = $('#Maintenance').val();
 		$.get(uri, {_action: 'maintenance', val: val}, function(data){
-			
+
 			resp = explode('@@@', data);
 			if(resp[0] != 'ok')
 			{
@@ -307,6 +317,23 @@ function updater(target, ip, date, IpID){
 		});
 	}
 
+    // error 500
+    if(target == 'error500')
+    {
+        val = $('#Error500').val();
+        $.get(uri, {_action: 'error500', val: val}, function(data){
+
+            resp = explode('@@@', data);
+            if(resp[0] != 'ok')
+            {
+                notify('error', resp[1]);
+            }
+            else
+            {
+                notify('ok', resp[1]);
+            }
+        });
+    }
 
 
 	// clear_cache
@@ -343,7 +370,7 @@ function updater(target, ip, date, IpID){
 
 				$('#ip_'+IpID).hide();
 			}
-			
+
 		});
 	}
 
@@ -400,8 +427,8 @@ function updater(target, ip, date, IpID){
 			}
 			else
 			{
-				notify('ok', resp[1]);				
-				
+				notify('ok', resp[1]);
+
 				$('#website_error_delete').hide();
 				$('#website_error_count').html('');
 				$('.website_error').remove();
