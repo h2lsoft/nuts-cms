@@ -47,12 +47,12 @@ class Db extends Form
 	 * @param string $login
 	 * @param string $password
 	 * @param string $base
-	 * @param string $port
+	 * @param int $port
 	 * @param boolean $new_connection
 	 *
 	 * @author H2LSOFT
 	 */
-	public function dbConnect($db_type = '', $host = '', $login = '', $password = '', $base = '', $port = '', $new_connection = '')
+	public function dbConnect($db_type = '', $host = '', $login = '', $password = '', $base = '', $port = '', $new_connection='')
 	{
 		// initialisation of variable
 		if(empty($db_type))$db_type = TPLN_DB_TYPE_DEFAULT;
@@ -67,13 +67,17 @@ class Db extends Form
 		if(!empty($port))$this->db[$this->db_index]->port = $port;
 
 		try {
-			$persistant = ($new_connection) ? false : true;
-			$this->db[$this->db_index] = @new PDO("$db_type:host=$host;dbname=$base;port=$port", $login, $password, array(PDO::ATTR_PERSISTENT => $new_connection));
+
+				$persistant = ($new_connection) ? false : true;
+				$conn_str = "$db_type:host=$host;dbname=$base;port=$port";
+				$this->db[$this->db_index] = @new PDO($conn_str, $login, $password, array(
+																							PDO::ATTR_PERSISTENT => $new_connection
+																						));
 		}
 		catch(PDOException $e){
 			$this->dbError(0, $e->getMessage());
 		}
-		
+
 		// init queries
 		if(TPLN_DB_INIT_QUERIES != '')
 		{
@@ -82,10 +86,28 @@ class Db extends Form
 			{
 				$sql_n = trim($sql_n);
 				if(!empty($sql_n))
+				{
 					$this->doQuery($sql_n);
+				}
 			}
 		}
 	}
+
+	/**
+	 * Apply attributes for PDO
+	 *
+	 * @param $attribute
+	 * @param $value
+	 */
+	public function dbSetAttribute($attribute, $value)
+	{
+		$this->db[$this->db_index]->setAttribute($attribute, $value);
+	}
+
+
+
+
+
 
 	/**
 	 * this method allows to change connection.
@@ -348,7 +370,7 @@ class Db extends Form
 	 * @since 2.4, 2.8
 	 * @author H2LSOFT */
 	public function doQuery($sql, $FETCH_MODE=PDO::FETCH_BOTH)
-	{		
+	{
 		if(!is_object($this->db[$this->db_index]))
 		{
 			$this->dbError(0.1);
@@ -356,12 +378,11 @@ class Db extends Form
 		}
 
 		$this->query_count++;
-		$this->req_index++;		
-		
+		$this->req_index++;
 		$this->req[$this->req_index] = $this->db[$this->db_index]->query($sql);
 
 		if(!$this->req[$this->req_index])
-		{		
+		{
 			// without debug ?
 			$msgs = $this->db[$this->db_index]->errorInfo();
 			$msg = "{$msgs[2]} (code #{$msgs[1]})";
@@ -437,21 +458,23 @@ class Db extends Form
 			elseif(is_int($vals[$i]) || is_float($vals[$i]) || in_array($vals[$i], array('NOW()', 'NULL')))
 				$s = $vals[$i];
 			else
-				$s = "'".mysql_escape_string($vals[$i])."'";
+			{
+				// $s = "'".mysql_escape_string($vals[$i])."'";
+				$s = "'".$this->checkQuotes($vals[$i])."'";
+			}
 			if($i < count($vals)-1)$s .= ',';
 			$sql .= " \t\t$s\n";
 		}
 		$sql .= "\t)";
-
 		$b = $this->doQuery($sql);
+
+
 
 		// return last insert id
 		if($return_last_id)
 		{
 			return $this->dbGetMaxId($table, $pk_key_name);
 		}
-
-
 
 		return $b;
 	}
@@ -511,7 +534,10 @@ class Db extends Form
 			elseif(is_int($vals[$i]) || is_float($vals[$i]) || in_array($vals[$i], array('NOW()', 'NULL')))
 				$s = $vals[$i];
 			else
-				$s = "'".mysql_escape_string($vals[$i])."'";
+			{
+				//$s = "'".mysql_escape_string($vals[$i])."'";
+				$s = "'".$this->checkQuotes($vals[$i])."'";
+			}
 			if($i < count($vals)-1)$s .= ',';
 			$sql .= " \t\t{$fields[$i]} = $s\n";
 		}
@@ -524,7 +550,7 @@ class Db extends Form
 	}
 
 	/**
-	 * This method allows to generate and execute REPALCE query from an associative array.
+	 * This method allows to generate and execute REPLACE query from an associative array.
 	 *
 	 * You can exlude some fields from your update query, use * character to exclude a name generically mce*
 	 *
@@ -542,7 +568,7 @@ class Db extends Form
 	{
 		// protection
 		$arr = $this->dbProtection($arr);
-		
+
 		$fields = array();
 		$vals = array();
 		foreach($arr as $key => $val)
@@ -579,7 +605,11 @@ class Db extends Form
 			elseif(is_int($vals[$i]) || is_float($vals[$i]) || in_array($vals[$i], array('NOW()', 'NULL')))
 				$s = $vals[$i];
 			else
-				$s = "'".mysql_escape_string($vals[$i])."'";
+			{
+				// $s = "'".mysql_escape_string($vals[$i])."'";
+				$s = "'".$this->checkQuotes($vals[$i])."'";
+
+			}
 			if($i < count($vals)-1)$s .= ',';
 			$sql .= " \t\t{$fields[$i]} = $s\n";
 		}
@@ -603,7 +633,7 @@ class Db extends Form
 	public function dbSelect($sql, $values)
 	{
 		$values = $this->checkQuotes($values);
-		$sql = vsprintf ($sql, $values);
+		$sql = vsprintf($sql, $values);
 		$this->doQuery($sql);
 	}
 
@@ -703,7 +733,7 @@ class Db extends Form
 		$row = $this->req[$this->req_index]->fetch($pdo_fetch_mode);
 		return $row;
 	}
-	
+
 	/**
 	 * method allows to obtain as abject form database query results.
 	 *
@@ -723,7 +753,7 @@ class Db extends Form
 		$row = $this->req[$this->req_index]->fetch(PDO::FETCH_OBJ);
 		return $row;
 	}
-	
+
 
 	/**
 	 * method allows to obtain as array form database query results.
@@ -823,10 +853,10 @@ class Db extends Form
 	{
 		$res = $this->dbFetchArray();
 		$this->dbFreeResult();
-		
+
 		if(count($res) == 0)
 			return '';
-		else		
+		else
 			return @$res[0];
 	}
 
@@ -1155,8 +1185,8 @@ class Db extends Form
 	 * @return string
 	 * @author H2LSOFT */
 	protected function SRgetUrl($t_pg = '')
-	{		
-		$url = $this->Url."tpg=$t_pg".$this->url_var;		
+	{
+		$url = $this->Url."tpg=$t_pg".$this->url_var;
 		if(!empty($this->UrlRgxPatterns) && !empty($this->UrlRgxReplace))
 			$url = @preg_replace('/'.$this->UrlRgxPatterns.'/i', $this->UrlRgxReplace, $url);
 
@@ -1237,7 +1267,7 @@ class Db extends Form
 	protected function applyPrivateVar()
 	{
 		if(empty($this->Url))
-			$this->Url = $_SERVER['PHP_SELF'].'?';		
+			$this->Url = $_SERVER['PHP_SELF'].'?';
 
 		// TPLN variable
 		if($this->itemExists('_Count', 'data'))
@@ -1294,8 +1324,8 @@ class Db extends Form
 			{
 				$prev_pg = $this->PageNumber - 1;
 				if($prev_pg < 1)$prev_pg = 1;
-				$url = $this->SRgetUrl($prev_pg);				
-				$this->parse('data.previous._Url', $url);				
+				$url = $this->SRgetUrl($prev_pg);
+				$this->parse('data.previous._Url', $url);
 			}
 			else
 			{
@@ -1319,7 +1349,7 @@ class Db extends Form
 			$this->parse('data.next._Url', $url);
 		}
 		else
-			$this->EraseBloc('data.next');		
+			$this->EraseBloc('data.next');
 		}
 
 		// START
@@ -1389,7 +1419,7 @@ class Db extends Form
 				$this->error('1.1', $this->f[$this->f_no]['name'], 'in', '_Page');
 				return;
 			}
-			
+
 
 			if($this->PageCount > 1)
 			{
@@ -1583,7 +1613,7 @@ class Db extends Form
 
 		// sql version
 		if(!is_array($this->user_resulset))
-		{			
+		{
 			// $this->setQuery(''); // reconstruit la requete et assigne les variables
 			// $this->_GetTotalCount(); //  nb total d'enregistrements
 
@@ -1609,7 +1639,7 @@ class Db extends Form
 
 
 			//preg_match_all("#\(SELECT(.*)\)#msU", $query_tmp, $matches);
-			preg_match_all("#\(SELECT (.*) \) #", $query_tmp2, $matches);			
+			preg_match_all("#\(SELECT (.*) \) #", $query_tmp2, $matches);
 
 			if(isset($matches[0]))
 			{
@@ -1700,11 +1730,11 @@ class Db extends Form
 			if(strpos($query, 'SQL_CALC_FOUND_ROWS') !== false)
 			{
 				$sql_tmp = 'SELECT FOUND_ROWS()';
-			}			
+			}
 
 
 			$this->doQuery($sql_tmp);
-			$this->Count = $this->getOne();			
+			$this->Count = $this->getOne();
 
 			// end of patch query by laurent hayoun ***********************
 
@@ -1728,9 +1758,9 @@ class Db extends Form
 
 			$this->setQueryLimit(); // request which contains the limits
 
-			
+
 			$tmp_nb_result_per_page = $nb_result_per_page;
-			if($tmp_nb_result_per_page == 0)$tmp_nb_result_per_page = -1;		
+			if($tmp_nb_result_per_page == 0)$tmp_nb_result_per_page = -1;
 			$limit_start = ($this->PageNumber-1) * $nb_result_per_page;
 			if($limit_start < 0)$limit_start = 0;
 			if($nb_result_per_page == 0)
@@ -1741,7 +1771,7 @@ class Db extends Form
 			{
 				$query_limit = $query." LIMIT ".$limit_start.', '.$tmp_nb_result_per_page;
 			}
-			
+
 			$this->doQuery($query_limit);
 
 		}
@@ -1767,7 +1797,7 @@ class Db extends Form
 		{
 			$this->NbResults = $this->dbNumRows(); // resultats obtenues != $this->count
 			$sql_results = $this->dbGetData(); // recupere les résultats
-			
+
 		}
 		else
 		{
@@ -1799,7 +1829,7 @@ class Db extends Form
 			$this->T_id = $this->T_first; // for _Id
 
 			if($this->T_id == 0)$this->T_id = 1;
-			if(isset($_GET['tpg']) && $_GET['tpg'] > 1)$this->T_id++; # patch legrandd 
+			if(isset($_GET['tpg']) && $_GET['tpg'] > 1)$this->T_id++; # patch legrandd
 			// $this->T_id++;
 
 			$this->last_header = '';
@@ -1923,17 +1953,17 @@ class Db extends Form
 		$err_msg = str_replace('[:MSG:]', $msg, $err_msg);
 		$this->error_msg = "<B>TPLN DB Error $err_no:</B> <table border=1><tr><td>$err_msg</td></tr></table>";
 		$this->error_user_level = E_USER_ERROR;
-		
+
 		// add stack
 		$this->error_msg .= "<br /><br />";
 		$backtrace1 = debug_backtrace();
-		$backtrace1 = array_reverse($backtrace1);		
+		$backtrace1 = array_reverse($backtrace1);
 		if(count($backtrace1) > 0)
 		{
-			
+
 			$this->error_msg .= "<b>Stack</b>\n";
 			$this->error_msg .= "<pre style='border:1px solid #ccc; padding:5px;'>";
-			
+
 			$init = false;
 			foreach($backtrace1 as $k => $v)
 			{
@@ -1941,15 +1971,15 @@ class Db extends Form
 					$this->error_msg .= "<b> &bull; {$v['file']} in line {$v['line']}</b>\n";
 				else
 					$this->error_msg .= " &bull; {$v['file']} in line {$v['line']}\n";
-					
+
 				$init = true;
 			}
-			
+
 			$this->error_msg .= "</pre>";
 		}
-		
-		
-		
+
+
+
 
 		$this->outPutMessage($exit);
 	}
@@ -2064,7 +2094,7 @@ class Db extends Form
 	public function date2Db($date)
 	{
 		if(empty($date) || $date == '00/00/0000' || $date == '00-00-0000' || $date == '00/00/0000 00:00' || $date == '00-00-0000 00:00')return '';
-		
+
 		// date
 		if(strlen($date) == 10)
 		{

@@ -36,7 +36,7 @@ define('TPLN_SQL_QUERY_DEBUG', true); // 0 or 1 to view query on sql error
 /***************************** Db configuration  ***************************************************/
 /*
 	pdo version => http://php.net/manual/en/book.pdo.php
- 
+
     mysql  -> MySQL
     pgsql  -> PostgreSQL
     ibase  -> InterBase
@@ -48,22 +48,19 @@ define('TPLN_SQL_QUERY_DEBUG', true); // 0 or 1 to view query on sql error
     ifx    -> Informix
     fbsql  -> FrontBase
 */
-
-
 define('TPLN_DB_TYPE_DEFAULT',NUTS_DB_TYPE); // your SGBD by defaut option
 define('TPLN_DB_HOST_DEFAULT', NUTS_DB_HOST); // your host by defaut
 define('TPLN_DB_LOGIN_DEFAULT', NUTS_DB_USER); // your login by defaut
 define('TPLN_DB_PASSWORD_DEFAULT',NUTS_DB_PASSWORD); // your password by defaut
 define('TPLN_DB_BASE_DEFAULT', NUTS_DB_BASE); // your base by defaut
 define('TPLN_DB_PORT', NUTS_DB_PORT); // your port by defaut don't touch if you don't know
-define('TPLN_DB_NEW_CONNECTION', false); // force php to recreate a connection by default (recommanded false) (1=true used for COMMIT and 0=false)
-
-define('TPLN_DB_INIT_QUERIES', ""); # queries executed after connection (separated by ; for example: SET NAMES 'utf8')
-
+define('TPLN_DB_NEW_CONNECTION', false); // persistant queries ? (false) useful form commit
+define('TPLN_DB_INIT_QUERIES', "SET NAMES 'utf8'"); # queries executed after connection (separated by ; for example: SET NAMES 'utf8')
 
 // DB Navigation
 define('TPLN_DB_NavColorFirst', '#ffffff'); // alternate color by defaut for item {_NavColor}
 define('TPLN_DB_NavColorSecond','#e5e5e5'); // alternate color by defaut for item {_NavColor}
+
 /**********************************************************************************/
 
 

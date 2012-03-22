@@ -21,11 +21,11 @@ $job = new NutsCore();
 $nuts = &$job;
 
 // execution *************************************************************************
-// $job->dbConnect();
+$job->dbConnect();
 
 
 
-// $job->dbClose();
+$job->dbClose();
 
 
 
