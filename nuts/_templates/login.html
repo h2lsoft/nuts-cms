@@ -9,12 +9,12 @@
 	<title>{CONST::APP_TITLE} - Login</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/custom.css" />
-	
+
 	<link rel="icon" href="favicon.ico" />
 
 	<script language="javascript" src="../library/js/php.js"></script>
 	<script language="javascript" src="nuts.js"></script>
-	
+
 
 	<!-- ui -->
 	<script src="../library/js/jquery.js"  type="text/javascript"></script>
@@ -48,26 +48,25 @@
 
 	<!-- login -->
 	<form id="former" name="former" method="post" onsubmit="return xLogin(); ">
-	<fieldset id="login">
-		<legend><img src="img/lock.png" align="absmiddle" /> {$nuts_login_lang_msg[0]}</legend>
 
-		<p class="error"><img src="img/icon-error.gif" align="absmiddle" />  {$nuts_login_lang_msg[3]}</p>
+     <div id="login">
+
+        <div id="login_title">{$nuts_login_lang_msg[0]}</div>
+
+         <p class="error"><img src="img/icon-error.gif" align="absmiddle" /> {$nuts_login_lang_msg[3]}<br />&nbsp;</p>
 
 		<bloc::failed>
-		<p class="error" style="display:block;"><img src="img/icon-error.gif" align="absmiddle" />  {$nuts_lang_msg[55]}
-		<br />
-		<br />
-		<br />
-		
-		</p>
+		    <p class="error ip_blocked">
+                <img src="img/icon-error.gif" align="absmiddle" />  {$nuts_lang_msg[55]}
+            </p>
 		</bloc::failed>
 
 		<bloc::submit>
-		<p>
+		<p class="login_p">
 			<label>{$nuts_login_lang_msg[1]}</label>
 			<input type="text" name="NutsLogin" id="NutsLogin" value="" autocomplete="on" />
 		</p>
-		<p>
+		<p class="login_p">
 			<label>{$nuts_login_lang_msg[2]}</label>
 			<input type="password" name="NutsPassword" id="NutsPassword" value="" autocomplete="on" />
 			<input type="hidden" name="redirect_index" id="redirect_index" value="0"  autocomplete="off" />
@@ -76,74 +75,81 @@
 		<p>
 			<label>&nbsp; </label>
 			<input type="checkbox" name="Remember" id="Remember" value="1" /> {$nuts_login_lang_msg[4]}
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="submit" value="Login" id="btn_submit" />
+
 		</p>
 
 		<p class="bottom">
-			<input type="submit" value="{$nuts_lang_msg[56]}" id="btn_submit" />
-			<br />
-			<br />
-			<a href="javascript:lostPassword();">{$nuts_lang_msg[44]}</a>
+            <a tabindex="-1" href="javascript:lostPassword();">{$nuts_lang_msg[44]}</a>
+
 		</p>
 		</bloc::submit>
-		
-	</fieldset>
-	<div id="login_reflection">&nbsp;</div>
+
+         <div id="ip_current">IP : {IP}</div>
+
+	</div>
+
+
+
+
 
 	</form>
 	<!-- login -->
 
-		
+
 
 <!-- /ajax::content -->
 </div>
 
 <script>
 	$('#NutsLogin').focus();
-	
+
 	function xLogin()
-	{	
+	{
 		$('#redirect_index').val(0);
-		
-		$('#btn_submit').attr('value', "{$nuts_lang_msg[23]}");
+
+		// $('#btn_submit').attr('value', "{$nuts_lang_msg[23]}");
 	 	$('#btn_submit').attr("disabled", true);
 		$('#content').fadeTo(0, 0.33);
-			
-		f_serialized = $('#former').serializeArray();		
-		
+
+		f_serialized = $('#former').serializeArray();
+
 		$.post('login.php', f_serialized, function(responseText){
-			resp = responseText;			
+			resp = responseText;
 			resp = jQuery.trim(resp);
 
 			if(resp == 'error_security')
 			{
 				document.location.href = "login.php";
 			}
-			
+
 			if(resp != '')
 			{
 				$('p.error').eq(0).slideDown('fast');
 				$('#content').fadeTo(0.33, 1);
-				$('#btn_submit').attr('value', "{$nuts_lang_msg[56]}");
+				//$('#btn_submit').attr('value', "{$nuts_lang_msg[56]}");
 				$('#btn_submit').removeAttr("disabled");
 
 				$('#NutsPassword').val('');
 				$('#NutsPassword').focus();
-				
+
 			}
 			else
 			{
-				$('p.error').eq(0).slideUp('fast');			
+				$('p.error').eq(0).slideUp('fast');
 				if($('#Remember').attr('checked') == true)
-				{				
+				{
 					rememberMe($('#NutsLogin').val(), $('#NutsPassword').val());
 				}
-				
+
 				$('#redirect_index').val(1);
 				$('#former').attr('onsubmit', '');
 				$('#former').submit();
-			}					
-		});		
-		
+			}
+		});
+
 		if($('#redirect_index').val() == 1)
 			return true;
 		else
@@ -167,12 +173,12 @@
 
 	<div id="lp_error"><img src="img/icon-error.gif" align="absmiddle" /> {$nuts_lang_msg[46]}</div>
 	<div id="lp_ok"><img src="img/icon-accept.gif" align="absmiddle" /> {$nuts_lang_msg[47]}</div>
-	
+
 	<form id="former_lp" name="former_lp" method="post">
 	<p>
-		<label>{$nuts_lang_msg[45]} </label>
+		<label>{$nuts_lang_msg[45]}</label>
 		<input type="text" name="Email" id="Email" value="" style="width:250px;" />
-		<input type="submit" value="{$nuts_lang_msg[56]}" id="btn_submit_lp" />
+		<input type="submit" value="{$nuts_lang_msg[56]}" id="btn_submit_lp" class="button" />
 	</p>
 	<input type="hidden" name="from" value="lp" />
 	</form>
@@ -183,7 +189,7 @@ function lostPasswordInit()
 {
 	$("#form_window_lp").dialog({
 				width:520,
-				height:220,
+				height:150,
 				modal: true,
 				title: "{$nuts_lang_msg[44]}",
 				resizable: false,
@@ -194,8 +200,6 @@ function lostPasswordInit()
 					background: "black"
 				}
 			});
-
-
 }
 
 function lostPassword()
@@ -203,14 +207,20 @@ function lostPassword()
 	// reset fields !
 	$('#lp_error, #lp_ok').hide();
 	$('#former_lp').show();
-	
+
 	$('#Email').val('');
 	$('#btn_submit_lp').show();
 	$('#btn_submit_lp').attr('value', "{$nuts_lang_msg[56]}");
 	$('#btn_submit_lp').removeAttr("disabled");
 
 	$("#form_window_lp").dialog("open");
+
+
 }
+
+$("#form_window_lp" ).bind( "dialogcreate", function(event, ui) {
+    $('#former_lp #Email').focus();
+});
 
 lostPasswordInit();
 
@@ -248,8 +258,8 @@ function showResponse2(responseText, statusText)
 				   .css("margin-top", '20px')
 				   .slideDown('normal');
 	}
-	else	
-		$('#lp_error').slideDown('normal');	
+	else
+		$('#lp_error').slideDown('normal');
 }
 
 // bind form using 'ajaxForm'
@@ -264,7 +274,7 @@ $('#former_lp').ajaxForm(options);
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"> </script>
 <div id="placeholder"></div>
 <script type="text/javascript">
- CFInstall.check({	 
+ CFInstall.check({
     node: "placeholder",
     destination: "{CONST::WEBSITE_URL}/nuts/",
 	cssText: "border:3px solid #ccc; padding:2px;"

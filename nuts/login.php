@@ -1,10 +1,6 @@
 <?php
 header("content-type:text/html; charset=utf-8");
 
-
-
-
-
 // includes ******************************************************************
 include('config.inc.php');
 include('config_auto.inc.php');
@@ -18,7 +14,7 @@ session_start();
 
 
 // redirect index prevent error chrome for remember password ***********************************************************
-if(@$_POST['redirect_index'] == 1) 
+if(@$_POST['redirect_index'] == 1)
 {
 	$nuts->redirect('index.php');
 }
@@ -38,7 +34,7 @@ $IP = $nuts->getIP();
 $IP_long = (int)ip2long($IP);
 
 
-$sql = "SELECT 
+$sql = "SELECT
 				Application,
 				Action
 		FROM
@@ -65,19 +61,19 @@ if($_POST)
 	// security ***********************************************************************************************
 	if($login_error_count >= 5) # 5 times submitting
 	{
-		
+
 		// email preventing admin email
 		if($login_error_count == 5)
 		{
 			$f = array();
-			$f['IP'] = $nuts->getIP();			
-			@nutsSendEmail($nuts_lang_msg[84], $f, NUTS_ADMIN_EMAIL);			
+			$f['IP'] = $nuts->getIP();
+			@nutsSendEmail($nuts_lang_msg[84], $f, NUTS_ADMIN_EMAIL);
 		}
-		
+
 		die('error_security');
 	}
-	
-	
+
+
 	// lost password ***********************************************************************************************
 	if(isset($_POST['from']) && $_POST['from'] == 'lp')
 	{
@@ -103,7 +99,7 @@ if($_POST)
 									NutsGroup.BackofficeAccess = 'YES' AND
 									NutsGroup.Deleted = 'NO' AND
 									NutsUser.Deleted = 'NO'", array($_POST['Email']));
-			
+
 			if($nuts->dbNumRows() == 1)
 			{
 				$row = $nuts->dbFetch();
@@ -118,16 +114,16 @@ if($_POST)
 			}
 		}
 	}
-	
+
 	// connection ************************************************************************************************
 	if(empty($_POST['NutsLogin']) || empty($_POST['NutsPassword']))
 	{
 		die('error');
 	}
-	
+
 	$crypt_pass = nutsCrypt($_POST['NutsPassword']);
 	$nuts->dbSelect("SELECT
-							NutsUser.ID,										
+							NutsUser.ID,
 							NutsUser.FirstName,
 							NutsUser.LastName,
 							NutsUser.NutsGroupID
@@ -154,7 +150,7 @@ if($_POST)
 	}
 	else
 	{
-		$row = $nuts->dbFetchAssoc();	
+		$row = $nuts->dbFetchAssoc();
 		$_SESSION = $row;
 		$_SESSION['NutsUserID'] = $row['ID'];
 		nutsTrace('_system', 'logon');
@@ -168,12 +164,15 @@ $nuts->open('_templates/login.html');
 
 if($login_error_count < 5)
 {
-	$nuts->eraseBloc('failed');	
+	$nuts->eraseBloc('failed');
 }
 else
 {
 	$nuts->eraseBloc('submit');
 }
+
+$IP = $nuts->getIP();
+$nuts->parse('IP', $IP);
 
 /*if(!NUTS_TRADEMARK)
 	$nuts->eraseBloc('trademark');
