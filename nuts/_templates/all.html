@@ -152,11 +152,11 @@
 		<span class="login">{$nuts_lang_msg[0]}, {$_SESSION['FirstName']} {$_SESSION['LastName']} (#{$_SESSION['NutsUserID']})</span><br />
 		<span class="time"></span><br />
 
-		<span class="internal_message">
-			<a href="javascript:;" onclick="popup2('index.php?mod=_internal-messaging&do=list&popup=1&parent_refresh=0');">{$nuts_lang_msg[65]}</a>
-		</span><br />
-
-
+        <div id="internal_message_toolbar">
+            <span class="internal_message">
+                <a href="javascript:;" onclick="popup2('index.php?mod=_internal-messaging&do=list&popup=1&parent_refresh=0');">{$nuts_lang_msg[65]}</a>
+            </span>
+        </div>
 
 		<!-- writing_toolbar -->
 		<div id="writing_toolbar">
@@ -172,25 +172,20 @@
 		</div>
 		<!-- /writing_toolbar -->
 
-
-
-		<a class="tt" title="My Notes" href="javascript:;" onclick="popup2('index.php?mod=_internal-memo&do=edit&popup=1&parent_refresh=0');">
-			<img class="user_online" style="width:16px;" src="img/notes-icon-gray.gif" />
-		</a>
-
-		-
-
-		<a class="tt" href="javascript:;" onclick="viewOnlineUsers(false);" onblur="viewOnlineUsers(true);" title="{$nuts_lang_msg[67]}"><img src="img/top_users.gif" class="user_online" alt="{$nuts_lang_msg[67]}" /></a> <span id="user_online_count">0</span>
-
-		&nbsp;
-
-		<div id="user_online_list"></div>
-
-
-		[
-			<a  class="tt" href="javascript:;" onclick="popup2('{CONST::WEBSITE_URL}');" title="{$nuts_lang_msg[68]}"><img src="img/icon-home.png" alt="" class="logout_icon_home" /></a>  |
-			<a href="javascript:logoutForm('{$nuts_lang_msg[2]}');">{$nuts_lang_msg[2]}</a>
-		]
+        <div id="notes_toolbar">
+            <a class="tt" title="My Notes" href="javascript:;" onclick="popup2('index.php?mod=_internal-memo&do=edit&popup=1&parent_refresh=0');">
+                <img class="user_online" style="width:16px;" src="img/notes-icon-gray.gif" />
+            </a>
+            -
+            <a class="tt" href="javascript:;" onclick="viewOnlineUsers(false);" onblur="viewOnlineUsers(true);" title="{$nuts_lang_msg[67]}"><img src="img/top_users.gif" class="user_online" alt="{$nuts_lang_msg[67]}" /></a>
+            <span id="user_online_count">0</span>
+            &nbsp;
+            <div id="user_online_list"></div>
+            [
+                <a  class="tt" href="javascript:;" onclick="popup2('{CONST::WEBSITE_URL}');" title="{$nuts_lang_msg[68]}"><img src="img/icon-home.png" alt="" class="logout_icon_home" /></a>  |
+                <a href="javascript:logoutForm('{$nuts_lang_msg[2]}');">{$nuts_lang_msg[2]}</a>
+            ]
+        </div>
 
 	</div>
 	<!-- logout -->

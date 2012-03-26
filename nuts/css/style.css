@@ -1,7 +1,10 @@
 @charset "utf-8";
 
 body {
-		font-family:'Trebuchet MS'; font-size:12px; background-image:url(bkg.png); background-repeat:repeat-x; overflow-y:scroll;
+		/*font-family:'Trebuchet MS';*/
+		font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+
+		font-size:12px; background-image:url(bkg.png); background-repeat:repeat-x; overflow-y:scroll;
 		margin:0;  width:100%; height:100%;
 }
 a {text-decoration:none; color:blue;}
@@ -16,16 +19,20 @@ fieldset {
 }
 
 
-#writing_toolbar {position: absolute; z-index: 456; top:58px;  padding: 0px; padding-top: 2px; text-align: center; margin-left: auto; margin-right:auto;}
+#writing_toolbar {position: absolute; z-index: 456; top:57px;  padding: 0px; padding-top: 2px; text-align: center; margin-left: auto; margin-right:auto;}
 #writing_toolbar img {height: 20px; opacity:0.3; margin:0!important;}
 #writing_toolbar img:hover {opacity:1;}
 #writing_toolbar a.news {margin-left: 5px;}
+
+#internal_message_toolbar {padding-top: 3px;}
+#notes_toolbar {padding-top: 6px;}
+
 
 
 #header {padding:5px; padding-left:10px; padding-right:3px; height:70px; }
 #header img {margin-right:10px; margin-bottom:5px;}
 
-#logout {float:right; background-color:#e5e5e5; padding:5px; min-width:300px; text-align:center; border:1px solid #ccc; margin-top:-3px; padding-bottom: 0px;}
+#logout {float:right; background-color:#e5e5e5; padding:5px; min-width:260px; text-align:center; border:1px solid #ccc; margin-top:-3px; padding-bottom: 0px;}
 #logout .login {font-weight:bold; color:#666;}
 #logout .time {white-space: nowrap; font-weight: normal; }
 #logout .internal_message {color:#999; background-image: url(/nuts/img/email.png); background-repeat: no-repeat; background-position: left center; padding-left:20px;}
@@ -171,7 +178,10 @@ h1 a:hover {text-decoration:none; color:#999;}
 
 
 /** inputs */
-input, select, textarea, button {border:1px solid #ccc; font-family:'Trebuchet MS'; font-size:12px;}
+input, select, textarea, button {border:1px solid #ccc; /*font-family:'Trebuchet MS';*/
+	font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+	font-size:12px;
+}
 input[type=button], button, input[type=submit]   {/*font-size:14px;*/ font-weight:bold;  background-image:url(button_bkg.png); border:1px solid #ccc;  height:28px; cursor:pointer;
 
 
@@ -302,7 +312,8 @@ iframe.nuts_editor:focus {
 #login label {width:135px; display:block; float:left; text-align:right; padding-right:15px; font-weight:bold;}
 #login p {margin:3px; padding:0;}
 
-#login .login_p {padding-bottom: 3px!important; font-size: 14px; color:#999;}
+#login .login_p {padding-bottom: 3px!important; font-size: 14px; color:#666;}
+#login .login_p label {font-weight: normal;}
 #login .login_p input {font-size: 14px; height: 20px; color:#999;}
 
 #login input[type=text], #login input[type=password] {width:220px;}
