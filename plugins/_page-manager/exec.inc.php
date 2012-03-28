@@ -214,7 +214,9 @@ $nuts->doQuery($sql);
 $nuts->parseDbRow('page_access');
 
 
-
+// url rewriting shortcut
+$userAllowedPluginUrlRewriting = nutsUserHasRight($_SESSION['NutsGroupID'], '_url_rewriting', 'list');
+$nuts->parse('userAllowedPluginUrlRewriting', $userAllowedPluginUrlRewriting);
 
 
 

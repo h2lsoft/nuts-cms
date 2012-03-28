@@ -74,6 +74,14 @@ $("#dID").bind("keypress", function(e){
 	}
 });
 
+
+function openUrlRewriting(){
+
+    popupModal('index.php?mod=_url_rewriting&do=list&parent_refresh=0');
+}
+
+
+
 function generateFromH1(){
 
 	if($("#H1").val() != '')
@@ -123,7 +131,8 @@ function generateFromH1(){
 
 }
 
-$('#VirtualPagename').after(' <a href="javascript:generateFromH1();">'+lang_msg_82+'</a>');
+$('#VirtualPagename').after('<input class="button" type="button" onclick="generateFromH1();" value="'+lang_msg_82+'" /><input id="urlRewritingBtn" class="button" type="button" value="Url rewriting" onclick="openUrlRewriting()" style="display:none;" />');
+
 $('#Content, #ContentResume').tabby();
 
 // autocomplete
@@ -191,6 +200,9 @@ $('#former select[type=select-multiple].checkbox-list').each(function(){
 
 });
 
+
+// allow url rewriting
+if(userAllowedPluginUrlRewriting == '1')$('#urlRewritingBtn').show();
 
 function trtUpdateAccessRestrict(){
 
