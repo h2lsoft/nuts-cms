@@ -428,8 +428,8 @@ table#list tfoot td.total_count {background: none!important; font-weight:normal;
 
 
 table#list tfoot td input {text-align:center; width:35px;}
-table#list tfoot a.np {/*font-size:14px;*/ margin-left:10px; margin-right:10px; padding:5px;}
-table#list tfoot a.np:hover {text-decoration:none; color:red;}
+table#list tfoot a.np {/*font-size:14px;*/ margin-left:10px; margin-right:10px; padding:5px; color:#666;}
+table#list tfoot a.np:hover {text-decoration:none; color:#333;}
 
 table#list pre {margin:0;}
 

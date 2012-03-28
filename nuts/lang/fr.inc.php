@@ -18,7 +18,7 @@ $nuts_lang_msg[3] = "Accueil";
 
 // widget::list
 $nuts_lang_msg[4] = "Enregistrement de {_First} à {_Last} sur {_Count}";
-$nuts_lang_msg[5] = "Pages";
+$nuts_lang_msg[5] = "Page";
 $nuts_lang_msg[6] = "Aucun enregistrement trouvé";
 $nuts_lang_msg[7] = "Ajouter";
 $nuts_lang_msg[8] = "Visualiser cet enregistrement";
