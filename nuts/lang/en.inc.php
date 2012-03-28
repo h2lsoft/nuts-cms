@@ -21,7 +21,7 @@ $nuts_lang_msg[3] = "Home";
 
 // widget::list
 $nuts_lang_msg[4] = "Record {_First} to {_Last} of {_Count}";
-$nuts_lang_msg[5] = "Pages";
+$nuts_lang_msg[5] = "Page";
 $nuts_lang_msg[6] = "No record found";
 $nuts_lang_msg[7] = "New Record";
 $nuts_lang_msg[8] = "View this record";
