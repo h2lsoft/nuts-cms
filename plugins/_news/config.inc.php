@@ -12,7 +12,7 @@ $cf = array();
 $hidden_fields = "Tags, Event, Comment, VirtualPageName, DateGMTExpiration"; # comma separated
 
 /** update 0.87 **/
- $sql_front_added = ""; // added special sql code in news like DateGMT formater
+$sql_front_added = ""; // added special sql code in news like DateGMT formater
 
 /** update 1.8 **/
 
