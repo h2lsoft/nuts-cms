@@ -278,23 +278,26 @@ iframe.nuts_editor:focus {
 		width:450px;
 		min-height: 220px;
 
-		border:1px solid #ccc;
-		background-color:#f5f5f5;
+		border:1px solid #333;
+		background-color:#fff;
 		padding:0px;
 
 		border-radius: 5px;
 		-moz-border-radius: 5px;
 		-webkit-border-radius: 5px;
 
-		box-shadow: 0px 0px 50px #bbb;
-		-webkit-box-shadow: 0px 0px 50px #bbb;
-		-moz-box-shadow: 0px 0px 50px #bbb;
+		box-shadow: 0px 0px 50px #aaa;
+		-webkit-box-shadow: 0px 0px 50px #aaa;
+		-moz-box-shadow: 0px 0px 50px #aaa;
+
+
 }
 
 #login #login_title {
 
+	background-color: #000000;
+	border-bottom: 3px solid #D852AD;
 
-	background-color: #34ABFA;
 	background-image: url(/nuts/img/lock.png);
 	background-repeat: no-repeat;
 	background-position: 15px center;
@@ -306,10 +309,8 @@ iframe.nuts_editor:focus {
 	padding: 10px;
 
 	padding-left: 55px;
-	border-bottom: 3px solid #007ED1;
 	margin-bottom: 45px;
-
-	text-shadow: 1px 1px 1px #666;
+	margin-bottom: 45px;
 }
 
 #login #btn_submit {

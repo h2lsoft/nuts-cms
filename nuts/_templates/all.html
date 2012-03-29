@@ -351,7 +351,6 @@ if("{$_GET['popup']}" == 1)
 	$('body').css('background-image', 'none');
 	$('#add').css('margin-top', '-10px');
 
-
 	$(document).keyup(function(event){
 		// ESC key
 		if(event.keyCode == 27){
@@ -363,7 +362,6 @@ if("{$_GET['popup']}" == 1)
 
 	if("{$_GET['parent_refresh']}" == "" && window.opener != null && window.opener != undefined && typeof window.opener.system_refresh == 'function')
 	{
-
 		// prevent Chrome bug
 		window.onload = function() {
 			if(strtolower(BrowserDetect.browser) == 'chrome')
@@ -375,8 +373,6 @@ if("{$_GET['popup']}" == 1)
 			if(strtolower(BrowserDetect.browser) == 'firefox')
 				window.opener.system_refresh();
 		};
-
-
 	}
 
 }

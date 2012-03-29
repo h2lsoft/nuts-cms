@@ -97,7 +97,7 @@ $nuts_lang_msg[52] = "Imprimer";
 
 $nuts_lang_msg[53] = "Liste large/scroll";
 $nuts_lang_msg[54] = "L'utilisateur `%s` vient d'éditer cet enregistrement, merci d'attendre 2 minutes avant d'enregistrer";
-$nuts_lang_msg[55] = "Votre accès est bloqué (5 échecs de login), merci de contacter votre administrateur";
+$nuts_lang_msg[55] = "Votre accès est bloqué (5 échecs de login),<br /> merci de contacter votre administrateur système";
 $nuts_lang_msg[56] = "Envoyer";
 $nuts_lang_msg[57] = "Enr./page";
 

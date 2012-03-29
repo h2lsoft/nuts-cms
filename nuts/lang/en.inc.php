@@ -103,7 +103,7 @@ $nuts_lang_msg[52] = "Print";
 $nuts_lang_msg[53] = "Toggle list";
 
 $nuts_lang_msg[54] = "User `%s` has just edited this record, please try to save in 2 minutes";
-$nuts_lang_msg[55] = "Your access is blocked (5 times login failed), please contact your administrator";
+$nuts_lang_msg[55] = "Your access is blocked (5 times login failed),<br />please contact your system administrator";
 $nuts_lang_msg[56] = "Send";
 $nuts_lang_msg[57] = "Records/page";
 
