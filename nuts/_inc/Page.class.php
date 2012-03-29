@@ -3101,6 +3101,31 @@ EOF;
 	}
 
 
+	/**
+	 * Return page parameter
+	 * @param int $index
+	 */
+	public function getPageParameter($index){
+		return @$this->args[$index];
+	}
+
+	/**
+	 * Return page parameter count
+ 	 * @param int $index
+	 */
+	public function getPageParameterCount(){
+		return @count($this->args);
+	}
+
+
+	/**
+	 * Return current plugin parameter
+	 * @param $index
+	 */
+	public function getPluginParameter($index){
+		return @$this->plugin_embed[$this->plugin_real_name][$index];
+	}
+
 }
 
 
