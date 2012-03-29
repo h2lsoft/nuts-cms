@@ -7,9 +7,9 @@
 include('plugins/_news/config.inc.php');
 
 // get news information
-if(count($plugin->args) == 0)$plugin->error404();
-$newsID = (int)$plugin->args[0];
-if($newsID == 0)$this->error404();
+if($plugin->getPageParameterCount() == 0)$plugin->error404();
+$newsID = (int)$plugin->getPageParameter(0);
+if($newsID == 0)$plugin->error404();
 
 $sql = "SELECT
 				*
@@ -26,12 +26,12 @@ $row = $plugin->dbFetch();
 // execution
 $plugin->openPluginTemplate();
 
-if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_news-reader.css');
+if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_news-reader/style.css');
 
 $plugin->vars['MenuName'] = $row['Title'];
 $plugin->addPattern('@News', $row['Title']);
-
 $plugin->vars['H1'] = $row['Title']; # change H1 dynamically
+
 
 $plugin->parse('Date', $row['DateGMT']);
 $plugin->parse('Resume', $row['Resume']);
@@ -45,8 +45,7 @@ if(empty($row['NewsImageModel']) && empty($row['NewsImage']))
 else
 {
 	$news_image = $row['NewsImageModel'];
-	if(!empty($row['NewsImage']))
-	{
+	if(!empty($row['NewsImage'])){
 		$news_image = NUTS_NEWS_IMAGES_URL.'/'.$row['NewsImage'];
 	}
 
