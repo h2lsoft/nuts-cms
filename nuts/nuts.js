@@ -222,7 +222,7 @@ function formIt(title, url)
 		{
 			topPos = 10;
 			h = $(window).height();
-			h -= 18;
+			h -= 25;
 		}
 
 		$("#form_window").dialog({
