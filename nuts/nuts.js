@@ -202,6 +202,7 @@ function formIt(title, url)
 {
 	// check if form window is not opened
 	$('body').css('cursor', 'wait');
+    $('body').css('overflow-y', 'hidden');
 
 	last_formIt_uri = url;
 
@@ -239,8 +240,15 @@ function formIt(title, url)
 			overlay: {
 				opacity: 0.6,
 				background: "black"
-			}
+			},
+            close: function(event, ui) {
+
+                $('body').css('overflow-y', 'auto');
+
+            }
 		});
+
+
 
 		forceWYSIWYGUpdate();
 		$(this).show();
