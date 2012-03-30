@@ -77,9 +77,8 @@ $("#dID").bind("keypress", function(e){
 
 function openUrlRewriting(){
 
-    popupModal('index.php?mod=_url_rewriting&do=list&parent_refresh=0');
+    popupModal('index.php?mod=_url_rewriting&do=list&parent_refresh=0', "UriRewriting", 1024, 768);
 }
-
 
 
 function generateFromH1(){
@@ -131,7 +130,7 @@ function generateFromH1(){
 
 }
 
-$('#VirtualPagename').after('<input class="button" type="button" onclick="generateFromH1();" value="'+lang_msg_82+'" /><input id="urlRewritingBtn" class="button" type="button" value="Url rewriting" onclick="openUrlRewriting()" style="display:none;" />');
+$('#VirtualPagename').after('<input class="button" type="button" onclick="generateFromH1();" value="'+lang_msg_82+'" /><input id="urlRewritingBtn" class="button" type="button" value="Url rewriting" onclick="openUrlRewriting()" style="display: none;" />');
 
 $('#Content, #ContentResume').tabby();
 

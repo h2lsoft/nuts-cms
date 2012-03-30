@@ -6,8 +6,12 @@ body {
 		font-family:'Trebuchet MS';
 		font-size:12px;
 
-		 background-image:url(bkg.png); background-repeat:repeat-x; overflow-y:scroll;
-		margin:0;  width:100%; height:100%;
+		background-image:url(bkg.png);
+		background-repeat:repeat-x;
+		overflow-y:scroll;
+		margin:0;
+		width:100%;
+		height:100%;
 }
 a {text-decoration:none; color:blue;}
 a:hover {text-decoration:underline;}
@@ -563,7 +567,7 @@ div#form .checkbox_list label:hover, div#page_form .checkbox_list label:hover {c
 div#form span.required {font-weight:bold; color:red;}
 div#form p.bottom {margin:0; clear:both;text-align:center; padding:10px; background-color:#d5d5d5; border-top: 3px solid #ddd; padding-top: 7px;}
 
-div#form p.bottom #btn_submit { border-bottom: 2px solid green;}
+div#form p.bottom #btn_submit, div#form p.bottom #btn_print { border-bottom: 2px solid green;}
 div#form p.bottom #btn_cancel { border-bottom: 2px solid red;}
 
 

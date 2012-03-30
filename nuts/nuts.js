@@ -202,7 +202,7 @@ function formIt(title, url)
 {
 	// check if form window is not opened
 	$('body').css('cursor', 'wait');
-    $('body').css('overflow-y', 'hidden');
+
 
 	last_formIt_uri = url;
 
@@ -241,11 +241,18 @@ function formIt(title, url)
 				opacity: 0.6,
 				background: "black"
 			},
+
+            open: function(event, ui) {
+                $('body').css('overflow-y', 'hidden');
+                w = $('.ui-dialog-overlay').width();
+                $('.ui-dialog-overlay').width(w+16);
+            },
+
             close: function(event, ui) {
-
-                $('body').css('overflow-y', 'auto');
-
+                $('body').css('overflow-y', 'scroll');
             }
+
+
 		});
 
 
