@@ -1,28 +1,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>		
+	<head>
 		<meta http-equiv="X-UA-Compatible" content="chrome=1" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="robots" content="noindex, nofollow" />
 		<title>Nuts&#8482; CMS - Widgets</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css?t={$timer}" media="all" />
-		
+
 		<script type="text/javascript" src="/library/js/jquery.js"></script>
 		<script type="text/javascript" src="/library/js/php.js"></script>
 		<script type="text/javascript" src="nuts.js?t={$timer}"></script>
-		
+
 		<script>
 		var parentID = "{$_GET['parentID']}";
+        var language = "{$_SESSION['Language']}";
 		</script>
-		
-		
+
+
 	</head>
 	<body style="background-color:#888; background-image: none!important;">
-		
-		
+
+
 		<!-- w_left_menu -->
 		<div id="w_left_menu">
-			
+
 			<!-- menu -->
 			<bloc::menu>
 			<div class="w_menu">
@@ -30,54 +31,54 @@
 			</div>
 			</bloc::menu>
 			<!-- /menu -->
-						
+
 		</div>
 		<!-- /w_left_menu -->
-		
-		
+
+
 		<input type="text" id="top_search_input" style="margin-left: 210px; margin-top: 3px; margin-bottom: 3px; display: none;" />
-		
-		
+
+
 		<!-- plugins -->
-		<div class="w_tab">			
-			
+		<div class="w_tab">
+
 			<bloc::plugins>
 			<div class="w_item" onclick="addToText($(this));" item="{item}">
 				<img class="logo" src="{img}" align="absmiddle" /> <strong>{name}</strong>
 			</div>
 			</bloc::plugins>
-			
+
 		</div>
 		<!-- /plugins -->
-		
+
 		<!-- forms -->
 		<div class="w_tab">
-			
+
 			<bloc::forms>
 			<div class="w_item" onclick="addToText($(this));" item="{item}">
 				<img class="logo" src="{img}" align="absmiddle" /> <strong>{name}</strong><br />
 				<span class="description">{desc}</span>
 			</div>
 			</bloc::forms>
-			
+
 		</div>
 		<!-- /forms -->
-		
+
 		<!-- survey -->
 		<div class="w_tab">
-			
+
 			<bloc::survey>
 			<div class="w_item" onclick="addToText($(this));" item="{item}">
 				<img class="logo" src="{img}" align="absmiddle" /> <strong>{name}</strong>
 			</div>
 			</bloc::survey>
 		</div>
-		<!-- /survey -->		
-		
-		
+		<!-- /survey -->
+
+
 		<!-- blocks -->
 		<div class="w_tab">
-			
+
 			<bloc::blocks>
 			<div class="w_item w_item_block" onclick="addToText($(this));" item="{item}">
 				<img class="block_preview" src="{img}" /> <strong>{name}</strong><br />
@@ -85,81 +86,81 @@
 				<b>{$nuts_lang_msg[81]} : {sub_group}</b>
 			</div>
 			</bloc::blocks>
-			
+
 		</div>
-		<!-- /blocks -->		
-		
+		<!-- /blocks -->
+
 		<!-- patterns -->
 		<div class="w_tab">
-			
+
 			<bloc::patterns>
 			<div class="w_item" onclick="addToText($(this));" item="{item}">
-				
-				<img class="logo" src="{img}" align="absmiddle" /> <strong>{name} ({type})</strong><br />				
+
+				<img class="logo" src="{img}" align="absmiddle" /> <strong>{name} ({type})</strong><br />
 				<span class="description">{desc}</span>
-				
+
 			</div>
-			</bloc::patterns>			
-						
+			</bloc::patterns>
+
 		</div>
-		<!-- /patterns -->		
-		
+		<!-- /patterns -->
+
 		<!-- regions -->
 		<div class="w_tab">
-			
+
 			<bloc::regions>
 			<div class="w_item" onclick="addToText($(this));" item="{item}">
-				
-				<img class="logo" src="{img}" align="absmiddle" /> <strong>{name}</strong><br />				
+
+				<img class="logo" src="{img}" align="absmiddle" /> <strong>{name}</strong><br />
 				<span class="description">{desc}</span>
-				
+
 			</div>
-			</bloc::regions>	
-			
-			
+			</bloc::regions>
+
+
 		</div>
 		<!-- /regions -->
-		
+
 		<!-- zones -->
 		<div class="w_tab">
-			
+
 			<bloc::zones>
-				
+
 				<div class="w_item" onclick="addToText($(this));" item="{item}">
-				
-					<img class="logo" src="{img}" align="absmiddle" /> <strong>{name}</strong><br />				
+
+					<img class="logo" src="{img}" align="absmiddle" /> <strong>{name}</strong><br />
 					<span class="description">{desc}</span>
-				
+
 				</div>
-				
+
 			</bloc::zones>
-			
-			
+
+
 		</div>
 		<!-- /zones -->
-		
+
 
 		<script type="text/javascript">
 		var lastIndex = -1;
 		$('.w_menu').click(function(){
-			
+
 			$('.w_menu').removeClass('w_menu_selected');
-			$(this).addClass('w_menu_selected');			
+			$(this).addClass('w_menu_selected');
 			$('.w_tab').hide();
-			
+
 			var index = $(".w_menu").index(this);
-			
-			$(".w_tab").eq(index).show();			
+
+			$(".w_tab").eq(index).show();
 			lastIndex = index;
-			
+
 			$("#top_search_input").val("");
-			$("#top_search_input").show().focus();			
-			
-		});		
-		
-		
+			$("#top_search_input").show().focus();
+
+		});
+
+
 		$('#top_search_input').keyup(function(){
-			
+
 			if($(this).val() == '')
 			{
 				$(".w_tab:eq("+lastIndex+") .w_item").show();
@@ -167,7 +168,7 @@
 			else
 			{
 				$(".w_tab:eq("+lastIndex+") .w_item").each(function(){
-					
+
 					txt = strtolower($(this).text());
 					v = strtolower($('#top_search_input').val());
 					if(txt.indexOf(v) == -1)
@@ -178,26 +179,46 @@
 					{
 						$(this).show();
 					}
-					
+
 				});
 			}
-			
-			
+
+
 		});
-		
-		
+
+
 		function addToText(obj)
-		{			
-			content = obj.attr('item');	
+		{
+            content = obj.attr('item');
+
+            // plugin add parameters ?
+            current_obj = $('.w_menu_selected').text();
+            current_obj = trim(current_obj);
+            if(current_obj.indexOf('Plugins ') == 0)
+            {
+                msg = "Do you want to add plugin parameters ?";
+                if(language == 'fr')
+                    msg = "Voulez-vous ajouter des paramètres au plugin ?";
+                if((c=confirm(msg)))
+                {
+                    msg = "Enter plugin parameters (seperated by `;`)";
+                    if(language == 'fr')
+                        msg = "Entrer les paramètres du plugin (séparé par `;`)";
+                    params = prompt(msg);
+
+                    content = str_replace("PARAMETERS=''", "PARAMETERS='"+params+"'", content);
+                }
+            }
+
 			rep = parse_nuts_tags(content);
-			
+
 			window.opener.WYSIWYGAddText(parentID, rep);
 			// window.opener.refreshWYSIWYG(parentID);
-						
-			window.close();						
-		}		
+
+			window.close();
+		}
 		</script>
-		
-		
+
+
 	</body>
 </html>

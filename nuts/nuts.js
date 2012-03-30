@@ -922,6 +922,34 @@ function parse_nuts_tags(text)
 						label = base64_encode(label);
 					}
 				}
+                else if(tag_type == 'plugin')
+                {
+                    label = extract_str("NAME='", "'", cur_tags, 0, 0);
+                    label2 = extract_str("PARAMETERS='", "'", cur_tags, 0, 0);
+                    if(label != '')
+                    {
+                        if(label.charAt(strlen(label)-1) == '}')
+                            label = substr(label, 0, strlen(label)-1);
+                        label = trim(label);
+
+                        label2 = trim(label2);
+                        if(!empty(label2))
+                        {
+                            if(label2.charAt(strlen(label2)-1) == '}')
+                                label2 = substr(label2, 0, strlen(label2)-1);
+                            label2 = trim(label2);
+
+                            if(!empty(label2))
+                                label += " - PARAMETERS("+label2+")";
+                        }
+
+
+
+
+                        label = trim(label);
+                        label = base64_encode(label);
+                    }
+                }
 				else
 				{
 					label = extract_str("NAME='", "'", cur_tags, 0, 0);
