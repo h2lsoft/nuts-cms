@@ -567,8 +567,13 @@ div#form .checkbox_list label:hover, div#page_form .checkbox_list label:hover {c
 div#form span.required {font-weight:bold; color:red;}
 div#form p.bottom {margin:0; clear:both;text-align:center; padding:10px; background-color:#d5d5d5; border-top: 3px solid #ddd; padding-top: 7px;}
 
-div#form p.bottom #btn_submit, div#form p.bottom #btn_print { border-bottom: 2px solid green;}
-div#form p.bottom #btn_cancel { border-bottom: 2px solid red;}
+div#form p.bottom #btn_submit,
+div#form p.bottom #btn_print,
+#page_options_bottom #btn_submit
+	{ border-bottom: 2px solid green;}
+div#form p.bottom #btn_cancel,
+#page_options_bottom #btn_cancel
+	{ border-bottom: 2px solid red;}
 
 
 div#form_error {display:none;  font-weight:bold; color:red; padding:10px; background-color:#FFE1FF; border:1px dashed red; margin-bottom:15px; margin-top:5px;}
