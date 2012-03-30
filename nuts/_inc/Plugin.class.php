@@ -1534,6 +1534,15 @@ EOF;
 			header("Content-disposition: attachment; filename=\"$file_name.csv\"");
 			// echo "\xEF\xBB\xBF"; // force UTF8
 
+			// add ORDER BY clause
+			if(isset($_GET['torder_by'])){
+				// clause of the end ?
+				if(preg_match("#(.*)ORDER BY(.*)$#si", $sql))
+					$sql .= " ,{$_GET['torder_by']} {$_GET['tsens']}";
+				else
+					$sql .= " ORDER BY {$_GET['torder_by']} {$_GET['tsens']}";
+			}
+
 			$this->nuts->doQuery($sql);
 
 			// create keys
