@@ -48,7 +48,7 @@ $plugin->listWaitingForUserSearching = true;
 $plugin->listWaitingForUserSearchingMessage = "Please select a category";
 
 if(nutsUserHasRight($_SESSION['NutsGroupID'], '_right-manager', 'edit'))
-	$plugin->listAddButton("RightManager", "Right manager", "popup2('/nuts/?mod=_right-manager&do=edit&NutsGroupID={$_SESSION['NutsGroupID']}&display=all&popup=1');");
+	$plugin->listAddButton("RightManager", "Right manager", "popupModal('/nuts/?mod=_right-manager&do=edit&NutsGroupID={$_SESSION['NutsGroupID']}&display=all&popup=1');");
 
 
 // render list
