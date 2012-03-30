@@ -809,7 +809,7 @@ function previewPage(node)
 	else
 		uri += simpleTreeCollection.get(0).getSelected().attr('id')+".html?nuts_preview=1&tmstp="+time();
 
-	popup2(uri, "preview", 1024, 750, 'toolbar=yes, statusbar=yes, menubar=no, resizable=no');
+	popupModal(uri, "preview", 1024, 750, 'toolbar=yes, statusbar=yes, menubar=no, resizable=no');
 }
 
 function counterPage()
@@ -886,7 +886,7 @@ function imagePreview(f)
 	}
 
 	// uri = WEBSITE_URL+'/library/media/images/user/'+v;
-	popup2(v, 'imageBrowser', 960, 750, '');
+	popupModal(v, 'imageBrowser', 960, 750, '');
 }
 
 function directID()

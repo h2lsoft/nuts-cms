@@ -576,7 +576,15 @@ function popupModal(url, name, windowWidth, windowHeight, opts)
 		properties += ', '+opts;
 	properties = str_replace(' ', '', properties);
 
-   url += '&popup=1';
+   if(url.indexOf('http') != 1 &&  url.indexOf('ftp') != 1  &&  url.indexOf('mailto') != 1)
+   {
+
+   }
+   else
+   {
+       url += '&popup=1';
+   }
+
    newwindow = window.showModalDialog(url, name, properties);
 }
 
@@ -807,7 +815,7 @@ function openFile(f)
 
 
 
-	popup2(uri, 'openFile', 960, 750, '');
+	popupModal(uri, 'openFile', 960, 750, '');
 	/*windowWidth = 960;
 	windowHeight = 750;
 	myleft = (screen.width - windowWidth) / 2;

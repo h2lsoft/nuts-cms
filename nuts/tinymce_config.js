@@ -75,8 +75,8 @@ function initWYSIWYGOption()
         str += sep;
 
 		// gallery
-		str += ' <img class="rte_button" title="'+nuts_lang_msg_72+'" src="img/icon-preview-mini.gif" align="absmiddle" onclick="popup2(\'index.php?mod=_gallery&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
-		str += ' <img class="rte_button" src="img/icon-media.png" align="absmiddle" title="'+nuts_lang_msg_73+'" onclick="popup2(\'index.php?mod=_media&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
+		str += ' <img class="rte_button" title="'+nuts_lang_msg_72+'" src="img/icon-preview-mini.gif" align="absmiddle" onclick="popupModal(\'index.php?mod=_gallery&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
+		str += ' <img class="rte_button" src="img/icon-media.png" align="absmiddle" title="'+nuts_lang_msg_73+'" onclick="popupModal(\'index.php?mod=_media&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
 		str += ' <img class="rte_button" src="/nuts/img/widget.png" title="Widgets" align="absmiddle" onclick="widgetsWindowOpen(\''+id+'\');" />';
 
         // rte
@@ -104,7 +104,7 @@ function widgetsWindowOpen(id)
 	width = 1024;
 	height = 650;
 
-	popup2(uri, '', width, height, 'resizable=no');
+    popupModal(uri, '', width, height, 'resizable=no');
 
 }
 
@@ -338,7 +338,7 @@ function openWYSIWYG(objID)
 	windowHeight = 768;
 	opts = '';
 
-	popup2(uri, 'RichEditor', windowWidth, windowHeight, opts);
+	popupModal(uri, 'RichEditor', windowWidth, windowHeight, opts);
 
 }
 

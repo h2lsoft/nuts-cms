@@ -32,7 +32,7 @@ $plugin->listRender(20, 'hookData');
 function hookData($row)
 {
 	global $lang_msg;
-	
+
 
 	$row['Preview'] = '';
 	if($row['Type'] == 'AUDIO')
@@ -63,13 +63,13 @@ function hookData($row)
 		$row['Preview'] = '<object type="application/x-shockwave-flash" data="/nuts/player_flv_maxi.swf" width="200" height="160">
 								<param name="movie" value="/nuts/player_flv_maxi.swf" />
 								<param name="allowFullScreen" value="true" />
-								
+
 								<param name="FlashVars" value="flv='.$row['Url'].'&amp;width=200&amp;height=160&amp;showstop=1&amp;showvolume=1&amp;showplayer=always&amp;showloading=always&amp;showfullscreen=1&amp;showiconplay=1&amp;ondoubleclick=fullscreen&amp;autoload=0&amp;srt=1&amp;iconplaybgalpha=50'.$startimage.'" />
-						</object>';	
+						</object>';
 	}
 	elseif($row['Type'] == 'EMBED CODE')
 	{
-		$row['Preview'] = "<a href=\"javascript:;\" onclick=\"popup2('{$row['EmbedCodePreviewUrl']}', 'video preview', 1024, 768);\">{$lang_msg[11]}</a>";
+		$row['Preview'] = "<a href=\"javascript:;\" onclick=\"popupModal('{$row['EmbedCodePreviewUrl']}', 'video preview', 1024, 768);\">{$lang_msg[11]}</a>";
 	}
 
 	// add code

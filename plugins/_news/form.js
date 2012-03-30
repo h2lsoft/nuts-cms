@@ -1,7 +1,7 @@
 for(i=0; i < hfs.length; i++)
 {
 	n = trim(hfs[i]);
-	
+
 	if(!empty(n))
 	{
 		if(n.indexOf('fieldset') == 0)
@@ -19,12 +19,12 @@ if($('#former #fieldset_CustomFilter').children('p').length == 0)
 
 // assign twitter
 $("#former #Title").blur(function(){
-	
+
 	if($("#former #Twitter").is(':visible'))
 	{
 		$("#former #Twitter").val($("#former #Title").val());
 	}
-	
+
 });
 
 
@@ -37,13 +37,13 @@ if($('#former #Twitter'))
 		$("#twitter_count").text(v);
 	});
 
-	
-	$('#former #twitter_a').click(function(){		
+
+	$('#former #twitter_a').click(function(){
 		v = $('#Twitter').val();
-		
-		twitter_login = $("#twitter_a").attr('data-login');		
-		uri = "http://twitter.com/home?status="+v;				
-		popup2(uri, "Twitter", 800, 600);		
+
+		twitter_login = $("#twitter_a").attr('data-login');
+		uri = "http://twitter.com/home?status="+v;
+        popupModal(uri, "Twitter", 800, 600);
 	});
 }
 
