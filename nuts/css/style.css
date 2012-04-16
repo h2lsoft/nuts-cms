@@ -571,6 +571,7 @@ div#form p.bottom #btn_submit,
 div#form p.bottom #btn_print,
 #page_options_bottom #btn_submit
 	{ border-bottom: 2px solid green;}
+
 div#form p.bottom #btn_cancel,
 #page_options_bottom #btn_cancel
 	{ border-bottom: 2px solid red;}

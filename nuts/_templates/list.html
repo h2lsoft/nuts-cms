@@ -101,7 +101,12 @@
 <div id="add">
 
 	<bloc::buttons>
-	<input type="button" id="{name}" name="{name}" value="{label}" onclick="{onclick}" />
+	<input type="button" id="{name}" name="{name}" value="{label}" />
+    <script type="text/javascript">
+    $('#list_container #add #{name}').click(function(){
+        {onclick}
+    });
+    </script>
 	</bloc::buttons>
 
 	<bloc::add_button>
