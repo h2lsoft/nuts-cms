@@ -38,7 +38,7 @@ fieldset {
 #header {padding:5px; padding-left:10px; padding-right:3px; height:70px; }
 #header img {margin-right:10px; margin-bottom:5px;}
 
-#logout {float:right; background-color:#e5e5e5; padding:5px; min-width:260px; text-align:center; border:1px solid #ccc; margin-top:-3px; padding-bottom: 0px;}
+#logout {float:right; background-color:#e5e5e5; padding:5px; min-width:28px; white-space: nowrap; text-align:center; border:1px solid #ccc; margin-top:-3px; padding-bottom: 0px;}
 #logout .login {font-weight:bold; color:#666;}
 #logout .time {white-space: nowrap; font-weight: normal; }
 #logout .internal_message {color:#999; background-image: url(/nuts/img/email.png); background-repeat: no-repeat; background-position: left center; padding-left:20px;}
