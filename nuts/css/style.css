@@ -311,14 +311,13 @@ iframe.nuts_editor:focus {
 }
 
 #login #btn_submit {
-	font-size: 16px;
+	font-size: 14px;
+	letter-spacing: 1px;
 }
 
 #login #btn_submit:hover {
 	background-color: 	#007dcf;
 }
-
-
 
 #login label {width:135px; display:block; float:left; text-align:right; padding-right:15px; font-weight:bold;}
 #login p {margin:3px; padding:0;}
