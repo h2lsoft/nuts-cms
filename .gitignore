@@ -1,5 +1,3 @@
-_tmp
-.idea
-.project
-.externalToolBuilders
+_tmp/*
+.idea/*
 .DS_Store
