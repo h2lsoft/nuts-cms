@@ -1,23 +1,23 @@
 <ul id="nav_menu">
-	
+
 	<!-- parent -->
 	<bloc::parent>
 	<li style="background-color:{color_sel};" onmouseover="this.style.backgroundColor='{color}';" onmouseout="this.style.backgroundColor='{color_sel}';"><a>{name}</a>
-		
+
 		<!-- child -->
 		<ul class="ulc" style="border-color:{color};">
 		<bloc::child>
-		<li>
-			{break_before}
+        {break_before}
+		<li class="">
 			<a href="{c_uri_direct}" onclick="{c_uri}; return false;" target="{c_target}"> <img src="{CONST::WEBSITE_URL}/plugins/{c_name}/icon.png" width="16" height="16" /> {c_rname}</a>
-			{break_after}
 		</li>
+        {break_after}
 		</bloc::child>
 		</ul>
 		<!-- child -->
-		
-	</li>	
+
+	</li>
 	</bloc::parent>
 	<!-- parent -->
-			
+
 </ul>

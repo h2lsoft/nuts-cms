@@ -142,11 +142,11 @@ foreach($mods_group as $group)
 			if($for == 'MAIN')
 			{
 				$break_before = '';
-				if($row['BreakBefore'] == 1)$break_before = '<hr />';
+				if($row['BreakBefore'] == 1)$break_before = '<li class="breaker"><hr /></li>';
 				$nuts->parse('parent.child.break_before', $break_before);
 
 				$break_after = '';
-				if($row['BreakAfter'] == 1)$break_after = '<hr />';
+				if($row['BreakAfter'] == 1)$break_after = '<li class="breaker"><hr /></li>';
 				$nuts->parse('parent.child.break_after', $break_after);
 
 			}
@@ -199,8 +199,10 @@ if($for == 'MAIN')
 		</li>
 		<li>
 			<a target="_blank" href="https://github.com/h2lsoft/Nuts-CMS/issues"> <img width="16" height="16" src="/nuts/img/suggest_48.png"> {$nuts_lang_msg[59]}</a>
-			<hr />
 		</li>
+
+		<li class="breaker"><hr /></li>
+
 		<li>
 			<a target="_blank" href="$website_url"> <img width="16" height="16" src="/nuts/img/website_48.png"> {$nuts_lang_msg[60]}</a>
 		</li>
