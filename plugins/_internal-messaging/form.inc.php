@@ -18,7 +18,7 @@ $plugin->formDBTable(array('NutsIM')); // put table here
 // fields
 $plugin->formAddFieldsetStart('To', $lang_msg[11]);
 
-$nuts->doQuery("SELECT ID AS value, Name AS label FROM NutsGroup WHERE Deleted = 'NO' ORDER BY Priority, Name");
+$nuts->doQuery("SELECT ID AS value, CONCAT(Name,' (',(SELECT COUNT(*) FROM NutsUser WHERE Deleted = 'NO' AND NutsGroupID = NutsGroup.ID),')' ) AS label FROM NutsGroup WHERE Deleted = 'NO' AND BackofficeAccess = 'YES' ORDER BY Priority, Name");
 $nuts_groups = $nuts->dbGetData();
 
 // $plugin->formAddField('NutsGroup[]', $lang_msg[8], 'select', false, array( "attributes" => 'multiple="" size="5"', 'options' => $nuts_groups, 'help' => $lang_msg[9], 'class' => 'checkbox-list'));

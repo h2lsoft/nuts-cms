@@ -545,7 +545,7 @@ div#list_container fieldset .datetime {background-image:url(calendar.png); backg
 /** form */
 div#form {width:890px;}
 div#form label, div#form_content label {width:165px; display:block; float:left; text-align:right; padding-right:10px; font-weight:bold;}
-div#form p, div#form p {margin:3px; padding:0;}
+div#form p, div#form p {margin:5px; padding:0;}
 div#form input[type=text],
 div#form input[type=password],
 div#form textarea

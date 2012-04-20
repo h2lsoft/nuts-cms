@@ -94,10 +94,9 @@ function hookData($row)
 
 	// $row['Message'] = $nuts->clickable($row['Message']);
 	$row['Message'] = trim($row['Message']);
-	$msg = ' <a href="javascript:;" onclick="$(\'#message_'.$row['ID'].'\').toggle(\'fast\');">[ + ]</a>';
-	$msg .= '<p id="message_'.$row['ID'].'" style="display:none;margin-top:0;" class="mini">'.nl2br($row['Message']).'</p>';
 
-	$row['Subject'] .= $msg;
+	$row['Subject'] = "<a href=\"javascript:;\" onclick=\"$('#ls_tr_{$row['ID']} .list_btn_view').click();\">{$row['Subject']}</a>";
+	$row['Subject'] .= '<br /><span class="mini">'.str_cut($row['Message']).'</span>';
 
 	if($row['NutsUserIDFrom'] == $_SESSION['ID'])
 	{

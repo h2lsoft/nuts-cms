@@ -158,7 +158,7 @@ if("{$_GET['popup']}" == 1)
 <tr sel_color="{_NavColor}" id="ls_tr_{ID}" class="row">
 
 	<bloc::td_view>
-	<td noclick="1"  class="noprint" style="width:15px;"><a class="tt" href="javascript:formIt('{$nuts_lang_msg[28]} - #{ID}', '?mod={$plugin->name}&do=view&ID={ID}');" title="{$nuts_lang_msg[8]}"><img src="img/list_view.png" /></a></td>
+	<td noclick="1"  class="noprint" style="width:15px;"><a class="tt list_btn_view" href="javascript:" onclick="formIt('{$nuts_lang_msg[28]} - #{ID}', '?mod={$plugin->name}&do=view&ID={ID}');" title="{$nuts_lang_msg[8]}"><img src="img/list_view.png" /></a></td>
 	</bloc::td_view>
 
 	<bloc::td>
