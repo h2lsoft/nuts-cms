@@ -25,7 +25,7 @@ function getIFrameWindow(aID){
 
 function initWYSIWYGOption()
 {
-    sep = '&nbsp;|&nbsp;';
+    sep = ' &nbsp; | &nbsp; ';
 
 	$('textarea.mceEditor').each(function (){
 		id = this.id;
@@ -86,7 +86,7 @@ function initWYSIWYGOption()
 
         // source
         str += sep;
-        str += ' <input tabindex="-1" style="margin-top:2px" type="checkbox" id="iframe_radio_'+id+'" onclick="WYSIWYGToggleIt(\''+id+'\');" /> Source';
+        str += ' <input tabindex="-1" type="checkbox" id="iframe_radio_'+id+'" onclick="WYSIWYGToggleIt(\''+id+'\');" /> Source';
 
 		str += '</div>';
 		str += '</p>';

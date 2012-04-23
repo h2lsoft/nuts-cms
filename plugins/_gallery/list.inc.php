@@ -65,7 +65,7 @@ function hookData($row)
 		$row['Thumbnail'] = '<img class="image_preview" src="'.NUTS_IMAGES_URL.'/gallery/thumb_'.$row['ID'].'.'.$ext.'?t='.time().'" />';
 	}
 
-	$row['Total'] = " <a href=\"javascript:popupModal('index.php?mod=_gallery_image&do=list&ID_operator=_equal_&ID=&NutsGalleryID_operator=_equal_&NutsGalleryID={$row['ID']}&user_se=1');\" class=\"tt\"><img src=\"img/icon-preview-mini.gif\" align=\"absmiddle\" alt=\"{$lang_msg[6]}\"> {$row['Total']}</a>";
+	$row['Total'] = " <a href=\"javascript:popupModal('index.php?mod=_gallery_image&do=list&ID_operator=_equal_&ID=&NutsGalleryID_operator=_equal_&NutsGalleryID={$row['ID']}&user_se=1&popup=1');\" class=\"tt\"><img src=\"img/icon-preview-mini.gif\" align=\"absmiddle\" alt=\"{$lang_msg[6]}\"> {$row['Total']}</a>";
 	return $row;
 }
 

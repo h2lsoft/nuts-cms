@@ -8,7 +8,7 @@
 $plugin->listSetDbTable('NutsSurvey', "
 										(SELECT COUNT(*) FROM NutsSurveyData WHERE NutsSurveyID = NutsSurvey.ID) AS Votes,
 										(SELECT COUNT(*) FROM NutsSurveyOption WHERE NutsSurveyID = NutsSurvey.ID AND Deleted = 'NO') AS Choices
-										
+
 									");
 
 // search engine
@@ -31,7 +31,7 @@ function hookData($row)
 
 	$row['Choices'] = <<<EOF
 		<img src="img/widget.png" align="absbottom" style="width:16px;" />
-		<a href="javascript:popupModal('/nuts/?mod=_survey-option&do=list&popup=1&NutsSurveyID={$row['ID']}&NutsSurveyID_operator=_equal_&user_se=1');"> {$row['Choices']}</a>
+		<a href="javascript:popupModal('/nuts/?mod=_survey-option&do=list&popup=1&NutsSurveyID={$row['ID']}&NutsSurveyID_operator=_equal_&user_se=1&popup=1');"> {$row['Choices']}</a>
 EOF;
 
 	$title = str_replace("'", "\'", $row['Title']);
@@ -39,7 +39,7 @@ EOF;
 
 
 	$row['Votes'] = '<img src="img/icon-user.gif" align="absbottom" /> <a href="javascript:'.$uri.'" title="'.$lang_msg[4].'" class="tt">'.$row['Votes']."</a>";
-	
+
 	return $row;
 }
 

@@ -83,7 +83,7 @@ function hookData($row)
 	}
 	else
 	{
-		$config_url = '/nuts/index.php?mod=_configuration&do=edit&f='.base64_encode($cfg_file);
+		$config_url = '/nuts/index.php?mod=_configuration&do=edit&popup=1&f='.base64_encode($cfg_file);
 		$configure = <<<EOF
 
 							<a class="tt" href="javascript:popupModal('{$config_url}', 'Configuration', 1024, 768, '');" title="Configuration"><img src="img/configuration_24x24.png" alt="Configuration" align="absbottom" /></a>

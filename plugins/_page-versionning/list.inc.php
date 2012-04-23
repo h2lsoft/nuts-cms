@@ -20,7 +20,7 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'set')
 										'Note' => $rec['Note'],
 										'ContentResume' => $rec['ContentResume'],
 										'Content' => $rec['Content']),
-					"ID = {$_GET['NutsPageID']}");	
+					"ID = {$_GET['NutsPageID']}");
 	$nuts->dbInsert('NutsPageVersion', $rec, array('ID'));
 	$nuts->dbUpdate('NutsPageVersion', array('Deleted' => 'YES'), "ID={$_GET['ID']}");
 }
@@ -76,12 +76,12 @@ function hookData($row)
 	global $maxPage;
 
 	$row['View'] = <<<EOF
-	<a href="javascript:popupModal('?mod=_page-versionning&do=viewer&ID={$row['ID']}', 'Version Preview', 1024, 768);"><img src="img/list_view.png" /></a>
+	<a href="javascript:popupModal('?mod=_page-versionning&do=viewer&ID={$row['ID']}&popup=1', 'Version Preview', 1024, 768);"><img src="img/list_view.png" /></a>
 EOF;
 
 	// no option for max page
 	$row['Option'] = <<<EOF
-	<a href="javascript:system_goto('?mod=_page-versionning&do=list&_action=set&ID={$row['ID']}&NutsPageID={$_GET['NutsPageID']}&NutsPageID_operator=_equal_&user_se=1', 'content');">Replace</a>
+	<a href="javascript:system_goto('?mod=_page-versionning&do=list&_action=set&ID={$row['ID']}&NutsPageID={$_GET['NutsPageID']}&NutsPageID_operator=_equal_&user_se=1&popup=1', 'content');">Replace</a>
 EOF;
 
 	if($maxPage == $row['ID'])$row['Option'] = '';

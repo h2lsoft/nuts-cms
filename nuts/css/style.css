@@ -34,13 +34,9 @@ fieldset {
 #writing_toolbar img:hover {opacity:1;}
 #writing_toolbar a.news {margin-left: 0px; display: block; margin-top: 5px;}
 
-#internal_message_toolbar {padding-top: 3px; }
-#notes_toolbar {padding-top: 5px;}
+#internal_message_toolbar {padding-top: 1px; }
+#notes_toolbar {padding-top: 2px;}
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-	#internal_message_toolbar {padding-top: 1px; }
-	#notes_toolbar {padding-top: 3px;}
-}
 
 
 #header {padding:5px; padding-left:10px; padding-right:3px; height:65px; }
@@ -205,10 +201,14 @@ input, select, textarea, button {
 	font-size:11px;
 }
 
-input[type=text], input[type=file], input[type=password]
+
+input[type=text], input[type=file], input[type=password], textarea
 {
 	/*height: 14px;*/
 	/*line-height: 14px;*/
+	padding-top: 2px;
+	padding-bottom: 2px;
+
 }
 
 
@@ -216,7 +216,7 @@ input[type=button], button, input[type=submit]   {/*font-size:14px;*/ font-weigh
 
 	background-image:url(button_bkg.png);
 	border:1px solid #ccc;
-	height:28px;
+	height:24px;
 	cursor:pointer;
 
 	padding-left:7px;
@@ -414,7 +414,7 @@ div#home_updater {padding:5px; border:1px solid orange; background-color:yellow;
 
 	background-image: url(/nuts/img/list_add.png), url(button_bkg.png);
 	background-repeat: no-repeat, repeat-x;
-	background-position: right bottom, top;
+	background-position: right 1px, top;
 	padding-right: 30px;
 }
 
@@ -422,7 +422,7 @@ div#home_updater {padding:5px; border:1px solid orange; background-color:yellow;
 
 	background-image: url(/nuts/img/list_add.png);
 	background-repeat: no-repeat;
-	background-position: right bottom;
+	background-position: right 1px;
 
 
 	background-color: #aaa;
@@ -533,9 +533,9 @@ div#list_container fieldset legend a:hover {text-decoration:none;}
 
 div#list_container fieldset div#list_search_content {display:none;}
 div#list_container fieldset label {width:120px; display:block; float:left; text-align:right; padding-right:10px;}
-div#list_container fieldset input {width:220px; padding:0;}
+div#list_container fieldset input {width:220px; padding:1px;}
 
-div#list_container fieldset p {margin:1px; padding:0;}
+div#list_container fieldset p {margin:5px; padding:0;}
 div#list_container fieldset p#search_bottom {margin:1px; padding:0; text-align:right; padding-top:5px; /*font-size:14px;*/}
 div#list_container fieldset p#search_bottom a {margin-right:15px; font-weight:bold;}
 div#list_container fieldset p#search_bottom a:hover {text-decoration:none; color:red;}
@@ -544,8 +544,8 @@ div#list_container fieldset .datetime {background-image:url(calendar.png); backg
 
 /** form */
 div#form {width:890px;}
-div#form label, div#form_content label {width:165px; display:block; float:left; text-align:right; padding-right:10px; font-weight:bold;}
-div#form p, div#form p {margin:5px; padding:0;}
+div#form label, div#form_content label {width:165px; display:block; float:left; text-align:right; padding-right:10px;  padding-top: 3px; font-weight:bold;}
+div#form p, div#form p {padding:0; margin:3px; margin-top: 8px; }
 div#form input[type=text],
 div#form input[type=password],
 div#form textarea
@@ -564,6 +564,8 @@ div#form textarea[readonly]
 	user-select: none;
 
 }
+
+.ui-dialog-titlebar {font-size: 13px!important;}
 
 
 div#form input[disabled],
@@ -628,13 +630,15 @@ div#page_form {display:none; float:left; min-width:700px;  /*min-height:500px;*/
 div#page_options_bottom {display:none; padding:5px; padding-right:10px; text-align:center; float:left; background-color:#e5e5e5; margin-left:5px; margin-right:5px;}
 
 
-div#page_form p {margin:0; padding:0; margin-bottom:3px;}
-div#page_form label {width:105px; display:block; float:left; text-align:right; padding-right:10px;  font-weight:bold; white-space: nowrap;}
+div#page_form p {margin:0; padding:0; margin-bottom:8px;}
+div#page_form label {width:105px; display:block; float:left; text-align:right; padding-right:10px;  font-weight:bold; white-space: nowrap; padding-top: 3px;}
 div#page_form fieldset label {width:130px;}
 div#page_form span.required {font-weight:bold; color:red;}
 div#page_form input[type=text], div#page_form input[type=password], div#page_form input[type=file], div#page_form textarea {width:500px;}
 div#page_form fieldset {padding:5px; -moz-border-radius: 8px; margin-bottom:10px;}
 div#page_form legend {font-weight:bold; margin-left:10px; padding-left:5px; padding-right:5px; color:#3333FF;}
+
+
 
 
 #page_tree .ui-resizable-e {background-color: #e5e5e5; width: 10px; background-image: url(draggable.gif); background-position: center; background-repeat: no-repeat;}
@@ -752,9 +756,12 @@ div#console a {color: #00AAFF; color: #00AAFF;}
 
 
 /** rte **/
-.WYSIWYG_toolbar {}
+.WYSIWYG_toolbar {position:relative; top:4px;}
+.WYSIWYG_toolbar input[type=checkbox] {position: relative; top:3px;}
 .WYSIWYG_toolbar .rte_button {cursor: pointer;}
 .WYSIWYG_toolbar .rte_button:hover {opacity: 0.2; -moz-opacity: 0.2; -webkit-opacity: 0.2;}
+
+
 
 
 /** richeditor_layer **/
@@ -894,8 +901,14 @@ iframe#richeditor_content {/*background-color:#333;*/ position:absolute; z-index
 }
 
 #nav_menu li ul li:hover {
-	background-color: #fafad2;
+	/*background-color: #fafad2;*/
+	background-color: #f0ffff;
 }
+
+#nav_menu li ul li:hover a {
+	color: black;
+}
+
 
 #nav_menu li ul a {
 	padding:0;
@@ -912,7 +925,8 @@ iframe#richeditor_content {/*background-color:#333;*/ position:absolute; z-index
 
 #nav_menu li ul li img {
 	vertical-align: middle;
-	padding-right: 5px;
+	padding-right: 7px;
+	margin-left: -2px;
 }
 
 
@@ -1326,6 +1340,15 @@ div.calendar { position: relative; }
 
 }
 
+span.tag,
+span.tag_warning,
+span.tag_error,
+span.tag_ok
+	{padding: 2px 5px; background-color: #ccc; border-radius: 3px; border: 1px; color:black; }
+
+span.tag_warning {background-color:yellow; color:black;}
+span.tag_error {background-color:red; color:white;}
+span.tag_ok {background-color:green; color:white;}
 
 
 
@@ -1343,3 +1366,18 @@ div.calendar { position: relative; }
 .CodeMirror-scroll {height:99%; min-height: 650px;}
 span.cm-comment {color: black!important; background-color: #FFCC99;}
 .activeline {background: #E9EFF8 !important;}
+
+
+/** hacks webkit **/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+
+	.WYSIWYG_toolbar {position:relative; top:1px;}
+
+	#internal_message_toolbar {padding-top: 1px; }
+	#notes_toolbar {padding-top: 3px;}
+
+	div#form p, div#form p {padding:0; margin:3px;}
+	div#page_form p {margin:0; padding:0; margin-bottom:3px;}
+
+	div#list_container fieldset p {margin:1px; padding:0;}
+}
