@@ -14,7 +14,10 @@
 
 		<bloc::fields>
 		<p>
-		<label class="tt" title="{help}">{label}</label>
+
+            <input type="checkbox" id="{name}_checkbox" onclick="listSearchCheckbox('{name}', true);"  />
+
+            <label id="{name}_label" class="tt" title="{help}" for="{name}_checkbox">{label}</label>
 
 			<select name="{name}_operator" id="{name}_operator">
 				<option value="_equal_" selected="selected">=</option>
@@ -36,29 +39,39 @@
 			</script>
 
 			<bloc::text>
-				<input type="text" name="{name}" id="se_{name}" value="{ $_GET['{name}'] }" class="{class}" onfocus="this.select()" />
+				<input type="text" name="{name}" id="se_{name}" value="{ $_GET['{name}'] }" class="{class}" onclick="this.select()" />
 
 				<bloc::datetime>
 				<script>
 					$("#se_{name}").attr('autocomplete', 'off');
-					inputDate("se_{name}", "{type}")
+					inputDate("se_{name}", "{type}");
 				</script>
 				</bloc::datetime>
-
 			</bloc::text>
 
 
 			<bloc::select>
 			<select name="{name}" id="{name}" class="{class}">
 				<option value=""></option>
-
 				<bloc::options>
 					<option value="{value}">{label}</option>
 				</bloc::options>
-
 			</select>
-			<script>$('#{name}').val("{ $_GET['{name}'] }");</script>
+
+			<script>
+            $('#{name}').val("{ $_GET['{name}'] }");
+            </script>
 			</bloc::select>
+
+            <script>
+            $(function() {
+
+                if("{ $_GET['{name}'] }" != ''){
+                    $('#{name}_checkbox').click();
+                }
+
+            });
+            </script>
 
 		</p>
 		</bloc::fields>

@@ -24,25 +24,54 @@ function listTrColor()
 		if($(this).parents('tr').hasClass('tr_selected'))
 		{
 			$(this).parents('tr').removeClass('tr_selected')
-		}	
+		}
 		else
 		{
 			$(this).parents('tr').addClass('tr_selected');
-		}	
-	});	
+		}
+	});
 
 }
 
 listTrColor();
 
 
+function listSearchCheckbox(objName, focus)
+{
+    if($('#list_search_content #'+objName+'_checkbox').is(':checked'))
+    {
+        $('#list_search_content #'+objName+'_operator').show();
+        $('#list_search_content #'+objName).show();
+        $('#list_search_content #se_'+objName).show();
+
+        $('#list_search_content #'+objName+'_label').css('font-weight', 'bold');
+
+        if(focus)
+        {
+            $('#list_search_content #'+objName).focus();
+            $('#list_search_content #se_'+objName).focus();
+        }
+
+    }
+    else
+    {
+        $('#list_search_content #'+objName+'_operator').hide();
+        $('#list_search_content #'+objName).hide();
+        $('#list_search_content #se_'+objName).hide();
+
+        $('#list_search_content #'+objName+'_label').css('font-weight', 'normal');
+
+    }
+}
+
+
 // drag and drop table
 if($("#list tbody .listDnd").length)
 {
-	$("#list tbody .listDnd < td").css('cursor', 'move');	
-	
+	$("#list tbody .listDnd < td").css('cursor', 'move');
+
 	$('#list').sortable({
-	
+
 		axis:'y',
 		opacity: 0.8,
 		cursor: 'move',
@@ -63,12 +92,12 @@ if($("#list tbody .listDnd").length)
 
 		items: 'tr.row',
 		update: function(event, ui) {
-			
-			list = $('#list').sortable("toArray");			
-			uri = $("#list .listDnd").attr('uri');			
+
+			list = $('#list').sortable("toArray");
+			uri = $("#list .listDnd").attr('uri');
 			system_position(uri, list);
-			
+
 		}
-	
+
 	});
 }
