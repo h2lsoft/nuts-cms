@@ -206,7 +206,8 @@ define('DOCUMENTROOT', WEBSITE_PATH);
  */
 $customFilters = array(
     "MS Office" => ".doc|.docx|.xsl|.xlsx|.ppt|.pptx",
-    "PDF" => ".pdf"
+    "PDF" => ".pdf",
+    "ZIP" => ".zip"
 );
 
 /*
@@ -248,6 +249,7 @@ $max_file_size_in_bytes *= 1024 * 1024;
 
 // Characters allowed in the file name (in a Regular Expression format)
 $valid_chars_regex = '.A-Za-z0-9_ !@%()+=\[\]\',~`-';
+
 
 // Allowed file extensions
 // Remove an extension if you don't want to allow those files to be uploaded.
