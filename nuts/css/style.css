@@ -296,7 +296,7 @@ input[type=file] {width: 420px;}
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:200px;
-	width:450px;
+	width:470px;
 	min-height: 220px;
 
 	border:1px solid #333;
@@ -307,14 +307,13 @@ input[type=file] {width: 420px;}
 	/*-moz-border-radius: 5px;*/
 	/*-webkit-border-radius: 5px;*/
 
-	box-shadow: 0px 0px 50px #aaa;
-	-webkit-box-shadow: 0px 0px 50px #aaa;
-	-moz-box-shadow: 0px 0px 50px #aaa;
+	box-shadow: 3px 5px 3px #888;
+
 }
 
 #login #login_title {
 
-	background-color: #25333B;
+	background-color: #e5e5e5;
 
 	border-bottom: 3px solid #D852AD;
 
@@ -324,7 +323,9 @@ input[type=file] {width: 420px;}
 
 	font-size:20px;
 	font-weight:bold;
-	color:white;
+	color: #999;
+    text-shadow: 1px 1px 1px #ccc;
+
 	padding: 10px;
 
 	padding-left: 55px;
@@ -344,9 +345,9 @@ input[type=file] {width: 420px;}
 #login label {width:135px; display:block; float:left; text-align:right; padding-right:15px; font-weight:bold;}
 #login p {margin:3px; padding:0;}
 
-#login .login_p {padding-bottom: 3px!important; font-size: 13px; color:#666;}
+#login .login_p {padding-bottom: 3px!important; font-size: 13px; color:#666; }
 #login .login_p label {font-weight: normal;}
-#login .login_p input {font-size: 13px; height: 20px; color:#999;}
+#login .login_p input {font-size: 13px; height: 20px; color:#999; border-radius: 3px;}
 
 #login input[type=text], #login input[type=password] {width:220px;}
 #login p.error {display:none; font-weight:bold; color:red; padding:0px; margin-bottom:0px; margin:0; text-align:center;}
