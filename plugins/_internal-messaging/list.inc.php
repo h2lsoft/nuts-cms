@@ -67,6 +67,9 @@ $plugin->listAddCol('Subject', $lang_msg[2], '', false);
 $plugin->listAddCol('Reply', ' ', 'center; width:10px; white-space:nowrap;', false);
 
 // render list
+$plugin->listSetFirstOrderBy('Date');
+$plugin->listSetFirstOrderBySort('DESC');
+
 $plugin->listRender(20, 'hookData');
 
 
