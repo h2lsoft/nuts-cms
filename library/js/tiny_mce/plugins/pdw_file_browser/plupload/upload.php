@@ -35,7 +35,10 @@ $file_parts = pathinfo($_FILES['file']['name']);
 if(!in_array(@$file_parts['extension'], $filetypes_exts))die("Error: file extension `{$_FILES['file']['type']}` not allowed");
 
 // is uploaded file
-if(!move_uploaded_file($_FILES['file']['tmp_name'], WEBSITE_PATH.$_POST['path'].strtolower(trim($_FILES['file']['name']))))
+$file_name = utf8_decode($_FILES['file']['name']);
+$file_name = trim($file_name);
+$file_name = str_replace(' ', '-', $file_name);
+if(!move_uploaded_file($_FILES['file']['tmp_name'], WEBSITE_PATH.$_POST['path'].$file_name))
 {
 	die("Error: file `".$_POST['path'].$_FILES['file']['name']."` not uploaded");
 }
