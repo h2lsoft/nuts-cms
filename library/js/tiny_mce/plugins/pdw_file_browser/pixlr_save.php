@@ -27,10 +27,10 @@ elseif(!isset($_GET['type']) || empty($_GET['type']) || !in_array($_GET['type'],
 	$error = true;
 	$error_msg = "Parameter type";
 }
-elseif(!isset($_GET['state']) || empty($_GET['state']) || $_GET['state'] != 'replace')
+elseif(@$_GET['state'] != 'replace' && @$_GET['state'] != 'copy')
 {
 	$error = true;
-	$error_msg = "Parameter state";
+	$error_msg = "Parameter state `{$_GET['state']}`";
 }
 elseif(!isset($_GET['title']))
 {
@@ -38,9 +38,13 @@ elseif(!isset($_GET['title']))
 	$error_msg = "Parameter title";
 }
 
+
+
 // verify error image must be host by pixlr.com
 if(!$error)
 {
+    $_GET['title'] .= '.'.$_GET['type'];
+
 	$urls = parse_url($_GET['image']);
 	if(!isset($urls['host']))
 	{

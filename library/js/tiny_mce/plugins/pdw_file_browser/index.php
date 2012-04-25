@@ -116,7 +116,7 @@ echo '//]]>';
 echo '</script>';
 
 
-echo '<script type="text/javascript" src="js/jquery.mediabrowser.js"></script>';
+echo '<script type="text/javascript" src="js/jquery.mediabrowser.js?t='.time().'"></script>';
 
 // CSS
 echo '<style type="text/css">';
@@ -130,6 +130,7 @@ echo '</style>';
 li.plupload_droptext {line-height: 280px;}
 </style>
 
+<script type="text/javascript" src="/nuts/nuts.js"></script>
 <script type="text/javascript" src="/library/js/php.js"></script>
 <script type="text/javascript" src="js/pixlr.js"></script>
 <script type="text/javascript">		

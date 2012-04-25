@@ -404,29 +404,24 @@
                 return;
             }
 
-			
             src = URL;
             full_src = WEBSITE_URL+'/'+src;
             ctarget = WEBSITE_URL+'/library/js/tiny_mce/plugins/pdw_file_browser/pixlr_save.php';
             relative_src = src;
             exit_url = WEBSITE_URL+'/library/js/tiny_mce/plugins/pdw_file_browser/pixlr_exit.php';
 
-
             pixlr.overlay.show({
 									service: 'express',
-									
 									referrer: 'Nuts CMS',
+                                    locktitle: true,
+                                    locktarget: true,
+                                    method: 'GET',
+                                    title: relative_src,
 									exit: exit_url,
 									image: full_src,
-									title: relative_src,
-									method: 'GET',
-									target: ctarget,
-                                    redirect: false,
-                                    
-                                    locktitle: true,
-                                    locktarget: true                                    
-                                                                        
+									target: ctarget
                                 });
+
 
         },
 
