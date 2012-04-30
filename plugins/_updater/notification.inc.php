@@ -10,6 +10,7 @@ if($last_version)
 {
     if(NUTS_VERSION < $last_version)
         $notifications['_updater'] = 1;
+
 }
 
 

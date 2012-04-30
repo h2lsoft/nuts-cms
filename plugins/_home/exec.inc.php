@@ -57,6 +57,9 @@ if(count($notifications) > 0)
     foreach($notifications as $notification => $count)
         $tmp .= "pluginAddNotificationCounter('$notification', '$count');\n";
     $tmp .= "</script>\n";
+
+    $menu .= $tmp;
+
 }
 
 
