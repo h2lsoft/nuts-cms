@@ -1,14 +1,13 @@
 #header,
+#top_search,
 #menu,
 ul#navbar,
 #bottom,
-
 #list_container fieldset,
 #list_container #add,
-
 #list tfoot div,
 #list tfoot a.np
-{display:none;}
+    {display:none;}
 
 
 /*
@@ -16,15 +15,13 @@ ul#navbar,
 #list th, #list td {border:1px solid #ccc;}
 */
 
-
-
-#list_container td:last-child {padding-right:0;}
-
-#list_container caption {font-weight:bold;}
-
-
+.noprint {display:none;}
 body {background:none;}
+
+#list caption {border-bottom: 1px solid #666; padding-bottom: 3px; margin-top: 3px; margin-bottom: 5px;}
+#list_container caption {font-weight:bold;}
+#list_container td:last-child {padding-right:0;}
 #user_tpg {border:0; background-image:none; font-weight:bold;}
 
-.noprint {display:none;}
+
 
