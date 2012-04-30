@@ -8,6 +8,7 @@ else
 
 $i = 0;
 $mod_parsed = 0;
+$plugins_allowed = array();
 foreach($mods_group as $group)
 {
 	// get all childs
@@ -50,6 +51,7 @@ foreach($mods_group as $group)
 		while($row = $nuts->dbFetch())
 		{
 			$mod_parsed++;
+            $plugins_allowed[] = $row['Name'];
 
 			$yaml = Spyc::YAMLLoad(WEBSITE_PATH.'/plugins/'.$row['Name'].'/info.yml');
 			$langs = array_map('trim', explode(',',$yaml['langs']));
@@ -171,7 +173,10 @@ foreach($mods_group as $group)
 
 	$i++;
 }
-// no meu found
+
+$plugins_allowed = array_unique($plugins_allowed);
+
+// no memu found
 if(!$mod_parsed)
 {
 	if($for == 'MAIN')

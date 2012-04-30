@@ -15,56 +15,15 @@ if($cf_purge_days > 0)
 	$nuts->doQuery($sql);
 }
 
+
 $img_error = '<img src="img/icon-error.gif" align="absbottom" />';
 $img_warning = '<img src="img/icon-tag-moderator.png" align="absbottom" />';
 
-// view ftp version one time by day
-if($_SESSION['NutsGroupID'] == 1)
+// right manager errors
+if(in_array('_right-manager', $plugins_allowed))
 {
-	$r = $plugin->getData("SELECT
-									ID
-							FROM
-									NutsLog
-							WHERE
-									DATE_FORMAT(DateGMT, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d') AND
-									NutsGroupID = 1 AND
-									NutsUserID = {$_SESSION['NutsUserID']} AND
-									Application = '_home_updater'
-							LIMIT
-									1");
-
-	// not found today *********************************************************
-	if(count($r) == 0)
-	{
-		$last_version = @file_get_contents("http://www.nuts-cms.com/_last-version.php");
-
-		$msg = '';
-		if(!$last_version)
-		{
-			// $msg = $img_error." Error: please verify service updater `{$ftp_server}` (firewall actived in your server ?)";
-			// $msg = "<script>notify('error', 'Error: please verify service updater `{$ftp_server}` (firewall actived in your server ?)');</script>";
-		}
-		else
-		{
-			if(NUTS_VERSION < $last_version)
-			{
-				// $msg = $img_warning." New version available, please <a href=\"javascript:system_goto('index.php?mod=_updater&do=exec','content');\">run updater</a>";
-				$msg = "<script>notify('normal', 'New version available, please run plugin updater');</script>";
-			}
-		}
-
-		// draw message
-		if(!empty($msg))
-		{
-			// $menu = '<div id="home_updater">'.$msg.'</div>'.$menu;
-			$menu = $menu.$msg;
-		}
-
-		nutsTrace('_home_updater', 'exec', 'get version', $msg);
-	}
-
-	// plugin are not installed ? **********************************************
-	$r = $plugin->getData("SELECT
+    // plugin are not installed ? **********************************************
+    $r = $plugin->getData("SELECT
 									ID
 							FROM
 									NutsMenu
@@ -73,29 +32,32 @@ if($_SESSION['NutsGroupID'] == 1)
 									ISNULL(Category)
 							LIMIT
 									1");
-	if(count($r) > 0)
-	{
-		$menu = '<div id="home_updater">'.$img_error.' You have some plugins not installed correctly, please launch plugins module and after right manager module.</div>'.$menu;
-	}
+    if(count($r) > 0)
+        $menu = '<div id="home_updater">'.$img_error.' You have some plugins not installed correctly, please launch plugins module and after right manager module.</div>'.$menu;
+}
 
-	// alert 404 & error tags *********************************************************
-	$sql = "SELECT COUNT(*) FROM NutsLog WHERE Application = '_fo-error' AND Deleted = 'NO'";
-	$nuts->doQuery($sql);
-	$c = (int)$nuts->dbGetOne();
-	if($c > 0)
-	{
-		$menu = '<div id="home_updater">'.$img_error.' Your system has '.$c.' error(s) please <a href="javascript:system_goto(\'index.php?mod=_control-center&do=exec\',\'content\');">run control center module</a>.</div>'.$menu;
-	}
-
-	// website maintenance *********************************************************
-	if(WEBSITE_MAINTENANCE)
-	{
-		$menu = '<div id="home_updater">'.$img_warning.' Your website is in maintenance, please <a href="javascript:system_goto(\'index.php?mod=_control-center&do=exec\',\'content\');">run control center module</a>.</div>'.$menu;
-	}
-
+// website maintenance *********************************************************
+if(WEBSITE_MAINTENANCE && in_array('_control-center', $plugins_allowed))
+{
+    $menu = '<div id="home_updater">'.$img_warning.' Your website is in maintenance, please <a href="javascript:system_goto(\'index.php?mod=_control-center&do=exec\',\'content\');">run control center module</a>.</div>'.$menu;
 }
 
 
+// notification
+$notifications = array();
+foreach($plugins_allowed as $plugin_allowed)
+{
+    if(file_exists(NUTS_PLUGINS_PATH."/$plugin_allowed/notification.inc.php"))
+        include_once(NUTS_PLUGINS_PATH."/$plugin_allowed/notification.inc.php");
+}
+
+if(count($notifications) > 0)
+{
+    $tmp = "<script>\n";
+    foreach($notifications as $notification => $count)
+        $tmp .= "pluginAddNotificationCounter('$notification', '$count');\n";
+    $tmp .= "</script>\n";
+}
 
 
 $plugin->render = $menu;

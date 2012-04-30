@@ -1255,3 +1255,19 @@ function imageBoxClose()
 	$('#nuts_canvas_content').html("").hide();
 	$('#nuts_canvas').fadeOut('normal');
 }
+
+
+function pluginAddNotificationCounter(name, counter)
+{
+    if(counter > 0)
+    {
+        pos = $('.mod[name="'+name+'"]').position();
+        plugin_top = pos.top;
+        plugin_left = pos.left;
+
+        tmp = '<div style="top:'+plugin_top+'px; left:'+plugin_left+'px" class="plugin_notification_counter">'+counter+'</div>';
+        $('#home').append(tmp);
+
+        $('.mod[name="'+name+'"]').css('background-color', '#ffcccc');
+    }
+}
