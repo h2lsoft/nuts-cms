@@ -1271,3 +1271,33 @@ function pluginAddNotificationCounter(name, counter)
         $('.mod[name="'+name+'"]').css('background-color', '#ffcccc');
     }
 }
+
+
+
+function listSearchCheckbox(objName, focus)
+{
+    if($('#list_search_content #'+objName+'_checkbox').is(':checked'))
+    {
+        $('#list_search_content #'+objName+'_operator').show();
+        $('#list_search_content #'+objName).show();
+        $('#list_search_content #se_'+objName).show();
+
+        $('#list_search_content #'+objName+'_label').css('font-weight', 'bold');
+
+        if(focus)
+        {
+            $('#list_search_content #'+objName).focus();
+            $('#list_search_content #se_'+objName).focus();
+        }
+
+    }
+    else
+    {
+        $('#list_search_content #'+objName+'_operator').hide();
+        $('#list_search_content #'+objName).hide();
+        $('#list_search_content #se_'+objName).hide();
+
+        $('#list_search_content #'+objName+'_label').css('font-weight', 'normal');
+
+    }
+}
