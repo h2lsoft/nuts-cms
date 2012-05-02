@@ -773,7 +773,13 @@ div#console a {color: #00AAFF; color: #00AAFF;}
 .WYSIWYG_toolbar input[type=checkbox] {position: relative; top:3px;}
 .WYSIWYG_toolbar .rte_button {cursor: pointer;}
 .WYSIWYG_toolbar .rte_button:hover {opacity: 0.2; -moz-opacity: 0.2; -webkit-opacity: 0.2;}
+.WYSIWYG_toolbar a:hover {color:#000; text-decoration: none;}
+.WYSIWYG_toolbar a {outline: 0;}
 
+
+.WYSIWYG_submenu {position: absolute; z-index: 5; width: 140px; background: white; border: 1px solid #ccc; padding: 5px 10px; line-height: 20px; display: none; }
+.WYSIWYG_submenu a {color:#666;}
+.WYSIWYG_submenu a:hover {color:#000; text-decoration: none;}
 
 
 

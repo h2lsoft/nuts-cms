@@ -25,7 +25,7 @@ function getIFrameWindow(aID){
 
 function initWYSIWYGOption()
 {
-    sep = ' &nbsp; | &nbsp; ';
+    sep = ' &nbsp; <span class="rte_separator">|</span> &nbsp; ';
 
 	$('textarea.mceEditor').each(function (){
 		id = this.id;
@@ -35,7 +35,7 @@ function initWYSIWYGOption()
 
 		str += '<p>';
 		str += '<label title="">&nbsp;</label>';
-		str += '<div class="WYSIWYG_toolbar" style="margin:0;padding:0px;">';
+		str += '<div id="'+id+'_WYSIWYG_toolbar" class="WYSIWYG_toolbar" style="margin:0;padding:0px;">';
 
 		// help
 		msg = 'Help:\\n';
@@ -70,7 +70,28 @@ function initWYSIWYGOption()
         str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertUnorderedList\');" src="img/rte/ul.gif" align="absmiddle" />';
         str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertOrderedList\');" src="img/rte/ol.gif" align="absmiddle" />';
         str += sep;
-        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'link\');" src="img/rte/link.gif" align="absmiddle" />';
+        str += '<img class="rte_button" id="'+id+'_WYSIWYG_submenu_url_parent" onclick="javascript:WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');" src="img/rte/link.gif" align="absmiddle" />';
+
+        // add sub menu
+        lbl_library = 'from library';
+        lbl_file = 'File';
+        lbl_custom = 'Custom...';
+
+        if(nutsUserLang  == 'fr'){
+            lbl_library = 'de la bibliothèque';
+            lbl_file = 'Fichier';
+            lbl_custom = 'Personnalisée...';
+        }
+
+        str += '<div id="'+id+'_WYSIWYG_submenu_url" class="WYSIWYG_submenu">';
+        str += '<a tabindex="0" href="javascript:imgBrowser(\''+id+'\', \'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');">Image '+lbl_library+'</a><br />';
+        str += '<a tabindex="0" href="javascript:mediaBrowser(\''+id+'\', \'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');">Media '+lbl_library+'</a><br />';
+        str += '<a tabindex="0" href="javascript:allBrowser(\''+id+'\', \'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');">'+lbl_file+' '+lbl_library+'</a><br />';
+        str += '---------------------------------<br />';
+        str += '<a tabindex="0" href="javascript:cmdWYSIWYG(\''+id+'\', \'link\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');">'+lbl_custom+'</a><br />';
+        str += '</div>';
+
+
         str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'unlink\');" src="img/rte/unlink.gif" align="absmiddle" />';
         str += sep;
 
@@ -94,8 +115,10 @@ function initWYSIWYGOption()
 		// $('#'+id).before('<p><label>&nbsp;</label>'+str+'</p>');
 		$('textarea#'+id).parent('p:visible').before(str);
 	});
-
 }
+
+
+
 
 
 function widgetsWindowOpen(id)
@@ -116,22 +139,29 @@ function iframeContentProtector(id)
 
 function WYSIWYGToggleIt(id)
 {
-	if(!$('#iframe_radio_'+id).is(':checked'))
+    // WYSIWYG mode
+    if(!$('#iframe_radio_'+id).is(':checked'))
 	{
 		// resizer grip hacks
 		height = $('#former #'+id).css('height');
 		$('#iframe_'+id).css('height', height+"px");
-
 		$('textarea#'+id).hide();
-
 		$('#iframe_'+id).show();
+
+        $('#'+id+'_WYSIWYG_toolbar img, '+'#'+id+'_WYSIWYG_toolbar a,'+'#'+id+'_WYSIWYG_toolbar .rte_separator').css('visibility', 'visible');
+
+
 		WYSIWYGIFrameReload(id);
 	}
 	else
 	{
+
+
 		$('textarea#'+id).show();
 		$('#iframe_'+id).hide();
 		WYSIWYGTextareaReload(id);
+
+        $('#'+id+'_WYSIWYG_toolbar img, '+'#'+id+'_WYSIWYG_toolbar a,'+'#'+id+'_WYSIWYG_toolbar .rte_separator').css('visibility', 'hidden');
 	}
 }
 
@@ -443,13 +473,35 @@ function cmdWYSIWYG(id, action, data)
 }
 
 
+
+
+
+function WYSIWYGSubMenu(id){
+
+    if($('#'+id).is(':visible'))
+    {
+        $('#'+id).hide();
+    }
+    else
+    {
+        pos = $('#'+id+'_parent').position();
+        $('#'+id).css('left', pos.left+'px');
+
+        $('#'+id).show();
+    }
+}
+
+
+
+
+
+
+
 // deprecated ********************************************************
-function killWYSIWYG()
-{
-
+function killWYSIWYG(){
 }
 
-function toggleEditor(id, checktest)
-{
-
+function toggleEditor(id, checktest){
 }
+
+
