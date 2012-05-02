@@ -155,8 +155,6 @@ function WYSIWYGToggleIt(id)
 	}
 	else
 	{
-
-
 		$('textarea#'+id).show();
 		$('#iframe_'+id).hide();
 		WYSIWYGTextareaReload(id);

@@ -313,22 +313,30 @@ input[type=file] {width: 420px;}
 
 #login #login_title {
 
-	background-color: #EBD6E8;
+	/*background-color: #EBD6E8;*/
+    background-color: black;
 
 	border-bottom: 3px solid #D852AD;
 
-	/*background-image: url(/nuts/img/lock.png);
+	background-image: url(/nuts/img/lock.png);
 	background-repeat: no-repeat;
-	background-position: 15px center;*/
+	background-position: 15px center;
 
 	font-size:20px;
 	font-weight:bold;
-	color: #D852AD;
-    text-shadow: 1px 1px 1px #ccc;
+	/*color: #D852AD;*/
+
+    color: #fff;
+
+    /*text-shadow: 1px 1px 1px #ccc;*/
+    /*text-shadow: 1px 1px 1px #ccc;*/
 
 	padding: 10px;
 
-	padding-left: 20px;
+	/*padding-left: 20px;*/
+
+    padding-left: 55px;
+
 	margin-bottom: 45px;
 	margin-bottom: 45px;
     letter-spacing: 1px;
