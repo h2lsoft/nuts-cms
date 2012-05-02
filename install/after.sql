@@ -127,7 +127,6 @@ insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`Brea
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (18,2,'_block_builder','',0,0,4,'YES','NO');
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (19,2,'_email','',0,1,3,'YES','NO');
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (20,2,'_i18n',NULL,0,0,5,'YES','NO');
-insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (21,5,'_plugins-list',NULL,0,0,0,'YES','NO');
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (22,1,'_plugins',NULL,0,0,4,'YES','NO');
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (23,1,'_rte_template',NULL,1,0,9,'YES','NO');
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (24,1,'_page-versionning',NULL,1,0,11,'YES','NO');

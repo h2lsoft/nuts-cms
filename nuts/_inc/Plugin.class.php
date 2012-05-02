@@ -1259,7 +1259,7 @@ EOF;
 		if($this->listCopyButton && ($this->listAddButton && $this->rightAllowed("add")) && ($this->listEditButton && $this->rightAllowed("edit")))
 		{
 			$img = '<img src="img/list_duplicate.png">';
-			$this->cols[] = '<a class="tt list_btn_duplicate" href="javascript:;" onclick=":formIt(\''.$nuts_lang_msg[20].'\', \'?mod='.$this->name.'&do=add&cID={ID}\');" title="'.$nuts_lang_msg[74].'">'.$img.'</a>';
+			$this->cols[] = '<a class="tt list_btn_duplicate" href="javascript:;" onclick="formIt(\''.$nuts_lang_msg[20].'\', \'?mod='.$this->name.'&do=add&cID={ID}\');" title="'.$nuts_lang_msg[74].'">'.$img.'</a>';
 			$this->colsLabel[] = '';
 			$this->colsStyle[] = 'center; width:10px';
 			$this->colsOrderBy[] = false;
