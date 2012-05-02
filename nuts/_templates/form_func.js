@@ -84,6 +84,13 @@ $('#former select[type=select-multiple].checkbox-list').each(function(){
     $(this).attr('id', id);
 
 	tmp_str = '<div class="checkbox_list">';
+
+    label = 'Select All';
+    if(nutsUserLang == 'fr')
+        label = 'Selectionner Tous';
+
+    tmp_str += '<a href="javascript:;" onclick="checkboxSelectAll(\''+id+'\')">'+label+'</a>';
+
 	$('#former #'+id+' option').each(function(){
 
 		tmp_str += '<label>';

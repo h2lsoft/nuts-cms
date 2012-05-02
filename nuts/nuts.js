@@ -1301,3 +1301,13 @@ function listSearchCheckbox(objName, focus)
 
     }
 }
+
+
+function checkboxSelectAll(objName)
+{
+    sel = 'input[type=checkbox][name="'+objName+'[]"]';
+    if(!$(sel+':checked').length)
+        $(sel).attr('checked', true);
+    else
+        $(sel).attr('checked', false);
+}

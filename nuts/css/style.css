@@ -598,6 +598,8 @@ div#form .checkbox_list, div#page_form .checkbox_list {overflow: scroll; height:
 div#form .checkbox_list label, div#page_form .checkbox_list label{margin-left: 0; padding-left: 0; text-align: left; display: block; float: none; font-weight: normal; white-space: nowrap; width: auto;}
 div#form .checkbox_list label:hover, div#page_form .checkbox_list label:hover {color:#666; cursor: pointer;}
 
+div#form .checkbox_list input[type=checkbox] {position: relative; top:3px;}
+
 
 div#form span.required {font-weight:bold; color:red;}
 div#form p.bottom {margin:0; clear:both;text-align:center; padding:10px; background-color:#d5d5d5; border-top: 3px solid #ddd; padding-top: 7px;}
