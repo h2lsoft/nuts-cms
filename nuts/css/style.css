@@ -533,6 +533,32 @@ table#list .arrow_updown:hover {
 	-webkit-opacity:1;
 }
 
+/** datagrid **/
+.datagrid {
+    width: auto;
+    background-color:#ccc;
+    margin-left:5px;
+    margin-top:10px;
+}
+
+.datagrid caption {text-align:left; color:#666666;}
+.datagrid th {background-color:#ccc; background-image:url(th_bkg.png); text-align:left; font-weight:bold; padding:3px; white-space:nowrap;}
+.datagrid td {background-color:#fff;}
+.datagrid tbody tr:nth-child(even) td {background-color: #eee;}
+.datagrid tbody tr:nth-child(odd) td {background-color: #fff;}
+.datagrid tbody td[noclick='1'] {background-color: #e5e5e5!important;}
+.datagrid tbody tr:hover td {background-color: #FFFFCB;}
+.datagrid tbody tr.tr_selected> td {background-color: #DFE8F6;}
+.datagrid .datagrid_btn_add {width:16; height: 16px; background-image: url(/nuts/img/icon-add.png); background-repeat: no-repeat;}
+.datagrid .datagrid_btn_delete {width:16; height: 16px; background-image: url(/nuts/img/icon-delete.png); background-repeat: no-repeat;}
+.datagrid tfoot td {
+    font-weight:bold; text-align:center; background-image:url(th_bkg.png); background-color:#ccc; background-position: bottom;
+    padding-top: 3px;
+}
+
+
+
+
 #norecord {font-weight:bold; text-align:center; height:155px; line-height:155px; border:1px solid #ccc; margin:10px; }
 
 div#list_container div#add {text-align:right; padding:10px; padding-bottom:0px; padding-left:0; margin-top:-25px;}
