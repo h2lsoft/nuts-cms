@@ -489,7 +489,16 @@
 			}
 			else if(editor == "standalone")
 			{
-				window.opener.document.getElementById(returnID).value = URL;
+                // WYSIWYG editor exists ?
+                if(!window.opener.document.getElementById('iframe_'+returnID))
+                {
+                    window.opener.document.getElementById(returnID).value = URL;
+                }
+                else
+                {
+                    window.opener.cmdWYSIWYG(returnID, 'createLink', URL);
+                }
+
 				window.close();
 			}
 			else

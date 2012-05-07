@@ -89,7 +89,7 @@
 			color: green; background-image: url(../nuts/img/icon-accept.gif); background-repeat: no-repeat; background-position: left top;
 			padding-left: 22px;
 			margin-left: 10px;
-
+            height: 16px;
 }
 
 .msg_error {
