@@ -105,7 +105,8 @@ else
 			$sql = "SELECT Category FROM NutsMenu WHERE Name = '$r_name' LIMIT 1";
 			$nuts->doQuery($sql);
 			$catID = $nuts->dbGetOne();
-			$catID = $catID - 1;								
+			$catID = $catID - 1;
+            if($catID < 0)$catID = 3; # plugins by default
 			
 			$type = 'public';
 			if($r_name[0] == '_')$type = 'private';
