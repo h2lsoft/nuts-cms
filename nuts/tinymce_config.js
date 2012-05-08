@@ -76,11 +76,13 @@ function initWYSIWYGOption()
         lbl_library = 'from library';
         lbl_file = 'File';
         lbl_custom = 'Custom...';
+        lbl_preview = 'Preview';
 
         if(nutsUserLang  == 'fr'){
             lbl_library = 'de la bibliothèque';
             lbl_file = 'Fichier';
             lbl_custom = 'Personnalisée...';
+            lbl_preview = 'Prévisualiser';
         }
 
         str += '<div id="'+id+'_WYSIWYG_submenu_url" class="WYSIWYG_submenu">';
@@ -104,9 +106,10 @@ function initWYSIWYGOption()
         str += sep;
         str += '<img src="img/icon-code_editor.png" align="absmiddle" />';
         str += ' <a href="javascript:openWYSIWYG(\''+id+'\');" tabindex="0">Rich Editor</a>'
+        str += sep;
+
 
         // source
-        str += sep;
         str += ' <input tabindex="-1" type="checkbox" id="iframe_radio_'+id+'" onclick="WYSIWYGToggleIt(\''+id+'\');" /> Source';
 
 		str += '</div>';
@@ -114,6 +117,10 @@ function initWYSIWYGOption()
 
 		// $('#'+id).before('<p><label>&nbsp;</label>'+str+'</p>');
 		$('textarea#'+id).parent('p:visible').before(str);
+
+
+
+
 	});
 }
 
