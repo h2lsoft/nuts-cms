@@ -32,12 +32,14 @@ if(!in_array($_FILES['file']['type'], $filetypes_mimes))die("Error: file type `{
 
 // @extension
 $file_parts = pathinfo($_FILES['file']['name']);
-if(!in_array(@$file_parts['extension'], $filetypes_exts))die("Error: file extension `{$_FILES['file']['type']}` not allowed");
+$file_parts['extension'] = @strtolower($file_parts['extension']);
+if(!in_array(@$file_parts['extension'], $filetypes_exts))die("Error: file extension `{$_FILES['file']['extension']}` not allowed");
 
 // is uploaded file
 $file_name = utf8_decode($_FILES['file']['name']);
 $file_name = trim($file_name);
 $file_name = str_replace(' ', '-', $file_name);
+$file_name = strtolower($file_name);
 if(!move_uploaded_file($_FILES['file']['tmp_name'], WEBSITE_PATH.$_POST['path'].$file_name))
 {
 	die("Error: file `".$_POST['path'].$_FILES['file']['name']."` not uploaded");
