@@ -72,6 +72,8 @@ if(!empty($_REQUEST['skin'])) {
     var rename_folder = "<?php echo translate('Please give a new name for folder');?>";
     var rename_error = "<?php echo translate('Rename failed!');?>";
 	var WEBSITE_URL = "<?php echo WEBSITE_URL;?>";
+    var nutsUserLang = "<?php echo strtolower($_SESSION['Language']); ?>";
+
 //]]>
 </script>
 <?php

@@ -105,6 +105,20 @@
 				if(event.shiftKey){
 					$.MediaBrowser.shiftKeyPressed = true;
 				}
+
+                // delete pressed 46
+                if(event.which == 46 && $.MediaBrowser.isFilesSelection())
+                {
+                    total = $.MediaBrowser.isFilesSelection();
+                    msg = "Do you really want to delete these "+total+" items ?";
+                    if(nutsUserLang == 'fr')
+                        msg = "Voulez-vous supprimer ces "+total+" éléments ?";
+
+                    if(confirm(msg))
+                        $.MediaBrowser.delete_all();
+                }
+
+
 			});
 
 			$(document).keyup(function(event) {
@@ -1045,6 +1059,10 @@
 			.end();
 
 		},
+
+        isFilesSelection: function(){
+            return $('div#files li.selected a, div#files tr.selected').length;
+        },
 
 		// Show detailed information over the selected file or folder
 		updateFileSpecs: function(path, type){
