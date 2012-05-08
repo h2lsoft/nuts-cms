@@ -1448,15 +1448,17 @@ function array_flatten($array, $return=array())
 /**
  * Verify if user has right
  *
- * @param int $nutsUserID
+ * @param int $nutsUserID (empty = NutsGroupID in SESSION)
  * @return boolean
  */
 function nutsUserHasRight($NutsGroupID='', $plugin, $right)
 {
 	global $nuts;
 
-
 	$NutsGroupID = (int)$NutsGroupID;
+    if(!$NutsGroupID)$NutsGroupID = $_SESSION['NutsGroupID'];
+
+
 	$sql = "SELECT
 					ID
 			FROM
