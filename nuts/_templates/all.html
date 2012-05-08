@@ -246,7 +246,7 @@ $("#top_search_input").autocomplete(plugin_list_ac, {
 
 		if(!empty(plugin_url))
 		{
-			if(plugin_url.indexOf('http') != 1 &&  plugin_url.indexOf('ftp') != 1  &&  plugin_url.indexOf('mailto') != 1)
+			if(plugin_url.indexOf('http') == 0 ||  plugin_url.indexOf('ftp') == 0  ||  plugin_url.indexOf('mailto') == 0)
                 popupModal(plugin_url);
 			else
                 document.location.href = plugin_url;
