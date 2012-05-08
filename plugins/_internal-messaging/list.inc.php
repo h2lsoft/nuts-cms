@@ -113,6 +113,12 @@ function hookData($row)
 	$grav_url = "http://www.gravatar.com/avatar/".md5(strtolower(trim($row['uEmail'])))."?d=".urlencode($default)."&s=40";
 	$row['uFrom'] = '<img style="border:1px solid #ccc; width:40px; height:40px;" valign="top" src="'.$grav_url.'" /><br />'.ucfirst($row['uFrom']);
 
+    // date format
+    $row['Date'] = explode(':', $row['Date']);
+    $row['Date'] = $row['Date'][0].':'.$row['Date'][1]; // remove seconds
+    if($_SESSION['Language'] == 'fr')
+        $row['Date'] = $nuts->db2Date($row['Date']);
+
 
 	return $row;
 }
