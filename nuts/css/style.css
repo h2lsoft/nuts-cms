@@ -30,8 +30,8 @@ fieldset {
 
 
 #writing_toolbar {position: absolute; z-index: 456; top:0px;  padding: 0px; padding-top: 5px; text-align: center; margin-left: -25px; margin-right:auto; text-align: left; }
-#writing_toolbar img {height: 20px; opacity:0.3; margin:0!important;}
-#writing_toolbar img:hover {opacity:1;}
+#writing_toolbar img {height: 20px; opacity:1; margin:0!important;}
+#writing_toolbar img:hover {opacity:0.3;}
 #writing_toolbar a.news {margin-left: 0px; display: block; margin-top: 5px;}
 
 #internal_message_toolbar {padding-top: 1px; }
