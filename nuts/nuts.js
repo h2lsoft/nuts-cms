@@ -1274,6 +1274,20 @@ function pluginAddNotificationCounter(name, counter)
 
 
 
+
+function listSearchReset(uri) {
+
+    document.forms['search_form'].reset();
+
+    $('#search_form input[type=checkbox]').each(function(){
+        id = str_replace('_checkbox', '', $(this).attr('id'));
+        listSearchCheckbox(id);
+    });
+
+    system_goto(uri, 'list');
+}
+
+
 function listSearchCheckbox(objName, focus)
 {
     if($('#list_search_content #'+objName+'_checkbox').is(':checked'))

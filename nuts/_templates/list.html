@@ -8,7 +8,12 @@
 
 
 <fieldset>
-	<legend><img src="img/icon-search.gif" align="absmiddle" /> <a href="javascript:;" onclick="$('#list_search_content').slideToggle('fast');$('#list_search_content select').eq(0).focus();">{$nuts_lang_msg[11]}</a></legend>
+
+	<legend>
+        <img src="img/icon-search.gif" align="absmiddle" /> <a href="javascript:;" onclick="$('#list_search_content').slideToggle('fast');$('#list_search_content select').eq(0).focus();">{$nuts_lang_msg[11]}</a>
+    </legend>
+
+
 	<div id="list_search_content">
 	<form id="search_form" action="#" method="get">
 
@@ -80,7 +85,7 @@
 		<p id="search_bottom">
 			<a href="javascript:;" onclick="$('#search_form').submit();"><img src="img/icon-search.gif" /> {$nuts_lang_msg[16]}</a>
 			<a href="javascript:;" onclick="$('#list_search_content').slideToggle('fast');">{$nuts_lang_msg[26]}</a>
-			<a href="javascript:document.forms['search_form'].reset();/*$('#list_search_content').slideToggle('fast');*/system_goto('?mod={$plugin->name}&do={$plugin->action}', 'list');">{$nuts_lang_msg[17]}</a>
+			<a href="javascript:listSearchReset('?mod={$plugin->name}&do={$plugin->action}');">{$nuts_lang_msg[17]}</a>
 		</p>
 		<!-- bottom -->
 
