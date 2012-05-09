@@ -129,14 +129,28 @@ echo '</style>';
 <style type="text/css">
 .plupload_scroll .plupload_filelist {height: 350px;}
 li.plupload_droptext {line-height: 280px;}
+
+div#files ul#content li a span.filemodified {width: 215px;}
+div#files ul#content li a span.filesize {width: 215px;}
+
 </style>
 
 <script type="text/javascript" src="/nuts/nuts.js"></script>
 <script type="text/javascript" src="/library/js/php.js"></script>
+
 <script type="text/javascript" src="js/pixlr.js"></script>
-<script type="text/javascript">		
-pixlr.settings.credentials = false;
+<script type="text/javascript">
+    pixlr.settings.credentials = false;
 </script>
+
+<!-- table sorter -->
+<script type="text/javascript" src="http://tablesorter.com/__jquery.tablesorter.min.js"></script>
+<link rel="stylesheet" href="http://tablesorter.com/themes/blue/style.css" />
+<!-- /table sorter -->
+
+
+
+
 
 
 <script type="text/javascript">
