@@ -1454,6 +1454,15 @@ span.tag_warning {background-color:yellow; color:black;}
 span.tag_error {background-color:red; color:white;}
 span.tag_ok {background-color:green; color:white;}
 
+span.tag_red {background-color:red; color:black;}
+span.tag_green {background-color:green; color:black;}
+span.tag_blue {background-color:#87cefa; color:black;}
+span.tag_yellow {background-color:#fafad2; color:black;}
+span.tag_brown {background-color:#ffa07a; color:black;}
+span.tag_violet {background-color:#ee82ee; color:black;}
+
+
+
 
 
 /** imageBox **/
