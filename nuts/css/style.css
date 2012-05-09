@@ -555,15 +555,37 @@ table#list .arrow_updown:hover {
 }
 
 
-
-
 #norecord {font-weight:bold; text-align:center; height:155px; line-height:155px; border:1px solid #ccc; margin:10px; }
 
 div#list_container div#add {text-align:right; padding:10px; padding-bottom:0px; padding-left:0; margin-top:-25px;}
 
 div#list_container fieldset {padding:0px; min-width:850px; margin-top:0;  margin-bottom:10px; z-index:555; position:absolute; background-color:#e5e5e5;}
 div#list_container fieldset legend {font-weight:bold; margin-left:10px; padding-left:5px; padding-right:5px; color:#3333FF;}
-div#list_container fieldset legend a:hover {text-decoration:none;}
+div#list_container fieldset legend a:hover {text-decoration:none; color: navy;}
+
+div#list_container .list_searches_menu {position: absolute; z-index: 556; background-color: #e5e5e5; border: 1px solid #ccc;
+    padding: 0px;
+    background-color: white;
+    display: none;
+}
+
+div#list_container .list_searches_menu td.label {
+    min-width: 120px;
+}
+
+div#list_container .list_searches_menu a {
+    font-weight: normal!important;
+    color: black;
+}
+
+div#list_container .list_searches_menu a:hover {color: #666;}
+
+div#list_container .list_searches_menu img:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+
 
 div#list_container fieldset div#list_search_content {display:none;}
 div#list_container fieldset label {width:120px; display:block; float:left; text-align:right; padding-right:10px; padding-top: 5px; cursor: pointer;}

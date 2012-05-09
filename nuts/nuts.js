@@ -753,7 +753,6 @@ function getQueryParam(key)
 		param = '';
 
 	return param;
-
 }
 
 
@@ -788,13 +787,11 @@ function imgBrowser(f, folder)
 function openFile(f)
 {
 	uri = $("#"+f+"").val();
-	if(uri == '')
-	{
+	if(uri == ''){
 		alert(nuts_lang_msg_61);
 		$("#"+f+"").focus();
 		return;
 	}
-
 
 	// image interception for imagebox
 	tab = explode('.', uri);
@@ -806,18 +803,7 @@ function openFile(f)
 		return;
 	}
 
-
-
 	popupModal(uri, 'openFile', 960, 750, '');
-	/*windowWidth = 960;
-	windowHeight = 750;
-	myleft = (screen.width - windowWidth) / 2;
-	mytop = (screen.height - windowHeight) / 2;
-
-	properties = "width="+windowWidth+",height="+windowHeight+",resizable=yes,scrollbars=yes,top="+mytop+",left="+myleft;
-
-	window.open(uri, 'openFile', properties);*/
-
 }
 
 var print_html_inside = "";
@@ -837,15 +823,6 @@ function translator(objID1, objID2, lang1, lang2)
 
 	$('#'+objID2).val("Loading translation...");
 
-	/*
-		google.language.translate(msg, "", lang2, function(result) {
-			if(result.error)
-				$('#'+objID2).val(msg);
-			else
-				$('#'+objID2).val(result.translation);
-		});
-	*/
-
 	uri = "/nuts/translator.php";
 	$.post(uri, {lngIn:lang1, lngOut:lang2, txt:msg}, function(data){
 
@@ -854,9 +831,6 @@ function translator(objID1, objID2, lang1, lang2)
 		else
 			$('#'+objID2).val(data);
 	});
-
-
-
 }
 
 //  special tags *******************************************************************
@@ -935,9 +909,6 @@ function parse_nuts_tags(text)
                             if(!empty(label2))
                                 label += " - PARAMETERS("+label2+")";
                         }
-
-
-
 
                         label = trim(label);
                         label = base64_encode(label);
@@ -1025,7 +996,6 @@ function extract_str(start, end, text, pos1_start, return_full)
 
 	}
 
-
 	return astr;
 }
 
@@ -1039,8 +1009,6 @@ function iframeResizeByContents(iframe, height_added)
 
   wx = window.scrollX;
   window.scrollTo(wx, 0);
-
-
 }
 
 function privateBoxRefresh(){
@@ -1085,7 +1053,6 @@ function getUserOnline(){
 		}
 
 		$('#user_online_list').html(str);
-
 
 	}, 'json');
 
@@ -1374,17 +1341,70 @@ function listSearchSave(plugin_name){
 
 }
 
+function listSearchDelete(plugin_name, ID){
 
-function listSearchSelect(plugin_name, ID)
-{
+    uri = 'index.php?_action=list_search_users&_action2=delete&plugin='+plugin_name+'&ID='+ID;
+    $.get(uri, {}, function(data){
 
+        if(data['error']){
+            alert('Error: '+data['error_msg']);
+            return;
+        }
+
+        // no error
+        $('#list_container .list_searches_menu').hide();
+        listSearchUserView(plugin_name);
+    }, 'json');
+}
+
+
+function listSearchSelect(plugin_name, ID){
+
+    uri = 'index.php?_action=list_search_users&_action2=select&plugin='+plugin_name+'&ID='+ID;
+    $.get(uri, {}, function(data){
+
+        if(data['error']){
+            alert('Error: '+data['error_msg']);
+            return;
+        }
+
+        // no error assign and launch query
+        if(!empty(data['serialized']))
+        {
+            listSearchReset('', false);
+
+            lines = explode('\n', data['serialized']);
+
+            for(i=0; i < count(lines); i++){
+                cols = explode(';', lines[i]);
+
+                column = cols[0];
+                operator = cols[1];
+                val = cols[2];
+
+                $('#list_search_content #'+column+'_checkbox').attr('checked', true);
+                listSearchCheckbox(column, false);
+                $('#search_form #'+column+'_operator').val(operator);
+
+                // select or input
+                if($('#search_form #se_'+column).is(':visible'))
+                    $('#search_form #se_'+column).val(val);
+                else
+                    $('#search_form #'+column).val(val);
+            }
+
+
+            $('#search_form').submit();
+            $('#list_search_content').slideUp('fast');
+            $('#list_container .list_searches_menu').hide();
+
+        }
+    }, 'json');
 }
 
 
 
-
-
-function listSearchReset(uri) {
+function listSearchReset(uri, refreshIt) {
 
     document.forms['search_form'].reset();
 
@@ -1393,7 +1413,7 @@ function listSearchReset(uri) {
         listSearchCheckbox(id);
     });
 
-    system_goto(uri, 'list');
+    if(refreshIt)system_goto(uri, 'list');
 }
 
 
@@ -1412,7 +1432,6 @@ function listSearchCheckbox(objName, focus)
             $('#list_search_content #'+objName).focus();
             $('#list_search_content #se_'+objName).focus();
         }
-
     }
     else
     {

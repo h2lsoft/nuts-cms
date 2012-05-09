@@ -150,6 +150,8 @@ $nuts_lang_msg[85] = "Visualiser";
 $nuts_lang_msg[86] = "Prévisualiser";
 $nuts_lang_msg[87] = "Parcourir";
 
+$nuts_lang_msg[88] = "Mes recherches";
+
 
 
 // main menu ***********************************************************************

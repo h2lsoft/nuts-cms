@@ -160,6 +160,12 @@ $nuts_lang_msg[86] = "Preview";
 $nuts_lang_msg[87] = "Browse";
 
 
+$nuts_lang_msg[88] = "My searches";
+
+
+
+
+
 
 
 // main menu ***********************************************************************

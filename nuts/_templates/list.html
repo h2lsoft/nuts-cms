@@ -10,7 +10,21 @@
 <fieldset>
 
 	<legend>
-        <img src="img/icon-search.gif" align="absmiddle" /> <a href="javascript:;" onclick="$('#list_search_content').slideToggle('fast');$('#list_search_content select').eq(0).focus();">{$nuts_lang_msg[11]}</a>
+        <img src="img/icon-search.gif" align="absmiddle" /> <a href="javascript:;" onclick="$('#list_search_content').slideToggle('fast');">{$nuts_lang_msg[11]}</a>
+
+        |
+
+        <a class="list_searches_menu_parent" href="javascript:;" onclick="listSearchUserView('{$plugin->name}');">{$nuts_lang_msg[88]}</a>
+
+        <div class="list_searches_menu">
+            <table cellspacing="0" cellpadding="3">
+            <tr>
+                <td class="label" nowrap><a href="">My research 1</a></td>
+                <td align="center" width="16"><img src="/nuts/img/icon-delete.png" /></td>
+            </tr>
+            </table>
+        </div>
+
     </legend>
 
 
@@ -83,9 +97,12 @@
 
 		<!-- bottom -->
 		<p id="search_bottom">
-			<a href="javascript:;" onclick="$('#search_form').submit();"><img src="img/icon-search.gif" /> {$nuts_lang_msg[16]}</a>
+			<a href="javascript:;" onclick="$('#search_form').submit();"><img align="absmiddle" src="img/icon-search.gif" /> {$nuts_lang_msg[16]}</a>
+			<a href="javascript:listSearchSave('{$plugin->name}');"><img align="absmiddle" style="height: 11px;" src="img/icon-save.png" /> {$nuts_lang_msg[49]}</a>
+
+
 			<a href="javascript:;" onclick="$('#list_search_content').slideToggle('fast');">{$nuts_lang_msg[26]}</a>
-			<a href="javascript:listSearchReset('?mod={$plugin->name}&do={$plugin->action}');">{$nuts_lang_msg[17]}</a>
+			<a href="javascript:listSearchReset('?mod={$plugin->name}&do={$plugin->action}', true);">{$nuts_lang_msg[17]}</a>
 		</p>
 		<!-- bottom -->
 
