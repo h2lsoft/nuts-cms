@@ -8,6 +8,9 @@ var last_hash;
 var list_full_length = false; // extends list table length
 var RTE_parent_object = ''; // parent object of RTE
 
+var system_goto_refresh_async = true; // async true by default, false for system refresh
+
+
 function system_goto(uri, target)
 {
 	$('body').css('cursor', 'wait');
@@ -29,14 +32,12 @@ function system_goto(uri, target)
 
 	//$('#ajax_loader').css({top:pos.top+'px', left:pos.left+'px'});
 
-	if(pos)
-	{
+	if(pos){
 		$('#ajax_loader').css('top', pos.top+'px');
 		$('#ajax_loader').css('left', pos.left+'px');
 	}
 
-
-	$('#'+target).fadeTo(0, 0.33);
+	$('#'+target).fadeTo(0, 0.6);
 	$('#ajax_loader').show();
 
 
@@ -75,30 +76,31 @@ function system_goto(uri, target)
 	uri += '&ajax=1&target='+target+'&t='+t;
 
 	// log(uri, target);
-	$.get(uri, {}, function (d) {
+	// $.get(uri, {}, function (d) {
+    $.ajax({
+              url: uri,
+              cache:false,
+              type: 'GET',
+              async: system_goto_refresh_async,
+              success:  function (d){
 
-			d = trim(d);
-			$('div#'+target).html(d);
-			$("#ajax_loader").hide();
-			$('div#'+target).fadeTo(0.33, 1);
-			$('body').css('cursor', 'default');
+                  d = trim(d);
+                  $('div#'+target).html(d);
+                  $("#ajax_loader").hide();
+                  $('div#'+target).fadeTo(0.6, 1);
+                  $('body').css('cursor', 'default');
+                  setPluginTitle();
 
+                  if(!im_refresh)
+                      im_refresh = true;
+                  else
+                      privateBoxRefresh();
 
-			setPluginTitle(); // refresh title
+              }
+    });
 
-			// refresh privateBox
-			if(!im_refresh)
-			{
-				im_refresh = true;
-			}
-			else
-			{
-				privateBoxRefresh();
-			}
+    if(system_goto_refresh_async)system_goto_refresh_async = true;
 
-
-
-	});
 }
 
 function system_refresh()
@@ -111,6 +113,7 @@ function system_refresh()
 	if(typeof(last_system_target) == 'undefined' || last_system_target == '')last_system_target = 'list';
 
 	// alert("system_refresh => "+last_system_uri+", "+last_system_target);
+    system_goto_refresh_async = true;
 	system_goto(last_system_uri, last_system_target);
 }
 
@@ -139,7 +142,7 @@ function system_position(uri, list)
 	}
 
 
-	$('#list').fadeTo(0, 0.33);
+	$('#list').fadeTo(0, 0.6);
 	$('#ajax_loader').show();
 
 	$.post(uri, {list:list}, function (d) {
@@ -147,7 +150,7 @@ function system_position(uri, list)
 		// system_refresh();
 
 		$("#ajax_loader").hide();
-		$('div#list').fadeTo(0.33, 1);
+		$('div#list').fadeTo(0.6, 1);
 
 		listTrColor();
 
@@ -1271,6 +1274,122 @@ function pluginAddNotificationCounter(name, counter)
         $('.mod[name="'+name+'"]').css('background-color', '#ffcccc');
     }
 }
+
+
+function listSearchUserView(plugin_name){
+
+    if(!$('#list_container .list_searches_menu').is(':visible'))
+    {
+        pos = $('#list_container .list_searches_menu_parent').position();
+        $('#list_container .list_searches_menu').css("left", pos.left+'px');
+        $('#list_container .list_searches_menu').html('<div style="padding: 3px; color:black; font-weight: normal;"><img align="absbottom" src="img/ajax-loader.gif"> loading..</div>');
+        $('#list_container .list_searches_menu').show();
+
+        uri = 'index.php?_action=list_search_users&_action2=list&plugin='+plugin_name;
+        $.get(uri, {}, function(data){
+
+            if(data['error'])
+            {
+                alert('Error: '+data['error_msg']);
+                return;
+            }
+
+            // no record
+            if(!count(data['list']))
+            {
+                msg = 'No searches found';
+                if(nutsUserLang == 'fr')
+                    msg = 'Aucune recherche trouvée';
+                $('#list_container .list_searches_menu').html('<div style="padding: 3px; color:black; font-weight: normal;">'+msg+'</div>');
+            }
+            else
+            {
+                str = '<table cellspacing="0" cellpadding="3">';
+
+                for(i=0; i < count(data['list']); i++)
+                {
+                    str += '<tr>';
+                    str += '    <td class="label" nowrap><a href="javascript:listSearchSelect(\''+plugin_name+'\', '+data['list'][i]['ID']+')">'+data['list'][i]['Name']+'</a></td>';
+                    str += '    <td align="center" width="16"><img onclick="listSearchDelete(\''+plugin_name+'\', '+data['list'][i]['ID']+')" src="/nuts/img/icon-delete.png"></td>';
+                    str += '</tr>';
+                }
+
+                str += '</table>';
+
+                $('#list_container .list_searches_menu').html(str);
+
+            }
+
+
+        }, 'json');
+    }
+    else
+    {
+        $('#list_container .list_searches_menu').hide();
+    }
+}
+
+function listSearchSave(plugin_name){
+
+    // no checkbox checked
+    if(!$('#search_form input[type=checkbox]:checked').length)
+    {
+        msg = 'Please, fill one filter at least';
+        if(nutsUserLang == 'fr')
+            msg = 'Merci de renseigner au moins un critère de recherche';
+        alert(msg);
+        return;
+    }
+
+
+    msg = 'Please, enter the name of your search';
+    if(nutsUserLang == 'fr')
+        msg = 'Entrer le nom de votre recherche';
+
+    name = prompt(msg);
+    name = trim(name);
+    if(name != '')
+    {
+        uri = 'index.php?_action=list_search_users&_action2=add&plugin='+plugin_name+'&name='+name;
+
+        serialized = '';
+        $('#search_form input[type=checkbox]:checked').each(function(){
+
+            id = str_replace('_checkbox', '', $(this).attr('id'));
+
+            if(!empty(serialized))serialized += '\n';
+            serialized += id+';'+$('#search_form #'+id+'_operator').val()+';';
+
+            // select or input
+            if($('#search_form #se_'+id).is(':visible'))
+                serialized += $('#search_form #se_'+id).val();
+            else
+                serialized += $('#search_form #'+id).val();
+
+        });
+
+        $.post(uri, {serialized:serialized}, function(data){
+
+            if(data['error'])
+            {
+                alert('Error: '+data['error_msg']);
+                return;
+            }
+
+
+        }, 'json');
+
+    }
+
+
+}
+
+
+function listSearchSelect(plugin_name, ID)
+{
+
+}
+
 
 
 
