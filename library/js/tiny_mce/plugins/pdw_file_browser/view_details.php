@@ -13,7 +13,7 @@ if(isset($_REQUEST["ajax"])){
 	$selectedpath = $uploadpath;	
 }
 
-print '<table id="details" class="files">
+print '<table id="details" class="files tablesorter">
 		<thead>
 			<tr>
 				<th colspan="3" class="filename">'.translate("Filename").'</th>
@@ -111,8 +111,6 @@ print $htmlFolders;
 print $htmlFiles;
 print '</tbody>
 	</table>';
-
-
 
 
 ?>

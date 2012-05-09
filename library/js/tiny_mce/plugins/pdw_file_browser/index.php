@@ -143,16 +143,6 @@ div#files ul#content li a span.filesize {width: 215px;}
     pixlr.settings.credentials = false;
 </script>
 
-<!-- table sorter -->
-<script type="text/javascript" src="http://tablesorter.com/__jquery.tablesorter.min.js"></script>
-<link rel="stylesheet" href="http://tablesorter.com/themes/blue/style.css" />
-<!-- /table sorter -->
-
-
-
-
-
-
 <script type="text/javascript">
 //<![CDATA[
 var swfu;
