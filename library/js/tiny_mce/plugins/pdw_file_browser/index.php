@@ -55,7 +55,7 @@ if(!empty($_REQUEST['skin'])) {
 	<title>PDW File Browser</title>
 
 	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
 
 	<link rel="shortcut icon" href="mediabrowser.ico" />
 
@@ -116,7 +116,6 @@ echo '//<![CDATA[';
 echo $minifyJS->combine();
 echo '//]]>';
 echo '</script>';
-
 
 echo '<script type="text/javascript" src="js/jquery.mediabrowser.js?t='.time().'"></script>';
 
