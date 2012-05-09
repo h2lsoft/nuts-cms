@@ -192,10 +192,6 @@ function ajaxHistoricCheckChanges()
 		//document.location.href = nuri;
 	}
 
-
-
-
-
 	setTimeout("ajaxHistoricCheckChanges()", 500);
 
 }
@@ -425,7 +421,6 @@ function codeEditor(objID, syntax, tinyMCE)
 
 function inputDate(objID, type)
 {
-
 	if(type == 'date')
 	{
 		format = "%Y-%m-%d";
@@ -579,14 +574,9 @@ function popupModal(url, name, windowWidth, windowHeight, opts)
 		properties += ', '+opts;
 	properties = str_replace(' ', '', properties);
 
-   if(url.indexOf('http') != 1 &&  url.indexOf('ftp') != 1  &&  url.indexOf('mailto') != 1)
-   {
-
-   }
-   else
-   {
-       url += '&popup=1';
-   }
+   // add dynamic popup parameter
+   if(url.indexOf('http') == -1 && url.indexOf('ftp') == -1  &&  url.indexOf('mailto') == -1 &&  url.indexOf('&popup=1') == -1 && url.indexOf('?') >= 0)
+        url += '&popup=1';
 
    newwindow = window.showModalDialog(url, name, properties);
 }
