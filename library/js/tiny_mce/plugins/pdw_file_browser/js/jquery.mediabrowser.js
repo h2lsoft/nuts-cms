@@ -1146,3 +1146,108 @@ function printf() {
   	}
   	return oStr;
 }
+
+
+var details_folders_last_ordered = "";
+function tableDetailsSort(type, direction){
+    folders = all_lines['folders'];
+    files = all_lines['files'];
+
+    if(details_folders_last_ordered == '')
+        details_folders_last_ordered = folders;
+
+
+    // order by name
+    if(type == 'name'){
+       folders.sort(function(a, b){
+                var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase();
+                if (nameA < nameB)return -1; //sort string ascending
+                if (nameA > nameB)return 1;
+                return 0; // default return value (no sorting)
+        });
+
+        files.sort(function(a, b){
+            var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase();
+            if (nameA < nameB)return -1; //sort string ascending
+            if (nameA > nameB)return 1;
+            return 0; // default return value (no sorting)
+        });
+
+        if(direction == 'down'){
+            folders.reverse();
+            files.reverse();
+        }
+        details_folders_last_ordered = folders;
+    }
+
+    // order by date
+    if(type == 'date'){
+        folders.sort(function(a, b){
+            return a.date - b.date;
+        });
+
+        files.sort(function(a, b){
+            return a.date - b.date;
+        });
+
+        if(direction == 'down'){
+            folders.reverse();
+            files.reverse();
+        }
+        details_folders_last_ordered = folders;
+    }
+
+    // order by type
+    if(type == 'type'){
+        files.sort(function(a, b){
+            var nameA=a.type.toLowerCase(), nameB=b.type.toLowerCase();
+            if (nameA < nameB)return -1; //sort string ascending
+            if (nameA > nameB)return 1;
+            return 0; // default return value (no sorting)
+        });
+
+        if(direction == 'down'){
+            files.reverse();
+        }
+    }
+
+    // order by size
+    if(type == 'size'){
+        files.sort(function(a, b){
+            return a.size - b.size;
+        });
+
+        if(direction == 'down'){
+            files.reverse();
+        }
+    }
+
+    // order by dimension
+    if(type == 'dimensions'){
+        files.sort(function(a, b){
+            var nameA=a.dimensions, nameB=b.dimensions;
+            if (nameA < nameB)return -1; //sort string ascending
+            if (nameA > nameB)return 1;
+            return 0; // default return value (no sorting)
+        });
+
+        if(direction == 'down'){
+            files.reverse();
+        }
+    }
+
+    str = "";
+
+    // folders
+    for(i=0; i < details_folders_last_ordered.length; i++)
+        str += details_folders_last_ordered[i]['tr'];
+
+    // files
+    for(i=0; i < files.length; i++)
+        str += files[i]['tr'];
+
+    $('#details tbody').html(str);
+
+
+
+}

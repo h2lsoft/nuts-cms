@@ -16,11 +16,11 @@ if(isset($_REQUEST["ajax"])){
 print '<table id="details" class="files tablesorter">
 		<thead>
 			<tr>
-				<th colspan="3" class="filename">'.translate("Filename").'</th>
-				<th>'.translate("Modified on").'</th>
-				<th>'.translate("Filetype").'</th>
-				<th>'.translate("Size").'</th>
-				<th>'.translate("Dimensions").'</th>
+				<th type="name" colspan="3" class="filename">'.translate("Filename").'</th>
+				<th type="date">'.translate("Modified on").'</th>
+				<th type="type">'.translate("Filetype").'</th>
+				<th type="size">'.translate("Size").'</th>
+				<th type="dimensions">'.translate("Dimensions").'</th>
 				<th class="end">&nbsp;</th>
 			</tr>
 		</thead>
@@ -28,7 +28,9 @@ print '<table id="details" class="files tablesorter">
 		
 $htmlFiles = '';
 $htmlFolders = '';
-						
+
+$all_lines = array();
+
 foreach($dirs as $key => $value){
 	if($value != "folder"){
 		if(strtolower($value) == "png" || strtolower($value) == "jpg" || strtolower($value) == "jpeg" || strtolower($value) == "gif" || strtolower($value) == "bmp"){
@@ -38,8 +40,8 @@ foreach($dirs as $key => $value){
 			$file_modified = date($datetimeFormat, filemtime($filename));
 			$file_size = filesize($filename);
             $file_size = $file_size < 1024  ? $file_size. ' '.translate('bytes') : $file_size < 1048576 ? number_format($file_size / 1024, 2, $dec_seperator, $thousands_separator) . ' '.translate('kB') : number_format($file_size / 1048576, 2, $dec_seperator, $thousands_separator) . ' '.translate('MB');
-									
-			$htmlFiles .= sprintf('<tr href="%1$s" class="image">
+
+            $TR = sprintf('<tr href="%1$s" class="image">
 									<td class="begin"></td>
 									<td class="icon"><span class="%8$s"></span></td>
 									<td class="filename">%2$s</td>
@@ -57,7 +59,12 @@ foreach($dirs as $key => $value){
 									$image_info[1],
 									$file_modified,
 									strtolower($value)
-								 );	
+								 );
+
+            $htmlFiles .= $TR;
+            $all_lines['files'][] = array('name' => $key, 'type' => $image_info['mime'], 'date' =>  filemtime($filename), 'size' => filesize($filename), 'dimensions' => "{$image_info[0]} x {$image_info[1]}", 'tr' => $TR);
+
+
 		} else {
 									
 			$filename = DOCUMENTROOT.$selectedpath.$key;
@@ -66,7 +73,7 @@ foreach($dirs as $key => $value){
 			$file_type = mime_content_type($filename);
             $file_size = $file_size < 1024  ? $file_size. ' '.translate('bytes') : $file_size < 1048576 ? number_format($file_size / 1024, 2, $dec_seperator, $thousands_separator) . ' '.translate('kB') : number_format($file_size / 1048576, 2, $dec_seperator, $thousands_separator) . ' '.translate('MB');
 									
-			$htmlFiles .= sprintf('<tr href="%1$s" class="file">
+			$TR = sprintf('<tr href="%1$s" class="file">
 									<td class="begin"></td>
 									<td class="icon"><span class="%6$s"></span></td>
 									<td class="filename">%2$s</td>
@@ -82,14 +89,18 @@ foreach($dirs as $key => $value){
 									$file_size,
 									$file_modified,
 									$value
-								 );	
+								 );
+            $htmlFiles .= $TR;
+
+            $all_lines['files'][] = array('name' => $key, 'type' => mime_content_type($filename), 'date' =>  filemtime($filename), 'size' => filesize($filename), 'dimensions' => "", 'tr' => $TR);
+
 		}
 	} else {
 		
 		$foldername = DOCUMENTROOT.$selectedpath.$key;
 		$folder_modified = date($datetimeFormat, filemtime($foldername));
-								
-		$htmlFolders .= sprintf('<tr href="%1$s" class="folder">
+
+        $TR = sprintf('<tr href="%1$s" class="folder">
 									<td class="begin"></td>
 									<td class="icon"><span class="folder"></span></td>
 									<td class="filename">%2$s</td>
@@ -103,7 +114,11 @@ foreach($dirs as $key => $value){
 									$key, 
 									translate("Directory"),
 									$folder_modified
-								 );	
+								 );
+        $htmlFolders .= $TR;
+
+        $all_lines['folders'][] = array('name' => $key, 'date' =>  filemtime($foldername), 'size' => 0, 'dimensions' => 0, 'tr' => $TR);
+
 	}
 }
 
@@ -111,6 +126,48 @@ print $htmlFolders;
 print $htmlFiles;
 print '</tbody>
 	</table>';
+
+
+$encoded = json_encode($all_lines);
+
+
+echo <<<EOF
+<script>
+
+var all_lines = $encoded;
+$('#details th').click(function(e){
+
+    direction = 'up';
+    if(!$(this).hasClass('selected'))
+    {
+        $('#details th').removeClass('selected');
+        $('#details th').removeClass('selected_up');
+        $('#details th').removeClass('selected_down');
+        $(this).addClass('selected');
+        $(this).addClass('selected_up');
+    }
+    else
+    {
+        if(!$(this).hasClass('selected_up'))
+        {
+            $('#details th').removeClass('selected_down');
+            $(this).addClass('selected_up');
+        }
+        else
+        {
+            $('#details th').removeClass('selected_up');
+            $(this).addClass('selected_down');
+            direction = 'down';
+        }
+    }
+
+    tableDetailsSort($(this).attr('type'), direction);
+
+});
+</script>
+EOF;
+
+
 
 
 ?>

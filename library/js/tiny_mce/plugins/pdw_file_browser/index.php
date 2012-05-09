@@ -130,9 +130,33 @@ echo '</style>';
 .plupload_scroll .plupload_filelist {height: 350px;}
 li.plupload_droptext {line-height: 280px;}
 
-/* bug fix headers in details view */
+/* bug fix headers in content view */
 div#files ul#content li a span.filemodified {width: 215px;}
 div#files ul#content li a span.filesize {width: 215px;}
+
+/* bug fix folder path length */
+#newfolderform #folderpath {width:550px; font-size:12px;}
+
+/* details sorter */
+#files #details th {
+
+        background-repeat: no-repeat!important;
+        background-position: right 5px!important;
+        padding-right: 25px!important;
+        white-space: nowrap!important;
+}
+
+#files #details th:hover {
+    background-image: url(/library/php/TPLN/img/order_asc.gif)!important;
+    cursor: pointer;
+}
+
+#files #details th.selected {color:black; background-color: #E3E9FF;}
+
+#files #details th.selected_up {background-image: url(/library/php/TPLN/img/order_asc_actived.gif)!important;}
+#files #details th.selected_down {background-image: url(/library/php/TPLN/img/order_desc_actived.gif)!important;}
+
+
 </style>
 
 <script type="text/javascript" src="/nuts/nuts.js"></script>
@@ -554,7 +578,7 @@ $(document).ready(function() {
             </ul>
         </li>
         <?php if($allowedActions['settings'] === TRUE): ?><li><a href="#" onclick="return $.MediaBrowser.showLayer('settings');" class="settings" title="<?php echo translate('Settings');?>"><span><img src="img/gear.png" alt="<?php echo translate('Settings');?>" /></span></a></li><?php endif; ?>
-		<li><a href="#" onclick="return $.MediaBrowser.showLayer('help');" class="help" title="<?php echo translate('Help');?>"><span><img src="img/help.png" alt="<?php echo translate('Help');?>" /></span></a></li>
+		<!-- <li><a href="#" onclick="return $.MediaBrowser.showLayer('help');" class="help" title="<?php echo translate('Help');?>"><span><img src="img/help.png" alt="<?php echo translate('Help');?>" /></span></a></li> -->
     </ul>
 </div>
 

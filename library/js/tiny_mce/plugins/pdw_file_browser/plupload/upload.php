@@ -32,8 +32,8 @@ if(!in_array($_FILES['file']['type'], $filetypes_mimes))die("Error: file type `{
 
 // @extension
 $file_parts = pathinfo($_FILES['file']['name']);
-$file_parts['extension'] = @strtolower($file_parts['extension']);
-if(!in_array(@$file_parts['extension'], $filetypes_exts))die("Error: file extension `{$_FILES['file']['extension']}` not allowed");
+$file_parts['extension'] = strtolower(@$file_parts['extension']);
+if(!in_array(@$file_parts['extension'], $filetypes_exts))die("Error: file extension `".@$_FILES['file']['extension']."` not allowed");
 
 // is uploaded file
 $file_name = utf8_decode($_FILES['file']['name']);
