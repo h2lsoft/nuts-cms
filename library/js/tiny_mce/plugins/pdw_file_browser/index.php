@@ -130,9 +130,9 @@ echo '</style>';
 .plupload_scroll .plupload_filelist {height: 350px;}
 li.plupload_droptext {line-height: 280px;}
 
+/* bug fix headers in details view */
 div#files ul#content li a span.filemodified {width: 215px;}
 div#files ul#content li a span.filesize {width: 215px;}
-
 </style>
 
 <script type="text/javascript" src="/nuts/nuts.js"></script>
