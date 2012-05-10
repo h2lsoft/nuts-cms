@@ -563,6 +563,9 @@ div#list_container fieldset {padding:0px; min-width:850px; margin-top:0;  margin
 div#list_container fieldset legend {font-weight:bold; margin-left:10px; padding-left:5px; padding-right:5px; color:#3333FF;}
 div#list_container fieldset legend a:hover {text-decoration:none; color: navy;}
 
+div#list_container fieldset legend span {padding: 0 3px; color: #666; font-weight: normal; font-size: 10px;}
+
+
 div#list_container .list_searches_menu {position: absolute; z-index: 556; background-color: #e5e5e5; border: 1px solid #ccc;
     padding: 0px;
     background-color: white;
