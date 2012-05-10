@@ -597,9 +597,6 @@ function showResponse(responseText, statusText)
                     parent.history.go(0);
 				}
 
-
-
-
 				return;
 
 			}
