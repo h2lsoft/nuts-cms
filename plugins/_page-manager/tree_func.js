@@ -576,17 +576,15 @@ function showResponse(responseText, statusText)
 		$('li#'+nodeID+' span:first').text($('#MenuName').val());
         updateStateIcon();
 
-
-
-
 		if($('#chk_Close').attr('checked') == true)
 		{
 			// iframe mode
 			if(from_mode == 'iframe')
 			{
-				parent.$.fancybox.close();
+                parent.$.fancybox.close();
 
-				if(from_action != "")
+                // add page mode
+                if(typeof(from_action) != 'undefined' && from_action != "")
 				{
 					uri = "/"+$("#Language").val()+"/"+nodeID+".html";
 					if($('#page_form #State').val() != 'PUBLISHED')
@@ -594,10 +592,13 @@ function showResponse(responseText, statusText)
 
 					document.location.href = uri;
 				}
-				else
+				else // edit page
 				{
-					parent.history.go(0);
+                    parent.history.go(0);
 				}
+
+
+
 
 				return;
 
