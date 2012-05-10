@@ -14,13 +14,20 @@
 {$select_groups}
 </select>
 <input type="hidden" id="NutsGroupName" name="NutsGroupName" value="{$NutsGroupName}">
-
 <input id="btn_submit" type="submit" value="{$nuts_lang_msg[21]}" class="button" />
+
+
+
 
 <div id="right_options">
 	Plugins	<label><input type="radio" id="display0" name="display" value="all" checked="checked" onclick="updateOption()" /> {$lang_msg[3]}</label>
 		<label><input type="radio" id="display1" name="display" value="private" onclick="updateOption()" /> {$lang_msg[4]}</label>
 		<label><input type="radio" id="display2" name="display" value="public" onclick="updateOption()" /> {$lang_msg[5]}</label>
+
+
+    <input type="text" id="right_plugin_search" placeholder="{$nuts_lang_msg[11]}..." />
+
+
 </div>
 
 
@@ -100,10 +107,30 @@ function updateOption()
 		$('#rights tr[type=public]').show();
 		return;
 	}
-
 }
 
+// search by user typing
+$("#right_plugin_search").keyup(function(){
 
+    if($(this).val() == ''){
+        updateOption();
+        return;
+    }
+
+    $("#rights td.label").each(function(){
+
+        txt = strtolower($(this).text());
+        v = strtolower($('#right_plugin_search').val());
+        if(txt.indexOf(v) == -1)
+        {
+            $(this).parents('tr').hide();
+        }
+        else
+        {
+            $(this).parents('tr').show();
+        }
+    });
+});
 </script>
 
 
@@ -111,7 +138,7 @@ function updateOption()
 <div id="ctn" style="margin-top: 10px;">
 
 <bloc::ctn>
-<table id="rights" cellspacing="1">
+<table id="rights" cellspacing="1" cellpadding="0">
 
 
 <!-- category -->
@@ -134,7 +161,7 @@ function updateOption()
 
 			<!-- right -->
 			<bloc::right>
-			<label><input type="checkbox" name="right[{r_name}][]" value="{r}" {checked} onclick="if('{$_GET['NutsGroupID']}' == 1 && !this.checked){alert('{$lang_msg[2]}'); this.checked=true;}"> {r}</label>
+			<label><input type="checkbox" name="right[{r_name}][]" value="{r}" {checked} onclick="if('{$_GET['NutsGroupID']}' == 1 && !this.checked){alert('{$lang_msg[2]}'); this.checked=true;}"> {r_label}</label>
 			</bloc::right>
 			<!-- /right -->
 

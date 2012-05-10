@@ -815,12 +815,45 @@ div#pager_content #page_navigation a:hover {
 
 /** right manager */
 table#rights {border:1px solid #ccc; border-bottom:0px;}
-table#rights th {background-color:#ccc; background:none; background-color: #e5e5e5; border-bottom: 2px solid orange;  text-align:left; font-size:14px; font-weight:bold; padding:5px; white-space:nowrap;}
-table#rights td {padding:5px; border-bottom:1px solid #ccc;}
+table#rights th {background-color:#ccc; background:none; background-color: #e5e5e5; border-bottom: 1px solid orange;  text-align:left; font-size:14px; font-weight:bold; padding:5px; white-space:nowrap;}
+table#rights td {padding:2px; border-bottom:1px solid #ccc;}
 table#rights td.label {background-color:#ccc; border-right:1px solid #ccc; background-image:url(th_bkg.png); text-align:left; font-weight:bold; }
-table#rights td.label img {width: 24px; vertical-align: middle;}
+table#rights td.label img {width: 16px; vertical-align: middle;}
 table#rights label {cursor:pointer;}
-table#rights td.content:hover {background-color:#FFFFCB;}
+table#rights tr:hover> td.content,
+table#rights tr:hover> td.label
+    {background-color:#FFFFCB; background-image: none;}
+
+
+#right_options {
+
+    width: 500px;
+    padding: 3px 10px;
+    margin-top: 5px;
+    border-radius: 10px;
+    background-color: #e5e5e5;
+}
+
+#right_plugin_search {width: 200px;
+
+    background-image: url(/nuts/img/icon_top_search.png);
+    background-position: 2px 1px;
+    background-repeat: no-repeat;
+    background-color: white;
+    color: #CCC;
+    padding: 1px;
+    font-size: 11px;
+    padding-left: 19px;
+    border: 1px solid #CCC;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+
+    margin-left: 10px;
+}
+
+
+
 
 
 /** console **/

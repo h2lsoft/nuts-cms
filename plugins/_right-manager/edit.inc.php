@@ -165,8 +165,21 @@ else
 				foreach($all_cats[$cat][$xplugin]['actions'] as $action)
 				{
 					$nuts->parse('category.rights.right.r_name', $all_cats[$cat][$xplugin]['name']);
-					$nuts->parse('category.rights.right.r', $action);
-					
+                    $nuts->parse('category.rights.right.r', $action);
+
+                    $r_label = $action;
+                    if($_SESSION['Language'] == 'fr')
+                    {
+                        if($r_label == 'list')$r_label = 'lister';
+                        elseif($r_label == 'add')$r_label = 'ajouter';
+                        elseif($r_label == 'edit')$r_label = 'editer';
+                        elseif($r_label == 'delete')$r_label = 'supprimer';
+                        elseif($r_label == 'view')$r_label = 'voir';
+                        elseif($r_label == 'exec')$r_label = 'executer';
+                    }
+
+                    $nuts->parse('category.rights.right.r_label', $r_label);
+
 					$checked = '';
 					if(in_array($action, $all_cats[$cat][$xplugin]['actions_selected']) || $_GET['NutsGroupID'] == 1 || in_array($all_cats[$cat][$xplugin]['name'], array('_internal-memo', '_internal-messaging')))
 						$checked = 'checked';
