@@ -122,13 +122,9 @@ $("#right_plugin_search").keyup(function(){
         txt = strtolower($(this).text());
         v = strtolower($('#right_plugin_search').val());
         if(txt.indexOf(v) == -1)
-        {
             $(this).parents('tr').hide();
-        }
         else
-        {
             $(this).parents('tr').show();
-        }
     });
 });
 </script>
