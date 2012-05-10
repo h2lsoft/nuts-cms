@@ -8,9 +8,6 @@ var last_hash;
 var list_full_length = false; // extends list table length
 var RTE_parent_object = ''; // parent object of RTE
 
-var system_goto_refresh_async = true; // async true by default, false for system refresh
-
-
 function system_goto(uri, target)
 {
 	$('body').css('cursor', 'wait');
@@ -81,7 +78,7 @@ function system_goto(uri, target)
               url: uri,
               cache:false,
               type: 'GET',
-              async: system_goto_refresh_async,
+              async: false,
               success:  function (d){
 
                   d = trim(d);
@@ -99,8 +96,6 @@ function system_goto(uri, target)
               }
     });
 
-    if(system_goto_refresh_async)system_goto_refresh_async = true;
-
 }
 
 function system_refresh()
@@ -108,12 +103,8 @@ function system_refresh()
 	if(typeof(last_system_uri) == 'undefined' || last_system_uri == '')
 	{
 		last_system_uri = document.location;
-		//log('new uri => '+last_system_uri);
 	}
 	if(typeof(last_system_target) == 'undefined' || last_system_target == '')last_system_target = 'list';
-
-	// alert("system_refresh => "+last_system_uri+", "+last_system_target);
-    system_goto_refresh_async = true;
 	system_goto(last_system_uri, last_system_target);
 }
 
