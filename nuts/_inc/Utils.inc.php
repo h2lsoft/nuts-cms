@@ -19,7 +19,6 @@ function nutsUserIsLogon(){
 		isset($_SESSION['NutsUserID']) && $_SESSION['NutsUserID'] != '' &&
 		isset($_SESSION['FrontofficeAccess']) && $_SESSION['FrontofficeAccess'] == 'YES'
 	  )
-
 		return true;
 
 	return false;
@@ -37,12 +36,11 @@ function nutsAccessRestrictedRedirectPage($type='login')
 	global $nuts;
 
 	if($type == 'login')
-		$d_const = 'LOGIN_PAGE_URL_'.strtoupper($nuts->language);
+        $d_const = 'LOGIN_PAGE_URL_'.strtoupper($nuts->language);
 	elseif($type == 'logon')
-		$d_const = 'LOGON_PAGE_URL_'.strtoupper($nuts->language);
+        $d_const = 'LOGON_PAGE_URL_'.strtoupper($nuts->language);
 	elseif($type == 'forbidden')
-		$d_const = 'PRIVATE_PAGE_FORBIDDEN_URL_'.strtoupper($nuts->language);
-
+        $d_const = 'PRIVATE_PAGE_FORBIDDEN_URL_'.strtoupper($nuts->language);
 
 	$uri = constant($d_const);
 	if($uri == '')

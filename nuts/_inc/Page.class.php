@@ -460,7 +460,7 @@ class Page extends NutsCore
 		// page is access restricted ?
 		if($this->pageID != 0)
 		{
-			$this->doQuery("SELECT AccessRestricted FROM NutsPage WHERE ID = {$this->pageID}");
+            $this->doQuery("SELECT AccessRestricted FROM NutsPage WHERE ID = {$this->pageID}");
 			$this->accessRestricted = ($this->dbGetOne() == 'YES') ? true : false;
 
 			if($this->accessRestricted)
@@ -485,8 +485,6 @@ class Page extends NutsCore
 				}
 			}
 		}
-
-
 
 		// load plugin
 		$this->loadNutsPlugin();
@@ -1236,7 +1234,6 @@ class Page extends NutsCore
 			$out = str_replace('<head>', "<head>$str\n", $out);
 		}
 
-
 		// output content ##############################################################################
 		if($this->cacheIsPossible())
 		{
@@ -1252,9 +1249,6 @@ class Page extends NutsCore
 		}
 
 		$out = $this->chronoReplace($out);
-
-
-
 
 		// Html compression *********************************************************************************************
 		if(NUTS_HTML_COMPRESS)

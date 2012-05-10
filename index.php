@@ -16,20 +16,17 @@ FB::setEnabled(FirePHP_enabled);
 
 // auto include files
 $scripts = glob('x_includes/*.php');
-if(is_array($scripts))
-{
+if(is_array($scripts)){
 	foreach($scripts as $scr)
 		include_once($scr);
 }
 
 // auto include specific files
 $scripts = glob('x_includes/www/*.php');
-if(is_array($scripts))
-{
+if(is_array($scripts)){
 	foreach($scripts as $scr)
 		include_once($scr);
 }
-	
 
 // templates *****************************************************************************
 $page = new Page();
@@ -40,9 +37,6 @@ $page = new Page();
 $_GET = $page->xssProtect($_GET);
 $_POST = $page->xssProtect($_POST);
 
-
 $page->write();
-
-
 
 ?>
