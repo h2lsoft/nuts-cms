@@ -717,3 +717,7 @@ INSERT INTO `NutsFileExplorerMimesType`(`ID`,`Extension`,`Mimes`,`Deleted`) valu
 
 
 /* update v.3.0 */
+
+
+/* update v.3.1 */
+CREATE TABLE `NutsUserListSearches` (  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,  `NutsUserID` int(10) unsigned NOT NULL,  `Plugin` varchar(255) NOT NULL,  `Name` varchar(255) DEFAULT NULL,  `Serialized` text,  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',  PRIMARY KEY (`ID`),  KEY `NutsUserID` (`NutsUserID`),  KEY `Plugin` (`Plugin`),  KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
