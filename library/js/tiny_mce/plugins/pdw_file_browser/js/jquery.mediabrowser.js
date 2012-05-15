@@ -683,7 +683,8 @@
 				message = window.rename_file;
 			}
 
-			prompt_message = printf(message, name, "\n", "^ \\ / ? * \" ' < > : | .");
+			// prompt_message = printf(message, name, "\n", "^ \\ / ? * \" ' < > : | .");
+            prompt_message = message.format(name, "\n", "^ \\ / ? * \" ' < > : | .");
 			new_name = prompt(prompt_message, name);
 
 			// Validate new name
@@ -1251,3 +1252,12 @@ function tableDetailsSort(type, direction){
 
 
 }
+
+
+String.prototype.format = function() {
+    var formatted = this;
+    for(arg in arguments) {
+        formatted = formatted.replace("{" + arg + "}", arguments[arg]);
+    }
+    return formatted;
+};

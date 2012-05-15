@@ -52,7 +52,7 @@ if(!empty($_REQUEST['skin'])) {
 <head>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>PDW File Browser</title>
+	<title>File Browser</title>
 
 	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1" />

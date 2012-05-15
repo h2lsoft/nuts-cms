@@ -76,8 +76,8 @@ $lang = array(
     "File already exists!"                                       => "Le fichier existe déja !",
     #"Name successfully changed!"                                 => "Name successfully changed!",
     "Rename failed!"                                             => "Le renommage a échoué !",
-    "Please give a new name for file"                            => "Merci de donner un nouveau nom pour {0}{1}L'extension est ajoutée automatiquement !{1}(Ces caractères ne sont pas autorisés {2})",
-    "Please give a new name for folder"                          => "Merci de donner un nouveau nom pour {0}{1}(Ces caractères ne sont pas autorisés {2})",
+    "Please give a new name for file"                            => "Merci de donner un nouveau nom pour `{0}`{1}L'extension est ajoutée automatiquement !\\n\\n(Ces caractères ne sont pas autorisés {2})",
+    "Please give a new name for folder"                          => "Merci de donner un nouveau nom pour `{0}`{1}\\n(Ces caractères ne sont pas autorisés {2})",
     "Action not allowed!"                                        => "Action non autorisée !",
     "Invalid characters used!"                                   => "Ces caractères ne sont pas autorisés ^ \\\ / ? * \\\" ' &lt; &gt; : | .",
 
