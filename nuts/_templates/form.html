@@ -31,14 +31,14 @@
 
 		<bloc::text>
 		<!-- text -->
-			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" onclick="this.select();" {attributes} />
+			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" {attributes} />
 			{after}
 		<!-- /text -->
 		</bloc::text>
 
 		<bloc::filemanager_media>
 		<!-- filemanager_media -->
-			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" onclick="this.select();" {attributes} />
+			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" {attributes} />
 			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="mediaBrowser('{name}','{folder}');"><img align="absmiddle" src="img/icon-folder.png"/></a>
 			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><img align="absmiddle" src="img/icon-media.png"/></a>
 			{after}
@@ -47,7 +47,7 @@
 
 		<bloc::filemanager>
 		<!-- filemanager -->
-			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" onclick="this.select();" {attributes} />
+			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" {attributes} />
 			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="allBrowser('{name}','{folder}');"><img align="absmiddle" src="img/icon-folder.png"/></a>
 			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><img align="absmiddle" src="img/icon-file.png"/></a>
 			{after}
@@ -56,7 +56,7 @@
 
 		<bloc::filemanager_image>
 		<!-- filemanager_image -->
-			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" onclick="this.select();" {attributes} />
+			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" {attributes} />
 			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="imgBrowser('{name}','{folder}');"><img align="absmiddle" src="img/icon-folder.png"/></a>
 			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><img align="absmiddle" src="img/icon-preview-mini.gif"/></a>
 			{after}
@@ -72,7 +72,7 @@
 
 		<bloc::date>
 		<!-- date -->
-			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}"  class="{class}" onclick="this.select();" {attributes} />
+			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}"  class="{class}" {attributes} />
 			<script>inputDate('{name}', 'date')</script>
 			{after}
 		<!-- /date -->
@@ -80,7 +80,7 @@
 
 		<bloc::datetime>
 		<!-- datetime -->
-			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}"  class="{class}" onclick="this.select();" {attributes} />
+			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}"  class="{class}" {attributes} />
 			<script>inputDate('{name}', 'datetime')</script>
 			{after}
 		<!-- /datetime -->
