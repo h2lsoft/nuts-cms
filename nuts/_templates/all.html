@@ -353,6 +353,8 @@ if("{$_GET['popup']}" == 1)
 
 	if("{$_GET['parent_refresh']}" != "0" && window.opener != null && window.opener != undefined && typeof window.opener.system_refresh == 'function'){
         window.onbeforeunload = function() {
+
+            window.opener.force_ajax_async = false;
             window.opener.system_refresh();
         };
 	}

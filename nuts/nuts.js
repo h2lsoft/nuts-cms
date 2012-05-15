@@ -8,9 +8,14 @@ var last_hash;
 var list_full_length = false; // extends list table length
 var RTE_parent_object = ''; // parent object of RTE
 
+
+var force_ajax_async = true;
+
+
 function system_goto(uri, target)
 {
 	$('body').css('cursor', 'wait');
+    $('body').scrollTop(0);
 
 	// ajax loader
 	if(empty(target))target = 'list';
@@ -76,16 +81,17 @@ function system_goto(uri, target)
 	// $.get(uri, {}, function (d) {
     $.ajax({
               url: uri,
-              cache:false,
+              cache:true,
               type: 'GET',
-              async: false,
+              async: force_ajax_async,
               success:  function (d){
 
                   d = trim(d);
-                  $('div#'+target).html(d);
-                  $("#ajax_loader").hide();
-                  $('div#'+target).fadeTo(0.6, 1);
+                  $('div#'+target).html(d)
+                                  .fadeTo(0.6, 1);
+
                   $('body').css('cursor', 'default');
+                  $("#ajax_loader").hide();
                   setPluginTitle();
 
                   if(!im_refresh)
@@ -93,6 +99,7 @@ function system_goto(uri, target)
                   else
                       privateBoxRefresh();
 
+                  force_ajax_async = true;
               }
     });
 
