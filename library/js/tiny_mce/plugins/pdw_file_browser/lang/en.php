@@ -75,8 +75,8 @@ $lang = array(
     "File already exists!"                                       => "File already exists!",
     "Name successfully changed!"                                 => "Name successfully changed!",
     "Rename failed!"                                             => "Rename failed!",
-    "Please give a new name for file"                            => "Please give a new name for {0}{1}File extension is added automatically!{1}(These characters are not allowed {2})",
-    "Please give a new name for folder"                          => "Please give a new name for {0}{1}(These characters are not allowed {2})",
+    "Please give a new name for file"                            => "Please give a new name for `{0}`{1}File extension is added automatically!\\n\\n(These characters are not allowed {2})",
+    "Please give a new name for folder"                          => "Please give a new name for `{0}`{1}\\n(These characters are not allowed {2})",
     "Action not allowed!"                                        => "Action not allowed!",
     "Invalid characters used!"                                   => "These characters are not allowed: ^ \\\ / ? * \\\" ' &lt; &gt; : | .",
 
