@@ -70,7 +70,7 @@ $total_pages_automatic = 0;
 $qID = $plugin->dbGetQueryID();
 while($page = $plugin->dbFetch())
 {	
-	if(!preg_match('/^http/i', $page['VirtualPagename']) && (strlen($page['VirtualPagename']) > 0 && $page['VirtualPagename'][0] != '{'))
+	if(!preg_match('/^http/i', $page['VirtualPagename']) && @$page['VirtualPagename'][0] != '{')
 	{
 		$plugin->doQuery("SELECT DATE_FORMAT(Date, '%Y-%m-%d') AS Date FROM NutsPageComment WHERE NutsPageID = {$page['ID']} AND Visible = 'YES' AND Deleted = 'NO' ORDER BY Date DESC LIMIT 1");
 		if($plugin->dbNumRows() == 1)
