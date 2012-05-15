@@ -33,6 +33,19 @@
 
 </div>
 
+
 <script type="text/javascript">
-// $("#home .mod[title!='']").tooltip({top: 30, left:-50, track: false, delay: 800, showURL: false, showBody: " ** ",opacity: 0.85});
+$('#home .mod').click(function(){
+
+    link = $(this).children('a')[0].toString();
+
+    if(link.indexOf('http') == 0)
+        window.open(link);
+    else
+        document.location.href = link;
+
+
+
+});
 </script>
+

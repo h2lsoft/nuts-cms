@@ -398,23 +398,34 @@ div#home .mod {width:85px; height:70px; float:left; border:1px solid #ccc; text-
 
 }
 
-div#home .mod a {color:black;}
+
 
 div#home div:hover {background-color:#ffffaf; border-style:solid; border-color:#C93F9E;
 
 	box-shadow: 0px 0px 15px #999;
 	-moz-box-shadow: 0px 0px 15px #999;
 	-webkit-box-shadow: 0px 0px 15px #999;
-}
-div#home div:hover a {color:black;}
-
-
-div#home a {color:#000;}
-div#home a:hover {text-decoration:none; /*color:#999 !important;*/
-
 
 
 }
+
+div#home .mod a {color:black;}
+div#home .mod a:hover
+    {text-decoration:none;}
+
+div#home .mod:hover
+    {cursor: pointer; }
+
+div#home .mod:hover> a
+    {color: #000080!important;}
+
+div#home .mod:active
+{
+    background-color:orange;
+}
+
+
+
 div#home_updater {padding:5px; border:1px solid orange; background-color:yellow; font-weight:bold;}
 
 /** list */
