@@ -59,7 +59,7 @@
 	</select>
 
 	#ID
-	<input type="text" name="dID" id="dID" style="text-align:center; width:3em;" value="{$_GET['pID']}" onclick="this.select()" autocomplete="off" />
+	<input type="text" name="dID" id="dID" style="text-align:center; width:3em;" value="{$_GET['pID']}" autocomplete="off" />
 	<a style="display:none;" id="a_dID_delete" href="javascript:$('#dID').val('');reloadPage();"><img src="img/list_delete.png" style="height: 16px;" align="absmiddle" alt="" /></a>
 
 	<br />
@@ -106,7 +106,7 @@
 	<div id="tab0" class="ui-tabs-panel">
 		<p>
 			<label>{$lang_msg[99]} <span class="required">*</span></label>
-			<input type="text" autocomplete="off" name="MenuName" id="MenuName" value="" onclick="this.select()" />
+			<input type="text" autocomplete="off" name="MenuName" id="MenuName" value="" />
 		</p>
 
 		<p>
@@ -218,15 +218,15 @@
 
 		<p>
 			<label>{$lang_msg[39]}</label>
-			<input type="text"  autocomplete="off" name="MetaTitle" id="MetaTitle" value="" onclick="this.select()" />
+			<input type="text"  autocomplete="off" name="MetaTitle" id="MetaTitle" value="" />
 		</p>
 		<p>
 			<label>{$lang_msg[40]}</label>
-			<input type="text"  autocomplete="off" name="MetaKeywords" id="MetaKeywords" value="" onclick="this.select()" />
+			<input type="text"  autocomplete="off" name="MetaKeywords" id="MetaKeywords" value="" />
 		</p>
 		<p>
 			<label>{$lang_msg[41]}</label>
-			<textarea name="MetaDescription" id="MetaDescription" onclick="this.select()"></textarea>
+			<textarea name="MetaDescription" id="MetaDescription"></textarea>
 		</p>
 		<p>
 			<label>Robots</label>
@@ -253,7 +253,7 @@
 	<div id="tab2" class="ui-tabs-panel ui-tabs-hide">
 		<p>
 			<label>{$lang_msg[46]}</label>
-			<input type="text" name="H1" id="H1" value="" class="ucfirst"  autocomplete="off" onclick="this.select()" />
+			<input type="text" name="H1" id="H1" value="" class="ucfirst"  autocomplete="off" />
 		</p>
 		<p>
 			<label title="{$lang_msg[48]}">{$lang_msg[47]}</label>
@@ -342,7 +342,7 @@
 		</p>
 		<p>
 			<label title="{$lang_msg[24]}">{$lang_msg[23]}</label>
-			<input type="text"  autocomplete="off" name="VirtualPagename" id="VirtualPagename" value="" onclick="this.select()" />
+			<input type="text"  autocomplete="off" name="VirtualPagename" id="VirtualPagename" value="" />
 		</p>
 		<p>
 			<label title="{$lang_msg[26]}">{$lang_msg[25]}</label>
@@ -368,7 +368,7 @@
 
 		<p>
 			<label title="{$lang_msg[31]}">{$lang_msg[30]}</label>
-			<textarea name="Tags" id="Tags" onclick="this.select()"></textarea>
+			<textarea name="Tags" id="Tags"></textarea>
 		</p>
 
 		<p>
@@ -380,7 +380,7 @@
 		</p>
 		<p>
 			<label title="{$lang_msg[70]}">{$lang_msg[69]}</label>
-			<input type="text"  autocomplete="off" name="CacheTime" id="CacheTime" value="" onclick="this.select()" style="text-align: center; width: 65px;" />
+			<input type="text"  autocomplete="off" name="CacheTime" id="CacheTime" value="" style="text-align: center; width: 65px;" />
 		</p>
 
 
@@ -429,21 +429,21 @@
 			<label title="{custom_fields_help}">{custom_fields_label}</label>
 
 			<bloc::custom_fields_text>
-				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" onclick="this.select()" />
+				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
 			</bloc::custom_fields_text>
 
 			<bloc::custom_fields_date>
-				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" onclick="this.select()" />
+				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
 				<script>inputDate("cf{custom_fields_name}", 'date')</script>
 			</bloc::custom_fields_date>
 
 			<bloc::custom_fields_datetime>
-				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" onclick="this.select()" />
+				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
 				<script>inputDate("cf{custom_fields_name}", 'datetime')</script>
 			</bloc::custom_fields_datetime>
 
 			<bloc::custom_fields_textarea>
-				<textarea name="cf{custom_fields_name}" id="cf{custom_fields_name}" onclick="this.select()"/></textarea>
+				<textarea name="cf{custom_fields_name}" id="cf{custom_fields_name}" /></textarea>
 			</bloc::custom_fields_textarea>
 
 			<bloc::custom_fields_select>
@@ -470,7 +470,7 @@
 			</bloc::custom_fields_booleanX>
 
 			<bloc::custom_fields_image>
-				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" onclick="this.select()" />
+				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
 
 				<a href="javascript:;" class="tt" title="{$nuts_lang_msg[87]}" onclick="imgBrowser('cf{custom_fields_name}','{custom_fields_folder}');"><img align="absmiddle" src="img/icon-folder.png"/></a>
 				<a href="javascript:;" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('cf{custom_fields_name}');"><img align="absmiddle" src="img/icon-preview-mini.gif"/></a>
@@ -478,13 +478,13 @@
 			</bloc::custom_fields_image>
 
 			<bloc::custom_fields_file>
-				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" onclick="this.select()" />
+				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
 				<a class="tt" title="{$nuts_lang_msg[87]}" href="javascript:allBrowser('cf{custom_fields_name}', '{custom_fields_folder}');"><img align="absmiddle" src="img/icon-folder.png"/></a>
 				<a href="javascript:;" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('cf{custom_fields_name}');"><img src="img/icon-file.png" align="absmiddle" /></a>
 			</bloc::custom_fields_file>
 
 			<bloc::custom_fields_colorpicker>
-				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" onclick="this.select()" style="width:50px;"  maxlength="7" class="widget_colorpicker"  onclick="startColorPicker(this)" onkeyup="maskedHex(this)"  />
+				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" style="width:50px;"  maxlength="7" class="widget_colorpicker"  onclick="startColorPicker(this)" onkeyup="maskedHex(this)"  />
 			</bloc::custom_fields_colorpicker>
 			</p>
 		</bloc::custom_fields>
