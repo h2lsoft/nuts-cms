@@ -351,7 +351,7 @@ if("{$_GET['popup']}" == 1)
 	$('body').css('background-image', 'none');
 	$('#add').css('margin-top', '-10px');
 
-	if("{$_GET['parent_refresh']}" != "1" && window.opener != null && window.opener != undefined && typeof window.opener.system_refresh == 'function'){
+	if("{$_GET['parent_refresh']}" != "0" && window.opener != null && window.opener != undefined && typeof window.opener.system_refresh == 'function'){
         window.onbeforeunload = function() {
             window.opener.system_refresh();
         };
