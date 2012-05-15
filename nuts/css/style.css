@@ -722,8 +722,8 @@ div#page_options_bottom {display:none; padding:5px; padding-right:10px; text-ali
 
 
 div#page_form p {margin:0; padding:0; margin-bottom:8px;}
-div#page_form label {width:105px; display:block; float:left; text-align:right; padding-right:10px;  font-weight:bold; white-space: nowrap; padding-top: 3px;}
-div#page_form fieldset label {width:130px;}
+div#page_form label {width:105px; display:block; float:left; text-align:right; padding-right:10px;  font-weight:bold; white-space: nowrap; padding-top: 2px;}
+div#page_form fieldset label {width:130px; padding-top: 1px;}
 div#page_form span.required {font-weight:bold; color:red;}
 div#page_form input[type=text], div#page_form input[type=password], div#page_form input[type=file], div#page_form textarea {width:500px;}
 div#page_form fieldset {padding:5px; -moz-border-radius: 8px; margin-bottom:10px;}
