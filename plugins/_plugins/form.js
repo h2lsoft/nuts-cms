@@ -22,3 +22,13 @@ $('#former #'+str).autocomplete(tmp_arr, {
 		scroll: true,
 		scrollHeight: 300
 });
+
+
+// assign default category
+if(empty($('#former #Category').val())){
+
+    if(!empty($('#search_form #Category').val())){
+        $('#former #Category').val($('#search_form #Category').val());
+    }
+
+}

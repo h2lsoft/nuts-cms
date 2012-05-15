@@ -11,14 +11,13 @@ $plugin->listSetDbTable('NutsMenu', '', "", "ORDER BY Position");
 $opts = array();
 $k = 1;
 
-foreach($mods_group as $mod)
-{
+foreach($mods_group as $mod) {
 	$opts[] = array('label' => $mod['name'], 'value' => $k);
 	$k++;
 }
 
 $plugin->listSearchAddFieldSelect('Category', '', $opts);
-$plugin->listSearchAddFieldBoolean('Visible');
+// $plugin->listSearchAddFieldBoolean('Visible');
 
 
 
@@ -56,7 +55,10 @@ $plugin->listWaitingForUserSearching = true;
 $plugin->listWaitingForUserSearchingMessage = "Please select a category";
 
 if(nutsUserHasRight($_SESSION['NutsGroupID'], '_right-manager', 'edit'))
-	$plugin->listAddButton("RightManager", "Right manager", "popupModal('/nuts/?mod=_right-manager&do=edit&NutsGroupID={$_SESSION['NutsGroupID']}&display=all&popup=1');");
+{
+    $plugin->listAddButton("RightManager", "Right manager", "popupModal('/nuts/?mod=_right-manager&do=edit&NutsGroupID={$_SESSION['NutsGroupID']}&display=all&popup=1');");
+}
+
 
 
 // render list
