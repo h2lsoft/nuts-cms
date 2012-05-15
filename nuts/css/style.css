@@ -396,6 +396,12 @@ div#home .mod {width:85px; height:70px; float:left; border:1px solid #ccc; text-
 	-webkit-transition:all 0.5s;
 	-moz-transition:all 0.5s;
 
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+
+
 }
 
 
@@ -423,6 +429,7 @@ div#home .mod:active
 {
     background-color:orange;
 }
+
 
 
 
