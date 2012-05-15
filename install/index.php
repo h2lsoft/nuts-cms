@@ -407,7 +407,7 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 				</p>
 				<p>
 					<label>Password</label>
-					<input type="text" id="DB_PASS" name="DB_PASS" value="" />					
+					<input type="password" id="DB_PASS" name="DB_PASS" value="" />
 				</p>
 				<p>
 					<label>Database</label>
