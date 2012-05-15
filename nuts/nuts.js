@@ -1189,21 +1189,13 @@ function imageBox(src)
 {
 	img = '<img id="imagebox_previewed" src="'+src+'" />';
 
-	$('#nuts_canvas_content').html(img);
+
+    $('#nuts_canvas_content').css('top', $('body').scrollTop() + 80);
+    $('#nuts_canvas_content').html(img);
 	$('#nuts_canvas').height($(document).height()+60);
 
 	$('#nuts_canvas').fadeIn('normal', function(){
-
 		$('#nuts_canvas_content').show();
-
-		margin_top = $('body').height() - $('#imagebox_previewed').height();
-		if(margin_top <= 0)
-			margin_top = 80;
-		else
-			margin_top = margin_top / 2;
-
-		$('#imagebox_previewed').css('margin-top', margin_top);
-
 	});
 
 }
