@@ -27,7 +27,7 @@ $plugin->formAddFieldTextArea('JsCode', 'Javascript code', false, 'php', 'height
 // validation
 $plugin->formAddFieldsetStart("Formvalidation", $lang_msg[20], array());
 $plugin->formAddFieldTextArea('FormValidPhpCode', $lang_msg[8], false, "php", 'height:100px', "", $lang_msg[9]);
-$plugin->formAddFieldTextArea('FormValidPhpCode', $lang_msg[10], false, "html", 'height:100px', "", $lang_msg[11]);
+$plugin->formAddFieldTextArea('FormValidHtmlCode', $lang_msg[10], false, "html", 'height:100px', "", $lang_msg[11]);
 $plugin->formAddFieldBooleanX('FormStockData', $lang_msg[31], true, $lang_msg[32]);
 
 // form mailer
