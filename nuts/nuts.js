@@ -808,9 +808,9 @@ var print_html_inside = "";
 function printDialog()
 {
 	title = $('.ui-dialog-title').html();
-	title = urlencode(strip_tags(title));
+	title = strip_tags(title);
 
-	popupModal("printable_dialog.php?t="+title, "Print", 910, 768, '');
+	popupModal("printable_dialog.php?t="+title+'&timer='+time(), "Print", 910, 768, '');
 
 }
 

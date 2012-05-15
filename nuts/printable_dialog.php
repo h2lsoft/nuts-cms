@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="robots" content="noindex, nofollow" />
-	<title><?php echo strip_tags(urldecode($_GET['t'])); ?></title>
+	<title><?php echo strip_tags($_GET['t']); ?></title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/print.css?t=<?php echo time(); ?>" />
 	<link rel="stylesheet" type="text/css" href="css/dialog_print.css?t=<?php echo time(); ?>" />
@@ -30,24 +30,15 @@
 		}
 	}
 
-	$('body').append(window.opener.$("#form_content").html());	
-	$('textarea.mceEditor').each(function(){
+    opener_content = window.opener.$("#form_content").html();
+    opener_content = str_replace('<iframe', "<div", opener_content);
+    opener_content = str_replace('</iframe>', "</div>", opener_content);
+    $('body').append(opener_content);
 
-		id = $(this).attr('id');
-		setTimeout( function() {
-				getIFrameDocument('iframe_'+id).designMode = 'on';
-				getIFrameDocument('iframe_'+id).body.innerHTML = $('textarea#'+id).val();
-
-				head = getIFrameDocument('iframe_'+id).getElementsByTagName('head')[0];
-				link = document.createElement('link');
-				link.setAttribute('rel',"stylesheet");
-				link.setAttribute('href',"/library/themes/editor_css.php?t=default");
-				link.setAttribute('type',"text/css");
-				head.appendChild(link);
-
-		}, 200);
-		
-	});
+    $('textarea.mceEditor').each(function(){
+        id = $(this).attr('id');
+        $('#iframe_'+id).html($(this).val());
+    });
 
 
 	$(document).keyup(function(event){
@@ -55,9 +46,10 @@
 			window.close();
     });
 
-	count_time  = $('textarea.mceEditor').length * 3000;
-
+	count_time  = $('textarea.mceEditor').length * 300;
 	setTimeout( function() {window.print();}, count_time);
+
+
 	</script>
 
 </body>
