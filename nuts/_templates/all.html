@@ -351,7 +351,9 @@ if("{$_GET['popup']}" == 1)
 	$('body').css('background-image', 'none');
 	$('#add').css('margin-top', '-10px');
 
-	if("{$_GET['parent_refresh']}" != "0" &&  strtoupper("{$_GET['parent_refresh']}") != "NO" && window.opener != null && window.opener != undefined && typeof window.opener.system_refresh == 'function'){
+    parent_refresh = "{$_GET['parent_refresh']}";
+
+	if(parent_refresh != "0" &&  strtoupper(parent_refresh) != "NO" && window.opener != null && window.opener != undefined && typeof window.opener.system_refresh == 'function'){
         window.onbeforeunload = function() {
 
             window.opener.force_ajax_async = false;
