@@ -1,6 +1,9 @@
 var lastWYSIWYG = array();
 var WYSIWYG_LAST_ID = '';
 
+var ctrlKeyIsPressed = false;
+var altKeyIsPressed = false;
+
 function getIFrameDocument(aID){
 
   // if contentDocument exists, W3C compliant (Mozilla)
@@ -25,7 +28,7 @@ function getIFrameWindow(aID){
 
 function initWYSIWYGOption()
 {
-    sep = ' &nbsp; <span class="rte_separator">|</span> &nbsp; ';
+    sep = '&nbsp;<span class="rte_separator">|</span>&nbsp;';
 
 	$('textarea.mceEditor').each(function (){
 		id = this.id;
@@ -37,19 +40,30 @@ function initWYSIWYGOption()
 		str += '<label title="">&nbsp;</label>';
 		str += '<div id="'+id+'_WYSIWYG_toolbar" class="WYSIWYG_toolbar" style="margin:0;padding:0px;">';
 
+
+        menu_sep = '--------------------------------\\n';
+
 		// help
 		msg = 'Help:\\n';
 		msg += '==========================\\n';
-		msg += 'Ctrl + E: Editor\\n\\n';
-
-		msg += 'Alt + B: Bold\\n';
-		msg += 'Alt + I: Italic\\n';
-		msg += 'Alt + U: Underline\\n\\n';
-		msg += 'Alt + 1: H1\\n';
-		msg += 'Alt + 2: H2\\n';
-		msg += 'Alt + 3: H3\\n\\n';
-		msg += 'Alt + L: List\\n\\n';
-
+        msg += '\\n';
+		msg += 'Ctrl + Alt + E: RichEditor\\n';
+        msg += menu_sep;
+		msg += 'Ctrl + B: Bold\\n';
+		msg += 'Ctrl + I: Italic\\n';
+		msg += 'Ctrl + U: Underline\\n';
+		msg += 'Ctrl + S: Striked\\n';
+        msg += menu_sep;
+        msg += 'Ctrl + 1: H1\\n';
+		msg += 'Ctrl + 2: H2\\n';
+		msg += 'Ctrl + 3: H3\\n';
+        msg += 'Ctrl + 4: Paragraphe\\n';
+        msg += menu_sep;
+		msg += 'Ctrl + L: List\\n';
+        msg += 'Ctrl + M: Ordered List\\n';
+        msg += menu_sep;
+        msg += 'Ctrl + Q: blockquote\\n';
+        msg += menu_sep;
 		msg += 'Ctrl + Z: Undo\\n';
 		msg += 'Ctrl + Y: Redo\\n';
 
@@ -128,21 +142,18 @@ function initWYSIWYGOption()
 
 
 
-function widgetsWindowOpen(id)
-{
+function widgetsWindowOpen(id) {
 	uri = 'widgets.php?parentID='+id;
 	width = 1024;
 	height = 650;
 
     popupModal(uri, '', width, height, 'resizable=no');
-
 }
 
 
-function iframeContentProtector(id)
-{
-
+function iframeContentProtector(id){
 }
+
 
 function WYSIWYGToggleIt(id)
 {
@@ -176,104 +187,118 @@ function WYSIWYGEventFocus(id, e)
 	// secondPassfunction = false;
 }
 
-function WYSIWYGEvent(id, e, shortcut)
-{
-	if(!secondPassfunction)
-	{
-		secondPassfunction = true;
-	}
-	else
-	{
-		secondPassfunction = false;
-		return;
-	}
 
-	// do not use css
-	getIFrameDocument('iframe_'+id).execCommand('styleWithCSS', null, false);
+function WYSIWYGEvent(id, e, shortcut){
 
-	notcancelkey = true;
-	if(shortcut)
-	{
-		// ctrl + E
-		if(e.ctrlKey && e.charCode == 101)
-		{
-			openWYSIWYG(id);
-			notcancelkey = false;
-		}
-		// Alt + B
-		else if(e.altKey && e.charCode == 98)
-		{
-			// log("Ctrl + B detected !");
-			getIFrameDocument('iframe_'+id).execCommand('bold', false, null );
-			notcancelkey = false;
-		}
-		// Alt + I
-		else if(e.altKey && e.charCode == 105)
-		{
-			getIFrameDocument('iframe_'+id).execCommand('italic', false, null );
-			notcancelkey = false;
-		}
-		// Alt + U
-		else if(e.altKey && e.charCode == 117)
-		{
-			getIFrameDocument('iframe_'+id).execCommand('underline', false, null );
-			notcancelkey = false;
-		}
+    cancelkeypress = false;
 
-		// Alt + 1
-		else if(e.altKey && (e.charCode == 38 || e.charCode == 49))
-		{
-			getIFrameDocument('iframe_'+id).execCommand('heading', false, 'H1');
-			notcancelkey = false;
-		}
-		// alt + 2
-		else if(e.altKey && (e.charCode == 233 || e.charCode == 50))
-		{
-			getIFrameDocument('iframe_'+id).execCommand('heading', false, 'H2');
-			notcancelkey = false;
-		}
-		// alt + 3
-		else if(e.altKey && (e.charCode == 34 || e.charCode == 51))
-		{
-			getIFrameDocument('iframe_'+id).execCommand('heading', false, 'H3');
-			notcancelkey = false;
-		}
-		// alt + L
-		else if(e.altKey && e.charCode == 108)
-		{
-			getIFrameDocument('iframe_'+id).execCommand('insertUnorderedList', false, null );
-			notcancelkey = false;
-		}
+    // keypress
+    if(e.type == 'keypress' && ctrlKeyIsPressed){
 
-		// TAB
-		else if(e.charCode == 0 && e.keyCode == 9)
-		{
-			getIFrameDocument('iframe_'+id).execCommand('indent', false, null );
-			notcancelkey = false;
-		}
+        // CTRL + ALT + E, e, €
+        if(altKeyIsPressed && (e.charCode == 69 || e.charCode == 101 || e.charCode == 8364)){
 
-	}
+            openWYSIWYG(id);
+            cancelkeypress = true;
+        }
+
+        // CTRL + B, b
+        else if(e.charCode == 98 || e.charCode == 66){
+            cmdWYSIWYG(id, 'bold', '');
+            cancelkeypress = true;
+        }
+
+        // CTRL + I, i
+        else if(e.charCode == 105 || e.charCode == 73){
+            cmdWYSIWYG(id, 'italic', '');
+            cancelkeypress = true;
+        }
+
+        // CTRL + U, u
+        else if(e.charCode == 117 || e.charCode == 85){
+            cmdWYSIWYG(id, 'underline', '');
+            cancelkeypress = true;
+        }
+
+        // CTRL + S, s
+        else if(e.charCode == 115 || e.charCode == 83){
+            cmdWYSIWYG(id, 'strikeThrough', '');
+            cancelkeypress = true;
+        }
+
+        // CTRL + 1
+        else if(e.charCode == 49 || e.charCode == 38){
+            cmdWYSIWYG(id, 'heading', 'H1');
+            cancelkeypress = true;
+        }
+
+        // CTRL + 2
+        else if(e.charCode == 50 || e.charCode == 126  || e.charCode == 130){
+            cmdWYSIWYG(id, 'heading', 'H2');
+            cancelkeypress = true;
+        }
+
+        // CTRL + 3
+        else if(e.charCode == 51 || e.charCode == 34 || e.charCode == 35){
+            cmdWYSIWYG(id, 'heading', 'H3');
+            cancelkeypress = true;
+        }
+
+        // CTRL + 0
+        else if(e.charCode == 48 || e.charCode == 64 || e.charCode == 133){
+            cmdWYSIWYG(id, 'removeFormat', '');
+            cmdWYSIWYG(id, 'formatBlock', 'P');
+            cancelkeypress = true;
+        }
+
+        // CTRL + Q: quote
+        else if(e.charCode == 113 || e.charCode == 81){
+            cmdWYSIWYG(id, 'formatBlock', 'BLOCKQUOTE');
+            cancelkeypress = true;
+        }
+
+        // CTRL + L: orderedlist
+        else if(e.charCode == 108 || e.charCode == 76){
+            cmdWYSIWYG(id, 'insertUnorderedList', '');
+            cancelkeypress = true;
+        }
+
+        // CTRL + M: unorderedlist
+        else if(e.charCode == 109 || e.charCode == 77){
+            cmdWYSIWYG(id, 'insertOrderedList', '');
+            cancelkeypress = true;
+        }
+    }
+
+    // detect keyup, keydown
+    if(e.type == 'keydown'){
+        if(e.ctrlKey)ctrlKeyIsPressed = true;
+        if(e.altKey)altKeyIsPressed = true;
+        return;
+    }
+
+    if(e.type == 'keyup'){
+        if(!e.ctrlKey)ctrlKeyIsPressed = false;
+        if(!e.altKey)altKeyIsPressed = false;
+        return;
+    }
 
 
-	WYSIWYGTextareaReload(id);
-
-	//e.cancelBubble is supported by IE - this will kill the bubbling process.
-	if(!notcancelkey)
-	{
-		e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
-		e.preventDefault();
-
-		// focus on
-		// getIFrameDocument('iframe_'+id).focus();
+    WYSIWYGTextareaReload(id);
 
 
-		return false;
-	}
-
-	return true;
-
+    // cancel event propagation
+    if(cancelkeypress){
+        e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+        e.preventDefault();
+        return false;
+    }
 
 }
+
+
+
+
 
 function refreshWYSIWYG(id)
 {
@@ -308,20 +333,46 @@ function initWYSIWYGIFrame(id)
 
 		// detect event in
 		obj = document.getElementById('iframe_'+id).contentWindow;
-		if(obj.addEventListener)
-		{
-			obj.addEventListener('focus', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEventFocus(id, e);}, false);
-			obj.addEventListener('keypress', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEvent(id, e, true);}, false);
-			obj.addEventListener('mousedown', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEvent(id, e, false);}, false);
-		}
-		else
-		{
-			obj.attachEvent('focus', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEventFocus(id, e);}, false);
-			obj.attachEvent('keypress', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEvent(id, e, true);}, false);
-			obj.attachEvent('mousedown', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEvent(id, e, false);}, false);
-		}
+		obj.addEventListener('focus', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEventFocus(id, e);}, false);
+		obj.addEventListener('keyup', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEvent(id, e, true);}, false);
+		obj.addEventListener('keydown', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEvent(id, e, true);}, false);
+        obj.addEventListener('mousedown', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEvent(id, e, false);}, false);
+        obj.addEventListener('keypress', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEvent(id, e, true);}, false);
 
-		// parse nuts tags
+        // add special shortcut catcher for Chrome
+        // tools: http://jonathan.tang.name/files/js_keycode/test_keycode.html
+        if(BrowserDetect.browser == 'Chrome'){
+
+            // Ctrl + S
+            shortcut.add('Ctrl+S', function(){ cmdWYSIWYG(id, 'strikeThrough', '');}, {'target':getIFrameDocument('iframe_'+id)});
+
+            // Crtl + L
+            shortcut.add('Ctrl+L', function(){cmdWYSIWYG(id, 'insertUnorderedList', '');}, {'target':getIFrameDocument('iframe_'+id)});
+
+            // Crtl + M
+            shortcut.add('Ctrl+M', function(){cmdWYSIWYG(id, 'insertOrderedList', '');}, {'target':getIFrameDocument('iframe_'+id)});
+
+            // Crtl + Q
+            shortcut.add('Ctrl+Q', function(){cmdWYSIWYG(id, 'formatBlock', 'BLOCKQUOTE');}, {'target':getIFrameDocument('iframe_'+id)});
+
+            // Crtl + 0
+            shortcut.add('Ctrl+0', function(){cmdWYSIWYG(id, 'removeFormat', ''); cmdWYSIWYG(id, 'formatBlock', 'P');}, {'target':getIFrameDocument('iframe_'+id)});
+
+            // Crtl + 1
+            shortcut.add('Ctrl+1', function(){cmdWYSIWYG(id, 'formatBlock', 'H1');}, {'target':getIFrameDocument('iframe_'+id)});
+
+            // Crtl + 2
+            shortcut.add('Ctrl+2', function(){cmdWYSIWYG(id, 'formatBlock', 'H2');}, {'target':getIFrameDocument('iframe_'+id)});
+
+            // Crtl + 3
+            shortcut.add('Ctrl+3', function(){cmdWYSIWYG(id, 'formatBlock', 'H3');}, {'target':getIFrameDocument('iframe_'+id)});
+
+        }
+
+
+
+
+        // parse nuts tags
 		getIFrameDocument('iframe_'+id).designMode = 'on';
 		getIFrameDocument('iframe_'+id).body.innerHTML = $('textarea#'+id).val();
 
@@ -342,8 +393,8 @@ function initWYSIWYGIFrame(id)
 	}, 500);
 
 	// $('#iframe_'+objID).show();
-
 }
+
 
 function WYSIWYGTextareaReload(id)
 {
@@ -366,6 +417,9 @@ function WYSIWYGIFrameReload(id)
 
 function openWYSIWYG(objID)
 {
+
+    WYSIWYGTextareaReload(id); // force before open
+
 	t = time();
 
 	uri = '../library/js/tiny_mce.php?theme='+current_theme+'&objID='+objID+'&lang='+nutsCurrentPageLang+'&t='+t;
@@ -373,7 +427,10 @@ function openWYSIWYG(objID)
 	windowHeight = 768;
 	opts = '';
 
-	popupModal(uri, 'RichEditor', windowWidth, windowHeight, opts);
+    setTimeout(function(){
+        popupModal(uri, 'RichEditor', windowWidth, windowHeight, opts);
+    }, 1000);
+
 
 }
 
@@ -472,7 +529,7 @@ function cmdWYSIWYG(id, action, data)
         }
     }
 
-
+    getIFrameDocument('iframe_'+id).execCommand('styleWithCSS', null, false);// do not use css
     getIFrameDocument('iframe_'+id).execCommand(action, false, data);
     getIFrameWindow('iframe_'+id).focus();
 }
