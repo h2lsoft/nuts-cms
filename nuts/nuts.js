@@ -81,7 +81,6 @@ function system_goto(uri, target)
 	// $.get(uri, {}, function (d) {
     $.ajax({
               url: uri,
-              cache:true,
               type: 'GET',
               async: force_ajax_async,
               success:  function (d){
