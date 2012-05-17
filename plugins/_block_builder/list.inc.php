@@ -14,6 +14,7 @@ foreach($group_blocks as $gb)
 // search engine
 $plugin->listSearchAddFieldSelect('GroupName', $lang_msg[1], $select_blocks);
 $plugin->listSearchAddFieldSelectSql('SubGroupName', $lang_msg[10]);
+$plugin->listSearchAddFieldTextAjaxAutoComplete('Name', $lang_msg[2]);
 $plugin->listSearchAddFieldText('Text', $lang_msg[3], 'text');
 $plugin->listSearchAddFieldBoolean('Visible', $lang_msg[4]);
 
@@ -38,7 +39,7 @@ function hookData($row)
 	$row['Code'] = "<pre>{@NUTS	TYPE='BLOCK'	NAME='{$row['Name']}'}</pre>";
 
 	if(empty($row['Preview']))$row['Preview'] = '/nuts/img/no-preview.png';
-	$row['Preview'] = '<img src="'.$row['Preview'].'" class="image_preview" />';
+	$row['Preview'] = '<img src="'.$row['Preview'].'" class="image_preview" style="height:65px;" />';
 	
 
 	return $row;
