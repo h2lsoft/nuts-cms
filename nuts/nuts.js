@@ -1277,6 +1277,9 @@ function listSearchUserView(plugin_name){
 
 function listSearchSave(plugin_name){
 
+    $('#list_container .list_searches_menu').hide();
+
+
     // no checkbox checked
     if(!$('#search_form input[type=checkbox]:checked').length)
     {
