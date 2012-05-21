@@ -632,6 +632,8 @@ function email($email)
  * @param string $msg
  * @param array $data array foreach replacement
  * @param string $email mail address
+ *
+ * @return boolean success
  */
 function nutsSendEmail($msg, $data, $email)
 {
@@ -664,7 +666,11 @@ User IP: ".$nuts->getIP();
 	// $body = utf8_decode($body);
 
 	$subject = html_entity_decode($subject);
-	mail($email, $subject, $body, $headers);
+	if(!mail($email, $subject, $body, $headers))
+        return false;
+
+    return true;
+
 }
 
 /**
