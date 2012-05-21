@@ -103,8 +103,14 @@ if($_POST)
 			if($nuts->dbNumRows() == 1)
 			{
 				$row = $nuts->dbFetch();
-				nutsSendEmail($nuts_lang_msg[48], $row, $_POST['Email']);
-				nutsTrace('_system', 'lost_password');
+                nutsTrace('_system', 'lost_password');
+                if(!nutsSendEmail($nuts_lang_msg[48], $row, $_POST['Email']))
+                {
+                    $phperror = error_get_last();
+                    $phperror = $phperror['message'];
+                    die("error_mail;$phperror");
+                }
+
 				die('ok');
 			}
 			else

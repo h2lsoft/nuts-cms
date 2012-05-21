@@ -373,7 +373,7 @@ input[type=file] {width: 420px;}
 #login_reflection {background-image: url(../img/login_reflection.png); background-position: top center; background-repeat: no-repeat; height: 70px; width: 429px; text-align: center; margin-left:auto; margin-right:auto;}
 #ip_current {color: #aaa; text-align: left; margin-left: auto; margin-right: auto; font-size: 10px; padding: 5px; padding-left: 15px; padding-top: 0;}
 
-#lp_error {width:485px; display:none; font-weight:bold; color:red; padding:10px; background-color:#FFE1FF; border:1px dashed red; margin-bottom:15px; margin-top:5px;}
+#lp_error, #lp_error_mail {width:485px; display:none; font-weight:bold; color:red; padding:10px; background-color:#FFE1FF; border:1px dashed red; margin-bottom:15px; margin-top:5px;}
 #lp_ok {width:485px; display:none; font-weight:bold; color:#009900; padding:10px; background-color:#DAF4D9; border:1px dashed #009900; margin-bottom:15px;}
 #former_lp label {width: 150px; padding-left: 40px; padding-right: 20px; text-align: right;}
 #former_lp p {}
@@ -887,11 +887,14 @@ div#console a {color: #00AAFF; color: #00AAFF;}
 .WYSIWYG_toolbar a:hover {color:#000; text-decoration: none;}
 .WYSIWYG_toolbar a {outline: 0;}
 
-
 .WYSIWYG_submenu {position: absolute; z-index: 5; width: 140px; background: white; border: 1px solid #ccc; padding: 5px 10px; line-height: 20px; display: none; }
 .WYSIWYG_submenu a {color:#666;}
 .WYSIWYG_submenu a:hover {color:#000; text-decoration: none;}
 
+.WYSIWYG_toolbar select {border:1px solid #ccc; width: 65px; }
+.WYSIWYG_toolbar select option {padding-left: 15px;}
+.WYSIWYG_toolbar select option.title {padding-left:5px; border: 1px solid #ccc; font-weight: bold; background-color: #e5e5e5;}
+.WYSIWYG_toolbar select:focus {box-shadow: none;}
 
 
 /** richeditor_layer **/

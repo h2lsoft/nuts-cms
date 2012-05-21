@@ -171,6 +171,7 @@
 <div id="form_window_lp">
 
 	<div id="lp_error"><img src="img/icon-error.gif" align="absmiddle" /> {$nuts_lang_msg[46]}</div>
+	<div id="lp_error_mail"><img src="img/icon-error.gif" align="absmiddle" /></div>
 	<div id="lp_ok"><img src="img/icon-accept.gif" align="absmiddle" /> {$nuts_lang_msg[47]}</div>
 
 	<form id="former_lp" name="former_lp" method="post">
@@ -204,7 +205,7 @@ function lostPasswordInit()
 function lostPassword()
 {
 	// reset fields !
-	$('#lp_error, #lp_ok').hide();
+    $('#lp_error, #lp_error_mail, #lp_ok').hide();
 	$('#former_lp').show();
 
 	$('#Email').val('');
@@ -236,6 +237,8 @@ function showRequest2(formData, jqForm, options)
 	var queryString = $.param(formData);
 	$('#btn_submit_lp').attr('value', "{$nuts_lang_msg[56]}");
 	$('#btn_submit_lp').attr("disabled", true);
+
+    $('#lp_error, #lp_error_mail, #lp_ok').hide();
 	return true;
 }
 
@@ -244,7 +247,6 @@ function showResponse2(responseText, statusText)
 	resp = responseText;
 	resp = jQuery.trim(resp);
 
-	$('#lp_error, #lp_ok').hide();
 	$('#btn_submit_lp').attr('value', "{$nuts_lang_msg[56]}");
  	$('#btn_submit_lp').removeAttr("disabled");
 
@@ -257,8 +259,17 @@ function showResponse2(responseText, statusText)
 				   .css("margin-top", '20px')
 				   .slideDown('normal');
 	}
-	else
-		$('#lp_error').slideDown('normal');
+	else if(resp.indexOf('error_mail;') == 0)
+    {
+        msg = str_replace('error_mail;', '', resp);
+
+        $('#lp_error_mail').html(msg);
+        $('#lp_error_mail').slideDown('normal');
+    }
+    else
+    {
+        $('#lp_error').slideDown('normal');
+    }
 }
 
 // bind form using 'ajaxForm'
