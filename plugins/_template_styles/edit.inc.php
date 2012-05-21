@@ -20,8 +20,17 @@ if($_POST)
 	if($_POST['f'] == 'RTE')
 	{
 		$rte_contents = $nuts->extractStr($css_contents, $rte_start, $rte_end, true);
-		$rte_contents_replace = $rte_start.CR.trim($_POST['Configuration']).CR.$rte_end.CR.CR;
-		$css_contents = str_replace($rte_contents, $rte_contents_replace, $css_contents);
+        if(empty($rte_contents)) // no rte tags found
+        {
+            $rte_contents_replace = $rte_start.CR.trim($_POST['Configuration']).CR.$rte_end.CR.CR;
+            $css_contents = $rte_contents_replace.$css_contents;
+        }
+        else
+        {
+            $rte_contents_replace = $rte_start.CR.trim($_POST['Configuration']).CR.$rte_end.CR.CR;
+            $css_contents = str_replace($rte_contents, $rte_contents_replace, $css_contents);
+        }
+
 	}
 	else
 	{
