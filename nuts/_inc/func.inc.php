@@ -666,7 +666,7 @@ User IP: ".$nuts->getIP();
 	// $body = utf8_decode($body);
 
 	$subject = html_entity_decode($subject);
-	if(!mail($email, $subject, $body, $headers))
+	if(!@mail($email, $subject, $body, $headers))
         return false;
 
     return true;
