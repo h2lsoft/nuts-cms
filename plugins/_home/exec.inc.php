@@ -53,9 +53,15 @@ foreach($plugins_allowed as $plugin_allowed)
 
 if(count($notifications) > 0)
 {
-    $tmp = "<script>\n";
+    $tmp = <<<EOF
+<script>
+setTimeout(function(){
+EOF;
+
     foreach($notifications as $notification => $count)
-        $tmp .= "pluginAddNotificationCounter('$notification', '$count');\n";
+        $tmp .= "   pluginAddNotificationCounter('$notification', '$count');\n";
+
+    $tmp .= "}, 800);\n";
     $tmp .= "</script>\n";
 
     $menu .= $tmp;
