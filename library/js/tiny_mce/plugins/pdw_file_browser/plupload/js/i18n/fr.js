@@ -21,5 +21,22 @@ plupload.addI18n({
     'Stop Upload': 'Arrêter les envois.',
     'Add Files': 'Ajouter des fichiers',
     'Start Upload': 'Démarrer les envois.',
-    '%d files queued': '%d fichiers en attente.'
+    '%d files queued': '%d fichiers en attente.',
+
+
+
+    'File: %s': 'Echec: %s',
+    'Close': 'Fermer',
+    'Using runtime: ': 'Utilise le runtime: ',
+    'File: %f, size: %s, max file size: %m': 'Fichier: %f, taille: %s, taille maximum de fichier: %m',
+    'Upload element accepts only %d file(s) at a time. Extra files were stripped.': 'Upload accepte seulement %d fichier(s) à la fois. Les fichiers en plus vont être coupés.',
+    'Upload URL might be wrong or doesn\'t exist': 'L\'URL d\'upload doit être erronnée ou n\'existe pas',
+    'Error: File too large: ': 'Erreur: Fichier trop lourd: ',
+    'Error: Invalid file extension: ': 'Erreur: extension de fichier non valide',
+    'File count error.': 'Erreur du nombre de fichiers'
+
+
+
+
+
 });
