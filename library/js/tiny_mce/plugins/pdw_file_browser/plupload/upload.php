@@ -66,7 +66,8 @@ if(!in_array(@$file_parts['extension'], $filetypes_exts))
 
 
 // is uploaded file
-$file_name = utf8_decode($_FILES['file']['name']);
+// $file_name = utf8_decode($_FILES['file']['name']);
+$file_name = $_FILES['file']['name'];
 $file_name = trim($file_name);
 $file_name = str_replace(' ', '-', $file_name);
 $file_name = strtolower($file_name);
