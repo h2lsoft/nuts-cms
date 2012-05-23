@@ -1,51 +1,15 @@
 <?php
-/*
-PDW File Browser v1.3 beta
-Date: October 19, 2010
-Url: http://www.neele.name
-
-Copyright (c) 2010 Guido Neele
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-*/
-ob_start('ob_gzhandler');
-
-define('MINIFY_CACHE_DIR', dirname(__FILE__) . '/cache');
 
 require_once('functions.php');
-require_once('minify.php');
 
 if(!empty($_COOKIE["pdw-view"])):
-	$viewLayout = $_COOKIE["pdw-view"];
+    $viewLayout = $_COOKIE["pdw-view"];
 elseif(isset($_REQUEST['pdw-view'])):
 	$viewLayout = $_REQUEST['pdw-view'];
 endif;
 
-if(!empty($_REQUEST['skin'])) {
-    $skin = $_REQUEST['skin'];
-} elseif(isset($_GET["skin"])){
-	$skin = $_GET["skin"];
-} elseif (isset($defaultSkin)) {
-    $skin = $defaultSkin;
-} else {
-    $skin = '';
-}
+$skin = $defaultSkin;
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -76,56 +40,41 @@ if(!empty($_REQUEST['skin'])) {
 
 //]]>
 </script>
+
+<!-- script -->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.plugins.js"></script>
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript" src="plupload/js/jquery.plupload.queue/jquery.plupload.queue.js"></script>
+
 <?php
-// MINIFY JS and CSS
-// Create new Minify objects.
-$minifyCSS = new Minify(TYPE_CSS);
-$minifyJS = new Minify(TYPE_JS);
+    if(file_exists("plupload/js/i18n/{$_SESSION['Language']}.js"))
+        echo '<script type="text/javascript" src="plupload/js/i18n/'.$_SESSION['Language'].'.js"></script>'."\n";
 
-// Specify the files to be minified.
-$cssFiles = array('css/mediabrowser.css');
+    // tinymce
+    if($editor == "tinymce")
+        echo '<script type="text/javascript" src="js/tiny_mce_popup.js"></script>'."\n";
 
-// Only load skin if $_GET["skin"] or $defaultSkin is set.
-if ($skin != ""):
-	$cssFiles[count($cssFiles)] = 'skins/'.$skin.'/skin.css';
-endif;
+   // js mediabrowser
+    echo '<script type="text/javascript" src="js/jquery.mediabrowser.js?t='.time().'"></script>'."\n";
 
-$minifyCSS->addFile($cssFiles);
-
-$jsFiles = array(
-	'js/jquery.js',
-    'js/jquery.plugins.js'
-	,'plupload/js/plupload.full.js'
-	,'plupload/js/jquery.plupload.queue/jquery.plupload.queue.js'
-);
-
-// language
-if(file_exists("plupload/js/i18n/{$_SESSION['Language']}.js"))
-	$jsFiles[] = "plupload/js/i18n/{$_SESSION['Language']}.js";
-
-//If editor is TinyMCE then add javascript file
-if ($editor == "tinymce"):
-    $jsFiles[count($jsFiles)] = 'js/tiny_mce_popup.js';
-endif;
-
-$minifyJS->addFile($jsFiles);
-
-// JAVASCRIPT
-echo '<script type="text/javascript">';
-echo '//<![CDATA[';
-echo $minifyJS->combine();
-echo '//]]>';
-echo '</script>';
-
-echo '<script type="text/javascript" src="js/jquery.mediabrowser.js?t='.time().'"></script>';
-
-// CSS
-echo '<style type="text/css">';
-echo $minifyCSS->combine();
-echo '</style>';
 ?>
 
+<script type="text/javascript" src="/nuts/nuts.js"></script>
+<script type="text/javascript" src="/library/js/php.js"></script>
+<script type="text/javascript" src="js/pixlr.js"></script>
+<script type="text/javascript">pixlr.settings.credentials = false;</script>
+
+<!-- /script -->
+
+
+<!-- css -->
+<link rel="stylesheet" href="css/mediabrowser.css" />
+<link rel="stylesheet" href="skins/mountainview/skin.css" />
 <link rel="stylesheet" href="plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css" />
+<!-- /css -->
+
+
 <style type="text/css">
 .plupload_scroll .plupload_filelist {height: 350px;}
 li.plupload_droptext {line-height: 280px;}
@@ -139,7 +88,6 @@ div#files ul#content li a span.filesize {width: 215px;}
 
 /* details sorter */
 #files #details th {
-
         background-repeat: no-repeat!important;
         background-position: right 5px!important;
         padding-right: 25px!important;
@@ -152,20 +100,11 @@ div#files ul#content li a span.filesize {width: 215px;}
 }
 
 #files #details th.selected {color:black; background-color: #E3E9FF;}
-
 #files #details th.selected_up {background-image: url(/library/php/TPLN/img/order_asc_actived.gif)!important;}
 #files #details th.selected_down {background-image: url(/library/php/TPLN/img/order_desc_actived.gif)!important;}
-
-
 </style>
 
-<script type="text/javascript" src="/nuts/nuts.js"></script>
-<script type="text/javascript" src="/library/js/php.js"></script>
 
-<script type="text/javascript" src="js/pixlr.js"></script>
-<script type="text/javascript">
-    pixlr.settings.credentials = false;
-</script>
 
 <script type="text/javascript">
 //<![CDATA[
@@ -480,7 +419,7 @@ $(document).ready(function() {
 		// PreInit events, bound before any internal events
 		preinit : {
 			 UploadFile: function(up, file) {
-				 up.settings.multipart_params = {path: $("#addressbar ol li:last-child a").attr('href')};
+				 up.settings.multipart_params = {path: $("#addressbar ol li:last-child a").attr('href'), lang: nutsUserLang};
 			 }
 		},
 
