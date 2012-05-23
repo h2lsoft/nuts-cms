@@ -400,7 +400,7 @@ div#files table#details tbody tr.selected td.end {background-position:right -20p
 div#file-specs {position:relative; height:150px; background:#F1F5FB url(../img/details_back_top.gif) top left repeat-x;}
 div#file-specs #info div { position:absolute; width:400px; height:20px; left: 165px; color:#1E395B;}
 div#file-specs #info div span { display: inline-block; width: 120px; text-align: right; color: #5A6779;}
-div#file-specs #info div.filename { top: 10px;}
+div#file-specs #info div.filename { top: 10px; font-weight: bold;}
 div#file-specs #info div.filetype { top: 28px; color: #5A6779;}
 div#file-specs #info div.filemodified { top:46px;}
 div#file-specs #info div.filesize {top:64px;}
