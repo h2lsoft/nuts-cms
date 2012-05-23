@@ -462,7 +462,10 @@ table#list {
 
 table#list caption {text-align:left; color:#666666;}
 table#list th {background-color:#ccc; background-image:url(th_bkg.png); text-align:left; /*font-size:14px;*/ font-weight:bold; padding:5px; white-space:nowrap;}
-table#list th:hover {border-bottom:2px solid #FF9900; padding-bottom:3px; color:#666;}
+table#list th.ordered {-webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; cursor: pointer;}
+table#list th.ordered:hover  {border-bottom:2px solid #FF9900; padding-bottom:3px; color:#666; background-image: none; background-color: #e5e5e5;}
+
+
 table#list td {background-color:#fff; }
 
 table#list tfoot td {

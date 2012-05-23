@@ -2,6 +2,9 @@
 $("#list th a").each(
 	function(){
 		$(this).attr('href', "javascript:system_goto('"+$(this).attr('href')+"', 'list');");
+        $(this).parents('th').addClass('ordered').click(function(){
+            document.location.href = $(this).children('a').attr('href');
+        });
 	}
 );
 
