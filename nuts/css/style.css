@@ -1445,13 +1445,13 @@ div.calendar { position: relative; }
 	color: black;
 
 	min-width: 450px;
-	height: 80px;
-	line-height: 80px;
+	height: 60px;
+	line-height: 60px;
 
 	padding-left: 20px;
 	padding-right: 20px;
 
-	font-size: 14px;
+	font-size: 13px;
 
 	top: 20px;
 	right: 20px;
