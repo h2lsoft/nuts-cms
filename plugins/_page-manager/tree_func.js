@@ -390,9 +390,6 @@ function editPage(nodeID, selectTabs)
 				}
 			}
 
-
-
-
 			// assign navigation
 			$('#page_navigation_urls').html(data['NavigationBar']);
 
@@ -418,7 +415,7 @@ function editPage(nodeID, selectTabs)
 			$('#page_form').show();
 			$('#page_options_bottom').show();
 
-			initWYSIWYGIFrame('Content');
+			// initWYSIWYGIFrame('Content');
 
 			// update html editor
 			// document.getElementById('_WYSIWYG_Content').click();
@@ -486,6 +483,10 @@ function editPage(nodeID, selectTabs)
 
 			// assign default spellchecker language
 			nutsCurrentPageLang = $('#former #Language').val();
+
+
+
+
   		}
 	);
 }
