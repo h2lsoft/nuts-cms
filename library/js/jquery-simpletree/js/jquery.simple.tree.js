@@ -115,6 +115,7 @@ $.fn.simpleTree = function(opt){
 						contentType:'html',
 						cache:false,
 						success: function(responce){
+
 							node.removeAttr('class');
 							node.html(responce);
 							$.extend(node,{url:url});
@@ -193,6 +194,8 @@ $.fn.simpleTree = function(opt){
 				}
 				TREE.eventDestroy();
 			});
+
+
 			$('li', obj).each(function(i){
 				var className = this.className;
 				var open = false;
@@ -444,6 +447,18 @@ $.fn.simpleTree = function(opt){
 				callback(dragNode_destination);
 			}
 		};
+
+        // hacks LH forcing refreshing ajax node
+        TREE.deleteAjaxCache = function (nodeID){
+            tmp = new Array();
+            for(i=0; i < ajaxCache.length; i++){
+
+                if(ajaxCache[i] != nodeID)
+                    tmp[tmp.length] = ajaxCache[i];
+            }
+
+            ajaxCache = tmp;
+        };
 
 		TREE.init = function(obj)
 		{
