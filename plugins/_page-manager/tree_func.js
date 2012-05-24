@@ -60,8 +60,16 @@ function treeView()
 			//alert('R-click: '+$('span:first',node).text());
 			var offs = $(node).offset({scroll:false});
 
-			$('#page_tree_context_pID').html('Page ID #'+node.attr('id'));
 
+            // hide folder menu options
+            nodeID = node.attr('id');
+            if(!$('.simpleTree #'+nodeID+'[class~=folder]').length)
+                $('#page_tree_context .folder').hide();
+            else
+                $('#page_tree_context .folder').show();
+
+
+			$('#page_tree_context_pID').html('Page ID #'+node.attr('id'));
 			$('#page_tree_context').click( function() {$(this).hide();} );
 
 			$('#page_tree_context').css( {'position':'absolute',
@@ -73,6 +81,15 @@ function treeView()
 		//animate:true
 		docToFolderConvert:true
 	});
+
+    // delete key detected
+    shortcut.add('Delete', function(){
+
+
+
+    },{'target':document});
+
+
 }
 
 function hideContext()
@@ -902,6 +919,26 @@ function directID()
 
 }
 
+
+function setTreeEdit(nodeID){
+
+    // verify parent exists for directID mode
+    if(!$('.simpleTree #'+nodeID).parents('li').length){
+
+        $('#dID').val(nodeID);
+        directID();
+        return;
+    }
+
+
+
+    $('.simpleTree span.active').removeClass('active').addClass('text');
+    $('.simpleTree #'+nodeID+' > span').eq(0).removeClass('text').addClass('active');
+    editPage(0);
+}
+
+
+
 function getTreeNodeText()
 {
 	nodeText = simpleTreeCollection.get(0).getSelected().text();
@@ -934,3 +971,36 @@ function updatePublishingDate()
 
 
 }
+
+
+
+function refreshFolderNode(){
+
+    nodeID = simpleTreeCollection.get(0).getSelected().attr('id');
+    $('.simpleTree #'+nodeID+' ul').remove();
+
+    uri = "index.php?mod=_page-manager&do=exec&_action=reload_page&ID="+nodeID;
+    uri += '&language='+$('#page_options #Language').val();
+    uri += '&zoneID='+$('#page_options #ZoneID').val();
+    uri += '&state=';
+
+    str = '<ul class="ajax">';
+    str += '    <li class="line">&nbsp;</li>';
+    str += '    <li class="doc-last">{url:'+uri+'}</li>';
+    str += '    <li class="line-last"></li>';
+    str += '</ul>';
+
+
+    $('.simpleTree #'+nodeID+' span').after(str);
+    simpleTreeCollection.get(0).deleteAjaxCache(nodeID);
+
+    $('.simpleTree #'+nodeID+' .trigger').click();
+
+}
+
+
+
+
+
+
+

@@ -596,7 +596,7 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'data_form')
 					$tmp_str = trim($tmp_str).' <img src="img/icon-tag-moderator.png" align="absmiddle" />';
 
 				// link creator
-				$tmp_str = '<a href="javascript:;" onclick="$(\'#dID\').val('.$tmp_rec['ID'].'); reloadPage();">'.trim($tmp_str).' (#'.$tmp_rec['ID'].')'.'</a>';
+				$tmp_str = '<a href="javascript:setTreeEdit('.$tmp_rec['ID'].');">'.trim($tmp_str).' (#'.$tmp_rec['ID'].')'.'</a>';
 
 				$navbar_arr[] = $navbar_separator.' '.trim($tmp_str);
 				$tmp_parentID = (int)$tmp_rec['NutsPageID'];

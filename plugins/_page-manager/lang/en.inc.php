@@ -130,6 +130,6 @@ $lang_msg[98] = "Error: your name can not be empty";
 $lang_msg[99] = "Page name";
 
 
-
+$lang_msg[100] = "Refresh folder";
 
 ?>

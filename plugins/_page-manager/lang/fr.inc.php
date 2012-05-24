@@ -125,6 +125,7 @@ $lang_msg[97] = "Merci de renseigner le nom de votre page";
 $lang_msg[98] = "Erreur: le nom de votre page ne peux être vide";
 
 $lang_msg[99] = "Nom";
+$lang_msg[100] = "Rafraichîr le dossier";
 
 
 ?>
