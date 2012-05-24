@@ -219,8 +219,31 @@ function WYSIWYGEvent(id, e, shortcut){
 
     cancelkeypress = false;
 
+
+
+    // detect keyup, keydown
+    if(e.type == 'keydown'){
+        if(e.ctrlKey)ctrlKeyIsPressed = true;
+        if(e.altKey)altKeyIsPressed = true;
+        return;
+    }
+
+    if(e.type == 'keyup'){
+        if(!e.ctrlKey)ctrlKeyIsPressed = false;
+        if(!e.altKey)altKeyIsPressed = false;
+        return;
+    }
+
+
+
     // keypress
     if(e.type == 'keypress' && ctrlKeyIsPressed){
+
+        if(secondPassfunction){
+            secondPassfunction = false;
+            return;
+        }
+
 
         // CTRL + ALT + E, e, €
         if(altKeyIsPressed && (e.charCode == 69 || e.charCode == 101 || e.charCode == 8364)){
@@ -297,18 +320,6 @@ function WYSIWYGEvent(id, e, shortcut){
         }
     }
 
-    // detect keyup, keydown
-    if(e.type == 'keydown'){
-        if(e.ctrlKey)ctrlKeyIsPressed = true;
-        if(e.altKey)altKeyIsPressed = true;
-        return;
-    }
-
-    if(e.type == 'keyup'){
-        if(!e.ctrlKey)ctrlKeyIsPressed = false;
-        if(!e.altKey)altKeyIsPressed = false;
-        return;
-    }
 
 
     WYSIWYGTextareaReload(id);
@@ -316,6 +327,7 @@ function WYSIWYGEvent(id, e, shortcut){
 
     // cancel event propagation
     if(cancelkeypress){
+        secondPassfunction = true;
         e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
         e.preventDefault();
         return false;
