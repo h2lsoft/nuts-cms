@@ -57,46 +57,67 @@ function initWYSIWYGOption()
         msg += 'Ctrl + 1: H1\\n';
 		msg += 'Ctrl + 2: H2\\n';
 		msg += 'Ctrl + 3: H3\\n';
-        msg += 'Ctrl + 4: Paragraphe\\n';
+        msg += 'Ctrl + 4: Paragraph\\n';
         msg += menu_sep;
 		msg += 'Ctrl + L: List\\n';
         msg += 'Ctrl + M: Ordered List\\n';
         msg += menu_sep;
-        msg += 'Ctrl + Q: blockquote\\n';
+        msg += 'Ctrl + Q: Blockquote\\n';
         msg += menu_sep;
 		msg += 'Ctrl + Z: Undo\\n';
 		msg += 'Ctrl + Y: Redo\\n';
 
-		str += '<img class="rte_button" onmouseover="$(body).css(\'cursor\', \'help\');" onmouseout="$(body).css(\'cursor\', \'default\');" title="Help" src="img/icon-help.png" align="absmiddle"  onclick="alert(\''+msg+'\')" />';
+		str += '<img class="rte_button" onmouseover="$(body).css(\'cursor\', \'help\');" onmouseout="$(body).css(\'cursor\', \'default\');" title="Help" src="img/rte/help.png" align="absmiddle"  onclick="alert(\''+msg+'\')" />';
+        str += sep;
 
 		// repaint
-        str += sep;
         str += '<img  class="rte_button" title="Repaint" onclick="javascript:refreshWYSIWYG(\''+id+'\');" src="img/icon-refresh.png" align="absmiddle" />';
 
 
         // simple rte
         str += sep;
-		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'bold\');" src="img/rte/b.gif" align="absmiddle" />';
-		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'italic\');" src="img/rte/i.gif" align="absmiddle" />';
-		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'underline\');" src="img/rte/u.gif" align="absmiddle" />';
-		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'strikeThrough\');" src="img/rte/strike.png" align="absmiddle" />';
+        str += ' <img class="rte_button" onclick="javascript:WYSIWYGPaste(\''+id+'\');" src="img/rte/paste.png" align="absmiddle" /> ';
         str += sep;
-        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertUnorderedList\');" src="img/rte/ul.gif" align="absmiddle" />';
-        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertOrderedList\');" src="img/rte/ol.gif" align="absmiddle" />';
+
+		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'bold\');" src="img/rte/B.png" align="absmiddle" /> ';
+		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'italic\');" src="img/rte/I.png" align="absmiddle" /> ';
+		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'underline\');" src="img/rte/U.png" align="absmiddle" /> ';
+		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'strikeThrough\');" src="img/rte/S.png" align="absmiddle" /> ';
         str += sep;
-        str += '<img class="rte_button" id="'+id+'_WYSIWYG_submenu_url_parent" onclick="javascript:WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');" src="img/rte/link.gif" align="absmiddle" />';
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertUnorderedList\');" src="img/rte/UL.png" align="absmiddle" /> ';
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertOrderedList\');" src="img/rte/OL.png" align="absmiddle" /> ';
+        str += sep;
+
+
+        select = '<select onchange="WYSIWYGFormat(\''+id+'\');">';
+        select += ' <option class="title">Format</option>';
+        select += ' <option value="H1">Heading 1</option>';
+        select += ' <option value="H2">Heading 2</option>';
+        select += ' <option value="H3">Heading 3</option>';
+        select += ' <option value="P">Paragraph</option>';
+        select += ' <option value="BLOCKQUOTE">Blockquote</option>';
+        select += '</select>';
+
+        str += select;
+        str += ' <img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'removeFormat\');" src="img/rte/X.png" align="absmiddle" /> ';
+
+        str += sep;
+
+        str += ' <img class="rte_button" id="'+id+'_WYSIWYG_submenu_url_parent" onclick="javascript:WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');" src="img/rte/A.png" align="absmiddle" /> ';
 
         // add sub menu
         lbl_library = 'from library';
         lbl_file = 'File';
         lbl_custom = 'Custom...';
         lbl_preview = 'Preview';
+        lbl_browse = 'Browse';
 
         if(nutsUserLang  == 'fr'){
             lbl_library = 'de la bibliothèque';
             lbl_file = 'Fichier';
             lbl_custom = 'Personnalisée...';
             lbl_preview = 'Prévisualiser';
+            lbl_browse = 'Parcourir...';
         }
 
         str += '<div id="'+id+'_WYSIWYG_submenu_url" class="WYSIWYG_submenu">';
@@ -108,32 +129,31 @@ function initWYSIWYGOption()
         str += '</div>';
 
 
-        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'unlink\');" src="img/rte/unlink.gif" align="absmiddle" />';
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'unlink\');" src="img/rte/Ax.png" align="absmiddle" /> ';
         str += sep;
 
 		// gallery
-		str += ' <img class="rte_button" title="'+nuts_lang_msg_72+'" src="img/icon-preview-mini.gif" align="absmiddle" onclick="popupModal(\'index.php?mod=_gallery&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
+        str += ' <img class="rte_button" src="/nuts/img/rte/browse.png" align="absmiddle" title="Images" onclick="imgBrowser(\'imgTag_'+id+'\', \'\');" />';
+		str += ' <img class="rte_button" style="width:16px;" title="'+nuts_lang_msg_72+'" src="/plugins/_gallery/icon.png" align="absmiddle" onclick="popupModal(\'index.php?mod=_gallery&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
 		str += ' <img class="rte_button" src="img/icon-media.png" align="absmiddle" title="'+nuts_lang_msg_73+'" onclick="popupModal(\'index.php?mod=_media&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
-		str += ' <img class="rte_button" src="/nuts/img/widget.png" title="Widgets" align="absmiddle" onclick="widgetsWindowOpen(\''+id+'\');" />';
+		str += ' <img class="rte_button" src="/nuts/img/widget.png" title="Widgets" align="absmiddle" onclick="widgetsWindowOpen(\''+id+'\');" /> ';
 
         // rte
         str += sep;
-        str += '<img src="img/icon-code_editor.png" align="absmiddle" />';
-        str += ' <a href="javascript:openWYSIWYG(\''+id+'\');" tabindex="0">Rich Editor</a>'
+        // str += '<img src="img/icon-code_editor.png" align="absmiddle" />';
+        // str += ' <a href="javascript:openWYSIWYG(\''+id+'\');" tabindex="0">Rich Editor</a>'
+        str += '<input type="button" class="button" value="Richeditor" onclick="openWYSIWYG(\''+id+'\');" tabindex="0" />';
         str += sep;
 
 
         // source
-        str += ' <input tabindex="-1" type="checkbox" id="iframe_radio_'+id+'" onclick="WYSIWYGToggleIt(\''+id+'\');" /> Source';
+        str += ' <input tabindex="-1" type="checkbox" id="iframe_radio_'+id+'" onclick="WYSIWYGToggleIt(\''+id+'\');" /><img style="cursor:pointer;" class="nohide" src="/nuts/img/rte/HTML.png" align="absmiddle" onclick="$(\'#iframe_radio_\'+\''+id+'\').click();" />';
 
 		str += '</div>';
 		str += '</p>';
 
 		// $('#'+id).before('<p><label>&nbsp;</label>'+str+'</p>');
 		$('textarea#'+id).parent('p:visible').before(str);
-
-
-
 
 	});
 }
@@ -157,6 +177,9 @@ function iframeContentProtector(id){
 
 function WYSIWYGToggleIt(id)
 {
+    objs = '#'+id+'_WYSIWYG_toolbar select, #'+id+'_WYSIWYG_toolbar input[type=button], #'+id+'_WYSIWYG_toolbar img, '+'#'+id+'_WYSIWYG_toolbar a,'+'#'+id+'_WYSIWYG_toolbar .rte_separator';
+    obj_source = '#'+id+'_WYSIWYG_toolbar .nohide';
+
     // WYSIWYG mode
     if(!$('#iframe_radio_'+id).is(':checked'))
 	{
@@ -166,7 +189,8 @@ function WYSIWYGToggleIt(id)
 		$('textarea#'+id).hide();
 		$('#iframe_'+id).show();
 
-        $('#'+id+'_WYSIWYG_toolbar img, '+'#'+id+'_WYSIWYG_toolbar a,'+'#'+id+'_WYSIWYG_toolbar .rte_separator').css('visibility', 'visible');
+        $(objs).css('visibility', 'visible');
+
 
 
 		WYSIWYGIFrameReload(id);
@@ -177,8 +201,11 @@ function WYSIWYGToggleIt(id)
 		$('#iframe_'+id).hide();
 		WYSIWYGTextareaReload(id);
 
-        $('#'+id+'_WYSIWYG_toolbar img, '+'#'+id+'_WYSIWYG_toolbar a,'+'#'+id+'_WYSIWYG_toolbar .rte_separator').css('visibility', 'hidden');
+        $(objs).css('visibility', 'hidden');
+
 	}
+
+    $(obj_source).css('visibility', 'visible');
 }
 
 var secondPassfunction = false; // prevent twice times function
@@ -309,8 +336,7 @@ function refreshWYSIWYG(id)
 	initWYSIWYGIFrame(id);
 }
 
-function initWYSIWYGIFrame(id)
-{
+function initWYSIWYGIFrame(id) {
 
 	// initialize preview frame
 	code_source_mode = false;
@@ -343,34 +369,28 @@ function initWYSIWYGIFrame(id)
         // tools: http://jonathan.tang.name/files/js_keycode/test_keycode.html
         if(BrowserDetect.browser == 'Chrome'){
 
-            // Ctrl + S
-            shortcut.add('Ctrl+S', function(){ cmdWYSIWYG(id, 'strikeThrough', '');}, {'target':getIFrameDocument('iframe_'+id)});
+            shortcut.remove("Ctrl+S");
+            shortcut.remove("Ctrl+L");
+            shortcut.remove("Ctrl+M");
+            shortcut.remove("Ctrl+Q");
+            shortcut.remove("Ctrl+0");
+            shortcut.remove("Ctrl+1");
+            shortcut.remove("Ctrl+2");
+            shortcut.remove("Ctrl+3");
 
-            // Crtl + L
-            shortcut.add('Ctrl+L', function(){cmdWYSIWYG(id, 'insertUnorderedList', '');}, {'target':getIFrameDocument('iframe_'+id)});
+            setTimeout( function() {
+                shortcut.add('Ctrl+S', function(){ cmdWYSIWYG(id, 'strikeThrough', '');}, {'target':getIFrameDocument('iframe_'+id)});
+                shortcut.add('Ctrl+L', function(){cmdWYSIWYG(id, 'insertUnorderedList', '');}, {'target':getIFrameDocument('iframe_'+id)});
+                shortcut.add('Ctrl+M', function(){cmdWYSIWYG(id, 'insertOrderedList', '');}, {'target':getIFrameDocument('iframe_'+id)});
+                shortcut.add('Ctrl+Q', function(){cmdWYSIWYG(id, 'formatBlock', 'BLOCKQUOTE');}, {'target':getIFrameDocument('iframe_'+id)});
+                shortcut.add('Ctrl+0', function(){cmdWYSIWYG(id, 'removeFormat', ''); cmdWYSIWYG(id, 'formatBlock', 'P');}, {'target':getIFrameDocument('iframe_'+id)});
+                shortcut.add('Ctrl+1', function(){cmdWYSIWYG(id, 'formatBlock', 'H1');}, {'target':getIFrameDocument('iframe_'+id)});
+                shortcut.add('Ctrl+2', function(){cmdWYSIWYG(id, 'formatBlock', 'H2');}, {'target':getIFrameDocument('iframe_'+id)});
+                shortcut.add('Ctrl+3', function(){cmdWYSIWYG(id, 'formatBlock', 'H3');}, {'target':getIFrameDocument('iframe_'+id)});
+            }, 500);
 
-            // Crtl + M
-            shortcut.add('Ctrl+M', function(){cmdWYSIWYG(id, 'insertOrderedList', '');}, {'target':getIFrameDocument('iframe_'+id)});
-
-            // Crtl + Q
-            shortcut.add('Ctrl+Q', function(){cmdWYSIWYG(id, 'formatBlock', 'BLOCKQUOTE');}, {'target':getIFrameDocument('iframe_'+id)});
-
-            // Crtl + 0
-            shortcut.add('Ctrl+0', function(){cmdWYSIWYG(id, 'removeFormat', ''); cmdWYSIWYG(id, 'formatBlock', 'P');}, {'target':getIFrameDocument('iframe_'+id)});
-
-            // Crtl + 1
-            shortcut.add('Ctrl+1', function(){cmdWYSIWYG(id, 'formatBlock', 'H1');}, {'target':getIFrameDocument('iframe_'+id)});
-
-            // Crtl + 2
-            shortcut.add('Ctrl+2', function(){cmdWYSIWYG(id, 'formatBlock', 'H2');}, {'target':getIFrameDocument('iframe_'+id)});
-
-            // Crtl + 3
-            shortcut.add('Ctrl+3', function(){cmdWYSIWYG(id, 'formatBlock', 'H3');}, {'target':getIFrameDocument('iframe_'+id)});
 
         }
-
-
-
 
         // parse nuts tags
 		getIFrameDocument('iframe_'+id).designMode = 'on';
@@ -381,10 +401,64 @@ function initWYSIWYGIFrame(id)
 		link.setAttribute('rel',"stylesheet");
 		link.setAttribute('href',"/library/themes/editor_css.php?t="+current_theme+"&ncache="+time());
 		link.setAttribute('type',"text/css");
-		head.appendChild(link);
+        head.appendChild(link);
 
-		if($('#iframe_'+id).attr('code_source') == 'true')
-		{
+        /*
+        setTimeout(function(){
+
+            css_rules = getIFrameDocument('iframe_'+id).styleSheets[0];
+            css_rules = css_rules.cssRules;
+
+            all_css = [];
+
+
+            str = "";
+            for(i=0; i < css_rules.length; i++) {
+                style = css_rules[i].selectorText;
+
+                // css must begin by .
+                if(style.indexOf('.') != -1 && style.indexOf('.nuts_tags') == -1){
+
+                    styles = explode(',', style);
+                    for(j=0; j < styles.length ;j++){
+
+                        classes = explode(' ', styles[j]);
+
+                        only_class = true;
+                        for(h=0; h < classes.length; h++){
+                            cur_class = trim(classes[h]);
+
+                            if(cur_class.indexOf('.') == -1){
+                                only_class = false;
+                                break;
+                            }
+                        }
+
+                        if(only_class){
+                            all_css[all_css.length] = css_rules[i].selectorText;
+                        }
+                    }
+                }
+            }
+
+            // all css length
+            if(all_css.length > 0){
+                opts = $('#'+id+'_WYSIWYG_toolbar select:eq(0)').html();
+                for(i=0; i < all_css.length; i++)
+                    str += '<option value="'+all_css[i]+'">'+all_css[i]+'</option>';
+
+                str = '<option class="title">Styles</option>'+str;
+                $('#'+id+'_WYSIWYG_toolbar select:eq(0)').html(opts+str);
+            }
+
+
+        }, 600);
+        */
+
+
+
+
+        if($('#iframe_'+id).attr('code_source') == 'true'){
 			$('#former  #iframe_radio_'+id).attr('checked', true);
 			WYSIWYGToggleIt(id);
 		}
@@ -536,6 +610,38 @@ function cmdWYSIWYG(id, action, data)
 
 
 
+function WYSIWYGFormat(id){
+
+    v = $('#'+id+'_WYSIWYG_toolbar select:eq(0)').val();
+    $('#'+id+'_WYSIWYG_toolbar select:eq(0)').val('');
+
+    if(v == '')return;
+
+    if(v == 'H1')cmdWYSIWYG(id, 'formatBlock', 'H1');
+    else if(v == 'H2')cmdWYSIWYG(id, 'formatBlock', 'H2');
+    else if(v == 'H3')cmdWYSIWYG(id, 'formatBlock', 'H3');
+    else if(v == 'P')cmdWYSIWYG(id, 'formatBlock', 'P');
+    else if(v == 'BLOCKQUOTE')cmdWYSIWYG(id, 'formatBlock', 'BLOCKQUOTE');
+    else{
+
+        // add span to selected text
+        WYSIWYGGetSelectionText(id);
+
+    }
+
+}
+
+function WYSIWYGGetSelectionText(id){
+
+    userSelection = '';
+    if (getIFrameWindow('iframe_'+id).getSelection)
+        userSelection = getIFrameWindow('iframe_'+id).getSelection();
+    else if (getIFrameDocument('iframe_'+id).selection)
+        userSelection = getIFrameDocument('iframe_'+id).selection.createRange();
+
+
+}
+
 
 
 function WYSIWYGSubMenu(id){
@@ -553,6 +659,13 @@ function WYSIWYGSubMenu(id){
     }
 }
 
+
+function WYSIWYGPaste(id){
+
+    popupModal('/nuts/rte.php?view=paste&id='+id, '', 500, 450);
+
+
+}
 
 
 

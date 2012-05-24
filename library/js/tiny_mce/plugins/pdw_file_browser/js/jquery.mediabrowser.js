@@ -503,14 +503,28 @@
 			}
 			else if(editor == "standalone")
 			{
+                add_image_tag = false;
+                oldReturnID = returnID;
+                returnID = str_replace('imgTag_', '', returnID);
+                if(returnID != oldReturnID)add_image_tag = true;
+
+                cur_uri = URL;
+                if(add_image_tag)
+                    cur_uri = '<img src="'+URL+'" alt=" " />';
+
                 // WYSIWYG editor exists ?
                 if(!window.opener.document.getElementById('iframe_'+returnID))
                 {
-                    window.opener.document.getElementById(returnID).value = URL;
+                    window.opener.document.getElementById(returnID).value = cur_uri;
                 }
                 else
                 {
-                    window.opener.cmdWYSIWYG(returnID, 'createLink', URL);
+                    if(!add_image_tag)
+                        window.opener.cmdWYSIWYG(returnID, 'createLink', cur_uri);
+                    else
+                    {
+                        window.opener.WYSIWYGAddText(returnID, cur_uri);
+                    }
                 }
 
 				window.close();

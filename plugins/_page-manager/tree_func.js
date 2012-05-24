@@ -81,15 +81,6 @@ function treeView()
 		//animate:true
 		docToFolderConvert:true
 	});
-
-    // delete key detected
-    shortcut.add('Delete', function(){
-
-
-
-    },{'target':document});
-
-
 }
 
 function hideContext()
