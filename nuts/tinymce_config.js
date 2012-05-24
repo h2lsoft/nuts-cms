@@ -217,9 +217,19 @@ function WYSIWYGEventFocus(id, e)
 
 function WYSIWYGEvent(id, e, shortcut){
 
+    // detect keyup, keydown
+    if(e.type == 'keydown' || e.type == 'keyup'){
+        return;
+    }
+
+    // WYSIWYGTextareaReload(id);
+
+}
+
+/*
+function WYSIWYGEvent(id, e, shortcut){
+
     cancelkeypress = false;
-
-
 
     // detect keyup, keydown
     if(e.type == 'keydown'){
@@ -235,19 +245,12 @@ function WYSIWYGEvent(id, e, shortcut){
     }
 
 
-
     // keypress
     if(e.type == 'keypress' && ctrlKeyIsPressed){
-
-        if(secondPassfunction){
-            secondPassfunction = false;
-            return;
-        }
 
 
         // CTRL + ALT + E, e, €
         if(altKeyIsPressed && (e.charCode == 69 || e.charCode == 101 || e.charCode == 8364)){
-
             openWYSIWYG(id);
             cancelkeypress = true;
         }
@@ -296,6 +299,7 @@ function WYSIWYGEvent(id, e, shortcut){
 
         // CTRL + 0
         else if(e.charCode == 48 || e.charCode == 64 || e.charCode == 133){
+
             cmdWYSIWYG(id, 'removeFormat', '');
             cmdWYSIWYG(id, 'formatBlock', 'P');
             cancelkeypress = true;
@@ -320,21 +324,17 @@ function WYSIWYGEvent(id, e, shortcut){
         }
     }
 
-
-
     WYSIWYGTextareaReload(id);
-
 
     // cancel event propagation
     if(cancelkeypress){
-        secondPassfunction = true;
         e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
         e.preventDefault();
         return false;
     }
 
 }
-
+*/
 
 
 
@@ -379,7 +379,16 @@ function initWYSIWYGIFrame(id) {
 
         // add special shortcut catcher for Chrome
         // tools: http://jonathan.tang.name/files/js_keycode/test_keycode.html
-        if(BrowserDetect.browser == 'Chrome'){
+        // if(BrowserDetect.browser == 'Chrome'){
+
+           if(BrowserDetect.browser == 'Firefox'){
+               shortcut.remove("Ctrl+B");
+               shortcut.remove("Ctrl+I");
+               shortcut.remove("Ctrl+U");
+
+           }
+
+           shortcut.remove("Ctrl+Alt+E");
 
             shortcut.remove("Ctrl+S");
             shortcut.remove("Ctrl+L");
@@ -391,18 +400,31 @@ function initWYSIWYGIFrame(id) {
             shortcut.remove("Ctrl+3");
 
             setTimeout( function() {
-                shortcut.add('Ctrl+S', function(){ cmdWYSIWYG(id, 'strikeThrough', '');}, {'target':getIFrameDocument('iframe_'+id)});
-                shortcut.add('Ctrl+L', function(){cmdWYSIWYG(id, 'insertUnorderedList', '');}, {'target':getIFrameDocument('iframe_'+id)});
-                shortcut.add('Ctrl+M', function(){cmdWYSIWYG(id, 'insertOrderedList', '');}, {'target':getIFrameDocument('iframe_'+id)});
-                shortcut.add('Ctrl+Q', function(){cmdWYSIWYG(id, 'formatBlock', 'BLOCKQUOTE');}, {'target':getIFrameDocument('iframe_'+id)});
-                shortcut.add('Ctrl+0', function(){cmdWYSIWYG(id, 'removeFormat', ''); cmdWYSIWYG(id, 'formatBlock', 'P');}, {'target':getIFrameDocument('iframe_'+id)});
-                shortcut.add('Ctrl+1', function(){cmdWYSIWYG(id, 'formatBlock', 'H1');}, {'target':getIFrameDocument('iframe_'+id)});
-                shortcut.add('Ctrl+2', function(){cmdWYSIWYG(id, 'formatBlock', 'H2');}, {'target':getIFrameDocument('iframe_'+id)});
-                shortcut.add('Ctrl+3', function(){cmdWYSIWYG(id, 'formatBlock', 'H3');}, {'target':getIFrameDocument('iframe_'+id)});
+
+                cur_target = getIFrameWindow('iframe_'+id);
+                if(BrowserDetect.browser == 'Chrome')
+                    cur_target = getIFrameDocument('iframe_'+id);
+
+                if(BrowserDetect.browser == 'Firefox'){
+                    shortcut.add('Ctrl+B', function(){ cmdWYSIWYG(id, 'bold', '');}, {'target':cur_target});
+                    shortcut.add('Ctrl+I', function(){ cmdWYSIWYG(id, 'italic', '');}, {'target':cur_target});
+                    shortcut.add('Ctrl+U', function(){ cmdWYSIWYG(id, 'underline', '');}, {'target':cur_target});
+                }
+
+                shortcut.add('Ctrl+Alt+E', function(){openWYSIWYG(id);}, {'target':cur_target});
+                shortcut.add('Ctrl+S', function(){ cmdWYSIWYG(id, 'strikeThrough', '');}, {'target':cur_target});
+
+                shortcut.add('Ctrl+L', function(){cmdWYSIWYG(id, 'insertUnorderedList', '');}, {'target':cur_target});
+                shortcut.add('Ctrl+M', function(){cmdWYSIWYG(id, 'insertOrderedList', '');}, {'target':cur_target});
+                shortcut.add('Ctrl+Q', function(){cmdWYSIWYG(id, 'formatBlock', 'BLOCKQUOTE');}, {'target':cur_target});
+                shortcut.add('Ctrl+0', function(){cmdWYSIWYG(id, 'removeFormat', ''); cmdWYSIWYG(id, 'formatBlock', 'P');}, {'target':cur_target});
+                shortcut.add('Ctrl+1', function(){cmdWYSIWYG(id, 'formatBlock', 'H1');}, {'target':cur_target});
+                shortcut.add('Ctrl+2', function(){cmdWYSIWYG(id, 'formatBlock', 'H2');}, {'target':cur_target});
+                shortcut.add('Ctrl+3', function(){cmdWYSIWYG(id, 'formatBlock', 'H3');}, {'target':cur_target});
             }, 500);
 
 
-        }
+           //}
 
         // parse nuts tags
 		getIFrameDocument('iframe_'+id).designMode = 'on';
