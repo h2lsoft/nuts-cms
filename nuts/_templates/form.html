@@ -91,7 +91,7 @@
 
 			<div id="{name}ImagePreview" style="display:{image_display}; width:80px; float:left; vertical-align:center; padding:5px; border:1px solid #ccc; background-color:#e5e5e5; margin-right:10px;">
 
-				<a href="javascript:;" title="<img src='{image_path}/{image_name}?{time}' style='max-width:500px'>" class="tt"><img src="{image_path}/{image_name}?{time}" style="max-width:80px; max-height:80px;"  align="absmiddle" /></a>
+				<a href="javascript:$('#{name}').click();" title="<img src='{image_path}/{image_name}?{time}' style='max-width:500px'>" class="tt"><img src="{image_path}/{image_name}?{time}" style="max-width:80px; max-height:80px;"  align="absmiddle" /></a>
 				<br />
 				<input type="checkbox" name="{name}ImageDelete" value="1" /> {$nuts_lang_msg[40]}
 			</div>
