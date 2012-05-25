@@ -11,8 +11,8 @@ endif;
 $skin = $defaultSkin;
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -777,6 +777,26 @@ $(document).ready(function() {
 <div id="image_previewer_content" onclick="$.MediaBrowser.viewImageClose()">
 	<a href="javascript:;"  onclick="$.MediaBrowser.viewImageClose()"><img id="imagebox_previewed" src="" /></a>
 </div>
+
+
+<script type="text/javascript">
+<?php if($allowedActions['upload'] === TRUE): ?>
+// add drag and drop utility
+aDivElement = document.getElementById('files');
+aDivElement.ondragenter = function(e) {
+    $.MediaBrowser.showLayer('upload');
+    e.dataTransfer.dropEffect = 'move'
+    e.preventDefault();
+    return false;
+};
+<?php endif; ?>
+
+$(document).keydown(function(e){
+    code = e.keyCode ? e.keyCode : e.which;
+    if(code == 27)
+        window.close();
+});
+</script>
 
 </body>
 </html>
