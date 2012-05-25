@@ -352,14 +352,20 @@ if("{$_GET['popup']}" == 1)
 	$('#add').css('margin-top', '-10px');
 
     parent_refresh = "{$_GET['parent_refresh']}";
-
 	if(parent_refresh != "0" &&  strtoupper(parent_refresh) != "NO" && window.opener != null && window.opener != undefined && typeof window.opener.system_refresh == 'function'){
         window.onbeforeunload = function() {
-
             window.opener.force_ajax_async = false;
             window.opener.system_refresh();
         };
 	}
+
+    $(document).keydown(function(e){
+        code = e.keyCode ? e.keyCode : e.which;
+        if(code == 27)
+            if((c=confirm("{$nuts_lang_msg[62]}")))
+                window.close();
+    });
+
 }
 else
 {
