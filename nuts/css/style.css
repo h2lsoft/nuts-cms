@@ -681,6 +681,13 @@ div#form .checkbox_list label:hover, div#page_form .checkbox_list label:hover {c
 
 div#form .checkbox_list input[type=checkbox] {position: relative; top:3px;}
 
+div#form .image_preview {width:80px; float:left; padding:5px; border:1px solid #ccc; background-color:#e5e5e5; margin-right:10px;}
+div#form .image_preview:hover {background-color: #fafad2; border-color: #999;}
+div#form .file_preview {width:80px; text-align:center; float:left; padding:5px; border:1px solid #ccc; background-color:#e5e5e5; margin-right:10px;}
+div#form .file_preview:hover {background-color: #fafad2; border-color: #999;}
+
+div#form .icon:hover {opacity: 0.5;}
+
 
 div#form span.required {font-weight:bold; color:red;}
 div#form p.bottom {margin:0; clear:both;text-align:center; padding:10px; background-color:#d5d5d5; border-top: 3px solid #ddd; padding-top: 7px;}

@@ -39,8 +39,8 @@
 		<bloc::filemanager_media>
 		<!-- filemanager_media -->
 			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" {attributes} />
-			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="mediaBrowser('{name}','{folder}');"><img align="absmiddle" src="img/icon-folder.png"/></a>
-			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><img align="absmiddle" src="img/icon-media.png"/></a>
+			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="mediaBrowser('{name}','{folder}');"><img class="icon" align="absmiddle" src="img/icon-folder.png"/></a>
+			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><img class="icon" align="absmiddle" src="img/icon-media.png"/></a>
 			{after}
 		<!-- /filemanager_media -->
 		</bloc::filemanager_media>
@@ -48,8 +48,8 @@
 		<bloc::filemanager>
 		<!-- filemanager -->
 			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" {attributes} />
-			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="allBrowser('{name}','{folder}');"><img align="absmiddle" src="img/icon-folder.png"/></a>
-			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><img align="absmiddle" src="img/icon-file.png"/></a>
+			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="allBrowser('{name}','{folder}');"><img class="icon" align="absmiddle" src="img/icon-folder.png"/></a>
+			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><img class="icon" align="absmiddle" src="img/icon-file.png"/></a>
 			{after}
 		<!-- /filemanager -->
 		</bloc::filemanager>
@@ -57,8 +57,8 @@
 		<bloc::filemanager_image>
 		<!-- filemanager_image -->
 			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" {attributes} />
-			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="imgBrowser('{name}','{folder}');"><img align="absmiddle" src="img/icon-folder.png"/></a>
-			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><img align="absmiddle" src="img/icon-preview-mini.gif"/></a>
+			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="imgBrowser('{name}','{folder}');"><img class="icon" align="absmiddle" src="img/icon-folder.png"/></a>
+			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><img class="icon" align="absmiddle" src="img/icon-preview-mini.gif"/></a>
 			{after}
 		<!-- /filemanager_image -->
 		</bloc::filemanager_image>
@@ -89,7 +89,7 @@
 		<bloc::image>
 		<!-- image -->
 
-			<div id="{name}ImagePreview" style="display:{image_display}; width:80px; float:left; vertical-align:center; padding:5px; border:1px solid #ccc; background-color:#e5e5e5; margin-right:10px;">
+			<div id="{name}ImagePreview" class="image_preview" style="display:{image_display};">
 
 				<a href="javascript:$('#{name}').click();" title="<img src='{image_path}/{image_name}?{time}' style='max-width:500px'>" class="tt"><img src="{image_path}/{image_name}?{time}" style="max-width:80px; max-height:80px;"  align="absmiddle" /></a>
 				<br />
@@ -102,8 +102,7 @@
 
 			<script>
 			$(document).ready(function(){
-				if($('#{name}ImagePreview').is(':visible'))
-				{
+				if($('#{name}ImagePreview').is(':visible')){
 					$('#{name}').css('margin-top', '25px');
 				}
 			});
@@ -120,7 +119,7 @@
 
 		<bloc::file>
 		<!-- file -->
-			<div id="{name}FilePreview"  style="display:{file_display}; width:80px; text-align:center; float:left; vertical-align:center; padding:5px; border:1px solid #ccc; background-color:#e5e5e5; margin-right:10px;">
+			<div id="{name}FilePreview" class="file_preview"  style="display:{file_display};">
 
 					<a href="{file_path}/{file_name}" target="_blank"><img src="/plugins/_url_rewriting/icon.png" style="width:32px" align="absmiddle" /></a><br />
 					<input type="checkbox" name="{name}FileDelete" value="1" /> {$nuts_lang_msg[40]}
@@ -132,8 +131,7 @@
 
 			<script>
 			$(document).ready(function(){
-				if($('#{name}FilePreview').is(':visible'))
-				{
+				if($('#{name}FilePreview').is(':visible')){
 					$('#{name}').css('margin-top', '25px');
 				}
 			});
