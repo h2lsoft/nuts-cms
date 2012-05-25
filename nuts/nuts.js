@@ -8,7 +8,6 @@ var last_hash;
 var list_full_length = false; // extends list table length
 var RTE_parent_object = ''; // parent object of RTE
 
-
 var force_ajax_async = true;
 
 
@@ -547,35 +546,40 @@ function popup2(url, name, windowWidth, windowHeight, opts)
 
 
 	if(newwindow2.focus) {newwindow2.focus();}
-
    return false;
 }
 
-function popupModal(url, name, windowWidth, windowHeight, opts)
-{
+function popupModal(url, name, windowWidth, windowHeight, opts) {
+
     if(name == undefined)name = 'nWindow';
     if(opts == undefined)opts = '';
 
-	if(!windowWidth)windowWidth = 1100;
-	if(!windowHeight)windowHeight = 850;
+    if(!windowWidth)windowWidth = 1100;
+    if(!windowHeight)windowHeight = 850;
 
     myleft = (screen.width - windowWidth) / 2;
-	mytop = (screen.height - windowHeight) / 2;
+    mytop = (screen.height - windowHeight) / 2;
 
-	myleft += window.screenX;
-	mytop += window.screenY;
+    // myleft = window.screenLeft ? window.screenLeft : window.screenX;
+    // mytop = window.screenTop ? window.screenTop : window.screenY;
 
-	properties = "dialogWidth:"+windowWidth+"; dialogHeight:"+windowHeight+"; status:yes; resizable:yes; scroll:yes; dialogTop:"+mytop+"; dialogLeft:"+myleft;
+    // properties = "dialogWidth:"+windowWidth+"; dialogHeight:"+windowHeight+"; status:yes; resizable:yes; scroll:yes; dialogTop:"+mytop+"; dialogLeft:"+myleft;
+    properties = "width="+windowWidth+",height="+windowHeight+",status=yes,resizable=yes,scroll=yes,top="+mytop+",left="+myleft;
 
-	if(!empty(opts))
-		properties += ', '+opts;
-	properties = str_replace(' ', '', properties);
+    if(!empty(opts))
+        properties += ', '+opts;
+    properties = str_replace(' ', '', properties);
 
-   // add dynamic popup parameter
-   if(url.indexOf('http') == -1 && url.indexOf('ftp') == -1  &&  url.indexOf('mailto') == -1 &&  url.indexOf('&popup=1') == -1 && url.indexOf('?') >= 0)
+    // add dynamic popup parameter
+    if(url.indexOf('http') == -1 && url.indexOf('ftp') == -1  &&  url.indexOf('mailto') == -1 &&  url.indexOf('&popup=1') == -1 && url.indexOf('?') >= 0)
         url += '&popup=1';
 
-   newwindow = window.showModalDialog(url, name, properties);
+
+    // newwindow = window.showModalDialog(url, name, properties);
+    newwindow = window.open(url, name, properties);
+    newwindow.resizeTo(windowWidth, windowHeight);
+    newwindow.moveTo(myleft, mytop);
+    newwindow.focus();
 }
 
 
