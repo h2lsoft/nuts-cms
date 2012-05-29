@@ -11,8 +11,6 @@
 <fieldset>
 	<legend>Website</legend>
 
-
-	<fieldset>
 	<p>
 		<label>Maintenance</label>
 		<select id="Maintenance">
@@ -29,98 +27,9 @@
 		&nbsp;&nbsp;&nbsp; Your ip: `{IpUser}`
 	</p>
 
-	<p>
-		<label>Error 404 (template or http)
-			<small>don't forget to add `ErrorDocument 404 http://` into your htaccess file</small>
-		</label>
-		<input type="text" id="Error404" value="{error404}" />
-		<a class="tt" title="Save" href="javascript:updater('error404');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
-	</p>
-
-    <p style="clear: both; padding-top: 10px;">
-        <label>Error 500 page
-            <br />
-            <small>Redirect page in case of system error (empty = display error message or you can put /error.php)</small>
-        </label>
-        <input type="text" id="Error500" value="{error500}" />
-        <a class="tt" title="Save" href="javascript:updater('error500');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
-    </p>
-
-
-	</fieldset>
 
 	<fieldset>
-
-
-	<p>
-		<label>Log 404 errors</label>
-		<select id="LogError404">
-			<option value="YES" {error404_yes_selected}>YES</option>
-			<option value="NO" {error404_no_selected}>NO</option>
-		</select>
-
-		 <a class="tt" title="Save" href="javascript:updater('log_error_404');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
-	</p>
-	<p>
-		<label>Log Nuts tags errors</label>
-		<select id="LogNutsTagError">
-			<option value="YES" {error_nuts_tags_yes_selected}>YES</option>
-			<option value="NO" {error_nuts_tags_no_selected}>NO</option>
-		</select>
-
-		 <a class="tt" title="Save" href="javascript:updater('log_error_nuts_tags');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
-
-	</p>
-	<p>
-		<label>Firebug</label>
-		<select id="Firebug">
-			<option value="YES" {firebug_yes_selected}>YES</option>
-			<option value="NO" {firebug_no_selected}>NO</option>
-		</select>
-
-		 <a class="tt" title="Save" href="javascript:updater('firebug');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
-
-		 trace your dev (do not use for production)
-
-	</p>
-	</fieldset>
-
-	<fieldset>
-	<p>
-		<label>Html tidy</label>
-		<select id="Tidy">
-			<option value="YES" {tidy_yes_selected}>YES</option>
-			<option value="NO" {tidy_no_selected}>NO</option>
-		</select>
-
-		<a class="tt" title="Save" href="javascript:updater('tidy');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
-
-		use tidy (for expert, <a href="http://php.net/manual/en/book.tidy.php" target="_blank">php extension</a> must be installed, use <a href="/nuts/index.php?mod=_configuration&do=edit" target="_blank">configuration module</a> for tidy configuration)
-	</p>
-	</fieldset>
-
-	<fieldset>
-	<p>
-		<label>Html auto compression</label>
-		<select id="HtmlCompress">
-			<option value="YES" {html_compress_yes_selected}>YES</option>
-			<option value="NO" {html_compress_no_selected}>NO</option>
-		</select>
-
-		<a class="tt" title="Save" href="javascript:updater('html_compress');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
-
-		compress automatically javascript and css files (for expert)
-	</p>
-	<p>
-		<label>Html time compression</label>
-		<input type="text"  id="html_compress_time" value="{html_compress_time}" style="width:80px;text-align: center;" />
-		<a class="tt" title="Save" href="javascript:updater('html_compress_time');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
-		seconds in cache
-	</p>
-
-	</fieldset>
-
-	<fieldset>
+        <legend>Cache</legend>
 	<p>
 		<label>Cache page</label>
 		<span id="nb_cache">{nb_cache}</span> file(s) <a class="tt"  title="Delete files cached" href="javascript:updater('clear_cache');"><img src="/nuts/img/list_delete.png" style="width: 16px;" align="absmiddle" /></a>

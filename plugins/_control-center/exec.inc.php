@@ -6,8 +6,7 @@
 $cfg_file = WEBSITE_PATH.'/nuts/config.inc.php';
 
 // action *************************************************************************
-if(@$_GET['_action'] == 'maintenance' || @$_GET['_action'] == 'error404' || @$_GET['_action'] == 'error500' || @$_GET['_action'] == 'log_error_404' || @$_GET['_action'] == 'log_error_nuts_tags' ||
-   @$_GET['_action'] == 'html_compress' || @$_GET['_action'] == 'html_compress_time' || @$_GET['_action'] == 'firebug' || @$_GET['_action'] == 'tidy')
+if(@$_GET['_action'] == 'maintenance')
 {
 	$val = $_GET['val'];
 
@@ -25,100 +24,6 @@ if(@$_GET['_action'] == 'maintenance' || @$_GET['_action'] == 'error404' || @$_G
 		{
 			$rep = "define('WEBSITE_MAINTENANCE', false);";
 			$rep2 = "define('WEBSITE_MAINTENANCE', true);";
-		}
-	}
-
-	// error 404
-	elseif($_GET['_action'] == 'error404')
-	{
-		$rep = "define('NUTS_ERROR404_TEMPLATE', '".NUTS_ERROR404_TEMPLATE."');";
-		$rep2 = "define('NUTS_ERROR404_TEMPLATE', '".$val."');";
-	}
-
-	// error 500
-	elseif($_GET['_action'] == 'error500')
-	{
-		$rep = "define('NUTS_ERROR_PAGE_REDIRECT', \"".NUTS_ERROR_PAGE_REDIRECT."\");";
-		$rep2 = "define('NUTS_ERROR_PAGE_REDIRECT', \"".$val."\");";
-	}
-
-	// log error 404
-	elseif($_GET['_action'] == 'log_error_404')
-	{
-		if($val == 'NO')
-		{
-			$rep = "define('NUTS_LOG_ERROR_404', true);";
-			$rep2 = "define('NUTS_LOG_ERROR_404', false);";
-		}
-		else
-		{
-			$rep = "define('NUTS_LOG_ERROR_404', false);";
-			$rep2 = "define('NUTS_LOG_ERROR_404', true);";
-		}
-	}
-
-	// error nuts tags
-	elseif($_GET['_action'] == 'log_error_nuts_tags')
-	{
-		if($val == 'NO')
-		{
-			$rep = "define('NUTS_LOG_ERROR_TAGS', true);";
-			$rep2 = "define('NUTS_LOG_ERROR_TAGS', false);";
-		}
-		else
-		{
-			$rep = "define('NUTS_LOG_ERROR_TAGS', false);";
-			$rep2 = "define('NUTS_LOG_ERROR_TAGS', true);";
-		}
-	}
-
-	// html_compress
-	elseif($_GET['_action'] == 'html_compress')
-	{
-		if($val == 'NO')
-		{
-			$rep = "define('NUTS_HTML_COMPRESS', true);";
-			$rep2 = "define('NUTS_HTML_COMPRESS', false);";
-		}
-		else
-		{
-			$rep = "define('NUTS_HTML_COMPRESS', false);";
-			$rep2 = "define('NUTS_HTML_COMPRESS', true);";
-		}
-	}
-	// html_compress_time
-	elseif($_GET['_action'] == 'html_compress_time')
-	{
-		$rep = "define('NUTS_HTML_COMPRESS_TIME', ".NUTS_HTML_COMPRESS_TIME.");";
-		$rep2 = "define('NUTS_HTML_COMPRESS_TIME', ".(int)$val.");";
-	}
-
-	// firebug
-	elseif($_GET['_action'] == 'firebug')
-	{
-		if($val == 'NO')
-		{
-			$rep = "define('FirePHP_enabled', true);";
-			$rep2 = "define('FirePHP_enabled', false);";
-		}
-		else
-		{
-			$rep = "define('FirePHP_enabled', false);";
-			$rep2 = "define('FirePHP_enabled', true);";
-		}
-	}
-	// tidy
-	elseif($_GET['_action'] == 'tidy')
-	{
-		if($val == 'NO')
-		{
-			$rep = "define('NUTS_TIDY', true);";
-			$rep2 = "define('NUTS_TIDY', false);";
-		}
-		else
-		{
-			$rep = "define('NUTS_TIDY', false);";
-			$rep2 = "define('NUTS_TIDY', true);";
 		}
 	}
 
@@ -242,58 +147,6 @@ else
 $nuts->parse('maintenance_yes_selected', $maintenance_yes_selected);
 $nuts->parse('maintenance_no_selected', $maintenance_no_selected);
 
-// error 404
-$error404_yes_selected = '';
-$error404_no_selected = '';
-if(NUTS_LOG_ERROR_404 == false)
-	$error404_no_selected = 'selected';
-else
-	$error404_yes_selected = 'selected';
-$nuts->parse('error404_yes_selected', $error404_yes_selected);
-$nuts->parse('error404_no_selected', $error404_no_selected);
-
-// error tags
-$error_nuts_tags_yes_selected = '';
-$error_nuts_tags_no_selected = '';
-if(NUTS_LOG_ERROR_TAGS == false)
-	$error_nuts_tags_no_selected = 'selected';
-else
-	$error_nuts_tags_yes_selected = 'selected';
-$nuts->parse('error_nuts_tags_yes_selected', $error_nuts_tags_yes_selected);
-$nuts->parse('error_nuts_tags_no_selected', $error_nuts_tags_no_selected);
-
-
-// html_compress
-$html_compress_yes_selected = '';
-$html_compress_no_selected = '';
-if(NUTS_HTML_COMPRESS == false)
-	$html_compress_no_selected = 'selected';
-else
-	$html_compress_yes_selected = 'selected';
-$nuts->parse('html_compress_yes_selected', $html_compress_yes_selected);
-$nuts->parse('html_compress_no_selected', $html_compress_no_selected);
-$nuts->parse('html_compress_time', NUTS_HTML_COMPRESS_TIME);
-
-// firebug
-$firebug_yes_selected = '';
-$firebug_no_selected = '';
-if(FirePHP_enabled == false)
-	$firebug_no_selected = 'selected';
-else
-	$firebug_yes_selected = 'selected';
-$nuts->parse('firebug_yes_selected', $firebug_yes_selected);
-$nuts->parse('firebug_no_selected', $firebug_no_selected);
-
-// tidy
-$tidy_yes_selected = '';
-$tidy_no_selected = '';
-if(NUTS_TIDY == false)
-	$tidy_no_selected = 'selected';
-else
-	$tidy_yes_selected = 'selected';
-$nuts->parse('tidy_yes_selected', $tidy_yes_selected);
-$nuts->parse('tidy_no_selected', $tidy_no_selected);
-
 // php config
 $icon_error = 'icon-error.gif';
 $icon_warning = 'icon-tag-moderator.png';
@@ -323,12 +176,6 @@ $nuts->parse('img_ftp_extension', $img_ftp_extension);
 // tidy_extension
 $img_tidy_extension = (!extension_loaded('tidy')) ? $icon_warning : $icon_ok;
 $nuts->parse('img_tidy_extension', $img_tidy_extension);
-
-// error 404
-$nuts->parse('error404', NUTS_ERROR404_TEMPLATE);
-
-// error 500
-$nuts->parse('error500', NUTS_ERROR_PAGE_REDIRECT);
 
 // ip allowed
 $ips_a = WEBSITE_MAINTENANCE_IPS;
