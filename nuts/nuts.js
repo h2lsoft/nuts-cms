@@ -1179,12 +1179,17 @@ function notify(type, message)
 
 
 	$('#notify_it_'+notifyID).fadeIn('normal', function(){
-
 		setTimeout(function(){
-			$('#notify_it_'+notifyID).fadeOut('normal');
+            $('#notify_it_'+notifyID).click();
 		}, 3000);
-
 	});
+
+    $('#notify_it_'+notifyID).click(function(){
+        $('#notify_it_'+notifyID).fadeOut('fast', function(){
+            $('#notify_it_'+notifyID).remove();
+        });
+    });
+
 
 }
 

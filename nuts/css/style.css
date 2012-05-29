@@ -1468,8 +1468,9 @@ div.calendar { position: relative; }
 	white-space: nowrap;
 
 	display: none;
-
+    cursor: pointer;
 }
+
 .notify_itOK {
 	background-color: #DAF4D9;
 	color: #009900;
