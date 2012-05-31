@@ -1181,7 +1181,7 @@ function notify(type, message)
 	$('#notify_it_'+notifyID).fadeIn('normal', function(){
 		setTimeout(function(){
             $('#notify_it_'+notifyID).click();
-		}, 3000);
+		}, 1500);
 	});
 
     $('#notify_it_'+notifyID).click(function(){
@@ -1453,4 +1453,24 @@ function checkboxSelectAll(objName)
         $(sel).attr('checked', true);
     else
         $(sel).attr('checked', false);
+}
+
+
+function nTabInit(objID){
+
+    $('#'+objID+' li').click(function(){
+
+        $('#'+objID+' li').removeClass('selected');
+        $(this).addClass('selected');
+
+
+        indice = $('#'+objID+' li').index(this);
+
+
+        $('#'+objID+'_content .ntab_content').hide();
+        $('#'+objID+'_content .ntab_content').eq(indice).show();
+
+    });
+
+
 }

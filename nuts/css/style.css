@@ -399,7 +399,6 @@ div#home .mod {width:85px; height:70px; float:left; border:1px solid #ccc; text-
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
-    user-select: none;
 
 
 }
@@ -1547,6 +1546,58 @@ span.tag_violet {background-color:#ee82ee; color:black;}
 .CodeMirror-scroll {height:99%; min-height: 650px;}
 span.cm-comment {color: black!important; background-color: #FFCC99;}
 .activeline {background: #E9EFF8 !important;}
+
+
+
+/** n_tabs **/
+.ntabs { margin: 0; padding: 0; list-style: none; margin-top: 10px; clear: left; }
+.ntabs li {float: left; padding:5px 7px; border:1px solid #ccc; border-collapse: collapse;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+
+}
+.ntabs li.selected {
+
+    border-bottom: 0;
+    background-image: url(th_bkg.png);
+    background-position: top;
+    background-repeat: repeat-x;
+    font-weight: bold;
+    border-bottom: 2px solid #F90;
+
+    padding-bottom: 4px;
+    border-collapse: collapse;
+
+}
+
+.ntabs li:hover {
+    cursor: pointer;
+    background-color: #eee;
+}
+
+.ntabs_content {border:1px solid #ccc; clear: left; display: block; border-collapse: collapse;
+background-color: #eee;
+}
+.ntab_content {display: none; padding: 20px 10px;
+
+
+
+}
+.ntab_content:first-child, .ntab_content_selected {display: block;}
+
+.ntab_content p > label {padding-top: 7px!important;}
+.ntab_content hr {margin-top: 20px; margin-bottom: 20px; height: 1px; border: 1px; width: 80%; text-align: center; color: #ccc; border-color:#ccc; background-color: #ccc;}
+.ntab_content .form_bottom {text-align: right!important; width: 80%;}
+
+.ntabs_info {text-align: right; padding: 10px!important; color: #666; font-style: italic; font-weight: bold;}
+
+input.ntabs_loading {background-image: url(/nuts/img/ajax-loader.gif); background-position: right; background-repeat: no-repeat; background-color: #e5e5e5!important; padding-right: 20px;}
+select.ntabs_loading {background-image: url(/nuts/img/ajax-loader.gif); background-position: right; background-repeat: no-repeat; background-color: #e5e5e5!important; padding-right: 20px;}
+
+.ntab_content p span {color: #666; font-style: italic; font-size: 10px}
+
 
 
 /** hacks webkit **/
