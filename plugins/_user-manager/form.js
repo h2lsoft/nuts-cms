@@ -11,3 +11,23 @@ function generatePassword()
 	
 	$('#former #Password').val(temp);
 }
+
+
+function avatarInit(){
+
+    v = $('#former #Avatar').val();
+    if(empty(v))
+        $('#former #avatar_image').attr('src', '/nuts/img/gravatar.jpg');
+    else
+        $('#former #avatar_image').attr('src', v);
+
+}
+avatarInit();
+
+$('#former #Avatar').keyup(function(){
+    avatarInit();
+});
+
+$('#former #Avatar').click(function(){
+    $(this).select();
+});

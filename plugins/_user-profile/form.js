@@ -76,6 +76,10 @@ $('#former #Avatar').keyup(function(){
     avatarInit();
 });
 
+$('#former #Avatar').change(function(){
+    avatarInit();
+});
+
 $('#former #Avatar').click(function(){
     $(this).select();
 });
