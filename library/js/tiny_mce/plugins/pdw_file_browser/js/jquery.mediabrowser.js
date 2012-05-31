@@ -9,7 +9,7 @@
 		currentFile: '',
 		currentFolder: '',
 		currentView: '',
-		dragMode: true,
+		dragMode: false,
 		dragObj: null,
 		dragID: '',
 		hostname: "http://" + window.location.host,
@@ -26,10 +26,10 @@
 			$('ul.treeview ul').show();
 
 			// Calculate widths and heights of treeview, file viewer and footer
-			$.MediaBrowser.resizeWindow();
+            // $.MediaBrowser.resizeWindow();
 
 			// Make treeview resizable
-			$.MediaBrowser.setResizeHandlers();
+			// $.MediaBrowser.setResizeHandlers();
 
 			// If a filter is specified then hide files with a wrong file type
 			$.MediaBrowser.filter();
@@ -209,13 +209,13 @@
 			});
 
 			//Hide all handlers and show on entering tree div
-			$('ul.treeview a.children').css({'opacity' : 0}); //Hide all handlers
+			/*$('ul.treeview a.children').css({'opacity' : 0}); //Hide all handlers
 			$('div#tree').hover(function(){
 					$('ul.treeview a.children').animate({'opacity' : 1}, 'slow');
 				}, function(){
 					$('ul.treeview a.children').animate({'opacity' : 0}, 'slow');
 				}
-			);
+			);*/
 
 			//Absolute URl active/inactive
 			$('#absolute_url').click(function(){
@@ -909,6 +909,7 @@
 
 		// Resize treeview and details screen
 		setResizeHandlers: function(){
+
 			var startingPositionX = 0;
 			var startingPositionY = 0;
 			var endPositionX = 0;
@@ -992,6 +993,8 @@
 					}
 				})
 			.end();
+
+
 		},
 
 		showMessage: function(str, type){

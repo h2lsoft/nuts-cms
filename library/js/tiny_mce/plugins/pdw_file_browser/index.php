@@ -101,6 +101,12 @@ div#files ul#content li a span.filesize {width: 215px;}
 #files #details th.selected {color:black; background-color: #E3E9FF;}
 #files #details th.selected_up {background-image: url(/library/php/TPLN/img/order_asc_actived.gif)!important;}
 #files #details th.selected_down {background-image: url(/library/php/TPLN/img/order_desc_actived.gif)!important;}
+
+#tree, #files, #main, #file-specs {user-select:none; -moz-user-select:none; -webkit-user-select:none;}
+ul.treeview {width: 100%!important;}
+div#vertical-resize-handler{background: none; background-color: #e5e5e5; width: 5px; }
+div#vertical-resize-handler:hover {background-color: #ccc;}
+#tree {background-color: #F1F5FB;}
 </style>
 
 

@@ -163,10 +163,9 @@ ul.treeview li.selected > .link .endcap { background: url(../img/selected.png) r
 ul.treeview li a.spacer { display: block; float: left; /*width: 16px;*/ clear: left;}
 ul.treeview li a.handler { display: block; float: left; width: 16px;}
 ul.treeview li a img { margin: 0; padding: 0; border: 0; vertical-align: middle;}
-ul.treeview li a.children {background: url(../img/handler.gif) 0px 0 no-repeat; cursor: default;}
-ul.treeview li a.children:hover {background-position:-21px 0;}
-ul.treeview li a.open {background: url(../img/handler.gif) -42px 0 no-repeat;}
-ul.treeview li a.open:hover {background-position:-63px 0;}
+
+ul.treeview li a.children {background: url(../img/handler.gif) -21px 0 no-repeat; cursor: default;}
+/*ul.treeview li a.open {background: url(../img/handler.gif) 0px 0 no-repeat!important;}*/
 
 
 
