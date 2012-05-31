@@ -1171,10 +1171,6 @@ function tableDetailsSort(type, direction){
     if(typeof folders === 'undefined')folders = new Array();
     if(typeof files === 'undefined')files = new Array();
 
-
-    console.log(folders);
-    console.log(files);
-
     if(details_folders_last_ordered == '')
         details_folders_last_ordered = folders;
 
