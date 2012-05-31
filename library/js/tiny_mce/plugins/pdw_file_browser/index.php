@@ -2,12 +2,7 @@
 
 require_once('functions.php');
 
-if(!empty($_COOKIE["pdw-view"])):
-    $viewLayout = $_COOKIE["pdw-view"];
-elseif(isset($_REQUEST['pdw-view'])):
-	$viewLayout = $_REQUEST['pdw-view'];
-endif;
-
+if(!empty($_COOKIE["pdw-view"]))$viewLayout = $_COOKIE["pdw-view"];
 $skin = $defaultSkin;
 
 ?>
@@ -43,6 +38,8 @@ $skin = $defaultSkin;
 
 <!-- script -->
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="/library/js/jquery-ui/jquery-ui-personalized-1.5.1.js"></script>
+
 <script type="text/javascript" src="js/jquery.plugins.js"></script>
 <script type="text/javascript" src="plupload/js/plupload.full.js"></script>
 <script type="text/javascript" src="plupload/js/jquery.plupload.queue/jquery.plupload.queue.js"></script>
@@ -71,44 +68,8 @@ $skin = $defaultSkin;
 <!-- css -->
 <link rel="stylesheet" href="css/mediabrowser.css" />
 <link rel="stylesheet" href="plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css" />
+<link rel="stylesheet" href="css/hacks.css" />
 <!-- /css -->
-
-
-<style type="text/css">
-.plupload_scroll .plupload_filelist {height: 350px;}
-li.plupload_droptext {line-height: 280px;}
-
-/* bug fix headers in content view */
-div#files ul#content li a span.filemodified {width: 215px;}
-div#files ul#content li a span.filesize {width: 215px;}
-
-/* bug fix folder path length */
-#newfolderform #folderpath {width:550px; font-size:12px;}
-
-/* details sorter */
-#files #details th {
-        background-repeat: no-repeat!important;
-        background-position: right 5px!important;
-        padding-right: 25px!important;
-        white-space: nowrap!important;
-}
-
-#files #details th:hover {
-    background-image: url(/library/php/TPLN/img/order_asc.gif)!important;
-    cursor: pointer;
-}
-
-#files #details th.selected {color:black; background-color: #E3E9FF;}
-#files #details th.selected_up {background-image: url(/library/php/TPLN/img/order_asc_actived.gif)!important;}
-#files #details th.selected_down {background-image: url(/library/php/TPLN/img/order_desc_actived.gif)!important;}
-
-#tree, #files, #main, #file-specs {user-select:none; -moz-user-select:none; -webkit-user-select:none;}
-ul.treeview {width: 100%!important;}
-div#vertical-resize-handler{background: none; background-color: #e5e5e5; width: 5px; }
-div#vertical-resize-handler:hover {background-color: #ccc;}
-#tree {background-color: #F1F5FB;}
-</style>
-
 
 
 <script type="text/javascript">
@@ -541,7 +502,7 @@ $(document).ready(function() {
         ?>
     </div>
 
-    <div id="vertical-resize-handler" class="resize-grip"></div>
+<!--    <div id="vertical-resize-handler" class="resize-grip"></div>-->
 
     <div id="main">
 
@@ -705,7 +666,7 @@ $(document).ready(function() {
         +++++++++++++++++++++++++++++++++
         -->
         <div id="help" class="layer" style="display:none;">
-            <h2>PDW File Browser v1.3 beta</h2>
+            <h2>File Browser v1.0</h2>
             <a href="#" class="close" onclick="$.MediaBrowser.hideLayer(); return false;" title="<?php echo translate("Close")?>"><?php echo translate("Close")?></a>
             <hr />
             <div class="window">

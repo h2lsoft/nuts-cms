@@ -29,7 +29,7 @@
             // $.MediaBrowser.resizeWindow();
 
 			// Make treeview resizable
-			// $.MediaBrowser.setResizeHandlers();
+			$.MediaBrowser.setResizeHandlers();
 
 			// If a filter is specified then hide files with a wrong file type
 			$.MediaBrowser.filter();
@@ -910,6 +910,7 @@
 		// Resize treeview and details screen
 		setResizeHandlers: function(){
 
+            /*
 			var startingPositionX = 0;
 			var startingPositionY = 0;
 			var endPositionX = 0;
@@ -993,6 +994,9 @@
 					}
 				})
 			.end();
+			*/
+
+
 
 
 		},
@@ -1282,3 +1286,19 @@ String.prototype.format = function() {
     }
     return formatted;
 };
+
+
+$(function(){
+
+    $('#tree').resizable({
+        minWidth: 200,
+        maxWidth: $(document).width()-500,
+        handles : "e"
+    });
+
+    $("#tree").bind("resize", function(event, ui) {
+        w = $('#tree').width();
+        nw = $(document).width() - w;
+        $('#main').width(nw);
+    });
+})
