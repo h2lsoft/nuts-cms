@@ -70,7 +70,6 @@ $skin = $defaultSkin;
 
 <!-- css -->
 <link rel="stylesheet" href="css/mediabrowser.css" />
-<link rel="stylesheet" href="skins/mountainview/skin.css" />
 <link rel="stylesheet" href="plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css" />
 <!-- /css -->
 

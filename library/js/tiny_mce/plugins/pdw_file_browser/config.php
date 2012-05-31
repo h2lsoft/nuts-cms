@@ -216,7 +216,7 @@ $customFilters = array(
  * Take a look inside the /skin/ folder to see which skins are available. If you leave the "//"
  * then redmond (Windows 7 like) will be the default theme.
  */
-$defaultSkin = "mountainview";
+$defaultSkin = "";
 
 
 
