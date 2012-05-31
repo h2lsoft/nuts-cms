@@ -1,6 +1,6 @@
 <?php
 
-$lang_msg[0] = "Paramètrage du template"; // plugin name
+$lang_msg[0] = "Paramètrage du site web"; // plugin name
 
 // $lang_msg[1] = "Meta Title";
 // $lang_msg[2] = "Meta Description";
