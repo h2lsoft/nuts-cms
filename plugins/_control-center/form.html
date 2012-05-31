@@ -20,6 +20,7 @@
 
 		 <a class="tt" title="Save" href="javascript:updater('maintenance');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
 	</p>
+
 	<p>
 		<label>IP allowed (separator ',')</label>
 		<input type="text" id="IPAllowed" value="{ip_allowed}" style="width: 250px;" />
@@ -27,8 +28,15 @@
 		&nbsp;&nbsp;&nbsp; Your ip: `{IpUser}`
 	</p>
 
+    <p>
+        <label>Maintenance message</label>
+        <input type="text" id="MaintenanceMessage" value="{MaintenanceMessage}" style="width: 500px;" />
+        <a class="tt" title="Save" href="javascript:updater('maintenance_message');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
+    </p>
 
-	<fieldset>
+
+
+    <fieldset>
         <legend>Cache</legend>
 	<p>
 		<label>Cache page</label>
@@ -99,12 +107,12 @@
 
 
 <fieldset>
-	<legend><a class="tt" title="Save" href="javascript:updater('htaccess');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a> .htaccess editor</legend>
+	<legend>.htaccess editor <a class="tt" title="Save" href="javascript:updater('htaccess');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a> </legend>
 	<textarea class="resizable" id="htaccess" style="width: 99%; height: 150px;">{htaccess}</textarea>
 </fieldset>
 
 <fieldset>
-	<legend><a class="tt" title="Save" href="javascript:updater('robots');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a> robots.txt editor</legend>
+	<legend> robots.txt editor <a class="tt" title="Save" href="javascript:updater('robots');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a></legend>
 	<textarea class="resizable" id="robots" style="width: 99%; height: 150px;">{robots}</textarea>
 </fieldset>
 
@@ -158,38 +166,7 @@ function updater(target, ip, date, IpID){
 			}
 		});
 	}
-	// log_error_404
-	if(target == 'log_error_404'){
 
-		val = $('#LogError404').val();
-		$.get(uri, {_action: 'log_error_404', val: val}, function(data){
-			resp = explode('@@@', data);
-			if(resp[0] != 'ok')
-			{
-				notify('error', resp[1]);
-			}
-			else
-			{
-				notify('ok', resp[1]);
-			}
-		});
-	}
-	// log_error_nuts_tags
-	if(target == 'log_error_nuts_tags'){
-
-		val = $('#LogNutsTagError').val();
-		$.get(uri, {_action: 'log_error_nuts_tags', val: val}, function(data){
-			resp = explode('@@@', data);
-			if(resp[0] != 'ok')
-			{
-				notify('error', resp[1]);
-			}
-			else
-			{
-				notify('ok', resp[1]);
-			}
-		});
-	}
 	// ip allowed
 	if(target == 'ip_allowed')
 	{
@@ -208,29 +185,11 @@ function updater(target, ip, date, IpID){
 		});
 	}
 
-	// error 404
-	if(target == 'error404')
-	{
-		val = $('#Error404').val();
-		$.get(uri, {_action: 'error404', val: val}, function(data){
+    // maintenance
+    if(target == 'maintenance_message'){
 
-			resp = explode('@@@', data);
-			if(resp[0] != 'ok')
-			{
-				notify('error', resp[1]);
-			}
-			else
-			{
-				notify('ok', resp[1]);
-			}
-		});
-	}
-
-    // error 500
-    if(target == 'error500')
-    {
-        val = $('#Error500').val();
-        $.get(uri, {_action: 'error500', val: val}, function(data){
+        val = $('#MaintenanceMessage').val();
+        $.get(uri, {_action: 'maintenance_message', val: val}, function(data){
 
             resp = explode('@@@', data);
             if(resp[0] != 'ok')
@@ -243,7 +202,6 @@ function updater(target, ip, date, IpID){
             }
         });
     }
-
 
 	// clear_cache
 	if(target == 'clear_cache')
@@ -346,75 +304,7 @@ function updater(target, ip, date, IpID){
 
 		});
 	}
-	// html_compress
-	if(target == 'html_compress'){
 
-		val = $('#HtmlCompress').val();
-		$.get(uri, {_action: 'html_compress', val: val}, function(data){
-
-			resp = explode('@@@', data);
-			if(resp[0] != 'ok')
-			{
-				notify('error', resp[1]);
-			}
-			else
-			{
-				notify('ok', resp[1]);
-			}
-		});
-	}
-	// html_compress_time
-	if(target == 'html_compress_time'){
-
-		val = $('#html_compress_time').val();
-		$.get(uri, {_action: 'html_compress_time', val: val}, function(data){
-
-			resp = explode('@@@', data);
-			if(resp[0] != 'ok')
-			{
-				notify('error', resp[1]);
-			}
-			else
-			{
-				notify('ok', resp[1]);
-			}
-		});
-	}
-
-	// firebug
-	if(target == 'firebug'){
-
-		val = $('#Firebug').val();
-		$.get(uri, {_action: 'firebug', val: val}, function(data){
-
-			resp = explode('@@@', data);
-			if(resp[0] != 'ok')
-			{
-				notify('error', resp[1]);
-			}
-			else
-			{
-				notify('ok', resp[1]);
-			}
-		});
-	}
-
-	// tidy
-	if(target == 'tidy'){
-
-		val = $('#Tidy').val();
-		$.get(uri, {_action: 'tidy', val: val}, function(data){
-			resp = explode('@@@', data);
-			if(resp[0] != 'ok')
-			{
-				notify('error', resp[1]);
-			}
-			else
-			{
-				notify('ok', resp[1]);
-			}
-		});
-	}
 
 }
 </script>

@@ -37,6 +37,20 @@ if(@$_GET['_action'] == 'maintenance')
 		die("ok@@@File `$cfg_file` updated");
 	}
 }
+elseif(@$_GET['_action'] == 'maintenance_message')
+{
+    $val = trim($_GET['val']);
+
+    $rep = "define('WEBSITE_MAINTENANCE_MESSAGE',";
+    $rep2 = "define('WEBSITE_MAINTENANCE_MESSAGE', \"$val\");";
+
+    if(!fileChangeLineContents($cfg_file, $rep, $rep2))
+        die("error@@@File `$cfg_file` not changed (check permission ?)");
+    else
+        die("ok@@@File `$cfg_file` updated");
+
+
+}
 elseif(@$_GET['_action'] == 'ip_allowed')
 {
 	$val = $_GET['val'];
@@ -146,6 +160,10 @@ else
 
 $nuts->parse('maintenance_yes_selected', $maintenance_yes_selected);
 $nuts->parse('maintenance_no_selected', $maintenance_no_selected);
+
+$nuts->parse('MaintenanceMessage', WEBSITE_MAINTENANCE_MESSAGE);
+
+
 
 // php config
 $icon_error = 'icon-error.gif';
