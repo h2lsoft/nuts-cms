@@ -248,7 +248,7 @@ $max_file_size_in_bytes *= 1024 * 1024;
 
 
 // Characters allowed in the file name (in a Regular Expression format)
-$valid_chars_regex = '.A-Za-z0-9_ !@%()+=\[\],~`-àâäéèêïîùûüôöç';
+$valid_chars_regex = '.A-Za-z0-9_ !@%()+=\[\],~`\-àâäéèêïîùûüôöç';
 
 
 // Allowed file extensions
