@@ -48,8 +48,10 @@ fieldset {
 #logout .internal_message a {color:#999;}
 #logout .internal_message a:hover {color:#000; text-decoration: none;}
 #logout a {font-weight:bold;}
-#logout #gravatar {float:left; }
-#logout #gravatar img {padding-right:7px;}
+#logout #gravatar {float:left; text-align: center; width: auto;}
+#logout #gravatar img { max-width: 60px; max-height: 60px; text-align: center; margin: 0; }
+#logout #gravatar a {color: #aaa; font-size: 10px; font-weight: normal;}
+#logout #gravatar a:hover {color: #333; text-decoration: none;}
 #logout .user_online {padding:0px; margin: 0; top: 100px; left: 0; display: inline; vertical-align: middle;}
 #logout .logout_icon_home {padding:0px; margin: 0; top: 100px; left: 0; display: inline; vertical-align: middle;}
 
@@ -1614,4 +1616,7 @@ select.ntabs_loading {background-image: url(/nuts/img/ajax-loader.gif); backgrou
     div#form label, div#form_content label {margin-top: -4px;}
 
 	div#list_container fieldset p {margin:1px; padding:0;}
+
+    div#form label, div#form_content label {padding-top: 7px;}
+
 }

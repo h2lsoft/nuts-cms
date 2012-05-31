@@ -152,6 +152,8 @@ $nuts_lang_msg[87] = "Parcourir";
 
 $nuts_lang_msg[88] = "Mes recherches";
 
+$nuts_lang_msg[89] = "Modifier";
+$nuts_lang_msg[90] = "Mon profil";
 
 
 // main menu ***********************************************************************

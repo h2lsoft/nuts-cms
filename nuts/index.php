@@ -32,8 +32,9 @@ if(@$_GET['_action'] == 'users_online')
 	$sql = "SELECT
 					NutsUserID,
 					(SELECT Application FROM NutsUser WHERE ID = NutsUserID ORDER BY DateGMT DESC LIMIT 1) AS Application,
-					(SELECT Email FROM NutsUser WHERE ID = NutsUserID) AS Email,
+					(SELECT Avatar FROM NutsUser WHERE ID = NutsUserID) AS Avatar,
 					(SELECT Login FROM NutsUser WHERE ID = NutsUserID) AS Name
+
 			FROM
 					NutsLog
 			WHERE
@@ -50,7 +51,9 @@ if(@$_GET['_action'] == 'users_online')
 		$row['Application'] = str_replace(array('-','_'), ' ', $row['Application']);
 		$row['Application'] = trim($row['Application']);
 
-		$gravatar_url = 'http://www.gravatar.com/avatar/'.md5($row['Email']).'?s=60&d=http%3A%2F%2Fwww.nuts-cms.com%2Fnuts%2Fimg%2Fgravatar.jpg';
+		// $gravatar_url = 'http://www.gravatar.com/avatar/'.md5($row['Email']).'?s=60&d=http%3A%2F%2Fwww.nuts-cms.com%2Fnuts%2Fimg%2Fgravatar.jpg';
+        $gravatar_url = $row['Avatar'];
+        if(empty($gravatar_url))$gravatar_url = '/nuts/img/gravatar.jpg';
 		$users_online[] = array('avatar_url' => $gravatar_url, 'Name' => $row['Name'], 'ID' => $row['NutsUserID'], 'Application' => $row['Application']);
 	}
 	
@@ -206,7 +209,7 @@ if(isset($_GET['mod']) && $_GET['mod'] == 'logout')
 }
 
 // plugin ********************************************************************************
-if(!@in_array($_GET['mod'], array('_internal-messaging', '_internal-memo'))  && (!plugin::validator() || !plugin::actValidator()))
+if(!@in_array($_GET['mod'], array('_internal-messaging', '_internal-memo', '_user-profile'))  && (!plugin::validator() || !plugin::actValidator()))
 {
 	$_GET['mod'] = '_error';
 	$_GET['do'] = 'exec';
@@ -264,11 +267,18 @@ else
 
 if(!isset($_GET['ajax']) && !isset($_GET['target']) && !isset($_GET['popup']))
 {
-	// gravatar
-	$email_hash = md5($_SESSION['Email']);
+	// gravatar old
+	/*$email_hash = md5($_SESSION['Email']);
 	$gravatar_encoded = urlencode(WEBSITE_URL.'/nuts/img/gravatar.jpg');
 	$nuts->fastParse('email_hash');
-	$nuts->fastParse('gravatar_encoded');
+	$nuts->fastParse('gravatar_encoded');*/
+
+    $avatar_image = nutsUserGetData('', 'Avatar');
+    $avatar_image = $avatar_image['Avatar'];
+
+    if(empty($avatar_image))$avatar_image = '/nuts/img/gravatar.jpg';
+    $nuts->fastParse('avatar_image');
+
 	
 	// verify right for page
 	if(!nutsUserHasRight($_SESSION['NutsGroupID'], '_page-manager', 'exec'))$nuts->eraseBloc('wrinting_page');

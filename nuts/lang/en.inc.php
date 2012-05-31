@@ -161,7 +161,8 @@ $nuts_lang_msg[87] = "Browse";
 
 
 $nuts_lang_msg[88] = "My searches";
-
+$nuts_lang_msg[89] = "Change";
+$nuts_lang_msg[90] = "My profile";
 
 
 

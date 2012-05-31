@@ -105,12 +105,18 @@ function system_goto(uri, target)
 
 function system_refresh()
 {
-	if(typeof(last_system_uri) == 'undefined' || last_system_uri == '')
+    if(typeof(last_system_uri) == 'undefined' || last_system_uri == '')
 	{
 		last_system_uri = document.location;
 	}
-	if(typeof(last_system_target) == 'undefined' || last_system_target == '')last_system_target = 'list';
-	system_goto(last_system_uri, last_system_target);
+    if(typeof(last_system_target) == 'undefined' || last_system_target == '')last_system_target = 'list';
+
+
+    // target not exist go to main page
+
+
+
+    system_goto(last_system_uri, last_system_target);
 }
 
 function system_position(uri, list)

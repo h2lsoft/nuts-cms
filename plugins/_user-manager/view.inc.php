@@ -4,16 +4,7 @@
 /* @var $nuts NutsCore */
 
 $plugin->viewDbTable(array('NutsUser'));
-$plugin->viewAddSQLField("
-
-							(SELECT Name FROM NutsGroup WHERE ID = NutsGroupID) AS NutsGroup
-							, CONCAT(
-									'<img src=\"'
-									'http://www.gravatar.com/avatar/',
-									MD5(Email),
-									'?s=60&d=".urlencode(WEBSITE_URL.'/nuts/img/gravatar.jpg')."',
-									'\" />'
-							   ) AS Avatar");
+$plugin->viewAddSQLField("(SELECT Name FROM NutsGroup WHERE ID = NutsGroupID) AS NutsGroup");
 
 $plugin->viewAddVar('Avatar', '&nbsp;');
 
@@ -53,6 +44,13 @@ function hookData($row){
 	$row['Gender'] = ucfirst(strtolower($row['Gender']));
 	$row['Note'] = nl2br($row['Note']);
 	$row['NoteField'] = '<fieldset style="display:block;"><legend>Note</legend>'.$row['Note'].'</fieldset>';
+
+
+    // avatar
+    if(empty($row['Avatar']))
+        $row['Avatar'] = '/nuts/img/gravatar.jpg';
+    $row['Avatar'] = "<img src='{$row['Avatar']}' style='max-width:60px; max-height:60px;'>";
+
 
 	return $row;
 }

@@ -248,7 +248,9 @@ function showResponse(responseText, statusText)
 				if(popup == '1')
 					window.opener.system_refresh();
 				else
-					system_refresh();
+                {
+                    system_refresh();
+                }
 			}
 			else
 			{
@@ -269,8 +271,13 @@ function showResponse(responseText, statusText)
 						h_tmp = $(window).height() / 2 - 225;
 						$('.ui-dialog').height(450).css('top', h_tmp);
 
-						system_refresh();
-						setTimeout("$('#form_window').dialog('close')", 2000);
+                        if(form_plugin == '_user-profile')
+                            document.location.reload();
+                        else
+                        {
+                            system_refresh();
+                            setTimeout("$('#form_window').dialog('close')", 2000);
+                        }
 					}
 
 				}, 1000);

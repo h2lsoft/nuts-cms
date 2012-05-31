@@ -50,6 +50,7 @@ $plugin->listAddButtonLabel = $lang_msg[7];
 // assign table to db
 $plugin->listSetDbTable('NutsIM', "
 										(SELECT Email FROM NutsUser WHERE ID = NutsIM.NutsUserIDFrom) AS uEmail,
+										(SELECT Avatar FROM NutsUser WHERE ID = NutsIM.NutsUserIDFrom) AS uAvatar,
 										(SELECT Login FROM NutsUser WHERE ID = NutsIM.NutsUserIDFrom) AS uFrom,
 										(SELECT CONCAT(Login,' (#', ID, ')') FROM NutsUser WHERE ID = NutsIM.NutsUserIDFrom) AS uFromX",
 						"NutsUserID = {$_SESSION['ID']}");
@@ -109,9 +110,11 @@ function hookData($row)
 	}
 
 	// add gravatar logo
-	$default = WEBSITE_URL.'/plugins/_comments/www/anonymous.gif';
-	$grav_url = "http://www.gravatar.com/avatar/".md5(strtolower(trim($row['uEmail'])))."?d=".urlencode($default)."&s=40";
-	$row['uFrom'] = '<img style="border:1px solid #ccc; width:40px; height:40px;" valign="top" src="'.$grav_url.'" /><br />'.ucfirst($row['uFrom']);
+	// $default = WEBSITE_URL.'/plugins/_comments/www/anonymous.gif';
+    // $grav_url = "http://www.gravatar.com/avatar/".md5(strtolower(trim($row['uEmail'])))."?d=".urlencode($default)."&s=40";
+    $grav_url = $row['uAvatar'];
+    if(empty($grav_url))$grav_url = '/nuts/img/gravatar.jpg';
+	$row['uFrom'] = '<img style="border:1px solid #ccc; width:40px;height:40px;" valign="top" src="'.$grav_url.'" /><br />'.ucfirst($row['uFrom']);
 
     // date format
     $row['Date'] = explode(':', $row['Date']);

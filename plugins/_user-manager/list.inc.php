@@ -8,12 +8,7 @@ include(PLUGIN_PATH.'/common.inc.php');
 
 
 // assign table to db
-$plugin->listSetDbTable('NutsUser',  "(SELECT Name FROM NutsGroup WHERE ID = NutsUser.NutsGroupID) AS GroupName,
-									   CONCAT(
-												'http://www.gravatar.com/avatar/',
-												MD5(Email),
-												'?s=45&d=".urlencode(WEBSITE_URL.'/nuts/img/gravatar_mini.jpg')."'
-									   ) AS httpAvatar", "NutsGroupID IN(".join(',',$allowed_groups).")");
+$plugin->listSetDbTable('NutsUser',  "(SELECT Name FROM NutsGroup WHERE ID = NutsUser.NutsGroupID) AS GroupName", "NutsGroupID IN(".join(',',$allowed_groups).")");
 
 // search engine
 $plugin->listSearchAddFieldText('ID');
@@ -26,7 +21,7 @@ $plugin->listSearchAddFieldTextAjaxAutoComplete('Company', $lang_msg[15]);
 
 
 // create fields
-$plugin->listAddColImg('httpAvatar', ' ', 'center; width:30px', false); # avatar
+$plugin->listAddCol('Avatar', ' ', 'center; width:30px', false); # avatar
 $plugin->listAddCol('ID', '', 'center; width:30px', true); // with order by
 $plugin->listAddCol('GroupName', $lang_msg[1], '', true); // with order by
 $plugin->listAddCol('LastName', $lang_msg[2], '', true);
@@ -55,6 +50,12 @@ function hookData($row)
 	$qID = $nuts->dbGetQueryId();
 	$row['Password'] = nutsUserGetPassword($row['ID']);	
 	$nuts->dbSetQueryId($qID);
+
+    // avatar
+    if(empty($row['Avatar']))
+        $row['Avatar'] = '/nuts/img/gravatar.jpg';
+    $row['Avatar'] = "<img src='{$row['Avatar']}' style='max-width:60px; max-height:60px;'>";
+
 	
 
 	return $row;
