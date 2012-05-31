@@ -1,0 +1,312 @@
+<form id="former" action="index.php?mod={$plugin->name}&do={$plugin->action}" method="post">
+    <div id="form">
+
+        <ul id="ntabs0" class="ntabs">
+            <li class="selected">{$lang_msg[1]}</li>
+            <li>{$lang_msg[2]}</li>
+            <li>{$lang_msg[3]}</li>
+            <li>{$lang_msg[4]}</li>
+
+        </ul>
+        <div id="ntabs0_content" class="ntabs_content">
+
+            <!-- general -->
+            <div class="ntab_content">
+                <p>
+                    <label>{$lang_msg[5]} <span class="required">*</span></label>
+                    <input type="text" id="WEBSITE_NAME" value="{CONST::WEBSITE_NAME}" style="width:250px;" />
+                </p>
+                <p>
+                    <label>{$lang_msg[6]} <span class="required">*</span></label>
+                    <input type="text" id="WEBSITE_URL" value="{CONST::WEBSITE_URL}"  style="width:250px;" /> <span>{$lang_msg[7]}</span>
+                </p>
+                <p>
+                    <label>{$lang_msg[8]} <span class="required">*</span></label>
+                    <input type="text" id="WEBSITE_PATH" value="{CONST::WEBSITE_PATH}" style="width: 450px" /> <span>{$lang_msg[7]}</span>
+                </p>
+                <hr noshade>
+                <p>
+                    <label>{$lang_msg[9]} <span class="required">*</span></label>
+                    <input type="text" id="NUTS_ADMIN_EMAIL" value="{CONST::NUTS_ADMIN_EMAIL}"  style="width:250px;" />
+                </p>
+                <p>
+                    <label>{$lang_msg[10]} <span class="required">*</span></label>
+                    <input type="text" id="NUTS_EMAIL_NO_REPLY" value="{CONST::NUTS_EMAIL_NO_REPLY}"  style="width:250px;" />
+                </p>
+                <hr noshade>
+
+                <p>
+                    <label>{$lang_msg[41]}</label>
+                    <select id="FirePHP_enabled">
+                        <option value="0">{$lang_msg[11]}</option>
+                        <option value="1">{$lang_msg[12]}</option>
+                    </select>
+                    <script>
+                    $('#FirePHP_enabled').val('{CONST::FirePHP_enabled}');
+                    </script>
+                </p>
+
+            </div>
+            <!-- /general -->
+
+            <!-- database -->
+            <div class="ntab_content">
+                <p>
+                    <label>{$lang_msg[13]} <span class="required">*</span></label>
+                    <input type="text" id="NUTS_DB_HOST" value="{CONST::NUTS_DB_HOST}" style="width:150px;" />
+                </p>
+                <p>
+                    <label>{$lang_msg[14]} <span class="required">*</span></label>
+                    <input type="text" id="NUTS_DB_USER" value="{CONST::NUTS_DB_USER}" style="width:150px;" />
+                </p>
+                <p>
+                    <label>{$lang_msg[15]}</label>
+                    <input type="password" id="NUTS_DB_PASSWORD" value="{CONST::NUTS_DB_PASSWORD}" style="width:150px;" />
+                </p>
+                <p>
+                    <label>{$lang_msg[16]} <span class="required">*</span></label>
+                    <input type="text" id="NUTS_DB_BASE" value="{CONST::NUTS_DB_BASE}" style="width:150px;" />
+                </p>
+                <p>
+                    <label>{$lang_msg[17]}</label>
+                    <input type="text" id="NUTS_DB_PORT" value="{CONST::NUTS_DB_PORT}" style="width:40px; text-align: center;" /> <span>{$lang_msg[18]}</span>
+                </p>
+
+            </div>
+            <!-- /database -->
+
+            <!-- website -->
+            <div class="ntab_content">
+
+
+                <fieldset style="overflow: hidden; overflow-x: auto; padding: 10px;">
+                    <legend>{$lang_msg[42]}</legend>
+
+                    <bloc::theme>
+                        <a href="javascript:themeSelect('{theme}',true);" class="tt" title="{infos}" style="margin: 0px 10px;">
+                            <img class="icon_theme" theme="{theme}" src="{image_preview}" style="width:150px; padding:3px; background-color: #fff; border:2px solid #ccc;" />
+
+                        </a>
+                    </bloc::theme>
+
+                </fieldset>
+                <p>
+                    <label>{$lang_msg[43]}</label>
+                    <select id="default_lang">
+
+                        <bloc::nuts_lang_options>
+                        <option value="{value}">{label}</option>
+                        </bloc::nuts_lang_options>
+
+                    </select>
+                    <script>
+                    $('#default_lang').val('{default_lang}');
+                    </script>
+                </p>
+                <p>
+                    <label>{$lang_msg[44]}</label>
+                    <input type="text" id="Languages" value="{Languages}" style="width: 250px;" />
+                    <span>{$lang_msg[45]}</span>
+                </p>
+
+
+                <hr noshade>
+                <p>
+                    <label>{$lang_msg[19]}</label>
+                    <input type="text" id="MetaTitle" value="{CONST::MetaTitle}" style="" />
+                </p>
+                <p>
+                    <label>{$lang_msg[20]}</label>
+                    <input type="text" id="MetaDescription" value="{CONST::MetaDescription}" style="" />
+                </p>
+                <p>
+                    <label>{$lang_msg[21]}</label>
+                    <input type="text" id="MetaKeywords" value="{CONST::MetaKeywords}" style="" />
+                </p>
+                <hr noshade>
+
+                <p>
+                    <label>{$lang_msg[22]} <span class="required">*</span></label>
+                    <input type="text" id="NUTS_ERROR404_TEMPLATE" value="{CONST::NUTS_ERROR404_TEMPLATE}"  style="width:250px" />
+                    <span>{$lang_msg[23]}</span>
+                </p>
+                <p>
+                    <label>{$lang_msg[24]}</label>
+                    <input type="text" id="NUTS_ERROR_PAGE_REDIRECT" value="{CONST::NUTS_ERROR_PAGE_REDIRECT}"  style="width:250px" />
+                    <span>{$lang_msg[25]}</span>
+                </p>
+
+                <hr noshade>
+
+                <p>
+                    <label>{$lang_msg[26]}</label>
+                    <select id="NUTS_LOG_ERROR_404">
+                        <option value="0">{$lang_msg[11]}</option>
+                        <option value="1">{$lang_msg[12]}</option>
+                    </select>
+                    <script>
+                        $('#NUTS_LOG_ERROR_404').val('{CONST::NUTS_LOG_ERROR_404}');
+                    </script>
+                </p>
+                <p>
+                    <label>{$lang_msg[27]}</label>
+                    <select id="NUTS_LOG_ERROR_TAGS">
+                        <option value="0">{$lang_msg[11]}</option>
+                        <option value="1">{$lang_msg[12]}</option>
+                    </select>
+                    <script>
+                        $('#NUTS_LOG_ERROR_TAGS').val('{CONST::NUTS_LOG_ERROR_TAGS}');
+                    </script>
+
+                </p>
+
+                <hr noshade>
+
+                <p>
+                    <label>{$lang_msg[28]}</label>
+                    <select id="NUTS_TIDY">
+                        <option value="0">{$lang_msg[11]}</option>
+                        <option value="1">{$lang_msg[12]}</option>
+                    </select>
+                    <script>
+                        $('#NUTS_TIDY').val('{CONST::NUTS_TIDY}');
+                    </script>
+                </p>
+
+                <hr noshade>
+
+                <p>
+                    <label>{$lang_msg[29]}</label>
+                    <select id="NUTS_HTML_COMPRESS">
+                        <option value="0">{$lang_msg[11]}</option>
+                        <option value="1">{$lang_msg[12]}</option>
+                    </select>
+                    <script>
+                        $('#NUTS_HTML_COMPRESS').val('{CONST::NUTS_HTML_COMPRESS}');
+                    </script>
+                </p>
+                <p>
+                    <label>{$lang_msg[30]} <span class="required">*</span></label>
+                    <input type="text" id="NUTS_HTML_COMPRESS_TIME" value="{CONST::NUTS_HTML_COMPRESS_TIME}" style="width: 40px; text-align: center;" />
+                    <span>{$lang_msg[40]}</span>
+                </p>
+
+            </div>
+            <!-- /website -->
+
+
+            <!-- backoffice -->
+            <div class="ntab_content">
+                <p>
+                    <label>{$lang_msg[31]} <span class="required">*</span></label>
+                    <input type="text" id="APP_TITLE" value="{CONST::APP_TITLE}" style="width:250px;" />
+                </p>
+                <p>
+                    <label>{$lang_msg[32]}</label>
+                    <input type="text" id="BACKOFFICE_LOGO_URL" value="{CONST::BACKOFFICE_LOGO_URL}" style="width: 250px" />
+                    <span>{$lang_msg[33]}</span>
+                </p>
+
+                <hr noshade>
+
+                <p>
+                    <label>{$lang_msg[34]}</label>
+                    <input type="text" id="TWITTER_LOGIN" value="{CONST::TWITTER_LOGIN}" style="width:150px;" />
+                    <span>{$lang_msg[35]}</span>
+                </p>
+                <p>
+                    <label>{$lang_msg[36]}</label>
+                    <input type="text" id="FACEBOOK_PUBLISH_URL" value="{CONST::FACEBOOK_PUBLISH_URL}" style="width: 280px" />
+                    <span>{$lang_msg[37]}</span>
+                </p>
+
+
+            </div>
+            <!-- /backoffice -->
+
+            <p class="ntabs_info">
+                {$lang_msg[38]}
+            </p>
+
+        </div>
+
+    </div>
+
+</form>
+
+<script>
+nTabInit('ntabs0');
+
+function testLogoUrl() {
+
+}
+
+$('#ntabs0_content input, #ntabs0_content select').keypress(function(event){
+
+    if(event.which == 13){
+        event.preventDefault();
+
+        if($(this).hasClass('ntabs_loading'))return;
+
+        objID = $(this).attr('id');
+        $(this).addClass('ntabs_loading');
+        $('body').css('cursor', 'wait');
+
+        uri = "index.php?mod=_settings&do=exec&ajaxer=1";
+        $.post(uri, {objID: objID, objVal: $(this).val()}, function(data){
+
+            if(data != 'ok'){
+                notify('error', data);
+                $('#'+objID).focus();
+            }
+            else
+            {
+                notify('ok', "{$lang_msg[39]}");
+            }
+
+
+            $('body').css('cursor', 'default');
+            $('#'+objID).removeClass('ntabs_loading');
+
+
+        });
+
+    }
+
+});
+
+function themeSelect(theme, save_db){
+
+    $("img.icon_theme").css('border-color', '#ccc');
+    $("img.icon_theme[theme="+theme+"]").css('border-color', '#D65EB1');
+
+    if(save_db)
+    {
+        $("img.icon_theme").css('opacity', '0.3');
+
+        uri = "index.php?mod=_settings&do=exec&ajaxer=1";
+        $.post(uri, {objID: 'nuts_theme_selected', objVal: theme}, function(data){
+            $("img.icon_theme").css('opacity', 1);
+            notify('ok', "{$lang_msg[39]}");
+            $("img.icon_theme[theme="+theme+"]").css('border-color', '#D65EB1');
+        });
+    }
+}
+
+
+
+$(function(){
+
+    $('a.tt').tooltip({
+        track: true,
+        delay: 0,
+        showURL: false,
+        showBody: " - ",
+        opacity: 0.85
+    });
+
+
+    themeSelect("{$GLOBALS['nuts_theme_selected']}", false);
+
+});
+</script>
