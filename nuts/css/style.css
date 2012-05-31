@@ -1619,4 +1619,7 @@ select.ntabs_loading {background-image: url(/nuts/img/ajax-loader.gif); backgrou
 
     div#form label, div#form_content label {padding-top: 7px;}
 
+    .form_view label, .form_view label {padding-top: 3px!important;}
+
+
 }
