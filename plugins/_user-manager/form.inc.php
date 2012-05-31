@@ -28,6 +28,13 @@ $plugin->formAddFieldText('Password', $lang_msg[6], 'notEmpty|minLength,5', '', 
 $plugin->formAddFieldsetEnd();
 // end of fieldset
 
+// fieldset
+$plugin->formAddFieldsetStart('Avatar image');
+$plugin->formAddFieldText('Avatar', '<img id="avatar_image" style="max-width: 60px; max-height: 60px; margin-right: 15px; border: 1px solid #ccc; margin-top: -10px;" />', false, '', 'width:400px', '', '');
+$plugin->formAddFieldsetEnd();
+// end of fieldset
+
+
 $plugin->formAddFieldBoolean('Active', $lang_msg[8], true);
 $plugin->formAddFieldBooleanX('IdentificationEmail', $lang_msg[12], true, $lang_msg[14]);
 $plugin->formAddException('IdentificationEmail');
