@@ -1168,12 +1168,20 @@ function tableDetailsSort(type, direction){
     folders = all_lines['folders'];
     files = all_lines['files'];
 
+    if(typeof folders === 'undefined')folders = new Array();
+    if(typeof files === 'undefined')files = new Array();
+
+
+    console.log(folders);
+    console.log(files);
+
     if(details_folders_last_ordered == '')
         details_folders_last_ordered = folders;
 
 
     // order by name
     if(type == 'name'){
+
        folders.sort(function(a, b){
                 var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase();
                 if (nameA < nameB)return -1; //sort string ascending
