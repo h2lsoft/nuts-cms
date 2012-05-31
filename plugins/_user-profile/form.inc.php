@@ -32,7 +32,7 @@ $plugin->formAddFieldsetStart('Avatar Image');
 $inputs = <<<EOF
  &nbsp;&nbsp; <b>{$lang_msg[27]} :</b>  <input type="button" id="AvatarFacebook" value="Facebook" class="button" /><input type="button" id="AvatarTwitter" value="Twitter" class="button" /><input type="button" id="AvatarGravatar" value="Gravatar" class="button" />
 EOF;
-$plugin->formAddFieldText('Avatar', '<img id="avatar_image" style="max-width: 60px; max-height: 60px; margin-right: 15px; border: 1px solid #ccc; margin-top: -10px;" />', 'false', '', 'width:400px', $inputs, '');
+$plugin->formAddFieldText('Avatar', '<img id="avatar_image" style="max-width: 60px; max-height: 60px; margin-right: 15px; border: 1px solid #ccc; margin-top: -10px;" />', false, '', 'width:400px', $inputs, '');
 $plugin->formAddFieldsetEnd();
 // end of fieldset
 
