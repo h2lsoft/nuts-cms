@@ -10,7 +10,7 @@
 <fieldset>
 
 	<legend>
-        <img src="img/icon-search.gif" align="absmiddle" /> <a href="javascript:;" onclick="$('#list_container .list_searches_menu').hide();$('#list_search_content').slideToggle('fast');">{$nuts_lang_msg[11]}</a>
+        <img src="img/icon-search.gif" align="absmiddle" /> <a accesskey="S" href="javascript:;" onclick="$('#list_container .list_searches_menu').hide();$('#list_search_content').slideToggle('fast');">{$nuts_lang_msg[11]}</a>
 
         <span>|</span>
 
@@ -121,7 +121,6 @@
 		});
 	</script>
 
-
 </fieldset>
 
 <fieldset style="position:static; margin-bottom:10px; visibility:hidden">
@@ -145,7 +144,7 @@
 	</bloc::buttons>
 
 	<bloc::add_button>
-    <input type="button" id="list_add_button" value="{add_button_label}" onclick="formIt('{$nuts_lang_msg[20]}', '?mod={$plugin->name}&do=add&{add_parameters}');" />
+    <input type="button" id="list_add_button" value="{add_button_label}" accesskey="A" onclick="formIt('{$nuts_lang_msg[20]}', '?mod={$plugin->name}&do=add&{add_parameters}');" />
     </bloc::add_button>
 
 </div>
@@ -266,14 +265,24 @@ if("{$_GET['popup']}" == 1)
 		<div style="float:right;">
 
 
+
+
 			<bloc::excel_export>
 			<a class="tt" href="{$_SERVER['PHP_SELF']}?{$_SERVER['QUERY_STRING']}&nuts_export=excel" title="{$nuts_lang_msg[51]}"><img src="img/icon-excel.png" /></a>
 			</bloc::excel_export>
 
-			<a class="tt" href="javascript:window.print();" title="{$nuts_lang_msg[52]}"><img src="img/icon-print.png" /></a>
-			<span style="position:relative; top:-4px;">&nbsp; | </span>
 
+            <a class="tt" href="javascript:window.print();" title="{$nuts_lang_msg[52]}"><img src="img/icon-print.png" /></a>
+
+
+            <span style="position:relative; top:-4px;">&nbsp; | </span>
+
+
+            <a class="tt" href="javascript:;" title="{$nuts_lang_msg[91]}"><img src="img/icon-help.png" /></a>
 			<a class="tt" href="javascript:system_refresh();" title="{$nuts_lang_msg[50]}"><img src="img/icon-refresh.png" /></a>
+
+
+
 <!--			<a class="tt" href="javascript:;" onclick="if(!list_full_length){list_full_length=true;}else{list_full_length=false;} system_refresh();" title="{$nuts_lang_msg[53]}" title="{$nuts_lang_msg[53]}"><img src="img/icon-expand.png" /></a>-->
 
 		</div>
@@ -282,7 +291,7 @@ if("{$_GET['popup']}" == 1)
 		<!-- pager -->
 		<bloc::pager>
 		< bloc::previous>
-		<a href="javascript:system_goto('{_Url}', 'list');" class="np"><img src="img/icon-previous.png" align="absmiddle" style="position:relative; top:-1px;" /> {$nuts_lang_msg[18]}</a>
+		<a id="list_previous" accesskey="B" href="javascript:;" onclick="system_goto('{_Url}', 'list');" class="np"><img src="img/icon-previous.png" align="absmiddle" style="position:relative; top:-1px;" /> {$nuts_lang_msg[18]}</a>
 		< /bloc::previous>
 
 		{$nuts_lang_msg[5]} &nbsp;
@@ -313,7 +322,7 @@ if("{$_GET['popup']}" == 1)
 		 {_PageCount}
 
  		< bloc::next>
-		<a href="javascript:system_goto('{_Url}', 'list');" class="np">{$nuts_lang_msg[19]} <img src="img/icon-next.png" align="absmiddle" style="position:relative; top:-1px;" /></a>
+		<a id="list_next" accesskey="N" href="javascript:;" onclick="system_goto('{_Url}', 'list');" class="np">{$nuts_lang_msg[19]} <img src="img/icon-next.png" align="absmiddle" style="position:relative; top:-1px;" /></a>
 		< /bloc::next>
 		</bloc::pager>
 		<!-- /pager -->

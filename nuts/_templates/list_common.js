@@ -38,6 +38,7 @@ $('#search_form input, #search_form select').keyup(function(e) {
 });
 
 
+
 // ajax autocompletion
 $('#search_form input.ajax_autocomplete').each(function(){
 
@@ -95,3 +96,8 @@ $('.image_preview').click(function(){
 	src = str_replace('/thumb_', '/', src);
 	imageBox(src);
 });
+
+
+
+
+
