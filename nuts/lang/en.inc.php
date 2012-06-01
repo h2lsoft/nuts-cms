@@ -164,11 +164,11 @@ $nuts_lang_msg[88] = "My searches";
 $nuts_lang_msg[89] = "Change";
 $nuts_lang_msg[90] = "My profile";
 
-$nuts_lang_msg[91] = "<u>Shortcuts</u><br />
-Alt + N: Go to next page<br />
-Alt + B: Go to previous page<br />
-Alt + A: Add new record<br />
-Alt + S: Open / Close search box";
+$nuts_lang_msg[91] = "<u>Shortcuts</u><br /><br />
+Alt+N : Go to next page<br />
+Alt+B : Go to previous page<br />
+Alt+A : Add new record<br />
+Alt+S : Open / Close search box";
 
 
 
