@@ -153,7 +153,8 @@ function initWYSIWYGOption()
 		str += '</p>';
 
 		// $('#'+id).before('<p><label>&nbsp;</label>'+str+'</p>');
-		$('textarea#'+id).parent('p:visible').before(str);
+        if($('#'+id+'_WYSIWYG_toolbar').length == 0)
+            $('textarea#'+id).parent('p:visible').before(str);
 
 	});
 }
@@ -226,117 +227,6 @@ function WYSIWYGEvent(id, e, shortcut){
 
 }
 
-/*
-function WYSIWYGEvent(id, e, shortcut){
-
-    cancelkeypress = false;
-
-    // detect keyup, keydown
-    if(e.type == 'keydown'){
-        if(e.ctrlKey)ctrlKeyIsPressed = true;
-        if(e.altKey)altKeyIsPressed = true;
-        return;
-    }
-
-    if(e.type == 'keyup'){
-        if(!e.ctrlKey)ctrlKeyIsPressed = false;
-        if(!e.altKey)altKeyIsPressed = false;
-        return;
-    }
-
-
-    // keypress
-    if(e.type == 'keypress' && ctrlKeyIsPressed){
-
-
-        // CTRL + ALT + E, e, €
-        if(altKeyIsPressed && (e.charCode == 69 || e.charCode == 101 || e.charCode == 8364)){
-            openWYSIWYG(id);
-            cancelkeypress = true;
-        }
-
-        // CTRL + B, b
-        else if(e.charCode == 98 || e.charCode == 66){
-            cmdWYSIWYG(id, 'bold', '');
-            cancelkeypress = true;
-        }
-
-        // CTRL + I, i
-        else if(e.charCode == 105 || e.charCode == 73){
-            cmdWYSIWYG(id, 'italic', '');
-            cancelkeypress = true;
-        }
-
-        // CTRL + U, u
-        else if(e.charCode == 117 || e.charCode == 85){
-            cmdWYSIWYG(id, 'underline', '');
-            cancelkeypress = true;
-        }
-
-        // CTRL + S, s
-        else if(e.charCode == 115 || e.charCode == 83){
-            cmdWYSIWYG(id, 'strikeThrough', '');
-            cancelkeypress = true;
-        }
-
-        // CTRL + 1
-        else if(e.charCode == 49 || e.charCode == 38){
-            cmdWYSIWYG(id, 'heading', 'H1');
-            cancelkeypress = true;
-        }
-
-        // CTRL + 2
-        else if(e.charCode == 50 || e.charCode == 126  || e.charCode == 130){
-            cmdWYSIWYG(id, 'heading', 'H2');
-            cancelkeypress = true;
-        }
-
-        // CTRL + 3
-        else if(e.charCode == 51 || e.charCode == 34 || e.charCode == 35){
-            cmdWYSIWYG(id, 'heading', 'H3');
-            cancelkeypress = true;
-        }
-
-        // CTRL + 0
-        else if(e.charCode == 48 || e.charCode == 64 || e.charCode == 133){
-
-            cmdWYSIWYG(id, 'removeFormat', '');
-            cmdWYSIWYG(id, 'formatBlock', 'P');
-            cancelkeypress = true;
-        }
-
-        // CTRL + Q: quote
-        else if(e.charCode == 113 || e.charCode == 81){
-            cmdWYSIWYG(id, 'formatBlock', 'BLOCKQUOTE');
-            cancelkeypress = true;
-        }
-
-        // CTRL + L: orderedlist
-        else if(e.charCode == 108 || e.charCode == 76){
-            cmdWYSIWYG(id, 'insertUnorderedList', '');
-            cancelkeypress = true;
-        }
-
-        // CTRL + M: unorderedlist
-        else if(e.charCode == 109 || e.charCode == 77){
-            cmdWYSIWYG(id, 'insertOrderedList', '');
-            cancelkeypress = true;
-        }
-    }
-
-    WYSIWYGTextareaReload(id);
-
-    // cancel event propagation
-    if(cancelkeypress){
-        e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
-        e.preventDefault();
-        return false;
-    }
-
-}
-*/
-
-
 
 
 function refreshWYSIWYG(id)
@@ -354,7 +244,6 @@ function initWYSIWYGIFrame(id) {
 	code_source_mode = false;
 	if($('#former #iframe_radio_'+id).is(':checked'))
 		code_source_mode = true;
-
 
 	$('#iframe_'+id).remove();
 	//if($('textarea#'+id).is(':visible'))

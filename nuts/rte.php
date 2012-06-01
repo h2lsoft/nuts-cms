@@ -22,6 +22,7 @@ if($view == 'paste'){
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><?php echo $title; ?></title>
 
+    <script type="text/javascript" src="/library/js/jquery.js"></script>
     <script type="text/javascript" src="/library/js/php.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/library/js/tiny_mce/themes/advanced/skins/o2k7/dialog.css" media="all" />
@@ -34,7 +35,7 @@ if($view == 'paste'){
 
     <div><b><?php echo $info; ?></b></div>
 
-    <textarea id="content" name="content" rows="15" cols="100" style="width: 100%; height: 90%; font-family: 'Courier New',Courier,mono; font-size: 12px;" dir="ltr" wrap="soft" class="mceFocus"></textarea>
+    <textarea id="content" name="content" rows="13" cols="100" style="width: 100%; height: 85%; font-family: 'Courier New',Courier,mono; font-size: 12px;" dir="ltr" wrap="soft" class="mceFocus"></textarea>
 
     <div class="mceActionPanel">
         <input type="submit" name="insert" value="<?php echo $insert; ?>" id="insert" />
@@ -42,7 +43,23 @@ if($view == 'paste'){
     </div>
 
 </form>
+<script>
+$(function(){
+    $('#content').focus();
+});
+</script>
+
+
 <?php endif; ?>
+
+<script>
+$(document).keydown(function(e){
+    code = e.keyCode ? e.keyCode : e.which;
+    if(code == 27)
+       $('#cancel').click();
+});
+</script>
+
 
 </body>
 </html>
