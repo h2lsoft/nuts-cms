@@ -721,3 +721,8 @@ INSERT INTO `NutsFileExplorerMimesType`(`ID`,`Extension`,`Mimes`,`Deleted`) valu
 
 /* update v.3.1 */
 CREATE TABLE `NutsUserListSearches` (  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,  `NutsUserID` int(10) unsigned NOT NULL,  `Plugin` varchar(255) NOT NULL,  `Name` varchar(255) DEFAULT NULL,  `Serialized` text,  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',  PRIMARY KEY (`ID`),  KEY `NutsUserID` (`NutsUserID`),  KEY `Plugin` (`Plugin`),  KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+/* update v.3.2 */
+INSERT INTO NutsMenu (Category, Name, Position) VALUES (1, '_settings', 0);
+ALTER TABLE `NutsUser` ADD COLUMN `Avatar` VARCHAR(255) NULL ;
+ALTER TABLE `NutsUser` ADD COLUMN `AvatarTmpImage` VARCHAR(255) NULL AFTER `Avatar` ;
