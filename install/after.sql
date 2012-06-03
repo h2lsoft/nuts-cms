@@ -110,6 +110,7 @@ INSERT INTO `NutsSurveyOption`(`ID`,`NutsSurveyID`,`Title`,`I18N`,`Position`,`De
 TRUNCATE TABLE NutsMenu;
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (1,1,'_configuration','',0,1,3,'YES','NO');
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (2,2,'_zone-manager','',0,0,13,'YES','NO');
+insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (3,1,'_settings','',0,1,0,'YES','NO');
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (4,1,'_user-manager','',0,0,6,'YES','NO');
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (5,1,'_group-manager','',1,0,5,'YES','NO');
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (6,2,'_page-manager','',0,0,15,'YES','NO');
@@ -269,8 +270,7 @@ insert  into `NutsMenuRight`(`ID`,`NutsMenuID`,`NutsGroupID`,`Name`) values (136
 insert  into `NutsMenuRight`(`ID`,`NutsMenuID`,`NutsGroupID`,`Name`) values (135,18,1,'add');
 insert  into `NutsMenuRight`(`ID`,`NutsMenuID`,`NutsGroupID`,`Name`) values (134,18,1,'list');
 insert  into `NutsMenuRight`(`ID`,`NutsMenuID`,`NutsGroupID`,`Name`) values (133,38,1,'list');
-insert  into `NutsMenuRight`(`ID`,`NutsMenuID`,`NutsGroupID`,`Name`) values (246,3,1,'list');
-insert  into `NutsMenuRight`(`ID`,`NutsMenuID`,`NutsGroupID`,`Name`) values (247,3,1,'edit');
+insert  into `NutsMenuRight`(`ID`,`NutsMenuID`,`NutsGroupID`,`Name`) values (247,3,1,'exec');
 insert  into `NutsMenuRight`(`ID`,`NutsMenuID`,`NutsGroupID`,`Name`) values (248,41,1,'edit');
 insert  into `NutsMenuRight`(`ID`,`NutsMenuID`,`NutsGroupID`,`Name`) values (249,10,1,'exec');
 insert  into `NutsMenuRight`(`ID`,`NutsMenuID`,`NutsGroupID`,`Name`) values (250,43,1,'list');
