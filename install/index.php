@@ -111,6 +111,7 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 		
 		// special for library media
 		$files[] = WEBSITE_PATH.'/library/media/images';
+		$files[] = WEBSITE_PATH.'/library/media/images/avatar';
 		$files[] = WEBSITE_PATH.'/library/media/images/gallery';
 		$files[] = WEBSITE_PATH.'/plugins/_gallery/_tmp';
 		$files[] = WEBSITE_PATH.'/library/media/images/gallery_images';
