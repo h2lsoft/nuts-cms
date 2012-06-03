@@ -110,7 +110,6 @@ INSERT INTO `NutsSurveyOption`(`ID`,`NutsSurveyID`,`Title`,`I18N`,`Position`,`De
 TRUNCATE TABLE NutsMenu;
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (1,1,'_configuration','',0,1,3,'YES','NO');
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (2,2,'_zone-manager','',0,0,13,'YES','NO');
-insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (3,2,'_template_settings','',0,1,2,'YES','NO');
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (4,1,'_user-manager','',0,0,6,'YES','NO');
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (5,1,'_group-manager','',1,0,5,'YES','NO');
 insert  into `NutsMenu`(`ID`,`Category`,`Name`,`ExternalUrl`,`BreakBefore`,`BreakAfter`,`Position`,`Visible`,`Deleted`) values (6,2,'_page-manager','',0,0,15,'YES','NO');
