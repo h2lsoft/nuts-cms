@@ -1602,9 +1602,31 @@ select.ntabs_loading {background-image: url(/nuts/img/ajax-loader.gif); backgrou
 .ntab_content p span {color: #666; font-style: italic; font-size: 10px}
 
 
+.thumb_preview {
+    width: 50px;
+    height: 50px;
+    line-height:50px;
+    float:left;
+    text-align: center;
+    vertical-align:middle;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-right: 15px;
+    margin-top: -10px;
+    margin-left:110px!important;
+}
+
+.thumb_preview img {
+    vertical-align:middle;
+    max-width: 50px;
+    max-height: 50px;
+}
+
 
 /** hacks webkit **/
 @media screen and (-webkit-min-device-pixel-ratio:0) {
+
+    .thumb_preview {margin-left: -70px!important;}
 
 	.WYSIWYG_toolbar {position:relative; top:1px;}
 

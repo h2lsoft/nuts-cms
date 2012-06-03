@@ -1,5 +1,5 @@
-function generatePassword()
-{
+function generatePassword() {
+
 	keylist = "abcdefghijklmnopqrstuvwxyz1234567890";
 	temp = '';
 	plength = 8;
@@ -21,14 +21,20 @@ function get_gravatar(email) {
 
 
 function avatarInit(){
-
     v = $('#form_window #Avatar').val();
     if(empty(v))
         $('#form_window #avatar_image').attr('src', '/nuts/img/gravatar.jpg');
     else
         $('#form_window #avatar_image').attr('src', v);
-
 }
+
+
+$('#AvatarImage').click(function(){
+    $('#AvatarTmp').click();
+});
+
+
+
 
 
 $('#AvatarFacebook').click(function(){
@@ -45,8 +51,7 @@ $('#AvatarFacebook').click(function(){
 $('#AvatarTwitter').click(function(){
 
     msg = (nutsUserLang == 'fr') ? "Merci de rentrer votre pseudo Twitter" : "Please enter your Twitter login";
-    if((c=prompt(msg, "")))
-    {
+    if((c=prompt(msg, ""))){
         uri = "http://twitter.com/api/users/profile_image/"+c;
         $('#form_window #Avatar').val(uri);
         $('#form_window #avatar_image').attr('src', uri);
@@ -56,8 +61,7 @@ $('#AvatarTwitter').click(function(){
 $('#AvatarGravatar').click(function(){
 
     msg = (nutsUserLang == 'fr') ? "Merci de rentrer votre email" : "Please enter your email";
-    if((c=prompt(msg, $('#former #Email').val())))
-    {
+    if((c=prompt(msg, $('#former #Email').val()))){
         uri = get_gravatar(c);
         $('#form_window #Avatar').val(uri);
         $('#form_window #avatar_image').attr('src', uri);
@@ -65,8 +69,35 @@ $('#AvatarGravatar').click(function(){
 });
 
 
+
+function handleFileSelect(evt) {
+
+    var file = evt.target.files[0]; // FileList object
+    if(file.type.match('image.*')) {
+
+        var reader = new FileReader();
+        // Closure to capture the file information.
+        reader.onload = (function(theFile) {
+            return function(e) {
+
+                // Render thumbnail.
+                $('#form_window #Avatar').val("/library/media/images/my_avatar");
+                $('#form_window #avatar_image').attr('src', e.target.result);
+            };
+        })(file);
+
+        // Read in the image file as a data URL.
+        reader.readAsDataURL(file);
+    }
+}
+document.getElementById('AvatarTmp').addEventListener('change', handleFileSelect, false);
+
+
+
+
 $(function(){
 
+    $('#fieldset_AvatarImageTmp').hide();
 
     $('#form_window .bottom label').css('visibility', 'hidden');
     $('#form_window #Password').after('  <a href="javascript:generatePassword()">'+lang_msg_11+'</a>');
@@ -84,5 +115,9 @@ $(function(){
     $('#form_window #Avatar').click(function(){
         $(this).select();
     });
+
+
+
+
 
 });

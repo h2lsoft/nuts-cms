@@ -16,6 +16,10 @@ if($plugin->formValid())
 {
 	$CUR_ID = $plugin->formUpdate();
 	nutsUserSetPassword($CUR_ID, $_POST['Password']);
+
+    // avatar treatment
+    include(PLUGIN_PATH.'/trt_avatar.inc.php');
+
 }
 
 

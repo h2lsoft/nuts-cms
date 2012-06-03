@@ -30,16 +30,33 @@ $plugin->formAddFieldsetEnd();
 // fieldset
 $plugin->formAddFieldsetStart('Avatar Image');
 $inputs = <<<EOF
- &nbsp;&nbsp; <b>{$lang_msg[27]} :</b>  <input type="button" id="AvatarFacebook" value="Facebook" class="button" /> <input type="button" id="AvatarTwitter" value="Twitter" class="button" /> <input type="button" id="AvatarGravatar" value="Gravatar" class="button" />
+ &nbsp;&nbsp; <b>{$lang_msg[27]} :</b> <input type="button" id="AvatarImage" value="Image..." class="button" /> <input type="button" id="AvatarFacebook" value="Facebook" class="button" /> <input type="button" id="AvatarTwitter" value="Twitter" class="button" /> <input type="button" id="AvatarGravatar" value="Gravatar" class="button" />
 EOF;
 
-$plugin->formAddFieldText('Avatar', '<img id="avatar_image" style="max-width: 60px; max-height: 60px; margin-right: 15px; border: 1px solid #ccc; margin-top: -10px;" />', false, '', 'width:400px', $inputs, '');
+$plugin->formAddFieldText('Avatar', '<div class="thumb_preview"><img id="avatar_image" /></div>', false, '', 'width:250px', $inputs, '');
+
+
+$plugin->formAddFieldsetStart('AvatarImageTmp');
+$plugin->formAddFieldImage('AvatarTmp', '', false, NUTS_IMAGES_PATH.'/avatar', NUTS_IMAGES_URL.'/avatar',
+                                                                                                            '1Mo',
+                                                                                                            '',
+                                                                                                            '',
+                                                                                                            '',
+                                                                                                            '',
+                                                                                                            true,
+                                                                                                            60,
+                                                                                                            60,
+                                                                                                            true,
+                                                                                                            array(255,255,255),
+                                                                                                            false);
+
+$plugin->formAddFieldsetEnd();
+
 $plugin->formAddFieldsetEnd();
 // end of fieldset
 
 
-
-$plugin->formAddException('Login');
+$plugin->formAddException('Login', 'AvatarFile');
 
 
 // options
@@ -61,13 +78,15 @@ if($_POST)
 }
 
 
-$plugin->formAddEndText("
+if(!$_POST)
+{
+    $plugin->formAddEndText("
+        <script>var lang_msg_11 = '{$lang_msg[11]}';</script>
+        <script type=\"text/javascript\" src=\"/plugins/_user-profile/funcs.js\"></script>
+    ");
 
-<script>var lang_msg_11 = '{$lang_msg[11]}';</script>
-<script type=\"text/javascript\" src=\"/plugins/_user-profile/funcs.js\"></script>
+}
 
-
-");
 
 
 
