@@ -13,10 +13,11 @@ if(!empty($AvatarTmp))
 {
     $avatar_image = '/library/media/images/avatar/'.$AvatarTmp;
 
-    $f = array();
-    $f['AvatarTmpImage'] = "";
-    $f['Avatar'] = $avatar_image;
-    $nuts->dbUpdate('NutsUser', $f, "ID = {$_SESSION['NutsUserID']}");
+    $avatar = NutsORM::factory('NutsUser');
+    $avatar->ID = $_SESSION['NutsUserID'];
+    $avatar->AvatarTmpImage = '';
+    $avatar->Avatar = $avatar_image;
+    $avatar->update();
 }
 
 

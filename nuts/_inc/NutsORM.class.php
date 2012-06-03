@@ -88,6 +88,21 @@ class NutsORM
 
 	}
 
+    /**
+     * Force update on a record
+     */
+    public function update(){
+
+        if(!isset($this->_data['ID'])){
+            trigger_error("Oject has no ID value", E_USER_WARNING);
+            return;
+        }
+
+        $this->_is_new = false;
+        $this->save();
+    }
+
+
 	/**
 	 * Delete current record and reinit data parameter
 	 */
