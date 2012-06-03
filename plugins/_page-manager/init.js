@@ -322,3 +322,10 @@ if(from_mode == 'iframe')
 
 }
 
+// detect delete key on simpletree
+$(document).keydown(function(e) {
+    if(e.keyCode == 46 && $('.simpleTree span.active').length && !$('#page_form').is(':visible')) {
+        deletePage();
+        e.stopPropagation();
+    }
+});
