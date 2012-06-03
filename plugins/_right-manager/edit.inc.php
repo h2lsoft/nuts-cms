@@ -99,7 +99,7 @@ else
 		$name = str_replace(array('_', '-'), ' ', $dir);		
 		
 		// listing rights
-		if(file_exists("$dir_origin/info.yml") && !in_array($dir, array('_error', '_home')))
+		if(file_exists("$dir_origin/info.yml") && !in_array($dir, array('_error', '_home', '_user-profile')))
 		{			
 			// get plugin category
 			$sql = "SELECT Category FROM NutsMenu WHERE Name = '$r_name' LIMIT 1";
