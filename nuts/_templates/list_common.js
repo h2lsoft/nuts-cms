@@ -12,21 +12,23 @@ $('#search_form .lower').blur(function(e) {$(this).val(strtolower($(this).val())
 $('#search_form').bind('submit', function(){
 
 	uri = search_uri;
-	for(i=0; i < document.forms["search_form"].elements.length; i++)
-	{
-		n = document.forms["search_form"].elements[i];
-		name = n.name;
-		type = n.type;
-		id = name;
+    $('#search_form input[type=checkbox]:checked').each(function(){
 
-		// hack to prevent date time problem
-		if(type == 'text')id = 'se_'+name;
-		uri += name + '=' + $('#'+id).val()+'&';
-	}
+        id = str_replace('_checkbox', '', $(this).attr('id'));
+
+        // add operator
+        uri += id + '_operator=' + $('#search_form #'+id+'_operator').val()+'&';
+
+        // add select|text
+        if(!$('#search_form #'+id).length)
+            uri += id + '=' + $('#search_form #se_'+id).val()+'&';
+        else
+            uri += id + '=' + $('#search_form #'+id).val()+'&';
+    });
 
 	system_goto(uri, 'list');
-
 	return false;
+
 });
 
 
