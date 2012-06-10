@@ -1555,6 +1555,9 @@ EOF;
 			echo "\n";
 			while($row = $this->nuts->dbFetch())
 			{
+                if(function_exists('hookData'))
+                    $row = hookData($row);
+
 				for($i=0; $i <  count($this->cols)-$del; $i++)
 				{
 					$txt = str_replace('"', '\"', @$row[$this->cols[$i]]);
