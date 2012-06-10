@@ -205,6 +205,14 @@ class Query
 		return $this->_DBLink->dbGetOne();
 	}
 
+    /**
+     * execute query and fetch
+     */
+    function executeAndFetch(){
+        $this->execute();
+        return $this->_DBLink->dbFetch();
+    }
+
 	/**
 	 * execute query and return one resultset
 	 */
