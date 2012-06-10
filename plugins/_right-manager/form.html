@@ -84,6 +84,11 @@ function updateCheck(right, checked_state)
 	$('td[right="'+right+'"] input').attr('checked', checked_state);
 }
 
+function updateCheckCategory(category, checked_state)
+{
+    $('input[category="'+category+'"]').attr('checked', checked_state);
+}
+
 function updateOption()
 {
 	v = $('#right_options input:checked').val();
@@ -140,7 +145,13 @@ $("#right_plugin_search").keyup(function(){
 <!-- category -->
 <bloc::category>
 <tr type="category">
-	<th colspan="2">{Category} ({category_count})</th>
+	<th colspan="2">
+
+        <label>
+            <input type="checkbox" onclick="updateCheckCategory('{Category}', this.checked);" /> {Category} ({category_count})
+        </label>
+
+    </th>
 </tr>
 
 
@@ -149,7 +160,7 @@ $("#right_plugin_search").keyup(function(){
 	<tr type="{type}">
 		<td width="120" class="label" style="white-space:nowrap;">
 			<label>
-				<input type="checkbox" onclick="updateCheck('{name}', this.checked);" /> <img alt="{name}" src="/plugins/{p_name}/icon.png" /> {name}
+				<input category="{category}"  type="checkbox" onclick="updateCheck('{name}', this.checked);" /> <img alt="{name}" src="/plugins/{p_name}/icon.png" /> {name}
 			</label>
 
 		</td>
@@ -157,7 +168,7 @@ $("#right_plugin_search").keyup(function(){
 
 			<!-- right -->
 			<bloc::right>
-			<label><input type="checkbox" name="right[{r_name}][]" value="{r}" {checked} onclick="if('{$_GET['NutsGroupID']}' == 1 && !this.checked){alert('{$lang_msg[2]}'); this.checked=true;}"> {r_label}</label>
+			<label><input category="{category}" type="checkbox" name="right[{r_name}][]" value="{r}" {checked} onclick="if('{$_GET['NutsGroupID']}' == 1 && !this.checked){alert('{$lang_msg[2]}'); this.checked=true;}"> {r_label}</label>
 			</bloc::right>
 			<!-- /right -->
 

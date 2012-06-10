@@ -161,6 +161,7 @@ else
 				$nuts->parse('category.rights.type', $all_cats[$cat][$xplugin]['type']);
 				$nuts->parse('category.rights.p_name', $all_cats[$cat][$xplugin]['name']);	
 				$nuts->parse('category.rights.name', $all_cats[$cat][$xplugin]['label'], '|trim|ucfirst');
+                $nuts->parse('category.rights.category', $cat);
 				
 				foreach($all_cats[$cat][$xplugin]['actions'] as $action)
 				{
@@ -185,6 +186,7 @@ else
 						$checked = 'checked';
 					
 					$nuts->parse('category.rights.right.checked', $checked);
+					$nuts->parse('category.rights.right.category', $cat);
 					$nuts->loop('category.rights.right');
 				}
 				
