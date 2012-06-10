@@ -13,6 +13,8 @@ $plugin->listAddCol('CssName', $lang_msg[3]);
 $plugin->listAddCol('Description', $lang_msg[4]);
 $plugin->listAddColImg('Navbar', $lang_msg[7], '', true);
 
+$plugin->listSetFirstOrderBySort('ASC');
+
 // render list
 $plugin->listRender(20);
 
