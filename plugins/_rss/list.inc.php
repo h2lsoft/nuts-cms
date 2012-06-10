@@ -23,10 +23,14 @@ $plugin->listRender(20, 'hookData');
 
 function hookData($row)
 {
-	$row['RssImage'] = '<img src="'.$row['RssImage'].'" style="width:150px;" />';
+    if(empty($row['RssImage']))
+        $row['RssImage'] = "/nuts/img/no-preview.png";
+
+	$row['RssImage'] = '<img src="'.$row['RssImage'].'" style="height:65px;" />';
 	$row['View'] = '<a href="/plugins/_rss/viewer.php?ID='.$row['ID'].'" target="_blank"><img src="/nuts/img/icon-preview.gif" /></a>';
 
 	$row['RssTitle'] = '<b>'.$row['RssTitle'].'</b><br />'.$row['RssDescription'];
+
 
 	return $row;
 }
