@@ -9,9 +9,11 @@ body {
 	font-family: arial;
 	font-size: 11px;
 
-
-	background-image:url(bkg.png);
+/*
+	background-image:url(header_bkg.gif);
 	background-repeat:repeat-x;
+*/
+
 	overflow-y:scroll;
 	margin:0;
 	width:100%;
@@ -37,7 +39,12 @@ fieldset {
 #internal_message_toolbar {padding-top: 1px; }
 #notes_toolbar {padding-top: 2px;}
 
-#header {padding:5px; padding-left:10px; padding-right:3px; height:65px; }
+#header {padding:5px; padding-left:10px; padding-right:3px; height:65px;
+
+    background-image:url(header_bkg.gif);
+    background-repeat:repeat-x;
+
+}
 #header img {margin-right:10px; margin-bottom:0px; max-height:65px;}
 
 #logout {float:right; background-color:#e5e5e5; padding:5px; min-width:280px; min-height: 65px; white-space: nowrap; text-align:center; border:1px solid #ccc; margin-top:-3px; padding-bottom: 0px;}
