@@ -102,8 +102,13 @@ $('.image_preview').click(function(){
 
 shortcut.remove('Escape');
 shortcut.add('Escape', function(){
+
     if($('#list_search_content').is(':visible'))
         $('#list_search_content').slideToggle('fast');
+
+    if($('#nuts_canvas').is(':visible'))
+        imageBoxClose();
+
 });
 
 
