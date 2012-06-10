@@ -38,8 +38,9 @@ function hookData($row)
 	if($row['Type'] == 'AUDIO')
 	{
 		$row['Preview'] = '<object type="application/x-shockwave-flash" data="../library/js/dewplayer/dewplayer.swf?mp3='.$row['Url'].'&amp;showtime=1" width="200" height="20">
+
+		                    <param name="wmode" value="transparent" />
 							<param name="movie" value="../library/js/dewplayer/dewplayer.swf?mp3='.$row['Url'].'&amp;showtime=1" />
-							<param name="wmode" value="transparent" />
 						 </object>';
 	}
 	elseif($row['Type'] == 'VIDEO')
@@ -63,6 +64,7 @@ function hookData($row)
 		$row['Preview'] = '<object type="application/x-shockwave-flash" data="/nuts/player_flv_maxi.swf" width="200" height="160">
 								<param name="movie" value="/nuts/player_flv_maxi.swf" />
 								<param name="allowFullScreen" value="true" />
+								<param name="wmode" value="transparent" />
 
 								<param name="FlashVars" value="flv='.$row['Url'].'&amp;width=200&amp;height=160&amp;showstop=1&amp;showvolume=1&amp;showplayer=always&amp;showloading=always&amp;showfullscreen=1&amp;showiconplay=1&amp;ondoubleclick=fullscreen&amp;autoload=0&amp;srt=1&amp;iconplaybgalpha=50'.$startimage.'" />
 						</object>';
