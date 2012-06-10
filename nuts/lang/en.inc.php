@@ -167,6 +167,7 @@ $nuts_lang_msg[90] = "My profile";
 $nuts_lang_msg[91] = "<u>Shortcuts</u><br /><br />
 Alt+N : Go to next page<br />
 Alt+B : Go to previous page<br />
+Alt+R : Refresh<br />
 Alt+A : Add new record<br />
 Alt+S : Open / Close search box";
 

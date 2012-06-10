@@ -158,6 +158,7 @@ $nuts_lang_msg[90] = "Mon profil";
 $nuts_lang_msg[91] = "<u>Raccourcis clavier :</u><br /><br />
 Alt+N : Aller à la page suivante<br />
 Alt+B : Aller à la page précédente<br />
+Alt+R : Rafraîchir<br />
 Alt+A : Ajouter un enregistrement<br />
 Alt+S : Ouvrir/Fermer la recherche";
 
