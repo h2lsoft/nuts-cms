@@ -85,28 +85,41 @@ foreach($mods_group as $group)
 					else
 					{
 						// translate $default_lang to $NutsUserLang
-						$uri = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&langpair=$default_lang|$NutsUserLang";
-						$uri .= "&q=".urlencode($yaml['info']);
-						$table = json_decode(file_get_contents($uri));
-						$mod_title = $table->{'responseData'}->{'translatedText'};
+						// $uri = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&langpair=$default_lang|$NutsUserLang";
+						// $uri .= "&q=".urlencode($yaml['info']);
+						// $table = json_decode(file_get_contents($uri));
+						// $mod_title = $table->{'responseData'}->{'translatedText'};
 
-						$info_yml_contents = file_get_contents(WEBSITE_PATH.'/plugins/'.$row['Name'].'/info.yml');
-						$info_yml_lines = explode("\n", $info_yml_contents);
 
-						// get line for replace
-						$line = "";
-						foreach($info_yml_lines as $ln)
-						{
-							if(($line = strstr($ln, 'info:')))
-								break;
-						}
+                        $uri = "http://www.nuts-cms.com/tools/translator/?";
+                        $uri .= "lngIn=".$default_lang;
+                        $uri .= "&lngOut=".$NutsUserLang;
+                        $uri .= "&txt=".urlencode($yaml['info']);
+                        $uri .= "&serverName=".WEBSITE_NAME;
+                        $uri .= "&website_uri=".WEBSITE_URL;
 
-						if(!empty($line))
-						{
-							$line2 = $line."\n"."info_{$NutsUserLang}: $mod_title";
-							$info_yml_contents = str_replace($line, $line2, $info_yml_contents);
-							file_put_contents(WEBSITE_PATH.'/plugins/'.$row['Name'].'/info.yml', $info_yml_contents);
-						}
+                        if(($content = file_get_contents($uri)))
+                        {
+                            $mod_title = $content;
+
+                            $info_yml_contents = file_get_contents(WEBSITE_PATH.'/plugins/'.$row['Name'].'/info.yml');
+                            $info_yml_lines = explode("\n", $info_yml_contents);
+
+                            // get line for replace
+                            $line = "";
+                            foreach($info_yml_lines as $ln)
+                            {
+                                if(($line = strstr($ln, 'info:')))
+                                    break;
+                            }
+
+                            if(!empty($line))
+                            {
+                                $line2 = $line."\n"."info_{$NutsUserLang}: $mod_title";
+                                $info_yml_contents = str_replace($line, $line2, $info_yml_contents);
+                                file_put_contents(WEBSITE_PATH.'/plugins/'.$row['Name'].'/info.yml', $info_yml_contents);
+                            }
+                        }
 					}
 				}
 
