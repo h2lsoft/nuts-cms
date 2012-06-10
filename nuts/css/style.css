@@ -1079,6 +1079,12 @@ iframe#richeditor_content {/*background-color:#333;*/ position:absolute; z-index
 	vertical-align: middle;
 	padding-right: 7px;
 	margin-left: -2px;
+    width: 16px;
+    height: 16px;
+}
+
+#nav_menu li ul li:hover img {
+    opacity: 0.5;
 }
 
 
