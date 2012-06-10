@@ -489,7 +489,7 @@ table#list tfoot td input {text-align:center; width:35px;}
 table#list tfoot a.np {/*font-size:14px;*/ margin-left:10px; margin-right:10px; padding:5px; color:#666;}
 table#list tfoot a.np:hover {text-decoration:none; color:#333;}
 
-table#list pre {margin:0;}
+table#list pre {margin:0; padding: 3px; color:black; background-color: #e5e5e5; border-radius: 5px; }
 
 table#list tbody tr:nth-child(even) td {background-color: #eee;}
 table#list tbody tr:nth-child(odd) td {background-color: #fff;}
