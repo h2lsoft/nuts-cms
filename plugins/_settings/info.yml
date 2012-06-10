@@ -4,7 +4,8 @@ author: H2Lsoft
 website: www.h2lsoft.com
 email: contact@h2lsoft.com
 webupdate: no
-info: 
+info: manage your solution
+info_fr: gérer votre solution
 langs: en, fr
 system required: >= 3.0
 actions: exec
