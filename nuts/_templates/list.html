@@ -10,7 +10,7 @@
 <fieldset>
 
 	<legend>
-        <img src="img/icon-search.gif" align="absmiddle" /> <a accesskey="S" href="javascript:;" onclick="$('#list_container .list_searches_menu').hide();$('#list_search_content').slideToggle('fast');">{$nuts_lang_msg[11]}</a>
+        <img src="img/icon-search.gif" align="absmiddle" /> <a accesskey="S" href="javascript:;" onclick="listSearchToggle()">{$nuts_lang_msg[11]}</a>
 
         <span>|</span>
 
@@ -34,7 +34,7 @@
 		<bloc::fields>
 		<p>
 
-            <input type="checkbox" id="{name}_checkbox" onclick="listSearchCheckbox('{name}', true);"  />
+            <input name="{name}_checkbox" type="checkbox" id="{name}_checkbox" onclick="listSearchCheckbox('{name}', true);"  />
 
             <label id="{name}_label" class="tt" title="{help}" for="{name}_checkbox">{label}</label>
 
