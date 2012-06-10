@@ -26,7 +26,9 @@ $plugin->listRender(20, 'hookData');
 
 function hookData($row)
 {
-	
+    global $nuts;
+
+    if($_SESSION['Language'] == 'fr')$row['Date'] = $nuts->db2Date($row['Date']);
 
 	return $row;
 }
