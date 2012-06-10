@@ -2659,6 +2659,9 @@ EOF;
 					if($_GET['ID'] == 0)
 					{
 						$image_display = 'none';
+                        $this->nuts->parse('f.widgets.image.image_path', '');
+                        $this->nuts->parse('f.widgets.image.image_name', 'nuts/img/NO.gif');
+                        $this->nuts->parse('f.widgets.image.time', '');
 					}
 					else
 					{
@@ -2667,7 +2670,13 @@ EOF;
 						$sql = "SELECT {$f['name']}Image FROM {$this->formDBTable[0]} WHERE ID = {$_GET['ID']}";
 						$this->nuts->doQuery($sql);
 
-						if($this->nuts->dbNumRows() == 1)
+						if(!$this->nuts->dbNumRows())
+                        {
+                            $this->nuts->parse('f.widgets.image.image_path', '');
+                            $this->nuts->parse('f.widgets.image.image_name', 'nuts/img/NO.gif');
+                            $this->nuts->parse('f.widgets.image.time', '');
+                        }
+                        else
 						{
 							$img = $this->nuts->getOne();
 							if(!empty($img))
