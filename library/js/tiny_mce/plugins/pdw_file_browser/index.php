@@ -760,7 +760,12 @@ aDivElement.ondragenter = function(e) {
 $(document).keydown(function(e){
     code = e.keyCode ? e.keyCode : e.which;
     if(code == 27)
-        window.close();
+    {
+        if($('#image_previewer').is(':visible'))
+            $.MediaBrowser.viewImageClose();
+        else
+            window.close();
+    }
 });
 </script>
 
