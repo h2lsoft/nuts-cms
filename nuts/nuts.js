@@ -570,7 +570,7 @@ function popupModal(url, name, windowWidth, windowHeight, opts) {
     // mytop = window.screenTop ? window.screenTop : window.screenY;
 
     // properties = "dialogWidth:"+windowWidth+"; dialogHeight:"+windowHeight+"; status:yes; resizable:yes; scroll:yes; dialogTop:"+mytop+"; dialogLeft:"+myleft;
-    properties = "width="+windowWidth+",height="+windowHeight+",status=yes,resizable=yes,scroll=yes,top="+mytop+",left="+myleft;
+    properties = "width="+windowWidth+",height="+windowHeight+",status=1,resizable=1,scrollbars=1,top="+mytop+",left="+myleft;
 
     if(!empty(opts))
         properties += ', '+opts;
