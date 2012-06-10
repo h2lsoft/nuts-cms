@@ -44,9 +44,8 @@ function initWYSIWYGOption()
         menu_sep = '--------------------------------\\n';
 
 		// help
-		msg = 'Help:\\n';
+		msg = '<b>Help :</b>\\n';
 		msg += '==========================\\n';
-        msg += '\\n';
 		msg += 'Ctrl + Alt + E: RichEditor\\n';
         msg += menu_sep;
 		msg += 'Ctrl + B: Bold\\n';
@@ -66,8 +65,11 @@ function initWYSIWYGOption()
         msg += menu_sep;
 		msg += 'Ctrl + Z: Undo\\n';
 		msg += 'Ctrl + Y: Redo\\n';
+        msg = str_replace('\\n', '<br>', msg);
 
-		str += '<img class="rte_button" onmouseover="$(body).css(\'cursor\', \'help\');" onmouseout="$(body).css(\'cursor\', \'default\');" title="Help" src="img/rte/help.png" align="absmiddle"  onclick="alert(\''+msg+'\')" />';
+		str += '<span class="tooltip yellow-tooltip tooltip-middle tooltip-middle-right"><img class="rte_button" src="img/rte/help.png" align="absmiddle" /><dd>'+msg+'</dd></span>';
+
+
         str += sep;
 
 		// repaint
@@ -178,7 +180,7 @@ function iframeContentProtector(id){
 
 function WYSIWYGToggleIt(id)
 {
-    objs = '#'+id+'_WYSIWYG_toolbar select, #'+id+'_WYSIWYG_toolbar input[type=button], #'+id+'_WYSIWYG_toolbar img, '+'#'+id+'_WYSIWYG_toolbar a,'+'#'+id+'_WYSIWYG_toolbar .rte_separator';
+    objs = '#'+id+'_WYSIWYG_toolbar select, #'+id+'_WYSIWYG_toolbar input[type=button], #'+id+'_WYSIWYG_toolbar img, '+'#'+id+'_WYSIWYG_toolbar a,'+'#'+id+'_WYSIWYG_toolbar .rte_separator, '+'#'+id+'_WYSIWYG_toolbar span';
     obj_source = '#'+id+'_WYSIWYG_toolbar .nohide';
 
     // WYSIWYG mode
