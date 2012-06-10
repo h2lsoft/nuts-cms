@@ -27,4 +27,6 @@ $lang_msg[17] = "Email alert";
 $lang_msg[18] = "Send an email with this message in copy";
 $lang_msg[19] = "Me";
 
+$lang_msg[20] = "Links and mail addresses are automatically converted to clikable";
+
 ?>

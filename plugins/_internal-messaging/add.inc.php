@@ -13,8 +13,10 @@ if($plugin->formValid())
 	$_POST['NutsGroup'] = 0;
 	$_POST['NutsUserID'] = 0;
 	$_POST['Message'] = strip_tags($_POST['Message']);
+    $_POST['Message'] = $nuts->clickable($_POST['Message']);
 
-	// $CUR_ID = $plugin->formInsert();
+
+    // $CUR_ID = $plugin->formInsert();
 	// $nuts->doQuery("DELETE FROM NutsIM WHERE ID = $CUR_ID");
 
 	$curUserIDdone = array();

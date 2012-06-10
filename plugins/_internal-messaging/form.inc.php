@@ -31,7 +31,7 @@ $plugin->formAddFieldsetEnd();
 
 $reply = (isset($_GET['reply'])) ? 'Re : '.$_GET['reply'] : '';
 $plugin->formAddFieldText('Subject', $lang_msg[1], true, 'ucfirst', '', '', '', $reply);
-$plugin->formAddFieldTextArea('Message', $lang_msg[2], true, 'ucfirst', "height:180px");
+$plugin->formAddFieldTextArea('Message', $lang_msg[2], true, 'ucfirst', "height:180px", "", $lang_msg[20]);
 $plugin->formAddFieldBoolean('EmailAlert', $lang_msg[17], true, $lang_msg[18]);
 
 

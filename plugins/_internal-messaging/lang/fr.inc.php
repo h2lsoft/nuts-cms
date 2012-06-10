@@ -26,6 +26,8 @@ $lang_msg[17] = "Alerte email";
 $lang_msg[18] = "Envoyer un email avec ce message en copie";
 $lang_msg[19] = "Moi";
 
+$lang_msg[20] = "Les liens et les adresses mail sont automatiquement converties en état cliquable";
+
 
 
 ?>
