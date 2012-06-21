@@ -875,7 +875,7 @@ function imageBrowser(f, folder)
 
 	popup2(uri, 'imageBrowser', 960, 750, '');*/
 
-	uri = WEBSITE_URL+'/library/js/tiny_mce/plugins/pdw_file_browser/index.php?editor=standalone&filter=image&returnID='+f;
+	uri = WEBSITE_URL+'/library/js/tiny_mce/plugins/file_browser/index.php?editor=standalone&filter=image&returnID='+f;
 	if(folder != '')
 		uri += "&path="+folder;
 	popupModal(uri, 'imgBrowser', 1024, 800, '');
