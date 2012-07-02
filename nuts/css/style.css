@@ -161,7 +161,7 @@ h1 .plugin_logo {width: 32px; vertical-align: text-top; float: left; margin-righ
 h1 a:hover {text-decoration:none; color:#999;}
 
 
-#main_title {width: auto; clear: left;}
+#main_title {width: auto; /*clear: left;*/ margin-top: 10px;}
 #main_title .col_logo {width: 20px; white-space: nowrap;}
 #main_title .col_logo .plugin_logo {width: 28px;}
 #main_title .col_title a {color:#666; font-size:18px;}
@@ -1541,17 +1541,34 @@ span.tag_error,
 span.tag_ok
 	{padding: 2px 5px; background-color: #ccc; border-radius: 3px; border: 1px; color:black;}
 
+span.tag:hover {background-color: #ddd}
+
 span.tag_warning {background-color:yellow; color:black;}
+span.tag_warning:hover {background-color:#fafad2;}
+
 span.tag_error {background-color:red; color:white;}
+span.tag_error:hover {background-color:#f08080;}
+
 span.tag_ok {background-color:green; color:white;}
+span.tag_ok:hover {background-color:#90ee90;}
 
 span.tag_red {background-color:red; color:black;}
-span.tag_green {background-color:green; color:black;}
-span.tag_blue {background-color:#87cefa; color:black;}
-span.tag_yellow {background-color:#fafad2; color:black;}
-span.tag_brown {background-color:#ffa07a; color:black;}
-span.tag_violet {background-color:#ee82ee; color:black;}
+span.tag_error:hover {background-color:#f08080;}
 
+span.tag_green {background-color:green; color:black;}
+span.tag_ok:hover {background-color:#90ee90;}
+
+span.tag_blue {background-color:#87cefa; color:black;}
+span.tag_blue:hover {background-color:#aaa8e6;}
+
+span.tag_yellow {background-color:yellow; color:black;}
+span.tag_yellow:hover {background-color:#fafad2;}
+
+span.tag_brown {background-color:#ffa07a; color:black;}
+span.tag_brown:hover {background-color:#ffafaa;}
+
+span.tag_violet {background-color:#ee82ee; color:black;}
+span.tag_violet:hover {background-color:#ffaaff;}
 
 
 
@@ -1661,7 +1678,7 @@ select.ntabs_loading {background-image: url(/nuts/img/ajax-loader.gif); backgrou
     position: absolute;
     bottom: 30px;
     left: 0%;
-    z-index: 999;
+    z-index: 999999;
     width: 230px;
     margin-left: -220px;
     margin-top: 127px;
@@ -1691,7 +1708,7 @@ select.ntabs_loading {background-image: url(/nuts/img/ajax-loader.gif); backgrou
 {
     content: "";
     position: absolute;
-    z-index: 1000;
+    z-index: 9999999;
     bottom: -7px;
     left: 90%;
     margin-left: -8px;
@@ -1741,6 +1758,9 @@ select.ntabs_loading {background-image: url(/nuts/img/ajax-loader.gif); backgrou
 
 /** hacks webkit **/
 @media screen and (-webkit-min-device-pixel-ratio:0) {
+
+
+    #main_title {margin-top: 25px;}
 
     .thumb_preview {margin-left: -70px!important;}
 
