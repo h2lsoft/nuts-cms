@@ -138,15 +138,23 @@ div#top_search {
 
 #content {clear:both;  padding:10px; min-height:400px; }
 
-ul#navbar {clear:both; list-style-type:none; display:inline; margin-top:10px; margin-bottom:10px; height:27px; }
+ul#navbar {clear:both; list-style-type:none; display:inline; margin-top:10px; margin-bottom:7px; height:27px; }
 ul#navbar li {
-	float:left; margin-right:5px;
+	float:left;
+    margin-right:10px;
+    background-color: #e5e5e5;
+    border-radius: 3px;
+    padding: 1px 5px;
+    color: #ccc;
 }
 
-ul#navbar li a:hover {text-decoration:none; color:#FF00FF;}
+ul#navbar li a {color:#000;}
+ul#navbar a:hover {text-decoration:none;}
+ul#navbar li:hover {background-color: #ccc; color: #aaa;}
+ul#navbar li:hover> a {color: white}
 
 
-h1 {clear:both; padding-bottom:5px; font-size:18px; margin-bottom:0px; margin-top:8px; padding-top: 0; margin-top: -10px;}
+h1 {clear:both; padding-bottom:5px; font-size:18px; margin-bottom:0px; margin-top:12px; padding-top: 0; margin-top: -10px;}
 h1 span {font-size: 6px; padding-left: 30px; margin-top: -7px; display: block; color: #aaa; float: right;}
 h1, h1 a {color:#666;}
 h1 .plugin_logo {width: 32px; vertical-align: text-top; float: left; margin-right: 5px;}
