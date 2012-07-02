@@ -90,7 +90,37 @@ else
 	// </editor-fold>
 
 	// output ************************************************************
-	if($_GET['step'] == -1)
+    if($_GET['step'] == -2)
+    {
+        $action_end = ($debug_mode) ? 'off' : 'on';
+        $output = "<b>-> Turn debug mode to $action_end</b>";
+
+        $updater_cfg_path = WEBSITE_PATH.'/plugins/_updater/config.inc.php';
+        $c = file_get_contents($updater_cfg_path);
+
+        if($action_end == 'off')
+        {
+            $ori = '$debug_mode = true;';
+            $rep = '$debug_mode = false;';
+        }
+        else
+        {
+            $ori = '$debug_mode = false;';
+            $rep = '$debug_mode = true;';
+        }
+
+        $c = str_replace($ori, $rep, $c);
+        if(@!file_put_contents($updater_cfg_path, $c))
+        {
+            $output .= " :  <i>failed</i> file is not writable";
+        }
+        else
+        {
+            $debug_mode =  ($action_end == 'off') ? false : true;
+        }
+
+    }
+    elseif($_GET['step'] == -1)
 	{
 		$output = "<b>-> Get last updater engine</b>";
 		
