@@ -65,7 +65,7 @@
 	
 }
 
-#ni_content input[type=text]
+#ni_content input[type=text], #ni_content input[type=password]
 {
 	width: 99%;
 }
