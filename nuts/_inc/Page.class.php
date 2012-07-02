@@ -2924,6 +2924,7 @@ EOF;
 		}
 
 		$refresh_lbl = ($_SESSION['Language'] == 'fr') ? 'Rafraîchir' : 'Refresh';
+        $open_close_lbl = ($_SESSION['Language'] == 'fr') ? 'Ouvrir / Fermer' : 'Open / Close';
 
 
 		// no editable page
@@ -2937,7 +2938,7 @@ EOF;
 
 		$toolbar = <<<EOF
 
-		<div id="nuts_front_toolbar" style="border-bottom:2px solid #FF9900; width:99%; position:fixed; z-index:5770; left: 0px; top:0px; background-color:#333; padding:5px; text-align:center; color:black; background-image:url(/nuts/css/th_bkg.png); background-repeat:repeat-x;">
+		<div id="nuts_front_toolbar" style="border-bottom:2px solid #FF9900; width:99%; position:fixed; z-index:570; left: 0px; top:-30px; background-color:#333; padding:5px; text-align:center; color:black; background-image:url(/nuts/css/th_bkg.png); background-repeat:repeat-x;">
 			<img alt="" src="/nuts/img/icon-user.gif" style="width:16px; vertical-align:middle;" /> <b>{$_SESSION['Login']} (#{$_SESSION['ID']})</b> &nbsp;&nbsp;&nbsp;|  &nbsp;&nbsp;&nbsp;
 			<img alt="" src="/nuts/img/logon_password.png" style="width:16px; vertical-align:middle;" /> <a style="color:black!important;text-decoration:none!important;" href="/nuts/" target="_blank">Back-office</a>
 			$edit_option
@@ -2950,11 +2951,10 @@ EOF;
 			&nbsp;&nbsp;|&nbsp;&nbsp;<img alt="" src="/nuts/img/icon-refresh.png" style="width:16px; vertical-align:middle;" /> <a style="color:black!important;text-decoration:none!important;" href="javascript:history.go(0);">$refresh_lbl</a>
 
 		</div>
+		<div id="nuts_front_toolbar_button" style="user-select:none; webkit-user-select:none; border:1px solid #ccc; border-top:0; width:auto; position:fixed; z-index:570; right:0px; top:2px; padding:5px; text-align:center; color:black; background-color:#FF9900; margin-right:20px"><a style="color:white; user-select:none; webkit-user-select:none; font-size:10px;" href="javascript:nutsFrontToolbarOpenClose();">$open_close_lbl</a></div>
+
 		<script type="text/javascript">
 		$('#nuts_elements').attr('checked', false);
-		cbodyTop = $('body').css('padding-top');
-		cbodyTop = parseInt(cbodyTop);
-		$('body').css('padding-top', cbodyTop+28);
 		$('#nuts_page_link, #nuts_page_link2, #nuts_page_link3, #nuts_page_link4').fancybox({
 											'width'				: '97%',
 											'height'			: '91%',
@@ -2967,8 +2967,7 @@ EOF;
 											'centerOnScroll'    : true,
 											'changeFade'		: 0,
 											'margin'			: 5,
-											'margin-top'		: 30
-
+											'margin-top'		: 3
 										});
 
 		function nutsToggleElements(show)
@@ -2976,6 +2975,21 @@ EOF;
 			$('.nuts_elements').toggle();
 		}
 
+		function nutsFrontToolbarOpenClose()
+		{
+		    posTop = $('#nuts_front_toolbar_button').css('top');
+		    posTop = parseInt(posTop);
+
+		    if(posTop == 2)
+		    {
+                $('#nuts_front_toolbar, #nuts_front_toolbar_button').animate({top: '+=32'}, 400);
+		    }
+		    else
+		    {
+                $('#nuts_front_toolbar, #nuts_front_toolbar_button').animate({top: '-=32'}, 400);
+		    }
+
+		}
 		</script>
 EOF;
 		$toolbar = trim($toolbar);
