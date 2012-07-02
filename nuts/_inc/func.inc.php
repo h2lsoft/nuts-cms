@@ -1577,8 +1577,9 @@ function xLog($msg, $level=0, $file="")
  *
  * @param string $app_name
  * @param string $message
+ * @param int $recordID optionnal
  */
-function xTrace($app_name, $message)
+function xTrace($app_name, $message, $recordID=0)
 {
 	global $nuts;
 
@@ -1590,6 +1591,9 @@ function xTrace($app_name, $message)
 	$f['Action'] = $app_name;
 	$f['Resume'] = $message;
 	$f['IP'] = ip2long($nuts->getIp());
+
+    if($recordID)
+        $f['RecordID'] = $recordID;
 
 	$nuts->dbInsert('NutsLog', $f);
 
