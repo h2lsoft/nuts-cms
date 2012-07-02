@@ -29,6 +29,7 @@ if(is_array($scripts)){
 }
 
 // templates *****************************************************************************
+$timer = time();
 $page = new Page();
 	$nuts = &$page; // useful to use nuts variable instead of page
 	$plugin = &$page; // useful to use nuts variable instead of page
