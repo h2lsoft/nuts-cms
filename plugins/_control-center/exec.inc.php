@@ -243,6 +243,7 @@ $sql = "SELECT
 				Ip,
 				DateGMT DESC";
 $nuts->doQuery($sql);
+$nuts->parse("ip_blocked", $nuts->dbNumRows());
 $nuts->parseDbRow("ips_blocked", "<p>No ip blocked</p>");
 
 // special init for robots.txt
@@ -308,10 +309,7 @@ foreach($files as $file)
 	$nuts->loop('files');
 }
 
-if(!$errors)
-	$nuts->eraseItem('sytem_errors');
-else
-	$nuts->parse('sytem_errors', "$errors errors");
+$nuts->parse('system_errors', $errors);
 
 
 // htaccess

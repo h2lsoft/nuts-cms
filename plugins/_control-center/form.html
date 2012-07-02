@@ -1,189 +1,252 @@
-<div id="form">
+<form id="former" action="index.php?mod={$plugin->name}&do={$plugin->action}" method="post">
+    <div id="form">
 
-<div id="form_error">
-	<img src="img/icon-error.gif" align="absmiddle" />  <span>Error</span>
-</div>
+        <ul id="ntabs0" class="ntabs">
+            <li class="selected">Website</li>
+            <li>IP blocked ({ip_blocked})</li>
+            <li>.Htaccess</li>
+            <li>Robots.txt</li>
+            <li>System checking ({system_errors}) </li>
+            <li>Php Configuration</li>
+        </ul>
+        <div id="ntabs0_content" class="ntabs_content">
 
-<div id="form_ok">
-	<img src="img/icon-accept.gif" align="absmiddle" /> <span>Ok</span>
-</div>
+            <!-- website -->
+            <div class="ntab_content">
 
-<fieldset>
-	<legend>Website</legend>
+                <p>
+                    <label>Maintenance</label>
+                    <select id="Maintenance" action="maintenance">
+                        <option value="YES" {maintenance_yes_selected}>YES</option>
+                        <option value="NO" {maintenance_no_selected}>NO</option>
+                    </select>
+                </p>
 
-	<p>
-		<label>Maintenance</label>
-		<select id="Maintenance">
-			<option value="YES" {maintenance_yes_selected}>YES</option>
-			<option value="NO" {maintenance_no_selected}>NO</option>
-		</select>
+                <p>
+                    <label>IP allowed (separator ',')</label>
+                    <input type="text" id="IPAllowed" value="{ip_allowed}" style="width: 350px;"  action="ip_allowed" />
+                    &nbsp;&nbsp;&nbsp; Your ip: `{IpUser}`
+                </p>
 
-		 <a class="tt" title="Save" href="javascript:updater('maintenance');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
-	</p>
+                <p>
+                    <label>Maintenance message</label>
+                    <input type="text" id="MaintenanceMessage" value="{MaintenanceMessage}" style="width: 500px;"  action="maintenance_message" />
+                </p>
 
-	<p>
-		<label>IP allowed (separator ',')</label>
-		<input type="text" id="IPAllowed" value="{ip_allowed}" style="width: 250px;" />
-		<a class="tt" title="Save" href="javascript:updater('ip_allowed');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
-		&nbsp;&nbsp;&nbsp; Your ip: `{IpUser}`
-	</p>
+                <fieldset>
+                    <legend>Errors page and nuts tags <span style="color:red; font-weight: bold;" id="website_error_count"></span> <a style="display:none;" id="website_error_delete" href="javascript:updater('errors_all');"><img src="/nuts/img/list_delete.png" style="width: 16px;" align="absmiddle" /></a></legend>
 
-    <p>
-        <label>Maintenance message</label>
-        <input type="text" id="MaintenanceMessage" value="{MaintenanceMessage}" style="width: 500px;" />
-        <a class="tt" title="Save" href="javascript:updater('maintenance_message');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a>
-    </p>
+                    <p style="margin-left: 10px; max-height: 200px; overflow: auto; overflow-x: hidden;">
 
+                        <bloc::website_errors>
+		                <span class="website_error" id="website_error_{WebErrorID}">
+			                <img src="img/icon-error.gif" align="absbottom" />
+			                <b>[{error_date}]</b> {error_type} {error_url} (<a title="localize IP" href="http://www.geoiptool.com/en/?IP={WIp}" target="_blank">{WIp}</a>)
+			                <a href="{error_url}" target="_blank" title="Visit website"><img src="img/icon-web.gif"  align="absbottom"/></a>
+			                <a href="javascript:updater('log', {WebErrorID});" title="Delete this message"><img src="img/list_delete.png" align="absbottom" style="width:16px;" /></a>
+		                    <br />
+		                </span>
+                        </bloc::website_errors>
 
+                    </p>
 
-    <fieldset>
-        <legend>Cache</legend>
-	<p>
-		<label>Cache page</label>
-		<span id="nb_cache">{nb_cache}</span> file(s) <a class="tt"  title="Delete files cached" href="javascript:updater('clear_cache');"><img src="/nuts/img/list_delete.png" style="width: 16px;" align="absmiddle" /></a>
-	</p>
-	</fieldset>
-
-</fieldset>
-
-
-
-
-<fieldset>
-	<legend>Website errors page and nuts tags <span style="color:red; font-weight: bold;" id="website_error_count"></span> <a style="display:none;" id="website_error_delete" href="javascript:updater('errors_all');"><img src="/nuts/img/list_delete.png" style="width: 16px;" align="absmiddle" /></a></legend>
-
-	<p style="margin-left: 10px; max-height: 200px; overflow: auto; overflow-x: hidden;">
-
-	<bloc::website_errors>
-		<span class="website_error" id="website_error_{WebErrorID}">
-			<img src="img/icon-error.gif" align="absbottom" />
-			<b>[{error_date}]</b> {error_type} {error_url} (<a title="localize IP" href="http://www.geoiptool.com/en/?IP={WIp}" target="_blank">{WIp}</a>)
-			<a href="{error_url}" target="_blank" title="Visit website"><img src="img/icon-web.gif"  align="absbottom"/></a>
-			<a href="javascript:updater('log', {WebErrorID});" title="Delete this message"><img src="img/list_delete.png" align="absbottom" style="width:16px;" /></a>
-		<br />
-		</span>
-	</bloc::website_errors>
-
-	</p>
-
-</fieldset>
+                </fieldset>
 
 
-<fieldset>
-	<legend>Nuts IP blocked</legend>
-
-	<bloc::ips_blocked>
-	<p id="ip_{IpID}">
-		<label>{Date} - </label><a href="http://www.geoiptool.com/en/?IP={IpOk}" title="localize IP" target="_blank">{IpOk}</a> [<a href="javascript:updater('unblock', '{IpOk}', '{Date}', '{IpID}');">Unblock</a>] <br />
-	</p>
-	</bloc::ips_blocked>
-
-</fieldset>
-
-<fieldset>
-	<legend>Php configuration</legend>
-
-	&bull; <b>register_globals</b> (must be off) : <img src="img/{img_register_globals}" align="absbottom" /><br />
-	&bull; <b>magic_quotes_gpc</b> (must be off) : <img src="img/{img_magic_quotes_gpc}" align="absbottom" /><br />
-	&bull; <b>allow_url_fopen</b> (must be on) : <img src="img/{img_allow_url_fopen}" align="absbottom" /><br />
-	&bull; <b>default_charset </b> (must be utf-8) : <img src="img/{img_default_charset}" align="absbottom" /> current value `{default_charset_val}`<br />
-	<hr />
-	&bull; <b>ftp extension installed </b> : <img src="img/{img_ftp_extension}" align="absbottom" /><br />
-	&bull; <b>tidy extension installed </b> : <img src="img/{img_tidy_extension}" align="absbottom" /><br />
+                <fieldset>
+                    <legend>Cache</legend>
+                    <p>
+                        <label>Cache page</label>
+                        <span id="nb_cache">{nb_cache}</span> file(s) <a class="tt"  title="Delete files cached" href="javascript:updater('clear_cache');"><img src="/nuts/img/list_delete.png" style="width: 16px;" align="absmiddle" /></a>
+                    </p>
+                </fieldset>
 
 
-</fieldset>
-
-<fieldset>
-	<legend><a class="tt" title="View file list" href="javascript:;" onclick="$('#psFiles').toggle();"><img style="width: 16px;" src="/nuts/img/list_view.png" align="absmiddle" /> System writable checking <span style="color:red; font-weight: bold;">{sytem_errors}</span></a></legend>
-
-	<p id="psFiles" style="margin-left: 10px; max-height: 200px; overflow: scroll; overflow-x: hidden; display: none;">
-	<bloc::files>
-		<img src="img/icon-{res}.gif" /> <img src="img/icon-{type}.png" /> {file}<br />
-	</bloc::files>
-	</p>
-
-</fieldset>
+            </div>
+            <!-- /website -->
 
 
-<fieldset>
-	<legend>.htaccess editor <a class="tt" title="Save" href="javascript:updater('htaccess');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a> </legend>
-	<textarea class="resizable" id="htaccess" style="width: 99%; height: 150px;">{htaccess}</textarea>
-</fieldset>
+            <!-- ip_blocked -->
+            <div class="ntab_content">
 
-<fieldset>
-	<legend> robots.txt editor <a class="tt" title="Save" href="javascript:updater('robots');"><img src="/nuts/img/icon-save.png" align="absmiddle" /></a></legend>
-	<textarea class="resizable" id="robots" style="width: 99%; height: 150px;">{robots}</textarea>
-</fieldset>
+                <bloc::ips_blocked>
+                    <p id="ip_{IpID}">
+                        <label>{Date} - </label><a href="http://www.geoiptool.com/en/?IP={IpOk}" title="localize IP" target="_blank">{IpOk}</a> [<a href="javascript:updater('unblock', '{IpOk}', '{Date}', '{IpID}');">Unblock</a>] <br />
+                    </p>
+                </bloc::ips_blocked>
+
+            </div>
+            <!-- /ip_blocked -->
 
 
 
-</div>
 
+            <!-- htaccess -->
+            <div class="ntab_content">
+
+                <input style="float: right;" type="button" class="button" value="Save .htaccess" onclick="updater('htaccess');" />
+                <textarea class="resizable" id="htaccess" style="width: 99%; height: 550px;">{htaccess}</textarea>
+
+            </div>
+            <!-- /htaccess -->
+
+            <!-- robots.txt -->
+            <div class="ntab_content">
+
+                <input style="float: right;" type="button" class="button" value="Save robots.txt" onclick="updater('robots');" />
+                <textarea class="resizable" id="robots" style="width: 99%; height: 550px;">{robots}</textarea>
+
+            </div>
+            <!-- /robots.txt -->
+
+            <!-- system_checking -->
+            <div class="ntab_content">
+
+                <p id="psFiles">
+                    <bloc::files>
+                        <img src="img/icon-{res}.gif" /> <img src="img/icon-{type}.png" /> {file}<br />
+                    </bloc::files>
+                </p>
+
+            </div>
+            <!-- /system_checking -->
+
+
+            <!-- php configuration -->
+            <div class="ntab_content">
+
+                &bull; <b>register_globals</b> (must be off) : <img src="img/{img_register_globals}" align="absbottom" /><br />
+                &bull; <b>magic_quotes_gpc</b> (must be off) : <img src="img/{img_magic_quotes_gpc}" align="absbottom" /><br />
+                &bull; <b>allow_url_fopen</b> (must be on) : <img src="img/{img_allow_url_fopen}" align="absbottom" /><br />
+                &bull; <b>default_charset </b> (must be utf-8) : <img src="img/{img_default_charset}" align="absbottom" /> current value `{default_charset_val}`<br />
+                <hr />
+                &bull; <b>ftp extension installed </b> : <img src="img/{img_ftp_extension}" align="absbottom" /><br />
+                &bull; <b>tidy extension installed </b> : <img src="img/{img_tidy_extension}" align="absbottom" /><br />
+
+            </div>
+            <!-- /php configuration -->
+
+
+            <p class="ntabs_info">
+                Press Enter key for validation
+            </p>
+
+
+        </div>
+    </div>
+
+</form>
 <script>
-$('textarea.resizable:not(.processed)').TextAreaResizer();
+nTabInit('ntabs0');
 $('a.tt').tooltip({track: true, delay: 0, showURL: false, showBody: " - ", opacity: 0.85});
+$('#htaccess, #robots').tabby();
 
-function initSystemErrorCount()
-{
-	nb = $('.website_error').length;
-	v = '';
-	if(nb > 0)
-	{
-		v = nb + " error(s)";
-		$('#website_error_delete').show();
-	}
 
-	$('#website_error_count').html(v);
+$('#ntabs0_content input, #ntabs0_content select').keypress(function(event){
 
-}
-initSystemErrorCount();
+    if(event.which == 13){
+        event.preventDefault();
+
+        if($(this).hasClass('ntabs_loading'))return;
+
+        objID = $(this).attr('id');
+        $(this).addClass('ntabs_loading');
+        $('body').css('cursor', 'wait');
+
+
+        action = $(this).attr('action');
+        val = $(this).val();
+
+        if(action == '')return;
+
+
+        uri = 'index.php?mod=_control-center&do=exec';
+        $.get(uri, {_action: action, val: val}, function(data){
+
+            resp = explode('@@@', data);
+            if(resp[0] != 'ok')
+            {
+                notify('error', resp[1]);
+            }
+            else
+            {
+                notify('ok', resp[1]);
+            }
+
+            $('body').css('cursor', 'default');
+            $('#'+objID).removeClass('ntabs_loading');
+        });
+
+        /*
+        uri = "index.php?mod=_settings&do=exec&ajaxer=1";
+        $.post(uri, {objID: objID, objVal: $(this).val()}, function(data){
+
+            if(data != 'ok'){
+                notify('error', data);
+                $('#'+objID).focus();
+            }
+            else
+            {
+                notify('ok', "{$lang_msg[39]}");
+            }
+
+
+            $('body').css('cursor', 'default');
+            $('#'+objID).removeClass('ntabs_loading');
+
+
+        });*/
+
+    }
+
+});
+
 
 function updater(target, ip, date, IpID){
 
-	uri = 'index.php?mod=_control-center&do=exec'
-	// $('#form_error').hide();
-	// $('#form_ok').hide();
+    uri = 'index.php?mod=_control-center&do=exec'
+    // $('#form_error').hide();
+    // $('#form_ok').hide();
 
-	// maintenance
-	if(target == 'maintenance'){
+    // maintenance
+    if(target == 'maintenance'){
 
-		val = $('#Maintenance').val();
-		$.get(uri, {_action: 'maintenance', val: val}, function(data){
+        val = $('#Maintenance').val();
+        $.get(uri, {_action: 'maintenance', val: val}, function(data){
 
-			resp = explode('@@@', data);
-			if(resp[0] != 'ok')
-			{
-				// $('#form_error span').text(resp[1]);
-				// $('#form_error').show();
-				notify('error', resp[1]);
-			}
-			else
-			{
-				// $('#form_ok span').text(resp[1]);
-				// $('#form_ok').show();
-				notify('ok', resp[1]);
-			}
-		});
-	}
+            resp = explode('@@@', data);
+            if(resp[0] != 'ok')
+            {
+                // $('#form_error span').text(resp[1]);
+                // $('#form_error').show();
+                notify('error', resp[1]);
+            }
+            else
+            {
+                // $('#form_ok span').text(resp[1]);
+                // $('#form_ok').show();
+                notify('ok', resp[1]);
+            }
+        });
+    }
 
-	// ip allowed
-	if(target == 'ip_allowed')
-	{
-		val = $('#IPAllowed').val();
-		$.get(uri, {_action: 'ip_allowed', val: val}, function(data){
+    // ip allowed
+    if(target == 'ip_allowed')
+    {
+        val = $('#IPAllowed').val();
+        $.get(uri, {_action: 'ip_allowed', val: val}, function(data){
 
-			resp = explode('@@@', data);
-			if(resp[0] != 'ok')
-			{
-				notify('error', resp[1]);
-			}
-			else
-			{
-				notify('ok', resp[1]);
-			}
-		});
-	}
+            resp = explode('@@@', data);
+            if(resp[0] != 'ok')
+            {
+                notify('error', resp[1]);
+            }
+            else
+            {
+                notify('ok', resp[1]);
+            }
+        });
+    }
 
     // maintenance
     if(target == 'maintenance_message'){
@@ -203,108 +266,105 @@ function updater(target, ip, date, IpID){
         });
     }
 
-	// clear_cache
-	if(target == 'clear_cache')
-	{
-		$.get(uri, {_action: 'clear_cache'}, function(data){
+    // clear_cache
+    if(target == 'clear_cache')
+    {
+        $.get(uri, {_action: 'clear_cache'}, function(data){
 
-			resp = explode('@@@', data);
-			if(resp[0] != 'ok')
-			{
-				notify('error', resp[1]);
-			}
-			else
-			{
-				notify('ok', resp[1]);
-			}
-			$('#nb_cache').text(resp[2]);
-		});
-	}
+            resp = explode('@@@', data);
+            if(resp[0] != 'ok')
+            {
+                notify('error', resp[1]);
+            }
+            else
+            {
+                notify('ok', resp[1]);
+            }
+            $('#nb_cache').text(resp[2]);
+        });
+    }
 
-	// unblock
-	if(target == 'unblock')
-	{
-		$.get(uri, {_action: 'unblock', ip: ip, date: date}, function(data){
+    // unblock
+    if(target == 'unblock')
+    {
+        $.get(uri, {_action: 'unblock', ip: ip, date: date}, function(data){
 
-			resp = explode('@@@', data);
-			if(resp[0] != 'ok')
-			{
-				notify('error', resp[1]);
-			}
-			else
-			{
-				notify('ok', resp[1]);
+            resp = explode('@@@', data);
+            if(resp[0] != 'ok')
+            {
+                notify('error', resp[1]);
+            }
+            else
+            {
+                notify('ok', resp[1]);
 
-				$('#ip_'+IpID).hide();
-			}
+                $('#ip_'+IpID).hide();
+            }
 
-		});
-	}
+        });
+    }
 
-	// log
-	if(target == 'log')
-	{
-		$.get(uri, {_action: 'log', id: ip}, function(data){
+    // log
+    if(target == 'log')
+    {
+        $.get(uri, {_action: 'log', id: ip}, function(data){
 
-			resp = explode('@@@', data);
-			if(resp[0] != 'ok')
-			{
-				notify('error', resp[1]);
-			}
-			else
-			{
-				notify('ok', resp[1]);
+            resp = explode('@@@', data);
+            if(resp[0] != 'ok')
+            {
+                notify('error', resp[1]);
+            }
+            else
+            {
+                notify('ok', resp[1]);
 
-				$('#website_error_'+ip).remove();
-			}
+                $('#website_error_'+ip).remove();
+            }
 
-			initSystemErrorCount();
+        });
+    }
+    // htaccess & robots
+    if(target == 'htaccess' || target == 'robots')
+    {
+        uri += "&_action="+target;
+        $.post(uri, {contents: $('#'+target).val()}, function(data){
 
-		});
-	}
-	// htaccess & robots
-	if(target == 'htaccess' || target == 'robots')
-	{
-		uri += "&_action="+target;
-		$.post(uri, {contents: $('#'+target).val()}, function(data){
+            resp = explode('@@@', data);
+            if(resp[0] != 'ok')
+            {
+                notify('error', resp[1]);
+            }
+            else
+            {
+                notify('ok', resp[1]);
+            }
 
-			resp = explode('@@@', data);
-			if(resp[0] != 'ok')
-			{
-				notify('error', resp[1]);
-			}
-			else
-			{
-				notify('ok', resp[1]);
-			}
+        });
+    }
 
-		});
-	}
+    // errors_all
+    if(target == 'errors_all')
+    {
+        uri += "&_action="+target;
+        $.post(uri, {contents: ''}, function(data){
 
-	// errors_all
-	if(target == 'errors_all')
-	{
-		uri += "&_action="+target;
-		$.post(uri, {contents: ''}, function(data){
+            resp = explode('@@@', data);
+            if(resp[0] != 'ok')
+            {
+                notify('error', resp[1]);
+            }
+            else
+            {
+                notify('ok', resp[1]);
 
-			resp = explode('@@@', data);
-			if(resp[0] != 'ok')
-			{
-				notify('error', resp[1]);
-			}
-			else
-			{
-				notify('ok', resp[1]);
-
-				$('#website_error_delete').hide();
-				$('#website_error_count').html('');
-				$('.website_error').remove();
-				initSystemErrorCount();
-			}
-
-		});
-	}
+                $('#website_error_delete').hide();
+                $('#website_error_count').html('');
+                $('.website_error').remove();
+            }
+        });
+    }
 
 
 }
+
 </script>
