@@ -18,6 +18,8 @@ $plugin->formDBTable(array('NutsFileExplorerMimesType'));
 // fields
 $plugin->formAddFieldText('Extension', "", true, 'upper', 'width:50px; text-align:center;', "", "", $lang_msg[1]);
 $plugin->formAddFieldTextArea('Mimes', "", true, '', 'height:250px', "", $lang_msg[2]);
+$plugin->formAddFieldBoolean('FileExplorer', "File explorer", true, $lang_msg[3]);
+$plugin->formAddFieldBoolean('EDM', "", true, $lang_msg[4]);
 
 
 

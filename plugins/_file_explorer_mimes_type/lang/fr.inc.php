@@ -11,6 +11,8 @@ $lang_msg[0] = "Explorateur Mimes"; // plugin name
 
 $lang_msg[1] = "Entrer l'extension de fichier autorisé (exemple: GIF)";
 $lang_msg[2] = "Entrer les types mimes autorisés pour l'extension (exemple: image/gif)";
+$lang_msg[3] = "Valable pour les uploads de `L'explorateur de fichiers`";
+$lang_msg[4] = "Valable pour les uploads du `Gestionnaire Electronique de Documents`";
 
 
 ?>

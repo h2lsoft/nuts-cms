@@ -21,6 +21,8 @@ $plugin->listSearchAddFieldSelectSql('Extension');
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
 $plugin->listAddCol('Extension', '', 'center; width:30px', true);
 $plugin->listAddCol('Mimes', '', '', false);
+$plugin->listAddColImg('FileExplorer', 'File explorer', 'center; width:30px', true);
+$plugin->listAddColImg('EDM', '', 'center; width:30px', true);
 
 // render list
 $plugin->listRender(20, 'hookData');
