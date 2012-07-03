@@ -1494,3 +1494,15 @@ function nTabInit(objID){
 
 
 }
+
+
+function formGetCurrentID(){
+
+    uri = $('#former').attr('action');
+    m = parseUri(uri);
+
+    param = m.queryKey['ID'];
+    if(param == undefined)param = '';
+
+    return param;
+}
