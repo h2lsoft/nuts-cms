@@ -109,8 +109,8 @@ function hookData($row)
         $row['Name'] .= "<br /><span class='mini'>{$row['Description']}</span>";
 	}
 
-	if($row['BreakBefore'] == 1)$row['Name'] = "<hr noshade style='height:1px; border:0;' />".$row['Name'];
-	if($row['BreakAfter'] == 1)$row['Name'] .= "<hr noshade style='height:1px; border:0;' />";
+	if($row['BreakBefore'] == 1)$row['Name'] = "<hr noshade style='height:1px; background-color:#aaa; border:0;' />".$row['Name'];
+	if($row['BreakAfter'] == 1)$row['Name'] .= "<hr noshade style='height:1px; background-color:#aaa; border:0;' />";
 
 	if($row['Category'] != '')
 		$row['Category'] = $mods_group[$row['Category']-1]['name'];
