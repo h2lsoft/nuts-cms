@@ -11,7 +11,7 @@
 //////////////////////////////////////////////////////////////
 
 ob_start();
-if (!file_exists(dirname(__FILE__).'/phpthumb.functions.php') || !include_once(dirname(__FILE__).'/phpthumb.functions.php')) {
+if (!file_exists(dirname(__FILE__).'/phpthumb.functions.php') || !include_once(dirname(__FILE__) . '/phpthumb.functions.php')) {
 	ob_end_flush();
 	die('failed to include_once(phpthumb.functions.php) - realpath="'.realpath(dirname(__FILE__).'/phpthumb.functions.php').'"');
 }

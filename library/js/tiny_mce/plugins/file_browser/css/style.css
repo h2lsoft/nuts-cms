@@ -60,7 +60,7 @@ div#horizontal-resize-handler { /*cursor: n-resize; background: url(../img/resiz
  *  
 **/
 div.ab { background: url(../img/addressbar.png) 0 0 repeat-x; height: 24px; padding: 6px; }
-div.ab ol { background:url(../img/addressbar.png) right -36px no-repeat; margin: 0; padding: 0; list-style: none none; height: 24px; margin-right: 300px; overflow:hidden;}
+div.ab ol { background:url(../img/addressbar.png) left -36px no-repeat; margin: 0; padding: 0; list-style: none none; height: 24px; margin-right: 300px; overflow:hidden;}
 div.ab ol li { float: left; padding: 2px;}
 div.ab ol li a { float: left; line-height: 18px; padding: 1px 4px; font-size: 12px; color: #000000; text-decoration: none;}
 div.ab ol li a:hover { background:url(../img/addressbar.png) left -78px repeat-x; padding-right: 3px; padding-left: 3px; border-left: 1px solid #3C7FB1; border-right: 1px solid #3C7FB1;}
@@ -147,6 +147,7 @@ a.close { position: absolute; right: 5px; top: 5px; width: 16px; height: 16px; b
  *  Explorer Treeview
  *  
 **/
+
 div#tree { width: 200px; position: relative; padding:0; margin:0; display: block; overflow: auto; overflow-x: hidden; height: 100%; float: left;}
 ul.treeview { width: 600px; margin: 0; margin-top:15px; padding: 0; list-style: none;}
 ul.treeview ul { display: none;	margin: 0; padding: 0; /*padding-left: 12px;*/ list-style: none;}
@@ -163,9 +164,10 @@ ul.treeview li.selected > .link .endcap { background: url(../img/selected.png) r
 ul.treeview li a.spacer { display: block; float: left; /*width: 16px;*/ clear: left;}
 ul.treeview li a.handler { display: block; float: left; width: 16px;}
 ul.treeview li a img { margin: 0; padding: 0; border: 0; vertical-align: middle;}
-
-ul.treeview li a.children {background: url(../img/handler.gif) -21px 0 no-repeat; cursor: default;}
-/*ul.treeview li a.open {background: url(../img/handler.gif) 0px 0 no-repeat!important;}*/
+ul.treeview li a.children {background: url(../img/handler.gif) 0px 0 no-repeat; cursor: default;}
+/* ul.treeview li a.children:hover {background-position:-21px 0;} */
+ul.treeview li a.open {background: url(../img/handler.gif) -21px 0 no-repeat;}
+/*ul.treeview li a.open:hover {background-position:-63px 0;}*/
 
 
 
@@ -824,7 +826,7 @@ div#files table#details td.icon span.gz{ background-image: url(../img/16/zip.png
 /**
  *  File Specification Icons
 **/
-div#file-specs #info div.icon{ width: 140px; height: 140px; left: 10px; top: 5px; background: url(phpthumb/phpThumb.php?h=140&w=140&src=../img/256/icon.png&far=1&bg=0000FF) top left no-repeat;}
+div#file-specs #info div.icon{ width: 140px; height: 140px; left: 10px; top: 5px; background: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/icon.png&far=1&bg=0000FF) top left no-repeat;}
 /* Images */
 div#file-specs #info div.icon.image{ background-image: none;} 
 div#file-specs #info div.icon.jpg,
@@ -894,7 +896,9 @@ div#file-specs #info div.icon.gz{ background-image: url(../phpthumb/phpThumb.php
 .context-menu-theme-mb .context-menu-separator { margin:4px 0 4px 29px; font-size:0px; border-top:1px solid #E0E0E0; border-bottom:1px solid white;}
 .context-menu-theme-mb .context-menu-item .context-menu-item-inner { padding:5px 16px 5px 35px; margin:0 1px; background-color:transparent; background-repeat:no-repeat; background-position:3px center; background-image:none;}
 .context-menu-theme-mb .context-menu-item-hover .context-menu-item-inner { padding:4px 16px 4px 35px; border:1px solid #AECFF7; margin: 0; background-color:#E6EDF6; border-radius:3px; -moz-border-radius:3px; }
-.context-menu-theme-mb .context-menu-item-disabled { color:#A7A7A7;}
+.context-menu-theme-mb .context-menu-item-disabled { color:#A7A7A7; user-select:none; -moz-user-select:none; -webkit-user-select:none;}
+.context-menu-theme-mb .context-menu-item-inner {user-select:none; -moz-user-select:none; -webkit-user-select:none; }
+
 
 /**
  * 

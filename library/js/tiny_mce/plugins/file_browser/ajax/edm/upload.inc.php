@@ -1,10 +1,7 @@
 <?php
 /**
- * Upload files connector 
+ * Upload files
  */
-
-// includes ******************************************************
-include "../config.php";
 
 // init ******************************************************
 function upload_error($num, $filename=''){
@@ -26,19 +23,30 @@ function upload_error($num, $filename=''){
     elseif($num == 11)$msg = ($_lang != 'fr') ? "Error: file type `%s` not allowed": "Erreur: type de fichier `%s` non autorisé";
     elseif($num == 12)$msg = ($_lang != 'fr') ? "Error: file extension `%s` not allowed": "Erreur: extension de fichier `%s` non autorisé";
     elseif($num == 13)$msg = ($_lang != 'fr') ? "Error: file `%s` not uploaded": "Erreur: fichier `%s` non uploadé";
+    elseif($num == 14)$msg = ($_lang != 'fr') ? "Error: file `%s` already exists": "Erreur: fichier `%s` existe déjà";
 
     $msg = sprintf($msg, $filename);
 
-
+    edmLog('UPLOAD', 'ERROR', @$_POST['path'], $msg);
 
     die($msg);
 }
 
+// controller **********************************************************************************************************
+
 // exec ******************************************************
 if(!isset($_POST['name']))upload_error(1);
 if(!isset($_POST['path']))upload_error(2);
-if(!preg_match("#^/library/media#", $_POST['path']))upload_error(3);
+if(!preg_match("#^$upload_pathX#", $_POST['path']))upload_error(3);
 if(!preg_match("#/$#", $_POST['path']))upload_error(3);
+
+if(!edmUserHasRight('UPLOAD', $_POST['path']))
+{
+    $msg = "Action not allowed !";
+    edmLog('UPLOAD', 'ERROR', $_POST['path'], $msg);
+    systemError(translate($msg));
+}
+
 
 // directory exists ?
 if(!file_exists(WEBSITE_PATH.$_POST['path']))upload_error(4, $_POST['path']);
@@ -70,14 +78,18 @@ if(!in_array(@$file_parts['extension'], $filetypes_exts))
 $file_name = $_FILES['file']['name'];
 $file_name = trim($file_name);
 $file_name = str_replace(' ', '-', $file_name);
-$file_name = strtolower($file_name);
-if(!move_uploaded_file($_FILES['file']['tmp_name'], WEBSITE_PATH.$_POST['path'].$file_name))
-{
-	// die("Error: file `".$_POST['path'].$_FILES['file']['name']."` not uploaded");
-    upload_error(13, $_POST['path'].$_FILES['file']['name']);
-}
 
+// file exists ?
+if(file_exists(WEBSITE_PATH.$_POST['path'].$file_name))
+    upload_error(14, $_FILES['file']['name']);
+
+// error while uploading
+if(!move_uploaded_file($_FILES['file']['tmp_name'], WEBSITE_PATH.$_POST['path'].$file_name))
+    upload_error(13, $_POST['path'].$_FILES['file']['name']);
+
+edmLog('UPLOAD', 'FILE', $_POST['path'].$_FILES['file']['name']);
 die('ok');
+
 
 
 ?>

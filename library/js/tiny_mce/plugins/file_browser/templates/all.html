@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$app_title}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    <link rel="shortcut icon" href="mediabrowser.ico" />
+
+    <!-- vars -->
+    <script>
+    var editor = "{$_GET['editor']}";
+    var returnID = "{$_GET['returnID']}";
+    var nutsUserLang = "{$_SESSION['Language']}";
+    var root_name = "{$root_name}";
+    var pathX = "{$upload_pathX}";
+    var gFilter = "{$_GET['filter']}";
+    var allowed_actions = {$allowedActionsX};
+    var isLangFR = (nutsUserLang == 'fr') ? true : false;
+    var WEBSITE_URL = "{CONST::WEBSITE_URL}";
+    var load_folder = "{$load_folder}";
+    var gPath = "{$_GET['path']}";
+    var select_one_file = "<i18n>Select only one file to insert !</i18n>";
+    var insert_cancelled = "<i18n>Insert cancelled because there is no target to insert to !</i18n>";
+    var invalid_characters_used = "<i18n>Invalid characters used !</i18n>";
+    var rename_file = "<i18n>Please give a new name for file</i18n>";
+    var rename_folder = "<i18n>Please give a new name for folder</i18n>";
+    var create_folder = "<i18n>Please give a name for your folder</i18n>";
+    var rename_error = "<i18n>Rename failed !</i18n>";
+    var max_file_size = "{$max_file_size}";
+    var group_select_error = "<i18n>Please select one group at least</i18n>";
+    var right_delete_confirm = "<i18n>Would you like to delete this user/group ?</i18n>";
+    var user_select_error = "<i18n>Please select one user at least</i18n>";
+    </script>
+    <!-- /vars -->
+
+    <!-- script -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="/library/js/jquery-ui/jquery-ui-personalized-1.5.1.js"></script>
+    <script type="text/javascript" src="js/jquery.plugins.js"></script>
+    <script type="text/javascript" src="js/jquery.mediabrowser.js?timer={$timer}"></script>
+    <script type="text/javascript" src="/nuts/nuts.js?timer={$timer}"></script>
+    <script type="text/javascript" src="/library/js/php.js?timer={$timer}"></script>
+    <script type="text/javascript" src="/library/js/shortcut.js"></script>
+    <script type="text/javascript" src="js/pixlr.js"></script>
+    <script type="text/javascript">pixlr.settings.credentials = false;</script>
+    <script type="text/javascript" src="js/func.js?timer={$timer}"></script>
+    <script type="text/javascript" src="index.php?ajax=1&editor={$_GET['editor']}&action=get_context_menu&timer={$timer}"></script>
+    <script type="text/javascript" src="js/init.js?timer={$timer}"></script>
+
+    <script type="text/javascript" src="/library/js/jquery.fancybox/fancybox/jquery.fancybox-1.3.2.pack.js"></script>
+    <link rel="stylesheet" href="/library/js/jquery.fancybox/fancybox/jquery.fancybox-1.3.2.css" />
+
+    {#if($_GET['editor'] == 'tinymce')}
+    <script type="text/javascript" src="js/tiny_mce_popup.js"></script>
+    {#endif}
+
+    {#if($_GET['editor'] == 'edm')}
+    <script type="text/javascript" src="js/edm_func.js?timer={$timer}"></script>
+    {#endif}
+
+    <script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+    <script type="text/javascript" src="plupload/js/jquery.plupload.queue/jquery.plupload.queue.js"></script>
+    <link rel="stylesheet" href="plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css" />
+
+    {#if($_SESSION['Language'] == 'fr')}
+    <script type="text/javascript" src="plupload/js/i18n/fr.js"></script>
+    {#endif}
+
+    <!-- /script -->
+
+
+    <link rel="stylesheet" href="css/style.css?timer={$timer}" />
+    <link rel="stylesheet" href="css/hacks.css?timer={$timer}" />
+
+</head>
+<body>
+
+
+<!-- address bar -->
+<div id="addressbar" class="ab">
+    <ol>
+        <li class="root"><span>&nbsp;</span></li>
+        <li><a href="/library/media/" title="media"><span>{$root_name}</span></a></li>
+    </ol>
+
+    <div id="searchbar">
+        <div class="cap"></div>
+        <input name="search" id="search" placeholder="<i18n>Search</i18n>" />
+        <div class="button"></div>
+    </div>
+</div>
+<!-- /address bar -->
+
+
+<!-- menubar -->
+<div id="navbar" class="nb">
+
+
+    <ul class="left">
+
+        {#if($_GET['editor'] == 'edm' && nutsUserHasRight('', '_file_explorer_mimes_type', 'list'))}
+        <li><a href="javascript:;" onclick="popupModal('/nuts/?mod=_file_explorer_mimes_type&do=list');" class="children"><span><i18n>Files Mimes</i18n></span></a>
+        {#endif}
+
+        {#if($_GET['editor'] == 'edm' && nutsUserHasRight('', '_edm-group', 'list'))}
+        <li><a href="javascript:;" onclick="popupModal('/nuts/?mod=_edm-group&do=list');" class="children"><span><i18n>Groups</i18n></span></a>
+        {#endif}
+
+        {#if($_GET['editor'] == 'edm' && nutsUserHasRight('', '_edm-logs', 'list'))}
+        <li><a href="javascript:;" onclick="popupModal('/nuts/?mod=_edm-logs&do=list');" class="children"><span><i18n>Logs</i18n></span></a>
+        {#endif}
+
+    </ul>
+
+
+    <ul class="right">
+        <li><a href="#" class="children"><span><i18n>Views</i18n></span></a>
+            <ul>
+                <li><a href="#" onclick="return $.MediaBrowser.changeview('large_images');"><span class="icon large"></span><i18n>Large images</i18n></a></li>
+                <li><a href="#" onclick="return $.MediaBrowser.changeview('small_images');"><span class="icon small"></span><i18n>Small images</i18n></a></li>
+                <li><a href="#" onclick="return $.MediaBrowser.changeview('list');"><span class="icon list"></span><i18n>List</i18n></a></li>
+                <li><a href="#" onclick="return $.MediaBrowser.changeview('tiles');"><span class="icon tiles"></span><i18n>Tiles</i18n></a></li>
+                <li><a href="#" onclick="return $.MediaBrowser.changeview('details');"><span class="icon details"></span><i18n>Details</i18n></a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!-- /menubar -->
+
+<!-- message -->
+<div id="message"></div>
+<!-- /message -->
+
+<!-- explorer -->
+<div id="explorer">
+
+    <!-- tree -->
+    <div id="tree" class="ui-resizable">
+
+        <ul class="treeview">
+
+        </ul>
+
+    </div>
+    <!-- /tree -->
+
+
+    <!-- main -->
+    <div id="main">
+
+        <div id="filelist" class="layer">
+
+            <h2>{$root_name}</h2>
+
+            <select id="filters">
+                <option value=""><i18n>All files (*.*)</i18n>&nbsp;</option>
+
+                <option value=".bmp|.gif|.jpg|.jpeg|.png" {filter_image_selected}>Images&nbsp;</option>
+                <option value=".avi|.flv|.mov|.mp3|.mp4|.mpeg|.mpg|.ogg|.wav|.wma|.wmv" {filter_media_selected}>Media&nbsp;</option>
+                <option value=".swf|.flv|.fla" {filter_flash_selected}>Flash&nbsp;</option>
+
+                <bloc::custom_filters>
+                    <option value="{value}">{label}</option>
+                </bloc::custom_filters>
+
+
+            </select>
+            <hr />
+
+            <div id="files">
+                <ul id="list" class="files">
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <!-- /main -->
+
+</div>
+<!-- /explorer -->
+
+
+<!-- file-specs -->
+<div id="file-specs">
+
+    <div id="info">
+        <div class="icon folder"></div>
+        <div class="filename">{$root_name}</div>
+        <div class="filetype"><i18n>Folder</i18n></div>
+        <div class="filemodified">
+            <span><i18n>Modified on</i18n> :&nbsp;</span>
+        </div>
+    </div>
+
+    <form id="fileform" name="fileform" onsubmit="return false;">
+        <label for="file"><i18n>File</i18n></label>
+        <input type="text" name="file" id="file" readonly="readonly" value="">
+        <button onclick="$.MediaBrowser.insertFile();"><i18n>Insert</i18n></button>
+        <div>
+            <label for="absolute_url" style="cursor:pointer"><input class="checkbox" type="checkbox" id="absolute_url"><i18n>Absolute Url (with domain name)</i18n></label>
+        </div>
+    </form>
+
+</div>
+<!-- /file-specs -->
+
+<input type="hidden" id="currentfolder" value="{$upload_pathX}" />
+<input type="hidden" id="currentview" value="{$viewLayout}" />
+
+<!-- fancybox -->
+<a style="display: none;" id="fancybox" href=""><img src="" /></a>
+<!-- /fancybox -->
+
+<!-- upload window -->
+{#include('templates/window_upload.html');}
+<!-- /upload window -->
+
+
+{#if($_GET['editor'] == 'edm' && EDM_ADMINISTRATOR == true)}
+
+<!-- rights window -->
+{#include('templates/window_rights.html');}
+{#include('templates/window_groups.html');}
+{#include('templates/window_users.html');}
+<!-- /rights window -->
+
+{#endif}
+
+
+
+</body>
+</html>
