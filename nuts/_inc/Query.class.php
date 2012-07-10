@@ -195,7 +195,6 @@ class Query
 		$this->_DBLink->doQuery($sql);
 	}
 
-
 	/**
 	 * execute query and return one result
 	 * @return $col

@@ -286,7 +286,12 @@ $("#top_search_input").autocomplete(plugin_list_ac, {
 	<!-- text -->
 	<div id="text">
 
-		<table id="main_title" style="{popup_display}">
+        {#if(isset($_GET['popup']))}
+		    <table id="main_title" style="margin-top:0;">
+        {#else}
+            <table id="main_title">
+        {#endif}
+
 			<tr>
 				<td class="col_logo">
 					<img src="{CONST::NUTS_PLUGINS_URL}/{$plugin->name}/icon.png" class="plugin_logo" />
