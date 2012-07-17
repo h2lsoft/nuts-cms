@@ -22,7 +22,19 @@ $plugin->formAddFieldSelect('Timezone', $lang_msg[9], true, $time_options);
 // fieldset
 $plugin->formAddFieldsetStart('User identification', $lang_msg[10]);
 $plugin->formAddFieldText('Login', $lang_msg[5], false, 'lower', 'width:10em', '', 'maxlength="15" disabled');
-$plugin->formAddFieldText('Password', $lang_msg[6], 'notEmpty|minLength,5', '', 'width:10em', '', 'maxlength="15"');
+
+if($profile_enable_password_change)
+{
+    $plugin->formAddFieldText('Password', $lang_msg[6], 'notEmpty|minLength,5', '', 'width:10em', '', 'maxlength="15" ');
+}
+else
+{
+    $plugin->formAddFieldText('Password', $lang_msg[6], false, '', 'width:10em', '', 'maxlength="15" disabled');
+    $plugin->formAddException('Password');
+}
+
+
+
 $plugin->formAddFieldsetEnd();
 // end of fieldset
 
@@ -34,8 +46,6 @@ $inputs = <<<EOF
 EOF;
 
 $plugin->formAddFieldText('Avatar', '<div class="thumb_preview"><img id="avatar_image" /></div>', false, '', 'width:250px', $inputs, '');
-
-
 $plugin->formAddFieldsetStart('AvatarImageTmp');
 $plugin->formAddFieldImage('AvatarTmp', '', false, NUTS_IMAGES_PATH.'/avatar', NUTS_IMAGES_URL.'/avatar',
                                                                                                             '1Mo',
@@ -56,11 +66,16 @@ $plugin->formAddFieldsetEnd();
 // end of fieldset
 
 
-$plugin->formAddException('Login', 'AvatarFile');
+$plugin->formAddException('Login');
+$plugin->formAddException('AvatarFile');
+
+
+
+include_once(PLUGIN_PATH.'/form_custom_fields.inc.php');
 
 
 // options
-if($_GET['ID'])
+if($_GET['ID'] && $profile_front_office_toolbar_fieldset)
 {
 	$nuts->doQuery("SELECT ID FROM NutsGroup WHERE ID = {$_SESSION['NutsGroupID']} AND BackofficeAccess = 'YES' AND FrontofficeAccess = 'YES'");
 	if($nuts->dbNumRows() == 1)
@@ -72,10 +87,6 @@ if($_GET['ID'])
 }
 // end of options
 
-if($_POST)
-{
-	$nuts->alphaNumeric('Password', '_-');
-}
 
 
 if(!$_POST)
@@ -83,8 +94,14 @@ if(!$_POST)
     $plugin->formAddEndText("
         <script>var lang_msg_11 = '{$lang_msg[11]}';</script>
         <script type=\"text/javascript\" src=\"/plugins/_user-profile/funcs.js\"></script>
+        <script type=\"text/javascript\" src=\"/plugins/_user-profile/form_custom.js\"></script>
     ");
 
+}
+else
+{
+    if($profile_enable_password_change)
+        $nuts->alphaNumeric('Password', '_-');
 }
 
 

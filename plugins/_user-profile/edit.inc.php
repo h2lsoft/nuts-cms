@@ -3,7 +3,9 @@
 /* @var $plugin Plugin */
 $_GET['ID'] = $_SESSION['NutsUserID'];
 
+include(PLUGIN_PATH.'/config.inc.php');
 include(PLUGIN_PATH.'/form.inc.php');
+
 
 $plugin->formInit();
 $r = $plugin->formInitGetRow();
@@ -15,7 +17,9 @@ $plugin->formInitSetRow($r);
 if($plugin->formValid())
 {
 	$CUR_ID = $plugin->formUpdate();
-	nutsUserSetPassword($CUR_ID, $_POST['Password']);
+
+    if($profile_enable_password_change)
+	    nutsUserSetPassword($CUR_ID, $_POST['Password']);
 
     // avatar treatment
     include(PLUGIN_PATH.'/trt_avatar.inc.php');

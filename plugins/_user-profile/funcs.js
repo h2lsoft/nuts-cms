@@ -100,7 +100,9 @@ $(function(){
     $('#fieldset_AvatarImageTmp').hide();
 
     $('#form_window .bottom label').css('visibility', 'hidden');
-    $('#form_window #Password').after('  <a href="javascript:generatePassword()">'+lang_msg_11+'</a>');
+
+    if($('#form_window #Password').is(':enabled'))
+        $('#form_window #Password').after('  <a href="javascript:generatePassword()">'+lang_msg_11+'</a>');
 
     avatarInit();
 
