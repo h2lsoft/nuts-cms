@@ -840,9 +840,9 @@ div#pager_content #Language option
 {padding-left: 25px;}
 
 
-div#pager_content .icon_published {background: url(/nuts/img/icon-tag-published.png); background-repeat: no-repeat;}
-div#pager_content .icon_draft {background: url(/nuts/img/icon-tag-edit.png); background-repeat: no-repeat;}
-div#pager_content .icon_moderate {background: url(/nuts/img/icon-tag-moderator.png); background-repeat: no-repeat;}
+div#pager_content .icon_published {background: url(/nuts/img/icon-tag-published.png); background-repeat: no-repeat; background-color: white;}
+div#pager_content .icon_draft {background: url(/nuts/img/icon-tag-edit.png); background-repeat: no-repeat; background-color: white;}
+div#pager_content .icon_moderate {background: url(/nuts/img/icon-tag-moderator.png); background-repeat: no-repeat; background-color: white;}
 
 div#pager_content #page_navigation {
 
