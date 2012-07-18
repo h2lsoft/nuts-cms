@@ -286,7 +286,7 @@ $("#top_search_input").autocomplete(plugin_list_ac, {
 	<!-- text -->
 	<div id="text">
 
-        {#if(isset($_GET['popup']) && $_GET['popup'] == 1 && $_GET['popup'] == 'yes')}
+        {#if(isset($_GET['popup']) && ($_GET['popup'] == 1 || $_GET['popup'] == 'yes'))}
 		    <table id="main_title" style="margin-top:0;">
         {#else}
             <table id="main_title">
