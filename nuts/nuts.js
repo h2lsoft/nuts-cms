@@ -583,6 +583,7 @@ function popupModal(url, name, windowWidth, windowHeight, opts) {
 
     // newwindow = window.showModalDialog(url, name, properties);
     newwindow = window.open(url, name, properties);
+
     // newwindow.resizeTo(windowWidth, windowHeight);
     // newwindow.moveTo(myleft, mytop);
     // newwindow.focus();
