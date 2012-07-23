@@ -132,7 +132,7 @@ $lang_msg[99] = "Page name";
 
 $lang_msg[100] = "Refresh folder";
 
-$lang_msg[101] = "Would you like to duplicate sub pages ?";
+$lang_msg[101] = "Would you like to also duplicate sub pages ?";
 
 
 
