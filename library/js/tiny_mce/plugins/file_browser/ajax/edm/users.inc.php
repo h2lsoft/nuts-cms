@@ -27,7 +27,7 @@ $users_arr = explode(";", $users);
 // list all groups to exclude
 Query::factory()->select('NutsUserID')
                 ->from('NutsEDMFolderRights')
-                ->where("Folder = '$folder'")
+                ->where("Folder = '".addslashes($folder)."'")
                 ->where('NutsUserID != 0')
                 ->where("Type = 'USER'")
                 ->execute();

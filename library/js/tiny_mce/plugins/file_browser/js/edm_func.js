@@ -198,9 +198,15 @@ function setRights(){
 
     recursive = ($('#right_subfolders').is(':checked')) ? 1 : 0;
 
+
     uri = getAjaxUri();
     uri += '&action=rights';
-    $.post(uri, {folder:urlencode(rights_folder),rights:rights, recursive:recursive}, function(resp){
+
+    original = $('#rights_window #rights_exec').val();
+    msg = (isLangFR) ? 'Chargement en cours...' : 'Please wait...';
+    $('#rights_window #rights_exec').val(msg).attr('disabled', true);
+
+    $.post(uri, {folder:urlencode(rights_folder), rights:rights, recursive:recursive}, function(resp){
 
         if(resp.result == 'ko')
         {
@@ -210,6 +216,8 @@ function setRights(){
         {
             $.MediaBrowser.showMessage(resp.message, "ok");
         }
+
+        $('#rights_window #rights_exec').val(original).attr('disabled', false);;
 
     }, 'json');
 

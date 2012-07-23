@@ -37,7 +37,7 @@ else
         $sql_added = " OR (Type = 'GROUP' AND NutsEDMGroupID IN($group_user)) ";
 
     // right for everybody, user or group
-    Query::factory()->select('Folder')
+    Query::factory()->select('DISTINCT Folder')
                     ->from('NutsEDMFolderRights')
                     ->where("`LIST` = 'YES'")
                     ->where("(
@@ -49,45 +49,43 @@ else
                     ->execute();
 
     $formatted_dirs = array();
-    $dirs = array();
     while($r = $nuts->dbFetch())
     {
         $dir = str_replace($upload_pathX, '/', $r['Folder']);
+
         if($dir != '/')
         {
+            $dir[0] = '';
+            $dir[strlen($dir)-1] = '';
+            $dir = trim($dir);
+
             $tmp = explode('/', $dir);
-            $tmp2 = array();
-            foreach($tmp as $current)
-            {
-                if(!empty($current))
-                    $tmp2[] = $current;
-            }
-
-            $formatted_dirs[] = $tmp2;
+            $formatted_dirs[] = $tmp;
         }
     }
 
-    for($i=0; $i < count($formatted_dirs); $i++)
+
+    $dirs = array();
+    for($i=0; $i < count($formatted_dirs) ; $i++)
     {
-        $formatted_dir = $formatted_dirs[$i];
-        if(!isset($dirs[$formatted_dir[0]]))
-            $dirs[$formatted_dir[0]] = array();
+        $current_dirs = $formatted_dirs[$i];
 
-        for($j=1; $j < count($formatted_dir); $j++)
+        $str = '@$dirs';
+        for($j=0; $j < count($current_dirs); $j++)
         {
-            $ref = &$dirs[$formatted_dir[$j-1]];
-            $ref[$formatted_dir[$j]] = array();
+            $str .= '["'.$current_dirs[$j].'"]';
         }
+
+        $str .= ' = array();';
+        eval($str);
     }
+
 }
 
 
 
 
-
-
 $tree = renderTree($dirs, $upload_path);
-
 $upload_pathX = str_replace(WEBSITE_PATH, '', $upload_path);
 
 $html = <<<EOF
@@ -97,7 +95,8 @@ $html = <<<EOF
 </ul>
 EOF;
 
-$resp['html'] = $html;
+die($html);
+
 
 
 

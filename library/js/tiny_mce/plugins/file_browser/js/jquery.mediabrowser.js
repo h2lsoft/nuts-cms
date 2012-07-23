@@ -72,21 +72,24 @@
             uri = getAjaxUri();
             uri += '&action=get_full_tree';
 
-            $.getJSON(uri, function(resp){
+            $.get(uri, function(html){
 
-                $("#tree").html(resp.html);
-                $("#tree").TreeView();
-                $.MediaBrowser.loadFolder($.MediaBrowser.currentFolder);
-                $('ul.treeview ul').eq(0).show();
+                $("#tree").html(html);
 
-                // resize tree width
                 $('#tree').resizable({
                     minWidth: 200,
                     maxWidth: $(document).width()-500,
                     handles : "e"
                 });
 
-            });
+
+                $("#tree").TreeView();
+                $.MediaBrowser.loadFolder($.MediaBrowser.currentFolder);
+                $('ul.treeview ul').eq(0).show();
+
+
+
+            }, 'html');
 
         },
 
@@ -97,6 +100,15 @@
             {
                 $.MediaBrowser.showMessage(select_one_file);
                 return;
+            }
+
+            //Send new filename to server
+            if(editor == 'edm')
+            {
+                uri = getAjaxUri();
+                uri += '&action=open';
+                uri += '&file='+urlencode(URL);
+                URL = uri;
             }
 
             src = URL;
@@ -267,18 +279,105 @@
         viewFile: function (){
 
             var URL = $("form#fileform input#file").val();
-
-            if (URL == '')
+            if(URL == '')
             {
                 $.MediaBrowser.showMessage(select_one_file);
                 return;
             }
 
             // window.open(URL);
-            document.location.href = URL;
+            if(editor == 'edm')
+            {
+                //Send new filename to server
+                str = '';
+                str += '<applet codebase="service/editlive_office" id="EditLive_Applet" name="EditLive_Applet" code="GWDAEditLive_Applet.class" archive="EditLive_Applet.jar" width="300" height="64" align="center">';
+                str += '<param name="type" value="application/x-java-applet;version=1.4.2" />';
+                str += '<param name="separate_jvm" value="true" />';
+                str += '<param name="classloader_cache" value="false" />';
+                str += '<param name="scriptable" value="true" />';
+                str += '<param name="paramWEBSITE_URL" value="'+WEBSITE_URL+'" />';
+                str += '<param name="paramPHPSESSID" value="'+PHPSESSID+'" />';
+                str += '<param name="paramFolder" value="'+urlencode($.MediaBrowser.currentFolder)+'" />';
+                str += '<param name="paramFile" value="'+urlencode($('#file-specs .filename').text())+'" />';
+                str += '<param name="paramMode" value="READ" />';
+                str += '</applet>';
+
+                $('#EditLive_Applet').remove();
+                $('#EditLive_AppletContainer').html(str);
+            }
+            else
+            {
+                document.location.href = URL;
+            }
 
         },
 
+        downloadFile: function(){
+
+            var URL = $("form#fileform input#file").val();
+            if(URL == '')
+            {
+                $.MediaBrowser.showMessage(select_one_file);
+                return;
+            }
+
+            // window.open(URL);
+            if(editor == 'edm')
+            {
+                //Send new filename to server
+                uri = getAjaxUri();
+                uri += '&action=open';
+                uri += '&file='+urlencode(URL);
+                URL = uri;
+            }
+
+            document.location.href = URL;
+        },
+
+
+        editFile: function(){
+
+            var URL = $("form#fileform input#file").val();
+            if(URL == '')
+            {
+                $.MediaBrowser.showMessage(select_one_file);
+                return;
+            }
+
+            file_extension = "";
+            tmp = explode('.', URL);
+            if(count(tmp) >= 2)
+            {
+                file_extension = tmp[tmp.length-1];
+                file_extension = strtolower(file_extension);
+
+                if(file_extension == 'pdf')
+                {
+                    $.MediaBrowser.viewFile();
+                    return;
+                }
+            }
+
+            //Send new filename to server
+            str = '';
+            str += '<applet codebase="service/editlive_office" id="EditLive_Applet" name="EditLive_Applet" code="GWDAEditLive_Applet.class" archive="EditLive_Applet.jar" width="300" height="64" align="center">';
+            str += '<param name="type" value="application/x-java-applet;version=1.4.2" />';
+            str += '<param name="separate_jvm" value="true" />';
+            str += '<param name="classloader_cache" value="false" />';
+            str += '<param name="scriptable" value="true" />';
+            str += '<param name="paramWEBSITE_URL" value="'+WEBSITE_URL+'" />';
+            str += '<param name="paramPHPSESSID" value="'+PHPSESSID+'" />';
+            str += '<param name="paramFolder" value="'+urlencode($.MediaBrowser.currentFolder)+'" />';
+            str += '<param name="paramFile" value="'+urlencode($('#file-specs .filename').text())+'" />';
+            str += '<param name="paramMode" value="WRITE" />';
+            str += '</applet>';
+
+            $('#EditLive_Applet').remove();
+            $('#EditLive_AppletContainer').html(str);
+
+
+
+        },
 
         copy: function(){
             // Clear clipboard

@@ -23,7 +23,7 @@ if(!is_dir(WEBSITE_PATH.$folder) || !preg_match("#^$upload_pathX#", $folder))
 // list all groups
 Query::factory()->select('NutsEDMGroupID')
                 ->from('NutsEDMFolderRights')
-                ->where("Folder = '$folder'")
+                ->where("Folder = '".addslashes($folder)."'")
                 ->where("Type = 'GROUP'")
                 ->where('NutsEDMGroupID != 0')
                 ->execute();

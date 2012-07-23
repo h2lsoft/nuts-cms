@@ -41,13 +41,17 @@ if($type == 'file')
         systemError(translate($msg)." `$folder$old_filename`");
     }
 
-    // check new filename exits
+    // check new filename exists !
     if(file_exists(WEBSITE_PATH.$folder.$new_filename))
     {
         $msg = "File already exists !";
         edmLog('RENAME', 'ERROR', $folder.$new_filename, $msg);
         systemError(translate($msg)." `$folder$new_filename`");
     }
+
+    // file locked ?
+    edmCheckLock($folder, $old_filename, 'json');
+
 
     $source = WEBSITE_PATH.$folder.$old_filename;
     $dest = WEBSITE_PATH.$folder.$new_filename;
@@ -82,6 +86,10 @@ elseif($type == 'folder')
         systemError(translate($msg)." `$folder$old_filename`");
     }
 
+    // folder locked ?
+    edmCheckLock($folder.$old_filename, "", 'json');
+
+
     $source = WEBSITE_PATH.$folder.$old_filename;
     $dest = WEBSITE_PATH.$folder.$new_filename;
 
@@ -94,12 +102,16 @@ elseif($type == 'folder')
     }
 
     // update folder right name
+    $tmp_old = addslashes("$folder$old_filename");
+    $tmp_new = addslashes("$folder$new_filename");
+
+
     $sql = "UPDATE
                     NutsEDMFolderRights
             SET
-                    Folder = REPLACE(Folder, '$folder$old_filename', '$folder$new_filename')
+                    Folder = REPLACE(Folder, '$tmp_old', '$tmp_new')
             WHERE
-                    Folder = '$folder$old_filename' OR Folder LIKE '$folder$old_filename%'";
+                    Folder = '$tmp_old' OR Folder LIKE '$tmp_old%'";
 
     $nuts->doQuery($sql);
 

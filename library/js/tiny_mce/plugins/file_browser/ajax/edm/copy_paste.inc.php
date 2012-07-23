@@ -53,6 +53,9 @@ foreach($files as $file)
             edmLog('COPY', 'ERROR', $file, $msg);
             systemError(translate($msg));
         }
+
+        // check folder lock
+        edmCheckLock($file, "", 'json');
     }
     else
     {
@@ -63,6 +66,9 @@ foreach($files as $file)
             edmLog('COPY', 'ERROR', $cur_folder, $msg);
             systemError(translate($msg));
         }
+
+        // check file lock
+        edmCheckLock($cur_folder, basename($file), 'json');
     }
 }
 
@@ -125,11 +131,11 @@ foreach($files as $file)
 
             $parent_rights = Query::factory()->select("*")
                                               ->from('NutsEDMFolderRights')
-                                              ->where("Folder = '$folder'")
+                                              ->where("Folder = '".addslashes($folder)."'")
                                               ->executeAndGetAll();
 
 
-            $sub_dirs = glob("$dest*", GLOB_ONLYDIR);
+            $sub_dirs = glob_recursive("$dest*", GLOB_ONLYDIR);
             $sub_dirs[] =  $dest;
 
             foreach($sub_dirs as $sub_dir)

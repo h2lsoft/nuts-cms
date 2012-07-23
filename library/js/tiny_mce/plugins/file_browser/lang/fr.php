@@ -23,7 +23,7 @@ $lang = array(
     "Root"                          => "Racine",
     "Views"                          => "Affichage",
     "Close"                         => "Fermer",
-    "Folder"                    => "Dossier",
+    "Folder"                        => "Dossier",
     "New folder"                    => "Nouveau dossier",
     "Upload"                        => "Charger un fichier",
     "Clipboard"                     => "Presse-papier",
@@ -61,7 +61,7 @@ $lang = array(
     "Select your file"              => "Choisissez votre(vos) fichier(s)",
     
     //Context menu
-    "Edit"                          => "Modifier l'image",
+    "Edit"                          => "Editer",
     "Copy"                          => "Copier",
     "Cut"                           => "Couper",
     "Paste"                         => "Coller",
@@ -75,6 +75,8 @@ $lang = array(
     
     //Error, success and general messages
     "The folder path was tampered with !"                         => "Le chemin du dossier a été modifié !",
+    "The file path was tampered with !"                         => "Le chemin du fichier a été modifié !",
+
     "Creating new folder failed !"                                => "Le nom du dossier est invalide !<br />Les caractères suivants ne sont pas autorisés : ^ \\ / ? * \" ' &lt; &gt; : |",
     "A new folder was created !"                                  => "Un nouveau dossier a été créé !",
     "Creating the new folder failed !"                            => "La création du nouveau dossier a échoué !",
@@ -146,7 +148,12 @@ $lang = array(
     "loading..." => "chargement...",
 
     "Add a group" => "Ajouter un groupe",
+    "Add these groups" => "Ajouter les groupes sélectionnés",
+
     "Add a user" => "Ajouter un utitlisateur",
+    "Add these users" => "Ajouter les utilisateurs sélectionnés",
+
+
     "Everybody" => "Tout le monde",
     "Apply rights" => "Appliquer les droits",
     "Apply on subfolders" => "Appliquer aux sous dossiers",
@@ -166,6 +173,17 @@ $lang = array(
     "Logs" => "Journal des logs",
 
 
+    "Download" => "Télécharger",
+
+
+    "Would you like to read this file online (cancel to donwload) ?" => "Voulez-vous lire ce fichier en ligne (annuler pour télécharger) ?",
+
+    "File lock exists" => "Un fichier est verrouillé",
+
+    "Comments" => "Commentaires",
+    "Locked by" => "Verrouillé par",
+
+    "Visualize" => "Visualiser",
 
     "EOF" => TRUE
 );

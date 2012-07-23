@@ -65,7 +65,7 @@ $parent_rights = Query::factory()->select("
                                                 `UPLOAD`
                                            ")
                                 ->from('NutsEDMFolderRights')
-                                ->where("Folder = '$folder_dest'")
+                                ->where("Folder = '".addslashes($folder_dest)."'")
                                 ->executeAndGetAll();
 
 if(count($parent_rights) == 0)

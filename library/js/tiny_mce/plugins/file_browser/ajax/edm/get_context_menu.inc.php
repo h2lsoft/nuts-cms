@@ -111,10 +111,28 @@ EOF;
 
 // filecmenu ***********************************************************************************************************
 
-// Open
-$js = "$.MediaBrowser.viewFile();";
+if(is_dir("service/editlive_office"))
+{
+    // Visualize
+    $js = "$.MediaBrowser.viewFile();";
+    $enabled = edmUserHasRight('READ', $folder);
+    edmAddContext('filecmenu', "Visualize", $js, 'open.png', $enabled, false);
+}
+
+
+// Download
+$js = "$.MediaBrowser.downloadFile();";
 $enabled = edmUserHasRight('READ', $folder);
-edmAddContext('filecmenu', "Open", $js, 'open.png', $enabled, false);
+edmAddContext('filecmenu', "Download", $js, 'download.png', $enabled, false);
+
+// service EditLiveOffice
+if(is_dir("service/editlive_office"))
+{
+    // Edit
+    $js = "$.MediaBrowser.editFile();";
+    $enabled = edmUserHasRight('WRITE', $folder);
+    edmAddContext('filecmenu', "Edit", $js, 'rename.png', $enabled, true);
+}
 
 // copy
 $js = "$.MediaBrowser.copy();";
@@ -146,10 +164,16 @@ edmAddContext('filecmenu', "Delete", $js, 'delete.gif', $enabled, true);
 
 // imagecmenu **********************************************************************************************************
 
-// Open
+// Visualize
 $js = "$.MediaBrowser.viewImage();";
 $enabled = edmUserHasRight('READ', $folder);
-edmAddContext('imagecmenu', "Open", $js, 'edit_image.gif', $enabled, false);
+edmAddContext('imagecmenu', "Visualize", $js, 'edit_image.gif', $enabled, false);
+
+// Download
+$js = "$.MediaBrowser.downloadFile();";
+$enabled = edmUserHasRight('READ', $folder);
+edmAddContext('imagecmenu', "Download", $js, 'download.png', $enabled, false);
+
 
 // copy
 $js = "$.MediaBrowser.copy();";

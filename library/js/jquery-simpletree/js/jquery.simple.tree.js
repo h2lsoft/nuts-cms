@@ -422,14 +422,28 @@ $.fn.simpleTree = function(opt){
 			}
 		};
 
-		TREE.addNode = function(id, text, callback)
+		TREE.addNode = function(id, text, callback, uri)
 		{
-			var temp_node = $('<li><ul><li id="'+id+'"><span>'+text+'</span></li></ul></li>');
-			TREE.setTreeNodes(temp_node);
+            node = '<li><ul><li id="'+id+'"><span>'+text+'</span>';
+
+            // has childrens
+            if(!empty(uri))
+            {
+                // node += '<ul class="ajax">{url:\''+uri+'\'}</ul>';
+            }
+
+            node += '</li></ul></li>';
+
+
+            var temp_node = $(node);
+
+            TREE.setTreeNodes(temp_node);
+            dragNode_source = $('.doc-last', temp_node);
 			dragNode_destination = TREE.getSelected();
-			dragNode_source = $('.doc-last',temp_node);
 			TREE.moveNodeToFolder(dragNode_destination);
 			temp_node.remove();
+
+
 			if(typeof(callback) == 'function')
 			{
 				callback(dragNode_destination, dragNode_source);

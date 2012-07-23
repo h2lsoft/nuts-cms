@@ -9,28 +9,30 @@
 
     <!-- vars -->
     <script>
-    var editor = "{$_GET['editor']}";
-    var returnID = "{$_GET['returnID']}";
-    var nutsUserLang = "{$_SESSION['Language']}";
-    var root_name = "{$root_name}";
-    var pathX = "{$upload_pathX}";
-    var gFilter = "{$_GET['filter']}";
-    var allowed_actions = {$allowedActionsX};
-    var isLangFR = (nutsUserLang == 'fr') ? true : false;
-    var WEBSITE_URL = "{CONST::WEBSITE_URL}";
-    var load_folder = "{$load_folder}";
-    var gPath = "{$_GET['path']}";
-    var select_one_file = "<i18n>Select only one file to insert !</i18n>";
-    var insert_cancelled = "<i18n>Insert cancelled because there is no target to insert to !</i18n>";
-    var invalid_characters_used = "<i18n>Invalid characters used !</i18n>";
-    var rename_file = "<i18n>Please give a new name for file</i18n>";
-    var rename_folder = "<i18n>Please give a new name for folder</i18n>";
-    var create_folder = "<i18n>Please give a name for your folder</i18n>";
-    var rename_error = "<i18n>Rename failed !</i18n>";
-    var max_file_size = "{$max_file_size}";
-    var group_select_error = "<i18n>Please select one group at least</i18n>";
-    var right_delete_confirm = "<i18n>Would you like to delete this user/group ?</i18n>";
-    var user_select_error = "<i18n>Please select one user at least</i18n>";
+        var editor = "{$_GET['editor']}";
+        var returnID = "{$_GET['returnID']}";
+        var nutsUserLang = "{$_SESSION['Language']}";
+        var root_name = "{$root_name}";
+        var pathX = "{$upload_pathX}";
+        var gFilter = "{$_GET['filter']}";
+        var allowed_actions = {$allowedActionsX};
+        var isLangFR = (nutsUserLang == 'fr') ? true : false;
+        var WEBSITE_URL = "{CONST::WEBSITE_URL}";
+        var load_folder = "{$load_folder}";
+        var gPath = "{$_GET['path']}";
+        var select_one_file = "<i18n>Select only one file to insert !</i18n>";
+        var insert_cancelled = "<i18n>Insert cancelled because there is no target to insert to !</i18n>";
+        var invalid_characters_used = "<i18n>Invalid characters used !</i18n>";
+        var rename_file = "<i18n>Please give a new name for file</i18n>";
+        var rename_folder = "<i18n>Please give a new name for folder</i18n>";
+        var create_folder = "<i18n>Please give a name for your folder</i18n>";
+        var rename_error = "<i18n>Rename failed !</i18n>";
+        var max_file_size = "{$max_file_size}";
+        var group_select_error = "<i18n>Please select one group at least</i18n>";
+        var right_delete_confirm = "<i18n>Would you like to delete this user/group ?</i18n>";
+        var user_select_error = "<i18n>Please select one user at least</i18n>";
+        var open_msg = "<i18n>Would you like to read this file online (cancel to donwload) ?</i18n>";
+        var PHPSESSID = "{$_COOKIE['PHPSESSID']}";
     </script>
     <!-- /vars -->
 
@@ -38,6 +40,7 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="/library/js/jquery-ui/jquery-ui-personalized-1.5.1.js"></script>
     <script type="text/javascript" src="js/jquery.plugins.js"></script>
+    <script type="text/javascript" src="js/jquery.blockUI.js"></script>
     <script type="text/javascript" src="js/jquery.mediabrowser.js?timer={$timer}"></script>
     <script type="text/javascript" src="/nuts/nuts.js?timer={$timer}"></script>
     <script type="text/javascript" src="/library/js/php.js?timer={$timer}"></script>
@@ -101,15 +104,15 @@
 
         {#if($_GET['editor'] == 'edm' && nutsUserHasRight('', '_file_explorer_mimes_type', 'list'))}
         <li><a href="javascript:;" onclick="popupModal('/nuts/?mod=_file_explorer_mimes_type&do=list');" class="children"><span><i18n>Files Mimes</i18n></span></a>
-        {#endif}
+            {#endif}
 
-        {#if($_GET['editor'] == 'edm' && nutsUserHasRight('', '_edm-group', 'list'))}
+            {#if($_GET['editor'] == 'edm' && nutsUserHasRight('', '_edm-group', 'list'))}
         <li><a href="javascript:;" onclick="popupModal('/nuts/?mod=_edm-group&do=list');" class="children"><span><i18n>Groups</i18n></span></a>
-        {#endif}
+            {#endif}
 
-        {#if($_GET['editor'] == 'edm' && nutsUserHasRight('', '_edm-logs', 'list'))}
+            {#if($_GET['editor'] == 'edm' && nutsUserHasRight('', '_edm-logs', 'list'))}
         <li><a href="javascript:;" onclick="popupModal('/nuts/?mod=_edm-logs&do=list');" class="children"><span><i18n>Logs</i18n></span></a>
-        {#endif}
+            {#endif}
 
     </ul>
 
@@ -124,6 +127,11 @@
                 <li><a href="#" onclick="return $.MediaBrowser.changeview('details');"><span class="icon details"></span><i18n>Details</i18n></a></li>
             </ul>
         </li>
+
+        <!-- fullscreen -->
+        <li id="option_fullscreen"><a href="#" onclick="popupModal(document.location.href);" title="<i18n>Fullscreen</i18n>"><span><img src="img/view-fullscreen.png" align="absmiddle" /></span></a>
+        <!-- /fullscreen -->
+
     </ul>
 </div>
 <!-- /menubar -->
@@ -201,6 +209,12 @@
             <label for="absolute_url" style="cursor:pointer"><input class="checkbox" type="checkbox" id="absolute_url"><i18n>Absolute Url (with domain name)</i18n></label>
         </div>
     </form>
+
+
+    <div id="EditLive_AppletContainer">
+
+    </div>
+
 
 </div>
 <!-- /file-specs -->

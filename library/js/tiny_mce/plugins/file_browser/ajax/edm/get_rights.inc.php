@@ -29,7 +29,7 @@ Query::factory()->select('*')
                 ->from('NutsEDMFolderRights')
                 ->where('NutsEDMGroupID = 0')
                 ->where('NutsUserID = 0')
-                ->where("Folder = '$folder'")
+                ->where("Folder = '".addslashes($folder)."'")
                 ->limit(1)
                 ->execute();
 
@@ -64,7 +64,7 @@ EOF;
 Query::factory()->select("*, (IF(Type='GROUP', (SELECT Name FROM NutsEDMGroup WHERE Deleted = 'NO' AND ID = NutsEDMGroupID), (SELECT CONCAT(LastName,' ',FirstName) FROM NutsUser WHERE Deleted = 'NO' AND ID = NutsUserID))) AS DynName")
                 ->from('NutsEDMFolderRights')
                 ->where("((NutsEDMGroupID != 0 AND Type = 'GROUP') OR (NutsUserID != 0 AND Type = 'USER'))")
-                ->where("Folder = '$folder'")
+                ->where("Folder = '".addslashes($folder)."'")
                 ->order_by('DynName')
                 ->execute();
 

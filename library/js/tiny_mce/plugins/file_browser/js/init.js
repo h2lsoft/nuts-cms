@@ -7,6 +7,10 @@ var cmenu;
 
 $(function(){
 
+    loading_msg = (nutsUserLang == 'fr') ? 'Chargement' : 'Loading';
+
+    $.blockUI({ message: "<img src='img/ajaxLoader.gif' align='absmiddle' style='margin-right:5px; width:24px;' /> "+loading_msg, css: {'border-radius':'5px', height:'50px', 'line-height': '50px', 'font-weight': 'normal', 'font-size': '16px'}});
+
     // *** Context Menu ***//
     $.contextMenu.theme = 'mb';
     $.contextMenu.shadowOpacity = .3;
@@ -32,7 +36,6 @@ $(function(){
             }
         }
 
-
         // Show selection of file, folder or image
         if($(this.target).hasClass('folder'))
             $.MediaBrowser.selectFileOrFolder(this.target, $(this.target).attr('href'), 'folder', 'cmenu');
@@ -46,9 +49,7 @@ $(function(){
         return true;
     }
 
-
     $.MediaBrowser.contextmenu();
-
 
 
     // assign values
@@ -258,7 +259,10 @@ $(function(){
     // load default folder
     if(!empty(load_folder))
     {
-        $.MediaBrowser.loadFolder(load_folder);
+        setTimeout(function(){
+            $.MediaBrowser.loadFolder(load_folder);
+        }, 1000);
+
     }
 
 
@@ -375,5 +379,17 @@ $(function(){
         }
 
     });
+
+
+    // no fullscreen
+    if(top === self)
+        $('#option_fullscreen').remove();
+
+
+    // unblock
+    setTimeout(function(){
+        $.unblockUI();
+    }, 3000);
+
 
 });

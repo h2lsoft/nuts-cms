@@ -3,6 +3,8 @@
  * rights folder
  */
 
+set_time_limit(0);
+ignore_user_abort(true);
 
 $folder = @urldecode($_POST['folder']);
 if(!empty($folder) && $folder[strlen($folder)-1] != '/')$folder .= '/';
@@ -51,7 +53,7 @@ foreach($tmp as $recordID => $vals)
                                         ->where("Type = 'GROUP'")
                                         ->where("NutsEDMGroupID = 0")
                                         ->where("NutsUserID = 0")
-                                        ->where("Folder = '$folder'")
+                                        ->where("Folder = '".addslashes($folder)."'")
                                         ->executeAndGetOne();
         if(!$everybodyID)
         {
@@ -75,7 +77,7 @@ if($recursive)
 {
     $_cache_parent = array();
 
-    $dirs = glob(WEBSITE_PATH.$folder.'*', GLOB_ONLYDIR);
+    $dirs = glob_recursive(WEBSITE_PATH.$folder.'*', GLOB_ONLYDIR);
     foreach($dirs as $dir)
     {
         $cur_folder = str_replace(WEBSITE_PATH, '', $dir).'/';
@@ -89,7 +91,7 @@ if($recursive)
                                                 ->where("Type = 'GROUP'")
                                                 ->where("NutsEDMGroupID = 0")
                                                 ->where("NutsUserID = 0")
-                                                ->where("Folder = '$cur_folder'")
+                                                ->where("Folder = '".addslashes($cur_folder)."'")
                                                 ->executeAndGetOne();
                 if(!$everybodyID)
                 {
@@ -116,7 +118,7 @@ if($recursive)
                 // parent exists ?
                 Query::factory()->select("ID")
                                 ->from('NutsEDMFolderRights')
-                                ->where("Folder = '$cur_folder'")
+                                ->where("Folder = '".addslashes($cur_folder)."'")
                                 ->where("Type = '{$_cache_parent[$recordID]['Type']}'")
                                 ->where("NutsEDMGroupID = {$_cache_parent[$recordID]['NutsEDMGroupID']}")
                                 ->where("NutsUserID = {$_cache_parent[$recordID]['NutsUserID']}")

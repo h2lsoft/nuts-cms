@@ -77,13 +77,26 @@ foreach($files as $file)
         systemError(translate($msg)." `$file`");
     }
 
-    if($is_dir && !file_exists(WEBSITE_PATH.$file))
+    if($is_dir && !is_dir(WEBSITE_PATH.$file))
     {
         $msg = "Folder doesn't exist";
         edmLog('DELETE', 'ERROR', $folder_dest, $msg);
         systemError(translate($msg)." `$file`");
     }
+
+    // folder countains a file locked ?
+    if(!$is_dir)
+    {
+        $cfolder = str_replace(basename($file), '', $file);
+        edmCheckLock($cfolder, basename($file), 'json');
+    }
+    else
+    {
+        $cfolder = $file;
+        edmCheckLock($cfolder, "", 'json');
+    }
 }
+
 
 // delete files
 foreach($files as $file)
@@ -115,7 +128,8 @@ foreach($files as $file)
         else
         {
             // delete folder and subfolders rights
-            $nuts->dbDelete('NutsEDMFolderRights', "Folder = '$folder' OR Folder LIKE '$folder%'");
+            $folderX = addslashes($folder);
+            $nuts->dbDelete('NutsEDMFolderRights', "Folder = '$folderX' OR Folder LIKE '$folderX%'");
             edmLog('DELETE', 'FOLDER', $folder);
         }
     }

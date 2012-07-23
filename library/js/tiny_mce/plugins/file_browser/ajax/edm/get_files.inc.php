@@ -15,6 +15,10 @@ else
 {
     $dirs = getDirTree($selected_path, true, false);
 
+    $cur_folder = str_replace(WEBSITE_PATH, '', $selected_path);
+    $files_locked = edmGetFilesLocked($cur_folder);
+
+
     // verify right on folder
     if(EDM_ADMINISTRATOR != true)
     {
@@ -47,7 +51,18 @@ else
     foreach($dirs as $key => $value)
     {
         $pathX = $selected_path.$key;
+
+        // renbame iso by utf8 prevent system bug
+        if(!mb_check_encoding($key, 'utf-8'))
+        {
+            $renamed = utf8_encode($key);
+            rename($pathX, $selected_path.$renamed);
+            $pathX = $selected_path.$renamed;
+            $key = $renamed;
+        }
+
         $pathX = str_replace(WEBSITE_PATH, '', $pathX);
+
 
         if($value == "folder")
         {
@@ -123,6 +138,8 @@ else
         }
         else
         {
+            $css_file_locked = (in_array($pathX, $files_locked)) ? ' file_lock' : '';
+
 
             // large_images ********************************************************************************************
             if($_GET['view'] == 'large_images')
@@ -130,7 +147,7 @@ else
                 if(in_array(strtolower($value), array('png','jpg','jpeg','gif','bmp')))
                 {
 
-                    $htmlFiles .= sprintf('<li>
+                    $htmlFiles .= sprintf('<li class="'.$css_file_locked.'">
                                             <a href="%1$s" title="%2$s" class="image">
                                                 <span class="begin"></span>
                                                 <span class="filename">%2$s</span>
@@ -144,7 +161,7 @@ else
                 }
                 else
                 {
-                    $htmlFiles .= sprintf('<li>
+                    $htmlFiles .= sprintf('<li class="'.$css_file_locked.'">
                                             <a href="%1$s" title="%2$s" class="file">
                                                 <span class="begin"></span>
                                                 <span class="filename">%2$s</span>
@@ -161,7 +178,7 @@ else
             {
                 if(in_array(strtolower($value), array('png','jpg','jpeg','gif','bmp')))
                 {
-                    $htmlFiles .= sprintf('<li>
+                    $htmlFiles .= sprintf('<li class="'.$css_file_locked.'">
                                             <a href="%1$s" title="%2$s" class="image">
                                                 <span class="begin"></span>
                                                 <span class="filename">%2$s</span>
@@ -175,7 +192,7 @@ else
                 }
                 else
                 {
-                    $htmlFiles .= sprintf('<li>
+                    $htmlFiles .= sprintf('<li class="'.$css_file_locked.'">
                                             <a href="%1$s" title="%2$s" class="file">
                                                 <span class="begin"></span>
                                                 <span class="filename">%2$s</span>
@@ -192,7 +209,7 @@ else
             {
                 if(in_array(strtolower($value), array('png','jpg','jpeg','gif','bmp')))
                 {
-                    $htmlFiles .= sprintf('<li>
+                    $htmlFiles .= sprintf('<li class="'.$css_file_locked.'">
                                             <a href="%1$s" title="%2$s" class="image">
                                                 <span class="begin"></span>
                                                 <span class="filename">%2$s</span>
@@ -206,7 +223,7 @@ else
                 }
                 else
                 {
-                    $htmlFiles .= sprintf('<li>
+                    $htmlFiles .= sprintf('<li class="'.$css_file_locked.'">
                                             <a href="%1$s" title="%2$s" class="file">
                                                 <span class="begin"></span>
                                                 <span class="filename">%2$s</span>
@@ -229,7 +246,7 @@ else
                     $file_size = filesize($filename);
                     $file_size = $file_size < 1024  ? $file_size. ' '.translate('bytes') : $file_size < 1048576 ? number_format($file_size / 1024, 2, $dec_seperator, $thousands_separator) . ' '.translate('kB') : number_format($file_size / 1048576, 2, $dec_seperator, $thousands_separator) . ' '.translate('MB');
 
-                    $TR = sprintf('<tr href="%1$s" class="image">
+                    $TR = sprintf('<tr href="%1$s" class="image '.$css_file_locked.'">
                                         <td class="begin"></td>
                                         <td class="icon"><span class="%8$s"></span></td>
                                         <td class="filename">%2$s</td>
@@ -261,7 +278,7 @@ else
                     $file_type = mime_content_type($filename);
                     $file_size = $file_size < 1024  ? $file_size. ' '.translate('bytes') : $file_size < 1048576 ? number_format($file_size / 1024, 2, $dec_seperator, $thousands_separator) . ' '.translate('kB') : number_format($file_size / 1048576, 2, $dec_seperator, $thousands_separator) . ' '.translate('MB');
 
-                    $TR = sprintf('<tr href="%1$s" class="file">
+                    $TR = sprintf('<tr href="%1$s" class="file '.$css_file_locked.'">
 									<td class="begin"></td>
 									<td class="icon"><span class="%6$s"></span></td>
 									<td class="filename">%2$s</td>
@@ -293,7 +310,7 @@ else
                     $image_info = getimagesize($filename);
                     $file_modified = date($datetimeFormat, filemtime($filename));
 
-                    $htmlFiles .= sprintf('<li>
+                    $htmlFiles .= sprintf('<li class="'.$css_file_locked.'">
                                             <a href="%1$s" title="%2$s" class="image">
                                                 <span class="begin"></span>
                                                 <span class="filename">%2$s</span>
@@ -319,7 +336,7 @@ else
                     $file_type = mime_content_type($filename);
                     $file_size = $file_size < 1024  ? $file_size. ' '.translate('bytes') : $file_size < 1048576 ? number_format($file_size / 1024, 2, $dec_seperator, $thousands_separator) . ' '.translate('kB') : number_format($file_size / 1048576, 2, $dec_seperator, $thousands_separator) . ' '.translate('MB');
 
-                    $htmlFiles .= sprintf('<li>
+                    $htmlFiles .= sprintf('<li class="'.$css_file_locked.'">
                                             <a href="%1$s" title="%2$s" class="file">
                                                 <span class="begin"></span>
                                                 <span class="filename">%2$s</span>

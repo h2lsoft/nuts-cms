@@ -55,6 +55,10 @@ foreach($files as $file)
             edmLog('CUT', 'ERROR', $file, $msg);
             systemError(translate($msg));
         }
+
+        // check folder lock
+        edmCheckLock($file, "", 'json');
+
     }
     else
     {
@@ -65,8 +69,12 @@ foreach($files as $file)
             edmLog('CUT', 'ERROR', $cur_folder, $msg);
             systemError(translate($msg));
         }
+
+        // check file lock
+        edmCheckLock($cur_folder, basename($file), 'json');
     }
 }
+
 
 // launch rename
 foreach($files as $file)
@@ -91,17 +99,19 @@ foreach($files as $file)
             // update folder and subfolders rights
             $dest = $folder.basename($file);
             if(!empty($dest) && $dest[strlen($dest)-1] != '/')$dest .= '/';
-            $sql = "DELETE FROM NutsEDMFolderRights WHERE Folder = '$file' OR Folder LIKE '$file%'";
+
+            $fileX = addslashes($file);
+            $sql = "DELETE FROM NutsEDMFolderRights WHERE Folder = '$fileX' OR Folder LIKE '$fileX%'";
             $nuts->doQuery($sql);
 
             $original_dest = $dest;
 
             $parent_rights = Query::factory()->select("*")
                                             ->from('NutsEDMFolderRights')
-                                            ->where("Folder = '$folder'")
+                                            ->where("Folder = '".addslashes($folder)."'")
                                             ->executeAndGetAll();
 
-            $sub_dirs = glob(WEBSITE_PATH.$folder.basename($file)."/*", GLOB_ONLYDIR);
+            $sub_dirs = glob_recursive(WEBSITE_PATH.$folder.basename($file)."/*", GLOB_ONLYDIR);
             $sub_dirs[] = WEBSITE_PATH.$folder.basename($file);
 
             foreach($sub_dirs as $sub_dir)

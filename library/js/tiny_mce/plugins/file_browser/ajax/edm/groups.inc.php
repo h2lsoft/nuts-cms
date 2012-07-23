@@ -27,7 +27,7 @@ $groups_arr = explode(";", $groups);
 // list all groups to exclude
 Query::factory()->select('NutsEDMGroupID')
                 ->from('NutsEDMFolderRights')
-                ->where("Folder = '$folder'")
+                ->where("Folder = '".addslashes($folder)."'")
                 ->where('NutsEDMGroupID != 0')
                 ->where("Type = 'GROUP'")
                 ->execute();

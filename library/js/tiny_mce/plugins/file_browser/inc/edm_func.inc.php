@@ -87,6 +87,166 @@ function edmLog($action, $object, $object_name, $resume="")
     $nuts->dbInsert('NutsEDMLogs', $f);
 }
 
+/**
+ * Check Lock for file and send error
+ *
+ * @param $folder
+ * @param string $file optionnal
+ * @param string $error_output_format json, direct (default=json)
+ */
+function edmCheckLock($folder, $file="", $error_output_format='json')
+{
+    global $nuts, $upload_pathX;
+
+
+    $sql_added = "";
+    if(!empty($file))
+        $sql_added = " AND File = '$file'";
+
+    $sql = "SELECT
+                    ID,
+                    Folder,
+                    File,
+                    (SELECT Login FROM NutsUser WHERE ID = NutsUserID) AS Login
+            FROM
+                    NutsEDMLock
+            WHERE
+                    Deleted = 'NO' AND
+                    (Folder LIKE '$folder%' OR Folder = '$folder')
+                    $sql_added
+            LIMIT 1";
+    $nuts->doQuery($sql);
+
+    if($nuts->dbNumRows() == 1)
+    {
+        $rec = $nuts->dbFetch();
+        $cfile = $rec['Folder'].$rec['File'];
+        $cfile = str_replace($upload_pathX, '', $cfile);
+
+        $msg = translate("File lock exists")." `/$cfile`";
+
+        if($error_output_format == 'json')
+            systemError($msg);
+        else
+            die($msg);
+    }
+}
+
+/**
+ * Check if file is locked
+ *
+ * @param string $file_path
+ * @return bool
+ */
+function edmFileIsLocked($file_path)
+{
+    global $nuts;
+
+    $folder = str_replace(basename($file_path), '', $file_path);
+    $file = basename($file_path);
+
+    $sql = "SELECT
+                    ID
+            FROM
+                    NutsEDMLock
+            WHERE
+                    Deleted = 'NO' AND
+                    Folder = '$folder' AND
+                    File = '$file'
+            LIMIT 1";
+    $nuts->doQuery($sql);
+
+    if($nuts->dbNumRows() == 1)
+        return true;
+
+    return false;
+}
+
+/**
+ * Return lock info
+ *
+ * @param $file_path
+ * @return string
+ */
+function edmGetLockInfo($file_path)
+{
+    $info = "";
+
+    global $nuts;
+
+    $folder = str_replace(basename($file_path), '', $file_path);
+    $file = basename($file_path);
+
+    $sql = "SELECT
+                    Date,
+                    (SELECT Login FROM NutsUser WHERE ID = NutsUserID) AS Login
+            FROM
+                    NutsEDMLock
+            WHERE
+                    Deleted = 'NO' AND
+                    Folder = '$folder' AND
+                    File = '$file'
+            ORDER BY
+                    Date DESC
+            LIMIT 1";
+    $nuts->doQuery($sql);
+
+    if($nuts->dbNumRows() == 1)
+    {
+        $r = $nuts->dbFetch();
+
+        $date = $nuts->db2Date($r['Date']);
+        $info = $r['Login']." (".$date.")";
+    }
+
+
+    return $info;
+}
+
+
+/**
+ * Return files array locked
+ *
+ * @param $folder
+ * @return array
+ */
+function edmGetFilesLocked($folder)
+{
+    global $nuts;
+
+    $sql = "SELECT
+                    File
+            FROM
+                    NutsEDMLock
+            WHERE
+                    Deleted = 'NO' AND
+                    Folder = '$folder'";
+    $nuts->doQuery($sql);
+
+    $files = array();
+    while($r = $nuts->dbFetch())
+        $files[] = $folder.$r['File'];
+
+    return $files;
+}
+
+
+if(!function_exists('glob_recursive'))
+{
+
+    // Does not support flag GLOB_BRACE
+    function glob_recursive($pattern, $flags = 0)
+    {
+        $files = glob($pattern, $flags);
+
+        foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir)
+        {
+            $files = array_merge($files, glob_recursive($dir.'/'.basename($pattern), $flags));
+        }
+
+        return $files;
+    }
+}
 
 
 ?>

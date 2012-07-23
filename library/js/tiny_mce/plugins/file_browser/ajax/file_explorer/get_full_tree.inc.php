@@ -17,7 +17,7 @@ $html = <<<EOF
 </ul>
 EOF;
 
-$resp['html'] = $html;
+die($html);
 
 
 

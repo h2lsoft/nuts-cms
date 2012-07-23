@@ -145,3 +145,22 @@ div#file-specs #info div.fileupload input {
 }
 
 .n_window .tag:hover {color: black;}
+#EditLive_AppletContainer {display:block; position:absolute; top: 30px; right: 30px; }
+
+
+
+/* file comments */
+.filecomments, .filecomments_img {padding-left: 18px; top: 84px; background: url(/nuts/img/icon-help.png) no-repeat;}
+.filecomments span, .filecomments_img span {font-weight: bold;}
+.filecomments_img {top: 104px;}
+
+
+/* file lock */
+.filelocked {padding-left: 18px; top: 104px; background: url(/nuts/img/icon-lock.png) no-repeat;}
+.filelocked span {font-weight: bold;}
+
+
+/* view file lock */
+/*li.file_lock a, li.file_lock span  {color:red!important;}
+tr.file_lock td {color:red!important;}
+*/
