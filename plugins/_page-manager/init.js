@@ -290,7 +290,7 @@ $('#former .lower').blur(function(e) {
 $('#pager_content #Language option').each(function(){
 
 	flag = $(this).val();
-	str = 'background:url(/library/media/images/flag/'+flag+'.gif) no-repeat 2px 3px';
+	str = 'background:url(/library/media/images/flag/'+flag+'.gif) no-repeat 2px 3px; background-color:white;';
 	$(this).attr('style', str);
 
 });
