@@ -231,7 +231,19 @@ function duplicatePage()
 
 	parentID = simpleTreeCollection.get(0).getSelected().attr('id');
 
+    // check sub pages ?
+    duplicate_sub = 0;
+    if($('.simpleTree #'+parentID+' ul').length > 0)
+    {
+        if((c=confirm(lang_msg_101)))
+        {
+            duplicate_sub = 1;
+        }
+    }
+
 	url = tree_static_url+'&_action=duplicate_page&language='+$('#Language').val()+'&zoneID='+$('#ZoneID').val()+'&parentID='+parentID;
+    url += '&duplicate_sub='+duplicate_sub;
+
 	$.getJSON(url, {},
 		function(data){
 
@@ -259,8 +271,21 @@ function duplicatePage()
 			else
 			{
 				$('.simpleTree #'+pID+'>span').removeClass('text').addClass('active');
-				simpleTreeCollection.get(0).addNode(data['ID'], data['Title']);
 
+                if(duplicate_sub == 0)
+                {
+                    simpleTreeCollection.get(0).addNode(data['ID'], data['Title']);
+                }
+                else
+                {
+                    /*uri = "index.php?mod=_page-manager&do=exec&_action=reload_page&ID="+data['ID'];
+                    uri += "&language="+$('#page_options #Language').val();
+                    uri += "&zoneID="+$('#page_options #ZoneID').val();
+                    uri += "&state=";*/
+
+                    reloadPage();
+                    return;
+                }
 			}
 
 			updateStateIcon();

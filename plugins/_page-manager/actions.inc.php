@@ -315,7 +315,7 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'duplicate_page')
 	$rec['VirtualPagename'] = '';
 	$rec['MenuName'] = $new_title;
 	$rec['Position'] = $max_position;
-	$rec['_HasChildren'] = 'NO';	
+	$rec['_HasChildren'] = (@$_GET['duplicate_sub'] == 1) ? 'YES' : 'NO';
 	$rec['State'] = 'DRAFT';	
 
 	$lastID = $nuts->dbInsert('NutsPage', $rec, array(), true);
@@ -331,10 +331,24 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'duplicate_page')
 		}
 	}
 
-	
 	$plugin->trace('duplicate', $lastID);
 	
 	$data = array('ID' => $lastID, 'Title' => $new_title);
+
+
+    if(@$_GET['duplicate_sub'] == 1)
+    {
+        $page_duplicate_source = $_GET['parentID'];
+        $page_duplicate_target = $lastID;
+
+        duplicatePages($page_duplicate_source, $page_duplicate_target);
+
+        $plugin->trace('duplicate_sub_pages', $page_duplicate_target);
+    }
+
+
+
+
 	echo $nuts->array2json($data);
 	exit(1);
 }
@@ -800,5 +814,60 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'save_page')
 	exit(1);
 }
 
+
+/**
+ * Duplicate page
+ */
+function duplicatePages($pageID_source, $pageID_target)
+{
+    global $nuts;
+
+    $sql = "SELECT * FROM NutsPage WHERE NutsPageID = $pageID_source ORDER BY Position";
+    $nuts->doQuery($sql);
+
+    $subs = array();
+    while($r = $nuts->dbFetch())
+        $subs[] = $r;
+
+
+    // duplication page
+    foreach($subs as $rec)
+    {
+        $oldID = $rec['ID'];
+
+        // duplicate page exec
+        $new_title = $rec['MenuName'];
+        $rec['ID'] = '';
+        $rec['NutsUserID'] = $_SESSION['NutsUserID'];
+        $rec['DateCreation'] = 'NOW()';
+        $rec['DateUpdate'] = 'NOW()';
+        $rec['VirtualPagename'] = '';
+        $rec['MenuName'] = $new_title;
+        $rec['State'] = 'DRAFT';
+        $rec['NutsPageID'] = $pageID_target;
+
+        $lastID = $nuts->dbInsert('NutsPage', $rec, array(), true);
+
+        if($rec['AccessRestricted'] == 'YES')
+        {
+            $sql = "SELECT NutsGroupID FROM NutsPageAccess WHERE NutsPageID = {$oldID}";
+            $nuts->doQuery($sql);
+            while($r = $nuts->dbFetch())
+            {
+                $nuts->dbInsert('NutsPageAccess', array('NutsGroupID' => $r['NutsGroupID'], 'NutsPageID' => $lastID));
+            }
+        }
+
+        // replicate children
+        if($rec['_HasChildren'] == 'YES')
+        {
+            duplicatePages($oldID, $lastID);
+        }
+
+    }
+
+
+
+}
 
 ?>
