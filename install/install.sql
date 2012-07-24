@@ -814,3 +814,18 @@ CREATE TABLE `NutsEDMComments` (
   KEY `Date` (`Date`),
   KEY `Deleted` (`Deleted`),
   KEY `Folder` (`Folder`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `NutsEDMLock` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NutsUserID` int(10) unsigned NOT NULL,
+  `Date` datetime DEFAULT NULL,
+  `Folder` varchar(255) DEFAULT NULL,
+  `File` varchar(255) DEFAULT NULL,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `NutsUserID` (`NutsUserID`),
+  KEY `Date` (`Date`),
+  KEY `Deleted` (`Deleted`),
+  KEY `Folder` (`Folder`),
+  KEY `File` (`File`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
