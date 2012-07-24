@@ -720,7 +720,19 @@ INSERT INTO `NutsFileExplorerMimesType`(`ID`,`Extension`,`Mimes`,`Deleted`) valu
 
 
 /* update v.3.1 */
-CREATE TABLE `NutsUserListSearches` (  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,  `NutsUserID` int(10) unsigned NOT NULL,  `Plugin` varchar(255) NOT NULL,  `Name` varchar(255) DEFAULT NULL,  `Serialized` text,  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',  PRIMARY KEY (`ID`),  KEY `NutsUserID` (`NutsUserID`),  KEY `Plugin` (`Plugin`),  KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE `NutsUserListSearches`(
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NutsUserID` int(10) unsigned NOT NULL,
+  `Plugin` varchar(255) NOT NULL,
+  `Name` varchar(255) DEFAULT NULL,
+  `Serialized` text,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO', 
+  PRIMARY KEY (`ID`),
+  KEY `NutsUserID` (`NutsUserID`),
+  KEY `Plugin` (`Plugin`),
+  KEY `Deleted` (`Deleted`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 
 /* update v.3.2 */
 INSERT INTO NutsMenu (Category, Name, Position) VALUES (1, '_settings', 0);
@@ -730,11 +742,75 @@ ALTER TABLE `NutsUser` ADD COLUMN `AvatarTmpImage` VARCHAR(255) NULL AFTER `Avat
 /* update v.3.3 */
 ALTER TABLE `NutsFileExplorerMimesType` ADD COLUMN `FileExplorer` ENUM('YES','NO') NOT NULL AFTER `Mimes` ;
 ALTER TABLE `NutsFileExplorerMimesType` ADD COLUMN `EDM` ENUM('YES','NO') NOT NULL DEFAULT 'YES' AFTER `FileExplorer` ;
-CREATE TABLE `NutsEDMGroup` (  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,  `Name` varchar(255) DEFAULT NULL,  `Description` text,  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',  PRIMARY KEY (`ID`),  KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-CREATE TABLE `NutsEDMGroupUser` (  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,  `NutsEDMGroupID` int(10) unsigned NOT NULL,  `NutsUserID` int(10) unsigned NOT NULL,  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',  PRIMARY KEY (`ID`),  KEY `NutsEDMGroupID` (`NutsEDMGroupID`),  KEY `NutsUserID` (`NutsUserID`),  KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE `NutsEDMGroup`(
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) DEFAULT NULL,
+  `Description` text,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `NutsEDMGroupUser` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NutsEDMGroupID` int(10) unsigned NOT NULL,
+  `NutsUserID` int(10) unsigned NOT NULL,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `NutsEDMGroupID` (`NutsEDMGroupID`),
+  KEY `NutsUserID` (`NutsUserID`),
+  KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 INSERT INTO NutsMenu (Category, Name, Position, BreakBefore) VALUES (3, '_edm', 4, 1);
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (3, '_edm-group', 4, 'NO');
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (3, '_edm-logs', 4, 'NO');
-CREATE TABLE `NutsEDMFolderRights` (  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,  `Type` enum('GROUP','USER') NOT NULL DEFAULT 'GROUP',  `NutsEDMGroupID` int(10) unsigned NOT NULL,  `NutsUserID` int(10) unsigned NOT NULL,  `Folder` varchar(255) NOT NULL,  `LIST` enum('YES','NO') NOT NULL DEFAULT 'NO',  `READ` enum('YES','NO') NOT NULL DEFAULT 'NO',  `MODIFY` enum('YES','NO') DEFAULT 'NO',  `DELETE` enum('YES','NO') NOT NULL DEFAULT 'NO',  `WRITE` enum('YES','NO') NOT NULL DEFAULT 'NO',  `UPLOAD` enum('YES','NO') NOT NULL DEFAULT 'NO',  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',  PRIMARY KEY (`ID`),  KEY `Type` (`Type`),  KEY `NutsEDMGroupID` (`NutsEDMGroupID`),  KEY `NutsUserID` (`NutsUserID`),  KEY `Folder` (`Folder`),  KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-CREATE TABLE `NutsEDMLogs` (  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,  `NutsUserID` int(10) unsigned NOT NULL,  `Date` datetime DEFAULT NULL,  `Action` varchar(20) NOT NULL,  `Object` enum('SYSTEM','FOLDER','FILE','ERROR') DEFAULT NULL,  `ObjectName` varchar(255) DEFAULT NULL,  `Resume` text,  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',  PRIMARY KEY (`ID`),  KEY `Action` (`Action`),  KEY `Deleted` (`Deleted`),  KEY `NutsUserID` (`NutsUserID`),  KEY `Object` (`Object`),  KEY `ObjectName` (`ObjectName`),  KEY `Date` (`Date`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-CREATE TABLE `NutsEDMComments` (  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,  `NutsUserID` int(10) unsigned NOT NULL,  `Folder` varchar(255) DEFAULT NULL,  `File` varchar(255) DEFAULT NULL,  `Date` datetime DEFAULT NULL,  `Message` text,  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',  PRIMARY KEY (`ID`),  KEY `NutsUserID` (`NutsUserID`),  KEY `Date` (`Date`),  KEY `Deleted` (`Deleted`),  KEY `Folder` (`Folder`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `NutsEDMFolderRights`(
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `Type` enum('GROUP','USER') NOT NULL DEFAULT 'GROUP',
+  `NutsEDMGroupID` int(10) unsigned NOT NULL,
+  `NutsUserID` int(10) unsigned NOT NULL,
+  `Folder` varchar(255) NOT NULL,
+  `LIST` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  `READ` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  `MODIFY` enum('YES','NO') DEFAULT 'NO',
+  `DELETE` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  `WRITE` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  `UPLOAD` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `Type` (`Type`),
+  KEY `NutsEDMGroupID` (`NutsEDMGroupID`),
+  KEY `NutsUserID` (`NutsUserID`),
+  KEY `Folder` (`Folder`),
+  KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `NutsEDMLogs`(
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NutsUserID` int(10) unsigned NOT NULL,
+  `Date` datetime DEFAULT NULL,
+  `Action` varchar(20) NOT NULL,
+  `Object` enum('SYSTEM','FOLDER','FILE','ERROR') DEFAULT NULL,
+  `ObjectName` varchar(255) DEFAULT NULL,
+  `Resume` text,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `Action` (`Action`),
+  KEY `Deleted` (`Deleted`),
+  KEY `NutsUserID` (`NutsUserID`),
+  KEY `Object` (`Object`),
+  KEY `ObjectName` (`ObjectName`),
+  KEY `Date` (`Date`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `NutsEDMComments` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NutsUserID` int(10) unsigned NOT NULL,
+  `Folder` varchar(255) DEFAULT NULL,
+  `File` varchar(255) DEFAULT NULL,
+  `Date` datetime DEFAULT NULL,
+  `Message` text,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `NutsUserID` (`NutsUserID`),
+  KEY `Date` (`Date`),
+  KEY `Deleted` (`Deleted`),
+  KEY `Folder` (`Folder`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
