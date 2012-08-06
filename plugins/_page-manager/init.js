@@ -63,8 +63,8 @@ $("#tab3 select[multiple]").asmSelect({
 
 // update content
 $('#Content').width($('#page_form').width()-180);
-//$('#Content').height(tab_height - 40);
 $('#Content').height(tab_height - 50);
+$('#ContentResume').width(tab_height - 50);
 
 $("#dID").bind("keypress", function(e){
 	if (e.keyCode == 13){
@@ -114,6 +114,7 @@ function generateFromH1(){
 	v = str_replace('ê', 'e', v);
 	v = str_replace('ê', 'e', v);
 	v = str_replace('ï', 'i', v);
+	v = str_replace('î', 'i', v);
 	v = str_replace('ô', 'o', v);
 	v = str_replace('ö', 'o', v);
 	v = str_replace('ù', 'u', v);
@@ -317,15 +318,26 @@ if(from_mode == 'iframe')
 	// update content
 	$('#Content').width($('#page_form').width() - 180);
 	$('#Content').height(tab_height - 120);
+    $('#ContentResume').width($('#page_form').width() - 180);
+
+
+    // hide main title
+    $('#main_title').hide();
 
 	reloadPage($('#dID').val());
 
 }
 
+
+
+
 // detect delete key on simpletree
-$(document).keydown(function(e) {
-    if(e.keyCode == 46 && $('.simpleTree span.active').length && !$('#page_form').is(':visible')) {
-        deletePage();
-        e.stopPropagation();
-    }
-});
+if(from_mode != 'iframe')
+{
+    $(document).keydown(function(e) {
+        if(e.keyCode == 46 && $('.simpleTree span.active').length && !$('#page_form').is(':visible')) {
+            deletePage();
+            e.stopPropagation();
+        }
+    });
+}
