@@ -196,36 +196,62 @@ class Query
 
 
 	/**
-	 * execute query
+	 * Execute query
+     *
+     * @param boolean $fb_debug Firebug debug (default = false)
 	 */
-	function execute(){
+	function execute($fb_debug=false){
 		$sql = $this->get();
+        if($fb_debug)FB::info($sql);
+
 		$this->_DBLink->doQuery($sql);
 	}
 
 	/**
-	 * execute query and return one result
+	 * Execute query and return one result
+     *
+     * @param boolean $fb_debug Firebug debug (default = false)
 	 * @return $col
 	 */
-	function executeAndGetOne(){
+	function executeAndGetOne($fb_debug=false){
 		$this->execute();
 		return $this->_DBLink->dbGetOne();
 	}
 
     /**
      * execute query and fetch
+     *
+     * @param boolean $fb_debug Firebug debug (default = false)
+     * @return array $result
      */
-    function executeAndFetch(){
-        $this->execute();
+    function executeAndFetch($fb_debug=false){
+        $this->execute($fb_debug);
+
         return $this->_DBLink->dbFetch();
     }
 
 	/**
-	 * execute query and return one resultset
+	 * Execute query and return one resultset
+     *
+     * @param boolean $fb_debug Firebug debug (default = false)
+     * @return array $data
 	 */
-	function executeAndGetAll(){
-		$this->execute();
+	function executeAndGetAll($fb_debug=false){
+		$this->execute($fb_debug);
 		return $this->_DBLink->dbGetData();
+	}
+
+
+	/**
+	 * Execute query and return one resultset
+     *
+     * @param boolean $fb_debug Firebug debug (default = false)
+     * @return array $data
+	 */
+	function executeAndGetAllOne($fb_debug=false){
+
+        $this->execute($fb_debug);
+        return $this->_DBLink->dbGetOneData();
 	}
 
 
