@@ -1601,8 +1601,124 @@ function xTrace($app_name, $message, $recordID=0)
 		$nuts->dbSetQueryID($qID);
 }
 
+/**
+ * Replace latin accent like éèêë by e for example
+ *
+ * @param $str
+ * @return string
+ */
+function str_replace_latin_accents($str)
+{
+
+    $reps = array();
+    $reps[] = array(
+                        'pattern' => array('é', 'è', 'ê', 'ë'),
+                        'replacement' => 'e'
+                    );
+    $reps[] = array(
+                        'pattern' => array('à', 'â', 'ä', 'â'),
+                        'replacement' => 'a'
+                    );
+
+    $reps[] = array(
+                        'pattern' => array('ç'),
+                        'replacement' => 'c'
+    );
 
 
+    $reps[] = array(
+                        'pattern' => array('ÿ'),
+                        'replacement' => 'y'
+    );
+
+    $reps[] = array(
+                        'pattern' => array('û', 'ü', 'ù'),
+                        'replacement' => 'u'
+    );
+
+    $reps[] = array(
+                        'pattern' => array('î', 'ï'),
+                        'replacement' => 'i'
+    );
+
+    $reps[] = array(
+                        'pattern' => array('ö', 'ô'),
+                        'replacement' => 'o'
+    );
+
+
+    foreach($reps as $rep)
+    {
+        $str = str_replace($rep['pattern'], $rep['replacement'], $str);
+
+        $rep['pattern'] = array_map('strtoupper', $rep['pattern']);
+        $str = str_replace($rep['pattern'], strtoupper($rep['replacement']), $str);
+    }
+
+
+    return $str;
+}
+
+/**
+ * Transform Csv file to structured array
+ *
+ * @param $file_name
+ * @param string $separator  (default = `;`)
+ * @param bool $ignore_first_line  (default = true)
+ * @param bool $first_line_as_key  (default = false)
+ * @param bool $encode_utf8 (default = false)
+ *
+ * @return array
+ */
+function csv2array($file_name, $separator=';', $ignore_first_line=true, $first_line_as_key=false, $encode_utf8=false)
+{
+    $arr = array();
+    $keys = array();
+
+    $init = false;
+    $lines = file($file_name);
+    foreach($lines as $line)
+    {
+        $cols = explode($separator, $line);
+        $cols = array_map('trim', $cols);
+        if($encode_utf8)$cols = array_map('utf8_encode', $cols);
+        if($ignore_first_line && !$init)
+        {
+            if($first_line_as_key)
+            {
+                $keys = array_map('toCamelCase', $cols);
+                $keys = array_map('str_replace_latin_accents', $keys);
+            }
+        }
+
+        if($init || !$ignore_first_line)
+        {
+            if($first_line_as_key)
+            {
+                $tmp = array();
+                $i = 0;
+                foreach($keys as $key)
+                {
+                    $tmp[$key] = $cols[$i];
+                    $i++;
+                }
+
+                $arr[] = $tmp;
+            }
+            else
+            {
+                $arr[] = $cols;
+            }
+
+
+        }
+
+        $init = true;
+    }
+
+
+    return $arr;
+}
 
 
 
