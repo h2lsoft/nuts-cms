@@ -122,22 +122,20 @@ class Page extends NutsCore
 	public function __construct()
 	{
 		// preview
-		$access_allowed = false;
-		/*if(isset($_GET['nuts_preview']) && $_GET['nuts_preview'] == 1)
+		if(isset($_GET['nuts_preview']) && $_GET['nuts_preview'] == 1)
 		{
 			@session_start();
 			if(isset($_SESSION['NutsUserID']))
 			{
-				$access_allowed = true;
 				$this->mode = 'preview';
 			}
-		}*/
+		}
 
 		// maintenance ?
 		$allowed_ips = explode(',', WEBSITE_MAINTENANCE_IPS);
 		$allowed_ips = array_map('trim', $allowed_ips);
 
-		if(WEBSITE_MAINTENANCE == true && !in_array($this->getIP(), $allowed_ips) &&  !$access_allowed)
+		if(WEBSITE_MAINTENANCE == true && !in_array($this->getIP(), $allowed_ips))
 			die(WEBSITE_MAINTENANCE_MESSAGE);
 
 		/*if(in_array($this->getIP(), $allowed_ips))
