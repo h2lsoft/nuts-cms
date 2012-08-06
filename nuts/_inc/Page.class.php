@@ -123,7 +123,7 @@ class Page extends NutsCore
 	{
 		// preview
 		$access_allowed = false;
-		if(isset($_GET['nuts_preview']) && $_GET['nuts_preview'] == 1)
+		/*if(isset($_GET['nuts_preview']) && $_GET['nuts_preview'] == 1)
 		{
 			@session_start();
 			if(isset($_SESSION['NutsUserID']))
@@ -131,7 +131,7 @@ class Page extends NutsCore
 				$access_allowed = true;
 				$this->mode = 'preview';
 			}
-		}
+		}*/
 
 		// maintenance ?
 		$allowed_ips = explode(',', WEBSITE_MAINTENANCE_IPS);
