@@ -508,6 +508,7 @@ class Page extends NutsCore
 
 		// @PAGE_CONTENT parsing ***************************************************************************
 		// <editor-fold defaultstate="collapsed">
+		$out = str_replace("{@PAGE_CONTENT_RESUME}", @$this->vars['ContentResume'], $out);
 		$out = str_replace("{@PAGE_CONTENT}", @$this->vars['Content'], $out);
 		$out = $this->formatOutput($out);
 		// </editor-fold>
@@ -1968,6 +1969,10 @@ class Page extends NutsCore
 				$rep = $this->vars['H1'];
 			break;
 
+            case 'PAGE_CONTENT_RESUME':
+                $rep = $this->vars['ContentResume'];
+            break;
+
 			case 'PAGE_CONTENT':
 				$rep = $this->vars['Content'];
 			break;
@@ -1988,9 +1993,6 @@ class Page extends NutsCore
 				$rep = $this->vars['MetaDescription'];
 			break;
 
-			case 'PAGE_CONTENT_RESUME':
-				$rep = $this->vars['ContentResume'];
-			break;
 
 
 			// page author ********************************************************
