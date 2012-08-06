@@ -14,8 +14,8 @@ $plugin->listSetDbTable('NutsLog',
 									(SELECT Login FROM NutsUser WHERE ID = NutsLog.NutsUserID) AS NutsUserName");
 							
 // search engine
-$plugin->listSearchAddFieldDatetime('DateGMT', $lang_msg[2]);
-$plugin->listSearchAddFieldDatetime('DateGMT2', $lang_msg[2], 'DateGMT');
+$plugin->listSearchAddFieldDatetime('DateGMT', $lang_msg[2], '', '', '>=');
+$plugin->listSearchAddFieldDatetime('DateGMT2', $lang_msg[2], 'DateGMT', '', '<=');
 $plugin->listSearchAddFieldSelectSql('NutsGroupID', $lang_msg[1]);
 $plugin->listSearchAddFieldSelectSql('NutsUserID', 'User', "CONCAT(FirstName,' ',LastName)");
 $plugin->listSearchAddFieldSelectSql('Application');
