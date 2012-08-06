@@ -57,9 +57,17 @@ class Query
 	/**
 	 * Add Where
 	 * @param string $conditions
+     * @param string $operator (default empty no operator take full confition)
+     * @param string $str (default empty)
 	 */
-	public function where($conditions)
+	public function where($conditions, $operator="", $str='')
 	{
+        if(!empty($operator))
+        {
+            $strX = sqlX($str);
+            $conditions = $conditions.' '.$operator." '".$strX."' ";
+        }
+
 		$this->_q['where'][] = $conditions;
 		return $this;
 	}

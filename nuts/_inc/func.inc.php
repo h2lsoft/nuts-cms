@@ -1721,6 +1721,25 @@ function csv2array($file_name, $separator=';', $ignore_first_line=true, $first_l
 }
 
 
+/**
+ * Protect sql paramater against Xss attacks
+ *
+ * @param $str
+ * @return string
+ */
+function sqlX($str)
+{
+    return strtr($str, array("\x00" => '\x00', "\n" => '\n', "\r" => '\r', '\\' => '\\\\', "'" => "\'", '"' => '\"', "\x1a" => '\x1a'));
+}
+
+
+
+
+
+
+
+
+
 
 
 ?>
