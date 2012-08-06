@@ -39,17 +39,17 @@
             <label id="{name}_label" class="tt" title="{help}" for="{name}_checkbox">{label}</label>
 
 			<select name="{name}_operator" id="{name}_operator">
-				<option value="_equal_" selected="selected">=</option>
-				<option value="_not_equal_">!=</option>
-				<option value="_gt_">&gt;</option>
-				<option value="_gtequal_">&gt;=</option>
-				<option value="_lt_">&lt;</option>
-				<option value="_ltequal_">&lt;=</option>
+				<option value="_equal_" {operator_equal}>=</option>
+				<option value="_not_equal_" {operator_not_equal}>!=</option>
+				<option value="_gt_" {operator_gt}>&gt;</option>
+				<option value="_gtequal_" {operator_gt_equal}>&gt;=</option>
+				<option value="_lt_" {operator_lt}>&lt;</option>
+				<option value="_ltequal_" {operator_lt_equal}>&lt;=</option>
 
-				<option value="_begin_">{$nuts_lang_msg[12]}</option>
-				<option value="_not_begin_">{$nuts_lang_msg[13]}</option>
-				<option value="_countains_">{$nuts_lang_msg[14]}</option>
-				<option value="_not_countains_">{$nuts_lang_msg[15]}</option>
+				<option value="_begin_" {operator_begin}>{$nuts_lang_msg[12]}</option>
+				<option value="_not_begin_" {operator_not_begin}>{$nuts_lang_msg[13]}</option>
+				<option value="_countains_" {operator_countains}>{$nuts_lang_msg[14]}</option>
+				<option value="_not_countains_" {operator_not_countains}>{$nuts_lang_msg[15]}</option>
 			</select>
 			<script>
 			if("{ $_GET['{name}_operator'] }" != ''){
