@@ -15,7 +15,7 @@ define('TPLN_DEFAULT_EXT', 'html'); // allows TPLN to activate default extension
 define('TPLN_ERROR_LANG', 'en'); // default Error language 'en' , 'fr'
 define('TPLN_ERROR_ALERT', true);  // activate MAIL alert ? (1=true and 0=false)
 define('TPLN_MAIL_ADMIN', NUTS_ADMIN_EMAIL); // email adress for error alert (for the webmaster)
-define('TPLN_MAIL_EXPEDITOR', ''); // the expeditor email by default
+define('TPLN_MAIL_EXPEDITOR', NUTS_EMAIL_NO_REPLY); // the expeditor email by default
 
 define('TPLN_ERROR_LOGS', false);  // activate error logs ? (1=true and 0=false)
 define('TPLN_ERROR_LOGS_FILE', TPLN_PATH.'/error_logs.txt'); // default error logs file
