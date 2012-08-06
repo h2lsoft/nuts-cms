@@ -860,6 +860,30 @@ class Db extends Form
 			return @$res[0];
 	}
 
+
+    /**
+	 * This method allows to get your recorsets in one time by one columsn
+	 *
+	 * @return array
+	 * @see dbGetData
+	 * @author H2LSOFT */
+	public function dbGetOneData()
+	{
+		$i = 0;
+		$results = array();
+        $keys = array();
+		while($row = $this->dbFetchAssoc())
+        {
+            if(!count($keys))$keys = array_keys($row);
+            $results[] = $row[$keys[0]];
+        }
+
+		$this->dbFreeResult();
+
+		return $results;
+	}
+
+
 	/**
 	 * method allows to return the first result of a database query.
 	 *
