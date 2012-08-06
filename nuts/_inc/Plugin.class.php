@@ -422,6 +422,8 @@ class Plugin
      * @param array $options optionnal:<br>
 	 *		<br>
 	 *		<b>&bull; class:</b> upper, lower, ucfirst
+     *		<br>
+	 *		<b>&bull; operator:</b> default operator
 	 *		<br>
 	 *		<b>&bull; help:</b> help message
 	 *		<br>
@@ -454,6 +456,14 @@ class Plugin
 			$options['ac_sql_where'] = (!isset($options['ac_sql_where'])) ? '' : ' AND '.$options['ac_sql_where'];
 			if(!isset($options['ac_custom_sql']))$options['ac_custom_sql'] = '';
 			if(!isset($options['ac_mode']))$options['ac_mode'] = 'begins';
+
+
+            // default operator
+            if(!isset($options['operator']))
+            {
+                $options['operator'] = ($options['ac_mode'] == 'begins') ? '^=' : '~=';
+            }
+
 
 			// direct render for ajax
 			if(isset($_GET['ajax_ac']) && $_GET['ajax_ac_col'] == $options['ac_get'] && @strlen($_GET['q']) >= 3)
@@ -509,6 +519,9 @@ class Plugin
 		}
 
 
+
+
+
 		$this->list_search[] = array(
 									'name' => $name,
 									'label' => $label,
@@ -525,12 +538,15 @@ class Plugin
 	 * @param string $label label to display if empty $label = $name
 	 * @param string $class css class to add (special: upper, lower, ucfirst)
 	 * @param string $help help message
+	 * @param string $operator operator selected (`=`, '!=', '>', '>=', '<', '<=', '^=', '!^=', '~=', '!~=')
 	 */
-	public function listSearchAddFieldText($name, $label='', $class='', $help='')
+	public function listSearchAddFieldText($name, $label='', $class='', $help='', $operator='')
 	{
 		$options = array();
 		if(!empty($class))$options['class'] = $class;
 		if(!empty($help))$options['help'] = $help;
+		if(!empty($operator))$options['operator'] = $operator;
+
 		$this->listSearchAddField($name, $label, 'text', $options);
 	}
 
@@ -542,12 +558,15 @@ class Plugin
 	 * @param string $label label to display if empty $label = $name
 	 * @param array $opts array with values (if you want to custom value use key label and value in your array)
 	 * @param string $help help message
+     * @param string $operator operator selected (`=`, '!=', '>', '>=', '<', '<=', '^=', '!^=', '~=', '!~=')
 	 */
-	public function listSearchAddFieldSelect($name, $label='', $opts=array(), $help='')
+	public function listSearchAddFieldSelect($name, $label='', $opts=array(), $help='', $operator='')
 	{
 		$options = array();
 		$options['options'] = $opts;
 		if(!empty($help))$options['help'] = $help;
+        if(!empty($operator))$options['operator'] = $operator;
+
 		$this->listSearchAddField($name, $label, 'select', $options);
 	}
 
@@ -562,8 +581,9 @@ class Plugin
 	 * @param string $where add where clause
 	 * @param string $order_by force order_by clause
 	 * @param string $help help message
+     * @param string $operator operator selected (`=`, '!=', '>', '>=', '<', '<=', '^=', '!^=', '~=', '!~=')
 	 */
-	public function listSearchAddFieldSelectSql($name, $label='', $field='', $table='', $where='', $order_by='', $help='')
+	public function listSearchAddFieldSelectSql($name, $label='', $field='', $table='', $where='', $order_by='', $help='', $operator='')
 	{
 		$options = array();
 		if(!empty($field))$options['field'] = $field;
@@ -571,6 +591,8 @@ class Plugin
 		if(!empty($where))$options['where'] = $where;
 		if(!empty($order_by))$options['order_by'] = $order_by;
 		if(!empty($help))$options['help'] = $help;
+        if(!empty($operator))$options['operator'] = $operator;
+
 		$this->listSearchAddField($name, $label, 'select-sql', $options);
 	}
 
@@ -642,12 +664,15 @@ class Plugin
 	 * @param string $label label to display if empty $label = $name
 	 * @param string $alias sql alias name
 	 * @param string $help help message
+     * @param string $operator operator selected (`=`, '!=', '>', '>=', '<', '<=', '^=', '!^=', '~=', '!~=')
 	 */
-	public function listSearchAddFieldDate($name, $label='', $alias="", $help='')
+	public function listSearchAddFieldDate($name, $label='', $alias="", $help='', $operator='')
 	{
 		$options = array();
 		if(!empty($alias))$options['alias'] = $alias;
 		if(!empty($help))$options['help'] = $help;
+        if(!empty($operator))$options['operator'] = $operator;
+
 		$this->listSearchAddField($name, $label, 'date', $options);
 	}
 
@@ -658,12 +683,15 @@ class Plugin
 	 * @param string $label label to display if empty $label = $name
 	 * @param string $alias sql alias name
 	 * @param string $help help message
+     * @param string $operator operator selected (`=`, '!=', '>', '>=', '<', '<=', '^=', '!^=', '~=', '!~=')
 	 */
-	public function listSearchAddFieldDatetime($name, $label='', $alias="", $help='')
+	public function listSearchAddFieldDatetime($name, $label='', $alias="", $help='', $operator='')
 	{
 		$options = array();
 		if(!empty($alias))$options['alias'] = $alias;
 		if(!empty($help))$options['help'] = $help;
+        if(!empty($operator))$options['operator'] = $operator;
+
 		$this->listSearchAddField($name, $label, 'datetime', $options);
 	}
 
@@ -950,7 +978,6 @@ EOF;
 									  );
 	}
 
-
     /**
      *
      * Display the list view
@@ -1004,12 +1031,30 @@ EOF;
 			if(!$this->listSearchOpenOnload)
 				$this->nuts->eraseBloc('search_display');
 
+            $operators_items = array('operator_equal', 'operator_not_equal', 'operator_gt', 'operator_gt_equal', 'operator_lt', 'operator_lt_equal', 'operator_begin', 'operator_not_begin', 'operator_countains', 'operator_not_countains');
+            $operators_signs = array('=', '!=', '>', '>=', '<', '<=', '^=', '!^=', '~=', '!~=');
+
 			foreach($this->list_search as $s)
 			{
 				$this->nuts->parse('fields.label', $s['label']);
 				$this->nuts->parse('fields.name', $s['name']);
 				if(!isset($s['options']['class']))$s['options']['class'] = '';
 				if(!isset($s['options']['help']))$s['options']['help'] = '';
+				if(!isset($s['options']['operator']))$s['options']['operator'] = '=';
+
+
+                // operator assignation
+                $z = 0;
+                foreach($operators_items as $operators_item)
+                {
+                    $set_selected = '';
+                    if($s['options']['operator'] == $operators_signs[$z])
+                        $set_selected = ' selected="selected"';
+                    $this->nuts->parse('fields.'.$operators_item, $set_selected);
+                    $z++;
+                }
+
+
 
 				$this->nuts->parse('fields.help', $s['options']['help']);
 
@@ -1018,6 +1063,8 @@ EOF;
 				{
 					$this->nuts->parse('fields.text.name', $s['name']);
 					$this->nuts->parse('fields.text.class', $s['options']['class']);
+
+
 
 					if($s['type'] == 'text')
 					{
