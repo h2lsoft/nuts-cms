@@ -1,13 +1,25 @@
-function generatePassword() {
-
+function generatePassword()
+{
 	keylist = "abcdefghijklmnopqrstuvwxyz1234567890";
 	temp = '';
 	plength = 8;
 
 	for(i=0; i < plength; i++)
-		temp += keylist.charAt(Math.floor(Math.random()*keylist.length))
-	
-	$('#form_window #Password').val(temp);
+    {
+        char = keylist.charAt(Math.floor(Math.random()*keylist.length));
+
+        if(i < 2)
+        {
+            while(!isNaN(char))
+            {
+                char = keylist.charAt(Math.floor(Math.random()*keylist.length));
+            }
+        }
+
+        temp += char;
+    }
+
+	$('#former #Password').val(temp);
 }
 
 function get_gravatar(email) {
