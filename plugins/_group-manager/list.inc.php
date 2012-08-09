@@ -5,7 +5,10 @@
 
 
 // assign table to db
-$plugin->listSetDbTable('NutsGroup', "(SELECT COUNT(*) FROM NutsUser WHERE NutsGroupID = NutsGroup.ID AND Deleted = 'NO') AS Total");
+$plugin->listSetDbTable('NutsGroup',
+                                    "(SELECT COUNT(*) FROM NutsUser WHERE NutsGroupID = NutsGroup.ID AND Deleted = 'NO') AS Total",
+                                    "Priority >= (SELECT Priority FROM NutsGroup WHERE ID = {$_SESSION['NutsGroupID']})"
+);
 
 // create search engine
 $plugin->listSearchAddFieldText('ID');
