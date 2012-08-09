@@ -215,7 +215,7 @@ function addPage(parentID)
 			{
 				simpleTreeCollection.get(0).addNode(data['ID'], data['Title']);
                 updateStateIcon();
-				editPage(0);
+                editPage(0, 0);
 			}
 
             counterPage();
@@ -247,18 +247,6 @@ function duplicatePage()
 	$.getJSON(url, {},
 		function(data){
 
-			//if(parentID == 0)
-			//{
-			//	reloadPage(data['ID']);
-            //    updateStateIcon();
-			//}
-			//else
-			//{
-			//	simpleTreeCollection.get(0).addNode(data['ID'], data['Title']);
-             //   updateStateIcon();
-			//	editPage(0);
-			//}
-
 			// add to simple tree node
 			curID = simpleTreeCollection.get(0).getSelected().attr('id');
 			pID = $('.simpleTree #'+curID).parents('li').attr('id');
@@ -278,18 +266,13 @@ function duplicatePage()
                 }
                 else
                 {
-                    /*uri = "index.php?mod=_page-manager&do=exec&_action=reload_page&ID="+data['ID'];
-                    uri += "&language="+$('#page_options #Language').val();
-                    uri += "&zoneID="+$('#page_options #ZoneID').val();
-                    uri += "&state=";*/
-
                     reloadPage();
                     return;
                 }
 			}
 
 			updateStateIcon();
-			editPage(0);
+			editPage(0, 0);
 			counterPage();
 
   		}
@@ -370,8 +353,7 @@ function deletePage()
 
 function editPage(nodeID, selectTabs)
 {
-	if(!selectTabs)selectTabs = 2
-
+    if(typeof selectTabs === "undefined")selectTabs = 2;
 
 	cancelPage();
 	hideContext();
@@ -893,15 +875,8 @@ function dragPage()
 
 function imageBrowser(f, folder)
 {
-	/*uri = WEBSITE_URL+'/library/js/tiny_mce/plugins/tinybrowser/tinybrowser.php?type=image&viewtype=thumb&feid='+f;
-
-	if(!empty(folder))
-		uri += "&folder="+folder+'/';
-
-	popup2(uri, 'imageBrowser', 960, 750, '');*/
-
 	uri = WEBSITE_URL+'/library/js/tiny_mce/plugins/file_browser/index.php?editor=standalone&filter=image&returnID='+f;
-	if(folder != '')
+	if(folder != '' && typeof folder !== 'undefined')
 		uri += "&path="+folder;
 	popupModal(uri, 'imgBrowser', 1024, 800, '');
 

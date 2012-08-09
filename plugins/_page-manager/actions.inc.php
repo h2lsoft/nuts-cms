@@ -364,10 +364,15 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'rename_page')
 // delete page ***********************************************************************************
 if(isset($_GET['_action']) && $_GET['_action'] == 'delete_page')
 {
-	// delete page
-	$nuts->dbUpdate('NutsPage', array('Deleted' => 'YES', 'Position' => 0), "ID = ".(int)$_GET['ID']);
-	
-	$plugin->trace('delete_page', (int)$_GET['ID']);
+    // delete subpages
+    $sub_pages = nutsPageGetChildrens((int)$_GET['ID']);
+    $sub_pages = array_flatten($sub_pages);
+    $sub_pages[] = (int)$_GET['ID'];
+    $pagesIDs = join(',', $sub_pages);
+
+	// delete page with sub pages
+	$nuts->dbUpdate('NutsPage', array('Deleted' => 'YES', 'Position' => 0), "ID IN($pagesIDs)");
+	$plugin->trace('delete_page', $pagesIDs);
 	
 	// get node master ID
 	$nuts->doQuery("SELECT NutsPageID FROM NutsPage WHERE ID = ".(int)$_GET['ID']);
