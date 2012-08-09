@@ -8,7 +8,9 @@
 $sql = "SELECT COUNT(*) FROM NutsLog WHERE Application = '_fo-error' AND Deleted = 'NO'";
 $nuts->doQuery($sql);
 $c = (int)$nuts->dbGetOne();
-$notifications['_control-center'] = $c;
+
+$plugin->addSystemNotification($c, '_control-center');
+
 
 
 
