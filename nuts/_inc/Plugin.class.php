@@ -3971,6 +3971,18 @@ EOF;
 	}
 
 
+    /**
+     * Add notification on plugin in home
+     *
+     * @param $counter
+     * @param string $plugin_name
+     */
+    function addSystemNotification($counter, $plugin_name)
+    {
+        $GLOBALS['system_notifications'][$plugin_name] = $counter;
+    }
+
+
 
 }
 

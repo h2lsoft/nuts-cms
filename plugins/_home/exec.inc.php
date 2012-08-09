@@ -44,21 +44,21 @@ if(WEBSITE_MAINTENANCE && in_array('_control-center', $plugins_allowed))
 
 
 // notification
-$notifications = array();
+$GLOBALS['system_notifications'] = array();
 foreach($plugins_allowed as $plugin_allowed)
 {
     if(file_exists(NUTS_PLUGINS_PATH."/$plugin_allowed/notification.inc.php"))
         include_once(NUTS_PLUGINS_PATH."/$plugin_allowed/notification.inc.php");
 }
 
-if(count($notifications) > 0)
+if(count($GLOBALS['system_notifications']) > 0)
 {
     $tmp = <<<EOF
 <script>
 setTimeout(function(){
 EOF;
 
-    foreach($notifications as $notification => $count)
+    foreach($GLOBALS['system_notifications'] as $notification => $count)
         $tmp .= "   pluginAddNotificationCounter('$notification', '$count');\n";
 
     $tmp .= "}, 800);\n";
