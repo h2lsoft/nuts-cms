@@ -12,11 +12,13 @@ $plugin->formDBTable(array('NutsUrlRewriting')); // put table here
 $plugin->formAddFieldSelect('Type', '', true, array('SIMPLE', 'REGEX'));
 $plugin->formAddFieldText('Pattern', '', true, '', '', '', '', 'Regex ex: `#/fr/thanks#i`');
 $plugin->formAddFieldText('Replacement', '', true, '', '', '', '', 'Regex replace $ by §');
+$plugin->formAddFieldText('Position', '', true, 'number', 'width:50px', '', '', 'put -1 to add at end');
+
 
 if($_POST)
 {
 	// form assignation
-	if(!$_GET['ID'])
+	if($_GET['Position'] == -1)
 	{
 		// get max position
 		$_POST['Position'] = $plugin->formGetMaxPosition('Position');
