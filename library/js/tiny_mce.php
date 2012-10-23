@@ -537,7 +537,7 @@ function menu_media()
 
 				plugins : "-NutsPlugins,template,imgmap,spellchecker,safari,style,layer,table,advhr,advimage,advlink,preview,media,searchreplace,print,contextmenu,paste,directionality,visualchars,nonbreaking,xhtmlxtras,code2,inlinepopups,save,wordcount2,gtranslate",
 //				extended_valid_elements : "img[usemap|class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|style],map[id|name|style],area[shape|alt|coords|href|target|style]",
-				theme_advanced_buttons1 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,undo,redo,|,charmap,advhr,|,sub,sup,|,visualchars,visualaid,|,print,spellchecker,cleanup,|,gtranslate,wordcount2,|,code2,code,preview,|,save,cancel,|,exit",
+				theme_advanced_buttons1 : "cut,copy,pastetext,pasteword,|,search,replace,|,undo,redo,|,charmap,advhr,|,sub,sup,|,visualchars,visualaid,|,print,spellchecker,cleanup,|,gtranslate,wordcount2,|,code2,code,preview,|,save,cancel,|,exit",
 				theme_advanced_buttons2 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,|,styleprops,cite,|,link,unlink,anchor,|,forecolor,backcolor,|,removeformat,attribs",
 				theme_advanced_buttons3 : "NutsPlugins,template,|,image,imgmap,media,|,tablecontrols,formatselect,styleselect,fontselect,fontsizeselect",
 
