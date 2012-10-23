@@ -11,6 +11,7 @@ $plugin->listSetDbTable('NutsPattern');
 // search engine
 $plugin->listSearchAddFieldSelectSql('Type', $lang_msg[1]);
 $plugin->listSearchAddFieldText('Name', $lang_msg[2]);
+$plugin->listSearchAddFieldTextAjaxAutoComplete('Pattern');
 
 
 // create fields
