@@ -24,6 +24,7 @@ $plugin->listSetDbTable('NutsNews', "-- DATE_ADD(DateGMT, INTERVAL {$_SESSION['T
 									(SELECT CONCAT(LastName,' ',Firstname) FROM NutsUser WHERE ID = NutsNews.NutsUserID) AS Author
 									$sql_list_added");
 // search engine
+$plugin->listSearchAddFieldText('ID');
 $plugin->listSearchAddFieldDate('DateGMT', $lang_msg[2]);
 if(!in_array('DateGMTExpiration', $hidden_fields_arr))$plugin->listSearchAddFieldDate('DateGMT2', $lang_msg[3], 'DateGMT');
 $plugin->listSearchAddFieldSelectSql('NutsUserID', $lang_msg[16], "CONCAT(FirstName,' ',LastName)");
@@ -32,6 +33,8 @@ $plugin->listSearchAddField('Title', $lang_msg[4], 'text');
 if(!in_array('Tags', $hidden_fields_arr))$plugin->listSearchAddFieldText('Tags', $lang_msg[7]);
 if(!in_array('Event', $hidden_fields_arr))$plugin->listSearchAddFieldBoolean('Event', $lang_msg[8]);
 $plugin->listSearchAddFieldBoolean('Active', $lang_msg[9]);
+if(!in_array('VirtualPageName', $hidden_fields_arr))$plugin->listSearchAddFieldText('VirtualPageName', $lang_msg[18]);
+
 
 for($i=0; $i <  count($cf); $i++)
 {
