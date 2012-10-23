@@ -1530,28 +1530,33 @@ function smartImageResizer($content)
 			// see alreday defined
 			$file_infos = @pathinfo($tab['src']);
 
+            $tab['path'] = $file_infos['dirname'];
+			$tab['file_name'] = $file_infos['basename'];
+			$tab['extension'] = $file_infos['extension'];
+			$tab['file_noext'] = $file_infos['filename'];
+			$tab['file_thumbnail'] = $tab['file_noext']."-{$tab['width']}x{$tab['height']}.{$file_infos['extension']}";
+			$thumb_full = WEBSITE_PATH.$tab['path'].'/'.$tab['file_thumbnail'];
+
 			if($tab['width'] && $tab['width'] < $original_width && $tab['height'] && $tab['height'] < $original_height && isset($file_infos['filename']) && isset($file_infos['extension']) && in_array(strtolower($file_infos['extension']), array('jpg', 'png', 'gif')))
 			{
-				$tab['path'] = $file_infos['dirname'];
-				$tab['file_name'] = $file_infos['basename'];
-				$tab['extension'] = $file_infos['extension'];
-				$tab['file_noext'] = $file_infos['filename'];
-				$tab['file_thumbnail'] = $tab['file_noext']."-{$tab['width']}x{$tab['height']}.{$file_infos['extension']}";
-
-				$thumb_full = WEBSITE_PATH.$tab['path'].'/'.$tab['file_thumbnail'];
 				if(!file_exists($thumb_full))
 				{
-					if(createThumb(WEBSITE_PATH.$tab['src'], $tab['width'], true, $tab['height'], "", "-{$tab['width']}x{$tab['height']}"))
-					{
-						$imgX = $match;
-						$imgX = str_replace("src=\"{$tab['src']}\"", "src=\"{$tab['path']}/{$tab['file_thumbnail']}\"", $imgX);
-						$imgX = str_replace("width=\"{$tab['width']}\"", " ", $imgX);
-						$imgX = str_replace("height=\"{$tab['height']}\"", " ", $imgX);
-
-						$content = str_replace($match, $imgX, $content);
-					}
+					createThumb(WEBSITE_PATH.$tab['src'], $tab['width'], true, $tab['height'], "", "-{$tab['width']}x{$tab['height']}");
 				}
 			}
+
+            // at end force change content if user do not close window
+            if($tab['width'] && $tab['height'] && isset($file_infos['filename']) && isset($file_infos['extension']) && in_array(strtolower($file_infos['extension']), array('jpg', 'png', 'gif')))
+            {
+                if(file_exists($thumb_full))
+                {
+               	    $imgX = $match;
+                    $imgX = str_replace("src=\"{$tab['src']}\"", "src=\"{$tab['path']}/{$tab['file_thumbnail']}\"", $imgX);
+                    $imgX = str_replace("width=\"{$tab['width']}\"", " ", $imgX);
+                    $imgX = str_replace("height=\"{$tab['height']}\"", " ", $imgX);
+                    $content = str_replace($match, $imgX, $content);
+                }
+            }
 		}
 	}
 
