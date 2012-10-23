@@ -25,7 +25,7 @@
                 <p>
                     <label>IP allowed (separator ',')</label>
                     <input type="text" id="IPAllowed" value="{ip_allowed}" style="width: 350px;"  action="ip_allowed" />
-                    &nbsp;&nbsp;&nbsp; Your ip: `{IpUser}`
+                    &nbsp;&nbsp;&nbsp; <input type="button" class="button" id="btnUserIP" ip="{IpUser}" value="&laquo; Add my ip `{IpUser}`" onclick="addMyIp()" />
                 </p>
 
                 <p>
@@ -364,6 +364,44 @@ function updater(target, ip, date, IpID){
         });
     }
 
+
+}
+
+
+function addMyIp()
+{
+    userIP = $('#btnUserIP').attr('ip');
+
+    v = $('#IPAllowed').val();
+    v = trim(v);
+
+    if(empty(v))
+        $('#IPAllowed').val(userIP);
+    else
+    {
+        ips = explode(',', v);
+        str = '';
+        for(i=0; i < ips.length; i++)
+        {
+            cur_ip = trim(ips[i]);
+            if(cur_ip != userIP)
+            {
+                if(!empty(str)) str += ', ';
+                str += cur_ip;
+            }
+        }
+
+        if(empty(str))
+        {
+            $('#IPAllowed').val(userIP);
+        }
+        else
+        {
+            $('#IPAllowed').val(str+', '+userIP);
+        }
+
+
+    }
 
 }
 
