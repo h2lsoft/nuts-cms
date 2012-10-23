@@ -25,7 +25,7 @@ if(@$_GET['ajaxer'] == 1 && $_POST && !@empty($_POST['objID']))
                                        'NUTS_DB_HOST', 'NUTS_DB_USER', 'NUTS_DB_PASSWORD', 'NUTS_DB_BASE', 'NUTS_DB_PORT',
                                        'MetaTitle', 'MetaDescription', 'MetaKeywords', 'NUTS_ERROR404_TEMPLATE', 'NUTS_ERROR_PAGE_REDIRECT',
                                        'NUTS_LOG_ERROR_404', 'NUTS_LOG_ERROR_TAGS', 'NUTS_TIDY', 'NUTS_HTML_COMPRESS', 'NUTS_HTML_COMPRESS_TIME',
-                                       'APP_TITLE', 'BACKOFFICE_LOGO_URL', 'TWITTER_LOGIN', 'FACEBOOK_PUBLISH_URL',
+                                       'APP_TITLE', 'BACKOFFICE_LOGO_URL', 'TWITTER_LOGIN', 'FACEBOOK_PUBLISH_URL', 'GOOGLEP_PUBLISH_URL',
                                         'nuts_theme_selected'
                                       )))
     {
@@ -37,7 +37,7 @@ if(@$_GET['ajaxer'] == 1 && $_POST && !@empty($_POST['objID']))
         }
 
         // not empty
-        if(strlen($val) == 0 && !in_array($_POST['objID'], array('NUTS_DB_PASSWORD', 'NUTS_DB_PORT', 'MetaTitle', 'MetaDescription', 'MetaKeywords', 'NUTS_ERROR_PAGE_REDIRECT', 'BACKOFFICE_LOGO_URL', 'TWITTER_LOGIN', 'FACEBOOK_PUBLISH_URL')))
+        if(strlen($val) == 0 && !in_array($_POST['objID'], array('NUTS_DB_PASSWORD', 'NUTS_DB_PORT', 'MetaTitle', 'MetaDescription', 'MetaKeywords', 'NUTS_ERROR_PAGE_REDIRECT', 'BACKOFFICE_LOGO_URL', 'TWITTER_LOGIN', 'FACEBOOK_PUBLISH_URL', 'GOOGLEP_PUBLISH_URL')))
         {
             $msg = ($_SESSION['Language'] == 'fr') ? "$obj_label ne peut être vide" : "$obj_label can not be empty";
             die($msg);

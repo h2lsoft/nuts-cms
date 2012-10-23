@@ -71,4 +71,7 @@ $lang_msg[44] = "Other Languages";
 $lang_msg[45] = "iso code separated by comma (fr, it, es, ru, jp)";
 
 
+$lang_msg[46] = "Google+ Publish Url";
+$lang_msg[47] = "display link in `News Manager` to add a message to your wall (empty to hide)";
+
 ?>

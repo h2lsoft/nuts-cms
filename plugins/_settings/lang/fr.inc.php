@@ -54,7 +54,7 @@ $lang_msg[33] = "change le logo dimensions conseillées 290 x 65";
 $lang_msg[34] = "Login twitter";
 $lang_msg[35] = "affiche un lien dans `News Manager` pour ajouter un tweet (vide pour cacher)";
 
-$lang_msg[36] = "Facebook Lien Publicaiton";
+$lang_msg[36] = "Facebook Lien Publication";
 $lang_msg[37] = "affiche un lien dans `News Manager` pour ajouter un message (vide pour cacher)";
 
 $lang_msg[38] = "* Appuyer sur entrée pour valider dans un champ";
@@ -68,5 +68,7 @@ $lang_msg[43] = "Langue par défaut";
 $lang_msg[44] = "Autres langues";
 $lang_msg[45] = "code iso séparés par des virgules (ex: fr, it, es, ru, jp)";
 
+$lang_msg[46] = "Google+ Lien Publication";
+$lang_msg[47] = "affiche un lien dans `News Manager` pour ajouter un message (vide pour cacher)";
 
 ?>
