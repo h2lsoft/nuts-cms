@@ -9,7 +9,6 @@ $plugin->formInit();
 if($plugin->formValid())
 {
 	$CUR_ID = $plugin->formUpdate();
-	include_once(PLUGIN_PATH.'/trt_url_rewriting.inc.php');
 }
 
 
