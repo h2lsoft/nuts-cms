@@ -49,16 +49,22 @@ if($('#former #Twitter'))
 
 
 
-/// facebook
+// facebook
 function openFacebook(url){
-
 	window.open(url, 'facebook_publish', 'width=780,height=250, top=0, left=0, scrollbars=no');
+}
+
+// google+
+function openGoogleP(url){
+
+	window.open(url, 'googlep_publish', 'width=780,height=250, top=0, left=0, scrollbars=no');
 
 }
 
+
 if($('#former #Facebook')){
 
-	$('#former #Facebook').parent('p').css('padding-left', '90px');
+	$('#former #Facebook').parent('p').css('padding-left', '170px');
 	$('#former #Facebook').remove();
 
 }

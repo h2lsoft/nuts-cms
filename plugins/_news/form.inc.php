@@ -95,7 +95,7 @@ $plugin->formAddFieldsetEnd();
 
 
 // Social networking
-if(TWITTER_LOGIN != '' || FACEBOOK_PUBLISH_URL != '')
+if(TWITTER_LOGIN != '' || FACEBOOK_PUBLISH_URL != '' || GOOGLEP_PUBLISH_URL != '')
 {
 	$plugin->formAddFieldsetStart('Social networking');
 
@@ -108,11 +108,21 @@ if(TWITTER_LOGIN != '' || FACEBOOK_PUBLISH_URL != '')
 	}
 
 	// facebook
-	if(FACEBOOK_PUBLISH_URL != '')
+	if(FACEBOOK_PUBLISH_URL != '' || GOOGLEP_PUBLISH_URL != '')
 	{
-		$plugin->formAddFieldText('Facebook', '<a title="'.$lang_msg[27].'" href="javascript:openFacebook(\''.FACEBOOK_PUBLISH_URL.'\');"><img src="img/facebook_logo.png" /></a>', false, '', 'display:none;');
+        $buttons = '<a title="'.$lang_msg[27].'" href="javascript:openFacebook(\''.FACEBOOK_PUBLISH_URL.'\');"><img src="img/facebook_logo.png" /></a>';
+
+        if(GOOGLEP_PUBLISH_URL != '')
+        {
+            $buttons .= ' <a title="Google +" href="javascript:openGoogleP(\''.GOOGLEP_PUBLISH_URL.'\');"><img src="img/google_plus_logo.png" /></a>';
+        }
+
+		$plugin->formAddFieldText('Facebook', $buttons, false, '', 'display:none;');
 		$plugin->formAddException('Facebook');
 	}
+
+    // google plus
+
 
 	$plugin->formAddFieldsetEnd();
 }
