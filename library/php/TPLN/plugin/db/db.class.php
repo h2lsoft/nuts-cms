@@ -64,7 +64,7 @@ class Db extends Form
 		if(empty($new_connection))$new_connection = TPLN_DB_NEW_CONNECTION;
 
 		$this->db_index++;
-		if(!empty($port))$this->db[$this->db_index]->port = $port;
+		// if(!empty($port))@$this->db[$this->db_index]->port = $port;
 
 		try {
 
@@ -1612,6 +1612,7 @@ class Db extends Form
 	 * @author H2LSOFT */
 	public function showRecords($query, $nb_result_per_page = 0, $func_data = '')
 	{
+
 		// check the second parameter
 		if(!is_int($nb_result_per_page))
 		{
@@ -1623,6 +1624,11 @@ class Db extends Form
 			$this->dbError('5.1');
 			return;
 		}
+
+        // control tpg
+        if(!isset($_GET['tpg']) || $_GET['tpg'] <= 0)
+            $_GET['tpg'] = 1;
+
 
 		// check the results array
 		$this->breaker_name = (!$this->blocExists('breaker')) ? '' : 'breaker';
