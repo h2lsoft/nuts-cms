@@ -1765,6 +1765,8 @@ select.ntabs_loading {background-image: url(/nuts/img/ajax-loader.gif); backgrou
 .yellow-tooltip dd:before { border-top-color: #e1ca82!important;}
 
 
+.clearfix {clear: both; height: 1px; }
+
 
 
 /** hacks webkit **/
