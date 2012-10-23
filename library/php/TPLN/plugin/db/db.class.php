@@ -1314,7 +1314,8 @@ class Db extends Form
 		{
 			$f = $this->OrderByFields[$i];
 			$img = '';
-			$tpg = (isset($_GET['tpg'])) ? $_GET['tpg'] : 1;
+			// $tpg = (isset($_GET['tpg']) || $_GET['tpg'] <= 0) ? $_GET['tpg'] : 1;
+			$tpg = $_GET['tpg'];
 			$u = $this->SRgetUrl($tpg);
 			if($_GET['torder_by'] == $f)
 			{
@@ -1626,8 +1627,9 @@ class Db extends Form
 		}
 
         // control tpg
-        if(!isset($_GET['tpg']) || $_GET['tpg'] <= 0)
-            $_GET['tpg'] = 1;
+        $_GET['tpg'] = (int)@$_GET['tpg'];
+        if(!$_GET['tpg'] <= 0)$_GET['tpg'] = 1;
+
 
 
 		// check the results array
@@ -1636,7 +1638,8 @@ class Db extends Form
 
 		$this->NbRecordPerPage = $nb_result_per_page;
 
-		if($this->NbRecordPerPage != 0 && isset($_GET['tpg']))
+		// if($this->NbRecordPerPage != 0 && isset($_GET['tpg']))
+		if($this->NbRecordPerPage != 0 && $_GET['tpg'])
 			$this->PageNumber = $_GET['tpg']; // variable on parameter
 		else
 			$this->PageNumber = null;
@@ -1859,7 +1862,7 @@ class Db extends Form
 			$this->T_id = $this->T_first; // for _Id
 
 			if($this->T_id == 0)$this->T_id = 1;
-			if(isset($_GET['tpg']) && $_GET['tpg'] > 1)$this->T_id++; # patch legrandd
+			if($_GET['tpg'] > 1)$this->T_id++; # patch legrandd
 			// $this->T_id++;
 
 			$this->last_header = '';
