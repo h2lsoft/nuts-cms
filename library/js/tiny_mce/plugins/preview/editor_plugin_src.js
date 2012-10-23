@@ -23,8 +23,8 @@
 			ed.addCommand('mcePreview', function() {
 				ed.windowManager.open({
 					file : ed.getParam("plugin_preview_pageurl", url + "/preview.html"),
-					width : parseInt(ed.getParam("plugin_preview_width", "550")),
-					height : parseInt(ed.getParam("plugin_preview_height", "600")),
+					width : parseInt(ed.getParam("plugin_preview_width", "1024")),
+					height : parseInt(ed.getParam("plugin_preview_height", "768")),
 					resizable : "yes",
 					scrollbars : "yes",
 					popup_css : css ? css.join(',') : ed.baseURI.toAbsolute("themes/" + ed.settings.theme + "/skins/" + ed.settings.skin + "/content.css"),
