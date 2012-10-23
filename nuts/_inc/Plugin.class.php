@@ -991,7 +991,7 @@ EOF;
 		global $nuts_lang_msg;
 
 
-		if(!isset($_GET['pager_rec']) || !in_array($_GET['pager_rec'], array(10, 20, 50, 100)))
+		if(!isset($_GET['pager_rec']) || !in_array($_GET['pager_rec'], array(10, 20, 50, 100, 250, 500)))
 			$_GET['pager_rec'] = $nbRec;
 		$_GET['pager_rec'] = (int)$_GET['pager_rec'];
 
