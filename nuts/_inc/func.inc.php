@@ -946,7 +946,8 @@ function strtouri($str)
 function str_cut($str, $max_caracters=80, $concat_str='...'){
 
 	$str = strip_tags($str);
-	$str2 = mb_substr($str, 0, $max_caracters);
+	$str2 = mb_strcut($str, 0, $max_caracters, 'UTF-8');
+    $str2 = trim($str2);
 	if(mb_strlen($str) > $max_caracters)
 	{
 		$str2 .= $concat_str;
