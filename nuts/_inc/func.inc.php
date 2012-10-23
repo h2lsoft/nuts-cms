@@ -910,9 +910,10 @@ function toCamelCase($str, $capitalize_first_char=true)
  * Convert a string to url rewrited
  *
  * @param string $str
+ * @param boolean $convert_slashes (default true)
  * @return string
  */
-function strtouri($str)
+function strtouri($str, $convert_slashes=true)
 {
     $str = trim($str);
 	$str = mb_strtolower($str, 'utf8');
@@ -925,9 +926,11 @@ function strtouri($str)
     $str = str_replace("ç", 'c', $str);
 
     $str = str_replace(array(' ',"(", ")", '"', "'", '-', '%', ), '_', $str);
-
     $str = str_replace('?', '', $str);
-    $str = str_replace('/', '-', $str);
+
+    if($convert_slashes)
+        $str = str_replace('/', '-', $str);
+
     $str = str_replace('___', '_', $str);
     $str = str_replace('__', '_', $str);
     $str = str_replace('..', '.', $str);
