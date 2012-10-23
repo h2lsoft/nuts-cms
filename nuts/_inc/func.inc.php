@@ -914,18 +914,23 @@ function toCamelCase($str, $capitalize_first_char=true)
  */
 function strtouri($str)
 {
+    $str = trim($str);
 	$str = mb_strtolower($str, 'utf8');
 
-	$str = str_replace(array('à', 'â', 'ä'), 'a', $str);
-	$str = str_replace(array('é', 'ê', 'è', 'ë'), 'e', $str);
-	$str = str_replace(array('î', 'ï'), 'i', $str);
-	$str = str_replace(array('ö', 'ô'), 'o', $str);
-	$str = str_replace(array('ù', 'û', 'ü'), 'u', $str);
-	$str = str_replace('ç', 'c', $str);
-	$str = str_replace('"', '-', $str);
-	$str = str_replace("'", '-', $str);
-	$str = str_replace(' ', '-', $str);
-	$str = str_replace('..', '.', $str);
+    $str = str_replace(array('é', 'ê', 'è', 'ë'), 'e', $str);
+    $str = str_replace(array('à', 'ä', 'â'), 'a', $str);
+    $str = str_replace(array('ô', 'ö', 'ô'), 'o', $str);
+    $str = str_replace(array('î', 'ï'), 'i', $str);
+    $str = str_replace("ù", 'u', $str);
+    $str = str_replace("ç", 'c', $str);
+
+    $str = str_replace(array(' ',"(", ")", '"', "'", '-', '%', ), '_', $str);
+
+    $str = str_replace('?', '', $str);
+    $str = str_replace('/', '-', $str);
+    $str = str_replace('___', '_', $str);
+    $str = str_replace('__', '_', $str);
+    $str = str_replace('..', '.', $str);
 	$str = str_replace('--', '-', $str);
 	$str = str_replace('-.', '.', $str);
 
