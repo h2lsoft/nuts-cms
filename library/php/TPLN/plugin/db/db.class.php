@@ -1628,7 +1628,7 @@ class Db extends Form
 
         // control tpg
         $_GET['tpg'] = (int)@$_GET['tpg'];
-        if(!$_GET['tpg'] <= 0)$_GET['tpg'] = 1;
+        if($_GET['tpg'] <= 0)$_GET['tpg'] = 1;
 
 
 
