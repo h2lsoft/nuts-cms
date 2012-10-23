@@ -56,7 +56,7 @@ if($_POST)
 		$nuts->notEmpty('FormValidMailerFrom');
 		$nuts->email('FormValidMailerFrom');
 		$nuts->notEmpty('FormValidMailerTo');
-		$nuts->email('FormValidMailerTo');
+        // $nuts->email('FormValidMailerTo');
 		$nuts->notEmpty('FormValidMailerSubject');
 	}
 	
