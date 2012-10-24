@@ -36,11 +36,12 @@ $plugin->listAddColImg('Active', $lang_msg[8], '', true);
 include(PLUGIN_PATH."/custom.inc.php");
 
 // render list
+$plugin->listExportExcelModeApplyHookData = true;
 $plugin->listRender(20, 'hookData');
 
 function hookData($row)
 {
-	global $nuts;
+	global $nuts, $plugin;
 	
 	$row['Gender'] = trim(ucwords(strtolower($row['Gender'])));
 	$row['LastName'] = trim(ucwords(strtolower($row['LastName'])));
@@ -52,9 +53,12 @@ function hookData($row)
 	$nuts->dbSetQueryId($qID);
 
     // avatar
-    if(empty($row['Avatar']))
-        $row['Avatar'] = '/nuts/img/gravatar.jpg';
-    $row['Avatar'] = "<img src='{$row['Avatar']}' style='max-width:60px; max-height:60px;'>";
+    if(!$plugin->listExportExcelMode)
+    {
+        if(empty($row['Avatar']))$row['Avatar'] = '/nuts/img/gravatar.jpg';
+        $row['Avatar'] = "<img src='{$row['Avatar']}' style='max-width:60px; max-height:60px;'>";
+    }
+
 
 	
 
