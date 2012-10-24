@@ -163,7 +163,11 @@
 
 		<bloc::colorpicker>
 		<!-- colorpicker -->
-		<input type="text" id="{name}" name="{name}" value="{value}" style="width:50px; {style}" maxlength="7" class="widget_colorpicker {class}" {attributes}  onclick="startColorPicker(this)" onkeyup="maskedHex(this)" /> {after}
+		<div id="{name}_colorpicker_preview" class="widget_colorpicker_preview">&nbsp;</div>
+        <input type="text" id="{name}" name="{name}" value="{value}" style="width:50px; {style}" maxlength="7" class="widget_colorpicker {class}" {attributes} />
+
+
+            {after}
 		<!-- /colorpicker -->
 		</bloc::colorpicker>
 
