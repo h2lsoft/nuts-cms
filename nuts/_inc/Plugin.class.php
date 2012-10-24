@@ -282,6 +282,8 @@ class Plugin
      */
 	public function listSetDbTable($dbtable, $sql_added='', $sql_where_added='', $sql_after_where_added='')
 	{
+        $sql_after_where_added = str_replace('ORDER BY ', "ORDER BY\n", $sql_after_where_added);
+        $sql_after_where_added = " ".$sql_after_where_added;
 		$this->setListDbTable($dbtable, $sql_added, $sql_where_added, $sql_after_where_added);
 	}
 
@@ -1434,7 +1436,7 @@ EOF;
 		if(!empty($this->sql_added))
 			$this->sql_added = ", ".$this->sql_added;
 
-		if(!empty($this->sql_where_added) && !preg_match("/(ORDER BY|GROUP BY)/i", $this->sql_where_added))
+		if(!empty($this->sql_where_added) && !preg_match("/(ORDER BY|GROUP BY)/", $this->sql_where_added))
 			$this->sql_where_added = " AND ".$this->sql_where_added;
 
 		// add WHERE clause
@@ -1593,10 +1595,10 @@ EOF;
 			// add ORDER BY clause
 			if(isset($_GET['torder_by'])){
 				// clause of the end ?
-				if(preg_match("#(.*)ORDER BY(.*)$#si", $sql))
+				if(preg_match("#(.*)ORDER BY\n(.*)$#", $sql))
 					$sql .= " ,{$_GET['torder_by']} {$_GET['tsens']}";
 				else
-					$sql .= " ORDER BY {$_GET['torder_by']} {$_GET['tsens']}";
+					$sql .= " ORDER BY\n\t{$_GET['torder_by']} {$_GET['tsens']}";
 			}
 
 			$this->nuts->doQuery($sql);
