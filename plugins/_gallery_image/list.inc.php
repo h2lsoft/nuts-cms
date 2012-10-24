@@ -4,7 +4,7 @@
 /* @var $nuts NutsCore */
 
 // assign table to db
-$plugin->listSetDbTable('NutsGalleryImage', "", "AND NutsGalleryID = {$_GET['NutsGalleryID']} ORDER BY Position");
+$plugin->listSetDbTable('NutsGalleryImage', "", "NutsGalleryID = {$_GET['NutsGalleryID']}", "ORDER BY Position");
 
 
 // create fields

@@ -6,7 +6,7 @@
 $multiLanguage = isWebsiteMultiLang();
 
 // assign table to db
-$plugin->listSetDbTable("NutsFormField", "", "AND NutsFormID={$_GET['NutsFormID']} ORDER BY Position");
+$plugin->listSetDbTable("NutsFormField", "", "NutsFormID={$_GET['NutsFormID']}", "ORDER BY Position");
 
 // create fields
 

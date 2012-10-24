@@ -26,6 +26,7 @@ $plugin->listAddCol('TotalUnsuscribe', $lang_msg[5], 'center; width:10px; white-
 
 
 // render list
+$plugin->listExportExcelModeApplyHookData = true;
 $plugin->listRender(20, 'hookData');
 
 
@@ -44,6 +45,8 @@ function hookData($row)
 	// pourcentage
 	$row['TotalViews'] .= " (".$total_views." %)";
 	$row['TotalUnsuscribe'] .= " (".$total_unsuscribe." %)";
+
+
 	
 	return $row;
 }
