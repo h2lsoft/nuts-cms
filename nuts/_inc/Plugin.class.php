@@ -786,6 +786,12 @@ class Plugin
 	 */
     public $listExportExcelMode = false;
 
+    /**
+	 * Set list excel mode apply hookdata
+	 * @var bool
+	 */
+    public $listExportExcelModeApplyHookData = false;
+
 
 	/**
 	 * Set the first column to order
@@ -1613,7 +1619,7 @@ EOF;
 			echo "\n";
 			while($row = $this->nuts->dbFetch())
 			{
-                if(function_exists('hookData'))
+                if($this->listExportExcelModeApplyHookData && function_exists('hookData'))
                     $row = hookData($row);
 
 				for($i=0; $i <  count($this->cols)-$del; $i++)
