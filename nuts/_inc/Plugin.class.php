@@ -778,6 +778,13 @@ class Plugin
 	 */
     public $listFirstOrderBy = '';
 
+    /**
+	 * Set list excel mode
+	 * @var bool
+	 */
+    public $listExportExcelMode = false;
+
+
 	/**
 	 * Set the first column to order
 	 * @param string $field
@@ -1572,6 +1579,8 @@ EOF;
 		// excel export
 		if($this->listAllowExcelExport && isset($_GET['nuts_export']) && $_GET['nuts_export'] == 'excel')
 		{
+            $this->listExportExcelMode = true;
+
 			$file_name = $this->name.'_'.date('ymd_His');
 			if($file_name[0] == '_')$file_name[0] = '';
 			$file_name =  trim($file_name);
