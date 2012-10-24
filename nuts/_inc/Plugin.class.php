@@ -1307,6 +1307,7 @@ EOF;
 		}
 
 		// view
+        if(!$this->rightAllowed("view")) $this->listAddButton = false;
 		if(!$this->listAddButton || !$this->rightAllowed("view"))
 		{
 			$this->nuts->eraseBloc('th_view');
@@ -1318,6 +1319,7 @@ EOF;
 		}
 
 		// special copy button
+        if(!$this->rightAllowed("edit")) $this->listEditButton = false;
 		if($this->listCopyButton && ($this->listAddButton && $this->rightAllowed("add")) && ($this->listEditButton && $this->rightAllowed("edit")))
 		{
 			$img = '<img src="img/list_duplicate.png">';
@@ -1344,6 +1346,7 @@ EOF;
 		}
 
 		// delete
+        if(!$this->rightAllowed("delete")) $this->listDeleteButton = false;
 		if($this->listDeleteButton && $this->rightAllowed("delete"))
 		{
 			$img = '<img src="img/list_delete.png">';
