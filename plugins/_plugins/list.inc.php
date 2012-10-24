@@ -62,6 +62,7 @@ if(nutsUserHasRight($_SESSION['NutsGroupID'], '_right-manager', 'edit'))
 
 
 // render list
+$plugin->listExportExcelModeApplyHookData = true;
 $plugin->listRender(0, 'hookData');
 
 
@@ -103,14 +104,31 @@ function hookData($row)
         $row['Description'] = ucfirst($row['Description']);
 
 		$icon_url = str_replace(NUTS_PLUGINS_PATH, NUTS_PLUGINS_URL, $icon_path);
-		$row['Icon'] = '<img src="'.$icon_url.'" style="width:32px;" align="absbottom" /> ';
 
-        $row['Name'] = "<b>$plugin_name_label</b> ($plugin_folder_name)";
-        $row['Name'] .= "<br /><span class='mini'>{$row['Description']}</span>";
+        if(!$plugin->listExportExcelMode)
+		    $row['Icon'] = '<img src="'.$icon_url.'" style="width:32px;" align="absbottom" /> ';
+        else
+            $row['Icon'] = '';
+
+        if(!$plugin->listExportExcelMode)
+        {
+            $row['Name'] = "<b>$plugin_name_label</b> ($plugin_folder_name)";
+            $row['Name'] .= "<br /><span class='mini'>{$row['Description']}</span>";
+        }
+        else
+        {
+            $row['Name'] = "$plugin_name_label ($plugin_folder_name)";
+        }
+
 	}
 
-	if($row['BreakBefore'] == 1)$row['Name'] = "<hr noshade style='height:1px; background-color:#aaa; border:0;' />".$row['Name'];
-	if($row['BreakAfter'] == 1)$row['Name'] .= "<hr noshade style='height:1px; background-color:#aaa; border:0;' />";
+    if(!$plugin->listExportExcelMode)
+    {
+        if($row['BreakBefore'] == 1)$row['Name'] = "<hr noshade style='height:1px; background-color:#aaa; border:0;' />".$row['Name'];
+        if($row['BreakAfter'] == 1)$row['Name'] .= "<hr noshade style='height:1px; background-color:#aaa; border:0;' />";
+    }
+
+
 
 	if($row['Category'] != '')
 		$row['Category'] = $mods_group[$row['Category']-1]['name'];
@@ -119,7 +137,7 @@ function hookData($row)
 
 	// configure
 	$cfg_file = NUTS_PLUGINS_PATH."/$plugin_name/config.inc.php";
-	if(!file_exists($cfg_file))
+	if(!file_exists($cfg_file) || $plugin->listExportExcelMode)
 	{
 		$row['Configure'] = "";
 	}
@@ -143,7 +161,10 @@ EOF;
         $cur_lang .= '<img src="'.NUTS_IMAGES_URL.'/flag/'.$lang.'.gif" align="absbottom" /> ';
     }
 
-    $row['Language'] = $cur_lang;
+    if(!$plugin->listExportExcelMode)
+        $row['Language'] = $cur_lang;
+    else
+        $row['Language'] = join(', ', $langs);
 
 
 
@@ -151,10 +172,17 @@ EOF;
     $row['Web'] = '';
     if(!empty($parser['website']))
     {
-        $row['Web'] = <<<EOF
-
-            <a class="tt" title="{$parser['website']}" href="{$parser['website']}" target="_blank"><img src="/nuts/img/website_48.png" style="width:16px;" /></a>
+        if(!$plugin->listExportExcelMode)
+        {
+            $row['Web'] = <<<EOF
+                <a class="tt" title="{$parser['website']}" href="{$parser['website']}" target="_blank"><img src="/nuts/img/website_48.png" style="width:16px;" /></a>
 EOF;
+        }
+        else
+        {
+            $row['Web'] = $parser['website'];
+        }
+
 
     }
 
@@ -162,10 +190,18 @@ EOF;
     $row['Email'] = '';
     if(!empty($parser['email']))
     {
-        $row['Email'] = <<<EOF
-
-            <a class="tt" title="{$parser['email']}" href="mailto:{$parser['email']}"><img src="/nuts/img/email.png" style="width:16px;" /></a>
+        if(!$plugin->listExportExcelMode)
+        {
+            $row['Email'] = <<<EOF
+                <a class="tt" title="{$parser['email']}" href="mailto:{$parser['email']}"><img src="/nuts/img/email.png" style="width:16px;" /></a>
 EOF;
+        }
+        else
+        {
+            $row['Email'] = $parser['email'];
+        }
+
+
     }
 
 
