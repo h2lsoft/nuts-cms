@@ -1685,14 +1685,15 @@ class Db extends Form
 			}
 
 			// get LIMIT
-			if(preg_match("/LIMIT(.*)/s", $query_tmp2, $match))
+			/*if(preg_match("/LIMIT(.*)/s", $query_tmp2, $match))
 			{
 				$str = str_replace($reps_pattern, $reps_rep, $match[1]);
 				$this->cons_query['LIMIT'] = trim($str);
 				$query_tmp2 = str_replace($match[0], '', $query_tmp2); // delete string
-			}
+			}*/
+
 			// get ORDER BY
-			if(preg_match("/ORDER BY(.*)/s", $query_tmp2, $match))
+			if(preg_match("/ORDER BY\n(.*)/", $query_tmp2, $match))
 			{
 				$str = str_replace($reps_pattern, $reps_rep, $match[1]);
 				$this->cons_query['ORDER BY'] = trim($str);
@@ -1713,6 +1714,9 @@ class Db extends Form
 					$this->cons_query['ORDER BY'] = "{$_GET['torder_by']} $t_sens";
 				}
 			}
+
+
+
 			// get GROUP BY
 			if(preg_match("/GROUP BY(.*)/s", $query_tmp2, $match))
 			{
@@ -1775,7 +1779,7 @@ class Db extends Form
 			if(isset($_GET['torder_by']) && in_array($_GET['torder_by'], $this->OrderByFields))
 			{
 				// clause of the end ?
-				if(preg_match("#(.*)ORDER BY(.*)$#si", $query))
+				if(preg_match("#(.*)ORDER BY\n(.*)$#", $query))
 				{
 					$query .= " ,{$_GET['torder_by']} {$_GET['tsens']}";
 				}
