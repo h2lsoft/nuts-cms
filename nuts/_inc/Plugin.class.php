@@ -3188,7 +3188,7 @@ EOF;
 		$this->nuts->parse('msg', $msg);
 		$this->render = $this->nuts->output();
 
-		// datetime auto conversion if form is valid
+		// datetime auto conversion, " text if form is valid
 		if($_POST && $result)
 		{
 			foreach($this->formFields as $f)
@@ -3219,6 +3219,15 @@ EOF;
 				{
 					$_POST[$f['name']] = nutsGetGMTDateUser($_POST[$f['name']], '', 'gmt');
 				}
+
+                // transform " by `
+                if($f['type'] == "text")
+                {
+                    if(isset($_POST[$f['name']]))
+                        $_POST[$f['name']] = str_replace('"', '`', $_POST[$f['name']]);
+                }
+
+
 			}
 		}
 
