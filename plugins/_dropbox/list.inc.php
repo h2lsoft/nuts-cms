@@ -39,7 +39,14 @@ if(@$_GET['_action'] == 'view' || @$_GET['_action'] == 'download')
 		if($_GET['_action'] == 'view' && (in_array($ext, $dropbox_images_view_allowed) || in_array($ext, $dropbox_files_view_allowed)))
 		{
 			if(in_array($ext, $dropbox_images_view_allowed))header("Content-Type: image/$ext; name=\"$virtual_filename\"");
-			header("Content-Length: $size");
+
+            if($ext == 'pdf')
+                header("Content-Type: application/pdf; name=\"$virtual_filename\"");
+            else
+                header("Content-Disposition: inline; filename=\"$virtual_filename\"");
+
+			header("Content-Transfer-Encoding: binary");
+            header("Content-Length: $size");
 			header("Expires: 0");
 			header("Cache-Control: no-cache, must-revalidate");
 			header("Pragma: no-cache");
