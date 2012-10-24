@@ -2762,6 +2762,7 @@ EOF;
 
 					// no image
 					$file_display = '';
+                    $file_image_extension = 'file';
 					if($_GET['ID'] == 0)
 					{
 						$file_display = 'none';
@@ -2784,17 +2785,25 @@ EOF;
 								{
 									$this->nuts->parse('f.widgets.file.file_path', "");
 									$this->nuts->parse('f.widgets.file.file_name', $f['opts']['virtual_url']);
+
+
 								}
 								else
 								{
 									$this->nuts->parse('f.widgets.file.file_path', $f['opts']['url']);
 									$this->nuts->parse('f.widgets.file.file_name', $file);
 								}
+
+                                // extension image
+                                $ext = strtolower(end(explode('.', $file)));
+                                if(file_exists(WEBSITE_PATH."/nuts/img/icon_extension/$ext.png"))
+                                    $file_image_extension = $ext;
 							}
 						}
 					}
 
 					$this->nuts->parse('f.widgets.file.file_display', $file_display);
+					$this->nuts->parse('f.widgets.file.file_image_extension', $file_image_extension);
 				}
 
 				// textarea *******************************************************************************************
