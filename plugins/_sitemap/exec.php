@@ -10,7 +10,8 @@
 
 // configuration *************************************************************************
 set_time_limit(0);
-@ini_set('memory_limit', '256M');
+error_reporting(E_ALL);
+ini_set('memory_limit', '256M');
 
 // includes *************************************************************************
 include("../../nuts/config.inc.php");
@@ -36,22 +37,27 @@ $sel_languages = join("','", $sel_languages);
 // controller *************************************************************************
 if(!isset($_GET['key']) || $_GET['key'] != $sitemap_key)
 	die();
-$fp = fopen($sitemap_filename, 'w') or die("Error: could not open `$sitemap_filename`");
-fwrite($fp, '<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+
+if(!is_writable($sitemap_filename))
+    die("Error: could not open `$sitemap_filename`");
+
+
+$SITEMAP_CONTENTS = '<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
+
 
 
 // update DateStart and DateEnd
-$sql = "SELECT 
+$sql = "SELECT
 				ID, Language, VirtualPagename, DATE_FORMAT(DateUpdate, '%Y-%m-%d') AS LastMod, SitemapPriority, SitemapChangefreq, Comments
 		FROM
 				NutsPage
-		WHERE 
+		WHERE
 				Deleted = 'NO' AND
 				State = 'PUBLISHED' AND
 				Sitemap = 'YES' AND
 				SitemapPageType = 'NORMAL' AND
-				
+
 				Language IN('$sel_languages') AND
 
 				(DateStartOption = 'NO' OR (DateStartOption = 'YES' AND DateStart <= NOW())) AND
@@ -69,7 +75,7 @@ $pages_done = array();
 $total_pages_automatic = 0;
 $qID = $plugin->dbGetQueryID();
 while($page = $plugin->dbFetch())
-{	
+{
 	if(!preg_match('/^http/i', $page['VirtualPagename']) && @$page['VirtualPagename'][0] != '{')
 	{
 		$plugin->doQuery("SELECT DATE_FORMAT(Date, '%Y-%m-%d') AS Date FROM NutsPageComment WHERE NutsPageID = {$page['ID']} AND Visible = 'YES' AND Deleted = 'NO' ORDER BY Date DESC LIMIT 1");
@@ -79,11 +85,11 @@ while($page = $plugin->dbFetch())
 			$plugin->doQuery("SELECT DATEDIFF('{$page['LastMod']}', '$last_comment_date')");
 			$diff = (int)$plugin->dbGetOne();
 			if($diff < 0)
-				$page['LastMod'] = $last_comment_date;	
+				$page['LastMod'] = $last_comment_date;
 		}
 
 		$plugin->dbSetQueryID($qID);
-		
+
 		// url begins by `/`
 		if(!empty($page['VirtualPagename']) && $page['VirtualPagename'][0] == '/')
 		{
@@ -94,11 +100,11 @@ while($page = $plugin->dbFetch())
 			$uri = WEBSITE_URL.'/'.$page['Language'].'/'.$page['ID'];
 			$uri .= (!empty($page['VirtualPagename'])) ? '-'.$page['VirtualPagename'].'.html' : '.html';
 		}
-				
+
 		$pages_done[] = $uri;
 		sitemapAddNode($uri, $page['SitemapChangefreq'], $page['SitemapPriority'], $page['LastMod']);
 		$total_pages_automatic++;
-		
+
 	}
 }
 echo "<h2>Nuts Sitemap Generator</h2><hr>";
@@ -124,11 +130,11 @@ $report_page_special = array();
 $c_index = 0;
 
 // rep parsing to include regex 2 for sub regex
-$sql = "SELECT 
-				ID, Language, VirtualPagename, DATE_FORMAT(DateUpdate, '%Y-%m-%d') AS LastMod, SitemapPriority, SitemapChangefreq, SitemapUrlRegex1, SitemapUrlRegex2 
+$sql = "SELECT
+				ID, Language, VirtualPagename, DATE_FORMAT(DateUpdate, '%Y-%m-%d') AS LastMod, SitemapPriority, SitemapChangefreq, SitemapUrlRegex1, SitemapUrlRegex2
 		FROM
 				NutsPage
-		WHERE 
+		WHERE
 				Deleted = 'NO' AND
 				State = 'PUBLISHED' AND
 				Sitemap = 'YES' AND
@@ -153,7 +159,7 @@ while($rt = $plugin->dbFetch())
 		$uri = WEBSITE_URL.'/'.$rt['Language'].'/'.$rt['ID'];
 		$uri .= (!empty($rt['VirtualPagename'])) ? '-'.$rt['VirtualPagename'].'.html' : '.html';
 	}
-	
+
 	$sitemap_special_page[] = array('url_parent' => $uri, 'url_regex' => $rt['SitemapUrlRegex1'], 'url_regex2' => $rt['SitemapUrlRegex2'], 'priority' => $rt['SitemapPriority'], 'changefreq' => $rt['SitemapChangefreq']);
 }
 
@@ -162,17 +168,17 @@ $regex2 = array();
 $regex2_dones = array();
 $sitemap_recreation = array();
 foreach($sitemap_special_page as $special_page)
-{	
+{
 	if(!isset($special_page['url_regex2']) || empty($special_page['url_regex2']))
 	{
 		$sitemap_recreation[] = $special_page;
 	}
 	else
 	{
-		// inlcude parent page		
+		// inlcude parent page
 		$regex2[] = array('url_parent' => $special_page['url_parent'], 'url_regex' => $special_page['url_regex2'], 'priority' => $special_page['priority'], 'changefreq' => $special_page['changefreq']);
 		$regex2[] = array('url_parent' => $special_page['url_parent'], 'url_regex' => $special_page['url_regex'], 'priority' => $special_page['priority'], 'changefreq' => $special_page['changefreq']);
-		
+
 		$sitemap_recreation[] = $regex2[count($regex2)-2];
 		$sitemap_recreation[] = end($regex2);
 
@@ -194,7 +200,7 @@ foreach($sitemap_special_page as $special_page)
 					$href = str_replace(WEBSITE_URL.'/', '', $href);
 					if($href[0] == '/')$href[0] = ' ';
 					$href = trim($href);
-					
+
 					$href = WEBSITE_URL.'/'.$href;
 
 					$regex2[] = array('url_parent' => $href, 'url_regex' => $special_page['url_regex2'], 'priority' => $special_page['priority'], 'changefreq' => $special_page['changefreq']);
@@ -227,23 +233,23 @@ foreach($sitemap_special_page as $special_page)
 	$url_regex = str_replace(array('/', '?'), array('\\/', '\?'), $special_page['url_regex']);
 	$regex = '@<a.*? href=[\'"]?([^"\'\s\>]*)@i';
 	preg_match_all($regex, $tmp_page, $matches);
-	
+
 	if(!isset($report_page_special[$c_index]))$report_page_special[$c_index] = 0;
 	foreach($matches[1] as $href)
 	{
 		$pattern = '@'.$url_regex.'@i';
 		if(preg_match($pattern, $href) && !in_array($href, $pages_done))
-		{			
+		{
 			$pages_done[] = $href;
 			$href = WEBSITE_URL.$href;
 
 			if(sitemapAddNode($href, $special_page['changefreq'], $special_page['priority']))
-			{				
+			{
 				echo $href.'<br />';
 				$report_page_special[$c_index] += 1;
 				$total_pages_special++;
 			}
-			
+
 		}
 	}
 
@@ -255,6 +261,7 @@ echo "<h4>Manual pages found : $total_pages_special</h4>";
 
 $total = $total_pages_special + $total_pages_custom + $total_pages_automatic;
 echo "<h3>Total pages found : $total</h3>";
+
 
 sitemapClose();
 $plugin->dbClose();
@@ -299,7 +306,7 @@ if($sitemap_mail_reporting)
 	$plugin->mailSubject($sitemap_mail_subject);
 
 	// body
-	$body = "<h2 style=\"border-bottom:1px solid #DE51AD;\">Sitemap Total pages for `<a href=\"".WEBSITE_URL."\">".WEBSITE_URL."</a>` : $total</h2>";
+	$body = "<h2 style=\"border-bottom:1px solid #DE51AD;\">Sitemap Total pages for `<a href=\"".$sitemap_url."\">".$sitemap_url."</a>` : $total</h2>";
 	$body .= "<h3> &bull; Automatic pages: $total_pages_automatic</h3>";
 	$body .= "<h3> &bull; Custom pages: $total_pages_custom</h3>";
 	$body .= "<h3> &bull; Manual pages: $total_pages_special</h3>";
@@ -310,7 +317,7 @@ if($sitemap_mail_reporting)
 		$body .= '<tr>';
 		$body .= '<td style="background-color:#e5e5e5;">'.$sitemap_special_page[$i]['url_parent'].'</td>';
 		$body .= '<td style="background-color:#fff;">'.$sitemap_special_page[$i]['url_regex'].'</td>';
-		$body .= '<td style="background-color:#fff;">'.$report_page_special[$i].'</td>';
+		$body .= '<td style="background-color:#fff; text-align:center; font-weight:bold;">'.$report_page_special[$i].'</td>';
 		$body .= '</tr>';
 	}
 	$body .= '</table>';
@@ -332,7 +339,7 @@ if($sitemap_mail_reporting)
 		$img = (!$res_google) ?  $img_no : $img_yes;
 		$body .= '<h3> &bull; Ping Google : <img src="'.$img.'" align="bottom" /> </h3>';
 	}
-	
+
 	// Yahoo
 	if(!$sitemap_ping_yahoo)
 		$body .= "<h3> &bull; Ping Yahoo : - </h3>";
@@ -341,7 +348,7 @@ if($sitemap_mail_reporting)
 		$img = (!$res_yahoo) ?  $img_no : $img_yes;
 		$body .= '<h3> &bull; Ping Yahoo : <img src="'.$img.'" align="bottom" /> </h3>';
 	}
-	
+
 	// Bing
 	if(!$sitemap_ping_bing)
 		$body .= "<h3> &bull; Ping Bing : - </h3>";
@@ -374,23 +381,25 @@ if($sitemap_mail_reporting)
 $cf_uris = array();
 function sitemapAddNode($uri, $changefreq, $priority, $lastmod='')
 {
-	global $sitemap_filename, $fp, $cf_uris;
+	global $sitemap_filename, $fp, $cf_uris, $SITEMAP_CONTENTS;
 	if(empty($lastmod))$lastmod = date('Y-m-d');
-	
+
 	if(@in_array($uri, $cf_uris))return false;
 	$cf_uris[] = $uri;
 
-$node = <<<EOF
+    $uri = str_replace('&amp;', '&', $uri);
+    $uri = str_replace('&', '&amp;', $uri);
 
-	<url>
-       <loc>$uri</loc>
-       <changefreq>$changefreq</changefreq>
-       <priority>$priority</priority>
-	   <lastmod>$lastmod</lastmod>
-	</url>
+
+$node = <<<EOF
+\t<url>
+\t\t<loc>$uri</loc>
+\t\t<changefreq>$changefreq</changefreq>
+\t\t<priority>$priority</priority>
+\t</url>\n
 EOF;
 
-	fwrite($fp, $node);
+    $SITEMAP_CONTENTS .= $node;
 	return true;
 }
 /**
@@ -398,11 +407,15 @@ EOF;
  */
 function sitemapClose()
 {
-	global $fp;
+	global $sitemap_filename, $sitemap_url, $SITEMAP_CONTENTS;
 
-	$node = "\n</urlset>";
-	fwrite($fp, $node);
-	fclose($fp);
+    $node = "\n</urlset>";
+    $SITEMAP_CONTENTS .= $node;
+
+    if(file_put_contents($sitemap_filename, $SITEMAP_CONTENTS) == false)
+        die("<font color='red'>Error: cannot put contents on `$sitemap_filename`</font>\n");
+
+    echo "<h2>Sitemap: <a href='$sitemap_url' target='_blank'>$sitemap_url</a> writed !</h2>";
 
 }
 
