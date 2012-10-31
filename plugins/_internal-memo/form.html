@@ -1,3 +1,5 @@
+<input id="saver" type="button" accesskey="S" value="{$nuts_lang_msg[49]} (Alt + S)" style="position: absolute; z-index: 55; right: 0; top:10px; margin-right: 10px;" />
+
 <textarea id="nuts_my_notes">{notes}</textarea>
 
 <script type="text/javascript">
@@ -5,19 +7,28 @@
 $('body, #content').css('margin', 0);
 $('body, #content').css('padding', 0);
 
-$('#nuts_my_notes').width($(window).width()-65);
-$('#nuts_my_notes').height($(window).height()-50);
+$('#nuts_my_notes').width($(window).width()-68);
+$('#nuts_my_notes').height($(window).height()-89);
 $('#nuts_my_notes').tabby();
 
 
 $('#nuts_my_notes').focus();
 
 window.onresize = function (){
-	$('#nuts_my_notes').width($(window).width()-65);
-	$('#nuts_my_notes').height($(window).height()-50);
+	$('#nuts_my_notes').width($(window).width()-68);
+	$('#nuts_my_notes').height($(window).height()-89);
 }
 
-window.onbeforeunload = function(){
-	$.post('index.php?mod=_internal-memo&do=edit', {text:$('#nuts_my_notes').val()});
-}
+$('#saver').click(function(){
+
+    v = $('#nuts_my_notes').val();
+    v = ucfirst(v);
+
+    $.post('index.php?mod=_internal-memo&do=edit', {text:v}, function(resp){
+
+        window.close();
+
+    });
+
+});
 </script>
