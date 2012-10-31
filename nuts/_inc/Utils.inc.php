@@ -236,14 +236,19 @@ function nutsUserFormInit($sql_field_mapping)
  *
  * @param array $fields
  * @param boolean $session_reload
+ * @param array $exclude_fields
  */
-function nutsUserUpdate($fields, $session_reload=true)
+function nutsUserUpdate($fields, $session_reload=true, $exclude_fields=array())
 {
 	/* @var $nuts Page */
 	global $nuts;
 
+    $exclude_fields[] = 'ID';
+    $exclude_fields[] = 'Deleted';
+    $exclude_fields = array_unique($exclude_fields);
+
 	$NutsUserID = (int)$_SESSION['ID'];
-	$nuts->dbUpdate('NutsUser', $fields, "ID=$NutsUserID", array('ID', 'Deleted'));	
+	$nuts->dbUpdate('NutsUser', $fields, "ID=$NutsUserID", $exclude_fields);
 
 	if($session_reload)
 	{
