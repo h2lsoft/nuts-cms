@@ -347,6 +347,8 @@ function initCodeEditor(objID, syntax, popup_version)
 		}, 1500);
 	}
 
+    $('#'+objID).addClass('editor');
+
 
 }
 

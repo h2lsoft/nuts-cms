@@ -686,6 +686,19 @@ div#form textarea
 
 div#form textarea {height:120px;}
 
+
+div#form textarea.editor {
+
+    border-left:10px solid #ccc;
+    width:700px;
+    background-color: #fff;
+    font-family: courier;
+    font-size: 11px;
+    background-image: none;
+
+}
+
+
 div#form input[readonly],
 div#form textarea[readonly]
 {
