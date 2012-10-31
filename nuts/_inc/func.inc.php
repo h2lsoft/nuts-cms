@@ -928,14 +928,16 @@ function strtouri($str, $convert_slashes=true)
     $str = str_replace(array(' ',"(", ")", '"', "'", '-', '%', ), '_', $str);
     $str = str_replace('?', '', $str);
 
-    if($convert_slashes)
-        $str = str_replace('/', '-', $str);
+    if($convert_slashes)$str = str_replace('/', '-', $str);
 
     $str = str_replace('___', '_', $str);
     $str = str_replace('__', '_', $str);
     $str = str_replace('..', '.', $str);
 	$str = str_replace('--', '-', $str);
 	$str = str_replace('-.', '.', $str);
+
+
+
 
 	return $str;
 }
