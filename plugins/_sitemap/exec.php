@@ -2,8 +2,8 @@
 /**
  * Sitemap generator
  *
- * @version 1.0
- * @date 2010/07/01
+ * @version 2.0
+ * @date 31/10/2012
  * @author H2lsoft
  *
  */
