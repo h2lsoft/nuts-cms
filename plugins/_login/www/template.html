@@ -28,7 +28,7 @@
 					</div>
 
 					<div class="wrapper form_bottom">
-						<a href="javascript:;" onclick="$('#nuts_login_lost_password').slideToggle('normal', function(){$('#uEmail').focus();});">{lost_passwd_label}</a>
+						<a href="javascript:;" onclick="$('#nuts_login_lost_password').slideToggle('normal', function(){if('{login_label}' == 'Email')$('#uEmail').val($('#uLogin').val());$('#uEmail').focus();});">{lost_passwd_label}</a>
 						<input type="submit" class="submit" value="{submit_label}" />
 					</div>
 
@@ -90,7 +90,15 @@
 				{
 					$("#nuts_login_lost_password .lost_password_form_message").removeClass('lost_password_form_message_ok');
 					if(resp == 'ok')
-						$("#nuts_login_lost_password .lost_password_form_message").addClass('lost_password_form_message_ok');
+                    {
+                        $("#nuts_login_lost_password .lost_password_form_message").addClass('lost_password_form_message_ok');
+
+                        setTimeout(function(){
+                            $("#nuts_login_lost_password .lost_password_form_message").hide();
+                            $('div#nuts_login_lost_password').slideUp('normal');
+                        }, 1200);
+
+                    }
 					$("#nuts_login_lost_password .lost_password_form_message").text(data[1]).show();
 				}
 
