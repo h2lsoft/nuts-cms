@@ -145,13 +145,13 @@ ul#navbar li {
     background-color: #e5e5e5;
     border-radius: 3px;
     padding: 1px 5px;
-    color: #ccc;
+    color: #aaa;
 }
 
-ul#navbar li a {color:#000;}
-ul#navbar a:hover {text-decoration:none;}
-ul#navbar li:hover {background-color: #ccc; color: #aaa;}
-ul#navbar li:hover> a {color: white}
+ul#navbar li a {color:#777;}
+ul#navbar a:hover {text-decoration:none; color: #666;}
+ul#navbar li:hover {/*background-color: #eee;*/ color: #333;}
+ul#navbar li:hover> a {color: #000;}
 
 
 h1 {clear:both; padding-bottom:5px; font-size:18px; margin-bottom:0px; margin-top:12px; padding-top: 0; margin-top: -10px;}
