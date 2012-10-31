@@ -911,9 +911,11 @@ function toCamelCase($str, $capitalize_first_char=true)
  *
  * @param string $str
  * @param boolean $convert_slashes (default true)
+ * @param boolean $added_patterns (default empty)
+ * @param boolean $added_replaces (default empty)
  * @return string
  */
-function strtouri($str, $convert_slashes=true)
+function strtouri($str, $convert_slashes=true, $added_patterns=array(), $added_replaces=array())
 {
     $str = trim($str);
 	$str = mb_strtolower($str, 'utf8');
@@ -936,8 +938,8 @@ function strtouri($str, $convert_slashes=true)
 	$str = str_replace('--', '-', $str);
 	$str = str_replace('-.', '.', $str);
 
-
-
+    if(count($added_patterns))
+        $str = str_replace($added_patterns, $added_replaces, $str);
 
 	return $str;
 }
