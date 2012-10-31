@@ -64,7 +64,8 @@ $("#tab3 select[multiple]").asmSelect({
 // update content
 $('#Content').width($('#page_form').width()-180);
 $('#Content').height(tab_height - 50);
-$('#ContentResume').width(tab_height - 50);
+ $('#ContentResume').width($('#page_form').width()-180);
+
 
 $("#dID").bind("keypress", function(e){
 	if (e.keyCode == 13){
