@@ -17,7 +17,7 @@ $plugin->formAddFieldTextArea('HtmlBefore', $lang_msg[15], false, 'html', '', ''
 $plugin->formAddFieldTextArea('Html', $lang_msg[17], true, 'html');
 $plugin->formAddFieldTextArea('HtmlAfter', $lang_msg[18], false, 'html', '', '', $lang_msg[19]);
 $plugin->formAddFieldTextArea('HtmlNoRecord', $lang_msg[8], false, 'html');
-$plugin->formAddFieldText('Result', $lang_msg[9], 'notEmpty', '', '', '', '', $lang_msg[10]);
+$plugin->formAddFieldText('Result', $lang_msg[9], true, 'number', 'width:35px', '', '', $lang_msg[10]);
 $plugin->formAddFieldTextArea('HookData', '', false, 'php');
 
 $plugin->formAddFieldBooleanX('Pager', $lang_msg[13], true);
