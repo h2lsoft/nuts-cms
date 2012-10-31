@@ -3965,6 +3965,11 @@ EOF;
 		return false;
 	}
 
+    /**
+     * @var bool Delete for real in the table
+     */
+    public  $deleteRealMode = false;
+
 
     /**
      * Render delete record treatment
@@ -3989,15 +3994,21 @@ EOF;
 		else
 		{
 		 	$this->nuts->eraseBloc('before_confirm');
-			$this->nuts->doQuery("UPDATE {$this->deleteDbTable[0]} SET Deleted = 'YES' WHERE ID = {$_GET['ID']}");
 
+            if(!$this->deleteRealMode)
+			    $this->nuts->doQuery("UPDATE {$this->deleteDbTable[0]} SET Deleted = 'YES' WHERE ID = {$_GET['ID']}");
+            elseif(!$this->deleteRealMode)
+                $this->nuts->doQuery("DELETE FROM {$this->deleteDbTable[0]} WHERE ID = {$_GET['ID']} LIMIT 1");
 
 			if(count($this->deleteDbTable) >= 2)
 			{
 				$tableKeyID = $this->deleteDbTable[0].'ID';
 				for($i=1; $i < count($this->deleteDbTable); $i++)
 				{
-					$this->nuts->doQuery("UPDATE {$this->deleteDbTable[$i]} SET Deleted = 'YES' WHERE $tableKeyID = {$_GET['ID']}");
+                    if(!$this->deleteRealMode)
+					    $this->nuts->doQuery("UPDATE {$this->deleteDbTable[$i]} SET Deleted = 'YES' WHERE $tableKeyID = {$_GET['ID']}");
+                    else
+                        $this->nuts->doQuery("DELETE FROM  {$this->deleteDbTable[$i]} WHERE $tableKeyID = {$_GET['ID']}");
 				}
 			}
 
