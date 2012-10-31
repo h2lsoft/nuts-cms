@@ -14,7 +14,8 @@ var Code2Dialog = {
 		editor = CodeMirror.fromTextArea(
 										document.getElementById("source"), 
 										{
-											mode: "htmlmixed", 
+											mode: "htmlmixed",
+                                            lineWrapping: true,
 											lineNumbers: true,
 											tabMode: "indent"
 										});	

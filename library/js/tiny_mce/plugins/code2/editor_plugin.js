@@ -10,9 +10,9 @@
 		
 		 ed.windowManager.open({
 			file : url + '/dialog.htm',
-			width : 1024 + parseInt(ed.getLang('code2.delta_width', 0)),
-			height : 768 + parseInt(ed.getLang('code2.delta_height', 0)),
-			inline : true			
+			width : 1200 + parseInt(ed.getLang('code2.delta_width', 0)),
+			height : 850 + parseInt(ed.getLang('code2.delta_height', 0)),
+			inline : true
 			}, 
 			{
 				plugin_url : url
@@ -35,7 +35,7 @@
         author : 'H2Lsoft',
         authorurl : 'http://www.nuts-cms.com',
         infourl : 'http://www.nuts-cms.com',
-        version : "1.0"
+        version : "1.5"
       };
     }
   });
