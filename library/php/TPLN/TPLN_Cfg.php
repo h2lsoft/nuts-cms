@@ -55,7 +55,7 @@ define('TPLN_DB_PASSWORD_DEFAULT',NUTS_DB_PASSWORD); // your password by defaut
 define('TPLN_DB_BASE_DEFAULT', NUTS_DB_BASE); // your base by defaut
 define('TPLN_DB_PORT', NUTS_DB_PORT); // your port by defaut don't touch if you don't know
 define('TPLN_DB_NEW_CONNECTION', false); // persistant queries ? (false) useful form commit
-define('TPLN_DB_INIT_QUERIES', ""); # queries executed after connection (separated by ; for example: SET NAMES 'utf8')
+define('TPLN_DB_INIT_QUERIES', "SET CHARACTER SET 'utf8'"); # queries executed after connection (separated by ; for example: SET NAMES 'utf8')
 
 // DB Navigation
 define('TPLN_DB_NavColorFirst', '#ffffff'); // alternate color by defaut for item {_NavColor}
