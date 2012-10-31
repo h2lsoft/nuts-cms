@@ -25,7 +25,7 @@
 		<label><input type="radio" id="display2" name="display" value="public" onclick="updateOption()" /> {$lang_msg[5]}</label>
 
 
-    <input type="text" id="right_plugin_search" placeholder="{$nuts_lang_msg[11]}..." />
+    <input type="text" id="right_plugin_search" placeholder="{$nuts_lang_msg[11]}..." value="{$_GET['r_search']}" />
 
 
 </div>
@@ -41,6 +41,7 @@ function updateGroup()
 	v = $('#NutsGroupID').val();
 	uri = "index.php?mod={$plugin->name}&do={$plugin->action}&NutsGroupID="+v;
 	uri += "&display="+$("input[name='display']:checked").val();
+	uri += "&r_search="+$("#right_plugin_search").val();
     uri += "&popup={$_GET['popup']}";
 
 	system_goto(uri, 'content');
@@ -76,6 +77,23 @@ $(function() {
         $('#display2').attr('checked', true);
         updateOption()
     }
+
+
+    v = $('#right_plugin_search').val();
+    v = trim(v);
+    if(v != '')
+    {
+        $("#rights td.label").each(function(){
+            txt = strtolower($(this).text());
+            v = strtolower($('#right_plugin_search').val());
+            if(txt.indexOf(v) == -1)
+                $(this).parents('tr').hide();
+            else
+                $(this).parents('tr').show();
+        });
+    }
+
+
 
 });
 
@@ -117,7 +135,7 @@ function updateOption()
 // search by user typing
 $("#right_plugin_search").keyup(function(){
 
-    if($(this).val() == ''){
+    if($('#right_plugin_search').val() == ''){
         updateOption();
         return;
     }
