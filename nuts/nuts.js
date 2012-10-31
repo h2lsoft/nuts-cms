@@ -228,9 +228,8 @@ function formIt(title, url)
 		}
 
 		$("#form_window").dialog({
-			width:900,
-			minWidth: 900,
-			maxHeight: 900,
+			width:1000,
+			minWidth: 1000,
 			height:h,
 			minHeight: h,
 			maxHeight: h,

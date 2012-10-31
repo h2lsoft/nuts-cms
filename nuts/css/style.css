@@ -673,7 +673,7 @@ div#list_container fieldset .date {background-image:url(calendar.png); backgroun
 div#list_container fieldset .datetime {background-image:url(calendar.png); background-repeat:no-repeat; background-position:right;}
 
 /** form */
-div#form {width:890px;}
+div#form {/*width:890px;*/ width: 99%; }
 div#form label, div#form_content label {width:165px; display:block; float:left; text-align:right; padding-right:10px;  padding-top: 3px; font-weight:bold;}
 div#form p, div#form p {padding:0; margin:3px; margin-top: 8px; }
 
@@ -682,8 +682,9 @@ div#form label, div#form_content label {margin-top: -4px;}
 div#form input[type=text],
 div#form input[type=password],
 div#form textarea
-{width:565px; }
-div#form textarea {height:100px;}
+    {width:710px; }
+
+div#form textarea {height:120px;}
 
 div#form input[readonly],
 div#form textarea[readonly]
