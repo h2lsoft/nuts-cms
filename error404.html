@@ -3,15 +3,24 @@
 <head>
 		<title>Nuts: 404 Not Found</title>
 		<link rel="stylesheet" type="text/css" href="/nuts/css/style.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="/nuts/css/custom.css" media="all" />
 		<link rel="icon" href="/favicon.ico" />
 </head>
 <body>
-	<a href="/"><img src="/nuts/img/logo.png" align="middle" alt="nuts logo" /></a>
+
+    <div id="header">
+        {#if(BACKOFFICE_LOGO_URL != '')}
+	        <a href="/"><img src="{CONST::BACKOFFICE_LOGO_URL}" align="middle" alt="nuts logo" /></a>
+        {#else}
+            <a href="/"><img src="/nuts/img/logo.png" align="middle" alt="nuts logo" /></a>
+        {#endif}
+    </div>
+
 	<div id="menu" style="height:20px;"></div>
 
 	<div id="content">
 		<h1 style="padding-top: 10px"><img src="/nuts/img/icon-error.gif" style="padding-top:2px;" alt=" "  align="top" /> Page Not Found</h1>
-		<p>The requested URL `{$_SERVER['REQUEST_URI']}` was not found on this server.</p>
+		<p style="font-size: 12px; margin-bottom: 50px">The requested URL `{$_SERVER['SCRIPT_URI']}` was not found on this server.</p>
 		<br />
 
 		<div style="border:1px solid #ccc; background-color:#e5e5e5; padding:5px; line-height: 23px;">
