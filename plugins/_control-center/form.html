@@ -36,17 +36,28 @@
                 <fieldset>
                     <legend>Errors page and nuts tags <span style="color:red; font-weight: bold;" id="website_error_count"></span> <a style="display:none;" id="website_error_delete" href="javascript:updater('errors_all');"><img src="/nuts/img/list_delete.png" style="width: 16px;" align="absmiddle" /></a></legend>
 
+                    <bloc::website_clean>
+                    <p>
+                        <input type="button" value="Clean errors" class="button" onclick="updater('log', '');" />
+                    </p>
+                    </bloc::website_clean>
+
+
                     <p style="margin-left: 10px; max-height: 200px; overflow: auto; overflow-x: hidden;">
 
                         <bloc::website_errors>
 		                <span class="website_error" id="website_error_{WebErrorID}">
+
+                            <input type="checkbox" name="website_error" value="{WebErrorID}" checked />
+
 			                <img src="img/icon-error.gif" align="absbottom" />
 			                <b>[{error_date}]</b> {error_type} {error_url} (<a title="localize IP" href="http://www.geoiptool.com/en/?IP={WIp}" target="_blank">{WIp}</a>)
-			                <a href="{error_url}" target="_blank" title="Visit website"><img src="img/icon-web.gif"  align="absbottom"/></a>
-			                <a href="javascript:updater('log', {WebErrorID});" title="Delete this message"><img src="img/list_delete.png" align="absbottom" style="width:16px;" /></a>
+			                <a href="{error_url_real}" target="_blank" title="Visit website"><img src="img/icon-web.gif"  align="absbottom"/></a>
 		                    <br />
 		                </span>
                         </bloc::website_errors>
+
+
 
                     </p>
 
@@ -176,27 +187,6 @@ $('#ntabs0_content input, #ntabs0_content select').keypress(function(event){
             $('body').css('cursor', 'default');
             $('#'+objID).removeClass('ntabs_loading');
         });
-
-        /*
-        uri = "index.php?mod=_settings&do=exec&ajaxer=1";
-        $.post(uri, {objID: objID, objVal: $(this).val()}, function(data){
-
-            if(data != 'ok'){
-                notify('error', data);
-                $('#'+objID).focus();
-            }
-            else
-            {
-                notify('ok', "{$lang_msg[39]}");
-            }
-
-
-            $('body').css('cursor', 'default');
-            $('#'+objID).removeClass('ntabs_loading');
-
-
-        });*/
-
     }
 
 });
@@ -205,8 +195,6 @@ $('#ntabs0_content input, #ntabs0_content select').keypress(function(event){
 function updater(target, ip, date, IpID){
 
     uri = 'index.php?mod=_control-center&do=exec'
-    // $('#form_error').hide();
-    // $('#form_ok').hide();
 
     // maintenance
     if(target == 'maintenance'){
@@ -217,14 +205,10 @@ function updater(target, ip, date, IpID){
             resp = explode('@@@', data);
             if(resp[0] != 'ok')
             {
-                // $('#form_error span').text(resp[1]);
-                // $('#form_error').show();
                 notify('error', resp[1]);
             }
             else
             {
-                // $('#form_ok span').text(resp[1]);
-                // $('#form_ok').show();
                 notify('ok', resp[1]);
             }
         });
@@ -248,7 +232,7 @@ function updater(target, ip, date, IpID){
         });
     }
 
-    // maintenance
+    // maintenance_message
     if(target == 'maintenance_message'){
 
         val = $('#MaintenanceMessage').val();
@@ -307,7 +291,22 @@ function updater(target, ip, date, IpID){
     // log
     if(target == 'log')
     {
-        $.get(uri, {_action: 'log', id: ip}, function(data){
+        ids = "";
+        $('.website_error input:checked').each(function(){
+
+            cur_ID = $(this).val();
+            if(!empty(ids))ids += ",";
+            ids += cur_ID;
+        });
+
+
+        if(ids == '')
+        {
+            alert("Error: Please select at least an error to delete");
+            return;
+        }
+
+        $.get(uri, {_action: 'log', ids: ids}, function(data){
 
             resp = explode('@@@', data);
             if(resp[0] != 'ok')
@@ -318,9 +317,13 @@ function updater(target, ip, date, IpID){
             {
                 notify('ok', resp[1]);
 
-                $('#website_error_'+ip).remove();
+                tmp = explode(',', ids);
+                for(i=0; i < count(tmp); i++)
+                {
+                    id = tmp[i];
+                    $('#website_error_'+id).remove();
+                }
             }
-
         });
     }
     // htaccess & robots

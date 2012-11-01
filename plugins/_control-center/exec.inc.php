@@ -118,13 +118,10 @@ elseif(@$_GET['_action'] == 'unblock')
 }
 elseif(@$_GET['_action'] == 'log')
 {
-	$id = (int)@$_GET['id'];
-	$sql = "DELETE FROM NutsLog WHERE ID = $id";
-
+	$ids = $_GET['ids'];
+	$sql = "DELETE FROM NutsLog WHERE ID IN($ids)";
 	$nuts->doQuery($sql);
-
-
-	die("ok@@@Message #$id deleted");
+	die("ok@@@Errors deleted");
 
 }
 elseif(@$_GET['_action'] == 'htaccess' || @$_GET['_action'] == 'robots')
@@ -213,7 +210,8 @@ $sql = "SELECT
 				INET_NTOA(IP) AS WIp,
 				DateGMT AS error_date,
 				Action AS error_type,
-				Resume AS error_url
+				Resume AS error_url,
+				'' AS error_url_real
 		FROM
 				NutsLog
 		WHERE
@@ -222,7 +220,28 @@ $sql = "SELECT
 		ORDER BY
 				DateGMT DESC";
 $nuts->doQuery($sql);
-$nuts->parseDbRow("website_errors", '<img src="img/icon-accept.gif" align="absbottom" /><b> your system is ok</b>');
+$recs = $nuts->dbGetData();
+if(!count($recs))
+{
+    $nuts->eraseBloc('website_errors', '<img src="img/icon-accept.gif" align="absbottom" /><b> your system is clean</b>');
+}
+else
+{
+    foreach($recs as $rec)
+    {
+        $tmp = explode(' ', $rec['error_url']);
+        $rec['error_url_real'] = $tmp[0];
+
+        foreach($rec as $key => $val)
+        {
+            if($nuts->itemExists($key, 'website_errors'))
+                $nuts->parse('website_errors.'.$key, $val);
+        }
+
+        $nuts->loop('website_errors');
+
+    }
+}
 
 
 
