@@ -239,11 +239,14 @@ class Page extends NutsCore
 			$this->dbSelect("SELECT ID FROM NutsLog WHERE Application = '_fo-error' AND Action = 'Error 404' AND Resume = '%s' LIMIT 1", array($_SERVER['REQUEST_URI']));
 			if($this->dbNumrows() == 0)
 			{
-				$this->dbInsert('NutsLog', array('DateGMT' => 'NOW()',
-											 'Application' => '_fo-error',
-											 'Action' => 'Error 404',
-											 'Resume' => $_SERVER['REQUEST_URI'],
-											 'IP' => $IP_long));
+                $script_uri = (isset($_SERVER['SCRIPT_URI'])) ? $_SERVER['SCRIPT_URI'] : $_SERVER['REQUEST_URI'];
+				$this->dbInsert('NutsLog', array(
+                                                    'DateGMT' => 'NOW()',
+											        'Application' => '_fo-error',
+											        'Action' => 'Error 404',
+											        'Resume' => $script_uri.' (referer => `'.@$_SERVER['HTTP_REFERER'].'`)',
+											        'IP' => $IP_long
+                                                ));
 			}
 		}
 
