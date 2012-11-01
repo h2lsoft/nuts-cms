@@ -1150,11 +1150,12 @@ function logoutForm(title)
 }
 
 
-var notifyID = -1;
+var notifyID = 0;
+var notify_displayed_nb = 0;
 function notify(type, message)
 {
-	notifyID++;
-
+	notifyID = notifyID + 1;
+    notify_displayed_nb += 1;
 	class_added = "";
 
 	if(type == '' || type == 'normal')
@@ -1174,30 +1175,26 @@ function notify(type, message)
 		class_added = 'notify_itKO';
 	}
 
-	tpl = '<div class="notify_it '+class_added+'" id="notify_it_'+notifyID+'">';
+	tpl = '<div class="notify_it '+class_added+'" id="notify_it_'+notifyID+'" onclick="notifyRemove('+notifyID+')">';
 	tpl += message;
 	tpl += '</div>';
 
 	$("body").append(tpl);
-
-
 	n_scrollit = $(window).scrollTop();
 	n_scrollit += 15;
-	$('#notify_it_'+notifyID).css("top", n_scrollit);
 
+    n_scrollit_added = ((notify_displayed_nb-1)*70);
+    if(n_scrollit_added < 0)n_scrollit_added = 0;
 
-	$('#notify_it_'+notifyID).fadeIn('normal', function(){
-		setTimeout(function(){
-            $('#notify_it_'+notifyID).click();
-		}, 1500);
-	});
+    $('#notify_it_'+notifyID).css("top", n_scrollit+n_scrollit_added)
+                             .fadeIn('normal', function(){})
+                             .animate({ opacity: '+=0' }, 1500)
+                             .fadeOut('fast', function(){notify_displayed_nb -= 1;});
+}
 
-    $('#notify_it_'+notifyID).click(function(){
-        $('#notify_it_'+notifyID).fadeOut('fast', function(){
-            $('#notify_it_'+notifyID).remove();
-        });
-    });
-
+function notifyRemove(tmp_notifyID)
+{
+    $('#notify_it_'+tmp_notifyID)
 
 }
 
