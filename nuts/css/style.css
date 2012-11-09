@@ -275,7 +275,7 @@ input[type=text], input[type=password], input[type=file], textarea, select {padd
 
 }
 textarea {height:150px;}
-/* input[type=text]:hover, input[type=password]:hover, input[type=file]:hover, textarea:hover, select:hover {background-color:#FFFFDD; background-image:none; border-color:#aaa;} */
+input[type=text]:hover, input[type=password]:hover, input[type=file]:hover, textarea:hover, select:hover {background-color:#FFFFDD; background-image:none; border-color:#aaa;}
 input[type=text]:focus, input[type=password]:focus, input[type=file]:focus, textarea:focus, select:focus {
 
 	background-color:#fff;
@@ -288,6 +288,13 @@ input[type=text]:focus, input[type=password]:focus, input[type=file]:focus, text
 	-moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 4px rgba(82, 168, 236, 0.6);
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 4px rgba(82, 168, 236, 0.6);
 }
+
+input[disabled], textarea[disabled], select[disabled]
+{
+	background: none;
+	background-color: #e5e5e5!important;
+}
+
 
 
 iframe.nuts_editor {
