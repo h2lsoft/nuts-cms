@@ -1506,3 +1506,46 @@ function formGetCurrentID(){
     return param;
 }
 
+
+
+function transformSelectToAuctoComplete(objID, prefix)
+{
+    if(empty(prefix))
+        prefix = '#'
+    else
+        prefix = prefix+' #';
+
+
+    // get array form select
+    cur_val = $(prefix+objID).val();
+
+    tmp_arr = array();
+    $(prefix+objID+" option").each(function(){
+        if(!empty($(this).attr('value')))
+            tmp_arr[tmp_arr.length] = $(this).attr('value');
+    });
+
+
+    // replace select by input
+    $(prefix+objID).after('<input type="text" name="'+objID+'" id="'+objID+'" value="'+cur_val+'" />').remove();
+
+
+    // autocomplete
+    $(prefix+objID).autocomplete(tmp_arr, {
+            width: 400,
+            highlight: false,
+            multiple: false,
+            scroll: true,
+            scrollHeight: 300
+    });
+
+
+
+}
+
+
+
+
+
+
+
