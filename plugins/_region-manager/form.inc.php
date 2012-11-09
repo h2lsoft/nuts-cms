@@ -17,15 +17,19 @@ $plugin->formAddFieldTextArea('HtmlBefore', $lang_msg[15], false, 'html', '', ''
 $plugin->formAddFieldTextArea('Html', $lang_msg[17], true, 'html');
 $plugin->formAddFieldTextArea('HtmlAfter', $lang_msg[18], false, 'html', '', '', $lang_msg[19]);
 $plugin->formAddFieldTextArea('HtmlNoRecord', $lang_msg[8], false, 'html');
-$plugin->formAddFieldText('Result', $lang_msg[9], true, 'number', 'width:35px', '', '', $lang_msg[10]);
+
 $plugin->formAddFieldTextArea('HookData', '', false, 'php');
 
+$plugin->formAddFieldText('Result', $lang_msg[9], true, 'number', 'width:35px', '', '', $lang_msg[10]);
+
 $plugin->formAddFieldBooleanX('Pager', $lang_msg[13], true);
+$plugin->formAddFieldText('SetUrl', 'Set url', false, '', "", "", "", "Force url");
 $plugin->formAddFieldTextArea('PagerPreviousText', 'Pager Previous Text', false);
 $plugin->formAddFieldTextArea('PagerNextText', 'Pager Next Text', false);
 
-// $plugin->formAddField('PreviousNextVisible', $lang_msg[14], 'boolean', true);
-
+$plugin->formAddFieldBooleanX('PreviousStartEndVisible', "Add start/end pager", true);
+$plugin->formAddFieldTextArea('PagerStartText', 'Pager Start Text', false);
+$plugin->formAddFieldTextArea('PagerEndText', 'Pager End Text', false);
 
 
 
