@@ -7,7 +7,7 @@
  * @author H2Lsoft (contact@h2lsoft.com) - www.h2lsoft.com
  */
 
-$lang_msg[0] = "Paramétres"; // plugin name
+$lang_msg[0] = "Paramètres"; // plugin name
 
 $lang_msg[1] = "Général";
 $lang_msg[2] = "Base de données";
