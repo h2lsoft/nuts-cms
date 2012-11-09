@@ -440,7 +440,7 @@ function menu_media()
 			fileBrowserURL = "<?php echo WEBSITE_URL; ?>/library/js/tiny_mce/plugins/file_browser/index.php?editor=tinymce&filter="+type;
 
 			tinyMCE.activeEditor.windowManager.open({
-				title: "PDW File Browser",
+				title: "File Browser",
 				url: fileBrowserURL,
 				width: 1024,
 				height: 768,
