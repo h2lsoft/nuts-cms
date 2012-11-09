@@ -126,9 +126,7 @@ else
 {
     $pass_original = $_POST['Password'];
 
-    $_POST['NutsGroupID'] = $pluginRegister['NutsGroupID'];
-
-	$_POST['Company'] = ucfirst(strtolower(trim($_POST['Company'])));
+    $_POST['Company'] = ucfirst(strtolower(trim($_POST['Company'])));
 	$_POST['FirstName'] = ucfirst(strtolower(trim($_POST['FirstName'])));
 	$_POST['LastName'] = ucfirst(strtolower(trim($_POST['LastName'])));
 	$_POST['Email'] = strtolower($_POST['Email']);
@@ -146,6 +144,7 @@ else
     }
 
     if(!isset($_POST['Login']))$f['Login'] = uniqid();
+    $f['NutsGroupID'] = $pluginRegister['NutsGroupID']; # default group
 	$f['Language'] = $page->language;
 	$f['FrontOfficeToolbar'] = 'NO';
 	$f['LogActionCreateDateGMT'] = nutsGetGMTDate();
