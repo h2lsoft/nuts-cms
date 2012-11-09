@@ -1912,6 +1912,10 @@ class Page extends NutsCore
 		$sql = $r['Query'];
 		if(!empty($r['PhpCode']))eval($r['PhpCode']);
 
+        // repalce keyword in sql
+        $sql = str_replace('{@PAGE_ID}', $this->vars['ID'], $sql);
+
+
 		// output
 		$this->createVirtualTemplate($tpl);
         if(!empty($r['SetUrl']))$this->setUrl($r['SetUrl']);
