@@ -302,7 +302,7 @@ function showResponse(responseText, statusText)
                         else
                         {
                             system_refresh();
-                            setTimeout("$('#form_window').dialog('close')", 2000);
+                            setTimeout("$('#form_window').dialog('close')", 1500);
                         }
 					}
 

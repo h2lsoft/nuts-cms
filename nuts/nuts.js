@@ -198,6 +198,7 @@ function ajaxHistoricCheckChanges()
 
 }
 
+var windowID = 0;
 var last_formIt_uri;
 function formIt(title, url)
 {
@@ -260,6 +261,7 @@ function formIt(title, url)
 		forceWYSIWYGUpdate();
 		$(this).show();
 		$('body').css('cursor', 'default');
+        windowID++;
 
 	});
 }
