@@ -899,6 +899,14 @@ div#pager_content #page_navigation a:hover {
 	text-decoration: none;
 }
 
+.asmListItemRemove:hover {
+
+    -webkit-filter: hue-rotate(-180deg);
+    -moz-filter: hue-rotate(-180deg);
+
+}
+
+
 
 /** right manager */
 table#rights {border:1px solid #ccc; border-bottom:0px;}
