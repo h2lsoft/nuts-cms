@@ -36,6 +36,8 @@ if(is_array($scripts)){
 		include_once($scr);
 }
 
+
+
 // templates *****************************************************************************
 $timer = time();
 $page = new Page();
