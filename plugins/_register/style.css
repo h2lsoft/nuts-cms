@@ -1,0 +1,8 @@
+#wrapper_Address,
+#wrapper_Phone,
+#wrapper_Password,
+#wrapper_Email
+        {border-top:1px solid #ccc; margin-top: 10px; padding-top: 20px;}
+
+
+#ZipCode {width: 60px; text-align: center}
