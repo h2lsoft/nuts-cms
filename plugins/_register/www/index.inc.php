@@ -135,7 +135,7 @@ else
 		$_POST['Login'] = strtolower($_POST['Login']);
 	}
 
-    // recontruct form
+    // recontruct exact form
     $f = array();
     foreach($pluginRegister['form_fields'] as $form_fields)
     {

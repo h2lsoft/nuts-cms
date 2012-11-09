@@ -138,6 +138,21 @@
 
                 <hr noshade>
 
+
+                <p>
+                    <label>{$lang_msg[48]}</label>
+                    <select id="NUTS_WWW_SESSION_INIT">
+                        <option value="0">{$lang_msg[11]}</option>
+                        <option value="1">{$lang_msg[12]}</option>
+                    </select>
+                    <span>{$lang_msg[49]}</span>
+                    <script>
+                        $('#NUTS_WWW_SESSION_INIT').val('{CONST::NUTS_WWW_SESSION_INIT}');
+                    </script>
+                </p>
+
+                <hr noshade>
+
                 <p>
                     <label>{$lang_msg[26]}</label>
                     <select id="NUTS_LOG_ERROR_404">

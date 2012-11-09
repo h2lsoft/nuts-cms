@@ -71,4 +71,8 @@ $lang_msg[45] = "code iso séparés par des virgules (ex: fr, it, es, ru, jp)";
 $lang_msg[46] = "Google+ Lien Publication";
 $lang_msg[47] = "affiche un lien dans `News Manager` pour ajouter un message (vide pour cacher)";
 
+
+$lang_msg[48] = "Session auto";
+$lang_msg[49] = "starts automatically session";
+
 ?>

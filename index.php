@@ -14,11 +14,19 @@ include('nuts/_inc/Query.class.php');
 include('nuts/_inc/NutsCRUD.class.php');
 FB::setEnabled(FirePHP_enabled);
 
+
+
 // auto include files
 $scripts = glob('x_includes/*.php');
 if(is_array($scripts)){
 	foreach($scripts as $scr)
 		include_once($scr);
+}
+
+// auto starts session ?
+if(NUTS_WWW_SESSION_INIT == true)
+{
+    @session_start();
 }
 
 // auto include specific files
