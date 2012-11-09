@@ -1842,9 +1842,24 @@ class Page extends NutsCore
 		$pager = '';
 		if($r['Pager'] == 'YES')
 		{
+            $start = '';
+            $end = '';
+            if($r['PreviousStartEndVisible'] == 'YES')
+            {
+                $start = '<bloc::start>
+					        <a class="arrow_start" href="{_Url}">'.$r['PagerStartText'].'</a>
+					  </bloc::start>';
+
+                $end = '<bloc::end>
+					        <a class="arrow_end" href="{_Url}">'.$r['PagerEndText'].'</a>
+					  </bloc::end>';
+            }
+
 			$pager = '<table cellspacing="0" class="nuts_pager">
 						<tr>
 							<td>
+
+                                [[BTN_START]]
 
 								<bloc::previous>
 								<a class="arrow_previous" href="{_Url}">'.$r['PagerPreviousText'].'</a>
@@ -1858,9 +1873,16 @@ class Page extends NutsCore
 								<bloc::next>
 									<a class="arrow_next" href="{_Url}">'.$r['PagerNextText'].'</a>
 								</bloc::next>
+
+								[[BTN_END]]
+
 							</td>
 						</tr>
 					</table>';
+
+
+            $pager = str_replace('[[BTN_START]]', $start, $pager);
+            $pager = str_replace('[[BTN_END]]', $end, $pager);
 
 		}
 
@@ -1892,6 +1914,7 @@ class Page extends NutsCore
 
 		// output
 		$this->createVirtualTemplate($tpl);
+        if(!empty($r['SetUrl']))$this->setUrl($r['SetUrl']);
 		$this->showRecords($sql, (int)$r['Result'], $func_name);
 		$str = $this->output();
 
