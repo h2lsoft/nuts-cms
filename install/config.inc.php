@@ -73,7 +73,6 @@ define('LOGIN_PAGE_URL_FR', "/fr/login/");
 define('LOGON_PAGE_URL_EN', "/en/my_account/");
 define('LOGON_PAGE_URL_FR', "/fr/my_account/");
 
-
 // put your url for private page forbidden
 define('PRIVATE_PAGE_FORBIDDEN_URL_EN', "/en/access_restricted/");
 define('PRIVATE_PAGE_FORBIDDEN_URL_FR', "/fr/access_restricted/");
