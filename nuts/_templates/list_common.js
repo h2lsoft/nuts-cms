@@ -104,7 +104,7 @@ shortcut.remove('Escape');
 shortcut.add('Escape', function(){
 
     if($('#list_search_content').is(':visible'))
-        $('#list_search_content').slideToggle('fast');
+        $('#list_search_content').slideUp('fast');
 
     if($('#nuts_canvas').is(':visible'))
         imageBoxClose();
