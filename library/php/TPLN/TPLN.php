@@ -484,7 +484,8 @@ class TPLN extends DB
 			$body .= 'TPLN version '.TPLN_VERSION."\n";
 			$body .= 'IP: '.$this->GetIP()." (<a href=\"http://www.geoiptool.com/en/?IP=".$this->GetIP()."\">information</a>)"."\n";
 			$body .= "Server: {$_SERVER['SERVER_NAME']} ({$_SERVER['SERVER_ADDR']})"."\n";
-
+            $referer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
+			$body .= "Referer: $referer"."\n";
 
 
 			$body = str_replace("\n", "<br />", $body);
