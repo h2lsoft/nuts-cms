@@ -16,6 +16,8 @@
 *************************************************************************************************************/
 
 
+
+
 $sn = 'PHPSESSID'; // default
 if(isset($_GET['sn']))
 {
@@ -25,11 +27,10 @@ if(isset($_GET['sn']))
 if($sn == 'PHPSESSID')$sn = '';
 @session_start();
 
-
 if(empty($sn))
-	$session_tpln_captcha = $_SESSION['tpln_captcha'];
+	$session_tpln_captcha = @$_SESSION['tpln_captcha'];
 else
-	$session_tpln_captcha = $_SESSION[$sn]['tpln_captcha'];	
+	$session_tpln_captcha = @$_SESSION[$sn]['tpln_captcha'];
 
 $width = 120;
 $height = 30;
@@ -76,7 +77,8 @@ for($i=0; $i <  $captcha_len; $i++)
 
 
 
-header("Content-type: image/jpeg"); 
+// output **************************************************************************************************************
+header("Content-type: image/jpeg");
 imagejpeg($image);
 imagedestroy($image);
 
