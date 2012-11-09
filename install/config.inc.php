@@ -29,6 +29,7 @@ define('MetaTitle', ''); # default meta Title
 define('MetaDescription', ''); # default meta Description
 define('MetaKeywords', ''); # default meta Keywords
 define('NUTS_ERROR404_TEMPLATE', 'error404.html');
+define('NUTS_WWW_SESSION_INIT', false); // auto start session in front-office
 $nuts_front_plugins_direct_access = array();
 $nuts_theme_selected = 'default'; // theme selected
 
@@ -66,31 +67,26 @@ define('NUTS_DB_PORT', '');
 
 // put your url for login page
 define('LOGIN_PAGE_URL_EN', "/en/login/");
-define('LOGIN_PAGE_URL_FR', "");
-define('LOGIN_PAGE_URL_ES', "");
-define('LOGIN_PAGE_URL_IT', "");
-define('LOGIN_PAGE_URL_RU', "");
+define('LOGIN_PAGE_URL_FR', "/fr/login/");
 
 // put your url for logon page
 define('LOGON_PAGE_URL_EN', "/en/my_account/");
-define('LOGON_PAGE_URL_FR', "");
-define('LOGON_PAGE_URL_ES', "");
-define('LOGON_PAGE_URL_IT', "");
-define('LOGON_PAGE_URL_RU', "");
+define('LOGON_PAGE_URL_FR', "/fr/my_account/");
+
 
 // put your url for private page forbidden
 define('PRIVATE_PAGE_FORBIDDEN_URL_EN', "/en/access_restricted/");
-define('PRIVATE_PAGE_FORBIDDEN_URL_FR', "");
-define('PRIVATE_PAGE_FORBIDDEN_URL_ES', "");
-define('PRIVATE_PAGE_FORBIDDEN_URL_IT', "");
-define('PRIVATE_PAGE_FORBIDDEN_URL_RU', "");
+define('PRIVATE_PAGE_FORBIDDEN_URL_FR', "/fr/access_restricted/");
+
 
 
 // twitter & facebook
 define('TWITTER_LOGIN', 'twitter_login'); // put empty no not publish twitter applet
 define('FACEBOOK_PUBLISH_URL', 'http://www.facebook.com'); // enter wall url to publish directly or empty to hide
+define('GOOGLEP_PUBLISH_URL', "https://plus.google.com");
 
-$nuts_session_preserve_keys = array(); // preserve session keys in login mecanism
+
+$nuts_session_preserve_keys = array('ShoppingCart'); // preserve session keys in login mecanism
 
 
 
