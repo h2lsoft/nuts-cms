@@ -27,7 +27,7 @@ else
 	elseif($_GET['tag'] == 'survey')$text_indent = 125;
 
 	// create a new image and add label text
-	$string = base64_decode($_GET['label']);
+	$string = utf8_decode(base64_decode($_GET['label']));
 	$string = " $string ";
 
 	$font = 3;
