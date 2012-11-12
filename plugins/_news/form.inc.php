@@ -75,7 +75,10 @@ $plugin->formAddFieldTextArea('Tags', $lang_msg[7], false, '', '', '', $lang_msg
 $plugin->formAddFieldBoolean('Event', $lang_msg[8], true);
 $plugin->formAddFieldBoolean('Comment', $lang_msg[17], true);
 $plugin->formAddFieldBoolean('Active', $lang_msg[9], true, $lang_msg[15]);
-$plugin->formAddFieldText('VirtualPageName', $lang_msg[18], false, '', '', '', '', $lang_msg[19]);
+
+$read_only = ($news_new_system) ? 'readonly' : '';
+
+$plugin->formAddFieldText('VirtualPageName', $lang_msg[18], false, '', '', '', $read_only, $lang_msg[19]);
 
 // filters *********************************************************
 $plugin->formAddFieldsetStart('CustomFilter', $lang_msg[10]);
@@ -123,7 +126,6 @@ if(TWITTER_LOGIN != '' || FACEBOOK_PUBLISH_URL != '' || GOOGLEP_PUBLISH_URL != '
 
     // google plus
 
-
 	$plugin->formAddFieldsetEnd();
 }
 
@@ -133,9 +135,30 @@ $plugin->formAddEndText("
 
 <script>var hfs = explode(',', '$hidden_fields');</script>
 <script src=\"".PLUGIN_URL."/form_custom.js\"></script>
-
+<script>var news_new_system = $news_new_system;</script>
 
 ");
+
+
+if($_POST)
+{
+    if($news_new_system)
+    {
+        if(empty($_POST['VirtualPageName']))
+        {
+            $uri = strtouri($_POST['Title']);
+
+            $news_new_system_prefix_tmp = $news_new_system_prefix;
+            $news_new_system_prefix_tmp = str_replace('{Language}', $_POST['Language'], $news_new_system_prefix_tmp);
+
+
+            $_POST['VirtualPageName'] = $news_new_system_prefix_tmp.$uri.$news_new_system_suffix;
+
+        }
+    }
+}
+
+
 
 
 ?>
