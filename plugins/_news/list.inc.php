@@ -92,6 +92,9 @@ for($i=0; $i <  count($cf); $i++)
 if(!in_array('Event', $hidden_fields_arr))$plugin->listAddColImg('Event', $lang_msg[8], '', true);
 $plugin->listAddColImg('Active', $lang_msg[9], '', true);
 
+if($news_new_system)
+    $plugin->listAddCol('Url', '', 'center; width:40px; white-space:nowrap;', false);
+
 
 $plugin->listSetFirstOrderBy('DateGMT');
 
@@ -103,7 +106,7 @@ $plugin->listRender(20, 'hookData');
 
 function hookData($row){
 
-	global $cf, $nuts;
+	global $cf, $nuts, $news_new_system;
 	
 	if($_SESSION['Language'] == 'fr')
 	{
@@ -127,6 +130,13 @@ function hookData($row){
 	{
 		$row['Filter'.($i+1)] = ucfirst(strtolower($row['Filter'.($i+1)]));
 	}
+
+
+    // url
+    $row['Url'] = <<<EOF
+<a href="javascript:;" onclick="popupModal('{$row['VirtualPageName']}')"><img src="/nuts/img/icon-code_editor.png" /></a>
+EOF;
+
 
 
 	return $row;
