@@ -1,6 +1,6 @@
 <?php
 /**
- * File Browser v1.0
+ * File Browser v1.5
  */
 
 // init ****************************************************************************************************************
@@ -8,6 +8,8 @@ if(@!$_GET['ajax'])$_GET['ajax'] = false;
 if(@!$_GET['action'])$_GET['action'] = '';
 if(!@in_array($_GET['editor'], array('standalone', 'tinymce', 'edm')))$_GET['editor'] = 'standalone';
 if(@!$_GET['returnID'])$_GET['returnID'] = '';
+
+$timer = time();
 
 
 // controller **********************************************************************************************************
