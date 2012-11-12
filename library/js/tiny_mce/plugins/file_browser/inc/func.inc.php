@@ -67,10 +67,11 @@ function getDirTree($dir, $showfiles=true, $iterateSubDirectories=true) {
  */
 function renderTree($dirs, $rootpath){
 
+    if(!is_array($dirs))return;
+
     global $tree_hidden_folders;
 
     $html = "\t\t<ul>\n";
-
     foreach($dirs as $key => $value) {
 
         if(!in_array($rootpath.$key, $tree_hidden_folders))
