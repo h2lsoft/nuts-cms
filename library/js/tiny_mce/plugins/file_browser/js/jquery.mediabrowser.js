@@ -567,6 +567,11 @@
             $('div#message').slideDown();
 
             timeout = (type != "error") ? 2500 : 2500;
+            if(type == 'special')
+            {
+                $('div#message').addClass('error');
+                timeout = 20000;
+            }
 
             setTimeout(function() {
                 $("div#message").slideUp();
