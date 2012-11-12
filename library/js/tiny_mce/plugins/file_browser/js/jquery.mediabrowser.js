@@ -185,7 +185,7 @@
 
             message = window.create_folder;
             prompt_message = message.format(name, "\n", "^ \\ / ? * \" ' < > : | .");
-            new_name = prompt(prompt_message, name);
+            new_name = prompt(prompt_message, "");
 
             // Validate new name
             if(new_name === "" || new_name == name || new_name == null)
@@ -288,6 +288,30 @@
             // window.open(URL);
             if(editor == 'edm')
             {
+
+                file_extension = "";
+                tmp = explode('.', URL);
+                if(count(tmp) >= 2)
+                {
+                    file_extension = tmp[tmp.length-1];
+                    file_extension = strtolower(file_extension);
+
+                    if(file_extension == 'pdf')
+                    {
+                        //Send new filename to server
+                        uri = getAjaxUri();
+                        uri += '&action=open';
+                        uri += '&file='+urlencode(URL);
+                        uri += '&download=false';
+                        URL = uri;
+                        window.open(URL);
+
+                        return;
+                    }
+                }
+
+
+
                 //Send new filename to server
                 str = '';
                 str += '<applet codebase="service/editlive_office" id="EditLive_Applet" name="EditLive_Applet" code="GWDAEditLive_Applet.class" archive="EditLive_Applet.jar" width="300" height="64" align="center">';
@@ -357,6 +381,9 @@
                     return;
                 }
             }
+
+
+
 
             //Send new filename to server
             str = '';
