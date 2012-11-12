@@ -1307,8 +1307,8 @@ EOF;
 		}
 
 		// view
-        if(!$this->rightAllowed("view")) $this->listAddButton = false;
-		if(!$this->listAddButton || !$this->rightAllowed("view"))
+        if(!$this->rightAllowed("view")) $this->listViewButton = false;
+		if(!$this->listViewButton || !$this->rightAllowed("view"))
 		{
 			$this->nuts->eraseBloc('th_view');
 			$this->nuts->eraseBloc('td_view');
