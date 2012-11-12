@@ -61,7 +61,7 @@ $lang = array(
     "Select your file"              => "Choisissez votre(vos) fichier(s)",
     
     //Context menu
-    "Edit"                          => "Editer",
+    "Edit"                          => "Modifier",
     "Copy"                          => "Copier",
     "Cut"                           => "Couper",
     "Paste"                         => "Coller",
