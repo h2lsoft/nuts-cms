@@ -184,6 +184,7 @@ $lang = array(
     "Locked by" => "Verrouillé par",
 
     "Visualize" => "Visualiser",
+    "locks" => "Verrous",
 
     "EOF" => TRUE
 );
