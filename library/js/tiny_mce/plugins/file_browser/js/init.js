@@ -380,6 +380,18 @@ $(function(){
 
     });
 
+    // detect java
+    if(editor == 'edm')
+    {
+        if(!navigator.javaEnabled())
+        {
+            $.MediaBrowser.showMessage("Java plugin must be installed,<br>please download it at <a href='http://www.java.com' target='_blank'>Java website</a>", "special");
+        }
+
+
+
+    }
+
 
     // no fullscreen
     if(top === self)
