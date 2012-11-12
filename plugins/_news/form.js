@@ -4,8 +4,12 @@ for(i=0; i < hfs.length; i++)
 
 	if(!empty(n))
 	{
+
 		if(n.indexOf('fieldset') == 0)
-			$('#former #'+n).hide();
+        {
+            if(news_new_system && n != 'VirtualPageName')
+                $('#former #'+n).hide();
+        }
 		else
 			$('#former #'+n).parent('p').hide();
 	}
