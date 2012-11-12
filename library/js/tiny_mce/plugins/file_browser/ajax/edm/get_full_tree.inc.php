@@ -51,16 +51,19 @@ else
     $formatted_dirs = array();
     while($r = $nuts->dbFetch())
     {
-        $dir = str_replace($upload_pathX, '/', $r['Folder']);
-
-        if($dir != '/')
+        if(is_dir(WEBSITE_PATH.$upload_pathX))
         {
-            $dir[0] = '';
-            $dir[strlen($dir)-1] = '';
-            $dir = trim($dir);
+            $dir = str_replace($upload_pathX, '/', $r['Folder']);
 
-            $tmp = explode('/', $dir);
-            $formatted_dirs[] = $tmp;
+            if($dir != '/')
+            {
+                $dir[0] = '';
+                $dir[strlen($dir)-1] = '';
+                $dir = trim($dir);
+
+                $tmp = explode('/', $dir);
+                $formatted_dirs[] = $tmp;
+            }
         }
     }
 

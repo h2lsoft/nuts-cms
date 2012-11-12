@@ -67,7 +67,10 @@ $html = "";
 $qID = $nuts->dbGetQueryID();
 while($row = $nuts->dbFetch())
 {
-    $name = $row['LastName'].' '.$row['FirstName'];
+    // $name = $row['LastName'].' '.$row['FirstName'];
+    $name = strtoupper($row['LastName']);
+    $name .= " ".$row['FirstName'][0].".";
+
     $name_l = strtolower($name);
 
     // get edm groups
@@ -91,8 +94,10 @@ while($row = $nuts->dbFetch())
         </tr>
 EOF;
 
+
     $nuts->dbSetQueryID($qID);
 }
+
 
 $resp['result'] = 'ok';
 $resp['html'] = $html;

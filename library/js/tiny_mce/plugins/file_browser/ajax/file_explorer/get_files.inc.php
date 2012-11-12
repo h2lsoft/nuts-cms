@@ -22,6 +22,8 @@ else
     {
         $pathX = $selected_path.$key;
         $pathX = str_replace(WEBSITE_PATH, '', $pathX);
+        $value = strtolower($value);
+
 
         if($value == "folder")
         {

@@ -5,8 +5,8 @@
 
 $html = "";
 
-$dirs = getDirTree($upload_path, false);
-$tree = renderTree($dirs, $upload_path);
+$dirs = @getDirTree($upload_path, false);
+$tree = @renderTree($dirs, $upload_path);
 
 $upload_pathX = str_replace(WEBSITE_PATH, '', $upload_path);
 

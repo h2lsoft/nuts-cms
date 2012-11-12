@@ -52,16 +52,19 @@ else
     {
         $pathX = $selected_path.$key;
 
-        // renbame iso by utf8 prevent system bug
+        // rename iso by utf8 prevent system bug
         if(!mb_check_encoding($key, 'utf-8'))
         {
             $renamed = utf8_encode($key);
-            rename($pathX, $selected_path.$renamed);
+            @rename($pathX, $selected_path.$renamed);
             $pathX = $selected_path.$renamed;
             $key = $renamed;
+            usleep(200);
         }
 
         $pathX = str_replace(WEBSITE_PATH, '', $pathX);
+        $value = strtolower($value);
+
 
 
         if($value == "folder")

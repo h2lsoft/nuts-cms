@@ -27,12 +27,12 @@ if($type == 'folder')
 elseif($type == 'file')
 {
     $filename = WEBSITE_PATH.$cur_path;
-    $file_modified = date($datetimeFormat, filemtime($filename));
+    $file_modified = date($datetimeFormat, @filemtime($filename));
     $file_type = mime_content_type($filename);
-    $file_size = filesize($filename);
+    $file_size = @filesize($filename);
     $file_size = $file_size < 1024  ? $file_size. ' '.translate('bytes') : $file_size < 1048576 ? number_format($file_size / 1024, 2, $dec_seperator, $thousands_separator) . ' '.translate('kB') : number_format($file_size / 1048576, 2, $dec_seperator, $thousands_separator) . ' '.translate('MB');
     $filename = array_pop((explode("/", $filename)));
-    $fileext = array_pop((explode(".", $filename)));
+    $fileext = strtolower(array_pop((explode(".", $filename))));
     $file_locked = edmFileIsLocked($cur_path);
 
     $html = '<div class="icon '.$fileext.'"></div>';
