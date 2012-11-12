@@ -7,19 +7,41 @@
 include('plugins/_news/config.inc.php');
 
 // get news information
-if($plugin->getPageParameterCount() == 0)$plugin->error404();
-$newsID = (int)$plugin->getPageParameter(0);
-if($newsID == 0)$plugin->error404();
+if(!$news_new_system) # old system check
+{
+    if($plugin->getPageParameterCount() == 0)$plugin->error404();
+    $newsID = (int)$plugin->getPageParameter(0);
+    if($newsID == 0)$plugin->error404();
+
+    $sql = "SELECT
+                    *
+                    $sql_front_added
+            FROM
+                    NutsNews
+            WHERE
+                    ID=$newsID AND
+                    Active = 'YES' AND
+                    DateGMT <= NOW()";
+}
+else
+{
+    $urix = $_SERVER['PHP_SELF'];
+    $newsID = (int)Query::factory()->select('ID')->from('NutsNews')->where('VirtualPageName', '=', $urix)->executeAndGetOne();
+}
 
 $sql = "SELECT
-				*
-				$sql_front_added
-		FROM
-				NutsNews
-		WHERE
-				ID=$newsID AND
-				Active = 'YES' AND
-				DateGMT <= NOW()";
+                *
+                $sql_front_added
+        FROM
+                NutsNews
+        WHERE
+                ID=$newsID AND
+                Active = 'YES' AND
+                DateGMT <= NOW() AND
+                VirtualPageName = '$urix'";
+
+
+
 $plugin->doQuery($sql);
 $row = $plugin->dbFetch();
 
