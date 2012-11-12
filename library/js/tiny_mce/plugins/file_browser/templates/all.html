@@ -110,6 +110,10 @@
         <li><a href="javascript:;" onclick="popupModal('/nuts/?mod=_edm-group&do=list');" class="children"><span><i18n>Groups</i18n></span></a>
             {#endif}
 
+        {#if($_GET['editor'] == 'edm' && nutsUserHasRight('', '_edm-locks', 'list'))}
+        <li><a href="javascript:;" onclick="popupModal('/nuts/?mod=_edm-locks&do=list');" class="children"><span><i18n>Locks</i18n></span></a>
+            {#endif}
+
             {#if($_GET['editor'] == 'edm' && nutsUserHasRight('', '_edm-logs', 'list'))}
         <li><a href="javascript:;" onclick="popupModal('/nuts/?mod=_edm-logs&do=list');" class="children"><span><i18n>Logs</i18n></span></a>
             {#endif}
@@ -129,7 +133,9 @@
         </li>
 
         <!-- fullscreen -->
+        {#if($_GET['editor'] == 'edm')}
         <li id="option_fullscreen"><a href="#" onclick="popupModal(document.location.href);" title="<i18n>Fullscreen</i18n>"><span><img src="img/view-fullscreen.png" align="absmiddle" /></span></a>
+        {#endif}
         <!-- /fullscreen -->
 
     </ul>
