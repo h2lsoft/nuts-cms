@@ -417,11 +417,17 @@
 
             //Update clipboard label
             $('div#cbItems').text( $.MediaBrowser.clipboard.length );
+
+            // only ! edm
+            if(editor != 'edm')$.MediaBrowser.contextmenu();
+
         },
 
         cut: function(){
+
             $.MediaBrowser.copy();
             $.MediaBrowser.copyMethod = 'cut';
+
 
             $('div#files li.selected, div#files tr.selected').addClass('cut');
         },
@@ -629,6 +635,12 @@
                 $('div#files li a.folder, div#files tr.folder').contextMenu(foldercmenu);
                 $('div#files li a.file, div#files tr.file').contextMenu(filecmenu);
                 $('div#files li a.image, div#files tr.image').contextMenu(imagecmenu);
+
+                if($.MediaBrowser.clipboard.length == 0)
+                    cmenu[4].Coller.disabled = true;
+                else
+                    cmenu[4].Coller.disabled = false;
+
                 $('div#files').contextMenu(cmenu);
             }
         },
