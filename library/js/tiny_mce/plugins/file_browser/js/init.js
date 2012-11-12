@@ -387,9 +387,8 @@ $(function(){
 
 
     // unblock
-    setTimeout(function(){
-        $.unblockUI();
-    }, 3000);
-
+    timer_unblock = 150;
+    if(editor == 'edm')timer_unblock = 2000;
+    setTimeout(function(){$.unblockUI();}, timer_unblock);
 
 });
