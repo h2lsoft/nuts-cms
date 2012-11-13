@@ -136,7 +136,28 @@ class Page extends NutsCore
 		$allowed_ips = array_map('trim', $allowed_ips);
 
 		if(WEBSITE_MAINTENANCE == true && !in_array($this->getIP(), $allowed_ips))
-			die(WEBSITE_MAINTENANCE_MESSAGE);
+        {
+            // normal message or redirection ?
+            $maintenance_msg = WEBSITE_MAINTENANCE_MESSAGE;
+            if(strpos($maintenance_msg, 'http') === false && strpos($maintenance_msg, '<script') === false)
+            {
+                $maintenance_msg = '<html>';
+                $maintenance_msg .= '<head>';
+                $maintenance_msg .= '   <META NAME="robots" CONTENT="noindex,nofollow">';
+                $maintenance_msg .= '   <title>'.WEBSITE_NAME.'</title>';
+                $maintenance_msg .= '<head>';
+                $maintenance_msg .= '<body>';
+                $maintenance_msg .= '   <div style="margin: 100px auto 0 auto; width:550px; white-space: nowrap; text-align:center; padding:15px; font-family: arial; font-weight: bold; font-size: 16px; border: 1px solid navy; border-radius: 5px; color: navy;">';
+                $maintenance_msg .= '   <img src="/nuts/img/icon-tag-moderator.png" align="absmiddle" /> ';
+                $maintenance_msg .= WEBSITE_MAINTENANCE_MESSAGE;
+                $maintenance_msg .= '   </div>';
+                $maintenance_msg .= '</body>';
+                $maintenance_msg .= '</html>';
+            }
+
+            die($maintenance_msg);
+
+        }
 
 		/*if(in_array($this->getIP(), $allowed_ips))
 			$this->mode = 'preview';*/
