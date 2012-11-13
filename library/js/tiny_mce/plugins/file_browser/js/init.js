@@ -387,9 +387,6 @@ $(function(){
         {
             $.MediaBrowser.showMessage("Java plugin must be installed,<br>please download it at <a href='http://www.java.com' target='_blank'>Java website</a>", "special");
         }
-
-
-
     }
 
 
@@ -399,8 +396,23 @@ $(function(){
 
 
     // unblock
-    timer_unblock = 150;
+    timer_unblock = 0;
     if(editor == 'edm')timer_unblock = 2000;
     setTimeout(function(){$.unblockUI();}, timer_unblock);
+
+
+    // Chrome && FF bug zoom must be 100%
+    zoom_level = parseInt(document.defaultView.getComputedStyle(document.documentElement, null).width,10)/document.documentElement.clientWidth;
+    if(zoom_level != 1)
+    {
+        msg = "Warning !\n==========\n\nYour zoom level must be 100% to view contents of the explorer, please fix it by pressing keys `Ctrl+0`";
+        if(nutsUserLang == 'fr')
+            msg = "Attention !\n==========\n\nVotre niveau de zoom doit être à 100% pour voir les contenus de l'explorateur, merci de corriger ceci en appuyant sur les touches `Ctrl+0`";
+        alert(msg);
+    }
+
+
+
+
 
 });
