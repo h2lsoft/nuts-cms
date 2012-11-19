@@ -162,6 +162,7 @@ Alt+R : Rafraîchir<br />
 Alt+A : Ajouter un enregistrement<br />
 Alt+S : Ouvrir/Fermer la recherche";
 
+$nuts_lang_msg[92] = "Vous avez été déconnecté car votre adresse IP est différente";
 
 
 // main menu ***********************************************************************

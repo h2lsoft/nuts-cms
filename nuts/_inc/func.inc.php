@@ -43,7 +43,7 @@ function nutsCrypt($str, $crypt=true)
 /**
  * Destroy nuts session and return in login page
  */
-function nutsDestroyIt()
+function nutsDestroyIt($error='')
 {
 	$_COOKIE['NutsRemember'] = '';
 	setcookie ("NutsRemember", "", time() - 3600);
@@ -55,7 +55,13 @@ function nutsDestroyIt()
 
 	//header("Location: login.php");
 	//exit();
-	die("<script>document.location.href='login.php';</script>");
+    $uri_added = '';
+    if($error == 'ip_different')
+    {
+        $uri_added .= '?error=ip_different';
+    }
+
+	die("<script>document.location.href='login.php$uri_added';</script>");
 }
 
 /**

@@ -123,7 +123,7 @@ else
         $sqlIP = $nuts->dbGetOne();
         $sqlIP = long2ip($sqlIP);
         if($sqlIP != $IP)
-            nutsDestroyIt();
+            nutsDestroyIt('ip_different');
     }
 
 }

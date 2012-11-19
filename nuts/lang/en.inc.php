@@ -172,7 +172,7 @@ Alt+A : Add new record<br />
 Alt+S : Open / Close search box";
 
 
-
+$nuts_lang_msg[92] = "You have been disconnected because your ip is different";
 
 
 

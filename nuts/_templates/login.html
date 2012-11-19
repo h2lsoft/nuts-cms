@@ -103,7 +103,17 @@
 </div>
 
 <script>
+
+    var original__error_message = $('p.error').eq(0).html();
 	$('#NutsLogin').focus();
+
+    // error different
+    if("{$_GET['error']}" == 'ip_different')
+    {
+        msg = "{$nuts_lang_msg[92]}<br/><br/>";
+        $('p.error').eq(0).html(msg);
+        $('p.error').eq(0).slideDown('normal');
+    }
 
 	function xLogin()
 	{
@@ -126,6 +136,7 @@
 
 			if(resp != '')
 			{
+				$('p.error').eq(0).html(original__error_message);
 				$('p.error').eq(0).slideDown('fast');
 				$('#content').fadeTo(0.33, 1);
 				//$('#btn_submit').attr('value', "{$nuts_lang_msg[56]}");
@@ -274,6 +285,8 @@ function showResponse2(responseText, statusText)
 
 // bind form using 'ajaxForm'
 $('#former_lp').ajaxForm(options);
+
+
 
 </script>
 <!-- form window -->
