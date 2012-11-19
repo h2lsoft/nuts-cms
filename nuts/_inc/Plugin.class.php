@@ -1974,7 +1974,7 @@ EOF;
 		// type interception
 		if($class == 'int' || $class == 'integer' || $class == 'number')
 		{
-			$style = 'width:80px; text-align:center; '.$style;
+			$style = 'width:60px; text-align:center; '.$style;
 			if(is_bool($required))
 			{
 				$required =  (!$required) ? 'onlyDigit' : 'notEmpty|onlyDigit';
@@ -1982,7 +1982,7 @@ EOF;
 		}
 		elseif($class == 'float' || $class == 'money')
 		{
-			$style = 'width:80px; text-align:center; '.$style;
+			$style = 'width:60px; text-align:center; '.$style;
 			if(is_bool($required))
 			{
 				$required =  (!$required) ? 'onlyDigit(,1)' : 'notEmpty|onlyDigit(,1)';
