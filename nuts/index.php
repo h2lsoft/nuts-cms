@@ -198,8 +198,30 @@ if(!file_exists('lang/'.$NutsUserLang.'.inc.php'))
 else
 	include('lang/'.$NutsUserLang.'.inc.php');
 
-// include custom menu
+// include custom menu ***********************
 include('_custom_menu.inc.php');
+
+// reload menu with new version !
+$menu_count = Query::factory()->select("COUNT(*)")->from('NutsMenuCategory')->executeAndGetOne();
+if($menu_count > 0)
+{
+    Query::factory()->select("Name, NameFr, Color")->from('NutsMenuCategory')->order_by('Position')->execute();
+
+    $mods_group = array();
+    while($rec = $nuts->dbFetch())
+    {
+        $cur_name = $rec['Name'];
+        if(!empty($rec['NameFr']))$cur_name = $rec['Name'];
+        if($NutsUserLang == 'fr')$cur_name = $rec['NameFr'];
+
+        $mods_group[] = array(
+                                'name'  => $cur_name,
+                                'color' => $rec['Color']
+                            );
+    }
+}
+
+
 
 
 // logout ********************************************************************************
