@@ -81,6 +81,7 @@ foreach($pluginRegister['form_fields'] as $form_fields)
 {
     $label = ($lang == 'fr') ? $form_fields['label_fr'] : $form_fields['label_en'];
     $required = (!@$form_fields['required']) ? "" : '<span class="required">*</span>';
+    $text_after = ($lang == 'fr') ? @$form_fields['text_after_fr'] : @$form_fields['text_after_en'];
     $input_type = (!@$form_fields['input_type']) ? "text" : $form_fields['input_type'];
 
     if($form_fields['name'] != 'Login' || ($form_fields['name'] == 'Login' && $login_key == 'Login'))
@@ -93,6 +94,7 @@ foreach($pluginRegister['form_fields'] as $form_fields)
         $plugin->parse('fields.input_type', $input_type);
         $plugin->parse('fields.label', $label);
         $plugin->parse('fields.value', $v);
+        $plugin->parse('fields.text_after', $text_after);
         $plugin->loop('fields');
     }
 
@@ -104,6 +106,7 @@ foreach($pluginRegister['form_fields'] as $form_fields)
         $plugin->parse('fields.label', $label.' 2');
         $plugin->parse('fields.input_type', $input_type);
         $plugin->parse('fields.value', '');
+        $plugin->parse('fields.text_after', "");
         $plugin->loop('fields');
     }
 }

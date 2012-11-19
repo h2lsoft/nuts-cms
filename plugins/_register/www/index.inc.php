@@ -77,6 +77,7 @@ $plugin->openPluginTemplate();
 foreach($pluginRegister['form_fields'] as $form_fields)
 {
     $label = ($lang == 'fr') ? $form_fields['label_fr'] : $form_fields['label_en'];
+    $text_after = ($lang == 'fr') ? @$form_fields['text_after_fr'] : @$form_fields['text_after_en'];
     $required = (!@$form_fields['required']) ? "" : '<span class="required">*</span>';
     $input_type = (!@$form_fields['input_type']) ? "text" : $form_fields['input_type'];
 
@@ -87,6 +88,7 @@ foreach($pluginRegister['form_fields'] as $form_fields)
         $plugin->parse('fields.input_type', $input_type);
         $plugin->parse('fields.label', $label);
         $plugin->parse('fields.value', @$_POST[$form_fields['name']]);
+        $plugin->parse('fields.text_after', $text_after);
         $plugin->loop('fields');
     }
 
@@ -98,6 +100,7 @@ foreach($pluginRegister['form_fields'] as $form_fields)
         $plugin->parse('fields.label', $label.' 2');
         $plugin->parse('fields.input_type', $input_type);
         $plugin->parse('fields.value', @$_POST['Password2']);
+        $plugin->parse('fields.text_after', "");
         $plugin->loop('fields');
     }
 }

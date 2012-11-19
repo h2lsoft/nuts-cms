@@ -27,7 +27,9 @@ $pluginRegister['form_fields'][] = array(
                                             'name' => 'Company',
                                             'label_en' => "Company",
                                             'label_fr' => "Société",
-                                            'required' => false
+                                            'required' => false,
+                                            'text_after_en' => '',
+                                            'text_after_fr' => ''
                                           );
 
 // last name
@@ -35,7 +37,9 @@ $pluginRegister['form_fields'][] = array(
                                             'name' => 'LastName',
                                             'label_en' => "Your name",
                                             'label_fr' => "Votre nom",
-                                            'required' => true
+                                            'required' => true,
+                                            'text_after_en' => '',
+                                            'text_after_fr' => ''
                                           );
 
 // first name
@@ -43,7 +47,9 @@ $pluginRegister['form_fields'][] = array(
                                             'name' => 'FirstName',
                                             'label_en' => "Your first name",
                                             'label_fr' => "Votre prénom",
-                                            'required' => true
+                                            'required' => true,
+                                            'text_after_en' => '',
+                                            'text_after_fr' => ''
                                           );
 
 // address group *************************
@@ -54,7 +60,9 @@ if($pluginRegister['add_address_fields'])
                                                 'name' => 'Address',
                                                 'label_en' => "Address",
                                                 'label_fr' => "Address",
-                                                'required' => true
+                                                'required' => true,
+                                                'text_after_en' => '',
+                                                'text_after_fr' => ''
                                               );
 
     // Address 2
@@ -62,7 +70,9 @@ if($pluginRegister['add_address_fields'])
                                                 'name' => 'Address2',
                                                 'label_en' => "Address 2",
                                                 'label_fr' => "Address 2",
-                                                'required' => false
+                                                'required' => false,
+                                                'text_after_en' => '',
+                                                'text_after_fr' => ''
                                               );
 
     // Zip code
@@ -70,7 +80,9 @@ if($pluginRegister['add_address_fields'])
                                                 'name' => 'ZipCode',
                                                 'label_en' => "Zip code",
                                                 'label_fr' => "Code postal",
-                                                'required' => true
+                                                'required' => true,
+                                                'text_after_en' => '',
+                                                'text_after_fr' => ''
                                               );
 
     // City
@@ -78,7 +90,9 @@ if($pluginRegister['add_address_fields'])
                                                 'name' => 'City',
                                                 'label_en' => "City",
                                                 'label_fr' => "Ville",
-                                                'required' => true
+                                                'required' => true,
+                                                'text_after_en' => '',
+                                                'text_after_fr' => ''
                                               );
 
     // Country
@@ -86,7 +100,9 @@ if($pluginRegister['add_address_fields'])
                                                 'name' => 'Country',
                                                 'label_en' => "Country",
                                                 'label_fr' => "Pays",
-                                                'required' => true
+                                                'required' => true,
+                                                'text_after_en' => '',
+                                                'text_after_fr' => ''
                                               );
 }
 
@@ -98,7 +114,9 @@ if($pluginRegister['add_phone_fields'])
                                                 'name' => 'Phone',
                                                 'label_en' => "Your phone",
                                                 'label_fr' => "Votre téléphone",
-                                                'required' => true
+                                                'required' => true,
+                                                'text_after_en' => '',
+                                                'text_after_fr' => ''
                                               );
 
     // Gsm
@@ -106,7 +124,9 @@ if($pluginRegister['add_phone_fields'])
                                                 'name' => 'Gsm',
                                                 'label_en' => "Your mobile",
                                                 'label_fr' => "Votre mobile",
-                                                'required' => false
+                                                'required' => false,
+                                                'text_after_en' => '',
+                                                'text_after_fr' => ''
                                               );
 
     // Fax
@@ -114,7 +134,9 @@ if($pluginRegister['add_phone_fields'])
                                                 'name' => 'Fax',
                                                 'label_en' => "Your fax",
                                                 'label_fr' => "Votre fax",
-                                                'required' => false
+                                                'required' => false,
+                                                'text_after_en' => '',
+                                                'text_after_fr' => ''
                                               );
 }
 
@@ -123,7 +145,9 @@ $pluginRegister['form_fields'][] = array(
                                             'name' => 'Login',
                                             'label_en' => "Login",
                                             'label_fr' => "Identifiant",
-                                            'required' => true
+                                            'required' => true,
+                                            'text_after_en' => '',
+                                            'text_after_fr' => ''
                                           );
 
 // Email
@@ -131,7 +155,9 @@ $pluginRegister['form_fields'][] = array(
                                             'name' => 'Email',
                                             'label_en' => "Your email",
                                             'label_fr' => "Votre email",
-                                            'required' => true
+                                            'required' => true,
+                                            'text_after_en' => '',
+                                            'text_after_fr' => ''
                                           );
 // Password
 $pluginRegister['form_fields'][] = array(
@@ -139,7 +165,9 @@ $pluginRegister['form_fields'][] = array(
                                             'label_en' => "Password",
                                             'label_fr' => "Mot de passe",
                                             'required' => true,
-                                            'input_type' => 'password'
+                                            'input_type' => 'password',
+                                            'text_after_en' => '',
+                                            'text_after_fr' => ''
                                           );
 
 

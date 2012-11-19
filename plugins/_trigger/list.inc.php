@@ -20,7 +20,7 @@ $plugin->listSearchAddFieldTextAjaxAutoComplete('Name');
 
 // create fields
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
-$plugin->listAddCol('Name', '', '; width:30px', true);
+$plugin->listAddCol('Name', '', '; width:30px; white-space:nowrap;', true);
 $plugin->listAddCol('Description', '', '', false);
 
 
