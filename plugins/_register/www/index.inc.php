@@ -166,7 +166,6 @@ else
     // trigger
     nutsTrigger('_register', true, "New user is registered");
 
-
 	// page redirection
 	if(!empty($pluginRegister['onValidRedirectUrl']))
 	{
