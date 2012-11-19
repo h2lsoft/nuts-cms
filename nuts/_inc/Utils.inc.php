@@ -392,7 +392,7 @@ function nutsTrigger($name, $auto_register=false, $description="")
         {
             $f = array();
             $f['Name'] = $name;
-            $f['Description'] = $description;
+            $f['Description'] = ucfirst($description);
             $nuts->dbInsert('NutsTrigger', $f);
         }
     }
