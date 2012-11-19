@@ -163,6 +163,10 @@ else
 		nutsSendEmail($email_template[$mail_lang], $_POST, $_POST['Email']);
 	}
 
+    // trigger
+    nutsTrigger('_register', true, "new user is registered");
+
+
 	// page redirection
 	if(!empty($pluginRegister['onValidRedirectUrl']))
 	{
