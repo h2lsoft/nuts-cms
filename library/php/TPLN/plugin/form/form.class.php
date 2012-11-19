@@ -309,7 +309,7 @@ class Form extends Mail
 		}
 		else
 		{
-			$res = ctype_digit($_POST[$this->last_obj]);
+			$res = is_numeric($_POST[$this->last_obj]);
 		}
 
 		if(!empty($_POST[$this->last_obj]) && !$res)
