@@ -51,6 +51,8 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'comment_delete')
 
 	$plugin->trace('comment_delete', (int)$_GET['ID']);
 
+    nutsTrigger('page-manager::comment_delete', true, "action delete on comment");
+
 	// launch exec for all suscribers
 	exit(1);
 }
@@ -67,6 +69,8 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'comment_visible')
 
 
 	$plugin->trace('comment_visible', (int)$_GET['CommentID'], $visible);
+
+    nutsTrigger('page-manager::comment_visible', true, "action visible on comment");
 
 	// launch exec for all suscribers
 	echo $visible;
@@ -92,6 +96,8 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'comment_new')
 											), array(), true);
 
 	$plugin->trace('comment_new', (int)$CID, print_r($_POST, true));
+
+    nutsTrigger('page-manager::comment_new', true, "action new on comment");
 
 	// launch exec for all suscribers
 	$uri = WEBSITE_URL.'/plugins/_comments/www/exec.php?action=';
@@ -131,6 +137,9 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'comment_list')
 // reload ***********************************************************************************
 if(isset($_GET['_action']) && $_GET['_action'] == 'reload')
 {
+
+    nutsTrigger('page-manager::reload', true, "action reload all pages");
+
 	$data = nutsGetMenu($_GET['language'], (int)$_GET['zoneID'], 0, $_GET['state'], $_GET['dID']);
 	echo $data;
 	exit(1);	
@@ -138,6 +147,8 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'reload')
 // reload page ***********************************************************************************
 if(isset($_GET['_action']) && $_GET['_action'] == 'reload_page')
 {
+    nutsTrigger('page-manager::reload_page', true, "action reload on page");
+
 	$data = nutsGetMenu($_GET['language'], (int)$_GET['zoneID'], (int)$_GET['ID'], $_GET['state'], @$_GET['dID']);
 	echo $data;
 	exit(1);
@@ -266,7 +277,8 @@ if((isset($_GET['_action']) && $_GET['_action'] == 'add_page') || (isset($_GET['
 			}
 		}
 	}	
-	
+
+    nutsTrigger('page-manager::add_page', true, "action add new page");
 	$plugin->trace('add', $lastID);	
 
 	
@@ -348,14 +360,17 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'duplicate_page')
 
 
 
-
+    nutsTrigger('page-manager::duplicate_page', true, "action on duplicate page");
 	echo $nuts->array2json($data);
 	exit(1);
 }
 
 // rename page ***********************************************************************************
 if(isset($_GET['_action']) && $_GET['_action'] == 'rename_page')
-{	
+{
+
+    nutsTrigger('page-manager::rename_page', true, "action on rename page");
+
 	$nuts->dbUpdate('NutsPage', array('MenuName' => $_GET['XName']), "ID = ".(int)$_GET['ID']);
 	$plugin->trace('rename_page', (int)$_GET['ID']);
 	exit(1);
@@ -396,6 +411,7 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'delete_page')
 		}
 	}	
 
+    nutsTrigger('page-manager::delete_page', true, "action on delete page");
 	$plugin->trace('delete', (int)$_GET['ID']);
 						  
 	exit("$parentNodeID|$c");
@@ -457,7 +473,8 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'move_page')
 			$pos++;
 		}
 	}
-	
+
+    nutsTrigger('page-manager::move_page', true, "action on move page");
 	$plugin->trace('move', (int)$_GET['ID']);
 
 	exit(1);
@@ -656,7 +673,10 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'data_form')
 		$row['DateEnd'] = $nuts->db2date($row['DateEnd']);
 	}
 	
-	
+
+    nutsTrigger('page-manager::data_form', true, "action on get data for a page");
+
+
 	echo $nuts->array2json($row);
 	exit();
 }
@@ -812,7 +832,12 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'save_page')
 		
 		
 		// trace action
-		$plugin->trace('save', (int)$_GET['ID']);		
+		$plugin->trace('save', (int)$_GET['ID']);
+
+
+        nutsTrigger('page-manager::save_page', true, "action on save page");
+
+
 		echo "ok";
 	}
 		
