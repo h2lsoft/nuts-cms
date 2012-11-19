@@ -1,0 +1,1 @@
+initCodeEditor('PhpCode', 'php', true);
