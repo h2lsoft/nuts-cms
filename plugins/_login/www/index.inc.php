@@ -134,6 +134,9 @@ if($plugin->formIsValid())
 	if($trace_mode)
 		nutsTrace('front-office', 'logon');
 
+    // trigger
+    nutsTrigger('_login', true, "user logon successful");
+
 	// redirect logon page
 	nutsAccessRestrictedRedirectPage('logon');
 }
