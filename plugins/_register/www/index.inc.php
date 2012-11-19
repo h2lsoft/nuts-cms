@@ -164,7 +164,7 @@ else
 	}
 
     // trigger
-    nutsTrigger('_register', true, "new user is registered");
+    nutsTrigger('_register', true, "New user is registered");
 
 
 	// page redirection
