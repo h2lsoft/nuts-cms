@@ -24,6 +24,7 @@ if($plugin->formValid())
     // avatar treatment
     include(PLUGIN_PATH.'/trt_avatar.inc.php');
 
+    nutsTrigger('_user-profile', true, "User change its profile");
 }
 
 
