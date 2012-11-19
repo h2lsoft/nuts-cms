@@ -37,7 +37,12 @@ foreach($files as $file)
         systemError(translate("Parameters files `$file` not correct !"));
 }
 
-// lanch rename
+
+// trigger
+nutsTrigger('file-explorer::cut-paste_before', true, "file-explorer user action cut and paste");
+
+
+// launch rename
 foreach($files as $file)
 {
     $file = urldecode($file);
@@ -47,7 +52,8 @@ foreach($files as $file)
         systemError(translate("Error while moving file")." `$file`");
 }
 
-
+// trigger
+nutsTrigger('file-explorer::cut-paste_success', true, "file-explorer user action cut and paste");
 
 
 ?>

@@ -71,8 +71,15 @@ foreach($files as $file)
 
         $source = WEBSITE_PATH.$file;
         $dest = WEBSITE_PATH.$folder.$current_folder_name."/";
+
+        // trigger
+        nutsTrigger('file-explorer::copy-paste_before', true, "file-explorer user action copy and paste");
+
         if(!@smartCopy($source, $dest))
             systemError(translate("Error while copying folder")." `$current_folder_name`<br />$source <> $dest");
+
+        // trigger
+        nutsTrigger('file-explorer::copy-paste_success', true, "file-explorer user action copy and paste");
 
     }
 

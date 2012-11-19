@@ -39,6 +39,11 @@ foreach($files as $file)
         systemError(translate("Folder doesn't exist")." `$file`");
 }
 
+
+// trigger
+nutsTrigger('file-explorer::delete_before', true, "file-explorer user action delete");
+
+
 // delete files
 foreach($files as $file)
 {
@@ -50,6 +55,10 @@ foreach($files as $file)
     if($is_dir && !@recursiveDelete(WEBSITE_PATH.$file))
         systemError(translate("Deleting folder failed !")." `$file`");
 }
+
+
+// trigger
+nutsTrigger('file-explorer::delete_success', true, "file-explorer user action delete");
 
 $resp['result'] = 'ok';
 

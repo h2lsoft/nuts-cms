@@ -72,11 +72,20 @@ if(!in_array(@$file_parts['extension'], $filetypes_exts))
 $file_name = $_FILES['file']['name'];
 $file_name = trim($file_name);
 $file_name = str_replace(' ', '-', $file_name);
+
+
+// trigger
+nutsTrigger('file-explorer::upload_before', true, "file-explorer user upload file");
+
 if(!move_uploaded_file($_FILES['file']['tmp_name'], WEBSITE_PATH.$_POST['path'].$file_name))
 {
     // die("Error: file `".$_POST['path'].$_FILES['file']['name']."` not uploaded");
     upload_error(13, $_POST['path'].$_FILES['file']['name']);
 }
+
+// trigger
+nutsTrigger('file-explorer::upload_success', true, "file-explorer user upload file");
+
 
 die('ok');
 

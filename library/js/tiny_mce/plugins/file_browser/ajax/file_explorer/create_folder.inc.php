@@ -25,10 +25,16 @@ if(!preg_match("#^$upload_pathX#", $folder_dest))
 if(is_dir(WEBSITE_PATH.$folder_dest.$folder_name))
     systemError(translate("Directory already exists !"));
 
+// trigger
+nutsTrigger('file-explorer::create-folder_before', true, "file-explorer user action create folder");
+
 // create folder
 if(!@mkdir(WEBSITE_PATH.$folder_dest.$folder_name))
     systemError(translate("Creating new folder failed !"));
 
+
+// trigger
+nutsTrigger('file-explorer::create-folder_success', true, "file-explorer user action create folder");
 
 $resp['result'] = 'ok';
 
