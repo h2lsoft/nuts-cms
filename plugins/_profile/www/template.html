@@ -1,0 +1,43 @@
+<form method="post" id="profile_form" name="profile_form" class="nuts_form" action="">
+
+	<bloc::form_error_all>
+	<div id="form_error">
+		<bloc::form_error>
+		<p>{msg}</p>
+		</bloc::form_error>
+	</div>
+	</bloc::form_error_all>
+
+
+	<div class="layout_form" id="layout_form_registration_form">
+		<div class="wrapper_form" id="wrapper_form_registration_form">
+
+			<div class="caption">
+				{label_caption}
+			</div>
+
+
+            <bloc::fields>
+
+                <!-- {name} -->
+			    <div class="wrapper" id="wrapper_{name}">
+				    <span class="label">{label} {required} :</span> <input type="{input_type}" id="{name}" name="{name}" value="{value}" />
+			    </div>
+			    <!-- /{name} -->
+
+            </bloc::fields>
+
+
+			<div class="wrapper form_required">
+				<span class="required">*</span> {label_required_fields}
+			</div>
+
+			<div class="wrapper form_bottom">
+				<input type="submit" class="submit" value="{label_submit}" />
+			</div>
+
+		</div>
+	</div>
+
+</form>
+<script type="text/javascript" src="/plugins/_profile/www/custom.js"></script>
