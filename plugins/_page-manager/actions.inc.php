@@ -258,13 +258,31 @@ if((isset($_GET['_action']) && $_GET['_action'] == 'add_page') || (isset($_GET['
 								DateStartOption,
 								DateStart,
 								DateEndOption,
-								DateEnd
+								DateEnd,
+								NutsPageContentViewID
 						FROM
 								NutsPage
 						WHERE
 								ID = {$_GET['parentID']}");
 		$row = $nuts->dbFetch();
 		$nuts->dbUpdate('NutsPage', $row, "ID = $lastID");
+
+
+        // copy view data
+        if($row['NutsPageContentViewID'] != 0)
+        {
+            $rx = Query::factory()->select('*')
+                                  ->from('NutsPageContentViewFieldData')
+                                  ->where('NutsPageID', '=', $_GET['parentID'])
+                                  ->where('NutsPageContentViewID', '=', $row['NutsPageContentViewID'])
+                                  ->executeAndGetAll();
+            foreach($rx as $tmp_rec)
+            {
+                $tmp_rec['NutsPageID'] = $lastID;
+                $nuts->dbInsert('NutsPageContentViewFieldData', $tmp_rec, array('ID'));
+            }
+        }
+
 
 		// copy page access
 		if($row['AccessRestricted'] == 'YES')
@@ -328,9 +346,25 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'duplicate_page')
 	$rec['MenuName'] = $new_title;
 	$rec['Position'] = $max_position;
 	$rec['_HasChildren'] = (@$_GET['duplicate_sub'] == 1) ? 'YES' : 'NO';
-	$rec['State'] = 'DRAFT';	
+	$rec['State'] = 'DRAFT';
 
 	$lastID = $nuts->dbInsert('NutsPage', $rec, array(), true);
+
+    // copy view data
+    if($rec['NutsPageContentViewID'] != 0)
+    {
+        $rx = Query::factory()->select('*')
+                              ->from('NutsPageContentViewFieldData')
+                              ->where('NutsPageID', '=', $_GET['parentID'])
+                              ->where('NutsPageContentViewID', '=', $rec['NutsPageContentViewID'])
+                              ->executeAndGetAll();
+        foreach($rx as $tmp_rec)
+        {
+            $tmp_rec['NutsPageID'] = $lastID;
+            $nuts->dbInsert('NutsPageContentViewFieldData', $tmp_rec, array('ID'));
+        }
+    }
+
 
 	// copy page access from $_GET['parentID']
 	if($rec['AccessRestricted'] == 'YES')
@@ -594,12 +628,11 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'data_form')
 					if($cf['type'] == 'date' || $cf['type'] == 'datetime')
 						$arr[$cf['name']] = $nuts->db2date($arr[$cf['name']]);
 				}
-				
+
 				$row['cf'.$cf['name']] = (string)$arr[$cf['name']];
 			}
-		}		
+		}
 	}
-	
 
 	// blocks conversion
     $row['BlocksNb'] = 0;
@@ -706,8 +739,6 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'data_form')
 	
 
     nutsTrigger('page-manager::data_form', true, "action on get data for a page");
-
-
 	echo $nuts->array2json($row);
 	exit();
 }
@@ -947,6 +978,23 @@ function duplicatePages($pageID_source, $pageID_target)
 
         $lastID = $nuts->dbInsert('NutsPage', $rec, array(), true);
 
+        // copy view data
+        if($rec['NutsPageContentViewID'] != 0)
+        {
+            $rx = Query::factory()->select('*')
+                                  ->from('NutsPageContentViewFieldData')
+                                  ->where('NutsPageID', '=', $oldID)
+                                  ->where('NutsPageContentViewID', '=', $rec['NutsPageContentViewID'])
+                                  ->executeAndGetAll();
+
+            foreach($rx as $tmp_rec)
+            {
+                $tmp_rec['NutsPageID'] = $lastID;
+                $nuts->dbInsert('NutsPageContentViewFieldData', $tmp_rec, array('ID'));
+            }
+        }
+
+        // copy restriction
         if($rec['AccessRestricted'] == 'YES')
         {
             $sql = "SELECT NutsGroupID FROM NutsPageAccess WHERE NutsPageID = {$oldID}";
