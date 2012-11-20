@@ -511,7 +511,7 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'data_form')
 	
 	// get number of comments
 	$nuts->doQuery("SELECT COUNT(*) FROM NutsPageComment WHERE NutsPageID = ".(int)$_GET['ID']);
-	$row['CommentsNb'] = (int)$nuts->getOne();
+	$row['CommentsNb'] = (int)$nuts->dbGetOne();
 		
 	/*
 	// get tags
@@ -523,6 +523,37 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'data_form')
 	}
 	$row['Tag'] = join(', ', $tags);
 	*/
+
+    // get all content view all field ID, Name, ID and Type
+    if($row['NutsPageContentViewID'] != 0)
+    {
+        $fields = Query::factory()->select("*")
+                                  ->from('NutsPageContentViewField')
+                                  ->where('NutsPageContentViewID', '=', $row['NutsPageContentViewID'])
+                                  ->order_by("Position")
+                                  ->executeAndGetAll();
+
+        foreach($fields as $field)
+        {
+            Query::factory()->select('Value')
+                            ->from('NutsPageContentViewFieldData')
+                            ->where('NutsPageContentViewID', '=', $row['NutsPageContentViewID'])
+                            ->where('NutsPageContentViewFieldID', '=', $field['ID'])
+                            ->where('NutsPageID', '=', (int)$_GET['ID'])
+                            ->execute();
+
+            $val = $nuts->dbGetOne();
+
+            if(strtolower($field['Type']) == 'date' || strtolower($field['Type']) == 'datetime')
+            {
+                $val = $nuts->db2date($val);
+            }
+
+            $row['ContentView'.$field['Name'].'_'.$row['NutsPageContentViewID']] = $val;
+        }
+    }
+
+
 	
 	// get special vars
 	if(count($custom_fields) > 0)
@@ -789,7 +820,45 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'save_page')
 		}
 								
 		// save
-		$nuts->dbUpdate('NutsPage', $_POST, "ID = ".(int)$_GET['ID'], array('PageZoneID', 'cf*', 'Status', 'asm*', 'dID', 'CommentName', 'CommentText', 'PageAccess', 'PageAccessX'));
+		$nuts->dbUpdate('NutsPage', $_POST, "ID = ".(int)$_GET['ID'], array('PageZoneID', 'cf*', 'Status', 'asm*', 'dID', 'CommentName', 'CommentText', 'PageAccess', 'PageAccessX', 'ContentView*'));
+
+
+        // save content view
+        $_POST['NutsPageContentViewID'] = (int)$_POST['NutsPageContentViewID'];
+        $nuts->dbDelete('NutsPageContentViewFieldData', "NutsPageID = ".(int)$_GET['ID']);
+        if($_POST['NutsPageContentViewID'] != 0)
+        {
+            // get all field ID, Name, ID and Type
+            $fields = Query::factory()->select("*")->from('NutsPageContentViewField')->where('NutsPageContentViewID', '=', $_POST['NutsPageContentViewID'])->order_by("Position")->executeAndGetAll();
+            foreach($fields as $field)
+            {
+                $cur_val = @$_POST['ContentView'.$field['Name'].'_'.$_POST['NutsPageContentViewID']];
+
+                // datetime format
+                if($_SESSION['Language'] == 'fr')
+                {
+                    if(strtolower($field['Type']) == 'date')
+                    {
+                       if(!empty($cur_val))
+                            $cur_val = $nuts->date2db($cur_val);
+                    }
+
+                    if(strtolower($field['Type']) == 'datetime')
+                    {
+                       if(!empty($cur_val))
+                            $cur_val = $nuts->date2db($cur_val).':00';
+                    }
+                }
+
+                $f = array();
+                $f['NutsPageContentViewID'] = $_POST['NutsPageContentViewID'];
+                $f['NutsPageID'] = $_GET['ID'];
+                $f['NutsPageContentViewFieldID'] = $field['ID'];
+                $f['Value'] = $cur_val;
+
+                $nuts->dbInsert('NutsPageContentViewFieldData', $f);
+            }
+        }
 
 
 		// tags

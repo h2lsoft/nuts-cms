@@ -386,7 +386,7 @@ function editPage(nodeID, selectTabs)
 					}
 
 					//{
-						log('load key => '+key+' value => '+data[key]);
+						// log('load key => '+key+' value => '+data[key]);
 						$('#former #'+key).val(data[key]);
 					//}
 					//else
@@ -491,7 +491,8 @@ function editPage(nodeID, selectTabs)
 			// assign default spellchecker language
 			nutsCurrentPageLang = $('#former #Language').val();
 
-
+            // refresh view
+            $('#NutsPageContentViewID').change();
 
 
   		}

@@ -129,5 +129,6 @@ $lang_msg[100] = "Rafraichîr le dossier";
 
 $lang_msg[101] = "Voulez-vous également dupliquer les sous-pages ?";
 
+$lang_msg[102] = "Vue de contenu";
 
 ?>

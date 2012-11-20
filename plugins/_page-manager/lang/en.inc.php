@@ -135,5 +135,8 @@ $lang_msg[100] = "Refresh folder";
 $lang_msg[101] = "Would you like to also duplicate sub pages ?";
 
 
+$lang_msg[102] = "Content views";
+
+
 
 ?>

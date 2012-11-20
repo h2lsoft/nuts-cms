@@ -225,6 +225,8 @@ foreach($views as $viewID)
 {
     $view_fields =  Query::factory()->select('*')->from('NutsPageContentViewField')->where('NutsPageContentViewID', '=', $viewID)->order_by('Position')->executeAndGetAll();
 
+
+    $nuts_views_form .= '<div class="content_view_wrapper" id="content_view_wrapper_'.$viewID.'">';
     $p_class = 'content_view content_view_'.$viewID;
     foreach($view_fields as $vf)
     {
@@ -271,6 +273,9 @@ foreach($views as $viewID)
             $nuts_views_form .= nutsFormAddSelectSql($name, $vf['Label'], $sql, $vf['Value'], $vf['CssStyle'], $vf['Help'], $vf['HrAfter'], $p_class);
         }
     }
+
+
+    $nuts_views_form .= '</div>';
 }
 
 

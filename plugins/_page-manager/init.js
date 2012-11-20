@@ -300,6 +300,28 @@ $('#pager_content #Language option').each(function(){
 selectSetOptionStyle('Language');
 
 
+// color picker
+$('#former .widget_colorpicker').each(function(){
+
+    current_id = $(this).attr('id');
+    $('#former #'+current_id).ColorPicker({
+
+	    onSubmit: function(hsb, hex, rgb, el) {
+		    $(el).val('#'+hex);
+		    $('#former #'+current_id+'_colorpicker_preview').css('background-color', $(el).val());
+		    $(el).ColorPickerHide();
+	    },
+
+        onBeforeShow: function () {
+            v = str_replace('#', '', this.value);
+		    $(this).ColorPickerSetColor(v);
+	    }
+    });
+
+    $('#former #'+current_id+'_colorpicker_preview').css('background-color', $('#former #'+current_id).val());
+
+});
+
 
 // special for frontoffice toolbar
 if(from_mode == 'iframe')
@@ -328,6 +350,17 @@ if(from_mode == 'iframe')
 	reloadPage($('#dID').val());
 
 }
+
+
+$('#NutsPageContentViewID').change(function(){
+
+    vID = $(this).val();
+    if(vID == '')vID = 0;
+
+    $('#tab2 .content_view_wrapper').hide();
+    $('#tab2 #content_view_wrapper_'+vID).show();
+
+});
 
 
 
