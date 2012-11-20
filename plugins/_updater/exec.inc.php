@@ -49,7 +49,7 @@ $_GET['step'] = (int)$_GET['step'];
 if(($conn_id_rep = @ftp_connect($ftp_server, $ftp_port, $ftp_timeout)))
 	$conn_id_rep_login = @ftp_login($conn_id_rep, $ftp_user, $ftp_pwd);
 
-@ftp_pasv($conn_id_rep, $ftp_passive_mode);
+@ftp_pasv($conn_id_rep, true);
 
 // ftp connection
 if(!$conn_id_rep || !$conn_id_rep_login)
@@ -78,7 +78,7 @@ else
 			$versions[] = $f_num;
 		}
 	}
-	
+
 	sort($versions);
 	foreach($versions as $v)
 	{
@@ -123,7 +123,7 @@ else
     elseif($_GET['step'] == -1)
 	{
 		$output = "<b>-> Get last updater engine</b>";
-		
+
 		$updater_path = WEBSITE_PATH.'/plugins/_updater/exec.inc.php';
 		if(!is_writable($updater_path))
 		{
@@ -143,7 +143,7 @@ else
 					$err = true;
 					$php_last_error = error_get_last();
 					$output .= " : <i>failed</i> (".@$php_last_error['message'].")";
-					
+
 					// restore backup
 					@copy($updater_path.'.backup', $updater_path);
 					$output .= " original copy restored";
@@ -155,7 +155,7 @@ else
 				}
 			}
 		}
-	}	
+	}
 	elseif($_GET['step'] == 0)
 	{
 		if($next_version == NUTS_VERSION)$output = "<u>You have the latest version</u>";
@@ -201,8 +201,8 @@ else
 				}
 			}
 		}
-		// </editor-fold>	
-		
+		// </editor-fold>
+
 		// <editor-fold defaultstate="collapsed" desc="get commands version">
 		if(!$err)
 		{
@@ -262,42 +262,42 @@ else
 		if(!$err)
 		{
 			$output .= "<b>-> Get complete files list</b>\n";
-			
+
 			@ftp_chdir($conn_id_rep, $next_version);
-			
+
 			// if(!($files_list = @ftp_nlist($conn_id_rep, '-aFpR .')))
 			if(!($files_list =  @ftp_rawlist($conn_id_rep, '-A .', true)))
 			{
 				$output .= "<i>Error: couldn't get file list </i>\n";
 				$err = true;
 			}
-			
-			
+
+
 			// here the magic begins!
 			$last_path = "";
 			$structure = array();
 			foreach($files_list as $file_list)
 			{
 				$line = explode(" ", $file_list);
-				
+
 				$f = end($line);
 				if(!empty($f) && $f[strlen($f)-1] == ':')
 				{
 					$last_path = str_replace(':', '/', $f);
 				}
-								
+
 				if(!empty($f) && $f[strlen($f)-1] != ':' && strpos($f, '.') !== false)
 				{
 					$fs = explode('.', $f);
 					$fs = end($fs);
-					
+
 					// file extension only
 					if(strlen($fs) <= 4)
 						$structure[] = './'.$next_version.'/'.$last_path.$f;
-				}				
+				}
 			}
-			
-			$files_list = array_unique($structure);			
+
+			$files_list = array_unique($structure);
 		}
 		// </editor-fold>
 
@@ -395,7 +395,7 @@ else
 
 		// <editor-fold defaultstate="collapsed" desc="put ftp files to tmp directory">
 		if(!$err)
-		{			
+		{
 			$output .= "<b>-> Put ftp files to tmp directory</b>\n";
 			foreach($files_list as $fl)
 			{
@@ -661,7 +661,7 @@ else
 		// display button to relaunch the updater
 		if($err)$btn_display = '';
 	}
-	
+
 }
 
 if($debug_mode)
