@@ -508,6 +508,8 @@ EOF;
  * @param $value
  * @param $help
  * @param $hr_after
+ * @param $p_class
+ *
  * @return string
  */
 function nutsFormAddColorpicker($name, $label, $style, $value, $help, $hr_after, $p_class)
