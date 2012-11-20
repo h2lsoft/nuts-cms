@@ -735,8 +735,8 @@ div#form textarea[disabled]
 }
 
 
-div#form .date {background-image:url(calendar.png); background-repeat:no-repeat; background-position:right;}
-div#form .datetime {background-image:url(calendar.png); background-repeat:no-repeat; background-position:right;}
+div#form .date, #former .date {background-image:url(calendar.png); background-repeat:no-repeat; background-position:right;}
+div#form .datetime, #former .datetime  {background-image:url(calendar.png); background-repeat:no-repeat; background-position:right;}
 
 div#form fieldset {padding:5px; -moz-border-radius: 8px; margin-top:10px; margin-bottom:10px;}
 div#form legend {font-weight:bold; margin-left:10px; padding-left:5px; padding-right:5px; color:#3333FF;}
@@ -1458,6 +1458,7 @@ div.calendar { position: relative; }
     width: 20px;
     height: 18px;
     border: 1px solid #AEB5C1;
+
     margin-right: 1px;
 }
 
@@ -1834,6 +1835,8 @@ select.ntabs_loading {background-image: url(/nuts/img/ajax-loader.gif); backgrou
 /** hacks webkit **/
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 
+
+    .widget_colorpicker_preview {margin-top: 2px;}
 
     #main_title {margin-top: 25px;}
 
