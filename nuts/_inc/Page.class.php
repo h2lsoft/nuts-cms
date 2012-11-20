@@ -531,6 +531,69 @@ class Page extends NutsCore
 		// @PAGE_CONTENT parsing ***************************************************************************
 		// <editor-fold defaultstate="collapsed">
 		$out = str_replace("{@PAGE_CONTENT_RESUME}", @$this->vars['ContentResume'], $out);
+
+        if($this->vars['NutsPageContentViewID'] != 0)
+        {
+            Query::factory()->select('Name, Html, HookData')
+                            ->from('NutsPageContentView')
+                            ->where('ID', '=', $this->vars['NutsPageContentViewID'])
+                            ->execute();
+
+
+            if(!$this->dbNumRows())
+            {
+                $rep = $this->setNutsCommentMarkup("view no found #".$this->vars['NutsPageContentViewID'], "");
+            }
+            else
+            {
+                $r = $this->dbFetch();
+                $rep = $r['Html'];
+
+                // get field in $row
+                $sql = "SELECT
+                                  NutsPageContentViewField.Name,
+                                  NutsPageContentViewFieldData.Value
+                        FROM
+                                  NutsPageContentViewField,
+                                  NutsPageContentViewFieldData
+                        WHERE
+                                  NutsPageContentViewField.Deleted = 'NO' AND
+                                  NutsPageContentViewFieldData.Deleted = 'NO' AND
+                                  NutsPageContentViewField.ID = NutsPageContentViewFieldData.NutsPageContentViewFieldID AND
+                                  NutsPageContentViewFieldData.NutsPageContentViewID = {$this->vars['NutsPageContentViewID']} AND
+                                  NutsPageContentViewFieldData.NutsPageID = {$this->vars['ID']}";
+                $this->doQuery($sql);
+
+                $row = array();
+                while($rX = $this->dbFetch())
+                {
+                    $row[$rX['Name']] = $rX['Value'];
+                }
+
+                // hook data foreach
+                $r['HookData'] = trim($r['HookData']);
+                if(!empty($r['HookData']))
+                {
+                    $r['HookData'] = str_replace('$nuts->', '$this->', $r['HookData']);
+                    eval($r['HookData']);
+                }
+
+                // parsing values
+                foreach($row as $key => $val)
+                {
+                    $rep = str_replace("{".$key."}", $val, $rep);
+                }
+
+
+
+                $rep = $this->setNutsCommentMarkup("view ".$r['Name'], $rep);
+            }
+
+
+
+            $this->vars['Content'] = $rep;
+        }
+
 		$out = str_replace("{@PAGE_CONTENT}", @$this->vars['Content'], $out);
 		$out = $this->formatOutput($out);
 		// </editor-fold>
