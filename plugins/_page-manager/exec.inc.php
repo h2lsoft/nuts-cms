@@ -10,6 +10,15 @@ $select_header_img = nutsGetOptionsHeaderImage();
 $select_content_type = nutsGetOptionsContentType();
 $theme = nutsGetTheme();
 
+// page content view
+$recs = Query::factory()->select('ID, Name')->from('NutsPageContentView')->order_by('Name')->executeAndGetAll();
+$select_page_content_views = "";
+foreach($recs as $rec)
+{
+    $select_page_content_views .= "<option value=\"{$rec['ID']}\">{$rec['Name']}</option>".CR;
+}
+
+
 include(PLUGIN_PATH.'/config.inc.php');
 include(PLUGIN_PATH.'/actions.inc.php');
 
@@ -207,6 +216,68 @@ foreach($tpls as $tpl)
 		$init = true;
 	}
 }
+
+
+// content views *******************************************************************************************************
+$views = Query::factory()->select('ID')->from('NutsPageContentView')->order_by('Name')->executeAndGetAllOne();
+$nuts_views_form = "";
+foreach($views as $viewID)
+{
+    $view_fields =  Query::factory()->select('*')->from('NutsPageContentViewField')->where('NutsPageContentViewID', '=', $viewID)->order_by('Position')->executeAndGetAll();
+
+    $p_class = 'content_view content_view_'.$viewID;
+    foreach($view_fields as $vf)
+    {
+        $type = strtolower($vf['Type']);
+        $name = 'ContentView'.$vf['Name'].'_'.$viewID;
+
+        if($type == 'text')
+        {
+            $nuts_views_form .= nutsFormAddText($name, $vf['Label'], $vf['CssStyle'], $vf['Value'], $vf['Help'], $vf['TextAfter'], $vf['HrAfter'], $p_class);
+        }
+        elseif($type == 'textarea')
+        {
+            $nuts_views_form .= nutsFormAddTextarea($name, $vf['Label'], $vf['CssStyle'], $vf['Value'], $vf['Help'], $vf['HrAfter'], $p_class);
+        }
+        elseif($type == 'htmlarea')
+        {
+            $nuts_views_form .= nutsFormAddHtmlArea($name, $vf['Label'], $vf['CssStyle'], $vf['Value'], $vf['Help'], $vf['HrAfter'], $p_class);
+        }
+        elseif($type == 'colorpicker')
+        {
+            $nuts_views_form .= nutsFormAddColorpicker($name, $vf['Label'], $vf['CssStyle'], $vf['Value'], $vf['Help'], $vf['HrAfter'], $p_class);
+        }
+        elseif($type == 'date' || $type == 'datetime')
+        {
+            $nuts_views_form .= nutsFormAddDate($name, $vf['Label'], $type, $vf['Value'], $vf['Help'], $vf['HrAfter'], $p_class);
+        }
+        elseif($type == 'boolean' || $type == 'booleanx')
+        {
+            $nuts_views_form .= nutsFormAddBoolean($name, $vf['Label'], $type, $vf['Help'], $vf['HrAfter'], $p_class);
+        }
+        elseif($type == 'filemanager' || $type == 'filemanager_media' || $type == 'filemanager_image')
+        {
+            $folder = trim($vf['SpecialOption']);
+            $nuts_views_form .= nutsFormAddFilemanager($name, $vf['Label'], $type, $vf['Value'], $folder, $vf['CssStyle'], $vf['Help'], $vf['HrAfter'], $p_class);
+        }
+        elseif($type == 'select')
+        {
+            $options = rtrim($vf['SpecialOption']);
+            $nuts_views_form .= nutsFormAddSelect($name, $vf['Label'], $options, $vf['Value'], $vf['CssStyle'], $vf['Help'], $vf['HrAfter'], $p_class);
+        }
+        elseif($type == 'select-sql')
+        {
+            $sql = trim($vf['SpecialOption']);
+            $nuts_views_form .= nutsFormAddSelectSql($name, $vf['Label'], $sql, $vf['Value'], $vf['CssStyle'], $vf['Help'], $vf['HrAfter'], $p_class);
+        }
+    }
+}
+
+
+
+$nuts->parse('nuts_views_form', $nuts_views_form);
+
+
 
 // access groups front office ***********************************************************************************
 $sql = "SELECT ID AS GroupID, Name AS GroupName FROM NutsGroup WHERE Deleted = 'NO' AND FrontofficeAccess = 'YES' ORDER BY Priority";
