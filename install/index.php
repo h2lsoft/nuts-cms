@@ -159,7 +159,10 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 				$error = false;
 				
 				// launch big treatment **********************************************************************
-				$sqls = file_get_contents('install.sql')."\n".file_get_contents('after.sql');				
+				$sqls = file_get_contents('install.sql')."\n".file_get_contents('after.sql');
+                if($_POST['DB_LANG'] == 'FR')
+                    $sqls .= "\n".file_get_contents('after_FR.sql');
+
 				$sqls = str_replace('MyNuts', $_POST['DB_NAME'], $sqls);
 				$sqls = str_replace(":= 'admin@domain.com';", ":= '{$_POST['ADMIN_EMAIL']}';", $sqls);				
 				$sqls = str_replace("\r", "", $sqls);
@@ -414,7 +417,17 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 					<label>Database</label>
 					<input type="text" id="DB_NAME" name="DB_NAME" value="" />					
 				</p>
-				
+				<p>
+					<label>Data language</label>
+
+					<select id="DB_LANG" name="DB_NAME">
+                        <option value="EN" selected>English</option>
+                        <option value="FR">Français</option>
+                    </select>
+
+				</p>
+
+
 			</fieldset>
 			
 		</div>
