@@ -25,8 +25,9 @@ if(!$news_new_system) # old system check
 }
 else
 {
-    $urix = $_SERVER['PHP_SELF'];
+    $urix = $_SERVER['SCRIPT_URL'];
     $newsID = (int)Query::factory()->select('ID')->from('NutsNews')->where('VirtualPageName', '=', $urix)->executeAndGetOne();
+    if(!$newsID)$plugin->error404();
 }
 
 $sql = "SELECT
@@ -44,6 +45,7 @@ $sql = "SELECT
 
 $plugin->doQuery($sql);
 $row = $plugin->dbFetch();
+
 
 // execution
 $plugin->openPluginTemplate();
