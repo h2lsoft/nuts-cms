@@ -1,8 +1,8 @@
 {#if(!NutsUserIsLogon())}
-	<a href="/en/login/">Login</a>
+	<a href="{@NUTS    TYPE='PAGE'    CONTENT='URL'    FROM='Login'    ID='10'}">Login</a>
 {#else}
-	Hi <a href="{CONST::LOGIN_PAGE_URL_EN}">{$_SESSION['FirstName']}</a> (<a href="{CONST::LOGIN_PAGE_URL_EN}?logout=1">Logout</a>)
+	Hi <a href="{@NUTS    TYPE='PAGE'    CONTENT='URL'    FROM='Login'    ID='12'}">{$_SESSION['FirstName']}</a> (<a href="{@NUTS    TYPE='PAGE'    CONTENT='URL'    FROM='Login'    ID='10'}?logout=1">Logout</a>)
 {#endif}			
 
-| <a href="/en/register/">Register</a>
+| <a href="{@NUTS    TYPE='PAGE'    CONTENT='URL'    FROM='Register'    ID='11'}">Register</a>
 | <a href="/plugins/_rss/viewer.php?ID=1" target="_blank"><img src="{@THEME_URL}/images/rss.gif" alt="Rss" align="absmiddle" /></a>
