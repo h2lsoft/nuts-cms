@@ -962,6 +962,7 @@ CREATE TABLE `NutsPageContentViewField` (
 ALTER TABLE `NutsPageContentViewField` ADD COLUMN `SpecialOption` TEXT NULL AFTER `Type` ;
 ALTER TABLE `NutsPageContentViewField` CHANGE COLUMN `SpecialOption` `SpecialOption` TEXT NULL ;
 ALTER TABLE `NutsPageContentViewField` ADD COLUMN `TextAfter` VARCHAR(255) NULL AFTER `Help` ;
+ALTER TABLE `NutsPageContentViewField` ADD COLUMN `HrAfter` VARCHAR(255) NULL AFTER `TextAfter`;
 
 CREATE TABLE `NutsPageContentViewFieldData` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
