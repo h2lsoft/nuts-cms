@@ -5,7 +5,7 @@ UPDATE NutsTemplateConfiguration SET LanguageDefault = 'fr', Description = 'Them
 UPDATE NutsUrlRewriting SET Pattern = REPLACE(Pattern, '/en/', '/fr/'), Replacement = REPLACE(Replacement, '/en/', '/fr/');
 
 TRUNCATE TABLE NutsForm;
-insert into `NutsForm` (`ID`, `Language`, `Name`, `Description`, `Caption`, `CssId`, `JsCode`, `Captcha`, `Information`, `FormBeforePhp`, `FormCustomError`, `FormValidPhpCode`, `FormValidHtmlCode`, `FormStockData`, `FormValidMailer`, `FormValidMailerFrom`, `FormValidMailerTo`, `FormValidMailerSubject`, `Deleted`) values('1','AUTO','contact_us','','Merci de remplir les champs suivants',NULL,'','NO','<br>','','','','Nous vous remercions ! Votre message a bien été envoyé.','NO','YES','','','Contact depuis votre site internet','NO');
+insert into `NutsForm` (`ID`, `Language`, `Name`, `Description`, `Caption`, `CssId`, `JsCode`, `Captcha`, `Information`, `FormBeforePhp`, `FormCustomError`, `FormValidPhpCode`, `FormValidHtmlCode`, `FormStockData`, `FormValidMailer`, `FormValidMailerFrom`, `FormValidMailerTo`, `FormValidMailerSubject`, `Deleted`) values('1','AUTO','contact_us','','Merci de remplir les champs suivants',NULL,'','NO','<br>','','','','Nous vous remercions ! Votre message a bien &eacute;t&eacute; envoy&eacute;.','NO','YES','','','Contact depuis votre site internet','NO');
 
 TRUNCATE TABLE NutsFormField;
 INSERT INTO `NutsFormField`(`ID`,`NutsFormID`,`Name`,`Label`,`Type`,`Required`,`Attributes`,`Email`,`OtherValidation`,`I18N`,`Value`,`PhpCode`,`FilePath`,`FileAllowedExtensions`,`FileAllowedMimes`,`FileMaxSize`,`HtmlCode`,`TextAfter`,`Position`,`Deleted`) VALUES
