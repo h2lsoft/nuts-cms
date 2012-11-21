@@ -420,7 +420,7 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 				<p>
 					<label>Data language</label>
 
-					<select id="DB_LANG" name="DB_NAME">
+					<select id="DB_LANG" name="DB_LANG">
                         <option value="EN" selected>English</option>
                         <option value="FR">Français</option>
                     </select>
