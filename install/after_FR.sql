@@ -39,5 +39,15 @@ UPDATE NutsPageContentView SET Html = REPLACE(Html, 'Download available :', 'Tel
 UPDATE NutsPageContentView SET Html = REPLACE(Html, 'Box color :', 'Couleur :') WHERE ID = 1;
 
 
+UPDATE NutsPage SET Content=REPLACE(Content, 'Welcome', 'Bienvenue'), MenuName='Accueil'  WHERE ID = 9;
+UPDATE NutsPage SET Content=REPLACE(Content, 'Our Products', 'Nos Produits')  WHERE ID = 9;
+UPDATE NutsPage SET Content=REPLACE(Content, 'News and Events', 'Actualites')  WHERE ID = 9;
+UPDATE NutsPage SET Content=REPLACE(Content, 'more info', 'en savoir plus')  WHERE ID = 9;
+UPDATE NutsPage SET Content=REPLACE(Content, 'View our product 1', 'Consulter la fiche produit 1')  WHERE ID = 9;
+UPDATE NutsPage SET Content=REPLACE(Content, 'View our product 2', 'Consulter la fiche produit 2')  WHERE ID = 9;
+UPDATE NutsPage SET Content=REPLACE(Content, 'View our product 3', 'Consulter la fiche produit 3')  WHERE ID = 9;
+
+UPDATE NutsPage SET Content=REPLACE(Content, 'This is the private space', 'Bienvenue dans votre espace prive')  WHERE ID = 12;
+UPDATE NutsPage SET MenuName='Plan du site', H1='Plan du site'    WHERE ID = 16;
 
 
