@@ -1,3 +1,4 @@
 _tmp/*
 .idea/*
 .DS_Store
+_plugins-list/*
