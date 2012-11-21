@@ -58,6 +58,7 @@ function stepNext()
 		arr['DB_LOGIN'] = $('#DB_LOGIN').val();
 		arr['DB_PASS'] = $('#DB_PASS').val();
 		arr['DB_NAME'] = $('#DB_NAME').val();
+		arr['DB_LANG'] = $('#DB_LANG').val();
 	}
 
 	$('#btn_next').attr('disabled', true);
