@@ -415,7 +415,7 @@ ALTER TABLE `NutsMenu` ADD COLUMN `Visible` ENUM('YES','NO') NOT NULL DEFAULT 'Y
 
 
 /* update v.0.86 */
-CREATE TABLE `NutsEmail`(`ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Language` VARCHAR(5) NULL, `Expeditor` VARCHAR(255) NULL, `Subject` VARCHAR(255) NULL, `Body` TEXT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Language` (`Language`), INDEX `Deleted` (`Deleted`)) TYPE= MYISAM;
+CREATE TABLE `NutsEmail`(`ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Language` VARCHAR(5) NULL, `Expeditor` VARCHAR(255) NULL, `Subject` VARCHAR(255) NULL, `Body` TEXT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Language` (`Language`), INDEX `Deleted` (`Deleted`)) ENGINE= MYISAM;
 INSERT INTO NutsMenu (Category, Name, Position) VALUES (1, '_email', 10);
 
 
@@ -655,21 +655,21 @@ INSERT INTO NutsMenu (Category, Name, Position) VALUE(2, '_template_styles', 1);
 UPDATE NutsMenu SET BreakAfter = 1 WHERE Name = '_template_settings';
 
 /* update v.2.0 */
-CREATE TABLE `NutsRichEditor`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Content` TEXT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Deleted` (`Deleted`))TYPE= MYISAM;
+CREATE TABLE `NutsRichEditor`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Content` TEXT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Deleted` (`Deleted`))ENGINE= MYISAM;
 INSERT INTO NutsMenu (Category, Name, Position) VALUE(1, '_rte_custom', 1);
 INSERT INTO NutsRichEditor (`ID`,`Content`,`Deleted`) VALUES ( '1','forced_root_block : \'\',\r\nforce_br_newlines : false,\r\nforce_p_newlines : false,    \r\nremove_linebreaks: true,\r\napply_source_formatting: false,\r\nconvert_newlines_to_brs : false,','NO');
-CREATE TABLE `NutsUrlRewriting`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Pattern` VARCHAR(255) NULL, `Replacement` VARCHAR(255) NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Deleted` (`Deleted`))TYPE= MYISAM;
+CREATE TABLE `NutsUrlRewriting`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Pattern` VARCHAR(255) NULL, `Replacement` VARCHAR(255) NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Deleted` (`Deleted`))ENGINE= MYISAM;
 INSERT INTO NutsMenu (Category, Name, Position) VALUE(2, '_url_rewriting', 2);
 ALTER TABLE `NutsUrlRewriting` ADD COLUMN `Position` INT UNSIGNED NOT NULL AFTER `Replacement`;
 ALTER TABLE `NutsUrlRewriting` ADD INDEX `Position` (`Position`);
 ALTER TABLE `NutsUrlRewriting` ADD COLUMN `Type` ENUM('SIMPLE','REGEX') NOT NULL DEFAULT 'SIMPLE'  AFTER `ID`;
 
 /* update v.2.1 */
-CREATE TABLE `NutsPressKit`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Date` DATE NOT NULL, `Title` VARCHAR(255) NULL, `Source` VARCHAR(255) NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Date` (`Date`), INDEX `Deleted` (`Deleted`))TYPE= MYISAM;
+CREATE TABLE `NutsPressKit`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Date` DATE NOT NULL, `Title` VARCHAR(255) NULL, `Source` VARCHAR(255) NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Date` (`Date`), INDEX `Deleted` (`Deleted`))ENGINE= MYISAM;
 ALTER TABLE `NutsPressKit` ADD COLUMN `File` VARCHAR(255) NULL AFTER `Source` ;
 INSERT INTO NutsMenu (Category, Name, Position) VALUE(3, '_press-kit', 10);
 ALTER TABLE `NutsUser` ADD COLUMN `FrontOfficeToolbar` ENUM('YES','NO') NOT NULL DEFAULT 'YES';
-CREATE TABLE `NutsIMemo`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `NutsUserID` INT UNSIGNED NOT NULL, `Text` LONGTEXT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `NutsUserID` (`NutsUserID`), INDEX `Deleted` (`Deleted`))TYPE= MYISAM;
+CREATE TABLE `NutsIMemo`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `NutsUserID` INT UNSIGNED NOT NULL, `Text` LONGTEXT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `NutsUserID` (`NutsUserID`), INDEX `Deleted` (`Deleted`))ENGINE= MYISAM;
 ALTER TABLE `NutsNews` ADD COLUMN `NewsImageModel` VARCHAR(255) NULL AFTER `NewsImage` ;
 UPDATE NutsMenu SET Visible = 'NO' WHERE Name = '_internal-memo' ; 
 
@@ -832,36 +832,153 @@ CREATE TABLE `NutsEDMLock` (
 
 /* update v.3.5 */
 DROP TABLE IF EXISTS NutsEDMLock;
-CREATE TABLE `NutsEDMLock` (  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,  `NutsUserID` int(10) unsigned NOT NULL,  `Date` datetime DEFAULT NULL,  `Folder` varchar(255) DEFAULT NULL,  `File` varchar(255) DEFAULT NULL,  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',  PRIMARY KEY (`ID`),  KEY `NutsUserID` (`NutsUserID`),  KEY `Date` (`Date`),  KEY `Deleted` (`Deleted`),  KEY `Folder` (`Folder`),  KEY `File` (`File`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `NutsEDMLock` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NutsUserID` int(10) unsigned NOT NULL,
+  `Date` datetime DEFAULT NULL,
+  `Folder` varchar(255) DEFAULT NULL,
+  `File` varchar(255) DEFAULT NULL,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `NutsUserID` (`NutsUserID`),
+  KEY `Date` (`Date`),
+  KEY `Deleted` (`Deleted`),
+  KEY `Folder` (`Folder`),
+  KEY `File` (`File`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (3, '_edm-locks', 4, 'NO');
+
 ALTER TABLE `NutsUrlRewriting` ADD COLUMN `Tag` VARCHAR(255) NULL AFTER `Position` ;
+
 ALTER TABLE `NutsUser` ADD COLUMN `Birthdate` DATE NULL AFTER `NutsGroupID` ;
+
 ALTER TABLE `NutsUser` ADD INDEX `Birthdate` (`Birthdate`);
+
 ALTER TABLE `NutsRegion` ADD COLUMN `PreviousStartEndVisible` ENUM('YES','NO') NOT NULL DEFAULT 'YES' AFTER `PagerNextText` ;
 ALTER TABLE `NutsRegion` ADD COLUMN `PagerStartText` VARCHAR(255) NULL AFTER `PreviousStartEndVisible` ;
 ALTER TABLE `NutsRegion` ADD COLUMN `PagerEndText` VARCHAR(255) NULL AFTER `PagerStartText` ;
-ALTER TABLE `NutsRegion` ADD COLUMN  `SetUrl` VARCHAR(255) NULL;
-CREATE TABLE `NutsUrlRedirect`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Type` VARCHAR(255) NULL, `UrlOld` VARCHAR(255) NULL, `UrlNew` VARCHAR(255) NULL, `Position` INT UNSIGNED NOT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Position` (`Position`), INDEX `Deleted` (`Deleted`))ENGINE= MYISAM DEFAULT CHARSET=utf8;
+ALTER TABLE `NutsRegion` ADD COLUMN  `SetUrl` VARCHAR(255) NULL;
+
+CREATE TABLE `NutsUrlRedirect`
+(
+	`ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`Type` VARCHAR(255) NULL,
+	`UrlOld` VARCHAR(255) NULL,
+	`UrlNew` VARCHAR(255) NULL,
+	`Position` INT UNSIGNED NOT NULL,
+	`Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO',
+	PRIMARY KEY (`ID`),
+	INDEX `Position` (`Position`),
+	INDEX `Deleted` (`Deleted`)
+)ENGINE= MYISAM DEFAULT CHARSET=utf8;
+
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (2, '_url_redirect', 13, 'YES');
+
 ALTER TABLE `NutsNews` ADD INDEX `VirtualPageName` (`VirtualPageName`);
-CREATE TABLE `NutsTrigger`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Name` VARCHAR(255) NULL, `Description` VARCHAR(255) NULL, `PhpCode` LONGTEXT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Deleted` (`Deleted`))ENGINE= MYISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `NutsTrigger`
+(
+	`ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`Name` VARCHAR(255) NULL,
+	`Description` VARCHAR(255) NULL,
+	`PhpCode` LONGTEXT NULL,
+	`Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO',
+	PRIMARY KEY (`ID`),
+	INDEX `Deleted` (`Deleted`)
+)ENGINE= MYISAM DEFAULT CHARSET=utf8;
+
 ALTER TABLE `NutsTrigger` ADD INDEX `Name` (`Name`);
+
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (1, '_trigger', 13, 'YES');
-CREATE TABLE `NutsService` (  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,  `Name` varchar(255) DEFAULT NULL,  `Description` varchar(255) DEFAULT NULL,  `Token` char(64) DEFAULT NULL,  `Query` text,  `HookData` longtext,  `Output` varchar(20) DEFAULT NULL,  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',  PRIMARY KEY (`ID`),  KEY `Name` (`Name`),  KEY `Output` (`Output`),  KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `NutsService` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) DEFAULT NULL,
+  `Description` varchar(255) DEFAULT NULL,
+  `Token` char(64) DEFAULT NULL,
+  `Query` text,
+  `HookData` longtext,
+  `Output` varchar(20) DEFAULT NULL,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `Name` (`Name`),
+  KEY `Output` (`Output`),
+  KEY `Deleted` (`Deleted`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 ALTER TABLE `NutsService` CHANGE COLUMN `Output` `Output` VARCHAR(13) NULL;
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (3, '_services', 14, 'YES');
-CREATE TABLE `NutsMenuCategory` (  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,  `Name` varchar(255) DEFAULT NULL,  `NameFr` varchar(255) DEFAULT NULL,  `Color` varchar(10) DEFAULT NULL,  `Position` int(10) unsigned NOT NULL,  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',  PRIMARY KEY (`ID`),  KEY `Position` (`Position`),  KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `NutsMenuCategory` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) DEFAULT NULL,
+  `NameFr` varchar(255) DEFAULT NULL,
+  `Color` varchar(10) DEFAULT NULL,
+  `Position` int(10) unsigned NOT NULL,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `Position` (`Position`),
+  KEY `Deleted` (`Deleted`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (1, '_menu-category', 3, 'YES');
+
 UPDATE NutsMenu SET BreakAfter = 1 WHERE Name = '_right-manager';
 UPDATE NutsMenu SET BreakAfter = 0 WHERE Name = '_form-builder';
 UPDATE NutsMenu SET Position = 2 WHERE Name = '_menu-category';
-CREATE TABLE `NutsPageContentView` (  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,  `Name` varchar(255) DEFAULT NULL,  `Description` varchar(255) DEFAULT NULL,  `Html` text,  `HookData` text,  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',  PRIMARY KEY (`ID`),  KEY `Name` (`Name`),  KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-CREATE TABLE `NutsPageContentViewField` (  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,  `NutsPageContentViewID` int(10) unsigned NOT NULL,  `Name` varchar(255) DEFAULT NULL,  `Label` varchar(255) DEFAULT NULL,  `Type` varchar(20) DEFAULT NULL,  `CssStyle` varchar(255) DEFAULT NULL,  `Value` varchar(255) DEFAULT NULL,  `Help` varchar(255) DEFAULT NULL,  `Position` int(10) unsigned NOT NULL,  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',  PRIMARY KEY (`ID`),  KEY `NutsPageContentViewID` (`NutsPageContentViewID`),  KEY `Position` (`Position`),  KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `NutsPageContentView` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) DEFAULT NULL,
+  `Description` varchar(255) DEFAULT NULL,
+  `Html` text,
+  `HookData` text,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `Name` (`Name`),
+  KEY `Deleted` (`Deleted`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `NutsPageContentViewField` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NutsPageContentViewID` int(10) unsigned NOT NULL,
+  `Name` varchar(255) DEFAULT NULL,
+  `Label` varchar(255) DEFAULT NULL,
+  `Type` varchar(20) DEFAULT NULL,
+  `CssStyle` varchar(255) DEFAULT NULL,
+  `Value` varchar(255) DEFAULT NULL,
+  `Help` varchar(255) DEFAULT NULL,
+  `Position` int(10) unsigned NOT NULL,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `NutsPageContentViewID` (`NutsPageContentViewID`),
+  KEY `Position` (`Position`),
+  KEY `Deleted` (`Deleted`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 ALTER TABLE `NutsPageContentViewField` ADD COLUMN `SpecialOption` TEXT NULL AFTER `Type` ;
 ALTER TABLE `NutsPageContentViewField` CHANGE COLUMN `SpecialOption` `SpecialOption` TEXT NULL ;
 ALTER TABLE `NutsPageContentViewField` ADD COLUMN `TextAfter` VARCHAR(255) NULL AFTER `Help` ;
-CREATE TABLE `NutsPageContentViewFieldData` (  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,  `NutsPageContentViewID` int(10) unsigned NOT NULL,  `NutsPageContentViewFieldID` int(10) unsigned NOT NULL,  `NutsPageID` int(10) unsigned NOT NULL,  `Value` longtext,  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',  PRIMARY KEY (`ID`),  KEY `NutsPageContentViewID` (`NutsPageContentViewID`),  KEY `NutsPageID` (`NutsPageID`),  KEY `NutsPageContentViewFieldID` (`NutsPageContentViewFieldID`),  KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `NutsPageContentViewFieldData` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NutsPageContentViewID` int(10) unsigned NOT NULL,
+  `NutsPageContentViewFieldID` int(10) unsigned NOT NULL,
+  `NutsPageID` int(10) unsigned NOT NULL,
+  `Value` longtext,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `NutsPageContentViewID` (`NutsPageContentViewID`),
+  KEY `NutsPageID` (`NutsPageID`),
+  KEY `NutsPageContentViewFieldID` (`NutsPageContentViewFieldID`),
+  KEY `Deleted` (`Deleted`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (2, '_page-content-view', 6, 'YES');
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (2, '_page-content-view-fields', 6, 'NO');
+
 ALTER TABLE `NutsPage` ADD COLUMN `NutsPageContentViewID` INT UNSIGNED NOT NULL AFTER `ZoneID`;
 ALTER TABLE `NutsPage` ADD INDEX `NutsPageContentViewID` (`NutsPageContentViewID`);
