@@ -8,7 +8,7 @@ $trace_mode = false; // allow to track user default action
 $login_key = 'Email'; // Email or Login key to connect
 
 $session_add_sql_fields = ""; // add sql fields in session for Login
-$session_preserve_keys = array('Basket'); // Preserve initial session key like Basket for example
+$session_preserve_keys = array(); // Preserve initial session key like Basket for example
 
 // mail:english **************************************************************************************************
 $email_template['en']['subject'] = "Your account information";

@@ -7,9 +7,9 @@
       ed.addCommand('mceAdvancedCode', function() {
         ed.windowManager.open({
           file : url + '/dialog.html',
-          width : 1024 + parseInt(ed.getLang('advcode.delta_width', 0)),
-          height : 768 + parseInt(ed.getLang('advcode.delta_height', 0)),
-          inline : 1
+          width : 1200 + parseInt(ed.getLang('advcode.delta_width', 0)),
+          height : 1000 + parseInt(ed.getLang('advcode.delta_height', 0)),
+          inline : 0
         }, {
           plugin_url : url
         });

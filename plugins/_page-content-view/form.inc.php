@@ -22,7 +22,7 @@ $help = "Enter your html code here, variable are `{FieldName}`";
 $plugin->formAddFieldTextarea('Html', "", true, 'html', "height:200px;", "", $help);
 
 $help = "Enter your php code for treatment before parsing in variable `\$row`";
-$plugin->formAddFieldTextarea('HookData', "", false, 'php', "height:200px;");
+$plugin->formAddFieldTextarea('HookData', "", false, 'php', "height:200px;", "", $help);
 
 
 ?>

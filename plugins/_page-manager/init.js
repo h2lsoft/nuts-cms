@@ -360,6 +360,14 @@ $('#NutsPageContentViewID').change(function(){
     $('#tab2 .content_view_wrapper').hide();
     $('#tab2 #content_view_wrapper_'+vID).show();
 
+
+    // force update color preview
+    $('#former .widget_colorpicker').each(function(){
+        current_id = $(this).attr('id');
+        $('#former #'+current_id+'_colorpicker_preview').css('background-color', $('#former #'+current_id).val());
+    });
+
+
 });
 
 

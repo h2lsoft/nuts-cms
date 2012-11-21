@@ -15,16 +15,17 @@
 $plugin->listSetDbTable('NutsTrigger');
 
 // search engine
-$plugin->listSearchAddFieldText('ID');
+// $plugin->listSearchAddFieldText('ID');
 $plugin->listSearchAddFieldTextAjaxAutoComplete('Name');
 
 // create fields
-$plugin->listAddCol('ID', '', 'center; width:30px', true);
+// $plugin->listAddCol('ID', '', 'center; width:30px', true);
 $plugin->listAddCol('Name', '', '; width:30px; white-space:nowrap;', true);
 $plugin->listAddCol('Description', '', '', false);
 
 
 // render list
+$plugin->listSetFirstOrderBySort('ASC');
 $plugin->listRender(20, 'hookData');
 
 

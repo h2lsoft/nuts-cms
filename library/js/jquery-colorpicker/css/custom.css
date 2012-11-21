@@ -1,0 +1,50 @@
+.colorpicker {
+    background: url(../images/custom_background.png);
+}
+
+.colorpicker_rgb_r {
+    background-image: url(../images/custom_rgb_r.png);
+}
+
+.colorpicker_rgb_g {
+    background-image: url(../images/custom_rgb_g.png);
+}
+
+.colorpicker_rgb_b {
+	background-image: url(../images/custom_rgb_b.png);
+}
+
+.colorpicker_hsb_s {
+	background-image: url(../images/custom_hsb_s.png);
+}
+
+.colorpicker_hsb_h {
+	background-image: url(../images/custom_hsb_h.png);
+}
+
+.colorpicker_hsb_b {
+	background-image: url(../images/custom_hsb_b.png);
+}
+
+.colorpicker_submit {
+	background-image: url(../images/custom_submit.png);
+    cursor: pointer;
+}
+
+.colorpicker_submit:hover {
+    background-image: url(../images/colorpicker_submit.png);
+}
+
+
+.colorpicker_hex {
+	background-image: url(../images/custom_hex.png);
+}
+
+.colorpicker input {
+    width:33px;
+    text-align: center;
+}
+
+.colorpicker .colorpicker_hex input {
+    width:45px;
+}
