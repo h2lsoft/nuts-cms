@@ -232,6 +232,15 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 				// writing form builder ************************************************************************
 				$sql = "UPDATE NutsForm SET FormValidMailerFrom = '{$_POST['NO_REPLY_EMAIL']}', FormValidMailerTo = '{$_POST['ADMIN_EMAIL']}'";
 				$pdo->query($sql);
+
+
+                // fr replace url_rewrint contents
+                if($_POST['DB_LANG'] == 'FR')
+                {
+                    $f = file_get_contents('../nuts/url_rewriting_rules.inc.php');
+                    $f = str_replace('/en/', '/fr/', $f);
+                    file_put_contents('../nuts/url_rewriting_rules.inc.php', $f);
+                }
 								
 				
 		} catch (PDOException $e) {
