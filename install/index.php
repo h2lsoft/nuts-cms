@@ -332,7 +332,7 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 				</p>
 				<p>
 					<label>No-reply email (use by default for automatic email)</label>
-					<input type="text" id="NO_REPLY_EMAIL" name="NO_REPLY_EMAIL" value="noreply@<?php echo str_replace('www.', '', $_SERVER['HTTP_HOST']); ?>" />
+					<input type="text" id="NO_REPLY_EMAIL" name="NO_REPLY_EMAIL" value="no-reply@<?php echo str_replace('www.', '', $_SERVER['HTTP_HOST']); ?>" />
 				</p>
 				
 				<fieldset>
