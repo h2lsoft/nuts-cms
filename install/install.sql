@@ -9,8 +9,8 @@ USE MyNuts;
 
 -- administrator properties
 SET @ADMIN_LOGIN := 'admin';
-SET @ADMIN_FIRST_NAME := 'First name';
-SET @ADMIN_LAST_NAME := 'Last name';
+SET @ADMIN_FIRST_NAME := 'Super';
+SET @ADMIN_LAST_NAME := 'Administrator';
 SET @ADMIN_EMAIL := 'admin@domain.com';
 
 -- language en, fr, es, it, ru, de
