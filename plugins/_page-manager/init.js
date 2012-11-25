@@ -109,7 +109,9 @@ function generateFromH1(){
 	v = str_replace(')', '-', v);
 	v = str_replace('{', '-', v);
 	v = str_replace('}', '-', v);
+	v = str_replace('%', '-', v);
 
+	v = str_replace('ç', 'c', v);
 	v = str_replace('à', 'a', v);
 	v = str_replace('â', 'a', v);
 	v = str_replace('ä', 'a', v);
