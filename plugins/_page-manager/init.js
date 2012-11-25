@@ -63,7 +63,7 @@ $("#tab3 select[multiple]").asmSelect({
 
 // update content
 $('#Content').width($('#page_form').width()-180);
-$('#Content').height(tab_height - 50);
+$('#Content').height(tab_height - 80);
  $('#ContentResume').width($('#page_form').width()-180);
 
 
@@ -110,6 +110,9 @@ function generateFromH1(){
 	v = str_replace('{', '-', v);
 	v = str_replace('}', '-', v);
 
+	v = str_replace('à', 'a', v);
+	v = str_replace('â', 'a', v);
+	v = str_replace('ä', 'a', v);
 	v = str_replace('é', 'e', v);
 	v = str_replace('è', 'e', v);
 	v = str_replace('ê', 'e', v);
@@ -340,12 +343,17 @@ if(from_mode == 'iframe')
 
 	// update content
 	$('#Content').width($('#page_form').width() - 180);
-	$('#Content').height(tab_height - 120);
+	$('#Content').height(tab_height - 165);
     $('#ContentResume').width($('#page_form').width() - 180);
 
 
     // hide main title
     $('#main_title').hide();
+
+    // reload height
+    var tab_height = $('div#page_form').height()-$('#page_form .ui-tabs-nav').height()-$('#page_options_bottom').height()-60;
+    $('.ui-tabs-panel').css('height', tab_height);
+
 
 	reloadPage($('#dID').val());
 
