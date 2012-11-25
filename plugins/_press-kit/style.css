@@ -4,6 +4,14 @@
 #nuts_press_kit th.col_source {text-align: left; width: 30px; white-space:nowrap;}
 #nuts_press_kit th.col_title {text-align: left;}
 #nuts_press_kit th.col_date {text-align: center; width: 30px; white-space:nowrap;}
+#nuts_press_kit th.col_size {text-align: center; width: 30px; white-space:nowrap;}
 #nuts_press_kit th.col_file {text-align: center; width: 30px; white-space:nowrap;}
+
 #nuts_press_kit td {padding: 5px; background-color: white;}
 #nuts_press_kit td.col_file {padding-left: 8px;}
+#nuts_press_kit td.col_size {text-align: center; width: 30px; white-space:nowrap;}
+
+
+#nuts_press_kit tr:nth-child(odd)> td {background-color: #eee;}
+#nuts_press_kit tr:nth-child(even)> td {background-color: white;}
+#nuts_press_kit tr:hover> td {background-color: #ffffe0;}

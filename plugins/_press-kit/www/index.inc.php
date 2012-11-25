@@ -35,10 +35,17 @@ else
 		$plugin->parse('files.DateX', $row['DateX']);
 		$plugin->parse('files.Title', $row['Title']);
 
+        $size = @filesize(WEBSITE_PATH.$row['File']);
+        $size = bcdiv($size, 1048576, 2);
+        if($size == 0)$size = 0.1;
+        $plugin->parse('files.Size', $size.' Mo');
+
 		$file = getImageExtension($row['File']);
 		$file = '<a href="'.$row['File'].'" target="_blank">'.$file.'</a>';
 		$plugin->parse('files.File', $file);
-	}
+
+        $plugin->loop('files');
+    }
 
 }
 
@@ -50,6 +57,7 @@ $output = str_replace("{no_record_msg}", $cur_cf['no_record_msg'], $output);
 $output = str_replace("[TH::Source]", $cur_cf['source'], $output);
 $output = str_replace("[TH::Title]", $cur_cf['title'], $output);
 $output = str_replace("[TH::Date]", $cur_cf['date'], $output);
+$output = str_replace("[TH::Size]", $cur_cf['size'], $output);
 $output = str_replace("[TH::File]", $cur_cf['file'], $output);
 
 
