@@ -12,6 +12,7 @@ $NEWSLETTER_SUSCRIBE_ERROR_1 = (@$page->language == 'fr') ? "Votre adresse email
 $NEWSLETTER_SUSCRIBE_ERROR_2 = "<i18n>Your language is not correct</i18n>";
 $NEWSLETTER_SUSCRIBE_ERROR_3 = "<i18n>Your mailing-list is not correct</i18n>";
 $NEWSLETTER_SUSCRIBE_OK = (@$page->language == 'fr') ? "Votre adresse email a bien été ajoutée" : "<i18n>Your email address has been added</i18n>";
+$NEWSLETTER_SUSCRIBE_PLACEHOLDER = (@$page->language == 'fr') ? "mon@email" : "<i18n>my@email</i18n>";
 
 
 
