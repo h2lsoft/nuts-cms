@@ -2751,10 +2751,10 @@ class TPLN extends DB
 	 * This method allows to convert http, www, ftp, mailto into clickable element
 	 *
 	 * @param string $ret
-	 * @param boolean $add_nofollow
+	 * @param boolean $add_nofollow default false
 	 * @return string
 	 * @author H2LSOFT */
-	public function clickable($ret, $add_nofollow=true)
+	public function clickable($ret, $add_nofollow=false)
 	{
 		/*$str = eregi_replace("([_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)+)",
 							   "<a href=\"mailto:\\1\">\\1</a>", $str);
