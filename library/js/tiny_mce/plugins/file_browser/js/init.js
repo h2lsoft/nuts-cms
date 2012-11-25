@@ -4,7 +4,6 @@ var filecmenu;
 var imagecmenu;
 var cmenu;
 
-
 $(function(){
 
     loading_msg = (nutsUserLang == 'fr') ? 'Chargement' : 'Loading';
@@ -300,6 +299,7 @@ $(function(){
     // uploader
     $("#html5_uploader").pluploadQueue({
         runtimes : 'html5',
+        browse_button : 'html5_uploader_browse',
         url : 'index.php?ajax=1&action=upload&editor='+editor,
         max_file_size : max_file_size,
 
