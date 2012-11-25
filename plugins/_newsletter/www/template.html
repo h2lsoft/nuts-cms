@@ -16,6 +16,11 @@
 </div>
 
 <script type="text/javascript">
+$('#nuts_newsletter #NutsButtonOk').keypress(function(e){
+    if(e.which == 13)
+        $('#nuts_newsletter #NutsButtonOk').click();
+});
+
 $('#nuts_newsletter #NutsButtonOk').click(function(){
 
 	if($('#nEmail').val() == $('#nEmail').attr('placeholder'))
