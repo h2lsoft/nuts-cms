@@ -54,6 +54,7 @@ $output = str_replace("[TH::File]", $cur_cf['file'], $output);
 
 
 
+if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_press-kit/style.css');
 $plugin->setNutsContent($output);
 
 

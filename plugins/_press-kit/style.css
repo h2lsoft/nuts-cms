@@ -1,0 +1,9 @@
+/** nuts_press_kit **/
+#nuts_press_kit {width: 100%; background-color: #ccc; border-spacing: 1px;}
+#nuts_press_kit th {padding: 5px; background-color: #666; color: white;}
+#nuts_press_kit th.col_source {text-align: left; width: 30px; white-space:nowrap;}
+#nuts_press_kit th.col_title {text-align: left;}
+#nuts_press_kit th.col_date {text-align: center; width: 30px; white-space:nowrap;}
+#nuts_press_kit th.col_file {text-align: center; width: 30px; white-space:nowrap;}
+#nuts_press_kit td {padding: 5px; background-color: white;}
+#nuts_press_kit td.col_file {padding-left: 8px;}
