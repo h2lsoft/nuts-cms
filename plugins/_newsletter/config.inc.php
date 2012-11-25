@@ -8,10 +8,10 @@ $NEWSLETTER_SUBJECT = "Newsletter ".ucfirst(strftime('%B')).' '.date('Y');
 $NEWSLETTER_IMG_TRACER_COLOR = array(255, 255, 255); // image tracer color
 $NEWSLETTER_UNSUSCRIBE_URL_CONFIRMATION = WEBSITE_URL; // url for unsuscribe page
 
-$NEWSLETTER_SUSCRIBE_ERROR_1 = "<i18n>Your email address is not correct</i18n>";
+$NEWSLETTER_SUSCRIBE_ERROR_1 = (@$page->language == 'fr') ? "Votre adresse email n'est pas correcte" : "<i18n>Your email address is not correct</i18n>";
 $NEWSLETTER_SUSCRIBE_ERROR_2 = "<i18n>Your language is not correct</i18n>";
 $NEWSLETTER_SUSCRIBE_ERROR_3 = "<i18n>Your mailing-list is not correct</i18n>";
-$NEWSLETTER_SUSCRIBE_OK = "<i18n>Your email address has been added</i18n>";
+$NEWSLETTER_SUSCRIBE_OK = (@$page->language == 'fr') ? "Votre adresse email a bien été ajoutée" : "<i18n>Your email address has been added</i18n>";
 
 
 
