@@ -12,7 +12,7 @@ Next version: {$next_version}<br />
 <br />
 
 
-<input class="button" id="btn_debug" type="button" value="Debug mode: {$debug_mode}" onclick="setDebugMode()" style="float:left; margin-right: 10px;" />
+<input class="button" id="btn_debug" type="button" value="Debug mode: {$debug_mode}" onclick="setDebugMode()" style="float:left; margin-right: 10px; {$debug_style}" />
 <input class="button" id="btn_update" type="button" value="Update engine (recommanded before update)" onclick="updater(-1)" style="float:left; margin-right: 10px;" />
 <input class="button" id="btn_update2" type="button" value="Launch update version {$next_version} &raquo;" onclick="updater(1)" style="display:{$btn_display};"  />
 <br />

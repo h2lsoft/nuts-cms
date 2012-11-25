@@ -687,6 +687,18 @@ $output = str_replace("    ", '&nbsp;&nbsp;&nbsp;&nbsp;', $output);
 $output = nl2br($output);
 
 $GLOBALS['system_correct_user'] = $system_correct_user;
+
+// debug mode style
+if($debug_mode)
+{
+    $debug_style = 'color:white; background:green';
+}
+else
+{
+    $debug_style = 'color:white; background:red';
+}
+
+
 $plugin->directRender(PLUGIN_PATH.'/exec.html');
 
 
