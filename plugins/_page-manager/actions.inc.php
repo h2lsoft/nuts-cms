@@ -757,7 +757,10 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'save_page')
 	
 	// smartImageResizer
 	$_POST['ContentResume'] = @smartImageResizer($_POST['ContentResume']);
-	$_POST['Content'] = @smartImageResizer($_POST['Content']);	
+	$_POST['Content'] = @smartImageResizer($_POST['Content']);
+
+
+
 	
 
 	// control data
@@ -855,8 +858,8 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'save_page')
 
 
         // save content view
-        $_POST['NutsPageContentViewID'] = (int)$_POST['NutsPageContentViewID'];
         $nuts->dbDelete('NutsPageContentViewFieldData', "NutsPageID = ".(int)$_GET['ID']);
+        $_POST['NutsPageContentViewID'] = (int)$_POST['NutsPageContentViewID'];
         if($_POST['NutsPageContentViewID'] != 0)
         {
             // get all field ID, Name, ID and Type
@@ -880,6 +883,13 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'save_page')
                             $cur_val = $nuts->date2db($cur_val).':00';
                     }
                 }
+
+                // smartimage resizer
+                if(strtolower($field['Type']) == 'htmlarea')
+                {
+                    $cur_val = smartImageResizer($cur_val);
+                }
+
 
                 $f = array();
                 $f['NutsPageContentViewID'] = $_POST['NutsPageContentViewID'];
