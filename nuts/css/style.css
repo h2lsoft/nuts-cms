@@ -51,7 +51,8 @@ fieldset {
 #logout .login {font-weight:bold; color:#666;}
 #logout .time {white-space: nowrap; font-weight: normal; color: #999; font-size: 10px; }
 #logout .internal_message {color:#999; background-image: url(/nuts/img/email.png); background-repeat: no-repeat; background-position: left center; padding-left:20px;}
-#logout .internal_message a span {color: #C93F9E;}
+#logout .internal_message a span {color: #C93F9E; background-color: #C93F9E; color: white; border-radius: 3px; padding: 0px 5px; text-shadow: 1px 1px 1px black;}
+#logout .internal_message a span:hover {background-color: #f93F9E;}
 #logout .internal_message a {color:#999;}
 #logout .internal_message a:hover {color:#000; text-decoration: none;}
 #logout a {font-weight:bold;}
