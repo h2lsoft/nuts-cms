@@ -122,7 +122,7 @@ else
 
 	if($plugin->formIsValid())
 	{
-		$this->sanitizePost();
+		$plugin->sanitizePost();
 
 		$_POST['Name'] = ucfirst($_POST['Name']);
 		$_POST['Email'] = strtolower($_POST['Email']);
@@ -155,7 +155,7 @@ else
 		$comment = nl2br($comment);
 
 		// make clikable
-		$comment = $nuts->clickable($comment);
+		$comment = $plugin->clickable($comment, true);
 
 		$IP = $plugin->getIP();
 		$IP_long = ip2long($IP);
