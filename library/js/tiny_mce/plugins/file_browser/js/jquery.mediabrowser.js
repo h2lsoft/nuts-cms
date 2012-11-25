@@ -642,9 +642,19 @@
                 $('div#files li a.image, div#files tr.image').contextMenu(imagecmenu);
 
                 if($.MediaBrowser.clipboard.length == 0)
-                    cmenu[4].Coller.disabled = true;
+                {
+                    if(nutsUserLang == 'fr')
+                        cmenu[4].Coller.disabled = true;
+                    else
+                        cmenu[4].Paste.disabled = true;
+                }
                 else
-                    cmenu[4].Coller.disabled = false;
+                {
+                    if(nutsUserLang == 'fr')
+                        cmenu[4].Coller.disabled = false;
+                    else
+                        cmenu[4].Paste.disabled = false;
+                }
 
                 $('div#files').contextMenu(cmenu);
             }
