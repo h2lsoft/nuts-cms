@@ -67,8 +67,8 @@ if(in_array($_GET['editor'], array('standalone', 'tinymce')))
         $upload_path = WEBSITE_PATH."/library/media/other/";
         $upload_pathX = '/library/media/other/';
 
-        $tree_hidden_folders[] = $upload_path.'nuts_drop_box';
-        $tree_hidden_folders[] = $upload_path.'nuts_press_kit';
+        // $tree_hidden_folders[] = $upload_path.'nuts_drop_box';
+        // $tree_hidden_folders[] = $upload_path.'nuts_press_kit';
     }
 
     // folder forbidden (paste, upload, delete)
