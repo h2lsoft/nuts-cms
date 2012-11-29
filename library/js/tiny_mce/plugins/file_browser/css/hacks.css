@@ -82,7 +82,7 @@ form#fileform {display: none;}
     display: none;
 }
 
-.n_window .n_titlebar {background: transparent url(../img/navbar.png) 0 0 repeat-x; height: 31px; padding:0 3px; padding-left: 10px; line-height: 31px;}
+.n_window .n_titlebar {background: transparent url(../img/navbar.png) 0 0 repeat-x; height: 31px; padding:0 3px; padding-left: 10px; line-height: 31px; cursor: move;}
 .n_window .n_title {float:left;}
 .n_window .n_close {float: right; margin-right: 3px; margin-top: 7px;}
 .n_window .n_close a {background-image: url(../img/cancel.png); background-repeat: no-repeat; display: block; width: 16px; height: 16px;}
