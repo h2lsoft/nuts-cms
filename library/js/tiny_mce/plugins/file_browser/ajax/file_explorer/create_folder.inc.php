@@ -6,6 +6,8 @@
 $folder_name = @urldecode($_POST['folder_name']);
 $folder_dest = @urldecode($_POST['folder']);
 
+$folder_name = protectFolderName($folder_name);
+
 // right access verification
 if($allowedActions['create_folder'] === FALSE)
     systemError(translate("Action not allowed !"));

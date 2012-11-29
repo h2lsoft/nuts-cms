@@ -24,6 +24,12 @@ else
         $pathX = str_replace(WEBSITE_PATH, '', $pathX);
         $value = strtolower($value);
 
+        if($value != "folder")
+        {
+            $ext3 = $value;
+            if(strlen($ext3) == 4)$ext3[3] = '';
+            $ext3 = trim($ext3);
+        }
 
         if($value == "folder")
         {
@@ -103,6 +109,8 @@ else
             // large_images ********************************************************************************************
             if($_GET['view'] == 'large_images')
             {
+
+
                 if(in_array(strtolower($value), array('png','jpg','jpeg','gif','bmp')))
                 {
 
@@ -129,7 +137,7 @@ else
                                         </li>'.CR,
                         $pathX,
                         $key,
-                        $value);
+                        $ext3);
                 }
             }
             // small_images ********************************************************************************************
@@ -160,7 +168,7 @@ else
                                         </li>'.CR,
                         $pathX,
                         $key,
-                        $value);
+                        $ext3);
                 }
             }
             // list ********************************************************************************************
@@ -191,7 +199,7 @@ else
                                         </li>'.CR,
                         $pathX,
                         $key,
-                        $value);
+                        $ext3);
                 }
             }
             // details ********************************************************************************************
@@ -252,7 +260,7 @@ else
                         $file_type,
                         $file_size,
                         $file_modified,
-                        $value
+                        $ext3
                     );
                     $htmlFiles .= $TR;
 
@@ -306,7 +314,7 @@ else
                                         </li>'.CR,
                         $pathX,
                         $key,
-                        $value,
+                        $ext3,
                         $file_type,
                         $file_size);
                 }

@@ -57,13 +57,16 @@ if(!preg_match("/^[$valid_chars_regex]+$/i", basename($_FILES['file']['name'])))
     upload_error(10);
 
 // @filetype
-if(!in_array($_FILES['file']['type'], $filetypes_mimes))
+if(!in_array($_FILES['file']['type'], $filetypes_mimes) && !in_array('*', $filetypes_mimes))
     upload_error(11, $_FILES['file']['type']);
 
 // @extension
 $file_parts = pathinfo($_FILES['file']['name']);
 $file_parts['extension'] = strtolower(@$file_parts['extension']);
-if(!in_array(@$file_parts['extension'], $filetypes_exts))
+$extension_joker = $file_parts['extension'];
+$extension_joker[strlen($extension_joker)-1] = "*";
+
+if(!in_array(@$file_parts['extension'], $filetypes_exts)  && !in_array(@substr($extension_joker, 0, 3), $filetypes_exts) && !in_array($extension_joker, $filetypes_exts))
     upload_error(12, @$_FILES['file']['extension']);
 
 
@@ -72,6 +75,20 @@ if(!in_array(@$file_parts['extension'], $filetypes_exts))
 $file_name = $_FILES['file']['name'];
 $file_name = trim($file_name);
 $file_name = str_replace(' ', '-', $file_name);
+
+// file exists ?
+if(file_exists(WEBSITE_PATH.$_POST['path'].$file_name))
+{
+    $file_name_original_ext = strtolower(end(explode('.',$file_name)));
+    $file_name_original_noext = str_replace(".$file_name_original_ext", "", $file_name);
+    $k = 2;
+    while(file_exists(WEBSITE_PATH.$_POST['path'].$file_name))
+    {
+        $file_name = $file_name_original_noext.'_'.$k.".$file_name_original_ext";
+        $k++;
+    }
+}
+
 
 
 // trigger
