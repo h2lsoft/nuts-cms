@@ -1293,6 +1293,8 @@ function getImageExtension($file)
 	$ext = strtolower(end($exts));
 	$ext = trim($ext);
 
+    if(strlen($ext) >= 4)$ext = substr($ext, 0 , 3);
+
 	$img = '<img src="/nuts/img/icon_extension/file.png" align="absmiddle" />';
 
 	// doc
