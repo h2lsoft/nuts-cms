@@ -125,6 +125,10 @@ if(in_array($_GET['editor'], array('standalone', 'tinymce')))
 }
 elseif($_GET['editor'] = 'edm')
 {
+
+
+
+
     $app_title = "Document Manager";
 
     $_GET['filter'] = 'file';
@@ -141,6 +145,12 @@ elseif($_GET['editor'] = 'edm')
     $upload_path = WEBSITE_PATH."/plugins/_edm/_repository/";
     $upload_pathX = '/plugins/_edm/_repository/';
     $load_folder = '';
+
+    // check .htaccess ok
+    if(!file_exists($upload_path.".htaccess"))
+    {
+        die("Security error: File `$upload_path.htaccess` not exists");
+    }
 
     // administrator
     if(nutsUserHasRight('', '_edm', 'administration'))
