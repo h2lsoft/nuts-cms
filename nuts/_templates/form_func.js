@@ -152,6 +152,14 @@ $('#former').ajaxForm(options);
 // pre-submit callback
 function showRequest(formData, jqForm, options)
 {
+    // show form white canvas
+    $('#nuts_form_canvas').width($('#form_content').width()+10);
+    $('#nuts_form_canvas').height($('#form_content').height()+$('#form_error').height());
+    pos = $('#form_content').offset();
+    $('#nuts_form_canvas').css('top', pos.top+'px');
+    $('#nuts_form_canvas').css('left', pos.left+'px');
+    $('#nuts_form_canvas').show();
+
 	// WYSIWYG interception
 	for(l=0; l < formData.length; l++)
 	{
@@ -159,14 +167,15 @@ function showRequest(formData, jqForm, options)
 			formData[l].value = remove_nuts_tags(formData[l].value);
 	}
 
-
 	var queryString = $.param(formData);
 
 	$('#btn_submit').attr('value', nuts_lang_msg_23);
  	$('#btn_submit').attr("disabled", true);
-	$('#form_content').fadeTo(0, 0.33);
+	// $('#form_content').fadeTo(0, 0.33);
 
 	forceWYSIWYGUpdate();
+
+
 
     return true;
 }
@@ -239,10 +248,11 @@ function showResponse(responseText, statusText)
 		$('#form_error').slideDown('fast');
 		$('#btn_submit').attr('value', nuts_lang_msg_21);
 	 	$('#btn_submit').removeAttr("disabled");
+        $('#nuts_form_canvas').hide();
 
-		$('#form_content').fadeTo(0.33, 1, function(){
+		//$('#form_content').fadeTo(0.33, 1, function(){
 			forceWYSIWYGUpdate();
-		});
+		//});
 	}
 	else
 	{
@@ -265,10 +275,11 @@ function showResponse(responseText, statusText)
 				$('#form_error').slideUp();
 				$('#btn_submit').removeAttr("disabled");
 				$('#btn_submit').attr('value', nuts_lang_msg_21);
+                $('#nuts_form_canvas').hide();
 
-				$('#form_content').fadeTo(0.33, 1, function(){
+				//$('#form_content').fadeTo(0.33, 1, function(){
 					forceWYSIWYGUpdate();
-				});
+				//});
 
 				// refresh window
 				if(popup == '1')
@@ -284,6 +295,7 @@ function showResponse(responseText, statusText)
 				setTimeout(function(){
 
 					$('#form').html(resp);
+                    $('#nuts_form_canvas').hide();
 					$('#form_valid').slideDown('fast');
 
 					// refresh parent window
@@ -315,6 +327,8 @@ function showResponse(responseText, statusText)
 			setTimeout(function(){
 
 					$('#form').html(resp);
+                    $('#nuts_form_canvas').hide();
+
 					// init treatment
 					$('#trt_progress_window').show();
 
