@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
 	<title>{#table_dlg.title}</title>
 	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
 	<script type="text/javascript" src="../../utils/mctabs.js"></script>
@@ -46,13 +47,13 @@
 								<option value="right">{#table_dlg.align_right}</option>
 							</select></td>
 							<td><label id="borderlabel" for="border">{#table_dlg.border}</label></td>
-							<td><input id="border" name="border" type="text" value="" size="3" maxlength="3" onchange="changedBorder();" class="number" /></td>
+							<td><input id="border" name="border" type="text" value="" size="3" maxlength="5" onchange="changedBorder();" class="size" /></td>
 						</tr>
 						<tr id="width_row">
 							<td><label id="widthlabel" for="width">{#table_dlg.width}</label></td>
-							<td><input name="width" type="text" id="width" value="" size="4" maxlength="4" onchange="changedSize();" class="size" /></td>
+							<td><input name="width" type="text" id="width" value="" size="7" maxlength="7" onchange="changedSize();" class="size" /></td>
 							<td><label id="heightlabel" for="height">{#table_dlg.height}</label></td>
-							<td><input name="height" type="text" id="height" value="" size="4" maxlength="4" onchange="changedSize();" class="size" /></td>
+							<td><input name="height" type="text" id="height" value="" size="7" maxlength="7" onchange="changedSize();" class="size" /></td>
 						</tr>
 						<tr id="styleSelectRow" >
 							<td><label id="classlabel" for="class">{#class_name}</label></td>
