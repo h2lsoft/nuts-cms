@@ -641,10 +641,11 @@
                 $('div#files li a.file, div#files tr.file').contextMenu(filecmenu);
                 $('div#files li a.image, div#files tr.image').contextMenu(imagecmenu);
 
-                if($.MediaBrowser.clipboard.length == 0)
-                    cmenu[4].Coller.disabled = true;
+                dis = ($.MediaBrowser.clipboard.length == 0) ? true : false;
+                if(nutsUserLang == 'fr')
+                    cmenu[4].Coller.disabled = dis;
                 else
-                    cmenu[4].Coller.disabled = false;
+                    cmenu[4].Paste.disabled = dis;
 
                 $('div#files').contextMenu(cmenu);
             }
