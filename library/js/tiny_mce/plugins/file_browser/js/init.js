@@ -352,7 +352,7 @@ $(function(){
 
 
     // draggable window
-    $('.n_window').draggable();
+    $('.n_window').draggable({handle: ".n_titlebar", cursor:"move", cancel:".n_content" });
 
 
     // detect ESC on window
