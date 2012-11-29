@@ -125,10 +125,6 @@ if(in_array($_GET['editor'], array('standalone', 'tinymce')))
 }
 elseif($_GET['editor'] = 'edm')
 {
-
-
-
-
     $app_title = "Document Manager";
 
     $_GET['filter'] = 'file';
