@@ -96,6 +96,9 @@ $lang = array(
     "Settings saved!"               => "Settings saved!",
 	
 	"Absolute URL with hostname"    => "Absolute URL with hostname",
+    "All"                           => "All",
+    "Loading"                       => "Loading",
+
 
     "EOF" => TRUE
 );

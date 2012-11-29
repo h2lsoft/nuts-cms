@@ -566,7 +566,7 @@
             $('div#message').html(str);
             $('div#message').slideDown();
 
-            timeout = (type != "error") ? 2500 : 2500;
+            timeout = (type != "error") ? 5000 : 3000;
             if(type == 'special')
             {
                 $('div#message').addClass('error');
@@ -642,19 +642,9 @@
                 $('div#files li a.image, div#files tr.image').contextMenu(imagecmenu);
 
                 if($.MediaBrowser.clipboard.length == 0)
-                {
-                    if(nutsUserLang == 'fr')
-                        cmenu[4].Coller.disabled = true;
-                    else
-                        cmenu[4].Paste.disabled = true;
-                }
+                    cmenu[4].Coller.disabled = true;
                 else
-                {
-                    if(nutsUserLang == 'fr')
-                        cmenu[4].Coller.disabled = false;
-                    else
-                        cmenu[4].Paste.disabled = false;
-                }
+                    cmenu[4].Coller.disabled = false;
 
                 $('div#files').contextMenu(cmenu);
             }

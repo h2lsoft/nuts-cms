@@ -69,6 +69,8 @@ if($type == 'file')
 }
 elseif($type == 'folder')
 {
+    $new_filename = protectFolderName($new_filename);
+
 
     // check old dirname
     if(!is_dir(WEBSITE_PATH.$folder.$old_filename))

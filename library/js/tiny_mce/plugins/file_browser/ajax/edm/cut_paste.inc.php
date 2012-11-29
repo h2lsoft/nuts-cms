@@ -111,7 +111,7 @@ foreach($files as $file)
                                             ->where("Folder = '".addslashes($folder)."'")
                                             ->executeAndGetAll();
 
-            $sub_dirs = glob_recursive(WEBSITE_PATH.$folder.basename($file)."/*", GLOB_ONLYDIR);
+            $sub_dirs = glob_recursiveX(WEBSITE_PATH.$folder.basename($file)."/");
             $sub_dirs[] = WEBSITE_PATH.$folder.basename($file);
 
             foreach($sub_dirs as $sub_dir)

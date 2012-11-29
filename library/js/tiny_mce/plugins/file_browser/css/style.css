@@ -488,14 +488,23 @@ div#files ul#list li a span.icon.psd{ background-image: url(../img/16/psd.png);}
 div#files ul#list li a span.icon.swf{ background-image: url(../img/16/swf.png);}
 /* Microsoft */
 div#files ul#list li a span.icon.doc,
+div#files ul#list li a span.icon.dot,
 div#files ul#list li a span.icon.docx{ background-image: url(../img/16/doc.png);}
 div#files ul#list li a span.icon.exe{ background-image: url(../img/16/exe.png);}
 div#files ul#list li a span.icon.folder{ background-image: url(../img/16/folder.png);}
 div#files ul#list li a span.icon.mdb{ background-image: url(../img/16/mdb.png);}
+
 div#files ul#list li a span.icon.ppt,
+div#files ul#list li a span.icon.pps,
+div#files ul#list li a span.icon.ppa,
+div#files ul#list li a span.icon.pot,
 div#files ul#list li a span.icon.pptx{ background-image: url(../img/16/ppt.png);}
+
 div#files ul#list li a span.icon.xls,
+div#files ul#list li a span.icon.xla,
+div#files ul#list li a span.icon.xlt,
 div#files ul#list li a span.icon.xlsx{ background-image: url(../img/16/xls.png);}
+
 /* Lettertype */
 div#files ul#list li a span.icon.otf{ background-image: url(../img/16/font.png);}
 div#files ul#list li a span.icon.ttf{ background-image: url(../img/16/ttf.png);}
@@ -551,14 +560,23 @@ div#files ul#tiles li a span.icon.psd{ background-image: url(../img/48/psd.png);
 div#files ul#tiles li a span.icon.swf{ background-image: url(../img/48/swf.png);}
 /* Microsoft */
 div#files ul#tiles li a span.icon.doc,
+div#files ul#tiles li a span.icon.dot,
 div#files ul#tiles li a span.icon.docx{ background-image: url(../img/48/doc.png);}
 div#files ul#tiles li a span.icon.exe{ background-image: url(../img/48/exe.png);}
 div#files ul#tiles li a span.icon.folder{ background-image: url(../img/48/folder.png);}
 div#files ul#tiles li a span.icon.mdb{ background-image: url(../img/48/mdb.png);}
+
 div#files ul#tiles li a span.icon.ppt,
+div#files ul#tiles li a span.icon.pps,
+div#files ul#tiles li a span.icon.ppa,
+div#files ul#tiles li a span.icon.pot,
 div#files ul#tiles li a span.icon.pptx{ background-image: url(../img/48/ppt.png);}
+
 div#files ul#tiles li a span.icon.xls,
+div#files ul#tiles li a span.icon.xlt,
+div#files ul#tiles li a span.icon.xla,
 div#files ul#tiles li a span.icon.xlsx{ background-image: url(../img/48/xls.png);}
+
 /* Lettertype */
 div#files ul#tiles li a span.icon.otf{ background-image: url(../img/48/font.png);}
 div#files ul#tiles li a span.icon.ttf{ background-image: url(../img/48/ttf.png);}
@@ -614,14 +632,23 @@ div#files ul#small_images li a span.icon.psd{ background-image: url(../img/48/ps
 div#files ul#small_images li a span.icon.swf{ background-image: url(../img/48/swf.png);}
 /* Microsoft */
 div#files ul#small_images li a span.icon.doc,
+div#files ul#small_images li a span.icon.dot,
 div#files ul#small_images li a span.icon.docx{ background-image: url(../img/48/doc.png);}
 div#files ul#small_images li a span.icon.exe{ background-image: url(../img/48/exe.png);}
 div#files ul#small_images li a span.icon.folder{ background-image: url(../img/48/folder.png);}
 div#files ul#small_images li a span.icon.mdb{ background-image: url(../img/48/mdb.png);}
+
 div#files ul#small_images li a span.icon.ppt,
+div#files ul#small_images li a span.icon.pps,
+div#files ul#small_images li a span.icon.ppa,
+div#files ul#small_images li a span.icon.pot,
 div#files ul#small_images li a span.icon.pptx{ background-image: url(../img/48/ppt.png);}
+
 div#files ul#small_images li a span.icon.xls,
+div#files ul#small_images li a span.icon.xla,
+div#files ul#small_images li a span.icon.xlt,
 div#files ul#small_images li a span.icon.xlsx{ background-image: url(../img/48/xls.png);}
+
 /* Lettertype */
 div#files ul#small_images li a span.icon.otf{ background-image: url(../img/48/font.png);}
 div#files ul#small_images li a span.icon.ttf{ background-image: url(../img/48/ttf.png);}
@@ -677,14 +704,23 @@ div#files ul#large_images li a span.icon.psd{ background-image: url(../img/96/ps
 div#files ul#large_images li a span.icon.swf{ background-image: url(../img/96/swf.png);}
 /* Microsoft */
 div#files ul#large_images li a span.icon.doc,
+div#files ul#large_images li a span.icon.dot,
 div#files ul#large_images li a span.icon.docx{ background-image: url(../img/96/doc.png);}
 div#files ul#large_images li a span.icon.exe{ background-image: url(../img/96/exe.png);}
 div#files ul#large_images li a span.icon.folder{ background-image: url(../img/96/folder.png);}
 div#files ul#large_images li a span.icon.mdb{ background-image: url(../img/96/mdb.png);}
+
 div#files ul#large_images li a span.icon.ppt,
+div#files ul#large_images li a span.icon.pps,
+div#files ul#large_images li a span.icon.ppa,
+div#files ul#large_images li a span.icon.pot,
 div#files ul#large_images li a span.icon.pptx{ background-image: url(../img/96/ppt.png);}
+
 div#files ul#large_images li a span.icon.xls,
+div#files ul#large_images li a span.icon.xla,
+div#files ul#large_images li a span.icon.xlt,
 div#files ul#large_images li a span.icon.xlsx{ background-image: url(../img/96/xls.png);}
+
 /* Lettertype */
 div#files ul#large_images li a span.icon.otf{ background-image: url(../img/96/font.png);}
 div#files ul#large_images li a span.icon.ttf{ background-image: url(../img/96/ttf.png);}
@@ -740,14 +776,23 @@ div#files ul#content li a span.icon.psd{ background-image: url(../img/32/psd.png
 div#files ul#content li a span.icon.swf{ background-image: url(../img/32/swf.png);}
 /* Microsoft */
 div#files ul#content li a span.icon.doc,
+div#files ul#content li a span.icon.dot,
 div#files ul#content li a span.icon.docx{ background-image: url(../img/32/doc.png);}
 div#files ul#content li a span.icon.exe{ background-image: url(../img/32/exe.png);}
 div#files ul#content li a span.icon.folder{ background-image: url(../img/32/folder.png);}
 div#files ul#content li a span.icon.mdb{ background-image: url(../img/32/mdb.png);}
+
 div#files ul#content li a span.icon.ppt,
+div#files ul#content li a span.icon.pps,
+div#files ul#content li a span.icon.ppa,
+div#files ul#content li a span.icon.pot,
 div#files ul#content li a span.icon.pptx{ background-image: url(../img/32/ppt.png);}
+
 div#files ul#content li a span.icon.xls,
+div#files ul#content li a span.icon.xla,
+div#files ul#content li a span.icon.xlt,
 div#files ul#content li a span.icon.xlsx{ background-image: url(../img/32/xls.png);}
+
 /* Lettertype */
 div#files ul#content li a span.icon.otf{ background-image: url(../img/32/font.png);}
 div#files ul#content li a span.icon.ttf{ background-image: url(../img/32/ttf.png);}
@@ -803,14 +848,23 @@ div#files table#details td.icon span.psd{ background-image: url(../img/16/psd.pn
 div#files table#details td.icon span.swf{ background-image: url(../img/16/swf.png);}
 /* Microsoft */
 div#files table#details td.icon span.doc,
+div#files table#details td.icon span.dot,
 div#files table#details td.icon span.docx{ background-image: url(../img/16/doc.png);}
 div#files table#details td.icon span.exe{ background-image: url(../img/16/exe.png);}
 div#files table#details td.icon span.folder{ background-image: url(../img/16/folder.png);}
 div#files table#details td.icon span.mdb{ background-image: url(../img/16/mdb.png);}
+
 div#files table#details td.icon span.ppt,
+div#files table#details td.icon span.pps,
+div#files table#details td.icon span.ppa,
+div#files table#details td.icon span.pot,
 div#files table#details td.icon span.pptx{ background-image: url(../img/16/ppt.png);}
+
 div#files table#details td.icon span.xls,
+div#files table#details td.icon span.xla,
+div#files table#details td.icon span.xlt,
 div#files table#details td.icon span.xlsx{ background-image: url(../img/16/xls.png);}
+
 /* Lettertype */
 div#files table#details td.icon span.otf{ background-image: url(../img/16/font.png);}
 div#files table#details td.icon span.ttf{ background-image: url(../img/16/ttf.png);}
@@ -866,14 +920,24 @@ div#file-specs #info div.icon.psd{ background-image: url(../phpthumb/phpThumb.ph
 div#file-specs #info div.icon.swf{ background-image: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/swf.png&far=1&bg=0000FF);}
 /* Microsoft */
 div#file-specs #info div.icon.doc,
+div#file-specs #info div.icon.dot,
 div#file-specs #info div.icon.docx{ background-image: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/doc.png&far=1&bg=0000FF);}
 div#file-specs #info div.icon.exe{ background-image: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/exe.png&far=1&bg=0000FF);}
 div#file-specs #info div.icon.folder{ background-image: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/folder.png&far=1&bg=0000FF);}
 div#file-specs #info div.icon.mdb{ background-image: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/mdb.png&far=1&bg=0000FF);}
+
 div#file-specs #info div.icon.ppt,
+div#file-specs #info div.icon.pps,
+div#file-specs #info div.icon.ppa,
+div#file-specs #info div.icon.pot,
 div#file-specs #info div.icon.pptx{ background-image: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/ppt.png&far=1&bg=0000FF);}
+
 div#file-specs #info div.icon.xls,
+div#file-specs #info div.icon.xla,
+div#file-specs #info div.icon.xlt,
 div#file-specs #info div.icon.xlsx{ background-image: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/xls.png&far=1&bg=0000FF);}
+
+
 /* Lettertype */
 div#file-specs #info div.icon.otf{ background-image: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/font.png&far=1&bg=0000FF);}
 div#file-specs #info div.icon.ttf{ background-image: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/ttf.png&far=1&bg=0000FF);}

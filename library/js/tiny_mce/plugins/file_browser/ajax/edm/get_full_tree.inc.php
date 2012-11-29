@@ -8,7 +8,8 @@ $html = "";
 // full view for administrator
 if(EDM_ADMINISTRATOR == true)
 {
-    $dirs = getDirTree($upload_path, false);
+    // $dirs = getDirTree($upload_path, false);
+    $formatted_dirs = getDirTreeX($upload_path);
 }
 else
 {
@@ -67,22 +68,22 @@ else
         }
     }
 
+}
 
-    $dirs = array();
-    for($i=0; $i < count($formatted_dirs) ; $i++)
+// recreate array from directory as key
+$dirs = array();
+for($i=0; $i < count($formatted_dirs) ; $i++)
+{
+    $current_dirs = $formatted_dirs[$i];
+
+    $str = '@$dirs';
+    for($j=0; $j < count($current_dirs); $j++)
     {
-        $current_dirs = $formatted_dirs[$i];
-
-        $str = '@$dirs';
-        for($j=0; $j < count($current_dirs); $j++)
-        {
-            $str .= '["'.$current_dirs[$j].'"]';
-        }
-
-        $str .= ' = array();';
-        eval($str);
+        $str .= '["'.$current_dirs[$j].'"]';
     }
 
+    $str .= ' = array();';
+    eval($str);
 }
 
 

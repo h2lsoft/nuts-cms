@@ -143,6 +143,10 @@ else
         {
             $css_file_locked = (in_array($pathX, $files_locked)) ? ' file_lock' : '';
 
+            $ext3 = $value;
+            if(strlen($ext3) == 4)$ext3[3] = '';
+            $ext3 = trim($ext3);
+
 
             // large_images ********************************************************************************************
             if($_GET['view'] == 'large_images')
@@ -173,7 +177,7 @@ else
                                         </li>'.CR,
                         $pathX,
                         $key,
-                        $value);
+                        $ext3);
                 }
             }
             // small_images ********************************************************************************************
@@ -204,7 +208,7 @@ else
                                         </li>'.CR,
                         $pathX,
                         $key,
-                        $value);
+                        $ext3);
                 }
             }
             // list ********************************************************************************************
@@ -235,7 +239,7 @@ else
                                         </li>'.CR,
                         $pathX,
                         $key,
-                        $value);
+                        $ext3);
                 }
             }
             // details ********************************************************************************************
@@ -296,7 +300,7 @@ else
                         $file_type,
                         $file_size,
                         $file_modified,
-                        $value
+                        $ext3
                     );
                     $htmlFiles .= $TR;
 
@@ -350,8 +354,8 @@ else
                                         </li>'.CR,
                         $pathX,
                         $key,
+                        $ext3,
                         $value,
-                        $file_type,
                         $file_size);
                 }
             }

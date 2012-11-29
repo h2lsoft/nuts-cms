@@ -135,7 +135,7 @@ foreach($files as $file)
                                               ->executeAndGetAll();
 
 
-            $sub_dirs = glob_recursive("$dest*", GLOB_ONLYDIR);
+            $sub_dirs = glob_recursiveX("$dest");
             $sub_dirs[] =  $dest;
 
             foreach($sub_dirs as $sub_dir)

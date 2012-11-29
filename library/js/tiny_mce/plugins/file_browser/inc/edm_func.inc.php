@@ -231,22 +231,81 @@ function edmGetFilesLocked($folder)
 }
 
 
-if(!function_exists('glob_recursive'))
+/**
+ * Return dir and subdir
+ * @param $dir
+ */
+function glob_recursiveX($dir)
 {
+    $dirs = array();
 
-    // Does not support flag GLOB_BRACE
-    function glob_recursive($pattern, $flags = 0)
+    if(systemIsWindows())
     {
-        $files = glob($pattern, $flags);
+        $dir = str_replace('/','\\', $dir);
+        $cmd = "DIR $dir /A:D /B /S /O:N /N";
+        $output = shell_exec($cmd);
+        $output = trim($output);
+        $dirs = explode("\n", $output);
+    }
+    else
+    {
 
-        foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir)
+    }
+
+
+    return $dirs;
+}
+
+
+
+/**
+ * Get directory tree system
+ *
+ * @param $upload_path
+ * @return array
+ */
+function getDirTreeX($upload_path)
+{
+    $dirs = glob_recursiveX($upload_path);
+
+    $formatted_dirs = array();
+    foreach($dirs as $dir)
+    {
+        if(systemIsWindows())
         {
-            $files = array_merge($files, glob_recursive($dir.'/'.basename($pattern), $flags));
+            $dir = str_replace('\\', '/', $dir);
         }
 
-        return $files;
+        $dir = str_replace($upload_path, '/', $dir);
+
+        if(!empty($dir) && $dir != '/' )
+        {
+            $dir[0] = ' ';
+            $dir = trim($dir);
+            // $dir = mb_convert_encoding($dir, 'utf-8');
+            $tmp = explode('/', $dir);
+            $formatted_dirs[] = $tmp;
+        }
     }
+
+    // new dBug($formatted_dirs);
+
+    return $formatted_dirs;
 }
+
+
+/**
+ * is in Windows ?
+ *
+ * @return bool
+ */
+function systemIsWindows()
+{
+    return (PHP_OS == 'WINNT');
+}
+
+
+
 
 
 ?>

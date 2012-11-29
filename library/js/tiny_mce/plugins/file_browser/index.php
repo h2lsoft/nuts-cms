@@ -158,6 +158,9 @@ elseif($_GET['editor'] = 'edm')
         'delete' => false,
         'create_folder' => false
     );
+
+    if(@empty($_COOKIE["pdw-view"]))$_COOKIE["pdw-view"] = "details";
+
 }
 
 

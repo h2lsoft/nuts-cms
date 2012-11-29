@@ -186,6 +186,9 @@ $lang = array(
     "Visualize" => "Visualiser",
     "Locks" => "Verrous",
 
+    "All"                           => "Tous",
+    "Loading"                       => "Chargement",
+
     "EOF" => TRUE
 );
 

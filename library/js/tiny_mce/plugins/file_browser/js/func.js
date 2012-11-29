@@ -174,7 +174,6 @@ function tableDetailsSort(type, direction){
 
 function showUpload(){
     nWindowOpen('upload_window');
-
 }
 
 

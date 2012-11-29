@@ -315,8 +315,22 @@ function recursiveDelete($path){
     }
 }
 
+/**
+ * Protect folder name
+ *
+ * @param $folder_name
+ */
+function protectFolderName($folder_name)
+{
+    $folder_name = str_replace(array('à','ä','â'), 'a', $folder_name);
+    $folder_name = str_replace(array('é','è','ê','ë'), 'e', $folder_name);
+    $folder_name = str_replace(array('ï','î'), 'i', $folder_name);
+    $folder_name = str_replace(array('ö','ô'), 'o', $folder_name);
+    $folder_name = str_replace(array('ù','ü','û'), 'u', $folder_name);
+    $folder_name = str_replace(array('ç'), 'c', $folder_name);
 
-
+    return trim($folder_name);
+}
 
 
 

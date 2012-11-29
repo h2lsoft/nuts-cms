@@ -34,6 +34,8 @@ elseif($type == 'file')
     $filename = array_pop((explode("/", $filename)));
     $fileext = strtolower(array_pop((explode(".", $filename))));
     $file_locked = edmFileIsLocked($cur_path);
+    if(strlen($fileext) == 4)$fileext[3] = '';
+    $fileext = trim($fileext);
 
     $html = '<div class="icon '.$fileext.'"></div>';
     $html .= '<div class="filename">'.$filename.'</div>';

@@ -77,7 +77,7 @@ if($recursive)
 {
     $_cache_parent = array();
 
-    $dirs = glob_recursive(WEBSITE_PATH.$folder.'*', GLOB_ONLYDIR);
+    $dirs = glob_recursiveX(WEBSITE_PATH.$folder.'*');
     foreach($dirs as $dir)
     {
         $cur_folder = str_replace(WEBSITE_PATH, '', $dir).'/';

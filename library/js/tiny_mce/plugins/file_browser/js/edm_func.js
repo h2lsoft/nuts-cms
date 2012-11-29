@@ -222,3 +222,10 @@ function setRights(){
     }, 'json');
 
 }
+
+
+function rightSelectAll(v, rID)
+{
+    cur_checked = v.checked;
+    $('#rights_window tr[recId='+rID+'] input[type=checkbox]').attr('checked', cur_checked);
+}

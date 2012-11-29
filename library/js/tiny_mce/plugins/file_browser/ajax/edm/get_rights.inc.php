@@ -48,8 +48,9 @@ $write_checked = (@$everybody_rights['WRITE'] == 'YES') ? 'checked' : '';
 $upload_checked = (@$everybody_rights['UPLOAD'] == 'YES') ? 'checked' : '';
 
 $str = <<<EOF
-<tr class="group_everybody">
+<tr recId="0" class="group_everybody">
     <td><span class="group"></span> <b>$everybody_lbl</b></td>
+    <td class="center"><input type="checkbox" onclick="rightSelectAll(this,0);" /></td>
     <td class="center"><input type="checkbox" recId="0" name="rights[0]['list']" value="list" $list_checked /></td>
     <td class="center"><input type="checkbox" recId="0" name="rights[0]['read']" value="read" $read_checked /></td>
     <td class="center"><input type="checkbox" recId="0" name="rights[0]['modify']" value="modify" $modify_checked /></td>
@@ -83,6 +84,7 @@ while($row = $nuts->dbFetch())
         $str .= <<<EOF
                         <tr recId="{$row['ID']}">
                             <td><span class="$type"></span> {$row['DynName']}</td>
+                            <td class="center"><input type="checkbox" onclick="rightSelectAll(this,{$row['ID']});" /></td>
                             <td class="center"><input type="checkbox" recId="{$row['ID']}" name="rights[{$row['ID']}]['list']" value="list" $list_checked /></td>
                             <td class="center"><input type="checkbox" recId="{$row['ID']}" name="rights[{$row['ID']}]['read']" value="read" $read_checked /></td>
                             <td class="center"><input type="checkbox" recId="{$row['ID']}" name="rights[{$row['ID']}]['modify']" value="modify" $modify_checked /></td>
