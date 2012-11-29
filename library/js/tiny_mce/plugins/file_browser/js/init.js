@@ -9,6 +9,7 @@ $(function(){
 
     loading_msg = (nutsUserLang == 'fr') ? 'Chargement' : 'Loading';
 
+    $.blockUI.defaults.css.cursor = 'default';
     $.blockUI({ message: "<img src='img/ajaxLoader.gif' align='absmiddle' style='margin-right:5px; width:24px;' /> "+loading_msg, css: {'border-radius':'5px', height:'50px', 'line-height': '50px', 'font-weight': 'normal', 'font-size': '16px'}});
 
     // *** Context Menu ***//
