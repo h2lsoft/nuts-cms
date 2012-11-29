@@ -40,9 +40,14 @@ if(!file_exists(WEBSITE_PATH.$file))
     die(translate($msg));
 }
 
+
+
 // lock ****************************************************************************************************************
 if($_GET['type'] == 'lock')
 {
+    // trigger
+    nutsTrigger('edm::lock-file_before', true, "edm user action lock file");
+
     // already lock by another person ?
     Query::factory()->select("(SELECT CONCAT(LastName,' ', FirstName) FROM NutsUser WHERE ID = NutsEDMLock.NutsUserID) AS UserName")
                     ->from('NutsEDMLock')
@@ -67,12 +72,19 @@ if($_GET['type'] == 'lock')
     $f['File'] = $file_only;
     $nuts->dbInsert('NutsEDMLock', $f);
     edmLog('LOCK', 'FILE', $file);
+
+
+    // trigger
+    nutsTrigger('edm::lock-file_success', true, "edm user action lock file");
 }
 
 
 // unlock ****************************************************************************************************************
 if($_GET['type'] == 'unlock')
 {
+    // trigger
+    nutsTrigger('edm::unlock-file_before', true, "edm user action unlock file");
+
     // lock found by user ?
     Query::factory()->select("ID")
                     ->from('NutsEDMLock')
@@ -94,6 +106,12 @@ if($_GET['type'] == 'unlock')
 
     $nuts->dbDelete('NutsEDMLock', "Folder = '$folderX' AND File = '$file_onlyX' AND NutsUserID = {$_SESSION['NutsUserID']}");
     edmLog('UNLOCK', 'FILE', $file);
+
+
+    // trigger
+    nutsTrigger('edm::unlock-file_success', true, "edm user action unlock file");
+
+
 }
 
 

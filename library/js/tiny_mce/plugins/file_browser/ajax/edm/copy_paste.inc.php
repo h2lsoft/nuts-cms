@@ -92,6 +92,9 @@ foreach($files as $file)
             $k++;
         }
 
+        // trigger
+        nutsTrigger('edm::copy-paste_file_before', true, "edm user action copy and paste file");
+
         if(!@copy($file_path, WEBSITE_PATH.$folder.'/'.$current_file_name))
         {
             $msg = "Error while copying file";
@@ -101,6 +104,9 @@ foreach($files as $file)
         else
         {
             edmLog('COPY_PASTE', 'FILE', $folder.'/'.$current_file_name);
+
+            // trigger
+            nutsTrigger('edm::copy-paste_file_success', true, "edm user action copy and paste file");
         }
     }
     // folder
@@ -116,6 +122,9 @@ foreach($files as $file)
 
         $source = WEBSITE_PATH.$file."/";
         $dest = WEBSITE_PATH.$folder.$current_folder_name."/";
+
+        // trigger
+        nutsTrigger('edm::copy-paste_folder_before', true, "edm user action copy and paste folder");
 
         if(!@smartCopy($source, $dest))
         {
@@ -180,6 +189,11 @@ foreach($files as $file)
                 }
             }
         }
+
+        // trigger
+        nutsTrigger('edm::copy-paste_folder_success', true, "edm user action copy and paste folder");
+
+
     }
 }
 

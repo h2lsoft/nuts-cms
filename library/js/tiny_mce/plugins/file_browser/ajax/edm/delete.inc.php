@@ -97,6 +97,9 @@ foreach($files as $file)
     }
 }
 
+// trigger
+nutsTrigger('edm::delete_before', true, "edm user action delete");
+
 
 // delete files
 foreach($files as $file)
@@ -105,6 +108,7 @@ foreach($files as $file)
 
     if(!$is_dir)
     {
+
         if(!@unlink(WEBSITE_PATH.$file))
         {
             $msg = "Deleting file failed !";
@@ -137,7 +141,7 @@ foreach($files as $file)
 
 
 
-
+nutsTrigger('edm::delete_success', true, "edm user action delete");
 $resp['result'] = 'ok';
 
 

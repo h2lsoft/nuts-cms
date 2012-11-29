@@ -45,6 +45,9 @@ if(is_dir(WEBSITE_PATH.$folder_dest.$folder_name))
     systemError(translate($msg));
 }
 
+## trigger ##
+nutsTrigger('edm::create-folder_before', true, "edm user action create folder");
+
 // create folder
 if(!@mkdir(WEBSITE_PATH.$folder_dest.$folder_name))
 {
@@ -114,6 +117,9 @@ else
 edmLog('WRITE', 'FOLDER', $folder_dest.$folder_name);
 
 $resp['result'] = 'ok';
+
+## trigger ##
+nutsTrigger('edm::create-folder_success', true, "edm user action create folder");
 
 
 

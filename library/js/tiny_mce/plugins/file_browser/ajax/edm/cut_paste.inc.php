@@ -160,14 +160,20 @@ foreach($files as $file)
     // file
     else
     {
+        // trigger
+        nutsTrigger('edm::cut-paste_file_before', true, "edm user action cut and paste file");
+
         if(!@rename($file_path, WEBSITE_PATH.$folder.basename($file)))
         {
             $msg = "Error while moving $type";
             edmLog('CUT_PASTE', 'ERROR', $file, $msg.": $file => $folder".basename($file));
             systemError(translate($msg)." `$file`");
         }
-    }
 
+        // trigger
+        nutsTrigger('edm::cut-paste_file_success', true, "edm user action cut and paste file");
+
+    }
 
 }
 

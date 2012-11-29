@@ -52,9 +52,11 @@ if($type == 'file')
     // file locked ?
     edmCheckLock($folder, $old_filename, 'json');
 
-
     $source = WEBSITE_PATH.$folder.$old_filename;
     $dest = WEBSITE_PATH.$folder.$new_filename;
+
+    // trigger
+    nutsTrigger('edm::rename-file_before', true, "edm user action rename file");
 
     // rename failed
     if(!@rename($source, $dest))
@@ -63,6 +65,9 @@ if($type == 'file')
         edmLog('RENAME', 'ERROR', $folder.$new_filename, $msg);
         systemError(translate($msg)." `$folder$new_filename`");
     }
+
+    // trigger
+    nutsTrigger('edm::rename-file_success', true, "edm user action rename file");
 
     edmLog('RENAME', 'FILE', $folder.$old_filename, $folder.$new_filename);
     $resp['result'] = 'ok';
@@ -95,6 +100,10 @@ elseif($type == 'folder')
     $source = WEBSITE_PATH.$folder.$old_filename;
     $dest = WEBSITE_PATH.$folder.$new_filename;
 
+    // trigger
+    nutsTrigger('edm::rename-folder_before', true, "edm user action rename folder");
+
+
     // rename failed
     if(!@rename($source, $dest))
     {
@@ -119,6 +128,9 @@ elseif($type == 'folder')
 
     edmLog('RENAME', 'FOLDER', $folder.$old_filename, $folder.$new_filename);
     $resp['result'] = 'ok';
+
+    // trigger
+    nutsTrigger('edm::rename-folder_success', true, "edm user action rename folder");
 }
 
 

@@ -97,11 +97,19 @@ if(file_exists(WEBSITE_PATH.$_POST['path'].$file_name))
     }
 }
 
+// trigger
+nutsTrigger('edm::upload_before', true, "edm user upload file");
+
 // error while uploading
 if(!move_uploaded_file($_FILES['file']['tmp_name'], WEBSITE_PATH.$_POST['path'].$file_name))
     upload_error(13, $_POST['path'].$_FILES['file']['name']);
 
 edmLog('UPLOAD', 'FILE', $_POST['path'].$_FILES['file']['name']);
+
+
+// trigger
+nutsTrigger('edm::upload_success', true, "edm user upload file");
+
 die('ok');
 
 

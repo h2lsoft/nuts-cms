@@ -36,12 +36,15 @@ if($type == 'file')
     $dest = WEBSITE_PATH.$folder.$new_filename;
 
     // trigger
-    nutsTrigger('file-explorer::rename-file', true, "file-explorer user action rename file");
+    nutsTrigger('file-explorer::rename-file_before', true, "file-explorer user action rename file");
 
     if(!@rename($source, $dest))
     {
         systemError(translate("Rename failed!"));
     }
+
+    // trigger
+    nutsTrigger('file-explorer::rename-file_success', true, "file-explorer user action rename file");
 
     $resp['result'] = 'ok';
 }

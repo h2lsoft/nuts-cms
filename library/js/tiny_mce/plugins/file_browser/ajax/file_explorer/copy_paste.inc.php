@@ -55,8 +55,14 @@ foreach($files as $file)
             $k++;
         }
 
+        // trigger
+        nutsTrigger('file-explorer::copy-paste_file_before', true, "file-explorer user action copy and paste file");
+
         if(!@copy($file_path, WEBSITE_PATH.$folder.'/'.$current_file_name))
             systemError(translate("Error while copying file")." `$current_file_name`");
+
+        // trigger
+        nutsTrigger('file-explorer::copy-paste_file_success', true, "file-explorer user action copy and paste file");
     }
     else
     {
@@ -73,17 +79,19 @@ foreach($files as $file)
         $dest = WEBSITE_PATH.$folder.$current_folder_name."/";
 
         // trigger
-        nutsTrigger('file-explorer::copy-paste_before', true, "file-explorer user action copy and paste");
+        nutsTrigger('file-explorer::copy-paste_folder_before', true, "file-explorer user action copy and paste file");
 
         if(!@smartCopy($source, $dest))
             systemError(translate("Error while copying folder")." `$current_folder_name`<br />$source <> $dest");
 
         // trigger
-        nutsTrigger('file-explorer::copy-paste_success', true, "file-explorer user action copy and paste");
+        nutsTrigger('file-explorer::copy-paste_folder_success', true, "file-explorer user action copy and paste file");
 
     }
 
 }
+
+
 
 
 
