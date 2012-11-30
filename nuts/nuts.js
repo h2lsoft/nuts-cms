@@ -592,6 +592,50 @@ function popupModal(url, name, windowWidth, windowHeight, opts) {
     // newwindow.focus();
 }
 
+/**
+ * PopupModalV2
+ *
+ * @param url
+ * @param name
+ * @param windowWidth = 1024
+ * @param windowHeight
+ * @param top  0 = center
+ * @param left 0 = center
+ * @param boolean status
+ * @param boolean resizable
+ * @param boolean scrollbars
+ */
+function popupModalV2(url, name, windowWidth, windowHeight, wtop, wleft, wstatus, wresizable, wscrollbars, other)
+{
+    if(name == undefined)name = 'nWindow2';
+    if(!windowWidth)windowWidth = 1100;
+    if(!windowHeight)windowHeight = 850;
+    if(!wtop)wtop = (screen.height - windowHeight) / 2;
+    if(!wleft)wleft = (screen.width - windowWidth) / 2;
+    if(wstatus == undefined)wstatus = 1;
+    if(wresizable == undefined)wresizable = 1;
+    if(wscrollbars == undefined)wscrollbars = 1;
+    if(other == undefined)other = '';
+
+    properties = "";
+    properties += "width="+windowWidth;
+    properties += ",height="+windowHeight;
+    properties += ",top="+wtop;
+    properties += ",left="+wleft;
+    properties += ",status="+wstatus;
+    properties += ",resizable="+wresizable;
+    properties += ",scrollbars="+wscrollbars;
+    properties += other;
+
+    // add dynamic popup parameter
+    if(url.indexOf('http') == -1 && url.indexOf('ftp') == -1  &&  url.indexOf('mailto') == -1 &&  url.indexOf('&popup=1') == -1 && url.indexOf('?') >= 0)
+        url += '&popup=1';
+
+    newwindow = window.open(url, name, properties);
+}
+
+
+
 
 function initMainMenu()
 {
