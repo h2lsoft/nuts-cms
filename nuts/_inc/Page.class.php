@@ -1128,7 +1128,7 @@ class Page extends NutsCore
 									foreach($rs as $r)
 									{
 										$class_selected = ($this->pageID != $r['ID']) ? '' : ' class="selected"';
-										$rep .= sprintf('<li id="%s%s" %s><a href="%s">%s</a>'."\n", $cmd2['CSS'], $r['ID'], $class_selected, $this->getUrl($r['ID'], $r['Language'], $r['VirtualPagename']), $r['MenuName']);
+										$rep .= sprintf('<li data-page-id="'.$r['ID'].'" id="%s%s" %s><a href="%s">%s</a>'."\n", $cmd2['CSS'], $r['ID'], $class_selected, $this->getUrl($r['ID'], $r['Language'], $r['VirtualPagename']), $r['MenuName']);
 										$rep .= "\t".$this->getMenu($r['ID'], 'LI', $cmd2['CSS'], $cmd2['ATTRIBUTES'], 1)."\n";
 										$rep .= "\t</li>\n";
 									}
@@ -1679,7 +1679,7 @@ class Page extends NutsCore
 
 									".$this->sqlAdded());
 			//if($output == 'LI' || $output == 'LI>UL')
-			$pattern = $chars.'<li id="%s%s" %s>'."\n".'<a href="%s" %s>%s</a>'."\n".$chars.'</li>'."\n";
+			$pattern = $chars.'<li data-page-id="%d" id="%s%s" %s>'."\n".'<a href="%s" %s>%s</a>'."\n".$chars.'</li>'."\n";
 			//else
 				//$pattern = $output;
 
@@ -1689,7 +1689,7 @@ class Page extends NutsCore
 			$attr_tmp = trim($attr_tmp);
 
 			$class_selected = ($this->pageID != $r[$qID]['ID']) ? '' : ' class="selected"';
-			$str .= sprintf($pattern, $css,  $r[$qID]['ID'], $class_selected, $this->getUrl($r[$qID]['ID'], $r[$qID]['Language'], $r[$qID]['VirtualPagename']), $attr_tmp, $r[$qID]['MenuName']);
+			$str .= sprintf($pattern, $css,  $r[$qID]['ID'], $class_selected, $this->getUrl($r[$qID]['ID'], $r[$qID]['ID'], $r[$qID]['Language'], $r[$qID]['VirtualPagename']), $attr_tmp, $r[$qID]['MenuName']);
 		}
 
 		// parsing
@@ -1722,12 +1722,12 @@ class Page extends NutsCore
 			$attr_tmp = $this->getMenuAttribute($r, $qID);
 
 			//if($output == 'LI' || $output == 'LI>UL')
-				$pattern = $chars.'	<li id="%s%s" %s><a href="%s" %s>%s</a>';
+				$pattern = $chars.'	<li data-page-id="%d" id="%s%s" %s><a href="%s" %s>%s</a>';
 			//else
 				//$pattern = $output;
 
 			$class_selected = ($this->pageID != $r[$qID]['ID']) ? '' : ' class="selected"';
-			$str .= sprintf($pattern, $css,  $r[$qID]['ID'], $class_selected, $this->getUrl($r[$qID]['ID'], $r[$qID]['Language'], $r[$qID]['VirtualPagename']), $attr_tmp, $r[$qID]['MenuName']);
+			$str .= sprintf($pattern, $r[$qID]['ID'], $css,  $r[$qID]['ID'], $class_selected, $this->getUrl($r[$qID]['ID'], $r[$qID]['Language'], $r[$qID]['VirtualPagename']), $attr_tmp, $r[$qID]['MenuName']);
 
 			//echo str_repeat(' ', $level)."- {$r[$qID]['MenuName']}\n";
 
