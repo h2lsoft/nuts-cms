@@ -2592,7 +2592,6 @@ EOF;
 		// percent treatment ?
 		$this->nuts->parse('form_percent', $this->formPercentRender);
 
-
 		// additional parameters
 		$this->nuts->parse('formParameters', $this->formParameters);
 
@@ -3018,7 +3017,6 @@ EOF;
 
 		foreach($this->formFields as $f)
 		{
-
 			// special for aucomplete
 			if($f['type'] == 'ajax_autcomplete' && $_POST && !empty($f['opts']['ac_columnID']))
 			{
@@ -3027,6 +3025,14 @@ EOF;
 				$_POST[$f['name']] = (int)$_POST[$f['name']];
 				if($_POST[$f['name']] == 0)$_POST[$f['name']] = '';
 			}
+
+            // add special class
+            if(!@empty($f['opts']['class']) && $_POST)
+            {
+                if(preg_match('/ucfirst/', $f['opts']['class']))$_POST[$f['name']] = ucfirst($_POST[$f['name']]);
+                if(preg_match('/upper/', $f['opts']['class']))$_POST[$f['name']] = strtoupper($_POST[$f['name']]);
+                if(preg_match('/lower/', $f['opts']['class']))$_POST[$f['name']] = strtolower($_POST[$f['name']]);
+            }
 
 			if($f['required'])
 			{
