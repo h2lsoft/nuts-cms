@@ -24,10 +24,16 @@ $user = Query::factory()->select('*')
 // form rules
 foreach($pluginRegister['form_fields'] as $form_fields)
 {
+    // update label
+    $label = ($lang == 'fr') ? $form_fields['label_fr'] : $form_fields['label_en'];
+    $plugin->formSetObjectName($form_fields['name'], $label);
+
     if(@$form_fields['required'])
     {
         if($form_fields['name'] != 'Login')
+        {
             $plugin->notEmpty($form_fields['name']);
+        }
     }
 }
 
