@@ -163,7 +163,7 @@ else
         nutsUserSetPassword($_SESSION['NutsUserID'], $pass_original);
 
 	// send email
-	if($pluginRegister['onValidSendEmail'])
+	if($pluginRegister['onValidSendEmail'] && !empty($_POST['Password']))
 	{
 		$mail_lang = ($page->language == 'fr') ? 'fr' : 'en';
 		$_POST['Password'] = $pass_original;
