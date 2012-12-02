@@ -56,7 +56,7 @@ if($pluginRegister['add_address_fields'])
     $pluginRegister['form_fields'][] = array(
                                                 'name' => 'Address',
                                                 'label_en' => "Address",
-                                                'label_fr' => "Address",
+                                                'label_fr' => "Adresse",
                                                 'required' => true,
                                             'text_after_en' => '',
                                             'text_after_fr' => ''
@@ -66,7 +66,7 @@ if($pluginRegister['add_address_fields'])
     $pluginRegister['form_fields'][] = array(
                                                 'name' => 'Address2',
                                                 'label_en' => "Address 2",
-                                                'label_fr' => "Address 2",
+                                                'label_fr' => "Adresse 2",
                                                 'required' => false,
                                             'text_after_en' => '',
                                             'text_after_fr' => ''
