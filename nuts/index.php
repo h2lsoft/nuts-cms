@@ -271,6 +271,15 @@ $PHPSESSID = session_id();
 
 $nuts->open('_templates/all.html');
 
+// allow Visual Query Builder
+$AllowVisualQueryBuilder = false;
+if(nutsUserHasRight($_SESSION['NutsGroupID'], '_visual-query-builder', 'exec'))
+    $AllowVisualQueryBuilder = true;
+$nuts->parse('AllowVisualQueryBuilder', $AllowVisualQueryBuilder);
+
+
+
+
 // popup
 if(isset($_GET['popup']) && $_GET['popup'])
 {
