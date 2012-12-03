@@ -315,13 +315,27 @@ function initCodeEditor(objID, syntax, popup_version)
 	*/
 
 
+    // visual query builder
+    vqb = '';
+    if(AllowVisualQueryBuilder == '1' && syntax == 'sql')
+    {
+        vqb += '<img src="/plugins/_visual-query-builder/icon.png" align="absmiddle" style="width:16px;" /> ';
+        vqb += '<a class="visual_query_builder" href="javascript:;" onclick="popupModalV2(\'?mod=_visual-query-builder&do=exec&parent='+objID+'\', \'Visual query builder\', 1100, 900, 0, 0, 0, 0, 0, \'\');"> Visual query builder</a>';
+        vqb += '&nbsp;&nbsp;&nbsp;';
+    }
+
+
 	str = '';
 	if(popup_version == true)
 	{
 		str += '<div style="padding:5px; margin:0;">';
+
+        str += vqb;
+
 		str += '<img src="img/icon-html_code_editor.png" align="absmiddle" /> ';
 		str += '<a href="javascript:;" onclick="codeEditor(\''+objID+'\', \''+syntax+'\', 0);"> Code Editor popup';
 		str += '</a>';
+
 		str += '</div>';
 		str += '<label>&nbsp;</label>';
 
@@ -331,9 +345,13 @@ function initCodeEditor(objID, syntax, popup_version)
 	else
 	{
 		str += '<div id="code_editor_toolbar" style="padding:5px; margin:0; background-color:#e5e5e5; border:1px solid #ccc;">';
+
+        str += vqb;
+
 		str += '<img src="img/icon-html_code_editor.png" align="absmiddle" /> ';
 		str += '<a id="code_editor_a" href="javascript:;" onclick="codeEditorInline(\''+objID+'\', \''+syntax+'\');"> Code Editor';
 		str += '</a>';
+
 		str += '</div>';
 		str += '<div id="code_editor_loader"><img src="img/ajax-loader.gif" align="absmiddle" /> loading ...</div>';
 		$('#'+objID).fadeTo(0, 0.4);
@@ -377,7 +395,7 @@ function codeEditorInline(objID, syntax)
 		onCursorActivity: function() {
 								codemirror_editor.setLineClass(hlLine, null);
 								hlLine = codemirror_editor.setLineClass(codemirror_editor.getCursor().line, "activeline");
-							},
+							}
 
       });
 
