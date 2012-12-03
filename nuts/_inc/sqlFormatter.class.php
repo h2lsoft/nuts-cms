@@ -44,7 +44,7 @@ class SqlFormatter
     // For SQL formatting
     // These keywords will all be on their own line
     protected static $special_reserved = array(
-        'SELECT', 'FROM', 'WHERE', 'SET', 'ORDER BY', 'GROUP BY', 'LEFT JOIN', 'OUTER JOIN', 'INNER JOIN', 'RIGHT JOIN', 'JOIN', 'LIMIT', 'VALUES', 'UPDATE', 'HAVING'
+        'SELECT', 'FROM', 'WHERE', 'ORDER BY', 'GROUP BY', 'LEFT JOIN', 'OUTER JOIN', 'INNER JOIN', 'RIGHT JOIN', 'JOIN', 'LIMIT', 'HAVING', 'AND', 'OR'
     );
 
     // Punctuation that can be used as a boundary between other tokens
@@ -68,7 +68,7 @@ class SqlFormatter
     public static $comment_style = 'color: #aaa;';
 
     // The tab character to use when formatting SQL
-    public static $tab = '  ';
+    public static $tab = "\t";
 
     // This flag tells us if the reserved word list is sorted already
     protected static $reserved_sorted;
@@ -630,6 +630,8 @@ class SqlFormatter
      */
     private static function sortLength ($a, $b)
     {
+
+
         return strlen($b) - strlen($a);
     }
 }
