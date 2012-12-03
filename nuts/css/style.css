@@ -1009,6 +1009,7 @@ table#rights tr:hover> td.label
     font-family: courier;
     font-size: 11px;
     background-image: none;
+    resize: none;
 }
 
 #visual_query_builder #right_view textarea#SqlCode:focus {
