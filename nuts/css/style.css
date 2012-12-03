@@ -706,6 +706,10 @@ div#form textarea.editor {
 
 }
 
+div#form textarea.editor:focus {
+   border-left-color: #74B9EF;
+}
+
 
 div#form input[readonly],
 div#form textarea[readonly]
@@ -955,6 +959,61 @@ table#rights tr:hover> td.label
     margin-left: 10px;
 }
 
+
+/** visual_query_builder **/
+#visual_query_builder {}
+#visual_query_builder #tables_wrapper {}
+#visual_query_builder #tables {float: left; width:275px;  padding: 5px;}
+#visual_query_builder #tables #table_search {
+
+    margin-bottom: 5px;;
+
+
+}
+#visual_query_builder #tables #table_search_input {
+
+    background-image:url(/nuts/img/icon_top_search.png);
+	background-position: 2px center;
+	background-repeat: no-repeat;
+	background-color: #fff;
+	color: #ccc;
+	padding: 1px;
+    padding-left: 19px;
+    border: 1px solid #ccc;
+    border-radius:10px;
+    width: 250px;
+}
+
+#visual_query_builder #tables #table_search_input:hover { border: 1px solid #999; }
+#visual_query_builder #tables #table_search_input:focus {border-color: #FEB513; background-color: #FFFFCB; color: #999; box-shadow: 0 1px 10px lightblue outset;}
+
+#visual_query_builder #tables ul {list-style: none; margin: 0; padding:5px 5px; height: 750px; overflow: scroll; overflow-x: auto; background-color: white; border: 1px solid #ccc; }
+#visual_query_builder #tables ul li {padding-left: 20px; background: url(/nuts/img/icon-table.png) no-repeat; padding-bottom: 4px; user-select: none; -webkit-user-select: none; -moz-user-select: none; }
+#visual_query_builder #tables ul li:hover {cursor: pointer; color: #9ACDEC;}
+#visual_query_builder #tables ul li.view {background: url(/nuts/img/icon-view.png) no-repeat;}
+
+#visual_query_builder #right_view {float: left; margin-left: 10px; width: 760px; height: 790px; overflow: hidden; }
+
+#visual_query_builder #right_view #sql_btns { margin-top: 5px; margin-bottom: 5px;}
+#visual_query_builder #right_view #sql_btns button {}
+#visual_query_builder #right_view #sql_btns button:hover {background-image:url(button_bkg.png); text-shadow: none; color: black; border-color:#bbb; }
+#visual_query_builder #right_view #sql_btns button.selected {color:white; text-shadow: 1px 1px 1px #000; background-image:none; background-color: #aaa; }
+
+#visual_query_builder #right_view #canvas {border: 1px solid #ccc; width: 99%; height: 300px; margin-bottom: 10px; background-color: white; }
+
+#visual_query_builder #right_view textarea#SqlCode { height: 435px; background-color: white;
+
+    width: 740px;
+    border-left:10px solid #ccc;
+    background-color: #fff;
+    font-family: courier;
+    font-size: 11px;
+    background-image: none;
+}
+
+#visual_query_builder #right_view textarea#SqlCode:focus {
+   border-left-color: #74B9EF;
+}
 
 
 
