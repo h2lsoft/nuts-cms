@@ -125,6 +125,13 @@ foreach($pluginRegister as $key => $val)
 		$plugin->parse($key, $val);
 }
 
+
+$output = $plugin->output();
+$output = str_replace('< bloc::', '<bloc::', $output);
+$output = str_replace('</ bloc::', '</bloc::', $output);
+$plugin->createVirtualTemplate($output);
+
+
 // form validation
 if(!$plugin->formIsValid())
 {
