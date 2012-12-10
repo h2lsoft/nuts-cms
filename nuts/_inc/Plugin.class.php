@@ -3027,7 +3027,7 @@ EOF;
 			}
 
             // add special class
-            if(!@empty($f['opts']['class']) && $_POST)
+            if(!@empty($f['opts']['class']) && $_POST && isset($_POST[$f['name']]))
             {
                 if(preg_match('/ucfirst/', $f['opts']['class']))$_POST[$f['name']] = ucfirst($_POST[$f['name']]);
                 if(preg_match('/upper/', $f['opts']['class']))$_POST[$f['name']] = strtoupper($_POST[$f['name']]);
