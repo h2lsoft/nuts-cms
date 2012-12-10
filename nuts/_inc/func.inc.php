@@ -55,19 +55,24 @@ function nutsDestroyIt($error='')
 
 	//header("Location: login.php");
 	//exit();
+
+    // ip_different
     $uri_added = '';
     if($error == 'ip_different')
     {
-        $uri_added .= '&error=ip_different';
+        $uri_added .= 'error=ip_different';
     }
 
+    // redirection
     $redirect_uri = '';
     if(isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] != '/nuts/index.php?mod=logout')
     {
-        $redirect_uri = urlencode($_SERVER['REQUEST_URI']);
+        if(!empty($uri_added))$uri_added .= '&';
+        $uri_added .= 'r='.urlencode($_SERVER['REQUEST_URI']);
     }
 
-	die("<script>document.location.href='login.php?r=$redirect_uri&$uri_added';</script>");
+    if(!empty($uri_added))$uri_added = '?'.$uri_added;
+	die("<script>document.location.href='login.php$uri_added';</script>");
 }
 
 /**
