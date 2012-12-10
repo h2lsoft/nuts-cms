@@ -245,7 +245,7 @@ function showResponse(responseText, statusText)
 
 		//$('#form').html(resp);
 		updateFormContentHeight(true);
-		$('#form_error').slideDown('fast');
+		$('#form_error').show();
 		$('#btn_submit').attr('value', nuts_lang_msg_21);
 	 	$('#btn_submit').removeAttr("disabled");
         $('#nuts_form_canvas').hide();
@@ -296,7 +296,7 @@ function showResponse(responseText, statusText)
 
 					$('#form').html(resp);
                     $('#nuts_form_canvas').hide();
-					$('#form_valid').slideDown('fast');
+					$('#form_valid').show();
 
 					// refresh parent window
 					if(popup == '1')
