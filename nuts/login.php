@@ -17,7 +17,7 @@ session_start();
 if(@$_POST['redirect_index'] == 1)
 {
     $r = 'index.php';
-    if(isset($_POST['r']) && strpos($_POST['r'], '/nuts/index.php') !== false)
+    if(isset($_POST['r']) && strpos($_POST['r'], '/nuts/') !== false)
     {
         $r = str_replace('/nuts/index.php', 'index.php', $_POST['r']);
     }
