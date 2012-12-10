@@ -410,7 +410,7 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'rename_page')
 	exit(1);
 }
 
-// delete page ***********************************************************************************
+// delete page and sub pages ***********************************************************************************
 if(isset($_GET['_action']) && $_GET['_action'] == 'delete_page')
 {
     // delete subpages
@@ -420,8 +420,9 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'delete_page')
     $pagesIDs = join(',', $sub_pages);
 
 	// delete page with sub pages
-	$nuts->dbUpdate('NutsPage', array('Deleted' => 'YES', 'Position' => 0), "ID IN($pagesIDs)");
+	$nuts->dbUpdate('NutsPage', array('Deleted' => 'YES'), "ID IN($pagesIDs)");
 	$plugin->trace('delete_page', $pagesIDs);
+
 	
 	// get node master ID
 	$nuts->doQuery("SELECT NutsPageID FROM NutsPage WHERE ID = ".(int)$_GET['ID']);
@@ -443,7 +444,9 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'delete_page')
 		{
 			$nuts->dbUpdate('NutsPage', array('_HasChildren' => 'NO'), 'ID = '.$parentNodeID);
 		}
-	}	
+	}
+
+
 
     nutsTrigger('page-manager::delete_page', true, "action on delete page");
 	$plugin->trace('delete', (int)$_GET['ID']);
