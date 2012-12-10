@@ -262,6 +262,13 @@ function showResponse(responseText, statusText)
 			// form is valid but no close is checked !
 			if(!$('#close_after').is(':checked'))
 			{
+                // reset all style
+                $('#form input').css('border', '');
+                $('#form select').css('border', '');
+                $('#form select').css('background-color', '');
+                $('#form textarea').css('border', '');
+
+
 				// remove add by edit mode
 				str = $('#former').attr('action');
 				if(str.indexOf('&do=add&ID=0&') != -1)
@@ -279,15 +286,19 @@ function showResponse(responseText, statusText)
 
 				//$('#form_content').fadeTo(0.33, 1, function(){
 					forceWYSIWYGUpdate();
+                    updateFormContentHeight();
 				//});
 
 				// refresh window
 				if(popup == '1')
-					window.opener.system_refresh();
+                {
+                    window.opener.system_refresh();
+                }
 				else
                 {
                     system_refresh();
                 }
+
 			}
 			else
 			{
