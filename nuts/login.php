@@ -16,7 +16,13 @@ session_start();
 // redirect index prevent error chrome for remember password ***********************************************************
 if(@$_POST['redirect_index'] == 1)
 {
-	$nuts->redirect('index.php');
+    $r = 'index.php';
+    if(isset($_POST['r']) && strpos($_POST['r'], '/nuts/index.php') !== false)
+    {
+        $r = str_replace('/nuts/index.php', 'index.php', $_POST['r']);
+    }
+
+	$nuts->redirect($r);
 }
 
 $_SESSION = array();
