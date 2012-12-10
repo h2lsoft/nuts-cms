@@ -2014,8 +2014,9 @@ EOF;
 	 */
 	public function formAddFieldText($name, $label='', $required, $class='', $style='', $after='', $attributes='', $help='', $value='')
 	{
+
 		// type interception
-        if(!in_array($name, $this->formFieldsForbidden))
+        if(!$this->formFieldIsForbidden($name))
         {
             if($class == 'int' || $class == 'integer' || $class == 'number')
             {
@@ -2608,6 +2609,28 @@ EOF;
 	}
 
 
+    /**
+     * Verify if field is forbidden
+     *
+     * @param $field_name
+     * @return bool
+     */
+    public function formFieldIsForbidden($field_name)
+    {
+        // forbidden with joker
+        $forbidden_field = false;
+        foreach($this->formFieldsForbidden as $ff)
+        {
+            $joker = substr($ff, 0, -1);
+            if($field_name == $ff || ($ff[strlen($ff)-1] == '*' && strpos($field_name, $joker) !== false))
+            {
+                $forbidden_field = true;
+                break;
+            }
+        }
+
+        return $forbidden_field;
+    }
 
 
 
@@ -3483,7 +3506,7 @@ EOF;
 	{
 		foreach($this->formFields as $f)
 		{
-			if(!in_array($f['name'], $this->formFieldsForbidden) && ($f['type'] == 'image' || $f['type'] == 'file') && isset($_FILES[$f['name']]) && !$_FILES[$f['name']]['error'])
+			if(!$this->formFieldIsForbidden($f['name']) && ($f['type'] == 'image' || $f['type'] == 'file') && isset($_FILES[$f['name']]) && !$_FILES[$f['name']]['error'])
 			{
 				$exts = explode('.', $_FILES[$f['name']]['name']);
 
