@@ -1972,22 +1972,26 @@ EOF;
 	public function formAddFieldText($name, $label='', $required, $class='', $style='', $after='', $attributes='', $help='', $value='')
 	{
 		// type interception
-		if($class == 'int' || $class == 'integer' || $class == 'number')
-		{
-			$style = 'width:60px; text-align:center; '.$style;
-			if(is_bool($required))
-			{
-				$required =  (!$required) ? 'onlyDigit' : 'notEmpty|onlyDigit';
-			}
-		}
-		elseif($class == 'float' || $class == 'money')
-		{
-			$style = 'width:60px; text-align:center; '.$style;
-			if(is_bool($required))
-			{
-				$required =  (!$required) ? 'onlyDigit(,1)' : 'notEmpty|onlyDigit(,1)';
-			}
-		}
+        if(!in_array($name, $this->formFieldsForbidden))
+        {
+            if($class == 'int' || $class == 'integer' || $class == 'number')
+            {
+                $style = 'width:60px; text-align:center; '.$style;
+                if(is_bool($required))
+                {
+                    $required =  (!$required) ? 'onlyDigit' : 'notEmpty|onlyDigit';
+                }
+            }
+            elseif($class == 'float' || $class == 'money')
+            {
+                $style = 'width:60px; text-align:center; '.$style;
+                if(is_bool($required))
+                {
+                    $required =  (!$required) ? 'onlyDigit(,1)' : 'notEmpty|onlyDigit(,1)';
+                }
+            }
+        }
+
 
 		$options = array();
 		$options['required'] = $required;
