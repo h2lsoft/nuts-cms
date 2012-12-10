@@ -1765,6 +1765,49 @@ EOF;
 		return $pos;
 	}
 
+
+    /**
+     * Get mode used in form ADD or EDIT
+     *
+     * @return ADD or EDIT
+     */
+    public function formGetMode()
+    {
+        $form_mode = '';
+        if(@$_GET['ID'] == 0 || (@$_GET['cID'] != 0 && $this->listCopyButton == true))
+        {
+            $form_mode = 'ADD';
+        }
+        else
+        {
+            $form_mode = 'EDIT';
+        }
+
+        return $form_mode;
+    }
+
+
+    /**
+     * Is form mode in adding
+     * @return bool
+     */
+    public function formModeIsAdding()
+    {
+        return  (formGetMode() == 'ADD');
+    }
+
+    /**
+     * Is form mode in editing
+     * @return bool
+     */
+    public function formModeIsEditing()
+    {
+        return (formGetMode() == 'EDIT');
+    }
+
+
+
+
 	private $formFields = array();
     /**
      * Add field in form - please use direct form method instead formAddField*
