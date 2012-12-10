@@ -1,20 +1,24 @@
 <!-- visual_query_builder -->
 <div id="visual_query_builder">
 
+
+
     <ul id="ntabs0" class="ntabs">
         <li class="selected">Query Designer</li>
-        <li>Results</li>
+        <li>{$lang_msg[1]}</li>
     </ul>
 
 
-    <!-- model -->
+    <!-- wrapper -->
     <div id="ntabs0_content" class="ntabs_content">
 
         <!-- tables_wrapper -->
-        <div id="tables_wrapper">
+        <div id="tables_wrapper" class="ntab_content">
 
             <!-- tables -->
             <div id="tables">
+
+                <div id="resizer" opened="1"></div>
 
                 <!-- tables_search -->
                 <div id="table_search">
@@ -25,7 +29,7 @@
                 <ul>
 
                     <bloc::tables>
-                    <li class="{table_type}" ac="{table_name_lower}">{table_name}</li>
+                    <li class="{table_type}">{table_name}</li>
                     </bloc::tables>
 
                 </ul>
@@ -39,128 +43,77 @@
 
                 <!-- sql_btns -->
                 <div id="sql_btns">
-                    <button>SELECT</button>
-                    <button>JOIN</button>
-                    <button>WHERE</button>
-                    <button>GROUP BY</button>
-                    <button>HAVING</button>
-                    <button>ORDER BY</button>
+                    <button title="Alt + X" accesskey="x">SELECT</button>
+                    <button title="Alt + J" accesskey="j">JOIN</button>
+                    <button title="Alt + W" accesskey="w">WHERE</button>
+                    <button title="Alt + G" accesskey="g">GROUP BY</button>
+                    <button title="Alt + O" accesskey="o">ORDER BY</button>
+
+                    <label><input type="radio" value="ASC" name="order_by_sort" checked /> ASC</label>
+                    <label><input type="radio" value="DESC" name="order_by_sort" /> DESC</label>
+
                 </div>
                 <!-- /sql_btns -->
 
 
                 <!-- canvas -->
-                <div id="canvas">
-
-                </div>
+                <div id="canvas"></div>
                 <!-- /canvas -->
 
                 <!-- sql_code -->
-                <textarea id="SqlCode" class="editor" wrap="off"></textarea>
+                <div id="SqlCodeHighlighter"></div>
+                <textarea id="SqlCode" class="editor" wrap="off" spellcheck="false"></textarea>
                 <!-- /sql_code -->
 
             </div>
             <!-- /right_view -->
 
+            <div class="clearfix"></div>
+
         </div>
         <!-- /tables_wrapper -->
 
-        <div class="clearfix"></div>
+
+        <!-- results -->
+        <div class="ntab_content">
+            <div class="result_option">
+                {$lang_msg[2]} <input type="text" id="Querylimit" value="100" />
+                <input type="button" value="{$lang_msg[3]}" id="QueryPreviewButton" />
+            </div>
+
+            <div id="previewer"></div>
+
+        </div>
+        <!-- /results -->
 
     </div>
-    <!-- /model -->
-
-
-
+    <!-- /wrapper -->
 
 </div>
+<canvas id="canvas_bkg"></canvas>
+
+<div id="visual_query_builder_save">
+    <input type="button" id="VQBSave" accesskey="S" value="{$nuts_lang_msg[49]} (Alt+S)" />
+</div>
+
+
 <!-- /visual_query_builder -->
 
 <script type="text/javascript">
-$(document).ready(function(){
+var get_parent = "{$_GET['parent']}";
 
-    nTabInit('ntabs0');
-
-
-    // autocomplete
-    $('#table_search_input').keyup(function(){
-
-        if($(this).val() == '')
-        {
-            $("#tables li").show();
-            return;
-        }
-
-        $("#tables li").each(function(){
-
-            txt = strtolower($(this).text());
-            v = strtolower($('#table_search_input').val());
-            if(txt.indexOf(v) == -1)
-                $(this).hide();
-            else
-                $(this).show();
-
-        });
-
-    });
-
-
-    // buttons
-    $('#sql_btns button').each(function(){
-
-        $(this).click(function(){
-
-            if($(this).hasClass('selected'))
-            {
-                $(this).removeClass('selected');
-            }
-            else
-            {
-                $('#sql_btns button').removeClass('selected');
-                $(this).addClass('selected');
-            }
-
-        });
-
-    });
-
-
-    // init from parent
-    if("{$_GET['parent']}" != '')
-    {
-        parent_v = window.opener.$('#{$_GET['parent']}').val();
-        parent_v = queryFormatCode(parent_v);
-        $('#SqlCode').val(parent_v);
-    }
-
-
-    $('#SqlCode').tabby();
-
-
-    $(window).bind('resize', function(){
-
-        nw = $('#tables_wrapper').width() - $('#tables').width() - 35;
-        if(nw < 755)nw = 755;
-
-        $('#right_view').width(nw+5);
-        $('#canvas').width(nw);
-        $('#SqlCode').width(nw-10);
-    });
-
-    $(window).resize();
-
-
-})
-
-function queryFormatCode(sql)
-{
-    // in ajax
-    $('#SqlCode').val("Loading...");
-
-    uri = '?mod=_visual-query-builder&do=exec&ajaxer=1&action=format_sql'
-    $.post(uri, {sql:sql}, function(resp){
-        $('#SqlCode').val(resp);
-    });
-}
-
+var lang_msg_4 = "{$lang_msg[4]}";
+var lang_msg_5 = "{$lang_msg[5]}";
+var lang_msg_6 = "{$lang_msg[6]}";
+var lang_msg_7 = "{$lang_msg[7]}";
+var lang_msg_8 = "{$lang_msg[8]}";
+var lang_msg_9 = "{$lang_msg[9]}";
+var lang_msg_10 = "{$lang_msg[10]}";
+var lang_msg_11 = "{$lang_msg[11]}";
+var lang_msg_12 = "{$lang_msg[12]}";
+var lang_msg_13 = "{$lang_msg[13]}";
 </script>
+
+<script type="text/javascript" src="/plugins/_visual-query-builder/table.js?t={$timer}"></script>
+<script type="text/javascript" src="/plugins/_visual-query-builder/query.js?t={$timer}"></script>
+<script type="text/javascript" src="/plugins/_visual-query-builder/init.js"></script>
