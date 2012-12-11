@@ -12,16 +12,6 @@ if(!$news_new_system) # old system check
     if($plugin->getPageParameterCount() == 0)$plugin->error404();
     $newsID = (int)$plugin->getPageParameter(0);
     if($newsID == 0)$plugin->error404();
-
-    $sql = "SELECT
-                    *
-                    $sql_front_added
-            FROM
-                    NutsNews
-            WHERE
-                    ID=$newsID AND
-                    Active = 'YES' AND
-                    DateGMT <= NOW()";
 }
 else
 {
@@ -37,9 +27,7 @@ $sql = "SELECT
                 NutsNews
         WHERE
                 ID=$newsID AND
-                Active = 'YES' AND
-                DateGMT <= NOW() AND
-                VirtualPageName = '$urix'";
+                Active = 'YES'";
 
 
 
