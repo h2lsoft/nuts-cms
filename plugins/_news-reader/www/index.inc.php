@@ -42,11 +42,25 @@ if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_news-reader/styl
 
 $plugin->vars['MenuName'] = $row['Title'];
 $plugin->addPattern('@News', $row['Title']);
+$plugin->addPattern('@news', $row['Title']);
+
 $plugin->vars['H1'] = $row['Title']; # change H1 dynamically
 
+$Published_label = 'Published';
+if($plugin->language == 'fr')
+{
+    $row['DateGMT'] = $plugin->db2date($row['DateGMT']);
+    $Published_label = 'Publié le';
+}
 
+$plugin->parse('Published_label', $Published_label);
 $plugin->parse('Date', $row['DateGMT']);
-$plugin->parse('Resume', $row['Resume']);
+
+if(empty($row['Resume']))
+    $plugin->eraseBloc('resume_p');
+else
+    $plugin->parse('Resume', $row['Resume']);
+
 $plugin->parse('Content', $row['Text']);
 
 // image parsing
