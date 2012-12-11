@@ -1,0 +1,49 @@
+<div class="n_window" id="rights_window">
+
+    <div class="n_titlebar">
+        <div class="n_title"><i18n>Rights</i18n></div>
+        <div class="n_close">
+            <a class="close" href="javascript:;" onclick="nWindowClose('rights_window');"></a>
+        </div>
+    </div>
+
+    <div class="n_content">
+
+        <div class="n_top_buttons">
+
+            <div class="left_title">
+                <img src="img/32/folder.png" /> <span class="folder_name"></span>
+            </div>
+
+
+            <input type="button" value="<i18n>Add a group</i18n>" onclick="showGroups();" />
+            <input type="button" value="<i18n>Add a user</i18n>" onclick="showUsers();"  />
+
+        </div>
+
+        <table class="n_table" style="width: 100%;">
+            <thead>
+            <tr>
+                <th><i18n>User / Group</i18n></th>
+                <th class="center min30"><i18n>All</i18n></th>
+                <th class="center min30"><i18n>List </i18n></th>
+                <th class="center min30"><i18n>Read / Execute</i18n></th>
+                <th class="center min30"><i18n>Modification</i18n></th>
+                <th class="center min30"><i18n>Delete</i18n></th>
+                <th class="center min30"><i18n>Write</i18n></th>
+                <th class="center min30">Upload</th>
+                <th class="center min30">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <div class="n_bottom_buttons">
+
+            <label><input type="checkbox" id="right_subfolders" value="1" /> <i18n>Apply on subfolders</i18n></label>
+            <input id="rights_exec" type="button" value="<i18n>Apply rights</i18n>" onclick="setRights();" />
+
+        </div>
+    </div>
+</div>
