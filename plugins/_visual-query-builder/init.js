@@ -104,7 +104,7 @@ $(document).ready(function(){
         if(e.shiftKey)return;
 
         // "'
-        if(e.which == 51 || e.which == 52 || e.which == 53 || e.which == 187)
+        /*if(e.which == 51 || e.which == 52 || e.which == 53 || e.which == 187)
         {
             if(e.which == 51 || e.which == 52)rep = "'[TEXT]'";
             else if(e.which == 53)rep = '()';
@@ -126,7 +126,7 @@ $(document).ready(function(){
             this.selectionEnd = sel_start+strlen(rep)-1;
 
             e.preventDefault();
-        }
+        }*/
 
         // ENTER && hightlight last string '[TEXT]'
         if(e.which == 13)
