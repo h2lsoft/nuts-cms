@@ -178,7 +178,7 @@ function tableAdd(table_name, alias_name)
                     }
                     else
                     {
-                        arr['WHERE'] += " AND \n\t"+str+" "+str_op;
+                        arr['WHERE'] += " AND\n\t"+str+" "+str_op;
                     }
                 }
 
