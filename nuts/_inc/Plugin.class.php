@@ -1793,7 +1793,7 @@ EOF;
      */
     public function formModeIsAdding()
     {
-        return  (formGetMode() == 'ADD');
+        return  ($this->formGetMode() == 'ADD');
     }
 
     /**
@@ -1802,7 +1802,7 @@ EOF;
      */
     public function formModeIsEditing()
     {
-        return (formGetMode() == 'EDIT');
+        return ($this->formGetMode() == 'EDIT');
     }
 
 
