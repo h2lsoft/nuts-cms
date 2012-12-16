@@ -1813,7 +1813,25 @@ function youtubeGetPlayer($player_id, $youtube_url, $width='', $height='', $attr
 }
 
 
+/**
+ * Return filesize in Mo
+ *
+ * @param string $file_path
+ * @param string $suffix (` Mo` by default)
+ * @return string
+ */
+function getFileSize($file_path, $suffix=' Mo')
+{
+    $size = @filesize($file_path);
+    $size = bcdiv($size, 1048576, 2);
+    if($size == 0)$size = 0.1;
+    $size = number_formatX($size);
+    $size_label = $size.' '.$suffix;
+    $size_label = trim($size_label);
 
+    return $size_label;
+
+}
 
 
 
