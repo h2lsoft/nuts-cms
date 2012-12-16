@@ -254,6 +254,10 @@ function updateSqlCode()
     c = str_replace(' BETWEEN ', ' '+bloc_start+'BETWEEN'+bloc_end+' ', c);
     c = str_replace(' AND\n', ' '+bloc_start+'AND'+bloc_end+'\n', c);
     c = str_replace(' AS ', ' '+bloc_start+'AS'+bloc_end+' ', c);
+    c = str_replace(' NOT ', ' '+bloc_start+'NOT'+bloc_end+' ', c);
+    c = str_replace(' IFNULL(', ' '+bloc_start+'IFNULL('+bloc_end, c);
+    c = str_replace(' OR ', ' '+bloc_start+'OR'+bloc_end+' ', c);
+    c = str_replace(' NULL ', ' '+bloc_start+'NULL'+bloc_end+' ', c);
     c = str_replace(' IN(', ' '+bloc_start+'IN'+bloc_end+'(', c);
     c = str_replace(',\n', bloc_start+','+bloc_end+'\n', c);
     c = str_replace('.', bloc_start+'.'+bloc_end, c);
