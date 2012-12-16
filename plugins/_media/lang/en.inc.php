@@ -22,7 +22,7 @@ $lang_msg[10] = "Image displayed before video starts";
 
 
 $lang_msg[11] = "Embed Code";
-$lang_msg[12] = "Add custom code Youtube, Dailymotion, Viméo...";
+$lang_msg[12] = "Add embed code Google Map, Dailymotion, Viméo...";
 $lang_msg[13] = "Url Preview";
 $lang_msg[14] = "Url for page preview";
 
