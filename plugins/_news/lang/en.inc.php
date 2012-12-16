@@ -38,4 +38,6 @@ $lang_msg[27] = "Go to my Facebook page";
 $lang_msg[28] = "Image Model";
 $lang_msg[29] = "Allow you to use a model image";
 
+$lang_msg[30] = "Duplicate content, please change your title";
+
 ?>
