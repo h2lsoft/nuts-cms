@@ -9,7 +9,7 @@ $plugin->listSetDbTable('NutsMedia');
 
 // search engine
 $plugin->listSearchAddFieldText('ID');
-$plugin->listSearchAddFieldSelect('Type', $lang_msg[1], array('YOUTUBE VIDEO', 'AUDIO', 'VIDEO', 'EMBED CODE'));
+$plugin->listSearchAddFieldSelect('Type', $lang_msg[1], array('YOUTUBE VIDEO', 'EMBED CODE', 'AUDIO', 'VIDEO'));
 $plugin->listSearchAddFieldText('Name', $lang_msg[2]);
 
 
