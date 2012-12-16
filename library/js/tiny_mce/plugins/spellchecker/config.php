@@ -24,5 +24,4 @@
 	// Windows PSpellShell settings
 	//$config['PSpellShell.aspell'] = '"c:\Program Files\Aspell\bin\aspell.exe"';
 	//$config['PSpellShell.tmp'] = 'c:/temp';
-
 ?>
