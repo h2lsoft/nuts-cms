@@ -1,6 +1,6 @@
 <?php
 
-$lang_msg[0] = "Audio/Video"; // plugin name
+$lang_msg[0] = "Media"; // plugin name
 $lang_msg[1] = "Type";
 $lang_msg[2] = "Nom";
 $lang_msg[3] = "Description";
