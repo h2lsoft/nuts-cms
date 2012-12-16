@@ -68,7 +68,14 @@ function nutsDestroyIt($error='')
     if(isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] != '/nuts/index.php?mod=logout')
     {
         if(!empty($uri_added))$uri_added .= '&';
-        $uri_added .= 'r='.urlencode($_SERVER['REQUEST_URI']);
+
+        // remove ajax parameter
+        $query_string = $_SERVER['REQUEST_URI'];
+        $query_string = str_replace('&ajax=1', '', $query_string);
+        $query_string = str_replace('&target=list', '', $query_string);
+        $query_string = str_replace('&target=content', '', $query_string);
+
+        $uri_added .= 'r='.urlencode($query_string);
     }
 
     if(!empty($uri_added))$uri_added = '?'.$uri_added;
