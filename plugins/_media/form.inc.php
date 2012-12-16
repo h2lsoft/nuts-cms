@@ -75,7 +75,7 @@ if($_POST && $nuts->formGetTotalError() == 0)
 	$_POST['Parameters'] = '';
 	foreach($_POST as $key => $val)
 	{
-		if(ereg("^$pre", $key))
+		if(preg_match("/^$pre/", $key))
 		{
 			$key = str_replace($pre."_", '', $key);
 			$_POST['Parameters'] .= $key.'=>'.$val.'@@';
