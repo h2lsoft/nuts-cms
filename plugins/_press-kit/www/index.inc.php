@@ -35,10 +35,8 @@ else
 		$plugin->parse('files.DateX', $row['DateX']);
 		$plugin->parse('files.Title', $row['Title']);
 
-        $size = @filesize(WEBSITE_PATH.$row['File']);
-        $size = bcdiv($size, 1048576, 2);
-        if($size == 0)$size = 0.1;
-        $plugin->parse('files.Size', $size.' Mo');
+        $size = getFileSize(WEBSITE_PATH.$row['File']);
+        $plugin->parse('files.Size', $size);
 
 		$file = getImageExtension($row['File']);
 		$file = '<a href="'.$row['File'].'" target="_blank">'.$file.'</a>';
