@@ -7,10 +7,19 @@ var cmenu;
 
 $(function(){
 
+    $('#filelist').css('opacity', 0);
+
     loading_msg = (nutsUserLang == 'fr') ? 'Chargement' : 'Loading';
 
     $.blockUI.defaults.css.cursor = 'default';
-    $.blockUI({ message: "<img src='img/ajaxLoader.gif' align='absmiddle' style='margin-right:5px; width:24px;' /> "+loading_msg, css: {'border-radius':'5px', height:'50px', 'line-height': '50px', 'font-weight': 'normal', 'font-size': '16px'}});
+    $.blockUI({
+
+        onUnblock: function(){
+
+            $('#filelist').css('opacity', 1);
+
+        },
+        message: "<img src='img/ajaxLoader.gif' align='absmiddle' style='margin-right:5px; width:24px;' /> "+loading_msg, css: {'border-radius':'5px', height:'50px', 'line-height': '50px', 'font-weight': 'normal', 'font-size': '16px'}});
 
     // *** Context Menu ***//
     $.contextMenu.theme = 'mb';
@@ -257,14 +266,7 @@ $(function(){
     $.MediaBrowser.currentView = $('input#currentview').val();
 
 
-    // load default folder
-    if(!empty(load_folder))
-    {
-        setTimeout(function(){
-            $.MediaBrowser.loadFolder(load_folder);
-        }, 1000);
 
-    }
 
 
     //Absolute URl active/inactive
@@ -397,9 +399,19 @@ $(function(){
 
 
     // unblock
-    timer_unblock = 0;
+    timer_unblock = 1000;
     if(editor == 'edm')timer_unblock = 2000;
     setTimeout(function(){$.unblockUI();}, timer_unblock);
+
+
+    // load default folder
+    if(!empty(load_folder))
+    {
+        setTimeout(function(){
+            $.MediaBrowser.loadFolder(load_folder);
+        }, 1000);
+
+    }
 
 
     // Chrome && FF bug zoom must be 100%
