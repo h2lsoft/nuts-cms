@@ -16,7 +16,7 @@ $('#former input.ajax_autocomplete').each(function(){
 									form_ajax_ac_uri+field,
 									{
 										delay:300,
-										minChars:3,
+										minChars:2,
 										matchSubset:false,
 										matchContains:false,
 										cacheLength:0,
