@@ -5,7 +5,7 @@
 
 
 // assign table to db
-$plugin->listSetDbTable('NutsGallery', "(SELECT COUNT(*) FROM NutsGalleryImage WHERE NutsGalleryImage.NutsGalleryID = NutsGallery.ID AND Deleted = 'NO') AS Total", "ORDER BY Position");
+$plugin->listSetDbTable('NutsGallery', "(SELECT COUNT(*) FROM NutsGalleryImage WHERE NutsGalleryImage.NutsGalleryID = NutsGallery.ID AND Deleted = 'NO') AS Total", "", "ORDER BY Position");
 
 // create search engine
 $plugin->listSearchAddFieldText('ID');
@@ -15,15 +15,11 @@ $plugin->listSearchAddFieldSelectSql('Name', $lang_msg[1]);
 
 
 // add list position
-$plugin->listAddColPosition('Position');
+if(@!$_GET['popup'])
+    $plugin->listAddColPosition('Position');
 
 $plugin->listAddCol('Thumbnail', '&nbsp;', 'center; width:30px', false);
-
-
-
-$plugin->listAddCol('Name', $lang_msg[1], '', false); // with order by
-
-
+$plugin->listAddCol('Name', $lang_msg[1], '', false);
 $plugin->listAddCol('Code', '');
 $plugin->listAddCol('Total', $lang_msg[3], 'center; width:50px', false);
 $plugin->listAddColImg('Active', $lang_msg[4], '', false);
@@ -34,7 +30,6 @@ if(@$_GET['popup'] == 1)
 	$plugin->listAddCol('AddCode', '&nbsp;', 'center; width:35px');
 }
 
-// render list
 $plugin->listRender(20, 'hookData');
 
 
@@ -65,7 +60,7 @@ function hookData($row)
 		$row['Thumbnail'] = '<img class="image_preview" src="'.NUTS_IMAGES_URL.'/gallery/thumb_'.$row['ID'].'.'.$ext.'?t='.time().'" />';
 	}
 
-	$row['Total'] = " <a href=\"javascript:popupModal('index.php?mod=_gallery_image&do=list&ID_operator=_equal_&ID=&NutsGalleryID_operator=_equal_&NutsGalleryID={$row['ID']}&user_se=1&popup=1');\" class=\"tt\"><img src=\"img/icon-preview-mini.gif\" align=\"absmiddle\" alt=\"{$lang_msg[6]}\"> {$row['Total']}</a>";
+	$row['Total'] = " <a href=\"javascript:popupModal('index.php?mod=_gallery_image&do=list&ID_operator=_equal_&ID=&NutsGalleryID_operator=_equal_&NutsGalleryID={$row['ID']}&user_se=1&popup=1', 'pops');\" class=\"tt\"><img src=\"img/icon-preview-mini.gif\" align=\"absmiddle\" alt=\"{$lang_msg[6]}\"> {$row['Total']}</a>";
 	return $row;
 }
 
