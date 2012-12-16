@@ -1,11 +1,11 @@
-// ucfirst
-$('#search_form .ucfirst').blur(function(e) {$(this).val(ucfirst($(this).val()));});
-
 // upper
 $('#search_form .upper').blur(function(e) {$(this).val(strtoupper($(this).val()));});
 
 // lower
 $('#search_form .lower').blur(function(e) {$(this).val(strtolower($(this).val()));});
+
+// ucfirst
+$('#search_form .ucfirst').blur(function(e) {$(this).val(ucfirst($(this).val()));});
 
 
 // list engine
@@ -49,7 +49,7 @@ $('#search_form input.ajax_autocomplete').each(function(){
 									ajax_ac_uri+field,
 									{
 										delay:300,
-										minChars:3,
+										minChars:2,
 										matchSubset:false,
 										matchContains:false,
 										cacheLength:0,
