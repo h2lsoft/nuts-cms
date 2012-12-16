@@ -1023,7 +1023,9 @@ table#rights tr:hover> td.label
 }
 
 #visual_query_builder #right_view #SqlCodeHighlighter span.keyword {color: #5E5EFF; font-weight: bold;}
-#visual_query_builder #right_view #SqlCodeHighlighter span.quotes {color: orange!important;}
+#visual_query_builder #right_view #SqlCodeHighlighter span.quotes,
+#visual_query_builder #right_view #SqlCodeHighlighter span.quotes span.keyword
+    {color: orange!important;}
 
 
 #visual_query_builder #right_view #SqlCodeHighlighter
