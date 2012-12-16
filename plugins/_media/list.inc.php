@@ -9,7 +9,7 @@ $plugin->listSetDbTable('NutsMedia');
 
 // search engine
 $plugin->listSearchAddFieldText('ID');
-$plugin->listSearchAddFieldSelect('Type', $lang_msg[1], array('AUDIO', 'VIDEO', 'EMBED CODE'));
+$plugin->listSearchAddFieldSelect('Type', $lang_msg[1], array('YOUTUBE VIDEO', 'AUDIO', 'VIDEO', 'EMBED CODE'));
 $plugin->listSearchAddFieldText('Name', $lang_msg[2]);
 
 
@@ -35,7 +35,23 @@ function hookData($row)
 
 
 	$row['Preview'] = '';
-	if($row['Type'] == 'AUDIO')
+
+    if($row['Type'] == 'YOUTUBE VIDEO')
+    {
+        $params = explode('@@', $row['Parameters']);
+        $paramsX = array();
+        foreach($params as $param)
+        {
+            if(!empty($param))
+            {
+                list($p,$v) = explode('=>', $param);
+                $paramsX[$p] = $v;
+            }
+        }
+
+        $row['Preview'] = youtubeGetPlayer($row['ID'], $paramsX['url'], 240, 160);
+    }
+	elseif($row['Type'] == 'AUDIO')
 	{
 		$row['Preview'] = '<object type="application/x-shockwave-flash" data="../library/js/dewplayer/dewplayer.swf?mp3='.$row['Url'].'&amp;showtime=1" width="200" height="20">
 

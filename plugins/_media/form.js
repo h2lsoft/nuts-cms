@@ -19,27 +19,29 @@ if($('#former #fieldset_CustomFilter').children('p').length == 0)
 
 $('#former #Type').change(function(){
 
-	if($(this).val() == 'AUDIO')
+    $('#former #Url').parents('p').hide();
+    $('#former #EmbedCode').parents('p').hide();
+    $('#former #EmbedCodePreviewUrl').parents('p').hide();
+    $('#former #fieldset_YoutubeVideoParams').hide();
+    $('#former #fieldset_VideoParams').hide();
+    $('#former #fieldset_AudioParams').hide();
+
+    if($(this).val() == 'YOUTUBE VIDEO')
+    {
+        $('#former #fieldset_YoutubeVideoParams').show();
+    }
+	else if($(this).val() == 'AUDIO')
 	{
-		$('#former #Url').parents('p').show();
-		$('#former #fieldset_VideoParams').hide();
-		$('#former #fieldset_AudioParams').show();
-		$('#former #EmbedCode').parents('p').hide();
-		$('#former #EmbedCodePreviewUrl').parents('p').hide();
+        $('#former #Url').parents('p').show();
+        $('#former #fieldset_AudioParams').show();
 	}
 	else if($(this).val() == 'VIDEO')
 	{
 		$('#former #Url').parents('p').show();
 		$('#former #fieldset_VideoParams').show();
-		$('#former #fieldset_AudioParams').hide();
-		$('#former #EmbedCode').parents('p').hide();
-		$('#former #EmbedCodePreviewUrl').parents('p').hide();
 	}
 	else if($(this).val() == 'EMBED CODE')
 	{
-		$('#former #fieldset_VideoParams').hide();
-		$('#former #fieldset_AudioParams').hide();
-		$('#former #Url').parents('p').hide();
 		$('#former #EmbedCode').parents('p').show();
 		$('#former #EmbedCodePreviewUrl').parents('p').show();
 	}
@@ -62,6 +64,8 @@ if(!empty(params))
 			prefix = 'PA_';
 			if($('#former #Type').val() == 'VIDEO')
 				prefix = 'PV_';
+            if($('#former #Type').val() == 'YOUTUBE VIDEO')
+                prefix = 'PVYT_';
 			
 			if(!empty(v2[0]))
 				$('#former #'+prefix+v2[0]).val(v2[1]);

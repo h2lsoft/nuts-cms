@@ -9,12 +9,21 @@ include(PLUGIN_PATH.'/config.inc.php');
 $plugin->formDBTable(array('NutsMedia'));
 
 // fields
-$plugin->formAddFieldSelect('Type', $lang_msg[1], true, array('VIDEO', 'EMBED CODE', 'AUDIO'));
-$plugin->formAddFieldText('Name', $lang_msg[2], 'notEmpty|unique');
-$plugin->formAddFieldTextArea('Description', $lang_msg[3], false);
+$plugin->formAddFieldSelect('Type', $lang_msg[1], true, array('YOUTUBE VIDEO', 'VIDEO', 'EMBED CODE', 'AUDIO'));
+$plugin->formAddFieldText('Name', $lang_msg[2], 'notEmpty|unique', 'ucfirst');
+$plugin->formAddFieldTextArea('Description', $lang_msg[3], false, 'ucfirst', 'height:45px;');
 $plugin->formAddFieldMediaBrowser('Url', '', false);
 $plugin->formAddFieldTextArea('EmbedCode', $lang_msg[11], false, '', '', '', $lang_msg[12]);
 $plugin->formAddFieldText('EmbedCodePreviewUrl', $lang_msg[13], false, '', '', '', '', $lang_msg[14]);
+
+// filters youtube video *********************************************************
+$plugin->formAddFieldsetStart('YoutubeVideoParams', $lang_msg[4]);
+$plugin->formAddFieldText('PVYT_url', 'Youtube url', false);
+$plugin->formAddFieldText('PVYT_width', $lang_msg[7], false, '', 'width:40px; text-align:center;', '', '', '', $video_default_width);
+$plugin->formAddFieldText('PVYT_height', $lang_msg[8], false, '', 'width:40px; text-align:center;', '', '', '', $video_default_height);
+$plugin->formAddFieldsetEnd();
+// end of filters youtube video **************************************************
+
 
 // filters audio *********************************************************
 $plugin->formAddFieldsetStart('AudioParams', $lang_msg[6]);
@@ -42,6 +51,7 @@ $plugin->formAddFieldHidden('Parameters', '', false);
 
 
 // forbiden
+$plugin->formAddException('PVYT_*');
 $plugin->formAddException('PV_*');
 $plugin->formAddException('PA_*');
 
@@ -49,15 +59,18 @@ $plugin->formAddException('PA_*');
 // custom errors *************************************************************
 if($_POST)
 {
+
 	if($_POST['Type'] == 'AUDIO')
 	{
 		$nuts->notEmpty('Url');
 	}
-	elseif($_POST['Type'] == 'VIDEO')
+	elseif($_POST['Type'] == 'VIDEO' || $_POST['Type'] == 'YOUTUBE VIDEO')
 	{
 		$nuts->notEmpty('PV_width');
 		$nuts->notEmpty('PV_height');
-		$nuts->notEmpty('Url');
+		if($_POST['Type'] == 'VIDEO')$nuts->notEmpty('Url');
+		if($_POST['Type'] == 'YOUTUBE VIDEO')$nuts->notEmpty('PVYT_url');
+
 	}
 	elseif($_POST['Type'] == 'EMBED CODE')
 	{
@@ -70,7 +83,9 @@ if($_POST)
 
 if($_POST && $nuts->formGetTotalError() == 0)
 {
+
 	$pre = ($_POST['Type'] == 'AUDIO') ? 'PA' : 'PV';
+    if($_POST['Type'] == 'YOUTUBE VIDEO')$pre = 'PVYT';
 	
 	$_POST['Parameters'] = '';
 	foreach($_POST as $key => $val)
