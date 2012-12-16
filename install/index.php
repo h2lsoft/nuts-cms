@@ -109,7 +109,8 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 		$files[] = WEBSITE_PATH.'/plugins/_dropbox/_files';
 		$files[] = WEBSITE_PATH.'/nuts/config.inc.php';
 		$files[] = WEBSITE_PATH.'/nuts/url_rewriting_rules.inc.php';
-		
+        $files[] = WEBSITE_PATH.'/plugins/_edm/_repository';
+
 		// special for library media
 		$files[] = WEBSITE_PATH.'/library/media/images';
 		$files[] = WEBSITE_PATH.'/library/media/images/avatar';
@@ -118,8 +119,11 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 		$files[] = WEBSITE_PATH.'/library/media/images/gallery_images_hd';
 		$files[] = WEBSITE_PATH.'/library/media/images/news';
 		$files[] = WEBSITE_PATH.'/library/media/multimedia';
-		$files[] = WEBSITE_PATH.'/library/media/other';		
-		
+		$files[] = WEBSITE_PATH.'/library/media/other';
+        $files[] = WEBSITE_PATH.'/library/media/images/user/nuts_news_models';
+        $files[] = WEBSITE_PATH.'/library/media/images/user/nuts_block_preview';
+        $files[] = WEBSITE_PATH.'/library/media/images/user/nuts_rss';
+
 		$arr = (array)glob(WEBSITE_PATH.'/plugins/*/config.inc.php');
 		$files = array_merge($files, $arr);
 		
