@@ -110,7 +110,12 @@
 	</div>
 	<script type="text/javascript">
 		var search_uri = "index.php?mod={$plugin->name}&do={$plugin->action}&user_se=1&";
+        {#if(isset($_GET['popup']))}
+        search_uri = search_uri+"popup=1&parentID={$_GET['parentID']}&";
+        {#endif}
+
 		var ajax_ac_uri = "index.php?mod={$plugin->name}&do={$plugin->action}&ajax_ac=1&ajax_ac_col=";
+
 		<bloc::search_display>
 		$('#list_search_content').show();
 		</bloc::search_display>
