@@ -464,6 +464,10 @@ class Plugin
             if(!isset($options['operator']))
             {
                 $options['operator'] = ($options['ac_mode'] == 'begins') ? '^=' : '~=';
+
+                // hack for ID column concatenation
+                if(!empty($options['ac_columnID']) || !empty($options['ac_custom_sql']))
+                    $options['operator'] = '=';
             }
 
 
