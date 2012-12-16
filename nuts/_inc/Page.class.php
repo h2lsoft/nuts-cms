@@ -903,7 +903,22 @@ class Page extends NutsCore
 					}
 
 
-					if($row['Type'] == 'AUDIO')
+                    if($row['Type'] == 'YOUTUBE VIDEO')
+                    {
+                        $params = explode('@@', $row['Parameters']);
+                        $paramsX = array();
+                        foreach($params as $param)
+                        {
+                            if(!empty($param))
+                            {
+                                list($p,$v) = explode('=>', $param);
+                                $paramsX[$p] = $v;
+                            }
+                        }
+
+                        $rep = youtubeGetPlayer($row['ID'], $paramsX['url']);
+                    }
+					elseif($row['Type'] == 'AUDIO')
 					{
 						$autoreplay = ($parameters['autoreplay'] == 'NO') ? 0 : 1;
 
