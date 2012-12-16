@@ -983,3 +983,15 @@ INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (2, '_page-conte
 
 ALTER TABLE `NutsPage` ADD COLUMN `NutsPageContentViewID` INT UNSIGNED NOT NULL AFTER `ZoneID`;
 ALTER TABLE `NutsPage` ADD INDEX `NutsPageContentViewID` (`NutsPageContentViewID`);
+
+/* update v.3.6 */
+ALTER IGNORE TABLE NutsEDMComments DROP INDEX Folder;
+ALTER IGNORE TABLE NutsEDMComments CHANGE COLUMN Folder Folder TEXT;
+ALTER IGNORE TABLE NutsEDMComments ADD INDEX Folder (Folder(1000));
+ALTER IGNORE TABLE NutsEDMFolderRights DROP INDEX Folder;
+ALTER IGNORE TABLE NutsEDMFolderRights CHANGE COLUMN Folder Folder TEXT;
+ALTER IGNORE TABLE NutsEDMFolderRights ADD INDEX Folder (Folder(1000));
+ALTER IGNORE TABLE NutsEDMLock DROP INDEX Folder;
+ALTER IGNORE TABLE NutsEDMLock CHANGE COLUMN Folder Folder TEXT;
+ALTER IGNORE TABLE NutsEDMLock ADD INDEX Folder (Folder(1000));
+INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (5, '_visual-query-builder', 8, 'NO');
