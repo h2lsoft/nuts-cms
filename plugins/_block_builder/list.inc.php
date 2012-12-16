@@ -21,8 +21,8 @@ $plugin->listSearchAddFieldBoolean('Visible', $lang_msg[4]);
 
 // create fields
 $plugin->listAddCol('Preview', ' ', 'center; width:10px', false); // with order by
-$plugin->listAddCol('GroupName', $lang_msg[1], '; width:30px; white-space:nowrap;', true);
-$plugin->listAddCol('SubGroupName', $lang_msg[10], '; width:30px; white-space:nowrap;', true);
+$plugin->listAddCol('GroupName', $lang_msg[1], 'center; width:30px; white-space:nowrap;', true);
+$plugin->listAddCol('SubGroupName', $lang_msg[10], 'center; width:30px; white-space:nowrap;', true);
 $plugin->listAddCol('Name', $lang_msg[2], '; width:30px; white-space:nowrap;', true);
 $plugin->listAddCol('Code', $lang_msg[5], '', false);
 $plugin->listAddColImg('Visible', $lang_msg[4], '', true);
@@ -39,7 +39,7 @@ function hookData($row)
 	$row['Code'] = "<pre>{@NUTS	TYPE='BLOCK'	NAME='{$row['Name']}'}</pre>";
 
 	if(empty($row['Preview']))$row['Preview'] = '/nuts/img/no-preview.png';
-	$row['Preview'] = '<img src="'.$row['Preview'].'" class="image_preview" style="height:65px;" />';
+	$row['Preview'] = '<img src="'.$row['Preview'].'" class="image_preview" style="height:65px; max-width:160px;" />';
 	
 
 	return $row;
