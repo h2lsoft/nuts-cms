@@ -1423,7 +1423,6 @@ function nutsGetSpellcheckerLanguages()
 	if(!$init)
 		$str = '+'.$str;
 
-
 	return $str;
 }
 
@@ -1777,6 +1776,41 @@ function sqlX($str)
 }
 
 
+/**
+ * Get Youtube player
+ *
+ * @param string $player_id
+ * @param $youtube_url
+ * @param string $width
+ * @param string $height
+ * @param string $attributes
+ * @return string
+ */
+function youtubeGetPlayer($player_id, $youtube_url, $width='', $height='', $attributes="")
+{
+    // get default parameters
+    $video_width = 640;
+    $video_height = 360;
+
+    if(!empty($width))$video_width = $width;
+    if(!empty($height))$video_height = $height;
+
+
+    // get video id by url => http://stackoverflow.com/questions/3392993/php-regex-to-get-youtube-video-id
+    preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $youtube_url, $matches);
+    $youtube_ID = @$matches[0];
+
+
+    $player = "<iframe class=\"nuts_youtube_iframe_player\" type=\"text/html\" frameborder=\"0\" ";
+    $player .= " id=\"nuts_youtube_iframe_player_$player_id\" ";
+    $player .= " width=\"$video_width\" ";
+    $player .= " height=\"$video_height\" ";
+    $player .= " src=\"http://www.youtube.com/embed/$youtube_ID?HD=1&modestbranding=1&showinfo=0&rel=0\" ";
+    $player .= " $attributes ";
+    $player .= "></iframe>";
+
+    return $player;
+}
 
 
 
