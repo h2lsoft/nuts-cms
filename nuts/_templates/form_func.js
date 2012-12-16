@@ -35,14 +35,14 @@ $('#form_content textarea.tabby').tabby();
   // initCodeEditor(this.id, "php", 0);
 //});
 
-// ucfirst
-$('#form_content .ucfirst').blur(function(e) {$(this).val(ucfirst($(this).val()));});
-
 // upper
 $('#form_content .upper').blur(function(e) {$(this).val(strtoupper($(this).val()));});
 
 // lower
 $('#form_content .lower').blur(function(e) {$(this).val(strtolower($(this).val()));});
+
+// ucfirst
+$('#form_content .ucfirst').blur(function(e) {$(this).val(ucfirst($(this).val()));});
 
 
 
