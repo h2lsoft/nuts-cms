@@ -9,7 +9,7 @@ include(PLUGIN_PATH.'/config.inc.php');
 $plugin->formDBTable(array('NutsMedia'));
 
 // fields
-$plugin->formAddFieldSelect('Type', $lang_msg[1], true, array('YOUTUBE VIDEO', 'VIDEO', 'EMBED CODE', 'AUDIO'));
+$plugin->formAddFieldSelect('Type', $lang_msg[1], true, array('YOUTUBE VIDEO', 'EMBED CODE', 'VIDEO', 'AUDIO'));
 $plugin->formAddFieldText('Name', $lang_msg[2], 'notEmpty|unique', 'ucfirst');
 $plugin->formAddFieldTextArea('Description', $lang_msg[3], false, 'ucfirst', 'height:45px;');
 $plugin->formAddFieldMediaBrowser('Url', '', false);
