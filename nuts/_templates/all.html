@@ -301,7 +301,7 @@ $("#top_search_input").autocomplete(plugin_list_ac, {
 				</td>
 				<td class="col_title">
 
-					<a href="javascript:system_goto('?mod={$plugin->name}&do={$plugin->configuration['default_action']}&popup={$_GET['popup']}', 'content');">{$plugin->real_name}</a>
+					<a href="javascript:system_goto('?mod={$plugin->name}&do={$plugin->configuration['default_action']}&popup={$_GET['popup']}&parentID={$_GET['parentID']}', 'content');">{$plugin->real_name}</a>
 					<span>{$plugin->description}</span>
 				</td>
 				<td class="col_configuration">
