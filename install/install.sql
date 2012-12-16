@@ -726,7 +726,7 @@ CREATE TABLE `NutsUserListSearches`(
   `Plugin` varchar(255) NOT NULL,
   `Name` varchar(255) DEFAULT NULL,
   `Serialized` text,
-  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO', 
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
   PRIMARY KEY (`ID`),
   KEY `NutsUserID` (`NutsUserID`),
   KEY `Plugin` (`Plugin`),
