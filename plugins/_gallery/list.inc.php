@@ -57,8 +57,12 @@ function hookData($row)
 		$ext = explode('.', $row['LogoImage']);
 		$ext = $ext[count($ext) - 1];
 
-		$row['Thumbnail'] = '<img class="image_preview" src="'.NUTS_IMAGES_URL.'/gallery/thumb_'.$row['ID'].'.'.$ext.'?t='.time().'" />';
+		$row['Thumbnail'] = '<img class="image_preview" src="'.NUTS_IMAGES_URL.'/gallery/thumb_'.$row['ID'].'.'.$ext.'?t='.time().'" style="height:65px; max-width:160px;" />';
 	}
+    else
+    {
+        $row['Thumbnail'] = '<img src="/nuts/img/no-preview.png" style="height:65px; max-width:160px;" />';
+    }
 
 	$row['Total'] = " <a href=\"javascript:popupModal('index.php?mod=_gallery_image&do=list&ID_operator=_equal_&ID=&NutsGalleryID_operator=_equal_&NutsGalleryID={$row['ID']}&user_se=1&popup=1', 'pops');\" class=\"tt\"><img src=\"img/icon-preview-mini.gif\" align=\"absmiddle\" alt=\"{$lang_msg[6]}\"> {$row['Total']}</a>";
 	return $row;
