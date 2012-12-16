@@ -144,15 +144,24 @@ if($_POST)
 {
     if($news_new_system)
     {
-        if(empty($_POST['VirtualPageName']))
+        $uri = strtouri($_POST['Title']);
+        $news_new_system_prefix_tmp = $news_new_system_prefix;
+        $news_new_system_prefix_tmp = str_replace('{Language}', $_POST['Language'], $news_new_system_prefix_tmp);
+        $_POST['VirtualPageName'] = $news_new_system_prefix_tmp.$uri.$news_new_system_suffix;
+
+        // check duplicate content
+        if(!$nuts->formGetTotalError())
         {
-            $uri = strtouri($_POST['Title']);
+            $count = (int)Query::factory()->select('COUNT(*)')
+                                    ->from('NutsNews')
+                                    ->where('VirtualPageName', '=', $_POST['VirtualPageName'])
+                                    ->where('ID', '!=', @$_GET['ID'])
+                                    ->limit(1)->executeAndGetOne();
 
-            $news_new_system_prefix_tmp = $news_new_system_prefix;
-            $news_new_system_prefix_tmp = str_replace('{Language}', $_POST['Language'], $news_new_system_prefix_tmp);
-
-
-            $_POST['VirtualPageName'] = $news_new_system_prefix_tmp.$uri.$news_new_system_suffix;
+            if($count == 1)
+            {
+                $nuts->addError('Title', $lang_msg[30]);
+            }
 
         }
     }
