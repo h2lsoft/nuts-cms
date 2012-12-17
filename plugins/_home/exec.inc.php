@@ -58,8 +58,10 @@ if(count($GLOBALS['system_notifications']) > 0)
 setTimeout(function(){
 EOF;
 
-    foreach($GLOBALS['system_notifications'] as $notification => $count)
-        $tmp .= "   pluginAddNotificationCounter('$notification', '$count');\n";
+    foreach($GLOBALS['system_notifications'] as $notification => $vals)
+    {
+        $tmp .= "   pluginAddNotificationCounter('$notification', '{$vals['counter']}', '{$vals['bull_background_color']}', '{$vals['bull_border_color']}', '{$vals['plugin_background_color']}');\n";
+    }
 
     $tmp .= "}, 800);\n";
     $tmp .= "</script>\n";
