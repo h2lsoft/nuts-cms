@@ -6,13 +6,23 @@
 <br />
 <br />
 <p>
-	<input type="button" value="{$nuts_lang_msg[30]}" onclick="sendIt()" style="min-width:100px;color:green; border-color:green;" />
+	<input id="confirm_btn" type="button" value="{$nuts_lang_msg[30]}" onclick="sendIt()" style="min-width:100px;color:green; border-color:green;" />
 	&nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; 
 	<input type="button" value="{$nuts_lang_msg[31]}" onclick="$('#form_window').dialog('close');"  style="min-width:100px;color:red;  border-color:red;" />
 </p>
 
 </div>
 <script>
+
+$(function(){
+
+    setTimeout(function(){
+        $('#delete #confirm_btn').focus();
+    }, 200);
+
+});
+
+
 function sendIt()
 {
 	// send by ajax and get it
@@ -32,7 +42,7 @@ function sendIt()
 	<br />
 	{$nuts_lang_msg[34]}<br />
 	<br />
-	<input type="button" value="{$nuts_lang_msg[26]}" onclick="$('#form_window').dialog('close');RTERefresh();" />
+	<input autofocus="1" type="button" value="{$nuts_lang_msg[26]}" onclick="$('#form_window').dialog('close');RTERefresh();" />
 	
 	<script>
 	system_refresh();
