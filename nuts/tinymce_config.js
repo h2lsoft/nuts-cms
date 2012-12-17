@@ -96,27 +96,28 @@ function initWYSIWYGOption()
         select += ' <option value="H1">H1</option>';
         select += ' <option value="H2">H2</option>';
         select += ' <option value="H3">H3</option>';
-
-
-        // paragraph
         select += ' <option value="P">P</option>';
+        select += ' <option value="BLOCKQUOTE">Blockquote</option>';
 
-        select += ' <option class="title">P</option>';
 
-        p_label = (nutsUserLang == 'fr') ? 'Paragraphe gauche' : 'Paragraph left';
+        // justifié
+        p_label = (nutsUserLang == 'fr') ? 'Alignement' : 'Alignement';
+        select += ' <option class="title">'+p_label+'</option>';
+
+        p_label = (nutsUserLang == 'fr') ? 'Gauche' : 'Left';
         select += ' <option value="P-LEFT">'+p_label+'</option>';
 
-        p_label = (nutsUserLang == 'fr') ? 'Paragraphe centre' : 'Paragraph center';
+        p_label = (nutsUserLang == 'fr') ? 'Centre' : 'Center';
         select += ' <option value="P-CENTER">'+p_label+'</option>';
 
-        p_label = (nutsUserLang == 'fr') ? 'Paragraphe droite' : 'Paragraph right';
+        p_label = (nutsUserLang == 'fr') ? 'Droite' : 'Right';
         select += ' <option value="P-RIGHT">'+p_label+'</option>';
 
-        p_label = (nutsUserLang == 'fr') ? 'Paragraphe justifié' : 'Paragraph justify';
+        p_label = (nutsUserLang == 'fr') ? 'Justifié' : 'Justify';
         select += ' <option value="P-FULL">'+p_label+'</option>';
 
 
-        select += ' <option value="BLOCKQUOTE">Blockquote</option>';
+
         select += '</select>';
 
         str += select;
