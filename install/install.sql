@@ -995,3 +995,7 @@ ALTER IGNORE TABLE NutsEDMLock DROP INDEX Folder;
 ALTER IGNORE TABLE NutsEDMLock CHANGE COLUMN Folder Folder TEXT;
 ALTER IGNORE TABLE NutsEDMLock ADD INDEX Folder (Folder(1000));
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (5, '_visual-query-builder', 8, 'NO');
+
+/* update v.3.7 */
+CREATE TABLE IF NOT EXISTS `NutsUserListSearches`(`ID` int(10) unsigned NOT NULL AUTO_INCREMENT,`NutsUserID` int(10) unsigned NOT NULL,`Plugin` varchar(255) NOT NULL, `Name` varchar(255) DEFAULT NULL, `Serialized` text, `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), KEY `NutsUserID` (`NutsUserID`), KEY `Plugin` (`Plugin`), KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+ALTER TABLE `NutsMedia` CHANGE COLUMN `Type` `Type` ENUM('AUDIO','VIDEO','EMBED CODE','YOUTUBE VIDEO') NOT NULL;
