@@ -93,10 +93,12 @@ function initWYSIWYGOption()
 
         select = '<select onchange="WYSIWYGFormat(\''+id+'\');">';
         select += ' <option class="title">Format</option>';
-        select += ' <option value="H1">Heading 1</option>';
-        select += ' <option value="H2">Heading 2</option>';
-        select += ' <option value="H3">Heading 3</option>';
-        select += ' <option value="P">Paragraph</option>';
+        select += ' <option value="H1">H1</option>';
+        select += ' <option value="H2">H2</option>';
+        select += ' <option value="H3">H3</option>';
+
+        p_label = (nutsUserLang == 'fr') ? 'Paragraphe' : 'Paragraph';
+        select += ' <option value="P">'+p_label+'</option>';
         select += ' <option value="BLOCKQUOTE">Blockquote</option>';
         select += '</select>';
 
@@ -528,8 +530,25 @@ function cmdWYSIWYG(id, action, data)
         }
     }
 
+    // hack pdf or http
+    if(action == 'createLink')
+    {
+        tmp = strtolower(data);
+        if(tmp.indexOf('http') != -1 || tmp.indexOf('.pdf') != -1)
+        {
+            data += '[DATA:REPLACEX]';
+        }
+    }
+
+
     getIFrameDocument('iframe_'+id).execCommand('styleWithCSS', null, false);// do not use css
     getIFrameDocument('iframe_'+id).execCommand(action, false, data);
+
+    // update content
+    content = getIFrameDocument('iframe_'+id).body.innerHTML;
+    content = str_replace('[DATA:REPLACEX]', '" target="_blank', content);
+    getIFrameDocument('iframe_'+id).body.innerHTML = content;
+
     getIFrameWindow('iframe_'+id).focus();
 }
 
