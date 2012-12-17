@@ -289,9 +289,11 @@ if((isset($_GET['_action']) && $_GET['_action'] == 'add_page') || (isset($_GET['
 		{
 			$sql = "SELECT NutsGroupID FROM NutsPageAccess WHERE NutsPageID = {$_GET['parentID']}";
 			$nuts->doQuery($sql);
+            $qID = $nuts->dbGetQueryID();
 			while($r = $nuts->dbFetch())
 			{
 				$nuts->dbInsert('NutsPageAccess', array('NutsGroupID' => $r['NutsGroupID'], 'NutsPageID' => $lastID));
+                $nuts->dbSetQueryID($qID);
 			}
 		}
 	}	
@@ -371,9 +373,11 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'duplicate_page')
 	{
 		$sql = "SELECT NutsGroupID FROM NutsPageAccess WHERE NutsPageID = {$_GET['parentID']}";
 		$nuts->doQuery($sql);
+        $qID = $nuts->dbGetQueryID();
 		while($r = $nuts->dbFetch())
 		{
 			$nuts->dbInsert('NutsPageAccess', array('NutsGroupID' => $r['NutsGroupID'], 'NutsPageID' => $lastID));
+            $nuts->dbSetQueryID($qID);
 		}
 	}
 
@@ -1012,9 +1016,11 @@ function duplicatePages($pageID_source, $pageID_target)
         {
             $sql = "SELECT NutsGroupID FROM NutsPageAccess WHERE NutsPageID = {$oldID}";
             $nuts->doQuery($sql);
+            $qID = $nuts->dbGetQueryID();
             while($r = $nuts->dbFetch())
             {
                 $nuts->dbInsert('NutsPageAccess', array('NutsGroupID' => $r['NutsGroupID'], 'NutsPageID' => $lastID));
+                $nuts->dbSetQueryID($qID);
             }
         }
 
