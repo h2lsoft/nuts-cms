@@ -4101,15 +4101,31 @@ EOF;
 
 
     /**
+     *
+     *
+     * @param $counter
+     * @param $background_color optionnal
+     * @param string $plugin_name
+     */
+
+
+    /**
      * Add notification on plugin in home
      *
      * @param $counter
-     * @param $background_color optionnal default=#FF0000
-     * @param string $plugin_name
+     * @param $plugin_name
+     * @param string $bull_background_color (default=#FF0000)
+     * @param string $bull_border_color (default=#C93F9E)
+     * @param string $plugin_background_color (default=#FFCCCC)
      */
-    function addSystemNotification($counter, $plugin_name, $bull_background_color='#FF0000', $bull_border_color='#C93F9E', $mod_background_color='#FFCCCC')
+    function addSystemNotification($counter, $plugin_name, $bull_background_color='#FF0000', $bull_border_color='#C93F9E', $plugin_background_color='#FFCCCC')
     {
-        $GLOBALS['system_notifications'][$plugin_name] = array('counter' => $counter, 'background_color' => $bull_background_color, 'bull_border_color' => $bull_border_color, 'mod_background_color' => $mod_background_color);
+        $GLOBALS['system_notifications'][$plugin_name] = array(
+                                                                'counter' => $counter,
+                                                                'bull_background_color' => $bull_background_color,
+                                                                'bull_border_color' => $bull_border_color,
+                                                                'plugin_background_color' => $plugin_background_color
+                                                               );
     }
 
 
