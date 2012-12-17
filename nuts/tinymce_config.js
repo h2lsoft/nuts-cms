@@ -97,8 +97,25 @@ function initWYSIWYGOption()
         select += ' <option value="H2">H2</option>';
         select += ' <option value="H3">H3</option>';
 
-        p_label = (nutsUserLang == 'fr') ? 'Paragraphe' : 'Paragraph';
-        select += ' <option value="P">'+p_label+'</option>';
+
+        // paragraph
+        select += ' <option value="P">P</option>';
+
+        select += ' <option class="title">P</option>';
+
+        p_label = (nutsUserLang == 'fr') ? 'Paragraphe gauche' : 'Paragraph left';
+        select += ' <option value="P-LEFT">'+p_label+'</option>';
+
+        p_label = (nutsUserLang == 'fr') ? 'Paragraphe centre' : 'Paragraph center';
+        select += ' <option value="P-CENTER">'+p_label+'</option>';
+
+        p_label = (nutsUserLang == 'fr') ? 'Paragraphe droite' : 'Paragraph right';
+        select += ' <option value="P-RIGHT">'+p_label+'</option>';
+
+        p_label = (nutsUserLang == 'fr') ? 'Paragraphe justifié' : 'Paragraph justify';
+        select += ' <option value="P-FULL">'+p_label+'</option>';
+
+
         select += ' <option value="BLOCKQUOTE">Blockquote</option>';
         select += '</select>';
 
@@ -565,6 +582,10 @@ function WYSIWYGFormat(id){
     else if(v == 'H2')cmdWYSIWYG(id, 'formatBlock', 'H2');
     else if(v == 'H3')cmdWYSIWYG(id, 'formatBlock', 'H3');
     else if(v == 'P')cmdWYSIWYG(id, 'formatBlock', 'P');
+    else if(v == 'P-LEFT')cmdWYSIWYG(id, 'justifyLeft');
+    else if(v == 'P-CENTER')cmdWYSIWYG(id, 'justifyCenter');
+    else if(v == 'P-RIGHT')cmdWYSIWYG(id, 'justifyRight');
+    else if(v == 'P-FULL')cmdWYSIWYG(id, 'justifyFull');
     else if(v == 'BLOCKQUOTE')cmdWYSIWYG(id, 'formatBlock', 'BLOCKQUOTE');
     else{
 
