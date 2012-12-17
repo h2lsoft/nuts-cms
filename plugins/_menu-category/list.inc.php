@@ -89,7 +89,7 @@ function hookData($row)
     // count
     if(!empty($row['Plugins']))
     {
-        $row['Plugins'] .= "<script>$('#ls_tr_{$row['ID']} .list_btn_delete').hide();</script>";
+        $row['Plugins'] .= "<script>$(function(){\$('#ls_tr_{$row['ID']} .list_btn_delete').remove();});</script>";
     }
 
 
