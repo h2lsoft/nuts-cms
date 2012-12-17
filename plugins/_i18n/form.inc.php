@@ -31,7 +31,7 @@ if($_POST)
 	$rep = array();
 	foreach($i18n_langs as $i18n_lang)
 	{
-		$rep[$i18n_lang] = $_POST["LANG_{$i18n_lang}"];
+		$rep[$i18n_lang] = @$_POST["LANG_{$i18n_lang}"];
 	}
 	
 	$_POST['Replacement'] = serialize($rep);
