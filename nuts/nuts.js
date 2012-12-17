@@ -1284,7 +1284,7 @@ function imageBoxClose()
 }
 
 
-function pluginAddNotificationCounter(name, counter)
+function pluginAddNotificationCounter(name, counter, bull_background_color, bull_border_color, plugin_background_color)
 {
     if(counter > 0)
     {
@@ -1292,10 +1292,15 @@ function pluginAddNotificationCounter(name, counter)
         plugin_top = pos.top;
         plugin_left = pos.left;
 
-        tmp = '<div style="top:'+plugin_top+'px; left:'+plugin_left+'px" class="plugin_notification_counter">'+counter+'</div>';
+
+        notification_bull_style = 'top:'+plugin_top+'px; left:'+plugin_left+'px;';
+        notification_bull_style += 'background-color:'+bull_background_color+';'
+        notification_bull_style += 'border-color:'+bull_border_color+';'
+
+        tmp = '<div style="'+notification_bull_style+'" class="plugin_notification_counter">'+counter+'</div>';
         $('#home').append(tmp);
 
-        $('.mod[name="'+name+'"]').css('background-color', '#ffcccc');
+        $('.mod[name="'+name+'"]').css('background-color', plugin_background_color);
     }
 }
 
