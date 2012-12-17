@@ -259,6 +259,8 @@ function updateSqlCode()
     c = str_replace(' OR ', ' '+bloc_start+'OR'+bloc_end+' ', c);
     c = str_replace(' NULL ', ' '+bloc_start+'NULL'+bloc_end+' ', c);
     c = str_replace(' IN(', ' '+bloc_start+'IN'+bloc_end+'(', c);
+    c = str_replace(' IF(', ' '+bloc_start+'IF'+bloc_end+'(', c);
+    c = str_replace(' REPLACE(', ' '+bloc_start+'REPLACE'+bloc_end+'(', c);
     c = str_replace(',\n', bloc_start+','+bloc_end+'\n', c);
     c = str_replace('.', bloc_start+'.'+bloc_end, c);
     c = str_replace('(', bloc_start+'('+bloc_end, c);
