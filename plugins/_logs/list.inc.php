@@ -17,7 +17,8 @@ $plugin->listSetDbTable('NutsLog',
 $plugin->listSearchAddFieldDatetime('DateGMT', $lang_msg[2], '', '', '>=');
 $plugin->listSearchAddFieldDatetime('DateGMT2', $lang_msg[2], 'DateGMT', '', '<=');
 $plugin->listSearchAddFieldSelectSql('NutsGroupID', $lang_msg[1]);
-$plugin->listSearchAddFieldSelectSql('NutsUserID', 'User', "CONCAT(FirstName,' ',LastName)");
+// $plugin->listSearchAddFieldSelectSql('NutsUserID', 'User', "CONCAT(FirstName,' ',LastName)");
+$plugin->listSearchAddFieldTextAjaxAutoComplete('NutsUserID', 'Login', 'begins', "Login" , 'ID', 'NutsUser');
 $plugin->listSearchAddFieldSelectSql('Application');
 $plugin->listSearchAddFieldSelectSql('Action');
 $plugin->listSearchAddFieldText('Resume', 'Message');
@@ -37,7 +38,7 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'purge')
 $plugin->listAddCol('ID', '', 'center; width:30px', true); // with order by
 $plugin->listAddCol('DateGMT', $lang_msg[2], 'center; width:120px', true); // with order by
 $plugin->listAddCol('GroupName', $lang_msg[1], 'center', true); // with order by
-$plugin->listAddCol('NutsUserName', 'User', 'center', true);
+$plugin->listAddCol('NutsUserName', 'Login', 'center', true);
 $plugin->listAddCol('Application', '', 'center', true);
 $plugin->listAddCol('Action', '', 'center', true);
 $plugin->listAddCol('Resume', '', '');
