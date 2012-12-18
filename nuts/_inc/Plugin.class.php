@@ -472,7 +472,7 @@ class Plugin
 
 
 			// direct render for ajax
-			if(isset($_GET['ajax_ac']) && $_GET['ajax_ac_col'] == $options['ac_get'] && @strlen($_GET['q']) >= 3)
+			if(isset($_GET['ajax_ac']) && $_GET['ajax_ac_col'] == $options['ac_get'] && @strlen($_GET['q']) >= 2)
 			{
 				$q = addslashes($_GET['q']);
 				$begin_percent = ($options['ac_mode'] == 'begins') ? '' : '%';
@@ -1917,7 +1917,7 @@ EOF;
 
 
 			// direct render for ajax
-			if((isset($_GET['form_ajax_ac']) && $_GET['form_ajax_ac_col'] == $options['ac_get'] && @strlen($_GET['q']) >= 3))
+			if((isset($_GET['form_ajax_ac']) && $_GET['form_ajax_ac_col'] == $options['ac_get'] && @strlen($_GET['q']) >= 2))
 			{
 				$q = addslashes($_GET['q']);
 				$begin_percent = ($options['ac_mode'] == 'begins') ? '' : '%';
