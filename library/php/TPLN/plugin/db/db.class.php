@@ -1693,7 +1693,7 @@ class Db extends Form
 			}*/
 
 			// get ORDER BY
-			if(preg_match("/ORDER BY\n(.*)/", $query_tmp2, $match))
+			if(preg_match("/ORDER BY\n(.*)/s", $query_tmp2, $match))
 			{
 				$str = str_replace($reps_pattern, $reps_rep, $match[1]);
 				$this->cons_query['ORDER BY'] = trim($str);
