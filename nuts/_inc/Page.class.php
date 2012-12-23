@@ -916,7 +916,7 @@ class Page extends NutsCore
                             }
                         }
 
-                        $rep = youtubeGetPlayer($row['ID'], $paramsX['url']);
+                        $rep = youtubeGetPlayer($row['ID'], $paramsX['url'], $paramsX['width'], $paramsX['height']);
                     }
 					elseif($row['Type'] == 'AUDIO')
 					{
