@@ -1027,6 +1027,11 @@ table#rights tr:hover> td.label
 #visual_query_builder #right_view #SqlCodeHighlighter span.quotes span.keyword
     {color: orange!important;}
 
+#visual_query_builder #right_view #SqlCodeHighlighter span.comments,
+#visual_query_builder #right_view #SqlCodeHighlighter span.comments span.keyword,
+#visual_query_builder #right_view #SqlCodeHighlighter span.comments span.quotes
+    {background-color:#FFC97C; color: black!important; font-weight: normal!important;}
+
 
 #visual_query_builder #right_view #SqlCodeHighlighter
 {

@@ -280,7 +280,7 @@ function tableAdd(table_name, alias_name)
                 repaintJoins();
 
                 // hightlight last string '[TEXT]'
-                if(v.indexOf("'[TEXT]'") != -1)
+                if(v.indexOf("[TEXT]") != -1)
                 {
                     $('#SqlCode')[0].selectionStart = v.indexOf("'[TEXT]'")+1;
                     $('#SqlCode')[0].selectionEnd = v.indexOf("'[TEXT]'")+7;

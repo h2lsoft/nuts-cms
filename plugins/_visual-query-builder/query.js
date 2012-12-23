@@ -245,8 +245,42 @@ function updateSqlCode()
     c = str_replace(' HAVING ', ' '+bloc_start+'HAVING'+bloc_end+' ', c);
     c = str_replace('\nORDER BY\n', '\n'+bloc_start+'ORDER BY'+bloc_end+'\n', c);
     c = str_replace('DATE_FORMAT(', bloc_start+'DATE_FORMAT'+bloc_end+'(', c);
+    c = str_replace('MIN(', bloc_start+'MIN'+bloc_end+'(', c);
+    c = str_replace('MAX(', bloc_start+'MAX'+bloc_end+'(', c);
     c = str_replace('SUM(', bloc_start+'SUM'+bloc_end+'(', c);
     c = str_replace('AVG(', bloc_start+'AVG'+bloc_end+'(', c);
+    c = str_replace('NOW(', bloc_start+'NOW'+bloc_end+'(', c);
+    c = str_replace('TO_DAYS(', bloc_start+'TO_DAYS'+bloc_end+'(', c);
+    c = str_replace('DATE_ADD(', bloc_start+'DATE_ADD'+bloc_end+'(', c);
+    c = str_replace('DATE_SUB(', bloc_start+'DATE_SUB'+bloc_end+'(', c);
+    c = str_replace('CURDATE(', bloc_start+'CURDATE'+bloc_end+'(', c);
+    c = str_replace('CURTIME(', bloc_start+'CURTIME'+bloc_end+'(', c);
+    c = str_replace('CONCAT(', bloc_start+'CONCAT'+bloc_end+'(', c);
+    c = str_replace('YEAR(', bloc_start+'YEAR'+bloc_end+'(', c);
+    c = str_replace('MONTH(', bloc_start+'MONTH'+bloc_end+'(', c);
+    c = str_replace('MINUTE(', bloc_start+'MINUTE'+bloc_end+'(', c);
+    c = str_replace('REPLACE(', bloc_start+'REPLACE'+bloc_end+'(', c);
+    c = str_replace('IF(', bloc_start+'IF'+bloc_end+'(', c);
+
+    c = str_replace(' IN(', ' '+bloc_start+'IN'+bloc_end+'(', c);
+
+    c = str_replace(' BETWEEN ', ' '+bloc_start+'BETWEEN'+bloc_end+' ', c);
+    c = str_replace(' INTERVAL ', ' '+bloc_start+'INTERVAL'+bloc_end+' ', c);
+    c = str_replace(' SECOND', ' '+bloc_start+'SECOND'+bloc_end, c);
+    c = str_replace(' MINUTE', ' '+bloc_start+'MINUTE'+bloc_end, c);
+    c = str_replace(' HOUR', ' '+bloc_start+'HOUR'+bloc_end, c);
+    c = str_replace(' DAY', ' '+bloc_start+'DAY'+bloc_end, c);
+    c = str_replace(' WEEK', ' '+bloc_start+'WEEK'+bloc_end, c);
+    c = str_replace(' MONTH', ' '+bloc_start+'MONTH'+bloc_end, c);
+    c = str_replace(' YEAR', ' '+bloc_start+'YEAR'+bloc_end, c);
+
+    // imbricated query
+    c = str_replace('(SELECT ', '('+bloc_start+'SELECT'+bloc_end+' ', c);
+    c = str_replace(' FROM ', ' '+bloc_start+'FROM'+bloc_end+' ', c);
+    c = str_replace(' WHERE ', ' '+bloc_start+'WHERE'+bloc_end+' ', c);
+    c = str_replace(' AND ', ' '+bloc_start+'AND'+bloc_end+' ', c);
+    c = str_replace(' OR ', ' '+bloc_start+'OR'+bloc_end+' ', c);
+    c = str_replace(' LIMIT ', ' '+bloc_start+'LIMIT '+bloc_end+' ', c);
 
     c = str_replace(' ASC', ' '+bloc_start+'ASC'+bloc_end, c);
     c = str_replace(' DESC', ' '+bloc_start+'DESC'+bloc_end, c);
@@ -258,9 +292,7 @@ function updateSqlCode()
     c = str_replace(' IFNULL(', ' '+bloc_start+'IFNULL('+bloc_end, c);
     c = str_replace(' OR ', ' '+bloc_start+'OR'+bloc_end+' ', c);
     c = str_replace(' NULL ', ' '+bloc_start+'NULL'+bloc_end+' ', c);
-    c = str_replace(' IN(', ' '+bloc_start+'IN'+bloc_end+'(', c);
-    c = str_replace(' IF(', ' '+bloc_start+'IF'+bloc_end+'(', c);
-    c = str_replace(' REPLACE(', ' '+bloc_start+'REPLACE'+bloc_end+'(', c);
+
     c = str_replace(',\n', bloc_start+','+bloc_end+'\n', c);
     c = str_replace('.', bloc_start+'.'+bloc_end, c);
     c = str_replace('(', bloc_start+'('+bloc_end, c);
@@ -312,12 +344,31 @@ function updateSqlCode()
     }
 
     text_in_quotes.sort(function(a,b) {return (a.length < b.length) ? 1 : 0; });
-    // console.log(text_in_quotes);
-
     for(i=0; i < text_in_quotes.length; i++)
     {
-        c = str_replace(text_in_quotes[i], bloc_start+text_in_quotes[i]+bloc_end, c);
+        rep = text_in_quotes[i];
+        rep = htmlentities(rep);
+        c = str_replace(text_in_quotes[i], bloc_start+rep+bloc_end, c);
     }
+
+    // comments --
+    bloc_start = '<span class="comments">';
+    bloc_end = '</span>';
+    lines = explode('\n', c);
+    for(i=0; i < lines.length; i++)
+    {
+        line = ltrim(lines[i]);
+        if(line.indexOf('-- ', line) != -1)
+        {
+            tmp = str_replace('-- ', bloc_start+'-- ', lines[i]);
+            lines[i] = tmp+bloc_end;
+        }
+    }
+
+    c = join('\n', lines);
+    c = str_replace('&quot;', "'", c);
+
+
 
 
     $('#SqlCodeHighlighter').height($('#SqlCode').height());

@@ -287,6 +287,20 @@ if($_POST && @$_GET['ajaxer'] == 1)
 
         $sql = str_replace(" ORDER BY ", "\nORDER BY\n\t", $sql);
         $sql = str_replace(" .*", ".*", $sql);
+        $sql = str_replace(", (SELECT ", ",\n\t(SELECT ", $sql);
+        $sql = str_replace("\r", "", $sql);
+
+        $res = $nuts->extractStr($sql, "(SELECT\n", "\t) ", true);
+        while(!empty($res))
+        {
+            $res2 = $res;
+            $res2 = str_replace(array("\n", "\t"), ' ', $res2);
+            $res2 = str_replace("    ", ' ', $res2);
+            $res2 = str_replace("   ", ' ', $res2);
+            $res2 = str_replace("  ", ' ', $res2);
+            $sql = str_replace($res, $res2, $sql);
+            $res = $nuts->extractStr($sql, "(SELECT\n", "\t)", true);
+        }
 
         die($sql);
 

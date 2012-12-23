@@ -132,10 +132,10 @@ $(document).ready(function(){
         if(e.which == 13)
         {
             v = $(this).val();
-            if(v.indexOf("'[TEXT]'") != -1)
+            if(v.indexOf("[TEXT]") != -1)
             {
-                $(this)[0].selectionStart = v.indexOf("'[TEXT]'")+1;
-                $(this)[0].selectionEnd = v.indexOf("'[TEXT]'")+7;
+                $(this)[0].selectionStart = v.indexOf("[TEXT]");
+                $(this)[0].selectionEnd = v.indexOf("[TEXT]")+6;
                 e.preventDefault();
             }
         }
