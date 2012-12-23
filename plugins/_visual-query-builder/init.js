@@ -267,4 +267,6 @@ $(document).ready(function(){
     });
 
 
+    $('#table_search_input').keyup();
+
 });
