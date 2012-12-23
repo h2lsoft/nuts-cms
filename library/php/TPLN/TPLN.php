@@ -471,6 +471,7 @@ class TPLN extends DB
 				$url .= '?'.$_SERVER['QUERY_STRING'].'&tpln_w=adm';
 
 			$subject = '[TPLN] Alert Error';
+            if(isset($GLOBALS['nuts']))$subject = '[NUTS] Alert Error';
 
 			$err_msg = $this->error_msg;
 			$err_msg = str_replace('&lt;', '<', $err_msg);
