@@ -97,10 +97,21 @@ function tableAdd(table_name, alias_name)
                             str = table_name+'.'+field_name;
                     }
 
+                    // special function
+                    select_func = $('#select_funcs').val();
+
                     // already selected ?
-                    if(!$(this).hasClass('in_select'))
+                    if(!$(this).hasClass('in_select') || ($(this).hasClass('in_select') && !empty(select_func)))
                     {
                         arr['SELECT'] = trim(arr['SELECT']);
+
+
+                        if(!empty(select_func))
+                        {
+                            str = str_replace('[FIELD]', str, select_func);
+                            $('#select_funcs').val('');
+                        }
+
                         if(empty(arr['SELECT']))
                         {
                             arr['SELECT'] = "\t"+str;
@@ -282,8 +293,8 @@ function tableAdd(table_name, alias_name)
                 // hightlight last string '[TEXT]'
                 if(v.indexOf("[TEXT]") != -1)
                 {
-                    $('#SqlCode')[0].selectionStart = v.indexOf("'[TEXT]'")+1;
-                    $('#SqlCode')[0].selectionEnd = v.indexOf("'[TEXT]'")+7;
+                    $('#SqlCode')[0].selectionStart = v.indexOf("[TEXT]");
+                    $('#SqlCode')[0].selectionEnd = v.indexOf("[TEXT]")+6;
                     $('#SqlCode').focus();
                 }
 

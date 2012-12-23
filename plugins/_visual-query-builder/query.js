@@ -256,6 +256,9 @@ function updateSqlCode()
     c = str_replace('CURDATE(', bloc_start+'CURDATE'+bloc_end+'(', c);
     c = str_replace('CURTIME(', bloc_start+'CURTIME'+bloc_end+'(', c);
     c = str_replace('CONCAT(', bloc_start+'CONCAT'+bloc_end+'(', c);
+    c = str_replace('UPPER(', bloc_start+'UPPER'+bloc_end+'(', c);
+    c = str_replace('LOWER(', bloc_start+'LOWER'+bloc_end+'(', c);
+
     c = str_replace('YEAR(', bloc_start+'YEAR'+bloc_end+'(', c);
     c = str_replace('MONTH(', bloc_start+'MONTH'+bloc_end+'(', c);
     c = str_replace('MINUTE(', bloc_start+'MINUTE'+bloc_end+'(', c);

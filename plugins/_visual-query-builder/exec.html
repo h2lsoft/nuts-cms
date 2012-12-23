@@ -43,7 +43,37 @@
 
                 <!-- sql_btns -->
                 <div id="sql_btns">
+
                     <button title="Alt + X" accesskey="x">SELECT</button>
+                    <select id="select_funcs">
+                        <option></option>
+
+                        <optgroup label="Aggregate functions">
+                            <option value="COUNT([FIELD]) AS [TEXT]">COUNT()</option>
+                            <option value="SUM([FIELD]) AS [TEXT]">SUM()</option>
+                            <option value="AVG([FIELD]) AS [TEXT]">AVG()</option>
+                            <option value="MIN([FIELD]) AS [TEXT]">MIN()</option>
+                            <option value="MAX([FIELD]) AS [TEXT]">MAX()</option>
+                        </optgroup>
+
+                        <optgroup label="String functions">
+                            <option value="UPPER([FIELD]) AS [TEXT]">UPPER()</option>
+                            <option value="LOWER([FIELD]) AS [TEXT]">LOWER()</option>
+                            <option value="CONCAT([FIELD], '[TEXT]') AS [TEXT]">CONCAT()</option>
+                            <option value="CONCAT_WS('[TEXT]', [FIELD]) AS [TEXT]">CONCAT_WS()</option>
+                            <option value="REPLACE([FIELD], '[TEXT]', '[TEXT]') AS [TEXT]">REPLACE()</option>
+                        </optgroup>
+
+                        <optgroup label="Date functions">
+                            <option value="DATE_FORMAT([FIELD], '%d/%m/%Y') AS [TEXT]">DATE_FORMAT()</option>
+                            <option value="DATE_ADD([FIELD], INTERVAL 1 MONTH) AS [TEXT]">DATE_ADD(+1 month)</option>
+                            <option value="DATE_SUB([FIELD], INTERVAL 1 MONTH) AS [TEXT]">DATE_SUB(-1 month)</option>
+                            <option value="YEAR([FIELD]) AS [TEXT]">YEAR()</option>
+                            <option value="MONTH([FIELD]) AS [TEXT]">MONTH()</option>
+                        </optgroup>
+                    </select>
+
+
                     <button title="Alt + J" accesskey="j">JOIN</button>
                     <button title="Alt + W" accesskey="w">WHERE</button>
                     <button title="Alt + G" accesskey="g">GROUP BY</button>
