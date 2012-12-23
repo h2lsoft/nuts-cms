@@ -489,6 +489,11 @@ class TPLN extends DB
 			$body .= "<b>Referer :</b> $referer"."\n";
 			$body .= "<b>Agent :</b> ".@$_SERVER['HTTP_USER_AGENT']."\n";
 
+            // add trace mode for Nuts
+            if(isset($GLOBALS['nuts']) && $GLOBALS['nuts']->dbIsConnected())
+            {
+                xTrace('system-www', strip_tags($body));
+            }
 
 			$body = str_replace("\n", "<br />", $body);
 
