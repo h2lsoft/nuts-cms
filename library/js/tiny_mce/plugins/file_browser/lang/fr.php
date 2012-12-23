@@ -189,6 +189,9 @@ $lang = array(
     "All"                           => "Tous",
     "Loading"                       => "Chargement",
 
+
+    "Upload file from url"                       => "Charger fichier depuis url",
+
     "EOF" => TRUE
 );
 

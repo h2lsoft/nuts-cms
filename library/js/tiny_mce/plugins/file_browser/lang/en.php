@@ -100,6 +100,9 @@ $lang = array(
     "Loading"                       => "Loading",
 
 
+    "Upload file from url"                       => "Upload file from url",
+
+
     "EOF" => TRUE
 );
 

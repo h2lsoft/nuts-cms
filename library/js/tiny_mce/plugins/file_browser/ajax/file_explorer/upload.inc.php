@@ -26,8 +26,6 @@ function upload_error($num, $filename=''){
 
     $msg = sprintf($msg, $filename);
 
-
-
     die($msg);
 }
 
@@ -48,7 +46,9 @@ if(!file_exists(WEBSITE_PATH.$_POST['path']))upload_error(4, $_POST['path']);
 // files
 if(!$_FILES)upload_error(5);
 if(!isset($_FILES['file']))upload_error(6);
-if(!is_uploaded_file($_FILES['file']['tmp_name']))upload_error(7);
+
+// non check for upload_from_url
+if(!defined('UPLOAD_FROM_URL') && !is_uploaded_file($_FILES['file']['tmp_name']))upload_error(7);
 if($_FILES['file']['error'])upload_error(8);
 if($_FILES['file']['size'] > $max_file_size_in_bytes)upload_error(9, $max_file_size);
 
@@ -94,11 +94,23 @@ if(file_exists(WEBSITE_PATH.$_POST['path'].$file_name))
 // trigger
 nutsTrigger('file-explorer::upload_before', true, "file-explorer user upload file");
 
-if(!move_uploaded_file($_FILES['file']['tmp_name'], WEBSITE_PATH.$_POST['path'].$file_name))
+// normal upload
+if(!defined('UPLOAD_FROM_URL'))
 {
-    // die("Error: file `".$_POST['path'].$_FILES['file']['name']."` not uploaded");
-    upload_error(13, $_POST['path'].$_FILES['file']['name']);
+    if(!@move_uploaded_file($_FILES['file']['tmp_name'], WEBSITE_PATH.$_POST['path'].$file_name))
+    {
+        upload_error(13, $_POST['path'].$_FILES['file']['name']);
+    }
 }
+else
+{
+    if(!@rename($_FILES['file']['tmp_name'], WEBSITE_PATH.$_POST['path'].$file_name))
+    {
+        upload_error(13, $_POST['path'].$_FILES['file']['name']);
+        @unlink($_FILES['file']['tmp_name']);
+    }
+}
+
 
 // trigger
 nutsTrigger('file-explorer::upload_success', true, "file-explorer user upload file");

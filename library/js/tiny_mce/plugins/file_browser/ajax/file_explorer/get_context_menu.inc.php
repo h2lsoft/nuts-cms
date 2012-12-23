@@ -217,6 +217,11 @@ onclick:function(menuItem,menu) { showUpload(); },
 icon:'img/contextmenu/insert.png'
 }
 }
+,{"<?php echo translate("Upload file from url");?>":{
+onclick:function(menuItem,menu) {  $.MediaBrowser.uploadFileFromUrl();},
+icon:'img/contextmenu/insert.png'
+}
+}
 <?php endif; ?>
 
 <?php if($allowedActions['copy_paste'] === TRUE || $allowedActions['cut_paste'] === TRUE): ?>
@@ -229,7 +234,6 @@ disabled:true
 }
 <?php endif; ?>
 ];
-
 
 
 <?php die(); ?>

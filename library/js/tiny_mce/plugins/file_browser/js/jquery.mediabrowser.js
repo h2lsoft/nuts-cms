@@ -486,6 +486,40 @@
 
         },
 
+
+        uploadFileFromUrl: function(){
+
+            msg = "Please, enter url of your file";
+            if(nutsUserLang == 'fr')
+                msg = "Merci de renseigner l'url de votre fichier";
+            file_url = prompt(msg);
+
+            if(empty(file_url))return;
+
+            // Show loading icon
+            $('div#files').html('<div class="loading"></div>');
+
+            uri = getAjaxUri();
+            uri += '&action=upload_from_url';
+            $.post(uri, {file_url: file_url, path:urlencode($.MediaBrowser.currentFolder), lang:nutsUserLang}, function(resp){
+
+                if(resp != 'ok')
+                {
+                    $.MediaBrowser.showMessage(resp, "error");
+                    $.MediaBrowser.loadFolder($.MediaBrowser.currentFolder);
+                }
+                else
+                {
+                    $.MediaBrowser.loadFolder($.MediaBrowser.currentFolder);
+                }
+
+            });
+
+
+        },
+
+
+
         insertFile: function(){
 
             var URL = $("form#fileform input#file").val();
@@ -643,9 +677,9 @@
 
                 dis = ($.MediaBrowser.clipboard.length == 0) ? true : false;
                 if(nutsUserLang == 'fr')
-                    cmenu[4].Coller.disabled = dis;
+                    cmenu[5].Coller.disabled = dis;
                 else
-                    cmenu[4].Paste.disabled = dis;
+                    cmenu[5].Paste.disabled = dis;
 
                 $('div#files').contextMenu(cmenu);
             }
