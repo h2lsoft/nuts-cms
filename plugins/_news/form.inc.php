@@ -60,6 +60,8 @@ $plugin->formAddFieldImageBrowser('NewsImageModel', $lang_msg[28], false, 'nuts_
 $plugin->formAddFieldsetEnd();
 
 $plugin->formAddFieldSelect('Language', $lang_msg[1], true, $langs, "", "", "", "", true);
+$plugin->formAddFieldTextAjaxAutoComplete('Type', '', false);
+
 $plugin->formAddFieldDate('DateGMT', $lang_msg[2], true, $lang_msg[11]);
 
 if(!in_array('DateGMTExpiration', $hidden_fields_arr))
@@ -142,6 +144,8 @@ $plugin->formAddEndText("
 
 if($_POST)
 {
+    $_POST['Type'] = ucfirst($_POST['Type']);
+
     if($news_new_system)
     {
         $uri = strtouri($_POST['Title']);

@@ -25,6 +25,7 @@ $plugin->listSetDbTable('NutsNews', "-- DATE_ADD(DateGMT, INTERVAL {$_SESSION['T
 									$sql_list_added");
 // search engine
 $plugin->listSearchAddFieldText('ID');
+$plugin->listSearchAddFieldTextAjaxAutoComplete('Type');
 $plugin->listSearchAddFieldDate('DateGMT', $lang_msg[2]);
 if(!in_array('DateGMTExpiration', $hidden_fields_arr))$plugin->listSearchAddFieldDate('DateGMT2', $lang_msg[3], 'DateGMT');
 $plugin->listSearchAddFieldSelectSql('NutsUserID', $lang_msg[16], "CONCAT(FirstName,' ',LastName)");
@@ -71,6 +72,9 @@ if($news_thumb_list_view)
 {
 	$plugin->listAddCol('NewsImage', 'Image', 'center; width:5px', false);
 }
+
+if(!in_array('Type', $hidden_fields_arr))
+    $plugin->listAddCol('Type', '', 'center; width:5px', true);
 
 $plugin->listAddCol('DateGMT', $lang_msg[2], 'center; width:40px; white-space:nowrap;', true);
 if(!in_array('DateGMTExpiration', $hidden_fields_arr))$plugin->listAddCol('DateGMTExpiration', $lang_msg[3], 'center; width:40px; white-space:nowrap;', true);
