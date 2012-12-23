@@ -14,6 +14,7 @@ $timer = time();
 include('config.inc.php');
 include('headers.inc.php');
 FB::setEnabled(FirePHP_enabled);
+include_once(WEBSITE_PATH.'/library/php/html2pdf/html2pdf.class.php');
 
 include('_inc/Plugin.class.php');
 
