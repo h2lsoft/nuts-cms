@@ -1769,9 +1769,9 @@ class Db extends Form
 				$sql_tmp = 'SELECT FOUND_ROWS()';
 			}
 
-
+            $sql_tmp = str_replace(' )', ')', $sql_tmp);
 			$this->doQuery($sql_tmp);
-			$this->Count = $this->getOne();
+			$this->Count = $this->dbGetOne();
 
 			// end of patch query by laurent hayoun ***********************
 
