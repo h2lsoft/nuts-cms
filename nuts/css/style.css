@@ -679,6 +679,7 @@ div#list_container fieldset p#search_bottom a {margin-right:15px; font-weight:bo
 div#list_container fieldset p#search_bottom a:hover {text-decoration:none; color:red;}
 div#list_container fieldset .date {background-image:url(calendar.png); background-repeat:no-repeat; background-position:right;}
 div#list_container fieldset .datetime {background-image:url(calendar.png); background-repeat:no-repeat; background-position:right;}
+div#list_container fieldset .ajax_autocomplete {width: 350px;}
 
 /** form */
 div#form {/*width:890px;*/ width: 99%; }
