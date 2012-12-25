@@ -40,6 +40,11 @@ function initWYSIWYGOption()
 		str += '<label title="">&nbsp;</label>';
 		str += '<div id="'+id+'_WYSIWYG_toolbar" class="WYSIWYG_toolbar" style="margin:0;padding:0px;">';
 
+
+
+        str += ' <img class="rte_button" onclick="javascript:WYSIWYGPaste(\''+id+'\');" src="img/rte/paste2.png" align="absmiddle" style="width:12px" /> ';
+        str += sep;
+
         // simple rte
 		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'bold\');" src="img/rte/B.png" align="absmiddle" /> ';
 		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'italic\');" src="img/rte/I.png" align="absmiddle" /> ';
@@ -89,7 +94,6 @@ function initWYSIWYGOption()
 
         str += select;
         str += ' <img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'removeFormat\');" src="img/rte/X.png" align="absmiddle" /> ';
-        str += ' <img class="rte_button" onclick="javascript:WYSIWYGPaste(\''+id+'\');" src="img/rte/paste2.png" align="absmiddle" style="width:12px" /> ';
 
         str += sep;
         str += ' <img class="rte_button" id="'+id+'_WYSIWYG_submenu_url_parent" onclick="javascript:WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');" src="img/rte/A.png" align="absmiddle" /> ';
@@ -290,6 +294,9 @@ function initWYSIWYGIFrame(id) {
         obj.addEventListener('mousedown', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEvent(id, e, false);}, false);
         obj.addEventListener('keypress', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEvent(id, e, true);}, false);
 
+        // obj.addEventListener('paste', function(e){e.preventDefault();}, false);
+
+
         // add special shortcut catcher for Chrome
         // tools: http://jonathan.tang.name/files/js_keycode/test_keycode.html
         // if(BrowserDetect.browser == 'Chrome'){
@@ -310,7 +317,6 @@ function initWYSIWYGIFrame(id) {
            // shortcut.remove("Ctrl+1");
            // shortcut.remove("Ctrl+2");
            //  shortcut.remove("Ctrl+3");
-
            // shortcut.remove("Esc");
 
             setTimeout( function() {
@@ -336,6 +342,8 @@ function initWYSIWYGIFrame(id) {
                 shortcut.add('Ctrl+2', function(){cmdWYSIWYG(id, 'formatBlock', 'H2');}, {'target':cur_target});
                 shortcut.add('Ctrl+3', function(){cmdWYSIWYG(id, 'formatBlock', 'H3');}, {'target':cur_target});
                 shortcut.add('Esc', function(){$('#btn_cancel').click()}, {'target':cur_target});
+
+                // shortcut.add('Ctrl+V', function(){ WYSIWYGPaste(id); e.preventDefault(); }, {'target':cur_target});
 
 
             }, 500);
