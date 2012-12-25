@@ -1123,7 +1123,7 @@ div#console a {color: #00AAFF; color: #00AAFF;}
 /** rte **/
 .WYSIWYG_toolbar {position:relative; top:4px;}
 .WYSIWYG_toolbar input[type=checkbox] {position: relative; top:3px;}
-.WYSIWYG_toolbar .rte_button {cursor: pointer;}
+.WYSIWYG_toolbar .rte_button {cursor: pointer; }
 .WYSIWYG_toolbar .rte_button:hover {opacity: 0.2; -moz-opacity: 0.2; -webkit-opacity: 0.2;}
 .WYSIWYG_toolbar a:hover {color:#000; text-decoration: none;}
 .WYSIWYG_toolbar a {outline: 0;}
@@ -1132,7 +1132,7 @@ div#console a {color: #00AAFF; color: #00AAFF;}
 .WYSIWYG_submenu a {color:#666;}
 .WYSIWYG_submenu a:hover {color:#000; text-decoration: none;}
 
-.WYSIWYG_toolbar select {border:1px solid #ccc; width: 65px; }
+.WYSIWYG_toolbar select {border:1px solid #e5e5e5; width: 65px; padding: 0px; }
 .WYSIWYG_toolbar select option {padding-left: 15px;}
 .WYSIWYG_toolbar select option.title {padding-left:5px; border: 1px solid #ccc; font-weight: bold; background-color: #e5e5e5;}
 .WYSIWYG_toolbar select:focus {box-shadow: none;}
