@@ -258,6 +258,7 @@ function updateSqlCode()
     c = str_replace('CONCAT(', bloc_start+'CONCAT'+bloc_end+'(', c);
     c = str_replace('UPPER(', bloc_start+'UPPER'+bloc_end+'(', c);
     c = str_replace('LOWER(', bloc_start+'LOWER'+bloc_end+'(', c);
+    c = str_replace('STR_TO_DATE(', bloc_start+'STR_TO_DATE'+bloc_end+'(', c);
 
     c = str_replace('YEAR(', bloc_start+'YEAR'+bloc_end+'(', c);
     c = str_replace('MONTH(', bloc_start+'MONTH'+bloc_end+'(', c);
