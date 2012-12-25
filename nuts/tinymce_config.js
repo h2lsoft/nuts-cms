@@ -85,6 +85,13 @@ function initWYSIWYGOption()
 		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'italic\');" src="img/rte/I.png" align="absmiddle" /> ';
 		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'underline\');" src="img/rte/U.png" align="absmiddle" /> ';
 		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'strikeThrough\');" src="img/rte/S.png" align="absmiddle" /> ';
+
+        str += sep;
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'justifyLeft\');" src="img/rte/align-left.png" align="absmiddle" /> ';
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'justifyCenter\');" src="img/rte/align-center.png" align="absmiddle" /> ';
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'justifyRight\');" src="img/rte/align-right.png" align="absmiddle" /> ';
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'justifyFull\');" src="img/rte/align-justify.png" align="absmiddle" /> ';
+
         str += sep;
         str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertUnorderedList\');" src="img/rte/UL.png" align="absmiddle" /> ';
         str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertOrderedList\');" src="img/rte/OL.png" align="absmiddle" /> ';
@@ -101,7 +108,7 @@ function initWYSIWYGOption()
 
 
         // justifié
-        p_label = (nutsUserLang == 'fr') ? 'Alignement' : 'Alignement';
+        /*p_label = (nutsUserLang == 'fr') ? 'Alignement' : 'Alignement';
         select += ' <option class="title">'+p_label+'</option>';
 
         p_label = (nutsUserLang == 'fr') ? 'Gauche' : 'Left';
@@ -115,7 +122,7 @@ function initWYSIWYGOption()
 
         p_label = (nutsUserLang == 'fr') ? 'Justifié' : 'Justify';
         select += ' <option value="P-FULL">'+p_label+'</option>';
-
+        */
 
 
         select += '</select>';
@@ -332,6 +339,8 @@ function initWYSIWYGIFrame(id) {
                 shortcut.add('Ctrl+1', function(){cmdWYSIWYG(id, 'formatBlock', 'H1');}, {'target':cur_target});
                 shortcut.add('Ctrl+2', function(){cmdWYSIWYG(id, 'formatBlock', 'H2');}, {'target':cur_target});
                 shortcut.add('Ctrl+3', function(){cmdWYSIWYG(id, 'formatBlock', 'H3');}, {'target':cur_target});
+
+
             }, 500);
 
 
@@ -347,6 +356,13 @@ function initWYSIWYGIFrame(id) {
 		link.setAttribute('href',"/library/themes/editor_css.php?t="+current_theme+"&ncache="+time());
 		link.setAttribute('type',"text/css");
         head.appendChild(link);
+
+        if(BrowserDetect.browser == 'Chrome')
+        {
+            // add special handler support for img, table, td
+
+        }
+
 
         /*
         setTimeout(function(){
