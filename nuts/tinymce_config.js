@@ -40,47 +40,7 @@ function initWYSIWYGOption()
 		str += '<label title="">&nbsp;</label>';
 		str += '<div id="'+id+'_WYSIWYG_toolbar" class="WYSIWYG_toolbar" style="margin:0;padding:0px;">';
 
-
-        menu_sep = '--------------------------------\\n';
-
-		// help
-		msg = '<b>Help :</b>\\n';
-		msg += '==========================\\n';
-		msg += 'Ctrl + Alt + E: RichEditor\\n';
-        msg += menu_sep;
-		msg += 'Ctrl + B: Bold\\n';
-		msg += 'Ctrl + I: Italic\\n';
-		msg += 'Ctrl + U: Underline\\n';
-		msg += 'Ctrl + S: Striked\\n';
-        msg += menu_sep;
-        msg += 'Ctrl + 1: H1\\n';
-		msg += 'Ctrl + 2: H2\\n';
-		msg += 'Ctrl + 3: H3\\n';
-        msg += 'Ctrl + 4: Paragraph\\n';
-        msg += menu_sep;
-		msg += 'Ctrl + L: List\\n';
-        msg += 'Ctrl + M: Ordered List\\n';
-        msg += menu_sep;
-        msg += 'Ctrl + Q: Blockquote\\n';
-        msg += menu_sep;
-		msg += 'Ctrl + Z: Undo\\n';
-		msg += 'Ctrl + Y: Redo\\n';
-        msg = str_replace('\\n', '<br>', msg);
-
-		str += '<span class="tooltip yellow-tooltip tooltip-middle tooltip-middle-right"><img class="rte_button" src="img/rte/help.png" align="absmiddle" /><dd>'+msg+'</dd></span>';
-
-
-        str += sep;
-
-		// repaint
-        str += '<img  class="rte_button" title="Repaint" onclick="javascript:refreshWYSIWYG(\''+id+'\');" src="img/icon-refresh.png" align="absmiddle" />';
-
-
         // simple rte
-        str += sep;
-        str += ' <img class="rte_button" onclick="javascript:WYSIWYGPaste(\''+id+'\');" src="img/rte/paste.png" align="absmiddle" /> ';
-        str += sep;
-
 		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'bold\');" src="img/rte/B.png" align="absmiddle" /> ';
 		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'italic\');" src="img/rte/I.png" align="absmiddle" /> ';
 		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'underline\');" src="img/rte/U.png" align="absmiddle" /> ';
@@ -129,9 +89,9 @@ function initWYSIWYGOption()
 
         str += select;
         str += ' <img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'removeFormat\');" src="img/rte/X.png" align="absmiddle" /> ';
+        str += ' <img class="rte_button" onclick="javascript:WYSIWYGPaste(\''+id+'\');" src="img/rte/paste2.png" align="absmiddle" style="width:12px" /> ';
 
         str += sep;
-
         str += ' <img class="rte_button" id="'+id+'_WYSIWYG_submenu_url_parent" onclick="javascript:WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');" src="img/rte/A.png" align="absmiddle" /> ';
 
         // add sub menu
@@ -167,11 +127,46 @@ function initWYSIWYGOption()
 		str += ' <img class="rte_button" src="img/icon-media.png" align="absmiddle" title="'+nuts_lang_msg_73+'" onclick="popupModal(\'index.php?mod=_media&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
 		str += ' <img class="rte_button" src="/nuts/img/widget.png" title="Widgets" align="absmiddle" onclick="widgetsWindowOpen(\''+id+'\');" /> ';
 
+
+        // richeditor
+        str += sep;
+        str += '<input type="button" class="button" value="Richeditor" onclick="openWYSIWYG(\''+id+'\');" tabindex="0" />';
+
+
         // rte
         str += sep;
-        // str += '<img src="img/icon-code_editor.png" align="absmiddle" />';
-        // str += ' <a href="javascript:openWYSIWYG(\''+id+'\');" tabindex="0">Rich Editor</a>'
-        str += '<input type="button" class="button" value="Richeditor" onclick="openWYSIWYG(\''+id+'\');" tabindex="0" />';
+
+        // repaint
+        str += ' <img  class="rte_button" title="Repaint" onclick="javascript:refreshWYSIWYG(\''+id+'\');" src="img/icon-refresh.png" align="absmiddle" /> ';
+
+        // help
+        menu_sep = '--------------------------------\\n';
+        msg = '<b>Help :</b>\\n';
+        msg += '==========================\\n';
+        msg += 'Ctrl + Alt + E: RichEditor\\n';
+        msg += menu_sep;
+        msg += 'Ctrl + B: Bold\\n';
+        msg += 'Ctrl + I: Italic\\n';
+        msg += 'Ctrl + U: Underline\\n';
+        msg += 'Ctrl + S: Striked\\n';
+        msg += menu_sep;
+        msg += 'Ctrl + 1: H1\\n';
+        msg += 'Ctrl + 2: H2\\n';
+        msg += 'Ctrl + 3: H3\\n';
+        msg += 'Ctrl + 4: Paragraph\\n';
+        msg += menu_sep;
+        msg += 'Ctrl + L: List\\n';
+        msg += 'Ctrl + M: Ordered List\\n';
+        msg += menu_sep;
+        msg += 'Ctrl + Q: Blockquote\\n';
+        msg += menu_sep;
+        msg += 'Ctrl + Z: Undo\\n';
+        msg += 'Ctrl + Y: Redo\\n';
+        msg = str_replace('\\n', '<br>', msg);
+
+        str += ' <span class="tooltip yellow-tooltip tooltip-middle tooltip-middle-right"><img class="rte_button" src="img/rte/help.png" align="absmiddle" /><dd>'+msg+'</dd></span> ';
+
+
         str += sep;
 
 
