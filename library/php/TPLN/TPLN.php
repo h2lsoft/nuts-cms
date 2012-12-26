@@ -588,12 +588,20 @@ class TPLN extends DB
 
 			// $body .= "===========================================\n";
             $body .= "<hr>";
-			$body .= '<b>TPLN version '.TPLN_VERSION."</b>\n";
-			$body .= '<b>IP :</b> '.$this->GetIP()." (<a href=\"http://www.geoiptool.com/en/?IP=".$this->GetIP()."\">information</a>)"."\n";
-			$body .= "<b>Server :</b> {$_SERVER['SERVER_NAME']} ({$_SERVER['SERVER_ADDR']})"."\n";
-            $referer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '-';
-			$body .= "<b>Referer :</b> $referer"."\n";
-			$body .= "<b>Agent :</b> ".@$_SERVER['HTTP_USER_AGENT']."\n";
+            $body .= '<b>IP :</b> '.$this->GetIP()." (<a href=\"http://www.geoiptool.com/en/?IP=".$this->GetIP()."\">information</a>)"."\n";
+            $body .= "<b>Server :</b> {$_SERVER['SERVER_NAME']} ({$_SERVER['SERVER_ADDR']})"."\n";
+            $referer = (isset($_SERVER['HTTP_REFERER'])) ? $this->clickable($_SERVER['HTTP_REFERER']) : '-';
+            $body .= "<b>Referer :</b> $referer"."\n";
+
+            $browser = $this->getBrowserInfo();
+            $body .= "<b>Browser :</b> ".@$browser['name'].' '.@$browser['version']."\n";
+            $body .= "<b>System :</b> ".@$browser['platform']."\n";
+            $body .= "<b>Agent :</b> ".@$_SERVER['HTTP_USER_AGENT']."\n";
+
+            $body .= '<b>Powered by TPLN version '.TPLN_VERSION."</b>\n";
+
+            $body = '<style type="text/css">* , body {font-family: arial; font-size: 12px;}</style>'.$body;
+
 
             // add trace mode for Nuts
             if(isset($GLOBALS['nuts']) && $GLOBALS['nuts']->dbIsConnected())
