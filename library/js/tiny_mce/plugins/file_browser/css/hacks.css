@@ -164,3 +164,13 @@ div#file-specs #info div.fileupload input {
 /*li.file_lock a, li.file_lock span  {color:red!important;}
 tr.file_lock td {color:red!important;}
 */
+
+#files a[href$='.del'], #files tr[href$='.del'],
+#files a[href$='.del/'], #files tr[href$='.del/'],
+#tree a[href$='.del/']
+{
+    opacity: 0.5;
+    filter:grayscale(100%);
+
+}
+
