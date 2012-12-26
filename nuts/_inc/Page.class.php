@@ -2702,10 +2702,28 @@ EOF;
 			$body .= '<td class="label"><b>Date</b></td>'."\n";
 			$body .= '<td>'.$datetime.'</td>'."\n";
 			$body .= '<tr>';
+
+            $email_response = "";
 			foreach($_POST as $key => $val)
 			{
 				$lbl = (!isset($labels[$key])) ? $key : $labels[$key];
-				$vals = (is_array($val)) ? join('<br>', $val) : nl2br($val);
+				$vals = (is_array($val)) ? join('<br>', $val) : nl2br(ucfirst($val));
+
+                // make email clickable
+                if(!is_array($val))
+                {
+                    foreach($formData as $cur_form_field)
+                    {
+                        if($cur_form_field['FieldName'] == $key && $cur_form_field['Email'] == 'YES')
+                        {
+                            $vals = $this->clickable(strtolower($val));
+                            $email_response = $val;
+                            break;
+                        }
+                    }
+                }
+
+
 
 				// add after text
 				foreach($formData as $field)
@@ -2748,6 +2766,11 @@ EOF;
 				if(empty($form['FormValidMailerTo']))$form['FormValidMailerTo'] = NUTS_ADMIN_EMAIL;
 
 				$this->mailFrom($form['FormValidMailerFrom']);
+                if(!empty($email_response))
+                {
+                    $this->mailFrom($email_response);
+                }
+
 				$this->mailSubject($form['FormValidMailerSubject']);
 				$this->mailBody($body, 'HTML');
 
