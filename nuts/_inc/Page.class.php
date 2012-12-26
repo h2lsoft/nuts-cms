@@ -2754,7 +2754,8 @@ EOF;
             $browser = $this->getBrowserInfo();
             $body .= "<b>Browser :</b> ".@$browser['name'].' '.@$browser['version']."<br>";
             $body .= "<b>System :</b> ".@$browser['platform']."<br>";
-			$body .= "<br><b>Powered by Nuts CMS automatic forms</b>";
+            $body .= "<b>Agent :</b> ".@$browser['userAgent']."<br>";
+			$body .= "<b>Powered by Nuts CMS automatic forms</b>";
 
 			include(WEBSITE_PATH.'/plugins/_email/config.inc.php');
 			$body_table = $body;
