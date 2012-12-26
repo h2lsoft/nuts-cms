@@ -1,1 +1,1 @@
-trashes for user images files
+trashes for user other files
