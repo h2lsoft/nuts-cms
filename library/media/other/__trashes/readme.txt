@@ -1,0 +1,1 @@
+trashes for user images files
