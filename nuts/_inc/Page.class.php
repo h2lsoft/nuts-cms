@@ -2690,7 +2690,7 @@ EOF;
 			if(!empty($field['FormValidPhpCode']))eval($field['FormValidPhpCode']);
 
 			// execute mailer
-			$datetime = date('Y/m/d H:i:s');
+			$datetime = ($this->language == 'fr') ? date('d/m/Y H:i:s') : date('Y/m/d H:i:s');
 			$labels = array();
 			foreach($formData as $field)
 			{
@@ -2748,8 +2748,13 @@ EOF;
 			$body .= "<br>";
 			$body .= "<br>";
 			$body .= "<hr />";
-			$body .= "IP visitor: ".$this->getIP()."<br>";
-			$body .= "Powered by Nuts CMS automatic forms";
+			$body .= "<b>IP visitor :</b> ".$this->getIP()."<br>";
+
+            // browser info
+            $browser = $this->getBrowserInfo();
+            $body .= "<b>Browser :</b> ".@$browser['name'].' '.@$browser['version']."<br>";
+            $body .= "<b>System :</b> ".@$browser['platform']."<br>";
+			$body .= "<br><b>Powered by Nuts CMS automatic forms</b>";
 
 			include(WEBSITE_PATH.'/plugins/_email/config.inc.php');
 			$body_table = $body;
