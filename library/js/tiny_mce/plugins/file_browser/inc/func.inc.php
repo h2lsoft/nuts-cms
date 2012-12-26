@@ -44,14 +44,20 @@ function getDirTree($dir, $showfiles=true, $iterateSubDirectories=true) {
     $x = array();
     while (false !== ($r = $d->read())) {
         if($r != "." && $r != ".." && ((!preg_match('/^\..*/', $r) && !is_dir($dir.$r)) || is_dir($dir.$r)) && (($showfiles == false && is_dir($dir.$r)) || $showfiles == true)) {
-            $x[$r] = (is_dir($dir.$r)?array():(is_file($dir.$r)?true:false));
+            $x[$r] = (is_dir($dir.$r)? array():(is_file($dir.$r)?true:false));
         }
     }
+
     foreach ($x as $key => $value) {
-        if (is_dir($dir.$key."/") && $iterateSubDirectories) {
-            $x[$key] = getDirTree($dir.$key."/",$showfiles);
+        if(is_dir($dir.$key."/") && $iterateSubDirectories)
+        {
+            // if(!preg_match('#.del$#', $key))
+                $x[$key] = getDirTree($dir.$key."/",$showfiles);
+
         } else {
-            $x[$key] = is_file($dir.$key) ? (preg_match("/\.([^\.]+)$/", $key, $matches) ? str_replace(".","",$matches[0]) : 'file') : "folder";
+
+            // if(!preg_match('#.del$#', $key))
+                $x[$key] = is_file($dir.$key) ? (preg_match("/\.([^\.]+)$/", $key, $matches) ? str_replace(".","",$matches[0]) : 'file') : "folder";
         }
     }
     uksort($x, "strnatcasecmp"); // Sort keys in case insensitive alphabetical order
