@@ -359,7 +359,6 @@ function initWYSIWYGIFrame(id) {
 		link.setAttribute('rel',"stylesheet");
 		link.setAttribute('href',"/library/themes/editor_css.php?t="+current_theme+"&ncache="+time());
 		link.setAttribute('type',"text/css");
-        head.appendChild(link);
 
         if(BrowserDetect.browser == 'Chrome')
         {
