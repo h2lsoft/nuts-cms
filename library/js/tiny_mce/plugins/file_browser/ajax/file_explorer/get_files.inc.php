@@ -15,6 +15,19 @@ else
 {
     $dirs = getDirTree($selected_path, true, false);
 
+    // hide files for no super admin
+    if($_SESSION['NutsGroupID'] != 1)
+    {
+        $dirs2 = array();
+        foreach($dirs as $key => $val)
+        {
+            if(!preg_match("#.del$#", $key))
+                $dirs2[$key] = $val;
+        }
+
+        $dirs = $dirs2;
+    }
+
     $htmlFolders = '';
     $htmlFiles = '';
     $all_lines = array();
