@@ -40,8 +40,6 @@ function initWYSIWYGOption()
 		str += '<label title="">&nbsp;</label>';
 		str += '<div id="'+id+'_WYSIWYG_toolbar" class="WYSIWYG_toolbar" style="margin:0;padding:0px;">';
 
-
-
         str += ' <img class="rte_button" onclick="javascript:WYSIWYGPaste(\''+id+'\');" src="img/rte/paste2.png" align="absmiddle" style="width:12px" /> ';
         str += sep;
 
@@ -354,6 +352,7 @@ function initWYSIWYGIFrame(id) {
         // parse nuts tags
 		getIFrameDocument('iframe_'+id).designMode = 'on';
 		getIFrameDocument('iframe_'+id).body.innerHTML = $('textarea#'+id).val();
+        getIFrameDocument('iframe_'+id).body.spellcheck = false;
 
 		head = getIFrameDocument('iframe_'+id).getElementsByTagName('head')[0];
 		link = document.createElement('link');
