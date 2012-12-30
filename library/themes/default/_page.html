@@ -6,4 +6,11 @@
 
 {@PAGE_CONTENT}
 
+{#if(!$page->isHome)}
+{@NUTS	TYPE='PLUGIN'	NAME='_social-share'}
+{#endif}
+
+
 {@NUTS	TYPE='PLUGIN'	NAME='_comments'}
+
+
