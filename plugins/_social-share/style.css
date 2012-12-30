@@ -1,0 +1,9 @@
+.nuts_social_share {text-align: left; margin-top: 20px; }
+.nuts_social_share .nuts_social_label {font-weight: bold; float: right;}
+.nuts_social_share a {display: block; width: 32px; height: 32px; float: right;  margin-right: 5px; background-repeat: no-repeat;}
+.nuts_social_share a:hover {opacity: 0.5;}
+.nuts_social_share a.nuts_social_share_FB {background-image: url(/plugins/_social-share/img/facebook.png); margin-left: 15px;}
+.nuts_social_share a.nuts_social_share_Twitter {background-image: url(/plugins/_social-share/img/twitter.png);}
+.nuts_social_share a.nuts_social_share_GoogleP {background-image: url(/plugins/_social-share/img/googlep.png);}
+.nuts_social_share a.nuts_social_share_LinkedIn {background-image: url(/plugins/_social-share/img/linkedin.png);}
+.nuts_social_share a.nuts_social_share_Email {background-image: url(/plugins/_social-share/img/email.png);}
