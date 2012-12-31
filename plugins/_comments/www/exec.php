@@ -25,8 +25,8 @@ else
 
 	// NutspageID
 	$_GET['NutsPageID'] = (int)@$_GET['NutsPageID'];
-	if(!$_GET['NutsPageID'])
-		die("Error: NutsPageID parameter not found");
+	/*if(!$_GET['NutsPageID'])
+		die("Error: NutsPageID parameter not found");*/
 
 	// ID
 	$_GET['ID'] = (int)@$_GET['ID'];
