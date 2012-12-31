@@ -44,7 +44,8 @@ else
 	}
 
 	// loops comments
-    $urix = sqlX($_SERVER['SCRIPT_URL']);
+    $cur_uri = (isset($_SERVER['SCRIPT_URL'])) ? $_SERVER['SCRIPT_URL'] : $_SERVER['REQUEST_URI'];
+    $urix = sqlX($cur_uri);
 	$sql = "SELECT
 	                *,
 	                UNIX_TIMESTAMP(Date) AS tDate
@@ -181,7 +182,7 @@ else
         if($plugin->vars['Sitemap'] == 'NO')
         {
             $current_pageID = 0;
-            $current_url = $_SERVER['SCRIPT_URL'];
+            $current_url = $cur_uri;
         }
 
 
@@ -214,7 +215,7 @@ else
 			$message = $p_lng['AdminMailMessage'];
 			$message = str_replace('{Name}', $_POST['Name'], $message);
 			$message = str_replace('{Email}', $_POST['Email'], $message);
-			$message = str_replace('{URI}', $_SERVER['HTTP_REFERER'], $message);
+			$message = str_replace('{URI}', $cur_uri, $message);
 			$message = str_replace('{H1}', $plugin->vars['H1'], $message);
 			$message = str_replace('{IP}', long2ip($IP_long), $message);
 			$message = str_replace('{Website}', $_POST['Website'], $message);
