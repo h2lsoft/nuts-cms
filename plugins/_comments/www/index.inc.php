@@ -44,7 +44,21 @@ else
 	}
 
 	// loops comments
-	$sql = "SELECT *, UNIX_TIMESTAMP(Date) AS tDate FROM NutsPageComment WHERE Deleted = 'NO' AND Visible = 'YES' AND NutsPageID = {$plugin->vars['ID']} ORDER BY Date";
+    $urix = sqlX($_SERVER['SCRIPT_URL']);
+	$sql = "SELECT
+	                *,
+	                UNIX_TIMESTAMP(Date) AS tDate
+	        FROM
+	                NutsPageComment
+	        WHERE
+	                Deleted = 'NO' AND
+                    Visible = 'YES' AND
+                    (
+                        NutsPageID = {$plugin->vars['ID']} OR
+                        NutsPageID = 0 AND Url = '$urix'
+                    )
+            ORDER BY
+                    Date";
 	$plugin->doQuery($sql);
 	if($plugin->dbNumRows() == 0)
 	{
@@ -160,10 +174,23 @@ else
 		$IP = $plugin->getIP();
 		$IP_long = ip2long($IP);
 
+        $current_pageID = $plugin->vars['ID'];
+        $current_url = '';
+
+        // dynamic page
+        if($plugin->vars['Sitemap'] == 'NO')
+        {
+            $current_pageID = 0;
+            $current_url = $_SERVER['SCRIPT_URL'];
+        }
+
+
+
 		$CID = $plugin->dbInsert('NutsPageComment', array(
 															'Date' => 'NOW()',
 															'NutsUserID' => @$_SESSION['NutsUserID'],
-															'NutsPageID' => $plugin->vars['ID'],
+															'NutsPageID' => $current_pageID,
+															'Url' => $current_url,
 															'Name' => $_POST['Name'],
 															'Email' => $_POST['Email'],
 															'Website' => $_POST['Website'],
@@ -202,11 +229,11 @@ else
 			$uri = WEBSITE_URL.'/plugins/_comments/www/exec.php?action=';
 
 			// show
-			$action= base64_encode("do=show&email_admin=$to&show&ID=$CID&lang={$plugin->vars['Language']}&NutsPageID={$plugin->vars['ID']}&Email={$_POST['Email']}");
+			$action= base64_encode("do=show&email_admin=$to&show&ID=$CID&lang={$plugin->vars['Language']}&NutsPageID={$current_pageID}&Email={$_POST['Email']}");
 			$message = str_replace('{UriShow}', $uri.strrev($action), $message);
 
 			// delete
-			$action= base64_encode("do=delete&email_admin=$to&delete&ID=$CID&lang={$plugin->vars['Language']}&NutsPageID={$plugin->vars['ID']}&Email={$_POST['Email']}");
+			$action= base64_encode("do=delete&email_admin=$to&delete&ID=$CID&lang={$plugin->vars['Language']}&NutsPageID={$current_pageID}&Email={$_POST['Email']}");
 			$message = str_replace('{UriDelete}', $uri.strrev($action), $message);
 
 			$message = trim($message);
