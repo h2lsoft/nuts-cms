@@ -162,6 +162,7 @@ else
 
 		$CID = $plugin->dbInsert('NutsPageComment', array(
 															'Date' => 'NOW()',
+															'NutsUserID' => @$_SESSION['NutsUserID'],
 															'NutsPageID' => $plugin->vars['ID'],
 															'Name' => $_POST['Name'],
 															'Email' => $_POST['Email'],
