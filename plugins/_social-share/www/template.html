@@ -1,11 +1,11 @@
 <div class="nuts_social_share">
 
+<span class="nuts_social_label">{label} :</span>
 
-    <a href="mailto:?subject={title}&body={uri}" title="Email" class="nuts_social_share_Email"></a>
-    <a href="" title="LinkedIn" class="nuts_social_share_LinkedIn"></a>
-    <a onclick="window.open(this.href,'','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600'); return false;" href="https://plus.google.com/share?url={uri}" title="Google+" class="nuts_social_share_GoogleP"></a>
-    <a href="javascript:;" title="Twitter" class="nuts_social_share_Twitter"></a>
-    <a onclick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]={title}&amp;p[summary]={resume}&amp;p[url]={uri}','sharer','toolbar=0,status=0,width=580,height=325');" href="javascript:;" title="Facebook" class="nuts_social_share_FB"></a>
+    <a onclick="window.open(this.href+escape(document.location.href),'sharer','toolbar=0,status=0,width=580,height=325'); return false;" href="http://www.facebook.com/sharer.php?s=100&amp;p[title]={title}&amp;p[summary]=&amp;p[url]=" title="Facebook" class="nuts_social_share_FB"></a>
+    <a onclick="window.open(this.href+escape(document.location.href),'sharer','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=320,width=600'); return false;" href="http://twitter.com/home?status={titleX} => " title="Twitter" class="nuts_social_share_Twitter"></a>
+    <a onclick="window.open(this.href+escape(document.location.href),'sharer','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600'); return false;" href="https://plus.google.com/share?url=" title="Google+" class="nuts_social_share_GoogleP"></a>
+    <a onclick="window.open(this.href+escape(document.location.href),'sharer','toolbar=0,status=0,width=1015,height=600'); return false;" href="http://www.linkedin.com/shareArticle?mini=true&title={title}&source={CONST::WEBSITE_NAME}&summary=&url=" title="LinkedIn" class="nuts_social_share_LinkedIn"></a>
+    <a onclick="document.location.href=this.href+escape(document.location.href); return false;" href="mailto:?subject={title}&body=" title="Email" class="nuts_social_share_Email"></a>
 
-    <span class="nuts_social_label">{label} :</span>
 </div>
