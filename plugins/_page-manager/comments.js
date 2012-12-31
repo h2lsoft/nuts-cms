@@ -185,7 +185,7 @@ function updateCommentTab()
 	if(!$('#Comments').parent('p').is(':visible'))
 		$('#Comments').val('NO');
 
-	if($('#Comments').val() == 'YES')
+	if($('#Comments').val() == 'YES' && $('#Sitemap').val() == 'YES')
 	{
 		$('.ui-tabs-nav-item').eq(6).show();
 	}
