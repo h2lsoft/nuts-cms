@@ -1312,28 +1312,69 @@ class Page extends NutsCore
 		}
 
 		// add dynamically header file
+        $header_files_inserted_done = array();
 		if(count($this->header_files_added))
 		{
 			$str = "\n\t<!-- dynamic plugins insertion -->";
 			foreach($this->header_files_added as $hf)
 			{
-				if($hf['type'] == 'css')
-				{
-					$str .= "\n\t<link href=\"{$hf['url']}\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />";
-				}
-				elseif($hf['type'] == 'js')
-				{
-					$str .= "\n\t<script type=\"text/javascript\"  src=\"{$hf['url']}\"></script>";
-				}
-				else
-				{
-					$str .= "\n\t{$hf['url']}";
-				}
+                if(!in_array($hf, $header_files_inserted_done))
+                {
+                    if($hf['type'] == 'css')
+                    {
+                        $str .= "\n\t<link href=\"{$hf['url']}\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />";
+                    }
+                    elseif($hf['type'] == 'js')
+                    {
+                        $str .= "\n\t<script type=\"text/javascript\"  src=\"{$hf['url']}\"></script>";
+                    }
+                    else
+                    {
+                        $str .= "\n\t{$hf['url']}";
+                    }
+
+                    $header_files_inserted_done[] = $hf['url'];
+                }
+
 			}
 			$str .= "\n\t<!-- /dynamic plugins insertion -->";
 
 			$out = str_replace('<head>', "<head>$str\n", $out);
 		}
+
+        // add dynamically header file
+        if(count($this->header_after_files_added))
+        {
+            $str = "\n\t<!-- dynamic plugins insertion -->";
+            foreach($this->header_after_files_added as $hf)
+            {
+                if(!in_array($hf, $header_files_inserted_done))
+                {
+                    if($hf['type'] == 'css')
+                    {
+                        $str .= "\n\t<link href=\"{$hf['url']}\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />";
+                    }
+                    elseif($hf['type'] == 'js')
+                    {
+                        $str .= "\n\t<script type=\"text/javascript\"  src=\"{$hf['url']}\"></script>";
+                    }
+                    else
+                    {
+                        $str .= "\n\t{$hf['url']}";
+                    }
+
+                    $header_files_inserted_done[] = $hf['url'];
+                }
+            }
+            $str .= "\n\t<!-- /dynamic plugins insertion -->";
+
+            $out = str_replace('</head>', "$str\n</head>", $out);
+        }
+
+
+
+
+
 
 		// output content ##############################################################################
 		if($this->cacheIsPossible())
@@ -2997,14 +3038,27 @@ EOF;
 
 
 	private $header_files_added = array();
+	private $header_after_files_added = array();
 
 	/**
-	 * Add dynamically a file after <head> node
-	 * @param string $type must be css, js, custom
+	 *
+	 * @param string $type
+     *
 	 */
-	public function addHeaderFile($type, $url)
+
+    /**
+     * Add dynamically a file after head meta
+     *
+     * @param $type must be css, js, custom
+     * @param $url
+     * @param bool $after_meta_head_start (true by default)
+     */
+    public function addHeaderFile($type, $url, $after_meta_head_start=true)
 	{
-		$this->header_files_added[] = array('type' => strtolower($type), 'url' => $url);
+        if($after_meta_head_start)
+		    $this->header_files_added[] = array('type' => strtolower($type), 'url' => $url);
+        else
+            $this->header_after_files_added[] = array('type' => strtolower($type), 'url' => $url);
 	}
 
 
