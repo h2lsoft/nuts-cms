@@ -3224,6 +3224,8 @@ EOF;
 			// verify folder rights
 			if($f['type'] == 'image' || $f['type'] == 'file')
 			{
+                if(!is_dir($f['opts']['path']))@mkdir($f['opts']['path']);
+
 				if(!is_writable($f['opts']['path']))
 				{
 					$tmp = str_replace(WEBSITE_PATH, '', $f['opts']['path']);
