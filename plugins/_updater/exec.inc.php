@@ -289,15 +289,16 @@ else
 				if(!empty($f) && $f[strlen($f)-1] != ':' && strpos($f, '.') !== false)
 				{
 					$fs = explode('.', $f);
-					$fs = end($fs);
+                    $fs = end($fs);
 
-					// file extension only
-					if(strlen($fs) <= 4)
+					// file extension only, extension 002 is allowed for folder with number
+					if(strlen($fs) <= 4 && !ctype_digit($fs))
 						$structure[] = './'.$next_version.'/'.$last_path.$f;
 				}
 			}
 
 			$files_list = array_unique($structure);
+
 		}
 		// </editor-fold>
 
