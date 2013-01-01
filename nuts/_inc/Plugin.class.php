@@ -1998,7 +1998,7 @@ EOF;
 		if(!empty($style))$options['style'] = $style;
 		if(!empty($attributes))$options['attributes'] = $attributes;
 		if(!empty($help))$options['help'] = $help;
-		if(!empty($value))$options['value'] = $value;
+		if(strlen($value) > 0)$options['value'] = $value;
 
 		$this->formAddField($name, $label, 'textarea', $required, $options);
 	}
@@ -2048,7 +2048,7 @@ EOF;
 		if(!empty($after))$options['after'] = $after;
 		if(!empty($attributes))$options['attributes'] = $attributes;
 		if(!empty($help))$options['help'] = $help;
-		if(!empty($value))$options['value'] = $value;
+		if(strlen($value) > 0)$options['value'] = $value;
 
 		$this->formAddField($name, $label, 'text', $required, $options);
 	}
@@ -2072,7 +2072,7 @@ EOF;
 		if(!empty($after))$options['after'] = $after;
 		if(!empty($attributes))$options['attributes'] = $attributes;
 		if(!empty($help))$options['help'] = $help;
-		if(!empty($value))$options['value'] = $value;
+		if(strlen($value) > 0)$options['value'] = $value;
 
 		$this->formAddField($name, $label, 'colorpicker', $required, $options);
 	}
@@ -2468,7 +2468,7 @@ EOF;
 		$options = array();
 		if(!empty($required))$options['required'] = $required;
 		if(!empty($help))$options['help'] = $help;
-		if(!empty($value))$options['value'] = $value;
+        if(strlen($value) > 0)$options['value'] = $value;
 
 		$this->formAddField($name, $label, 'date', $required, $options);
 	}
@@ -2488,7 +2488,7 @@ EOF;
 		$options = array();
 		if(!empty($required))$options['required'] = $required;
 		if(!empty($help))$options['help'] = $help;
-		if(!empty($value))$options['value'] = $value;
+        if(strlen($value) > 0)$options['value'] = $value;
 
 		$this->formAddField($name, $label, 'datetime', $required, $options);
 	}
