@@ -249,6 +249,7 @@ function trtUpdateSitemap(){
 	}
 
 	trtUpdateSitemapOptions();
+    updateCommentTab();
 }
 
 function trtUpdateSitemapOptions(){
