@@ -999,3 +999,14 @@ INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (5, '_visual-que
 /* update v.3.7 */
 CREATE TABLE IF NOT EXISTS `NutsUserListSearches`(`ID` int(10) unsigned NOT NULL AUTO_INCREMENT,`NutsUserID` int(10) unsigned NOT NULL,`Plugin` varchar(255) NOT NULL, `Name` varchar(255) DEFAULT NULL, `Serialized` text, `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), KEY `NutsUserID` (`NutsUserID`), KEY `Plugin` (`Plugin`), KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 ALTER TABLE `NutsMedia` CHANGE COLUMN `Type` `Type` ENUM('AUDIO','VIDEO','EMBED CODE','YOUTUBE VIDEO') NOT NULL;
+
+/* update v.3.8 */
+ALTER TABLE `NutsNews` ADD COLUMN `Type` VARCHAR(255) NULL AFTER `DateGMTExpiration`;
+ALTER TABLE `NutsNews` ADD INDEX `Type` (`Type`);
+ALTER TABLE `NutsPageComment` ADD COLUMN `Url` VARCHAR(255) NULL AFTER `NutsPageID` ;
+ALTER TABLE `NutsPageComment` ADD INDEX `Url` (`Url`);
+INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (2, '_comments', 8, 'YES');
+CREATE TABLE `NutsSlider` (`ID` int(10) unsigned NOT NULL AUTO_INCREMENT, `Name` varchar(255) DEFAULT NULL, `Description` tinytext, `Circular` enum('YES','NO') NOT NULL DEFAULT 'YES', `Infinite` enum('YES','NO') NOT NULL DEFAULT 'YES', `Responsive` enum('YES','NO') NOT NULL DEFAULT 'YES', `Direction` varchar(10) DEFAULT NULL, `Width` varchar(10) NOT NULL, `Height` varchar(10) NOT NULL, `Align` varchar(10) DEFAULT NULL, `Padding` varchar(50) DEFAULT NULL, `ScrollDuration` int(10) unsigned NOT NULL, `PauseDuration` int(10) unsigned NOT NULL, `Fx` varchar(20) DEFAULT NULL, `Items` int(10) unsigned NOT NULL, `Deleted` enum('NO','YES') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE `NutsSliderImage` (`ID` int(10) unsigned NOT NULL AUTO_INCREMENT, `NutsSliderID` int(10) unsigned NOT NULL, `Title` varchar(255) DEFAULT NULL,`Url` VARCHAR(255) DEFAULT NULL, `SliderImage` varchar(255) DEFAULT NULL, `Visible` enum('YES','NO') NOT NULL DEFAULT 'YES', `Position` int(10) unsigned NOT NULL, `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), KEY `NutsSliderID` (`NutsSliderID`), KEY `Visible` (`Visible`), KEY `Position` (`Position`), KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (3, '_slider', 10, 'YES');
+INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (3, '_slider-images', 10, 'NO');
