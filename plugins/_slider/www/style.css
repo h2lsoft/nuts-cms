@@ -1,0 +1,77 @@
+.nuts_slider_wrapper {
+
+}
+
+
+.nuts_slider {
+    position:relative;
+}
+
+
+.nuts_slider ul {
+    list-style: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.nuts_slider li {
+    font-size: 40px;
+    text-align: center;
+    display: block;
+    padding: 0;
+    margin: 0;
+    float: left;
+    position: relative;
+}
+
+.nuts_slider li img {
+    border: 0;
+}
+
+.nuts_slider li span {
+    display: none;
+    position: absolute;
+    z-index: 2;
+}
+
+.nuts_slider_clearfix { float: none; clear: both;}
+
+.nuts_slider_prev, .nuts_slider_next{
+
+    /* must be customised => http://caroufredsel.dev7studios.com/  */
+    display: none;
+
+}
+
+.nuts_slider_pager {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 14px;
+    margin-top: 10px;
+}
+
+.nuts_slider_pager a {
+
+    text-indent: -999px;
+    text-decoration: none;
+
+    display: inline-block;
+    overflow: hidden;
+
+    width: 15px;
+    height: 14px;
+    margin: 0 5px 0 0;
+
+    background: url(dots.png);
+}
+
+.nuts_slider_pager  a:hover {
+    background-position: 0px -15px;
+}
+
+.nuts_slider_pager  a.selected {
+    text-decoration: underline;
+    background-position: 0px -30px;
+}
