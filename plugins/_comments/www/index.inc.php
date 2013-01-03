@@ -65,7 +65,6 @@ else
 	if($plugin->dbNumRows() == 0)
 	{
         $label = ($page->language == 'fr') ? 'Aucun' : 'No';
-        $plugin->parse("CommentNb", $label);
         $plugin->eraseBloc("nuts_comments");
 	}
 	else
@@ -128,8 +127,6 @@ else
 			}
 		}
 	}
-
-
 
 	$html_tags = ' - ';
 	if(!empty($comments_message_allowed_tags))
@@ -208,7 +205,6 @@ else
 		$plugin->mailSubject($comments_email_subject.' '.$p_lng['MailSubject']." `{$plugin->vars['H1']}` (#{$plugin->vars['ID']})");
 
 		include(WEBSITE_PATH.'/plugins/_email/config.inc.php');
-
 
 		$tos = explode(',', $comments_admin_email);
 		foreach($tos as $to)
