@@ -62,14 +62,15 @@ else
                     Date";
 	$plugin->doQuery($sql);
 
-    $plugin->parse("CommentNb", $plugin->dbNumRows());
 	if($plugin->dbNumRows() == 0)
 	{
-		$plugin->eraseBloc("nuts_comments");
+        $label = ($page->language == 'fr') ? 'Aucun' : 'No';
+        $plugin->parse("CommentNb", $label);
+        $plugin->eraseBloc("nuts_comments");
 	}
 	else
 	{
-		// $plugin->parse("CommentNb", $plugin->dbNumRows());
+        $plugin->parse("CommentNb", $plugin->dbNumRows());
 
 		$k = 1;
 		$tos = explode(',', $comments_admin_email);
