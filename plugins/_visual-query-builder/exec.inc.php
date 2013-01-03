@@ -302,6 +302,8 @@ if($_POST && @$_GET['ajaxer'] == 1)
             $res = $nuts->extractStr($sql, "(SELECT\n", "\t)", true);
         }
 
+        $sql = str_replace("-- AND\n\t", "\n\t-- AND ", $sql);
+
         die($sql);
 
     }
