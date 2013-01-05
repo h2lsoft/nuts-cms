@@ -498,7 +498,7 @@ function editPage(nodeID, selectTabs)
             if(selectTabs == 2)
             {
                 setTimeout(function(){
-                   $('#former #H1').select();
+                   if(empty($('#former #H1').val()))$('#former #H1').select();
                 }, 500);
             }
   		}
