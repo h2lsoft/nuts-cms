@@ -131,4 +131,8 @@ $lang_msg[101] = "Voulez-vous également dupliquer les sous-pages ?";
 
 $lang_msg[102] = "Vue de contenu";
 
+$lang_msg[103] = "Voulez-vous régénérer la `Meta Title` ?";
+$lang_msg[104] = "Voulez-vous régénérer la `Page Url` ?";
+
+
 ?>

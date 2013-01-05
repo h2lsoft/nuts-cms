@@ -137,6 +137,9 @@ $lang_msg[101] = "Would you like to also duplicate sub pages ?";
 
 $lang_msg[102] = "Content views";
 
+$lang_msg[103] = "Would you like to regenerate `Meta Title` ?";
+$lang_msg[104] = "Would you like to regenerate `Page Url` ?";
+
 
 
 ?>
