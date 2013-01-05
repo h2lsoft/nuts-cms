@@ -396,7 +396,7 @@ if(from_mode != 'iframe')
 }
 
 // init MetaTitle, urlrewriting from H
-$('#former #H1').blur(function(){
+$('#former #H1').change(function(){
 
     if(empty($(this).val()) || $(this).val() == 'Untitled')return;
 
