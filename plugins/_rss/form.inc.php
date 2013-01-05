@@ -15,7 +15,22 @@ $plugin->formAddFieldText('RssLimit', $lang_msg[11], 'notEmpty|onlyDigit', '', '
 // code
 $plugin->formAddFieldsetStart('Code');
 $plugin->formAddFieldTextArea('PhpCode', 'Php code', false, 'php', '', '', $lang_msg[8]);
-$plugin->formAddFieldTextArea('Query', '', true, 'sql', '', '', $lang_msg[9]);
+
+$val = "SELECT
+\tTitle AS title,
+\tResume AS description,
+\tDATE_FORMAT(DateGMT, '%m-%d-%Y %h:%i') AS pubDate,
+\tVirtualPagename AS link
+FROM
+\tNutsNews
+WHERE
+\tDeleted = 'NO' AND
+\tActive = 'YES' AND
+\tDateGMT <= NOW()
+ORDER BY
+\tDateGMT DESC";
+
+$plugin->formAddFieldTextArea('Query', '', true, 'sql', 'height:220px', '', $lang_msg[9], $val);
 $plugin->formAddFieldTextArea('HookFunction', 'Hook function', false, 'php', '', '', $lang_msg[10]);
 $plugin->formAddFieldsetEnd();
 
