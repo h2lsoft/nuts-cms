@@ -189,11 +189,11 @@ insert into `NutsRegion` (`ID`, `Name`, `Description`, `PhpCode`, `Query`, `Html
 /* Rte */
 TRUNCATE TABLE NutsRichEditor;
 INSERT INTO `NutsRichEditor`(`ID`,`Content`,`Deleted`) VALUES
-	(1,'forced_root_block : \'\',\r\nforce_br_newlines : false,\r\nforce_p_newlines : false,    \r\nremove_linebreaks: true,\r\napply_source_formatting: false,\r\nconvert_newlines_to_brs : false,','NO');
+	(1,'forced_root_block : \'\',\r\nforce_br_newlines : false,\r\nforce_p_newlines : true,    \r\nremove_linebreaks: true,\r\napply_source_formatting: true,\r\nconvert_newlines_to_brs : true,','NO');
 
 /* RSS */
 TRUNCATE TABLE NutsRss;
-insert into `NutsRss` (`ID`, `RssTitle`, `RssLink`, `RssDescription`, `RssCopyright`, `RssImage`, `PhpCode`, `Query`, `HookFunction`, `RssLimit`, `Deleted`) values('1','News and Events','{WEBSITE_NAME}/','RSS news and events','','','','SELECT\n	Title AS title,\n	Resume AS description,\n	DATE_FORMAT(DateGMT, \'%m-%d-%Y %h:%i\') AS pubDate,\n	VirtualPagename AS link\nFROM\n	NutsNews\nWHERE\n	Deleted = \'NO\' AND\n	Active = \'YES\' AND\n	DateGMT <= NOW()\nORDER BY\n	DateGMT DESC','','20','NO');
+insert into `NutsRss` (`ID`, `RssTitle`, `RssLink`, `RssDescription`, `RssCopyright`, `RssImage`, `PhpCode`, `Query`, `HookFunction`, `RssLimit`, `Deleted`) values('1','News and Events','[[WEBSITE_NAME]]/','RSS news and events','','','','SELECT\n	Title AS title,\n	Resume AS description,\n	DATE_FORMAT(DateGMT, \'%m-%d-%Y %h:%i\') AS pubDate,\n	VirtualPagename AS link\nFROM\n	NutsNews\nWHERE\n	Deleted = \'NO\' AND\n	Active = \'YES\' AND\n	DateGMT <= NOW()\nORDER BY\n	DateGMT DESC','','20','NO');
 
 
 /* Spider */
