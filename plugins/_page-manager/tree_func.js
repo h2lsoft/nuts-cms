@@ -495,12 +495,12 @@ function editPage(nodeID, selectTabs)
             $('#NutsPageContentViewID').change();
 
             // autofocus H1
-            /*if(selectTabs == 2)
+            if(selectTabs == 2)
             {
                 setTimeout(function(){
                    $('#former #H1').select();
                 }, 500);
-            }*/
+            }
   		}
 	);
 }
