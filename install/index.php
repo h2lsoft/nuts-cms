@@ -177,11 +177,12 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 					$sql = trim($sql);
 					if(!empty($sql))
 					{
+                        $sql = str_replace('[[WEBSITE_NAME]]', $_POST['WEBSITE_NAME'], $sql);
+                        $sql = str_replace('[[WEBSITE_URL]]', $_POST['WEBSITE_URL'], $sql);
+
 						if(preg_match("/^CREATE TABLE/", $sql))
 						{
 							$sql = str_replace('TYPE=', 'ENGINE=', $sql);
-                            $sql = str_replace('[[WEBSITE_NAME]]', $_POST['WEBSITE_NAME'], $sql);
-                            $sql = str_replace('[[WEBSITE_URL]]', $_POST['WEBSITE_URL'], $sql);
 						}
 						
 						$pdo->query($sql);
