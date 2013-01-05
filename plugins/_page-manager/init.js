@@ -394,3 +394,42 @@ if(from_mode != 'iframe')
         }
     });
 }
+
+// init MetaTitle, urlrewriting from H
+$('#former #H1').blur(function(){
+
+    if(empty($(this).val()) || $(this).val() == 'Untitled')return;
+
+    if(empty($('#former #MetaTitle').val()))
+    {
+        $('#former #MetaTitle').val($(this).val());
+    }
+    else
+    {
+        if((c=confirm(lang_msg_103)))
+        {
+            $('#former #MetaTitle').val($(this).val());
+        }
+    }
+
+
+    if(empty($('#former #VirtualPagename').val()))
+    {
+        generateFromH1();
+    }
+    else
+    {
+        if((c=confirm(lang_msg_104)))
+        {
+            generateFromH1();
+        }
+    }
+
+
+
+
+
+
+
+});
+
