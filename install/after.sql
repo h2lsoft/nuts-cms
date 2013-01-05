@@ -193,7 +193,7 @@ INSERT INTO `NutsRichEditor`(`ID`,`Content`,`Deleted`) VALUES
 
 /* RSS */
 TRUNCATE TABLE NutsRss;
-insert into `NutsRss` (`ID`, `RssTitle`, `RssLink`, `RssDescription`, `RssCopyright`, `RssImage`, `PhpCode`, `Query`, `HookFunction`, `RssLimit`, `Deleted`) values('1','News and Events','{WEBSITE_NAME}/','RSS news and events','','','','SELECT\n		Title AS title,\n		Resume AS description,\n		DATE_FORMAT(DateGMT, \'%m-%d-%Y %h:%i\') AS pubDate,\n		CONCAT(\'/en/15-news,\',ID,\',\',LOWER(REPLACE(Title,\' \', \'-\')),\'.html\') AS link\nFROM\n		NutsNews\nWHERE\n		Deleted = \'NO\' AND\n		Active = \'YES\' AND\n		DateGMT <= NOW()','','20','NO');
+insert into `NutsRss` (`ID`, `RssTitle`, `RssLink`, `RssDescription`, `RssCopyright`, `RssImage`, `PhpCode`, `Query`, `HookFunction`, `RssLimit`, `Deleted`) values('1','News and Events','{WEBSITE_NAME}/','RSS news and events','','','','SELECT\n	Title AS title,\n	Resume AS description,\n	DATE_FORMAT(DateGMT, \'%m-%d-%Y %h:%i\') AS pubDate,\n	VirtualPagename AS link\nFROM\n	NutsNews\nWHERE\n	Deleted = \'NO\' AND\n	Active = \'YES\' AND\n	DateGMT <= NOW()\nORDER BY\n	DateGMT DESC','','20','NO');
 
 
 /* Spider */
