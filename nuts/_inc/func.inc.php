@@ -646,7 +646,8 @@ function createThumb($fname, $thumbWidth, $create_new = false, $create_new_heigh
  */
 function email($email)
 {
-	$pattern = '#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,5}$#' ;
+	// $pattern = '#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,5}$#' ;
+    $pattern = "/^[_a-zA-Z0-9-]+(.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+.)+[a-zA-Z]{2,5}$/";
 	return preg_match($pattern, $email);
 
 }
