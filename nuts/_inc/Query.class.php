@@ -62,7 +62,19 @@ class Query
 	 */
 	public function where($conditions, $operator="", $str='')
 	{
-        if(!empty($operator))
+
+        if(in_array($operator, array('IN', 'NOT IN')))
+        {
+            $tmp = '';
+            foreach($str as $val)
+            {
+                if(!empty($tmp))$tmp .= ', ';
+                $tmp .= "'".sqlX($val)."'";
+            }
+
+            $conditions = $conditions.' '.$operator."(".$tmp.")";
+        }
+        elseif(!empty($operator))
         {
             $strX = sqlX($str);
             $conditions = $conditions.' '.$operator." '".$strX."' ";
@@ -71,6 +83,92 @@ class Query
 		$this->_q['where'][] = $conditions;
 		return $this;
 	}
+
+    /**
+     * Add where equal to (=)
+     * @param $column
+     * @param $value
+     * @return Query
+     */
+    public function whereEqualTo($column, $value){return $this->where($column, '=', $value);}
+
+    /**
+     * Add where not equal to (!=)
+     * @param $column
+     * @param $value
+     * @return Query
+     */
+    public function whereNotEqualTo($column, $value){return $this->where($column, '!=', $value);}
+
+    /**
+     * Add where greater than (>)
+     * @param $column
+     * @param $value
+     * @return Query
+     */
+    public function whereGreaterThan($column, $value){return $this->where($column, '>', $value);}
+
+    /**
+     * Add where greater than equal (>=)
+     * @param $column
+     * @param $value
+     * @return Query
+     */
+    public function whereGreaterThanEqual($column, $value){return $this->where($column, '>=', $value);}
+
+    /**
+     * Add where less than (<)
+     * @param $column
+     * @param $value
+     * @return Query
+     */
+    public function whereLessThan($column, $value){return $this->where($column, '<', $value);}
+
+    /**
+     * Add where less than (<=)
+     * @param $column
+     * @param $value
+     * @return Query
+     */
+    public function whereLessThanEqual($column, $value){return $this->where($column, '<=', $value);}
+
+    /**
+     * Add where Like (LIKE)
+     * @param $column
+     * @param $value
+     * @return Query
+     */
+    public function whereLike($column, $value){return $this->where($column, 'LIKE', $value);}
+
+    /**
+     * Add where not Like (NOT LIKE)
+     * @param $column
+     * @param $value
+     * @return Query
+     */
+    public function whereNotLike($column, $value){return $this->where($column, 'NOT LIKE', $value);}
+
+    /**
+     * Add where in (IN)
+     * @param $column
+     * @param mixed string|array $value
+     * @return Query
+     */
+    public function whereIn($column, $value){
+        if(!is_array($value))trigger_error("value must be an array", E_USER_ERROR);
+        return $this->where($column, 'IN', $value);
+    }
+
+    /**
+     * Add where not in (NOT IN)
+     * @param $column
+     * @param mixed string|array $value
+     * @return Query
+     */
+    public function whereNotIn($column, $value){
+        if(!is_array($value))trigger_error("value must be an array", E_USER_ERROR);
+        return $this->where($column, 'NOT IN', $value);
+    }
 
 	/**
 	 * Add GroupBy
