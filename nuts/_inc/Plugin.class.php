@@ -230,7 +230,19 @@ class Plugin
 			return false;
 		}
 
-		if(!$_POST && !isset($_GET['_action']))nutsTrace($_GET['mod'], $_GET['do']);
+		// trace plugin action
+        if(!$_POST && !isset($_GET['_action']))
+        {
+            if($_GET['mod'] == '_logs' && $_GET['do'] == 'list')
+            {
+
+            }
+            else
+            {
+                nutsTrace($_GET['mod'], $_GET['do']);
+            }
+        }
+
 		return true;
 	}
 
