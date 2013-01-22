@@ -5,8 +5,20 @@ if($for == 'MAIN')
 else
 	$nuts->open(WEBSITE_PATH.'/nuts/_templates/home_menu.html');
 
+// HOME hacks for sub group
+$mods_group_original = $mods_group;
 
 $i = 0;
+if($for == 'HOME' && !$allow_notify)
+{
+
+    $mods_group_tmp = $mods_group[($_GET['category']-1)];
+    $mods_group = array();
+    $mods_group[] = $mods_group_tmp;
+    $i = $_GET['category']-1;
+}
+
+
 $mod_parsed = 0;
 $plugins_allowed = array();
 foreach($mods_group as $group)
@@ -238,6 +250,7 @@ EOF;
 }
 
 
+$mods_group = $mods_group_original;
 
 
 ?>

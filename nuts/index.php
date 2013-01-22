@@ -364,9 +364,46 @@ if(!isset($_GET['ajax']) && !isset($_GET['target']) && !isset($_GET['popup']))
 
 // navigation bar
 $navbar[] = array('mod' => '_home', 'do' => 'exec', 'name' => $nuts_lang_msg[3]);
-if($plugin->name != '_home' && $plugin->name != '_error')
+if(($plugin->name != '_home' && $plugin->name != '_error') || ($plugin->name == '_home' && isset($_GET['category'])))
 {
-	$navbar[] = array('mod' => $plugin->name, 'do' => $plugin->configuration['default_action'], 'name' => $plugin->real_name);
+    if(!isset($_GET['category']))
+    {
+        // get plugin category
+        $category_info = Query::factory()->select("
+                                                Category AS CategoryNumber,
+                                                (SELECT Name FROM NutsMenuCategory WHERE Deleted = 'NO' AND Position = NutsMenu.Category) AS CategoryName,
+                                                (SELECT NameFr FROM NutsMenuCategory WHERE Deleted = 'NO' AND Position = NutsMenu.Category) AS CategoryNameFr
+                                              ")
+            ->from('NutsMenu')
+            ->whereEqualTo('Name', $plugin->name)
+            ->executeAndFetch();
+
+        $cat = ($NutsUserLang == 'fr') ? $category_info['CategoryNameFr'] : $category_info['CategoryName'];
+        $navbar[] = array('mod' => '_home', 'do' => 'exec&category='.$category_info['CategoryNumber'], 'name' => $cat);
+        $navbar[] = array('mod' => $plugin->name, 'do' => $plugin->configuration['default_action'], 'name' => $plugin->real_name);
+    }
+    else # category selected
+    {
+        $_GET['category'] = (int)$_GET['category'];
+
+        // get plugin category
+        $category_info = Query::factory()->select("
+                                                Category AS CategoryNumber,
+                                                (SELECT Name FROM NutsMenuCategory WHERE Deleted = 'NO' AND Position = '{$_GET['category']}') AS CategoryName,
+                                                (SELECT NameFr FROM NutsMenuCategory WHERE Deleted = 'NO' AND Position = '{$_GET['category']}') AS CategoryNameFr
+                                              ")
+            ->from('NutsMenu')
+            ->whereEqualTo('Category', $_GET['category'])
+            ->executeAndFetch();
+        $cat = ($NutsUserLang == 'fr') ? $category_info['CategoryNameFr'] : $category_info['CategoryName'];
+
+        $navbar[] = array('mod' => '_home', 'do' => 'exec&category='.$category_info['CategoryNumber'], 'name' => $cat);
+
+    }
+
+
+
+
 }
 
 // configuration

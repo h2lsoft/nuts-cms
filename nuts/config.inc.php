@@ -29,6 +29,8 @@ define('MetaTitle', "");
 define('MetaDescription', "");
 define('MetaKeywords', "");
 define('NUTS_ERROR404_TEMPLATE', "error404.html");
+define('NUTS_WWW_SESSION_INIT', false); // auto start session in front-office
+
 $nuts_front_plugins_direct_access = array();
 $nuts_theme_selected = 'default'; // theme selected
 
@@ -87,9 +89,10 @@ define('PRIVATE_PAGE_FORBIDDEN_URL_IT', "");
 define('PRIVATE_PAGE_FORBIDDEN_URL_RU', "");
 
 
-// twitter & facebook
+// twitter & facebook & google plus
 define('TWITTER_LOGIN', "twitter_login");
 define('FACEBOOK_PUBLISH_URL', "http://www.facebook.com");
+define('GOOGLEP_PUBLISH_URL', "https://plus.google.com");
 
 $nuts_session_preserve_keys = array(); // preserve session keys in login mecanism
 
