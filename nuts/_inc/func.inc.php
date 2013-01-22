@@ -153,10 +153,10 @@ function nutsGetGMTDateUser($date, $format='', $output='user')
  *
  * @param string $app
  * @param string $action
- * @param string $resume resume action default = connect
+ * @param string $resume resume action default = empty
  * @param int $recordID default value = 0
  */
-function nutsTrace($app, $action, $resume='connect', $recordID=0)
+function nutsTrace($app, $action, $resume='', $recordID=0)
 {
 	$arr = array();
 	$arr['NutsGroupID'] = (int)@$_SESSION['NutsGroupID'];
