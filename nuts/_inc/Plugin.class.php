@@ -233,7 +233,7 @@ class Plugin
 		// trace plugin action
         if(!$_POST && !isset($_GET['_action']))
         {
-            if($_GET['mod'] == '_logs' && $_GET['do'] == 'list')
+            if(!in_array($_GET['mod'], array('_logs', '_edm-logs')) && $_GET['do'] == 'list')
             {
 
             }
