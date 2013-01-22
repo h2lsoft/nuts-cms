@@ -21,7 +21,7 @@ if($_GET['action'] == 'affiliate')
 
 	// check information
 	$aff = explode(';', base64_decode(strrev($_GET['affiliateId'])));
-	if(count($aff) != 3 || !email($aff[0]))
+	if(count($aff) != 3 || !email(trim($aff[0])))
 		die("Error: affiliateId parameter");
 
 	$aff[1] = (int)$aff[1];
@@ -36,7 +36,7 @@ if($_GET['action'] == 'unsuscribe')
 
 	// check information
 	$aff = explode(';', base64_decode(strrev($_GET['suscriber'])));
-	if(count($aff) != 3 || !email($aff[0]))
+	if(count($aff) != 3 || !email(trim($aff[0])))
 		die("Error: suscriber parameter");
 
 	$aff[1] = (int)$aff[1];
@@ -46,7 +46,7 @@ if($_GET['action'] == 'unsuscribe')
 // suscribe
 if($_GET['action'] == 'suscribe')
 {	
-	if(!isset($_POST['Email']) || !email($_POST['Email']))
+	if(!isset($_POST['Email']) || !email(trim($_POST['Email'])))
 		die("-1");
 
 	if(!isset($_POST['Language']))
