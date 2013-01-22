@@ -1632,8 +1632,9 @@ function xLog($msg, $level=0, $file="")
  * @param string $app_name
  * @param string $message
  * @param int $recordID optionnal
+ * @param string $app_name optionnal
  */
-function xTrace($app_name, $message, $recordID=0)
+function xTrace($action, $message, $recordID=0, $app_name='job')
 {
 	global $nuts;
 
@@ -1641,8 +1642,8 @@ function xTrace($app_name, $message, $recordID=0)
 
 	$f = array();
 	$f['DateGMT'] = 'NOW()';
-	$f['Application'] = 'jobs';
-	$f['Action'] = $app_name;
+	$f['Application'] = $app_name;
+	$f['Action'] = $action;
 	$f['Resume'] = $message;
 	$f['IP'] = ip2long($nuts->getIp());
 
