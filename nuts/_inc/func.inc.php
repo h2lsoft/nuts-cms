@@ -1352,10 +1352,21 @@ function getImageExtension($file)
 function number_formatX($num)
 {
 	$num = number_format($num, 2, '.', ' ');
-
-
 	return $num;
 }
+
+/**
+ * Format a float to be well displayed ex: 1234 => 1 234
+ * @param float $int
+ * @return float
+ */
+function int_formatX($int)
+{
+    $int = number_format($int, 0, '.', ' ');
+    return $int;
+}
+
+
 
 
 /**
