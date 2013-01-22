@@ -70,6 +70,12 @@ EOF;
 
 }
 
+// security warning
+if(is_dir(WEBSITE_PATH.'/install'))
+{
+    $menu .= "<script>notify('error', '<b>Security: please delete folder `/install`</b>')</script>";
+}
+
 
 $plugin->render = $menu;
 
