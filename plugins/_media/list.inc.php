@@ -31,7 +31,7 @@ $plugin->listRender(20, 'hookData');
 
 function hookData($row)
 {
-	global $lang_msg;
+	global $lang_msg, $nuts;
 
 
 	$row['Preview'] = '';
@@ -54,10 +54,19 @@ function hookData($row)
 	elseif($row['Type'] == 'AUDIO')
 	{
 		$row['Preview'] = '<object type="application/x-shockwave-flash" data="../library/js/dewplayer/dewplayer.swf?mp3='.$row['Url'].'&amp;showtime=1" width="200" height="20">
-
 		                    <param name="wmode" value="transparent" />
 							<param name="movie" value="../library/js/dewplayer/dewplayer.swf?mp3='.$row['Url'].'&amp;showtime=1" />
 						 </object>';
+
+        // fallback html5 audio mp3 / FF not supports
+        $browser = $nuts->getBrowserInfo();
+        if(@stripos($browser['name'], 'mozilla firefox') === false)
+        {
+            $tmp = '<audio controls style="width:220px">'.CR;
+            $tmp .= '<source src="'.$row['Url'].'"  type="audio/mpeg">'.CR;
+            $tmp .= '</audio>';
+            $row['Preview'] = $tmp;
+        }
 	}
 	elseif($row['Type'] == 'VIDEO')
 	{
