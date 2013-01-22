@@ -30,6 +30,7 @@ $plugin->listAddButton('Purge', $lang_msg[3], "if(c=confirm('{$lang_msg[4]}'))sy
 if(isset($_GET['_action']) && $_GET['_action'] == 'purge')
 {
     $nuts->doQuery("TRUNCATE TABLE NutsLog");
+    nutsTrace('_logs', 'purge', '');
     die("<script>system_goto('index.php?mod=_logs&do=list','content');</script>");
 }
 
