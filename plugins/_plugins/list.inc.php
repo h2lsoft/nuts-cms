@@ -114,6 +114,15 @@ function hookData($row)
         {
             $row['Name'] = "<b>$plugin_name_label</b> ($plugin_folder_name)";
             $row['Name'] .= "<br /><span class='mini'>{$row['Description']}</span>";
+
+
+            if($row['Visible'] == 'NO')
+            {
+                $row['Name'] = '<span style="color:#999">'.$row['Name'].'</span>';
+                $row['Icon'] = '<img src="'.$icon_url.'" style="width:32px; opacity:0.5;" align="absbottom" /> ';
+            }
+
+
         }
         else
         {
