@@ -48,7 +48,7 @@ $plugin->listAddCol('RecordID', '', 'center;', true);
 
 
 // render list
-$plugin->listRender(20, 'hookData');
+$plugin->listRender(100, 'hookData');
 
 function hookData($row)
 {
