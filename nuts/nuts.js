@@ -1316,7 +1316,7 @@ function listSearchToggle(){
         if($('#list_search_content').is(':visible') && !$('#list_search_content input[type=checkbox]:checked').length)
 
             id = $('#list_search_content input[type=checkbox]').eq(0).attr('id')
-            $('#'+id).focus();
+            if(!empty(id))$('#'+id).focus();
     });
 
 }
