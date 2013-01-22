@@ -926,6 +926,20 @@ class Page extends NutsCore
 							<param name="movie" value="/library/js/dewplayer/dewplayer.swf?mp3='.$row['Url'].'&amp;showtime=1&amp;autoreplay='.$autoreplay.'" />
 							<param name="wmode" value="transparent" />
 						 </object></div>';
+
+                        // html5 fallback mp3
+                        $browser = $this->getBrowserInfo();
+                        if(@stripos($browser['name'], 'mozilla firefox') === false)
+                        {
+                            $tmp = '<div class="media_audio">'.CR;
+                            $tmp = '<audio controls>'.CR;
+                            $tmp .= '<source src="'.$row['Url'].'"  type="audio/mpeg">'.CR;
+                            $tmp .= '</audio>';
+                            $tmp .= '</div>';
+
+
+                            $rep = $tmp;
+                        }
 					}
 					elseif($row['Type'] == 'VIDEO')
 					{
