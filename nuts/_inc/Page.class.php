@@ -380,6 +380,9 @@ class Page extends NutsCore
         $curl = str_replace(WEBSITE_URL.'/', '', $url);
 		$curl = explode('/', $curl);
 
+
+
+
 		// homepage ?
 		$this->isHome = false;
 		if(count($curl) == 0 || $curl[0] == '' || $curl[0] == 'index.php')
@@ -413,7 +416,8 @@ class Page extends NutsCore
 			// plugin other than page ?
 			if(count($curl) == 1 || (count($curl) == 2 && empty($curl[1])))
 			{
-				$this->doQuery("SELECT ID FROM NutsPage WHERE Language = '{$lang}' AND ZoneID = 0".$this->sqlAdded()." ORDER BY Position LIMIT 1");
+                $sql = "SELECT ID FROM NutsPage WHERE Language = '{$lang}' AND NutsPageID = 0 AND ZoneID = 0".$this->sqlAdded()." ORDER BY Position LIMIT 1";
+				$this->doQuery($sql);
 				$this->pageID = (int)$this->getOne();
 				$this->isHome = true;
 			}
