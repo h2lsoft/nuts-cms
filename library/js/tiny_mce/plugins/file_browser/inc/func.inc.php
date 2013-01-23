@@ -44,7 +44,17 @@ function getDirTree($dir, $showfiles=true, $iterateSubDirectories=true) {
     $x = array();
     while (false !== ($r = $d->read())) {
         if($r != "." && $r != ".." && ((!preg_match('/^\..*/', $r) && !is_dir($dir.$r)) || is_dir($dir.$r)) && (($showfiles == false && is_dir($dir.$r)) || $showfiles == true)) {
-            $x[$r] = (is_dir($dir.$r)? array():(is_file($dir.$r)?true:false));
+
+            // only superadmin can saw .del
+            if(@$_SESSION['NutsGroupID'] != 1)
+            {
+                if(!preg_match('#.del$#', $r))
+                    $x[$r] = (is_dir($dir.$r)? array():(is_file($dir.$r)? true : false));
+            }
+            else
+            {
+                $x[$r] = (is_dir($dir.$r)? array():(is_file($dir.$r)? true : false));
+            }
         }
     }
 
@@ -60,6 +70,7 @@ function getDirTree($dir, $showfiles=true, $iterateSubDirectories=true) {
                 $x[$key] = is_file($dir.$key) ? (preg_match("/\.([^\.]+)$/", $key, $matches) ? str_replace(".","",$matches[0]) : 'file') : "folder";
         }
     }
+
     uksort($x, "strnatcasecmp"); // Sort keys in case insensitive alphabetical order
     return $x;
 }

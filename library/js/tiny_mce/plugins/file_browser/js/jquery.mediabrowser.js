@@ -650,7 +650,11 @@
             $.MediaBrowser.currentView = view;
             $.MediaBrowser.loadFolder($.MediaBrowser.currentFolder);
             $('input#search').val($.MediaBrowser.searchDefaultValue);
-            $.MediaBrowser.createCookie("pdw-view", $.MediaBrowser.currentView, 30);
+
+            cookie_name = "pdw-view";
+            if(editor == 'edm')cookie_name = "edm-pdw-view";
+
+            $.MediaBrowser.createCookie(cookie_name, $.MediaBrowser.currentView, 30);
             return false;
         },
 

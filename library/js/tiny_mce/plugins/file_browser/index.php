@@ -122,6 +122,10 @@ if(in_array($_GET['editor'], array('standalone', 'tinymce')))
         'delete' => ($_SESSION['AllowDelete'] == 'YES') ? true : false,
         'create_folder' => ($_SESSION['AllowFolders'] == 'YES') ? true : false
     );
+
+    // init view cookie
+    if(!empty($_COOKIE["pdw-view"]))$viewLayout = $_COOKIE["pdw-view"];
+
 }
 elseif($_GET['editor'] = 'edm')
 {
@@ -165,7 +169,10 @@ elseif($_GET['editor'] = 'edm')
         'create_folder' => false
     );
 
-    if(@empty($_COOKIE["pdw-view"]))$_COOKIE["pdw-view"] = "details";
+    if(@empty($_COOKIE["edm-pdw-view"]))$_COOKIE["edm-pdw-view"] = "details";
+
+    // init view cookie
+    if(!empty($_COOKIE["edm-pdw-view"]))$viewLayout = $_COOKIE["edm-pdw-view"];
 
 }
 
@@ -178,10 +185,6 @@ $max_file_size_in_bytes *= 1024 * 1024;
 $max_upload_size = min(let_to_num(ini_get('post_max_size')), let_to_num(ini_get('upload_max_filesize')));
 if($max_file_size_in_bytes > $max_upload_size)
     $max_file_size_in_bytes = $max_upload_size;
-
-
-// init view cookie
-if(!empty($_COOKIE["pdw-view"]))$viewLayout = $_COOKIE["pdw-view"];
 
 
 // Get local settings from language file

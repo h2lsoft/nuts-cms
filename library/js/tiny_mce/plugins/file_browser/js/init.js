@@ -74,7 +74,10 @@ $(function(){
     });
 
     // tree width
-    tree_width = $.MediaBrowser.getCookie('nuts_file_explorer_tree_width');
+    cookie_name = 'nuts_file_explorer_tree_width';
+    if(editor == 'edm')cookie_name = 'nuts_edm_tree_width';
+
+    tree_width = $.MediaBrowser.getCookie(cookie_name);
     tree_width = parseInt(tree_width);
     if(tree_width)$('#tree').width(tree_width);
 
@@ -82,7 +85,11 @@ $(function(){
         w = $('#tree').width();
         nw = $(document).width() - w;
         $('#main').width(nw);
-        $.MediaBrowser.createCookie('nuts_file_explorer_tree_width', w, 365);
+
+        cookie_name = 'nuts_file_explorer_tree_width';
+        if(editor == 'edm')cookie_name = 'nuts_edm_tree_width';
+
+        $.MediaBrowser.createCookie(cookie_name, w, 365);
     });
 
     // tree init
