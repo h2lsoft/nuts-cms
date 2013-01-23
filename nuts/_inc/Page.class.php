@@ -2687,7 +2687,7 @@ class Page extends NutsCore
 
 		// create virtual template form
 $template = <<<EOF
-<form action="" class="nuts_form" name="{$form['Name']}" id="{$form['Name']}" method="post" enctype="multipart/form-data">
+<form action="#{$form['Name']}" class="nuts_form" name="{$form['Name']}" id="{$form['Name']}" method="post" enctype="multipart/form-data">
 
 	<div id="form_error">
 		<bloc::form_error>
@@ -2714,6 +2714,7 @@ if($('div#form_error p').length == 0)$('div#form_error').remove();
 </script>
 
 <bloc::form_valid>
+<a id="{$form['Name']}"></a>
 <div id="form_valid">
 	{$form['FormValidHtmlCode']}
 </div>
