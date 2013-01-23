@@ -106,7 +106,7 @@ elseif($_GET['action'] == 'suscribe')
 
 $nuts->dbClose();
 
-// suscriber view generate image 5 x 5
+// suscriber view generate image 10 x 10
 if($_GET['action'] == 'affiliate')
 {
 	header("Content-type: image/png");
@@ -118,7 +118,27 @@ if($_GET['action'] == 'affiliate')
 // unsuscribe
 elseif($_GET['action'] == 'unsuscribe')
 {
-	$nuts->redirect($NEWSLETTER_UNSUSCRIBE_URL_CONFIRMATION);
+    // message appears
+    $msg = (@strtolower($_GET['lang']) == 'fr') ? "L'adresse email `{$aff[0]}` a bien été désabonnée" : "Email address `{$aff[0]}` has been correctly unsuscribed";
+
+    $m_msg = '<html>';
+    $m_msg .= '<head>';
+    $m_msg .= '   <META NAME="robots" CONTENT="noindex,nofollow">';
+    $m_msg .= '   <title>'.WEBSITE_NAME.'</title>';
+    $m_msg .= '<head>';
+    $m_msg .= '<body>';
+    $m_msg .= '   <div style="margin: 100px auto 0 auto; width:550px; white-space: nowrap; text-align:center; padding:15px; font-family: arial; font-weight: bold; font-size: 16px; border: 1px solid navy; border-radius: 5px; color: navy;">';
+    $m_msg .= '   <img src="/nuts/img/icon-accept.gif" align="absmiddle" /> '.$msg;
+    $m_msg .= '   </div>';
+    $m_msg .= '</body>';
+    $m_msg .= '</html>';
+
+    echo $m_msg;
+
+    // redirect avec 15 seconds
+    if(!empty($NEWSLETTER_UNSUSCRIBE_URL_CONFIRMATION))
+	    $nuts->redirect($NEWSLETTER_UNSUSCRIBE_URL_CONFIRMATION, 15);
+    exit();
 }
 // suscribe
 elseif($_GET['action'] == 'suscribe')
