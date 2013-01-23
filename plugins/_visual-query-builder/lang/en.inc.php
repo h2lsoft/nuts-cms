@@ -28,6 +28,7 @@ $lang_msg[13] = "Please, select your operator:\\n\\n=, >, >=, <, <=, LIKE, BETWE
 $lang_msg[14] = "No records found";
 $lang_msg[15] = "Total records in query";
 $lang_msg[16] = "preview limit";
+$lang_msg[17] = "Would you like to format your query ?";
 
 
 

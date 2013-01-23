@@ -15,7 +15,12 @@ function queryFormatCode(sql)
         $('#ajax_loader').css('left', pos.left+10+'px');
         $('#ajax_loader').show();
 
-        $('#SqlCode').val(resp);
+
+        if((c=confirm(lang_msg_17)))
+            $('#SqlCode').val(resp);
+        else
+            $('#SqlCode').val(sql);
+
         updateSqlCode();
 
         query_original = resp;
@@ -278,6 +283,7 @@ function updateSqlCode()
     c = str_replace(' MONTH', ' '+bloc_start+'MONTH'+bloc_end, c);
     c = str_replace(' YEAR', ' '+bloc_start+'YEAR'+bloc_end, c);
 
+
     // imbricated query
     c = str_replace('(SELECT ', '('+bloc_start+'SELECT'+bloc_end+' ', c);
     c = str_replace(' FROM ', ' '+bloc_start+'FROM'+bloc_end+' ', c);
@@ -296,6 +302,12 @@ function updateSqlCode()
     c = str_replace(' IFNULL(', ' '+bloc_start+'IFNULL('+bloc_end, c);
     c = str_replace(' OR ', ' '+bloc_start+'OR'+bloc_end+' ', c);
     c = str_replace(' NULL ', ' '+bloc_start+'NULL'+bloc_end+' ', c);
+
+    c = str_replace('GROUP_CONCAT(', bloc_start+'GROUP_CONCAT'+bloc_end+'(', c);
+    c = str_replace('GROUP_', bloc_start+'GROUP_'+bloc_end, c);
+    c = str_replace(' SEPARATOR ', ' '+bloc_start+'SEPARATOR'+bloc_end+' ', c);
+    c = str_replace(' ORDER BY ', ' '+bloc_start+'ORDER BY'+bloc_end+' ', c);
+
 
     c = str_replace(',\n', bloc_start+','+bloc_end+'\n', c);
     c = str_replace('.', bloc_start+'.'+bloc_end, c);

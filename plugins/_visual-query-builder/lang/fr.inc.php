@@ -29,7 +29,7 @@ $lang_msg[14] = "Aucun enregistrement trouvé";
 $lang_msg[15] = "Total d'enregistrements de votre requête";
 $lang_msg[16] = "limit de prévisualisation";
 
-
+$lang_msg[17] = "Voulez-vous formater votre requête ?";
 
 
 ?>
