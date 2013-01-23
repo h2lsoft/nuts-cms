@@ -424,7 +424,10 @@ $(function(){
         alert(msg);
     }
 
-
+    // add scroll bind
+    $('#tree').bind('scroll', function(){
+        $('.ui-resizable-handle').css('top', $('#tree').scrollTop()+'px');
+    });
 
 
 
