@@ -1658,7 +1658,7 @@ div.calendar { position: relative; }
 #trt_progress_window {
 	background-color: #F3F3F3;
 	position: relative; top:-70px; left: 100px;
-	width: 700px; height: 150px;
+	width: 780px; height: 150px;
 	text-align: center;
 	font-weight: bold;
 	display: none;
