@@ -538,7 +538,7 @@ class TPLN extends DB
 				$init = true;
 			}
 
-			$this->error_msg .= "</pre>";
+			$this->error_msg .= "</pre>\n\n";
 		}
 
 		// assign use handler
@@ -563,7 +563,6 @@ class TPLN extends DB
 		$err_alert = TPLN_ERROR_ALERT;
 		$mail_admin = TPLN_MAIL_ADMIN;
 
-
 		if(($err_alert == 1 && !empty($mail_admin)) && (!isset($_GET['tpln_w']) || $_GET['tpln_w'] != 'adm'))
 		{
 			$request_url_simple = str_replace('?'.$_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']);
@@ -575,18 +574,30 @@ class TPLN extends DB
 			else
 				$url .= '?'.$_SERVER['QUERY_STRING'].'&tpln_w=adm';
 
-			$subject = '[TPLN] Alert Error';
-            if(isset($GLOBALS['nuts']))$subject = '[NUTS] Alert Error';
+            $subject = (!isset($GLOBALS['nuts'])) ? '[NUTS] Alert Error' : '[TPLN] Alert Error';
 
-			$err_msg = $this->error_msg;
+            $err_msg = $this->error_msg;
 			$err_msg = str_replace('&lt;', '<', $err_msg);
 			$err_msg = str_replace('&gt;', '>', $err_msg);
 
 			$body = date('[Y-m-d H:i] ')." TPLN has detected an error\n\n";
-			$body .= $err_msg.' in '.$_SERVER['SCRIPT_FILENAME']."\n\n\n";
-			$body .= "<b>Url :</b> <a href=\"$url\">$url</a>\n";
+			$body .= $err_msg.' in '.$_SERVER['SCRIPT_FILENAME']."\n";
 
 			// $body .= "===========================================\n";
+
+            // add session stack if exists
+            if(isset($_SESSION))
+            {
+                $body .= "\n<b>Session :</b>";
+                $body .= "<pre style='border:1px solid #ccc; padding:5px;'>".@print_r($_SESSION, true).'</pre>'."\n";
+            }
+            else
+            {
+                $body .= "\n\n";
+            }
+
+            $body .= "<b>Url :</b> <a href=\"$url\">$url</a>\n";
+
             $body .= "<hr>";
             $body .= '<b>IP :</b> '.$this->GetIP()." (<a href=\"http://www.geoiptool.com/en/?IP=".$this->GetIP()."\">information</a>)"."\n";
             $body .= "<b>Server :</b> {$_SERVER['SERVER_NAME']} ({$_SERVER['SERVER_ADDR']})"."\n";
@@ -598,10 +609,15 @@ class TPLN extends DB
             $body .= "<b>System :</b> ".@$browser['platform']."\n";
             $body .= "<b>Agent :</b> ".@$_SERVER['HTTP_USER_AGENT']."\n";
 
-            $body .= '<b>Powered by TPLN version '.TPLN_VERSION."</b>\n";
+            if(isset($GLOBALS['nuts']))
+                $body .= '<b>Powered by Nuts Component TPLN version '.TPLN_VERSION."</b>\n";
+            else
+                $body .= '<b>Powered by TPLN version '.TPLN_VERSION."</b>\n";
 
-            $body = '<style type="text/css">* , body {font-family: arial; font-size: 12px;}</style>'.$body;
 
+
+
+            $body = str_replace("\n", "<br />", $body);
 
             // add trace mode for Nuts
             if(isset($GLOBALS['nuts']) && $GLOBALS['nuts']->dbIsConnected())
@@ -609,7 +625,8 @@ class TPLN extends DB
                 xTrace('system-www', strip_tags($body));
             }
 
-			$body = str_replace("\n", "<br />", $body);
+            $body = '<style type="text/css">* , body {font-family: \'Segoe UI\', arial; font-size: 12px;}</style>'.$body;
+
 
 			$headers = "MIME-Version: 1.0\n";
 			$headers .= "Content-type: text/html; charset=utf-8\n";
@@ -1132,6 +1149,7 @@ class TPLN extends DB
 			//if(!eregi("\(", $replace)) // protection security of methods and functions !
 			if(strpos($replace, "(") === false) // protection security of methods and functions !
 			{
+                $tmp = '';
 				@eval("\$tmp = $replace;");
 				$item = '$'.$item;
 				$item = str_replace('$', '\$', $item);
