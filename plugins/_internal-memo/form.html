@@ -11,8 +11,9 @@ $('#nuts_my_notes').width($(window).width()-68);
 $('#nuts_my_notes').height($(window).height()-89);
 $('#nuts_my_notes').tabby();
 
-
 $('#nuts_my_notes').focus();
+
+$('#main_title').hide();
 
 window.onresize = function (){
 	$('#nuts_my_notes').width($(window).width()-68);
@@ -24,9 +25,14 @@ $('#saver').click(function(){
     v = $('#nuts_my_notes').val();
     v = ucfirst(v);
 
+    $('#nuts_my_notes').css('opacity', 0.5);
+    $('#ajax_loader').css('top', '60px').css('left', '20px').show();
+
     $.post('index.php?mod=_internal-memo&do=edit', {text:v}, function(resp){
 
-        window.close();
+        // window.close();
+        $('#ajax_loader').hide();
+        $('#nuts_my_notes').css('opacity', 1);
 
     });
 
