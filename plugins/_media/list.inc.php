@@ -15,8 +15,8 @@ $plugin->listSearchAddFieldText('Name', $lang_msg[2]);
 
 // create fields
 $plugin->listAddCol('Type', $lang_msg[1], 'center;width:10px;  white-space:nowrap;', true);
-$plugin->listAddCol('Name', $lang_msg[2], '; width:10px; white-space:nowrap;', true);
-$plugin->listAddCol('Description', $lang_msg[3], '', false);
+$plugin->listAddCol('Name', $lang_msg[2], '; white-space:nowrap;', true);
+// $plugin->listAddCol('Description', $lang_msg[3], '', false);
 $plugin->listAddCol('Preview', '', 'center;width:10px;', false);
 
 // popup
@@ -31,7 +31,7 @@ $plugin->listRender(20, 'hookData');
 
 function hookData($row)
 {
-	global $lang_msg, $nuts;
+	global $lang_msg, $nuts, $plugin;
 
 
 	$row['Preview'] = '';
@@ -86,17 +86,16 @@ function hookData($row)
 			$startimage = "&amp;startimage={$paramsX['startimage']}";
 		}
 
-		$row['Preview'] = '<object type="application/x-shockwave-flash" data="/nuts/player_flv_maxi.swf" width="200" height="160">
+		$row['Preview'] = '<object type="application/x-shockwave-flash" data="/nuts/player_flv_maxi.swf" width="220" height="160">
 								<param name="movie" value="/nuts/player_flv_maxi.swf" />
 								<param name="allowFullScreen" value="true" />
 								<param name="wmode" value="transparent" />
-
-								<param name="FlashVars" value="flv='.$row['Url'].'&amp;width=200&amp;height=160&amp;showstop=1&amp;showvolume=1&amp;showplayer=always&amp;showloading=always&amp;showfullscreen=1&amp;showiconplay=1&amp;ondoubleclick=fullscreen&amp;autoload=0&amp;srt=1&amp;iconplaybgalpha=50'.$startimage.'" />
+								<param name="FlashVars" value="flv='.$row['Url'].'&amp;width=220&amp;height=160&amp;showstop=1&amp;showvolume=1&amp;showplayer=always&amp;showloading=always&amp;showfullscreen=1&amp;showiconplay=1&amp;ondoubleclick=fullscreen&amp;autoload=0&amp;srt=1&amp;iconplaybgalpha=50'.$startimage.'" />
 						</object>';
 	}
 	elseif($row['Type'] == 'EMBED CODE')
 	{
-		$row['Preview'] = "<a href=\"javascript:;\" onclick=\"popupModal('{$row['EmbedCodePreviewUrl']}', 'video preview', 1024, 768);\">{$lang_msg[11]}</a>";
+		$row['Preview'] = "<a style='font-weight: bold;' href=\"javascript:void(0);\" onclick=\"popupModal('{$row['EmbedCodePreviewUrl']}', 'embed preview', 1024, 768);\">{$lang_msg[11]}</a>";
 	}
 
 	// add code
@@ -110,6 +109,21 @@ function hookData($row)
 		$row['AddCode'] = '<a href="javascript:;" onclick="window.opener.WYSIWYGAddText(\''.$_GET['parentID'].'\', \''.$code.'\'); window.close();" class="tt" title="'.$lang_msg[15].'"><img src="img/icon-next.png" align=\"absmiddle\" /></a>';
 	}
 
+    // excel export ?
+    if(!$plugin->listExportExcelMode)
+    {
+        $icon = strtolower($row['Type']);
+        $icon = explode(' ', $icon);
+        $icon = $icon[0];
+
+        $title = ucfirst(strtolower($row['Type']));
+
+        $row['Type'] = "<img src='/plugins/_media/img/{$icon}.png' class='tt' alt='{$title}' />";
+
+
+        $row['Name'] = '<b>'.$row['Name'].'</b><br>'.$row['Description'];
+
+    }
 
 
 
