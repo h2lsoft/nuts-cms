@@ -377,7 +377,6 @@ function menu_media()
         }
     }
 
-
 	// audio
     $nuts->DoQuery("SELECT ID, Name FROM NutsMedia WHERE Type='AUDIO' AND Deleted = 'NO' ORDER BY Name");
 	if($nuts->dbNumrows() > 0)
