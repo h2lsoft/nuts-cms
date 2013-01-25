@@ -941,6 +941,16 @@ function parse_nuts_tags(text)
 			if(in_array(tag_type, array('PLUGIN', 'MEDIA', 'REGION', 'BLOCK', 'MENU', 'GALLERY', 'ZONE', 'FORM', 'SURVEY')))
 			{
 				tag_type = strtolower(tag_type);
+
+                // exception media
+                if(tag_type == 'media')
+                {
+                    if(cur_tags.indexOf("OBJECT='AUDIO'") != -1)tag_type = 'media_audio';
+                    if(cur_tags.indexOf("OBJECT='VIDEO'") != -1)tag_type = 'media_video';
+                    if(cur_tags.indexOf("OBJECT='YOUTUBE VIDEO'") != -1)tag_type = 'media_youtube';
+                    if(cur_tags.indexOf("OBJECT='EMBED CODE'") != -1)tag_type = 'media_embed';
+                }
+
 			}
 			else
 			{
