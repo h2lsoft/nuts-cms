@@ -360,6 +360,24 @@ function menu_media()
 {
     global $nuts;
 
+    // youtube video
+    $nuts->DoQuery("SELECT ID, Name FROM NutsMedia WHERE Type='YOUTUBE VIDEO' AND Deleted = 'NO' ORDER BY Name");
+    if($nuts->dbNumrows() > 0)
+    {
+        echo 'sub = m.addMenu({title : "Nuts Youtube video"});';
+        while($row = $nuts->dbFetch())
+        {
+            $ID = $row['ID'];
+            $name = $row['Name'];
+            $code = sprintf("{@NUTS    TYPE='MEDIA'    OBJECT='VIDEO'    ID='%s'    NAME='%s'}", $ID, str_replace("'", "`", $name));
+
+            echo 'sub.add({title : "'.$name.'", onclick : function() {
+						tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
+				}});';
+        }
+    }
+
+
 	// audio
     $nuts->DoQuery("SELECT ID, Name FROM NutsMedia WHERE Type='AUDIO' AND Deleted = 'NO' ORDER BY Name");
 	if($nuts->dbNumrows() > 0)
