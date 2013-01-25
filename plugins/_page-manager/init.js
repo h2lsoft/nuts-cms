@@ -400,18 +400,19 @@ $('#former #H1').change(function(){
 
     if(empty($(this).val()) || $(this).val() == 'Untitled')return;
 
+    cur_val = ucfirst($(this).val());
+
     if(empty($('#former #MetaTitle').val()))
     {
-        $('#former #MetaTitle').val($(this).val());
+        $('#former #MetaTitle').val(cur_val);
     }
     else
     {
         if((c=confirm(lang_msg_103)))
         {
-            $('#former #MetaTitle').val($(this).val());
+            $('#former #MetaTitle').val(cur_val);
         }
     }
-
 
     if(empty($('#former #VirtualPagename').val()))
     {
@@ -424,12 +425,6 @@ $('#former #H1').change(function(){
             generateFromH1();
         }
     }
-
-
-
-
-
-
 
 });
 
