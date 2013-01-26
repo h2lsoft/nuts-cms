@@ -536,7 +536,7 @@ class Page extends NutsCore
 		// <editor-fold defaultstate="collapsed">
 		$out = str_replace("{@PAGE_CONTENT_RESUME}", @$this->vars['ContentResume'], $out);
 
-        if($this->vars['NutsPageContentViewID'] != 0)
+        if(isset($this->vars['NutsPageContentViewID']) && $this->vars['NutsPageContentViewID'] != 0)
         {
             Query::factory()->select('Name, Html, HookData')
                             ->from('NutsPageContentView')
