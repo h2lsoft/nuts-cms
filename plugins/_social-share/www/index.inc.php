@@ -28,8 +28,6 @@ $plugin->parse('title', $title);
 $plugin->parse('titleX', urlencode($title));
 
 
-
-
 $plugin->setNutsContent();
 
 
