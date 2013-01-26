@@ -21,7 +21,8 @@ for($i=0; $i < count($cf); $i++)
 
 $plugin->listSetDbTable('NutsNews', "-- DATE_ADD(DateGMT, INTERVAL {$_SESSION['Timezone']} HOUR) AS DateGMT,
 									--  DATE_ADD(DateGMTExpiration, INTERVAL {$_SESSION['Timezone']} HOUR) AS DateGMTExpiration,
-									(SELECT CONCAT(LastName,' ',Firstname) FROM NutsUser WHERE ID = NutsNews.NutsUserID) AS Author
+									(SELECT CONCAT(FirstName,' ', LastName) FROM NutsUser WHERE ID = NutsNews.NutsUserID) AS Author,
+									(SELECT Avatar FROM NutsUser WHERE ID = NutsNews.NutsUserID) AS Avatar
 									$sql_list_added");
 // search engine
 $plugin->listSearchAddFieldText('ID');
@@ -80,7 +81,7 @@ $plugin->listAddCol('DateGMT', $lang_msg[2], 'center; width:40px; white-space:no
 if(!in_array('DateGMTExpiration', $hidden_fields_arr))$plugin->listAddCol('DateGMTExpiration', $lang_msg[3], 'center; width:40px; white-space:nowrap;', true);
 $plugin->listAddCol('Title', $lang_msg[4], '', true);
 
-$plugin->listAddColImg('Author', $lang_msg[16], 'center; width:10px;', true, 'icon-user.gif', '');
+$plugin->listAddCol('Author', $lang_msg[16], 'center; width:10px;', false);
 $plugin->listAddColImg('Language', $lang_msg[1], '', true, NUTS_IMAGES_URL.'/flag/{Language}.gif');
 
 
@@ -110,7 +111,7 @@ $plugin->listRender(20, 'hookData');
 
 function hookData($row){
 
-	global $cf, $nuts, $news_new_system;
+	global $cf, $nuts, $news_new_system, $plugin;
 	
 	if($_SESSION['Language'] == 'fr')
 	{
@@ -120,13 +121,13 @@ function hookData($row){
 	
 	if(!empty($row['NewsImage']))
 	{
-		$row['NewsImage'] = '<img src="'.NUTS_NEWS_IMAGES_URL.'/thumb_'.$row['NewsImage'].'?t='.time().'" style="height:60px;" class="image_preview" />';
+		$row['NewsImage'] = '<img src="'.NUTS_NEWS_IMAGES_URL.'/thumb_'.$row['NewsImage'].'?t='.time().'" style="height:40px;" class="image_preview" />';
 	}
 	else
 	{
 		if(!empty($row['NewsImageModel']))
 		{
-			$row['NewsImage'] = '<img src="'.$row['NewsImageModel'].'?t='.time().'" style="height:60px;" class="image_preview" />';
+			$row['NewsImage'] = '<img src="'.$row['NewsImageModel'].'?t='.time().'" style="height:40px;" class="image_preview" />';
 		}
 	}
 
@@ -142,6 +143,12 @@ function hookData($row){
 EOF;
 
 
+    // author
+    if(!$plugin->listExportExcelMode)
+    {
+        if(empty($row['Avatar']))$row['Avatar'] = '/nuts/img/gravatar.jpg';
+        $row['Author'] = "<a class='tt' title=\"{$row['Author']}\"><img src='{$row['Avatar']}' style='max-width:40px; max-height:40px;'></a>";
+    }
 
 	return $row;
 }
