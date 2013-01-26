@@ -1770,6 +1770,15 @@ class Db extends Form
 			}
 
             $sql_tmp = str_replace(' )', ')', $sql_tmp);
+
+            // erase ORDER BY
+            $sql_tmp = str_replace("ORDER BY\n", 'ORDER BY ', $sql_tmp);
+            if(preg_match("/ORDER BY(.*)$/s", $sql_tmp, $match))
+            {
+                if(count($match) >= 2)
+                    $sql_tmp = str_replace($match[0], '', $sql_tmp);
+            }
+
 			$this->doQuery($sql_tmp);
 			$this->Count = $this->dbGetOne();
 
