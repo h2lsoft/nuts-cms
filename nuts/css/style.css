@@ -557,6 +557,18 @@ table#list .image_preview:hover {
 	border-color: black;
 }
 
+table#list a.counter {
+
+    padding: 5px;
+    background-color: #E5E5E5;
+    border-radius: 3px;
+    text-decoration: none!important;
+    font-weight: bold!important;
+    color: black;
+}
+
+table#list a.counter:hover {background-color: #ccc; color: white;}
+
 
 /*table#list .table-highlight {width: 99%;}*/
 
