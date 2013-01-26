@@ -3,6 +3,8 @@
 /* @var $plugin Plugin */
 /* @var $nuts NutsCore */
 
+include(PLUGIN_PATH.'/config.inc.php');
+
 
 // assign table to db
 $plugin->listSetDbTable('NutsGallery', "(SELECT COUNT(*) FROM NutsGalleryImage WHERE NutsGalleryImage.NutsGalleryID = NutsGallery.ID AND Deleted = 'NO') AS Total", "", "ORDER BY Position");
@@ -35,7 +37,7 @@ $plugin->listRender(20, 'hookData');
 
 function hookData($row)
 {
-	global $lang_msg, $plugin;
+	global $lang_msg, $plugin, $gallery_images_allowed_max_width, $gallery_images_allowed_max_height, $gallery_images_allowed_thumbnail_width, $gallery_images_allowed_thumbnail_height;
 
 	$row['Code'] = "<pre>{@NUTS	TYPE='GALLERY'	NAME='{$row['Name']}'}</pre>";
 	if(@$_GET['popup'] == 1)
@@ -65,6 +67,25 @@ function hookData($row)
     }
 
 	$row['Total'] = " <a href=\"javascript:popupModal('index.php?mod=_gallery_image&do=list&ID_operator=_equal_&ID=&NutsGalleryID_operator=_equal_&NutsGalleryID={$row['ID']}&user_se=1&popup=1', 'pops');\" class=\"tt\"><img src=\"img/icon-preview-mini.gif\" align=\"absmiddle\" alt=\"{$lang_msg[6]}\"> {$row['Total']}</a>";
+
+
+    if(!$plugin->listExportExcelMode)
+    {
+        $lbl = ($_SESSION['Language'] == 'fr') ? 'Vignette' : 'Thumbnails';
+
+        if($row['ThumbnailWidth'] == 0)$row['ThumbnailWidth'] = $gallery_images_allowed_thumbnail_width;
+        if($row['ThumbnailHeight'] == 0)$row['ThumbnailHeight'] = $gallery_images_allowed_thumbnail_height;
+        if($row['ImageMaxWidth'] == 0)$row['ImageMaxWidth'] = $gallery_images_allowed_max_width;
+        if($row['ImageMaxHeight'] == 0)$row['ImageMaxHeight'] = $gallery_images_allowed_max_height;
+        $row['Name'] = "<b>{$row['Name']}</b><br />
+                        $lbl : {$row['ThumbnailWidth']} x {$row['ThumbnailHeight']}<br />
+                        Image max: {$row['ImageMaxWidth']} x {$row['ImageMaxHeight']}
+                        ";
+    }
+
+
+
+
 	return $row;
 }
 

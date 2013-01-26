@@ -4,16 +4,28 @@
 
 include('../plugins/_gallery/config.inc.php');
 
+// erase with current gallery config
+if(@$_GET['ID'] != 0)
+{
+    $_GET['NutsGalleryID'] = Query::factory()->select('NutsGalleryID')->from('NutsGalleryImage')->whereEqualTo('ID', $_GET['ID'])->executeAndGetOne();
+}
+
+$gallery_config = Query::factory()->select('*')->from('NutsGalleryImage')->whereEqualTo('NutsGalleryID', $_GET['NutsGalleryID'])->executeAndFetch();
+if(!empty($gallery_config['ImageMaxWidth']))$gallery_images_allowed_max_width = $gallery_config['ImageMaxWidth'];
+if(!empty($gallery_config['ImageMaxHeight']))$gallery_images_allowed_max_height = $gallery_config['ImageMaxHeight'];
+if(!empty($gallery_config['ThumbnailWidth']))$gallery_images_allowed_thumbnail_width = $gallery_config['ThumbnailWidth'];
+if(!empty($gallery_config['ThumbnailHeight']))$gallery_images_allowed_thumbnail_height = $gallery_config['ThumbnailHeight'];
+if(!empty($gallery_config['ThumbnailConstraint']))$gallery_images_allowed_thumbnail_constraint = ($gallery_config['ThumbnailConstraint'] == 'YES') ? true : false;
+if(!empty($gallery_config['ThumbnailBackgroundColor']))$gallery_images_allowed_thumbnail_background_color = explode(',', $gallery_config['ThumbnailBackgroundColor']);
+
+
+
 // sql table
 $plugin->formDBTable(array('NutsGalleryImage'));
 
-if($_GET['ID'] == 0)
-{
-	$plugin->formActionAddParameter("NutsGalleryID={$_GET['NutsGalleryID']}");
-	$plugin->formAddEndText("<script>$('#NutsGalleryID').val({$_GET['NutsGalleryID']});</script>");
-}
 
-$plugin->formAddFieldSelectSql('NutsGalleryID', $lang_msg[1], true);
+
+
 /*$plugin->formAddField('Main', $lang_msg[7], 'image', false, array('path' => NUTS_IMAGES_PATH.'/gallery_images',
 																  'url' => NUTS_IMAGES_URL.'/gallery_images', 
 																  'size' => $gallery_images_allowed_max_size, 
@@ -30,7 +42,7 @@ $plugin->formAddFieldSelectSql('NutsGalleryID', $lang_msg[1], true);
 																  'thumbnail_background_color' => $gallery_images_allowed_thumbnail_background_color,
 																  'thumbnail_new' => true));*/
 
-$plugin->formAddFieldImage('Main', $lang_msg[7], false, 
+$plugin->formAddFieldImage('Main', $lang_msg[7], true,
 														NUTS_IMAGES_PATH.'/gallery_images',
 														NUTS_IMAGES_URL.'/gallery_images',
 														$gallery_images_allowed_max_size, 
@@ -69,7 +81,7 @@ $plugin->formAddField('HD', $lang_msg[6], 'image', false, array('path' => NUTS_I
 																'thumbnail_background_color' => $gallery_images_hd_allowed_thumbnail_background_color,
 																'thumbnail_new' => true));
  */
-
+/*
 $plugin->formAddFieldImage('HD', $lang_msg[6], false, 
 														NUTS_IMAGES_PATH.'/gallery_images',
 														NUTS_IMAGES_URL.'/gallery_images',
@@ -90,7 +102,16 @@ $plugin->formAddFieldImage('HD', $lang_msg[6], false,
 														$gallery_images_hd_allowed_thumbnail_background_color
 							);
 
+*/
 
+
+
+$plugin->formAddFieldHidden('NutsGalleryID', $lang_msg[1], true);
+if($plugin->formModeIsAdding())
+{
+    $plugin->formActionAddParameter("NutsGalleryID={$_GET['NutsGalleryID']}");
+    $plugin->formAddEndText("<script>$('#NutsGalleryID').val({$_GET['NutsGalleryID']});</script>");
+}
 
 
 if($_POST)

@@ -3,6 +3,16 @@
 /* @var $plugin Page */
 /* @var $nuts Page */
 
+
+// replace current option value for gallery
+$gallery_images_allowed_max_width = $_POST['ImageMaxWidth'];
+$gallery_images_allowed_max_height = $_POST['ImageMaxHeight'];
+$gallery_images_allowed_thumbnail_width = $_POST['ThumbnailWidth'];
+$gallery_images_allowed_thumbnail_height = $_POST['ThumbnailHeight'];
+$gallery_images_allowed_thumbnail_constraint = $_POST['ThumbnailConstraint'];
+$gallery_images_allowed_thumbnail_background_color = @explode(',', $_POST['ThumbnailBackgroundColor']);
+
+
 // check multiple user file and create thumb image
 $tmp_files = (array)glob(PLUGIN_PATH.'/_tmp/'.$_SESSION['ID'].'_*');
 $allowed_ext = explode(',', str_replace(' ', '', $gallery_images_allowed_exts));

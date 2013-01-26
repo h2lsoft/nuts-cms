@@ -49,6 +49,18 @@ $plugin->formAddFieldHtmlArea('Description', $lang_msg[2], false);
 $plugin->formAddFieldBoolean('GenerateJS', $lang_msg[8], true, $lang_msg[9]);
 $plugin->formAddFieldBoolean('Active', $lang_msg[4], true);
 
+// option for gallery
+$plugin->formAddFieldsetStart("Options");
+$plugin->formAddFieldText("ImageMaxWidth", $lang_msg[10], true, 'number', '', 'px', '', $lang_msg[11], $gallery_images_allowed_max_width);
+$plugin->formAddFieldText("ImageMaxHeight", $lang_msg[12], true, 'number', '', 'px', '', $lang_msg[13], $gallery_images_allowed_max_height);
+$plugin->formAddFieldText("ThumbnailWidth", $lang_msg[14], true, 'number', '', 'px', '', $lang_msg[15], $gallery_images_allowed_thumbnail_width);
+$plugin->formAddFieldText("ThumbnailHeight", $lang_msg[16], true, 'number', '', 'px', '', $lang_msg[17], $gallery_images_allowed_thumbnail_height);
+$plugin->formAddFieldBoolean("ThumbnailConstraint", $lang_msg[18], true, $lang_msg[19]);
+$plugin->formAddFieldText("ThumbnailBackgroundColor", $lang_msg[20], false, '', 'width:120px; text-align:center', '', '', $lang_msg[21], join(', ', $gallery_images_allowed_thumbnail_background_color));
+$plugin->formAddFieldsetEnd();
+
+
+
 // add an upload multiple gallery
 //if($_GET['ID'] == 0)
 //{
@@ -63,7 +75,7 @@ $plugin->formAddException('file');
 if($_POST)
 {
 	// form assignation
-	if($_GET['ID'] == 0)
+	if($plugin->formModeIsAdding())
 	{
 		// get max position
 		$_POST['Position'] = $plugin->formGetMaxPosition('Position');

@@ -36,7 +36,7 @@ function hookData($row)
 	{
 		$ext = explode('.', $row['MainImage']);
 		$ext = $ext[count($ext) - 1];		
-		$row['Thumbnail'] = '<img class="image_preview"  style="height:80px;" src="'.NUTS_IMAGES_URL.'/gallery_images/thumb_'.$row['ID'].'.'.$ext.'?t='.time().'" />';
+		$row['Thumbnail'] = '<img class="image_preview"  style="max-height:80px;" src="'.NUTS_IMAGES_URL.'/gallery_images/thumb_'.$row['ID'].'.'.$ext.'?t='.time().'" />';
 	}
 	
 	return $row;
