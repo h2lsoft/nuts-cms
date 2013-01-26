@@ -40,9 +40,41 @@
 .nuts_slider_prev, .nuts_slider_next{
 
     /* must be customised => http://caroufredsel.dev7studios.com/  */
-    display: none;
+    width: 32px;
+    height: 56px;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 555;
+    margin-top: -180px;
 
+    display: none;
 }
+
+.nuts_slider:hover .nuts_slider_prev,
+.nuts_slider:hover .nuts_slider_next
+{
+    display: block;
+    background-image: url(arrows.png);
+}
+
+.nuts_slider_prev
+{
+    left: 20px;
+    background-position: -99px 0;
+}
+.nuts_slider_prev:hover {background-position: -32px 0;}
+/*.nuts_slider_prev:active {background-position: -99px 0;}*/
+
+
+.nuts_slider_next
+{
+    right:20px;
+    background-position: -67px 0;
+}
+
+.nuts_slider_next:hover {background-position: -0px 0;}
+/*.nuts_slider_next:active {background-position: -67px 0;}*/
+
 
 .nuts_slider_pager {
     text-align: center;
