@@ -23,7 +23,7 @@ $plugin->listRender(20, 'hookData');
 function hookData($row)
 {
 	$uri = 'index.php?mod=_newsletter-mailing-list-suscriber&do=list&ID_operator=_equal_&ID=&NutsNewsletterMailingListID_operator=_equal_&NutsNewsletterMailingListID='.$row['ID'];
-	$tmp = '<img src="img/icon-user.gif" align="absbottom" /> <a href="javascript:;" onclick="system_goto(\''.$uri.'\', \'content\');">'.$row['Total'].'</a>';
+	$tmp = '<a class="counter" href="javascript:;" onclick="system_goto(\''.$uri.'\', \'content\');"> <img src="img/icon-user.gif" align="absbottom" /> '.$row['Total'].'</a>';
 	$row['Total'] = $tmp;
 
 	return $row;

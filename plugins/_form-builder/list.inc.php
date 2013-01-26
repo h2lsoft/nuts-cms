@@ -68,8 +68,7 @@ function hookData($row)
 	global $lang_msg;
 
 	$row['Fields'] = <<<EOF
-<img src="img/widget.png" align="absbottom" style="width:16px;" /> 
-<a href="javascript:popupModal('/nuts/?mod=_form-builder-fields&do=list&popup=1&NutsFormID={$row['ID']}&NutsFormID_operator=_equal_&user_se=1');">{$row['Fields']}</a>
+<a class="counter" href="javascript:popupModal('/nuts/?mod=_form-builder-fields&do=list&popup=1&NutsFormID={$row['ID']}&NutsFormID_operator=_equal_&user_se=1');"> <img src="img/widget.png" align="absmiddle" style="width:16px;" /> {$row['Fields']}</a>
 
 EOF;
 

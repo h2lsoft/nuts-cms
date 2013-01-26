@@ -41,8 +41,8 @@ function hookData($row)
 
     $row['Images'] = <<<EOF
 
-<img src="/plugins/_slider/icon.png" align="absbottom" style="width:16px;" />
-<a href="javascript:popupModal('/nuts/?mod=_slider-images&do=list&popup=1&NutsSliderID={$row['ID']}');">{$row['Slides']}</a>
+
+<a class="counter" href="javascript:popupModal('/nuts/?mod=_slider-images&do=list&popup=1&NutsSliderID={$row['ID']}');"> <img src="/plugins/_slider/icon.png" align="absbottom" style="width:16px;" /> {$row['Slides']}</a>
 
 
 EOF;

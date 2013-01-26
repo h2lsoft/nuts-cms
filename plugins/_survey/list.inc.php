@@ -30,15 +30,15 @@ function hookData($row)
 	global $lang_msg;
 
 	$row['Choices'] = <<<EOF
-		<img src="img/widget.png" align="absbottom" style="width:16px;" />
-		<a href="javascript:popupModal('/nuts/?mod=_survey-option&do=list&popup=1&NutsSurveyID={$row['ID']}&NutsSurveyID_operator=_equal_&user_se=1&popup=1');"> {$row['Choices']}</a>
+
+		<a class="counter" href="javascript:popupModal('/nuts/?mod=_survey-option&do=list&popup=1&NutsSurveyID={$row['ID']}&NutsSurveyID_operator=_equal_&user_se=1&popup=1');"> <img src="img/widget.png" align="absbottom" style="width:16px;" /> {$row['Choices']}</a>
 EOF;
 
 	$title = str_replace("'", "\'", $row['Title']);
 	$uri = "formIt('$title', '?mod=_survey&do=reporting&ID={$row['ID']}');";
 
 
-	$row['Votes'] = '<img src="img/icon-user.gif" align="absbottom" /> <a href="javascript:'.$uri.'" title="'.$lang_msg[4].'" class="tt">'.$row['Votes']."</a>";
+	$row['Votes'] = '<a href="javascript:'.$uri.'" title="'.$lang_msg[4].'" class="tt counter"> <img src="img/icon-user.gif" align="absbottom" /> '.$row['Votes']."</a>";
 
 	return $row;
 }
