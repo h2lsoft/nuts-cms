@@ -1,0 +1,56 @@
+<div class="nuts_slider_wrapper" id="nuts_slider_wrapper_{sliderID}">
+
+    <div class="nuts_slider" id="nuts_slider_{sliderID}">
+        <ul>
+            <bloc::loop>
+            <li>
+                <a href="{Url}"><img src="/nuts_uploads/_slider-images/{SliderImage}" alt="{Title}" /></a>
+            </li>
+            </bloc::loop>
+        </ul>
+
+        <div class="nuts_slider_clearfix"></div>
+        <div id="nuts_slider_pager_{sliderID}" class="nuts_slider_pager"></div>
+
+        <a id="nuts_slider_prev_{sliderID}" class="nuts_slider_prev" href="#"></a>
+        <a id="nuts_slider_next_{sliderID}" class="nuts_slider_next"  href="#"></a>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+$(function() {
+
+    $('#nuts_slider_{sliderID} ul').carouFredSel({
+        width: {Width},
+        height: {Height},
+
+        direction: '{Direction}',
+        align: '{Align}',
+        padding: {Padding},
+        circular: {Circular},
+        infinite: {Infinite},
+        items : {Items},
+
+        pagination  : "#nuts_slider_pager_{sliderID}",
+        prev    : {button : '#nuts_slider_prev_{sliderID}'},
+        next    : {button : '#nuts_slider_next_{sliderID}'},
+
+            scroll : {
+            items : {Items},
+            fx: '{Fx}',
+            pauseOnHover: true,
+            timeoutDuration: {PauseDuration},
+            duration: {ScrollDuration}
+        }
+
+
+
+
+
+    });
+
+
+});
+</script>
