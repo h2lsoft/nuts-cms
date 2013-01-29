@@ -29,7 +29,7 @@ $_SESSION = array();
 
 $nuts->dbConnect();
 
-$langs = preg_split('[,;]', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+$langs = @preg_split('[,;]', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 
 $_lang = (count($langs) >= 1 || !in_array($langs[0], $nuts_language_options)) ? strtolower($langs[0]) : 'en';
 if(strlen($_lang) > 2)$_lang = substr($_lang, 0, 2);
