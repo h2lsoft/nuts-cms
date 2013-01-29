@@ -1,0 +1,17 @@
+.nuts_useful_links_wrapper {margin-bottom: 20px;}
+.nuts_useful_links_wrapper table {width: 99%; }
+.nuts_useful_links_wrapper tr {}
+.nuts_useful_links_wrapper td {vertical-align: top; border-bottom:1px dotted #333; padding: 20px 5px; }
+.nuts_useful_links_wrapper tr:last-child td {border: 0;}
+
+.nuts_useful_links_wrapper .no_record {text-align: center; height: 150px; line-height: 150px;}
+.nuts_useful_links_wrapper .nuts_useful_links_thumb {width: 30px; padding-right: 10px; }
+.nuts_useful_links_wrapper .nuts_useful_links_thumb img {border: 1px solid #ccc;}
+.nuts_useful_links_wrapper .nuts_useful_links_thumb img:hover {border-color: #000;}
+
+.nuts_useful_links_wrapper .nuts_useful_links_name {font-size: 14px; font-weight: bold;}
+.nuts_useful_links_wrapper .nuts_useful_links_desc {}
+.nuts_useful_links_wrapper .nuts_useful_links_desc:empty {display: none;}
+.nuts_useful_links_wrapper .nuts_useful_links_url {font-weight: bold;}
+.nuts_useful_links_wrapper .nuts_useful_links_url:before {content: "» ";}
+
