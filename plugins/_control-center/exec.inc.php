@@ -280,8 +280,8 @@ Disallow: /nuts/";
 // files checking
 $files[] = WEBSITE_PATH.'/robots.txt';
 $files[] = WEBSITE_PATH.'/.htaccess';
-$files[] = WEBSITE_PATH.'/nuts_auto_compress.js';
-$files[] = WEBSITE_PATH.'/nuts_auto_compress.css';
+// $files[] = WEBSITE_PATH.'/nuts_auto_compress.js';
+// $files[] = WEBSITE_PATH.'/nuts_auto_compress.css';
 $files[] = WEBSITE_PATH.'/__cache';
 $files[] = WEBSITE_PATH.'/_tmp';
 $files[] = WEBSITE_PATH.'/nuts_uploads';
