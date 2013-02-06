@@ -16,7 +16,7 @@ include('nuts/headers.inc.php');
 <body>
 	 <div id="header">
         <?php if(BACKOFFICE_LOGO_URL != ''){ ?>
-	        <a href="/"><img src="{CONST::BACKOFFICE_LOGO_URL}" align="middle" alt="nuts logo" /></a>
+	        <a href="/"><img src="<? echo BACKOFFICE_LOGO_URL; ?>" align="middle" alt="nuts logo" /></a>
         <?php } else { ?>
             <a href="/"><img src="/nuts/img/logo.png" align="middle" alt="nuts logo" /></a>
         <?php } ?>
