@@ -1010,3 +1010,13 @@ CREATE TABLE `NutsSlider` (`ID` int(10) unsigned NOT NULL AUTO_INCREMENT, `Name`
 CREATE TABLE `NutsSliderImage` (`ID` int(10) unsigned NOT NULL AUTO_INCREMENT, `NutsSliderID` int(10) unsigned NOT NULL, `Title` varchar(255) DEFAULT NULL,`Url` VARCHAR(255) DEFAULT NULL, `SliderImage` varchar(255) DEFAULT NULL, `Visible` enum('YES','NO') NOT NULL DEFAULT 'YES', `Position` int(10) unsigned NOT NULL, `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), KEY `NutsSliderID` (`NutsSliderID`), KEY `Visible` (`Visible`), KEY `Position` (`Position`), KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (3, '_slider', 10, 'YES');
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (3, '_slider-images', 10, 'NO');
+
+/* update v.3.9 */
+ALTER TABLE `NutsGallery` ADD COLUMN `ImageMaxWidth` INT UNSIGNED NOT NULL AFTER `Active` ;
+ALTER TABLE `NutsGallery` ADD COLUMN `ImageMaxHeight` INT UNSIGNED NOT NULL AFTER `ImageMaxWidth` ;
+ALTER TABLE `NutsGallery` ADD COLUMN `ThumbnailWidth` INT UNSIGNED NOT NULL AFTER `ImageMaxHeight` ;
+ALTER TABLE `NutsGallery` ADD COLUMN `ThumbnailHeight` INT UNSIGNED NOT NULL AFTER `ThumbnailWidth` ;
+ALTER TABLE `NutsGallery` ADD COLUMN `ThumbnailConstraint` ENUM('YES','NO') NOT NULL DEFAULT 'YES' AFTER `ThumbnailHeight` ;
+ALTER TABLE `NutsGallery` ADD COLUMN `ThumbnailBackgroundColor` VARCHAR(20) NULL AFTER `ThumbnailConstraint` ;
+CREATE TABLE `NutsUsefulLinks` (`ID` int(10) unsigned NOT NULL AUTO_INCREMENT,`LogoImage` varchar(255) DEFAULT NULL,`Name` varchar(255) DEFAULT NULL,`Description` text,`Url` varchar(255) DEFAULT NULL,`Visible` enum('YES','NO') NOT NULL DEFAULT 'NO',`Position` int(10) unsigned NOT NULL,`Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',PRIMARY KEY (`ID`),KEY `Visible` (`Visible`),KEY `Position` (`Position`),KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (2, '_useful-links', 22, 'YES');
