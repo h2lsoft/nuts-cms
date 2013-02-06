@@ -17,6 +17,7 @@ $nuts->mailFrom($_POST['uFrom']);
 $nuts->mailSubject($_POST['Subject']);
 
 $body = str_replace('src="/', 'src="'.WEBSITE_URL.'/', $_POST['Body']);
+$body = str_replace('url("/', 'url("'.WEBSITE_URL.'/', $body);
 $body = str_replace('url(/', 'url('.WEBSITE_URL.'/', $body);
 $body = str_replace('href="/', 'href="'.WEBSITE_URL.'/', $body);
 $body = str_replace('[BODY]', $body, $HTML_TEMPLATE);
