@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Language file use in WWW
+ */
 if(count($a) >= 2 && $a[1] == $tmp_lang)
 {
 	include_once('index.php');
