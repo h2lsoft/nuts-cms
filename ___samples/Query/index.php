@@ -3,6 +3,7 @@
  * Query Component Sample
  */
 
+
 // headers *************************************************************************
 include("../../nuts/config.inc.php");
 include("../../nuts/headers.inc.php");

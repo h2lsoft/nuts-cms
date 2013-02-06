@@ -53,7 +53,7 @@ function hookData($row)
     }
 	elseif($row['Type'] == 'AUDIO')
 	{
-		$row['Preview'] = '<object type="application/x-shockwave-flash" data="../library/js/dewplayer/dewplayer.swf?mp3='.$row['Url'].'&amp;showtime=1" width="200" height="20">
+		/*$row['Preview'] = '<object type="application/x-shockwave-flash" data="../library/js/dewplayer/dewplayer.swf?mp3='.$row['Url'].'&amp;showtime=1" width="200" height="20">
 		                    <param name="wmode" value="transparent" />
 							<param name="movie" value="../library/js/dewplayer/dewplayer.swf?mp3='.$row['Url'].'&amp;showtime=1" />
 						 </object>';
@@ -66,7 +66,24 @@ function hookData($row)
             $tmp .= '<source src="'.$row['Url'].'"  type="audio/mpeg">'.CR;
             $tmp .= '</audio>';
             $row['Preview'] = $tmp;
+        }*/
+
+        $params = explode('@@', $row['Parameters']);
+        $paramsX = array();
+        foreach($params as $param)
+        {
+            if(!empty($param))
+            {
+                list($p,$v) = explode('=>', $param);
+                $paramsX[$p] = $v;
+            }
         }
+
+        if(!isset($paramsX['type']))$paramsX['type'] = 'CLASSIC'; # force parameter for preview
+        $paramsX['autoplay'] = 'NO'; # force parameter for preview
+        $paramsX['autoreplay'] = 'NO'; # force parameter for preview
+        $row['Preview'] = mediaGetAudioPlayer($row['ID'], $row['Url'], $paramsX);
+
 	}
 	elseif($row['Type'] == 'VIDEO')
 	{

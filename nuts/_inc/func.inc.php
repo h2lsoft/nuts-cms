@@ -1846,6 +1846,69 @@ function getFileSize($file_path, $suffix=' Mo')
 
 }
 
+/**
+ * Return audio flash player with html5 fallback by default in swf
+ *
+ * @param $player_id
+ * @param $url
+ * @param $params
+ *
+ * @return string
+ */
+function mediaGetAudioPlayer($player_id, $url, $params)
+{
+    // classic
+    $width = 200;
+    $height = 20;
+    $swf_suffix = '';
+
+    if(@$params['type'] == 'MINI')
+    {
+        $width = 160;
+        $height = 20;
+        $swf_suffix = '-mini';
+    }
+    elseif(@$params['type'] == 'BUBBLE')
+    {
+        $width = 260;
+        $height = 65;
+        $swf_suffix = '-bubble';
+    }
+
+    // autostart ?
+    $html5_params_add = '';
+    $url_param = '';
+    if(@$params['autoplay'] == 'YES')
+    {
+        $url_param .= '&amp;autostart=true';
+        # $html5_params_add .= ' autoplay';
+    }
+
+    // loop ?
+    if(@$params['autoreplay'] == 'YES')
+    {
+        $url_param .= '&amp;autoreplay=true';
+        $html5_params_add .= ' loop ';
+    }
+
+
+    $player = <<<EOF
+<div id="nuts_audio_player_{$player_id}" class="nuts_audio_player">
+    <object type="application/x-shockwave-flash" data="../library/js/dewplayer/dewplayer{$swf_suffix}.swf?mp3={$url}&amp;showtime=1{$url_param}" width="$width" height="$height">
+        <param name="wmode" value="transparent" />
+        <param name="movie" value="../library/js/dewplayer/dewplayer{$swf_suffix}.swf?mp3={$url}&amp;showtime=1" />
+
+        <audio oncontextmenu="return false;" controls="controls" $html5_params_add>
+            <source src="{$url}">
+        </audio>
+
+    </object>
+</div>
+EOF;
+
+
+    return $player;
+}
 
 
 

@@ -924,7 +924,7 @@ class Page extends NutsCore
                     }
 					elseif($row['Type'] == 'AUDIO')
 					{
-						$autoreplay = ($parameters['autoreplay'] == 'NO') ? 0 : 1;
+						/*$autoreplay = ($parameters['autoreplay'] == 'NO') ? 0 : 1;
 
 						$rep = '<div class="media_audio"><object wmode="transparent" type="application/x-shockwave-flash" data="/library/js/dewplayer/dewplayer.swf?mp3='.$row['Url'].'&amp;showtime=1&amp;autoreplay='.$autoreplay.'" width="200" height="20">
 							<param name="movie" value="/library/js/dewplayer/dewplayer.swf?mp3='.$row['Url'].'&amp;showtime=1&amp;autoreplay='.$autoreplay.'" />
@@ -943,7 +943,21 @@ class Page extends NutsCore
 
 
                             $rep = $tmp;
+                        }*/
+
+                        $params = explode('@@', $row['Parameters']);
+                        $paramsX = array();
+                        foreach($params as $param)
+                        {
+                            if(!empty($param))
+                            {
+                                list($p,$v) = explode('=>', $param);
+                                $paramsX[$p] = $v;
+                            }
                         }
+
+                        $rep = mediaGetAudioPlayer($row['ID'], $row['Url'], $paramsX);
+
 					}
 					elseif($row['Type'] == 'VIDEO')
 					{
