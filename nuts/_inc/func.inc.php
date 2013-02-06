@@ -1906,6 +1906,27 @@ function mediaGetAudioPlayer($player_id, $url, $params)
 </div>
 EOF;
 
+    // full html 5
+    if(@$params['type'] == 'HTML 5')
+    {
+        $html5_params_add = '';
+        if(@$params['autoplay'] == 'YES')$html5_params_add .= ' autoplay';
+        if(@$params['autoreplay'] == 'YES')$html5_params_add .= ' loop';
+
+        $player = <<<EOF
+<div id="nuts_audio_player_{$player_id}" class="nuts_audio_player">
+        <audio oncontextmenu="return false;" controls="controls" $html5_params_add>
+            <source src="{$url}">
+        </audio>
+</div>
+EOF;
+    }
+
+
+
+
+
+
 
     return $player;
 }
