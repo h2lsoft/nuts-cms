@@ -23,12 +23,18 @@ $lang_msg[10] = "Please, copy your query in your clipboard (Ctrl + C)";
 
 $lang_msg[11] = "Loading...";
 $lang_msg[12] = "You must select a sql clause first";
-$lang_msg[13] = "Please, select your operator:\\n\\n=, >, >=, <, <=, LIKE, BETWEEN, IN";
+$lang_msg[13] = "Please, select your operator :\\n\\n - =, !=, >, >=, <, <=\\n - LIKE alias `l`\\n - BETWEEN alias `b`\\n - IN alias `i`";
 
 $lang_msg[14] = "No records found";
 $lang_msg[15] = "Total records in query";
 $lang_msg[16] = "preview limit";
 $lang_msg[17] = "Would you like to format your query ?";
+
+
+$lang_msg[18] = "Please, enter your value";
+$lang_msg[19] = "Please, enter your start value";
+$lang_msg[20] = "Please, enter your end value";
+$lang_msg[21] = "Please, entre your values separated by a comma";
 
 
 

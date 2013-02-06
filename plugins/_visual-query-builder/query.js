@@ -301,7 +301,7 @@ function updateSqlCode()
     c = str_replace(' NOT ', ' '+bloc_start+'NOT'+bloc_end+' ', c);
     c = str_replace(' IFNULL(', ' '+bloc_start+'IFNULL('+bloc_end, c);
     c = str_replace(' OR ', ' '+bloc_start+'OR'+bloc_end+' ', c);
-    c = str_replace(' NULL ', ' '+bloc_start+'NULL'+bloc_end+' ', c);
+    c = str_replace(' NULL', ' '+bloc_start+'NULL'+bloc_end, c);
 
     c = str_replace('GROUP_CONCAT(', bloc_start+'GROUP_CONCAT'+bloc_end+'(', c);
     c = str_replace('GROUP_', bloc_start+'GROUP_'+bloc_end, c);

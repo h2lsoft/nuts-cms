@@ -166,11 +166,86 @@ function tableAdd(table_name, alias_name)
                 {
                     add = prompt(lang_msg_13, "=");
                     add = strtoupper(trim(add));
-                    str_op = add+" '[TEXT]'";
+                    while(!in_array(add, ['=', '!=', '>', '>=', '<', '<=', 'LIKE', 'L', 'BETWEEN', 'B', 'IN', 'I']))
+                    {
+                        add = prompt(lang_msg_13, "");
+                        add = strtoupper(trim(add));
+                    }
 
+                    if(add == 'L') add = 'LIKE';
+                    if(add == 'B') add = 'BETWEEN';
+                    if(add == 'I') add = 'IN';
+
+                    /*str_op = add+" '[TEXT]'";
                     if(add == 'BETWEEN')str_op = add+" '[TEXT]' AND '[TEXT]'";
                     if(add == 'LIKE')str_op = add+" '[TEXT]%'";
-                    if(add == 'IN')str_op = add+"('[TEXT]')";
+                    if(add == 'IN')str_op = add+"('[TEXT]')";*/
+
+                    if(add == 'BETWEEN')
+                    {
+                        user_v1 = prompt(lang_msg_19, "");
+                        user_v2 = prompt(lang_msg_20, "");
+
+                        user_v1 = addslashes(user_v1);
+                        user_v2 = addslashes(user_v2);
+
+                        if(!isNaN(user_v1))
+                            str_op = add+" "+user_v1;
+                        else
+                            str_op = add+" '"+user_v1+"'";
+
+                        if(!isNaN(user_v2))
+                            str_op += " AND "+user_v2;
+                        else
+                            str_op += " AND "+" '"+user_v2+"'";
+
+                    }
+                    else if(add == 'IN')
+                    {
+                        do
+                        {
+                            user_v2 = prompt(lang_msg_21, "");
+                        } while(empty(user_v2))
+
+                        cur_val = '';
+                        cur_vs = explode(',', user_v2);
+                        for(i=0; i < cur_vs.length; i++)
+                        {
+                            cur_vs[i] = addslashes(cur_vs[i]);
+                            if((!isNaN(cur_vs[i]) && !empty(cur_vs[i])) || cur_vs[i] == 'NULL')
+                                tmp = cur_vs[i];
+                            else
+                                tmp = "'"+cur_vs[i]+"'";
+
+                            if(!empty(cur_val))cur_val += ', ';
+                            cur_val += tmp;
+                        }
+
+                        str_op = add+"("+cur_val+")";
+
+
+                    }
+                    else
+                    {
+                        user_v = prompt(lang_msg_18, "");
+                        user_v = addslashes(user_v);
+
+                        if(add == 'LIKE')
+                        {
+                            str_op = add+" '"+user_v+"%'";
+                        }
+                        else
+                        {
+                            if((!isNaN(user_v) && !empty(user_v)) || user_v == 'NULL')
+                                str_op = add+" "+user_v;
+                            else
+                                str_op = add+" '"+user_v+"'";
+                        }
+
+                    }
+
+
+
 
                     if($('#canvas .table').length == 1)
                         str = field_name;

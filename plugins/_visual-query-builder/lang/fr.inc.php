@@ -23,13 +23,19 @@ $lang_msg[10] = "Merci de copier votre requête dans votre presse-papiers (Ctrl 
 
 $lang_msg[11] = "Chargement...";
 $lang_msg[12] = "Vous devez d'abord sélectionner la clause select";
-$lang_msg[13] = "Merci, de sélectionner votre opérateur:\\n\\n=, >, >=, <, <=, LIKE, BETWEEN, IN";
+$lang_msg[13] = "Merci, de sélectionner votre opérateur :\\n\\n - =, !=, >, >=, <, <=\\n - LIKE alias `l`\\n - BETWEEN alias `b`\\n - IN alias `i`";
 
 $lang_msg[14] = "Aucun enregistrement trouvé";
 $lang_msg[15] = "Total d'enregistrements de votre requête";
 $lang_msg[16] = "limit de prévisualisation";
 
 $lang_msg[17] = "Voulez-vous formater votre requête ?";
+
+$lang_msg[18] = "Merci de renseigner votre valeur";
+$lang_msg[19] = "Merci de renseigner votre borne minimale";
+$lang_msg[20] = "Merci de renseigner votre borne maximale";
+$lang_msg[21] = "Merci de renseigner vos valeurs séparées par des virgules";
+
 
 
 ?>
