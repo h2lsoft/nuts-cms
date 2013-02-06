@@ -654,16 +654,30 @@ else
                             // folder ?
                             if($f[strlen($f)-1] == '*')
                             {
-                                $output .= "    -> Remove folder `$f`: ";
-                                $f = str_replace('/*', '/', $f);
-                                $output .= (!@recursive_remove_directory(WEBSITE_PATH.$f)) ? '<i>Error</i>' : 'ok';
-                                $output .= " \n";
+                                if($debug_mode)
+                                {
+                                    $output .= "    -> [DEBUG] Remove folder `$f` \n";
+                                }
+                                else
+                                {
+                                    $output .= "    -> Remove folder `$f`: ";
+                                    $f = str_replace('/*', '/', $f);
+                                    $output .= (!@recursive_remove_directory(WEBSITE_PATH.$f)) ? '<i>Error</i>' : 'ok';
+                                    $output .= " \n";
+                                }
                             }
                             else
                             {
-                                $output .= "    -> Remove file `$f`: ";
-                                $output .= (!@unlink(WEBSITE_PATH.$f)) ? '<i>Error</i>' : 'ok';
-                                $output .= " \n";
+                                if($debug_mode)
+                                {
+                                    $output .= "    -> [DEBUG] Remove file `$f` \n";
+                                }
+                                else
+                                {
+                                    $output .= "    -> Remove file `$f`: ";
+                                    $output .= (!@unlink(WEBSITE_PATH.$f)) ? '<i>Error</i>' : 'ok';
+                                    $output .= " \n";
+                                }
                             }
                         }
                     }
