@@ -27,6 +27,7 @@ $plugin->formAddFieldsetEnd();
 
 // filters audio *********************************************************
 $plugin->formAddFieldsetStart('AudioParams', $lang_msg[6]);
+$plugin->formAddFieldBooleanX('PA_autoplay', 'Auto play', false);
 $plugin->formAddFieldBooleanX('PA_autoreplay', 'Loop', false);
 $plugin->formAddFieldsetEnd();
 // end of filters audio **************************************************
