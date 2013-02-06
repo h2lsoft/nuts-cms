@@ -3,8 +3,8 @@
     <title>Ounage Playlist</title>
     <creator>Dew</creator>
     <link>http://www.blup.fr/</link>
-    <info>The Best Playlist for Testing</info>
-    <image>covers/tracklist.jpg</image>
+    <info>The Best Playlist</info>
+    <image>covers/0.jpg</image>
 
     <trackList>
 
@@ -41,7 +41,7 @@
           <duration></duration>
           <image>covers/3.jpg</image>
           <info></info>
-          <link></link>
+          <link>http://fr.wikipedia.org/wiki/Le_Hussard_sur_le_toit_%28film%29</link>
         </track>
 
     </trackList>
