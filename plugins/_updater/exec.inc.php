@@ -345,11 +345,8 @@ else
 				}
 
                 // add exception
-				if(!empty($f) && $f[strlen($f)-1] != ':' && (strpos($f, '.') !== false || (in_array($f, array('en', 'fr') && $last_path == ''))))
+				if(!empty($f) && $f[strlen($f)-1] != ':' && (strpos($f, '.') !== false || (in_array($f, array('en', 'fr')) && $last_path == '')))
 				{
-                    if(in_array($f, array('en', 'fr')))
-                        die("last_path => $last_path");
-
 					$fs = explode('.', $f);
                     $fs = end($fs);
 
