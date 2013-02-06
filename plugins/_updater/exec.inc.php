@@ -19,6 +19,64 @@ function rrmdir($dir, $parent) {
    }
 }
 
+// to use this function to totally remove a directory, write:
+// recursive_remove_directory('path/to/directory/to/delete');
+function recursive_remove_directory($directory, $empty=FALSE)
+{
+    if(substr($directory,-1) == '/')
+    {
+        $directory = substr($directory,0,-1);
+    }
+
+    // if the path is not valid or is not a directory ...
+    if(!file_exists($directory) || !is_dir($directory))
+    {
+        return FALSE;
+
+
+    }elseif(!is_readable($directory))
+    {
+        return FALSE;
+
+    }else{
+
+        $handle = @opendir($directory);
+        while (FALSE !== ($item = @readdir($handle)))
+        {
+            // if the filepointer is not the current directory
+            // or the parent directory
+            if($item != '.' && $item != '..')
+            {
+                // we build the new path to delete
+                $path = $directory.'/'.$item;
+
+                if(is_dir($path))
+                {
+                    @recursive_remove_directory($path);
+                }else{
+                    @unlink($path);
+                }
+            }
+        }
+
+        @closedir($handle);
+
+        // if the option to empty is not set to true
+        if($empty == FALSE)
+        {
+            if(!rmdir($directory))
+            {
+                return FALSE;
+            }
+        }
+        // return success
+        return TRUE;
+    }
+}
+// ------------------------------------------------------------
+
+
+
 function nutsDirectoryToArray($directory, $recursive=true) {
 	$array_items = array();
 	if ($handle = opendir($directory)) {
@@ -286,8 +344,12 @@ else
 					$last_path = str_replace(':', '/', $f);
 				}
 
-				if(!empty($f) && $f[strlen($f)-1] != ':' && strpos($f, '.') !== false)
+                // add exception
+				if(!empty($f) && $f[strlen($f)-1] != ':' && (strpos($f, '.') !== false || (in_array($f, array('en', 'fr') && $last_path == ''))))
 				{
+                    if(in_array($f, array('en', 'fr')))
+                        die("last_path => $last_path");
+
 					$fs = explode('.', $f);
                     $fs = end($fs);
 
@@ -580,6 +642,31 @@ else
 							}
 						}
 					}
+                    // delete mode
+					elseif($cmd == '[X]')
+                    {
+                        $params = explode("\t", $in);
+                        $f = @$params[0];
+                        $f = trim($f);
+
+                        if(!empty($f))
+                        {
+                            // folder ?
+                            if($f[strlen($f)-1] == '*')
+                            {
+                                $output .= "    -> Remove folder `$f`: ";
+                                $f = str_replace('/*', '/', $f);
+                                $output .= (!@recursive_remove_directory(WEBSITE_PATH.$f)) ? '<i>Error</i>' : 'ok';
+                                $output .= " \n";
+                            }
+                            else
+                            {
+                                $output .= "    -> Remove file `$f`: ";
+                                $output .= (!@unlink(WEBSITE_PATH.$f)) ? '<i>Error</i>' : 'ok';
+                                $output .= " \n";
+                            }
+                        }
+                    }
 				}
 			}
 		}
