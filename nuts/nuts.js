@@ -698,6 +698,11 @@ function initMainMenu()
         $('#menu li.parent').removeClass('selected').css('background', 'none').css('border-color', '#ccc');
     });
 
+    $('#header').mouseup(function(){
+        $('#menu li.parent').removeClass('selected').css('background', 'none').css('border-color', '#ccc');
+    });
+
+
     // drop-down-menu **************************************************************************************************
 
     // resize badge menu
