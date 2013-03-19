@@ -2089,11 +2089,13 @@ EOF;
 	 * @param string $name db column name
 	 * @param string $label label to display if empty $label = $name
 	 * @param boolean|string $required field is required
+	 * @param string optional $value
 	 */
-	public function formAddFieldHidden($name, $label='', $required)
+	public function formAddFieldHidden($name, $label='', $required, $value='')
 	{
 		$options = array();
 		if(!empty($required))$options['required'] = $required;
+		if(!empty($value))$options['value'] = $value;
 		$this->formAddField($name, $label, 'hidden', $required, $options);
 	}
 
@@ -2113,8 +2115,9 @@ EOF;
 	 * @param string $style css style to add
 	 * @param string $after add string after field
 	 * @param string $help help message
+	 * @param string optional $value
 	 */
-	public function formAddFieldTextAjaxAutoComplete($name, $label='', $required, $ac_mode='', $ac_column='', $ac_columnID='', $ac_table='', $ac_get='', $ac_sql_where='', $ac_custom_sql='', $style='', $after='', $help='')
+	public function formAddFieldTextAjaxAutoComplete($name, $label='', $required, $ac_mode='', $ac_column='', $ac_columnID='', $ac_table='', $ac_get='', $ac_sql_where='', $ac_custom_sql='', $style='', $after='', $help='', $value='')
 	{
 		$options = array();
 		if(!empty($required))$options['required'] = $required;
@@ -2130,6 +2133,7 @@ EOF;
 		if(!empty($style))$options['style'] = $style;
 		if(!empty($after))$options['after'] = $after;
 		if(!empty($help))$options['help'] = $help;
+		if(!empty($value))$options['value'] = $value;
 
 		$this->formAddField($name, $label, 'ajax_autocomplete', $required, $options);
 	}
