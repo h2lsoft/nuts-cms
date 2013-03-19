@@ -531,14 +531,8 @@ class Plugin
 					$res[] = $row['val'];
 
 				die(join("\n", $res));
-
 			}
-
 		}
-
-
-
-
 
 		$this->list_search[] = array(
 									'name' => $name,

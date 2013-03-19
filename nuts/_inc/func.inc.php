@@ -1929,15 +1929,29 @@ EOF;
 EOF;
     }
 
-
-
-
-
-
-
     return $player;
 }
 
+/**
+ * Get ID from string useful for example with ajax component
+ *
+ * @param $str
+ * @param string optional $separator (default '(')
+ * @return int|null if zero
+ */
+function getIDFromString($str, $separator='(')
+{
+    $tmp = explode($separator, $str);
+
+    $ID = '';
+    if(count($tmp) >= 2)
+    {
+        $ID = (int)end($tmp);
+        if($ID == 0)$ID = '';
+    }
+
+    return $ID;
+}
 
 
 
