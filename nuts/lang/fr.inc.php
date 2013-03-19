@@ -165,6 +165,8 @@ Alt+S : Ouvrir/Fermer la recherche";
 $nuts_lang_msg[92] = "Vous avez été déconnecté car votre adresse IP est différente";
 $nuts_lang_msg[93] = "Mes notes";
 $nuts_lang_msg[94] = "Modifier mon profil";
+$nuts_lang_msg[95] = "Site internet";
+
 
 
 // main menu ***********************************************************************
