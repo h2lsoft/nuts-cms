@@ -2162,7 +2162,7 @@ class Page extends NutsCore
 			break;
 
 			case 'HEADER_IMAGE':
-				$rep = NUTS_HEADER_IMAGES_URL.'/'.$this->vars['HeaderImage'];
+				$rep = (empty($this->vars['HeaderImage'])) ? '' : str_replace(WEBSITE_URL, '', NUTS_HEADER_IMAGES_URL).'/'.$this->vars['HeaderImage'];
 			break;
 
 			case 'PAGE_H1':
