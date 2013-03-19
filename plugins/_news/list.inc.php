@@ -26,7 +26,7 @@ $plugin->listSetDbTable('NutsNews', "-- DATE_ADD(DateGMT, INTERVAL {$_SESSION['T
 									$sql_list_added");
 // search engine
 $plugin->listSearchAddFieldText('ID');
-$plugin->listSearchAddFieldTextAjaxAutoComplete('Type');
+if(!in_array('Type', $hidden_fields_arr))$plugin->listSearchAddFieldTextAjaxAutoComplete('Type');
 $plugin->listSearchAddFieldDate('DateGMT', $lang_msg[2]);
 if(!in_array('DateGMTExpiration', $hidden_fields_arr))$plugin->listSearchAddFieldDate('DateGMT2', $lang_msg[3], 'DateGMT');
 $plugin->listSearchAddFieldSelectSql('NutsUserID', $lang_msg[16], "CONCAT(FirstName,' ',LastName)");
