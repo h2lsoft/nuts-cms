@@ -11,7 +11,7 @@ define('WEBSITE_PATH', "/home/nuts-cms/domains/dev.nuts-cms.com/public_html");
 define('WEBSITE_URL', "http://dev.nuts-cms.com");
 define('NUTS_ADMIN_EMAIL', "support@h2lsoft.com");
 define('NUTS_EMAIL_NO_REPLY', "noreply@dev.nuts-cms.com");
-define('APP_TITLE', "Nuts™ CMS");
+define('APP_TITLE', "Nuts™");
 
 define('BACKOFFICE_LOGO_URL', "");
 define('NUTS_TRADEMARK', true);
