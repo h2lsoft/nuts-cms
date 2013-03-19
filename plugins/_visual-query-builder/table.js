@@ -169,6 +169,7 @@ function tableAdd(table_name, alias_name)
                     while(!in_array(add, ['=', '!=', '>', '>=', '<', '<=', 'LIKE', 'L', 'BETWEEN', 'B', 'IN', 'I']))
                     {
                         add = prompt(lang_msg_13, "");
+                        if(add == null || add == 'null')return;
                         add = strtoupper(trim(add));
                     }
 
