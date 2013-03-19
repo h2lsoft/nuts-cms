@@ -380,13 +380,17 @@ class Form extends Mail
 	/**
 	 * This method allows to verify $_POST value is in the list
 	 *
-	 * @param string $obj
-	 * @param array $value
+     * @param string $obj
+     * @param array $arr_value
+     * @param boolean $case_sensitive
+     *
 	 * @author H2LSOFT */
-	public function inList($obj = '', $value)
+	public function inList($obj='', $arr_value, $case_sensitive = false)
 	{
-		$this->inList($obj = '', $value);
+		$this->isInList($obj, $arr_value, $case_sensitive);
 	}
+
+
 
 	/**
 	 * This method allows to verify $_POST value is in the list
@@ -395,16 +399,13 @@ class Form extends Mail
 	 * @param array $arr_value
 	 * @param boolean $case_sensitive
 	 *
-	 * @deprecated
-	 *
 	 * @author H2LSOFT */
-	public function isInList($obj = '', $arr_value, $case_sensitive = false)
+	public function isInList($obj='', $arr_value, $case_sensitive = false)
 	{
 		if(!$this->rules($obj))return;
 
 		$obj = str_replace('[]', '', $obj);
 		$val = $_POST[$obj];
-
 
 		$arr_value_o = $arr_value;
 		if(!$case_sensitive)
@@ -437,17 +438,11 @@ class Form extends Mail
 			}
 		}
 
-
 		if($err)
 		{
 			if(!$this->errorCustom())
 			{
 				$values = join(', ', $arr_value_o);
-
-				//if($this->formErrorLang == 'fr')
-				//	$msg = "Le champ '$this->last_obj' doit être dans la liste à '$values'";
-				//else
-				//	$msg = "Field '$this->last_obj' must be in the list '$values'";
 
 				$obj_name = $this->formGetUserObjectName();
 				$msg = $this->getMessage(4, array($obj_name, $values));
@@ -458,6 +453,82 @@ class Form extends Mail
 		}
 		$this->custom_msg = '';
 	}
+
+    /**
+     * This method allows to verify $_POST value is not in the list
+     *
+     * @param string $obj
+     * @param array $arr_value
+     * @param boolean $case_sensitive
+     *
+     * @author H2LSOFT */
+    public function notInList($obj='', $arr_value, $case_sensitive = false)
+    {
+        if(!$this->rules($obj))return;
+
+        $obj = str_replace('[]', '', $obj);
+        $val = $_POST[$obj];
+
+        $arr_value_o = $arr_value;
+        if(!$case_sensitive)
+        {
+            if(!is_array($val))
+                $val = strtolower($val);
+            else
+                $val = array_map('strtolower', $val);
+
+            $arr_value = array_map('strtolower', $arr_value);
+        }
+
+        $err = false;
+        if(is_array($val))
+        {
+            foreach($val as $v)
+            {
+                if(in_array($v, $arr_value, true))
+                {
+                    $err = true;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            if(in_array($val, $arr_value, true))
+            {
+                $err = true;
+            }
+        }
+
+        if($err)
+        {
+            if(!$this->errorCustom())
+            {
+                $values = join(', ', $arr_value_o);
+
+                $obj_name = $this->formGetUserObjectName();
+                $msg = $this->getMessage(4, array($obj_name, $values));
+
+                $this->msg_err[] = $msg;
+                $this->objErrorMsg[$this->last_obj][] = $msg;
+            }
+        }
+        $this->custom_msg = '';
+    }
+
+    /**
+     * This method allows to verify $_POST value is not in the list
+     *
+     * @param string $obj
+     * @param array $arr_value
+     * @param boolean $case_sensitive
+     *
+     * @author H2LSOFT */
+    public function isNotInList($obj='', $arr_value, $case_sensitive = false)
+    {
+        $this->notInList($obj, $arr_value, $case_sensitive);
+    }
+
 
 	/**
 	 * this method allows to check if the value contained is only letters characters.
