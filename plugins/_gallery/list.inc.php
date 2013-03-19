@@ -66,7 +66,7 @@ function hookData($row)
         $row['Thumbnail'] = '<img src="/nuts/img/no-preview.png" style="height:65px; max-width:160px;" />';
     }
 
-	$row['Total'] = " <a href=\"javascript:popupModal('index.php?mod=_gallery_image&do=list&ID_operator=_equal_&ID=&NutsGalleryID_operator=_equal_&NutsGalleryID={$row['ID']}&user_se=1&popup=1', 'pops');\" class=\"tt counter\"><img src=\"img/icon-preview-mini.gif\" align=\"absmiddle\" alt=\"{$lang_msg[6]}\"> {$row['Total']}</a>";
+	$row['Total'] = " <a href=\"javascript:popupModal('index.php?mod=_gallery_image&do=list&ID_operator=_equal_&ID=&NutsGalleryID_operator=_equal_&NutsGalleryID={$row['ID']}&user_se=1&popup=1', 'pops');\" class=\"tt counter\"><i class=\"icon-pictures\"></i> {$row['Total']}</a>";
 
 
     if(!$plugin->listExportExcelMode)
