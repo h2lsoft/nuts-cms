@@ -467,7 +467,7 @@ function inputDate(objID, type)
 	   $('#'+objID).attr('maxlength', 10);
 
        v = $('#'+objID).val();
-       v = v.substr(0, 10);
+       if(strlen(v) > 10)v = v.substr(0, 10);
        $('#'+objID).val(v);
 
 	   Calendar.setup({
