@@ -190,6 +190,8 @@ function showResponse(responseText, statusText)
 	if(jQuery.trim(cont) != '')
 	{
 		// cont = utf8_decode(cont);
+        cont = str_replace('&lt;img', '<img', cont);
+        cont = str_replace('/&gt;', '/>', cont);
 		$('#form_error').html(cont);
 
 		fields = new Array();

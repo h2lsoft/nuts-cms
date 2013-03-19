@@ -29,11 +29,13 @@ $plugin->formAddFieldSelectHtml('Name', '', true, $plugin_list);
 $plugin->formAddFieldText('Position', '', true, '', 'width:3em; text-align:center', '', '', $lang_msg[1]);
 $plugin->formAddFieldText('ExternalUrl', '', false);
 
-$options = array();
+/*$options = array();
 $options[] = array('value' => 0, 'label' => 'No');
 $options[] = array('value' => 1, 'label' => 'Yes');
 $plugin->formAddFieldSelect('BreakBefore', '', true, $options);
 $plugin->formAddFieldSelect('BreakAfter', '', true, $options);
+*/
+
 $plugin->formAddFieldBoolean('Visible', '', true);
 
 

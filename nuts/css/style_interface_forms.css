@@ -1,0 +1,82 @@
+/** reset **/
+input, select, textarea, button {-webkit-appearance: none; -moz-appearance: none; border:1px solid #ccc;  border-radius: 0;}
+input[type=text], input[type=password], input[type=file], textarea, select {padding-left:2px; transition:all .2s ease-in; -moz-transition:all .2s ease-in; -webkit-transition:all .2s ease-in;}
+input[type=text]:hover, input[type=password]:hover, input[type=file]:hover, textarea:hover {background-color:#FFFFDD; background-image:none; border-color:#aaa;}
+input[type=text]:focus, input[type=password]:focus, input[type=file]:focus, textarea:focus, select:focus, input[type=checkbox]:focus, input[type=radio]:focus {
+    background-color:#fff;
+    outline: 0;
+    border-color: rgba(82, 168, 236, 0.8);
+}
+
+input[disabled], textarea[disabled], select[disabled], button[disabled] {background-color: #ccc!important; cursor: not-allowed!important;}
+input[readonly], textarea[readonly], select[readonly] {border-color: #e5e5e5!important; cursor: help; background-color:white!important;}
+
+
+/** checkbox **/
+input[type=checkbox] {width: 16px!important; height: 16px!important; position: relative; top:6px; background-color: white;}
+input[type=checkbox]:hover {cursor: pointer; border-color: #999;}
+input[type=checkbox]:checked {background: url(checkbox_checked.gif) no-repeat; background-position: center;  background-color: white;}
+
+/** radio **/
+input[type=radio] {width: 14px!important; height: 14px!important; background: white; border-radius: 10px; position: relative; top:2px;  }
+input[type=radio]:hover {cursor: pointer; border-color: #999;}
+input[type=radio]:checked {background: url(radio_checked.gif) no-repeat; background-position: -2px -1px; background-color: white;}
+
+
+/** select **/
+select {padding-right: 20px; background: url(select_arrow_down.gif) no-repeat; background-position: 98% center; background-color: white;}
+select:hover {background-color:#FFFFDD; border-color:#aaa;}
+
+select[multiple] {background-image: none; padding-right: 0;}
+
+
+
+/** fieldset **/
+fieldset {border: 1px solid #ccc;}
+fieldset {padding:5px; margin-top:0px; margin-bottom:10px; /* background: #e5e5e5; */ }
+fieldset:hover {border-color:#1570B8; background-color: #fffeee;}
+
+/** legend **/
+legend {/*font-weight:bold;*/ color:#1570B8; padding-left:5px; padding-right:5px; padding-top: 0px; padding-bottom: 10px; letter-spacing: 1px; text-transform: uppercase;}
+
+/** inputs **/
+input[type=text], input[type=file], input[type=password] {padding-top: 2px; padding-bottom: 2px;}
+input[type=button], button, input[type=submit]   {
+    border:1px solid #ccc;
+    height:24px;
+    cursor:pointer;
+    padding-left:7px; padding-right:7px;
+    color: #353535;
+    text-align: center; text-transform: uppercase; letter-spacing: 1px;
+    background-color: #e5e5e5;
+}
+
+/** button **/
+button:hover, input[type=button]:hover, input[type=submit]:hover {background-color: #ccc;}
+button:active, input[type=button]:active, input[type=submit]:active {background-color: white;}
+
+input[type=submit]:hover {border-color:#3399FE; background-color:#3399FE; color: white;}
+input[type=submit]:active {background-color: white; color: #3399FE; border-color: #3399FE;}
+input[type=submit]:disabled {background-color: white; color: #353535; border-color: #ccc;}
+
+
+/** textarea **/
+textarea {width:700px;  height:120px; padding-top: 2px; padding-bottom: 2px;}
+
+
+/** file **/
+input[type=file] {width: 420px;}
+
+
+/** misc **/
+.button {padding: 2px!important; height: auto!important; padding-left:3px!important; padding-right:3px!important; text-transform: none;}
+.button:hover {color: black;}
+.button:active {color: #3399FE;}
+
+
+input.date {background-image:url(calendar_gray.png)!important; background-repeat:no-repeat!important; background-position:right!important; width: 80px!important;}
+input.datetime {background-image:url(calendar_gray.png)!important; background-repeat:no-repeat!important; background-position:right!important; width:115px!important; }
+input.ac_input, input.ajax_autocomplete {width: 350px; background-image:url(search_gray.png)!important; background-repeat:no-repeat!important; background-position:right!important;}
+input.search {width: 350px; background-image:url(search_gray.png)!important; background-repeat:no-repeat!important; background-position:left!important; padding-left: 20px!important;}
+
+

@@ -117,9 +117,6 @@ if(@$_GET['ajaxer'] == 1 && $_POST && !@empty($_POST['objID']))
         $nuts->dbUpdate('NutsTemplateConfiguration', array('Languages' => $langs));
     }
 
-
-
-
     die('ok');
 }
 

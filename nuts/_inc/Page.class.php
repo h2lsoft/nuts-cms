@@ -3183,7 +3183,7 @@ EOF;
 
 		$toolbar = <<<EOF
 
-		<div id="nuts_front_toolbar" style="border-bottom:2px solid #FF9900; width:99%; position:fixed; z-index:570; left: 0px; top:-30px; background-color:#333; padding:5px; text-align:center; color:black; background-image:url(/nuts/css/th_bkg.png); background-repeat:repeat-x;">
+		<div id="nuts_front_toolbar" style="width:99%; position:fixed; z-index:570; left: 0px; top:-30px; padding:5px; text-align:center; color:black; background:#e5e5e5; margin-top:-2px; border-bottom:1px solid #ccc;">
 			<img alt="" src="/nuts/img/icon-user.gif" style="width:16px; vertical-align:middle;" /> <b>{$_SESSION['Login']} (#{$_SESSION['ID']})</b> &nbsp;&nbsp;&nbsp;|  &nbsp;&nbsp;&nbsp;
 			<img alt="" src="/nuts/img/logon_password.png" style="width:16px; vertical-align:middle;" /> <a style="color:black!important;text-decoration:none!important;" href="/nuts/" target="_blank">Back-office</a>
 			$edit_option
@@ -3192,11 +3192,10 @@ EOF;
 			$add_sub_option
 			$se_sub_option
 
-
 			&nbsp;&nbsp;|&nbsp;&nbsp;<img alt="" src="/nuts/img/icon-refresh.png" style="width:16px; vertical-align:middle;" /> <a style="color:black!important;text-decoration:none!important;" href="javascript:history.go(0);">$refresh_lbl</a>
 
 		</div>
-		<div id="nuts_front_toolbar_button" style="user-select:none; webkit-user-select:none; border:1px solid #ccc; border-top:0; width:auto; position:fixed; z-index:570; right:0px; top:2px; padding:5px; text-align:center; color:black; background-color:#FF9900; margin-right:20px"><a style="color:white; user-select:none; webkit-user-select:none; font-size:10px;" href="javascript:nutsFrontToolbarOpenClose();">$open_close_lbl</a></div>
+		<div id="nuts_front_toolbar_button" style="user-select:none; webkit-user-select:none; border:1px solid #ccc; border-top:0; width:auto; position:fixed; z-index:570; right:0px; top:2px; padding:5px; text-align:center; color:black; background-color:#e5e5e5; margin-right:20px; margin-top:-4px;"><a style="color:#0000; text-transform:uppercase; user-select:none; webkit-user-select:none; font-size:10px;" href="javascript:nutsFrontToolbarOpenClose();">$open_close_lbl</a></div>
 
 		<script type="text/javascript">
 		$('#nuts_elements').attr('checked', false);

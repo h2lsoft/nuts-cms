@@ -121,7 +121,7 @@
 		<!-- file -->
 			<div id="{name}FilePreview" class="file_preview"  style="display:{file_display};">
 
-					<a href="{file_path}/{file_name}" target="_blank"><img src="/nuts/img/icon_extension/{file_image_extension}.png" style="width:32px" align="absmiddle" /></a><br />
+					<a href="{file_path}/{file_name}" target="_blank"><img src="/nuts/img/icon_extension/{file_image_extension}.png" align="absmiddle" /></a><br />
 					<input type="checkbox" name="{name}FileDelete" value="1" /> {$nuts_lang_msg[40]}
 			</div>
 
@@ -145,7 +145,7 @@
 
 		<bloc::textarea>
 		<!-- textarea -->
-			<textarea style="{style}" id="{name}" name="{name}" class="{class}" {attributes}>{value}</textarea>
+			<textarea wrap="off" style="{style}" id="{name}" name="{name}" class="{class}" {attributes}>{value}</textarea>
 			{after}
 		<!-- /textarea -->
 		</bloc::textarea>
@@ -188,11 +188,11 @@
 <p class="bottom">
 	<input type="submit" name="btn_submit" id="btn_submit" value="{$nuts_lang_msg[21]}" accesskey="s" />
 	<label id="label_close_after" style="margin:0; float:none; display:inline;"><input type="checkbox" id="close_after" checked /> {$nuts_lang_msg[26]}</label>
-	&nbsp; &nbsp;  &nbsp; &nbsp;
-    <input type="button" name="btn_cancel" id="btn_cancel" value="{$nuts_lang_msg[22]}" onclick="if('{$_GET['popup']}' == '1'){window.close();}else{$('#form_window').dialog('close');}" />
 
-	<div style="float:right; margin-top:-35px; margin-right: 10px;">
-		<a class="noprint tt" title="{$nuts_lang_msg[52]}" href="javascript:printDialog();"><img align="absbottom" src="img/icon-print.png" /></a>
+    <input type="button" name="btn_cancel" id="btn_cancel" value="{$nuts_lang_msg[26]}" onclick="if('{$_GET['popup']}' == '1'){window.close();}else{$('#form_window').dialog('close');}" />
+
+	<div id="form_bottom_printer_layout">
+		<a class="noprint tt" title="{$nuts_lang_msg[52]}" href="javascript:printDialog();"><i class="icon-printer"></i></a>
 	</div>
 </p>
 

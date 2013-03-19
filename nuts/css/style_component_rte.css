@@ -1,0 +1,20 @@
+.WYSIWYG_toolbar {position:relative; top:4px;}
+.WYSIWYG_toolbar input[type=checkbox] {position: relative; top:8px;}
+.WYSIWYG_toolbar .rte_button {cursor: pointer; }
+.WYSIWYG_toolbar .rte_button:hover {opacity: 0.2; -moz-opacity: 0.2; -webkit-opacity: 0.2;}
+.WYSIWYG_toolbar a:hover {color:#000; text-decoration: none;}
+.WYSIWYG_toolbar a {outline: 0;}
+
+.WYSIWYG_submenu {position: absolute; z-index: 5; width: 140px; background: white; border: 1px solid #ccc; padding: 5px 10px; line-height: 20px; display: none; }
+.WYSIWYG_submenu a {color:#666;}
+.WYSIWYG_submenu a:hover {color:#000; text-decoration: none;}
+
+.WYSIWYG_toolbar select {border:1px solid #e5e5e5; width: 65px; padding: 0px; }
+.WYSIWYG_toolbar select option {padding-left: 15px;}
+.WYSIWYG_toolbar select option.title {padding-left:5px; border: 1px solid #ccc; font-weight: bold; background-color: #e5e5e5;}
+.WYSIWYG_toolbar select:focus {box-shadow: none;}
+
+
+/** richeditor_layer **/
+div#richeditor_layer {padding:20px; text-align:center; position:absolute; z-index:5555; top:0px; left:0px; background-color:#000; display:none;}
+iframe#richeditor_content {/*background-color:#333;*/ position:absolute; z-index:5556; top:0px; left:0px;  display:none;}

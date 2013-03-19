@@ -1,0 +1,40 @@
+/** right manager */
+table#rights {/*border:1px solid #ccc; border-bottom:0px;*/}
+table#rights label {cursor:pointer;}
+
+table#rights th {background:none; background-color: white; color: #3399FE; border-bottom: 1px solid #1570B8;  text-align:left; font-size:16px; white-space:nowrap; text-transform: uppercase;letter-spacing: 1px; padding: 15px 5px;}
+
+table#rights td {padding:2px; /* border-bottom:1px solid #ccc; */}
+table#rights td.label {background-color:#fff; border-right:1px solid #ccc; text-align:left; padding-right: 10px;  }
+table#rights td.label img {width: 16px; vertical-align: middle;}
+
+table#rights td.content {}
+
+table#rights tr:hover> td.content,
+table#rights tr:hover> td.label
+{background-color:#FFFFCB; background-image: none;}
+
+
+#right_options {
+
+    width: 700px;
+    padding: 3px 10px;
+    margin-top: 5px;
+    background-color: #e5e5e5;
+}
+
+#right_plugin_search {width: 200px;
+
+    background-image: url(/nuts/img/icon_top_search.png);
+    background-position: 2px 1px;
+    background-repeat: no-repeat;
+    background-color: white;
+    /*color: #CCC;
+    padding: 1px;
+    font-size: 11px;
+
+    border: 1px solid #CCC;*/
+
+    padding-left: 19px;
+    margin-left: 20px;
+}

@@ -1,0 +1,6 @@
+.image_preview {padding:5px; border:1px solid #ccc; background-color: white; cursor: pointer;}
+.image_preview:hover {border-color: #1570B8;}
+
+#nuts_canvas {display: none; opacity: 0.2; background-color: black; width: 100%; height: 100%; position: absolute; z-index: 9999999; top:0; left:0;}
+#nuts_canvas_content {display: none; position: absolute; z-index: 99999999; top:0; left:0;  width: 100%; height: 100%; text-align: center; vertical-align: middle; cursor: pointer;}
+#nuts_canvas_content img {box-shadow: 0 0 50px #000;}

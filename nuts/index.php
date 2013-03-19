@@ -53,13 +53,18 @@ if(@$_GET['_action'] == 'users_online')
 		// $gravatar_url = 'http://www.gravatar.com/avatar/'.md5($row['Email']).'?s=60&d=http%3A%2F%2Fwww.nuts-cms.com%2Fnuts%2Fimg%2Fgravatar.jpg';
         $gravatar_url = $row['Avatar'];
         if(empty($gravatar_url))$gravatar_url = '/nuts/img/gravatar.jpg';
-		$users_online[] = array('avatar_url' => $gravatar_url, 'Name' => $row['Name'], 'ID' => $row['NutsUserID'], 'Application' => $row['Application']);
+
+        if($row['NutsUserID'] != $_SESSION['NutsUserID'])
+		    $users_online[] = array('avatar_url' => $gravatar_url, 'Name' => $row['Name'], 'ID' => $row['NutsUserID'], 'Application' => $row['Application']);
 	}
+
+    $gravatar_url = '/nuts/img/gravatar.jpg';
+    $users_online[] = array('avatar_url' => $gravatar_url, 'Name' => $_SESSION['Login'], 'ID' => $row['NutsUserID'], 'Application' => '');
 	
 	die(json_encode($users_online));
 }
 
-// ajax:list_search_users *************************************************************************
+// ajax:list_search_users **********************************************************************************************
 if(@$_GET['_action'] == 'list_search_users')
 {
     $data = array();
@@ -180,10 +185,7 @@ if(@$_GET['_action'] == 'list_search_users')
     die(json_encode($data));
 }
 
-
-
 // execution *************************************************************************
-
 
 // nuts information **********************************************************************
 $nuts_info = spyc::YAMLLoad('info.yml');
@@ -220,16 +222,13 @@ if($menu_count > 0)
     }
 }
 
-
-
-
 // logout ********************************************************************************
 if(isset($_GET['mod']) && $_GET['mod'] == 'logout')
 {
 	nutsLogout();
 }
 
-// plugin ********************************************************************************
+// plugin allowed **********************************************************************************************************************************
 if(!@in_array($_GET['mod'], array('_internal-messaging', '_internal-memo', '_user-profile'))  && (!plugin::validator() || !plugin::actValidator()))
 {
 	$_GET['mod'] = '_error';
@@ -264,7 +263,7 @@ if(!isset($_GET['ajax']) || !isset($_GET['target']))
 	include('_inc/trt_menu.inc.php');
 }
 
-// execution *****************************************************************************
+// execution ***********************************************************************************************************
 $current_theme = nutsGetTheme();
 $PHPSESSID = session_id();
 
@@ -275,9 +274,6 @@ $AllowVisualQueryBuilder = false;
 if(nutsUserHasRight($_SESSION['NutsGroupID'], '_visual-query-builder', 'exec'))
     $AllowVisualQueryBuilder = true;
 $nuts->parse('AllowVisualQueryBuilder', $AllowVisualQueryBuilder);
-
-
-
 
 // popup
 if(isset($_GET['popup']) && $_GET['popup'])
@@ -294,31 +290,22 @@ else
 /*if(!NUTS_TRADEMARK)
 	$nuts->eraseBloc('trademark');*/
 
-
 if(!isset($_GET['ajax']) && !isset($_GET['target']) && !isset($_GET['popup']))
 {
 	// gravatar old
-	/*$email_hash = md5($_SESSION['Email']);
-	$gravatar_encoded = urlencode(WEBSITE_URL.'/nuts/img/gravatar.jpg');
-	$nuts->fastParse('email_hash');
-	$nuts->fastParse('gravatar_encoded');*/
-
     $avatar_image = nutsUserGetData('', 'Avatar');
     $avatar_image = $avatar_image['Avatar'];
 
     if(empty($avatar_image))$avatar_image = '/nuts/img/gravatar.jpg';
     $nuts->fastParse('avatar_image');
 
-	
 	// verify right for page
-	if(!nutsUserHasRight($_SESSION['NutsGroupID'], '_page-manager', 'exec'))$nuts->eraseBloc('wrinting_page');
-	if(!nutsUserHasRight($_SESSION['NutsGroupID'], '_news', 'list'))$nuts->eraseBloc('wrinting_news');
+	if(!nutsUserHasRight($_SESSION['NutsGroupID'], '_page-manager', 'exec'))$nuts->eraseBloc('writing_page');
+	if(!nutsUserHasRight($_SESSION['NutsGroupID'], '_news', 'list'))$nuts->eraseBloc('writing_news');
 
-	
-	
 
-	// update plugin_list_ac get all plugin list allowed for this group
-	$sql = "SELECT
+    // update plugin_list_ac get all plugin list allowed for this group
+    $sql = "SELECT
 					DISTINCT NutsMenu.Name,
 					NutsMenu.ExternalUrl
 			FROM
@@ -330,36 +317,36 @@ if(!isset($_GET['ajax']) && !isset($_GET['target']) && !isset($_GET['popup']))
 					NutsMenu.Visible = 'YES'
 			ORDER BY
 					NutsMenu.Name ";
-	$nuts->doQuery($sql);
-	$plugin_list_ac = array();
-	while($row = $nuts->dbFetch())
-	{
-		$plugin_name = $row['Name'];
-		$plugin_info = spyc::YAMLLoad(WEBSITE_PATH.'/plugins/'.$row['Name'].'/info.yml');
-		
-		// get plugin label
-		if(file_exists(WEBSITE_PATH.'/plugins/'.$row['Name'].'/lang/'.$_SESSION['Language'].'.inc.php'))
-			include(WEBSITE_PATH.'/plugins/'.$plugin_name.'/lang/'.$_SESSION['Language'].'.inc.php');
-		else
-		{
-			$default_lang = array_map('trim', explode(',',$plugin_info['langs']));
-			$default_lang = $default_lang[0];
-			
-			include(WEBSITE_PATH.'/plugins/'.$plugin_name.'/lang/'.$default_lang.'.inc.php');
+    $nuts->doQuery($sql);
+    $plugin_list_ac = array();
+    while($row = $nuts->dbFetch())
+    {
+        $plugin_name = $row['Name'];
+        $plugin_info = spyc::YAMLLoad(WEBSITE_PATH.'/plugins/'.$row['Name'].'/info.yml');
 
-		}			
+        // get plugin label
+        if(file_exists(WEBSITE_PATH.'/plugins/'.$row['Name'].'/lang/'.$_SESSION['Language'].'.inc.php'))
+            include(WEBSITE_PATH.'/plugins/'.$plugin_name.'/lang/'.$_SESSION['Language'].'.inc.php');
+        else
+        {
+            $default_lang = array_map('trim', explode(',',$plugin_info['langs']));
+            $default_lang = $default_lang[0];
 
-		$plugin_label = $lang_msg[0];
-		$plugin_url = $row['ExternalUrl'];
-		
-		$plugin_default_action = $plugin_info['default_action'];
-		
-		$plugin_list_ac[] = array('label' => $plugin_label, 'name' =>  $plugin_name, 'url' => $plugin_url, 'default_action' => $plugin_default_action);
-	}
+            include(WEBSITE_PATH.'/plugins/'.$plugin_name.'/lang/'.$default_lang.'.inc.php');
 
-	$plugin_list_ac = json_encode($plugin_list_ac);
-	$nuts->fastParse('plugin_list_ac');
-	
+        }
+
+        $plugin_label = $lang_msg[0];
+        $plugin_url = $row['ExternalUrl'];
+
+        $plugin_default_action = $plugin_info['default_action'];
+
+        $plugin_list_ac[] = array('label' => $plugin_label, 'name' =>  $plugin_name, 'url' => $plugin_url, 'default_action' => $plugin_default_action);
+    }
+
+    $plugin_list_ac = json_encode($plugin_list_ac);
+    $nuts->fastParse('plugin_list_ac');
+
 }
 
 // navigation bar

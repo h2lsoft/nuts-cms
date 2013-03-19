@@ -13,7 +13,7 @@
 	<bloc::child>
 	<div class="mod" style="{style}" title="{mod_title}" name="{c_name}">
 
-        <a href="{c_uri}" target="{c_target}"> <img src="{CONST::WEBSITE_URL}/plugins/{c_name}/icon.png"  style="width:32px;" />
+        <a href="{c_uri}" target="{c_target}"> <img class="plugin_icon" src="{CONST::WEBSITE_URL}/plugins/{c_name}/icon.png" />
 	    <br />
         {c_rname}
 	</a>
@@ -45,9 +45,6 @@ $('#home .mod').click(function(){
         document.location.href = link;
 
     return false;
-
-
-
 });
 </script>
 

@@ -108,7 +108,7 @@ function hookData($row)
 	//}
 	
 	// download
-	$dl = '<a title="'.$lang_msg[5].'" class="tt"  href="/nuts/index.php?mod=_dropbox&do=list&_action=download&ID=[ID]" target="_blank"><img src="img/icon-save.png" /></a>';
+	$dl = '<a title="'.$lang_msg[5].'" class="tt"  href="/nuts/index.php?mod=_dropbox&do=list&_action=download&ID=[ID]" target="_blank"><i class="icon-download" style="font-size:20px;"></i></a>';
 	$row['Download'] = str_replace('[ID]', $row['ID'], $dl);
 
 

@@ -50,7 +50,7 @@ $lang_msg[30] = "Html Compress time";
 
 $lang_msg[31] = "Application Title";
 $lang_msg[32] = "Logo url";
-$lang_msg[33] = "change logo recommended dimensions 290 x 65";
+$lang_msg[33] = "change logo recommended dimensions 215 x 35";
 
 $lang_msg[34] = "Twitter Login";
 $lang_msg[35] = "display link in `News Manager` to add a tweet (empty to hide)";

@@ -1,6 +1,6 @@
 <?php
 
-$lang_msg[0] = "Accueil"; // plugin name
+$lang_msg[0] = "Tableau de bord"; // plugin name
 
 
 ?>

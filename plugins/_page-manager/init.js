@@ -6,8 +6,8 @@ if(rCookie > 215 && rCookie <= ($(document).width()-700-100))
 
 $('div#page_tree').height($(document).height()-300);
 $('div#page_form').height($('div#page_tree').height());
-$('div#page_form').width($(document).width()-$('div#page_tree').width()-50);
-$('div#page_options_bottom').width($('div#page_form').width()-15);
+$('div#page_form').width($(document).width()-$('div#page_tree').width()-65);
+$('div#page_options_bottom').width($('div#page_form').width()-17);
 
 
 $tabs = $('.ui-tabs-nav').tabs();

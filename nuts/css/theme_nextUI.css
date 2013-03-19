@@ -1,0 +1,29 @@
+#top_search {display: none;}
+#main_title {display: none;}
+
+/** general **/
+
+
+
+
+
+
+table#list th {padding: 2px; font-weight: normal; font-size: 13px; background: #e5e5e5;  }
+table#list th.ordered:hover {border-bottom:1px; }
+table#list td {padding: 3px; }
+
+fieldset {
+    border-radius:0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+}
+
+#header .bo_logo {max-height: 35px; padding: 0px; margin: 0;}
+
+
+/** home **/
+div#home table {border:0;}
+div#home table th {font-weight: normal; font-size: 18px; background: none; border-bottom: 1px solid #e5e5e5;}
+div#home .mod {border-radius: 0; border-color: #ddd;}
+div#home .mod .plugin_icon {width: 30px;}
+div#home div:hover {box-shadow: none; border-color: #BDCFEF; background-color: #D6E3F7;}

@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="en">
 <head>
 	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
 	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.nuts-cms.com/rss.php" />
@@ -9,9 +9,6 @@
 	<link rel="icon" href="favicon.ico" />
 
 	<title>{CONST::APP_TITLE} - {CONST::WEBSITE_NAME}</title>
-
-	<link rel="stylesheet" type="text/css" href="css/style.css?t={$timer}" media="all" />
-	<link rel="stylesheet" type="text/css" href="css/print.css?t={$timer}" media="print" />
 
 	<script type="text/javascript" src="../library/js/php.js"></script>
 	<script type="text/javascript" src="nuts.js?t={$timer}"></script>
@@ -101,11 +98,9 @@
 	<script src="../library/js/m_uploader/fileuploader.js" type="text/javascript"></script>
 	<!-- /m_uploader -->
 
-
 	<!-- codemirror -->
 	<link rel="stylesheet"  href="../library/js/codemirror/lib/codemirror.css">
 	<script type="text/javascript" src="../library/js/codemirror/lib/codemirror.js"></script>
-
 	<script type="text/javascript" src="../library/js/codemirror/mode/clike/clike.js"></script>
 	<script type="text/javascript" src="../library/js/codemirror/mode/xml/xml.js"></script>
 	<script type="text/javascript" src="../library/js/codemirror/mode/javascript/javascript.js"></script>
@@ -114,11 +109,8 @@
 	<script type="text/javascript" src="../library/js/codemirror/mode/php/php.js"></script>
 	<!-- /codemirror -->
 
-
-
-
-
-
+    <link rel="stylesheet" type="text/css" href="css/style.css?t={$timer}" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/print.css?t={$timer}" media="print" />
 
 	<link rel="stylesheet" type="text/css" href="css/custom.css" media="screen" />
 	{#include("_inc/custom.html");}
@@ -131,7 +123,6 @@
 <div id="notify_it"></div>
 <!-- /notify_it -->
 
-
 <!-- ajax loader -->
 <div id="ajax_loader">
 	<img src="img/ajax-loader.gif" align="absmiddle" /> Loading...
@@ -141,64 +132,75 @@
 
 
 
-
-
 <!-- header -->
 <div id="header" style="{popup_display}">
 
-	<!-- logout -->
-	<div id="logout">
+    <!-- bo_logo -->
+    <div id="bo_logo">
+        <a href="index.php"><img src="{$nutsBackLogo}" alt="Nuts Cms" align="left" class="bo_logo" /></a>
+    </div>
+    <!-- /bo_logo -->
 
-		<bloc::gravatar>
-		<div id="gravatar">
-			<!-- <a href="http://www.gravatar.com" target="_blank"><img src="http://www.gravatar.com/avatar/{email_hash}?s=60&d={gravatar_encoded}" /></a> -->
-            <a href="javascript:formIt('{$nuts_lang_msg[90]}', '?mod=_user-profile&do=edit');"><img src="{avatar_image}" /><br />
-            {$nuts_lang_msg[89]}</a>
-		</div>
-		</bloc::gravatar>
+    <!-- header_right -->
+    <div id="header_right">
 
-		<span class="login">{$nuts_lang_msg[0]}, {$_SESSION['FirstName']} {$_SESSION['LastName']} (#{$_SESSION['NutsUserID']})</span><br />
-		<span class="time"></span><br />
-
-        <div id="internal_message_toolbar">
-            <span class="internal_message">
-                <a href="javascript:;" onclick="popupModal('index.php?mod=_internal-messaging&do=list&popup=1&parent_refresh=0');">{$nuts_lang_msg[65]}</a>
-            </span>
-        </div>
-
-		<!-- writing_toolbar -->
-		<div id="writing_toolbar">
-
-			<bloc::wrinting_page>
-			<a href="javascript:system_goto('index.php?mod=_page-manager&do=exec', 'content');" class="tt"  title="{$nuts_lang_msg[82]}"><img src="img/write_toolbar_pen.png" /></a>
-			</bloc::wrinting_page>
-
-			<bloc::wrinting_news>
-            <a href="javascript:system_goto('index.php?mod=_news&do=list', 'content');" class="tt news"  title="{$nuts_lang_msg[83]}"><img src="img/write_toolbar_news.png" /></a>
-			</bloc::wrinting_news>
-
-		</div>
-		<!-- /writing_toolbar -->
-
-        <div id="notes_toolbar">
-            <a class="tt" title="My Notes" href="javascript:;" onclick="popupModal('index.php?mod=_internal-memo&do=edit&popup=1&parent_refresh=0');">
-                <img class="user_online" style="width:16px;" src="img/notes-icon-gray.gif" />
+        <!-- user_online -->
+        <div id="user_online">
+            <a class="has-drop-down-menu" data-drop-down-menu="user_online-drop-down-menu" href="javascript:;"><i class="icon-user"></i>
+                <span id="user_online_count">0</span>
+                <b class="drop-down-arrow drop-down-arrow-right"></b>
             </a>
-            -
-            <a class="tt" href="javascript:;" onclick="viewOnlineUsers(false);" onblur="viewOnlineUsers(true);" title="{$nuts_lang_msg[67]}"><img src="img/top_users.gif" class="user_online" alt="{$nuts_lang_msg[67]}" /></a>
-            <span id="user_online_count">0</span>
-            &nbsp;
-            <div id="user_online_list"></div>
-            [
-                <a class="tt" href="{CONST::WEBSITE_URL}" target="_blank" title="{$nuts_lang_msg[68]}"><img src="img/icon-home.png" alt="" class="logout_icon_home" /></a>  |
-                <a href="javascript:logoutForm('{$nuts_lang_msg[2]}');">{$nuts_lang_msg[2]}</a>
-            ]
+
+            <ul id="user_online-drop-down-menu" class="drop-down-menu">
+            </ul>
         </div>
+        <!-- /user_online -->
 
-	</div>
-	<!-- logout -->
+        <!-- internal_message -->
+        <div id="internal_message">
+            <a href="javascript:;" onclick="popupModal('index.php?mod=_internal-messaging&do=list&popup=1&parent_refresh=0');"><i class="icon-mail"></i>
+                <span id="internal_message_count">0</span>
+            </a>
+        </div>
+        <!-- /internal_message -->
 
-	<span><a href="index.php"><img src="{$nutsBackLogo}" alt="Nuts Cms" align="left" class="bo_logo" /></a></span>
+        <!-- user_badge -->
+        <div id="user_badge">
+
+            <bloc::gravatar>
+                <a class="avatar has-drop-down-menu" href="javascript:;" data-drop-down-menu="user-badge-drop-down-menu">
+                    <img src="{avatar_image}" /> {$_SESSION['FirstName']} {$_SESSION['LastName']} (#{$_SESSION['NutsUserID']})
+                    <b class="drop-down-arrow drop-down-arrow-right"></b>
+                </a>
+            </bloc::gravatar>
+
+            <ul id="user-badge-drop-down-menu" class="drop-down-menu">
+
+                <bloc::writing_page>
+                    <li><a href="javascript:system_goto('index.php?mod=_page-manager&do=exec', 'content');"><i class="icon-pencil"></i> {$nuts_lang_msg[82]}</a></li>
+                </bloc::writing_page>
+
+                <bloc::writing_news>
+                    <li><a href="javascript:;" onclick="system_goto('index.php?mod=_news&do=list', 'content');"><i class="icon-newspaper"></i> {$nuts_lang_msg[83]}</a></li>
+                </bloc::writing_news>
+
+                <li><a href="javascript:;" onclick="popupModal('index.php?mod=_internal-memo&do=edit&popup=1&parent_refresh=0');"><i class="icon-new"></i> {$nuts_lang_msg[93]}</a></li>
+
+                <li class="separator"></li>
+                <li><a href="javascript:;" onclick="formIt('{$nuts_lang_msg[90]}', '?mod=_user-profile&do=edit');"><i class="icon-user-2"></i> {$nuts_lang_msg[94]}</a></li>
+
+                <li class="separator"></li>
+                <li><a href="?mod=logout"><i class="icon-exit"></i> {$nuts_lang_msg[2]}</a></li>
+
+            </ul>
+
+        </div>
+        <!-- /user_badge -->
+
+    </div>
+    <!-- /header_right -->
+
+
 
 </div>
 <!-- header -->
@@ -206,73 +208,20 @@
 {#if(@!isset($_GET['popup']))}
 <!-- menu -->
 <div id="menu" style="{popup_display}">
-	{$menu}
+    {$menu}
 </div>
+<!-- menu -->
 
 <!-- top_search -->
 <div id="top_search" style="{popup_display}">
-	<input autocomplete="false" spellcheck="false" type="text" name="top_search" id="top_search_input" placeholder="{$nuts_lang_msg[11]}..." accesskey="t" onblur="this.value='';" />
+    <input autocomplete="false" spellcheck="false" type="text" name="top_search" id="top_search_input" accesskey="t" onblur="this.value='';" />
 </div>
 
 <script>
 var plugin_list_ac = {plugin_list_ac};
-$("#top_search_input").autocomplete(plugin_list_ac, {
-		width: 310,
-		max: 10,
-		highlight: false,
-		autoFill: true,
-		minChars: 1,
-		scroll: true,
-		matchContains: true,
-		scrollHeight: 300,
-
-		formatMatch: function(row, i, max) {
-			return row.label;
-		},
-
-		formatItem: function(row, i, max) {
-
-			plugin_label = row.label;
-			plugin_name = row.name;
-			plugin_url = row.url;
-
-			if(!empty(plugin_name) && !empty(plugin_label))
-				return "<img src=\"/plugins/"+plugin_name+"/icon.png\" style=\"height:24px; vertical-align:middle;\" /> " + plugin_label;
-		},
-
-		formatResult: function(row) {
-			return row.label;
-		}
-	});
-
-	$("#top_search_input").result(function(event, row, formatted) {
-
-		plugin_label = row.label;
-		plugin_name = row.name;
-		plugin_url = row.url;
-		plugin_default_action = row.default_action;
-
-		if(!empty(plugin_url))
-		{
-			if(plugin_url.indexOf('http') == 0 ||  plugin_url.indexOf('ftp') == 0  ||  plugin_url.indexOf('mailto') == 0)
-                popupModal(plugin_url);
-			else
-                document.location.href = plugin_url;
-		}
-		else
-		{
-			system_goto('index.php?mod='+plugin_name+'&do='+plugin_default_action, 'content');
-		}
-
-		$("#top_search_input").val("").blur();
-
-	});
-
 </script>
 <!-- /top_search -->
 
-<script>initMainMenu();</script>
-<!-- menu -->
 
 {#endif}
 
@@ -284,10 +233,10 @@ $("#top_search_input").autocomplete(plugin_list_ac, {
 	<!-- navbar -->
 	<ul id="navbar" style="{popup_display}">
 		<bloc::navbar>
-		    <li>&raquo; <a href="index.php?mod={mod}&do={do}" onclick="system_goto('index.php?mod={mod}&do={do}','content'); return false;">{name}</a></li>
+		    <li><a href="index.php?mod={mod}&do={do}" onclick="system_goto('index.php?mod={mod}&do={do}','content'); return false;">{name}</a><span>/</span></li>
 		</bloc::navbar>
 	</ul>
-	<!-- navbar -->
+    <!-- /navbar -->
 
 	<!-- text -->
 	<div id="text">
@@ -309,7 +258,7 @@ $("#top_search_input").autocomplete(plugin_list_ac, {
 				</td>
 				<td class="col_configuration">
 					<bloc::admin_configuration_image>
-						<a href="javascript:popupModal('{config_url}&popup=1', 'Configuration', 1024, 768, '');" title="Configuration"><img src="img/configuration_24x24.png" alt="Configuration" align="absbottom" /></a>
+						<a href="javascript:popupModal('{config_url}&popup=1', 'Configuration', 1024, 768, '');" title="Configuration"><i class="icon-equalizer"></i></a>
 					</bloc::admin_configuration_image>
 				</td>
 			</tr>
@@ -329,19 +278,19 @@ $("#top_search_input").autocomplete(plugin_list_ac, {
 <div id="bottom" style="{popup_display}">
 
 	<bloc::trademark>
-	 Nuts&#8482; CMS v{CONST::NUTS_VERSION} {$nuts_lang_msg[42]}  <a href="http://www.nuts-cms.com" target="_blank">official website</a> <br />
+	 Nuts&#8482; v{CONST::NUTS_VERSION} {$nuts_lang_msg[42]}  <a href="http://www.nuts-cms.com" target="_blank">official website</a> - <a href="http://www.nuts-cms.com/rss.php" target="_blank">Rss <img src="img/rss.gif" alt="Nuts CMS - Rss" align="absmiddle" /></a>
 	</bloc::trademark>
-
-	{$nuts_lang_msg[43]}  <a href="http://www.google.com/chrome" target="_blank"><img src="img/get_chrome.png" align="absmiddle" /></a> <a href="http://getfirefox.com" target="_blank"><img src="img/get_firefox.png" align="absmiddle" /></a> - Rss <a href="http://www.nuts-cms.com/rss.php" target="_blank"><img src="img/rss.gif" alt="Nuts CMS - Rss" align="absmiddle" /></a>
-
-	<!-- top_return -->
-	<div id="top_return">
-		<a onclick="$(window).scrollTop(0);" href="javascript:;">top ^</a>
-	</div>
-	<!-- /top_return -->
 
 </div>
 <!-- bottom -->
+
+
+<!-- top_return -->
+<div id="top_return">
+    <a onclick="$(window).scrollTop(0);" href="javascript:;">^</a>
+</div>
+<!-- /top_return -->
+
 
 <!-- form window -->
 <div id="form_window" style="display:none"></div>
@@ -356,7 +305,13 @@ $("#top_search_input").autocomplete(plugin_list_ac, {
 
 
 <script type="text/javascript">
-initTime();
+if("{$_GET['popup']}" != 1)
+{
+    // initTime();
+    initMainMenu();
+    initTopSearch();
+}
+
 setPluginTitle();
 ajaxHistoricCheckChanges();
 
@@ -385,7 +340,6 @@ if("{$_GET['popup']}" == 1)
 else
 {
 	privateBoxRefresh();
-	$("#logout a.tt").tooltip({track: false,  delay: 0, showURL: false, showBody: " - ", opacity: 0.55});
 }
 </script>
 

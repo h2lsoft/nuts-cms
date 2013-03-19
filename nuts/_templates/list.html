@@ -1,6 +1,3 @@
-
-
-
 <div id="list_container">
 
 <!-- search -->
@@ -10,7 +7,7 @@
 <fieldset>
 
 	<legend>
-        <img src="img/icon-search.gif" align="absmiddle" /> <a accesskey="S" href="javascript:;" onclick="listSearchToggle()">{$nuts_lang_msg[11]}</a>
+        <i class="icon-search"></i><a accesskey="S" href="javascript:;" onclick="listSearchToggle()">{$nuts_lang_msg[11]}</a>
 
         <span>|</span>
 
@@ -38,7 +35,7 @@
 
             <label id="{name}_label" class="tt" title="{help}" for="{name}_checkbox">{label}</label>
 
-			<select name="{name}_operator" id="{name}_operator">
+			<select name="{name}_operator" id="{name}_operator" class="operator">
 				<option value="_equal_" {operator_equal}>=</option>
 				<option value="_not_equal_" {operator_not_equal}>!=</option>
 				<option value="_gt_" {operator_gt}>&gt;</option>
@@ -97,13 +94,11 @@
 
 		<!-- bottom -->
 		<p id="search_bottom">
-			<a href="javascript:;" onclick="$('#search_form').submit();"><img align="absmiddle" src="img/icon-search.gif" /> {$nuts_lang_msg[16]}</a>
-			<a href="javascript:listSearchSave('{$plugin->name}');"><img align="absmiddle" style="height: 11px;" src="img/icon-save.png" /> {$nuts_lang_msg[49]}</a>
-
-
-			<a href="javascript:;" onclick="$('#list_search_content').slideToggle('fast');">{$nuts_lang_msg[26]}</a>
-			<a href="javascript:listSearchReset('?mod={$plugin->name}&do={$plugin->action}', true);">{$nuts_lang_msg[17]}</a>
-		</p>
+			<a href="javascript:;" onclick="$('#search_form').submit();"><i class="icon-search"></i>{$nuts_lang_msg[16]}</a>
+			<a href="javascript:listSearchSave('{$plugin->name}');"><i class="icon-star"></i>{$nuts_lang_msg[49]}</a>
+			<a href="javascript:listSearchReset('?mod={$plugin->name}&do={$plugin->action}', true);"><i class="icon-checkbox-partial"></i>{$nuts_lang_msg[17]}</a>
+            <a href="javascript:;" onclick="$('#list_search_content').slideToggle('fast');"><i class="icon-cancel"></i>{$nuts_lang_msg[26]}</a>
+        </p>
 		<!-- bottom -->
 
 	</form>
@@ -240,7 +235,7 @@ if("{$_GET['popup']}" == 1)
 		<bloc::pager_record_select>
 		<div style="float:left; font-weight: normal">
 
-			<select id="pager_rec" style="font-size:10px; padding: 0;">
+			<select id="pager_rec">
 				<option value="10">10</option>
 				<option value="20">20</option>
 				<option value="50">50</option>
@@ -276,26 +271,16 @@ if("{$_GET['popup']}" == 1)
 		<!-- refresh & excel -->
 		<div style="float:right;">
 
-
-
-
 			<bloc::excel_export>
-			<a class="tt" href="{$_SERVER['PHP_SELF']}?{$_SERVER['QUERY_STRING']}&nuts_export=excel" title="{$nuts_lang_msg[51]}"><img src="img/icon-excel.png" /></a>
+			<a class="tt" href="{$_SERVER['PHP_SELF']}?{$_SERVER['QUERY_STRING']}&nuts_export=excel" title="{$nuts_lang_msg[51]}"><i class="icon-file-excel"></i></a>
 			</bloc::excel_export>
 
-
-            <a class="tt" href="javascript:window.print();" title="{$nuts_lang_msg[52]}"><img src="img/icon-print.png" /></a>
-
+            <a class="tt" href="javascript:window.print();" title="{$nuts_lang_msg[52]}"><i class="icon-printer"></i></a>
 
             <span style="position:relative; top:-4px;">&nbsp; | </span>
+			<a class="tt" accesskey="R"  href="javascript:system_refresh();" title="{$nuts_lang_msg[50]}"><i class="icon-loop"></i></a>
+            <a class="tooltip yellow-tooltip" href="javascript:;"><i class="icon-help-2"></i><dd>{$nuts_lang_msg[91]}</dd></a>
 
-			<a class="tt" accesskey="R"  href="javascript:system_refresh();" title="{$nuts_lang_msg[50]}"><img src="img/icon-refresh.png" /></a>
-
-            <a class="tooltip yellow-tooltip" href="javascript:;"><img src="img/icon-help.png" /><dd>{$nuts_lang_msg[91]}</dd></a>
-
-
-
-<!--			<a class="tt" href="javascript:;" onclick="if(!list_full_length){list_full_length=true;}else{list_full_length=false;} system_refresh();" title="{$nuts_lang_msg[53]}" title="{$nuts_lang_msg[53]}"><img src="img/icon-expand.png" /></a>-->
 
 		</div>
 		<!-- refresh & excel -->
@@ -303,7 +288,7 @@ if("{$_GET['popup']}" == 1)
 		<!-- pager -->
 		<bloc::pager>
 		< bloc::previous>
-		<a id="list_previous" accesskey="B" href="javascript:;" onclick="system_goto('{_Url}', 'list');" class="np"><img src="img/icon-previous.png" align="absmiddle" style="position:relative; top:-1px;" /> {$nuts_lang_msg[18]}</a>
+		<a id="list_previous" accesskey="B" href="javascript:;" onclick="system_goto('{_Url}', 'list');" class="np"> <i class="icon-arrow-left-3"></i> {$nuts_lang_msg[18]}</a>
 		< /bloc::previous>
 
 		{$nuts_lang_msg[5]} &nbsp;
@@ -334,7 +319,7 @@ if("{$_GET['popup']}" == 1)
 		 {_PageCount}
 
  		< bloc::next>
-		<a id="list_next" accesskey="N" href="javascript:;" onclick="system_goto('{_Url}', 'list');" class="np">{$nuts_lang_msg[19]} <img src="img/icon-next.png" align="absmiddle" style="position:relative; top:-1px;" /></a>
+		<a id="list_next" accesskey="N" href="javascript:;" onclick="system_goto('{_Url}', 'list');" class="np">{$nuts_lang_msg[19]} <i class="icon-arrow-right-3"></i></a>
 		< /bloc::next>
 		</bloc::pager>
 		<!-- /pager -->

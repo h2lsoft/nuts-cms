@@ -1,0 +1,161 @@
+/** visual_query_builder **/
+#visual_query_builder {}
+#visual_query_builder #sql_btns label {cursor: pointer;}
+#visual_query_builder #tables_wrapper {padding: 0;}
+#visual_query_builder #tables {float: left; width:280px;  padding: 5px;}
+#visual_query_builder #tables #table_search {
+    margin-bottom: 5px;
+}
+
+#visual_query_builder #tables #table_search_input {
+    /* background-image:url(/nuts/img/icon_top_search.png); */
+    background-image:url(search_gray.png);
+
+    background-position: 2px center;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    color: #ccc;
+    padding: 1px;
+    padding-left: 19px;
+    border: 1px solid #ccc;
+    /* border-radius:10px; */
+    width: 250px;
+}
+
+#visual_query_builder #tables #table_search_input:hover { border: 1px solid #999; }
+#visual_query_builder #tables #table_search_input:focus {border-color: #FEB513; background-color: #FFFFCB; color: #999; box-shadow: 0 1px 10px lightblue outset;}
+
+#visual_query_builder #tables ul {list-style: none; margin: 0; padding:8px 5px; padding-top: 0px; height: 750px; overflow: scroll; overflow-x: auto; background-color: white; border: 1px solid #ccc; }
+#visual_query_builder #tables ul li {margin-top: 5px; padding-left: 20px; background: url(/nuts/img/icon-table.png) no-repeat; padding-bottom: 0px; user-select: none; -webkit-user-select: none; -moz-user-select: none; }
+#visual_query_builder #tables ul li:hover {cursor: pointer; color: #9ACDEC;}
+#visual_query_builder #tables ul li.view {background: url(/nuts/img/icon-view.png) no-repeat; margin-top: 5px; padding-bottom: 1px;}
+
+#visual_query_builder #right_view {float: left; margin-left: 0px; width: 770px; height: 790px; overflow: hidden; }
+
+#visual_query_builder #right_view #sql_btns { margin-top: 5px; margin-bottom: 5px;}
+#visual_query_builder #right_view #sql_btns button {outline: 0; height: 20px;}
+#visual_query_builder #right_view #sql_btns select {height: 20px;}
+/*
+#visual_query_builder #right_view #sql_btns button:hover {background-image:url(button_bkg.png); text-shadow: none; color: black; border-color:#bbb; }
+*/
+#visual_query_builder #right_view #sql_btns button.selected {color:white; /*text-shadow: 1px 1px 1px #000;*/ background-image:none; background-color: #1570B8; border-color:#1570B8;  }
+
+
+
+#visual_query_builder #right_view textarea#SqlCode {
+
+    height: 435px;
+    width: 750px;
+    border-left:10px solid #ccc;
+    background-color: transparent;
+    font-family: courier;
+    font-size: 11px;
+    background-image: none;
+    resize: none;
+
+    position: absolute;
+    z-index: 20;
+    opacity: 0.3;
+    /*color: black;*/
+    /*background: transparent;*/
+}
+
+#visual_query_builder textarea#SqlCode::selection,
+#visual_query_builder textarea#SqlCode::-webkit-selection
+{
+    color: white;
+    background-color: black;
+}
+
+#visual_query_builder #right_view #SqlCodeHighlighter span.keyword {color: #5E5EFF; font-weight: bold;}
+#visual_query_builder #right_view #SqlCodeHighlighter span.quotes,
+#visual_query_builder #right_view #SqlCodeHighlighter span.quotes span.keyword
+{color: orange!important;}
+
+#visual_query_builder #right_view #SqlCodeHighlighter span.comments,
+#visual_query_builder #right_view #SqlCodeHighlighter span.comments span.keyword,
+#visual_query_builder #right_view #SqlCodeHighlighter span.comments span.quotes
+{background-color:#FFC97C; color: black!important; font-weight: normal!important;}
+
+
+#visual_query_builder #right_view #SqlCodeHighlighter
+{
+    border: 1px solid #CCC;
+    border-left:10px solid #ccc;
+    font-family: courier;
+    font-size: 11px;
+
+    position: absolute;
+    z-index: 19;
+    position: absolute;
+    background-color: white;
+
+    width: 750px;
+    height: 435px;
+    white-space: nowrap;
+    overflow: auto;
+    border-left-color: #74B9EF;
+
+    padding-left: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    white-space: pre;
+
+}
+
+#visual_query_builder #resizer {float: right; width: 8px; height: 762px; margin-top: 27px;  text-align: center; font-size: 14px; background: url(draggable.gif) center no-repeat; }
+#visual_query_builder #resizer:hover {background-color: #ccc; cursor: pointer;}
+#visual_query_builder #resizer[opened='0'] {background-color: #74B9EF;}
+#visual_query_builder #resizer[opened='0']:hover {background-color: #ccc;}
+
+#visual_query_builder #right_view #canvas {border: 1px solid #ccc; width: 97%; height: 290px; margin-bottom: 10px; padding: 10px; background-color: transparent; overflow: scroll; overflow-x: hidden; }
+#visual_query_builder #right_view #canvas_bkg {position: absolute; z-index: 55; top:0; left:0; display: none;}
+
+#visual_query_builder #canvas.select li:hover {cursor: url(/plugins/_visual-query-builder/element/select.cur),pointer!important;}
+#visual_query_builder #canvas.join li:hover {cursor: url(/plugins/_visual-query-builder/element/join.cur),pointer!important;}
+#visual_query_builder #canvas.where li:hover {cursor: url(/plugins/_visual-query-builder/element/where.cur),pointer!important;}
+#visual_query_builder #canvas.group li:hover {cursor: url(/plugins/_visual-query-builder/element/group.cur),pointer!important;}
+#visual_query_builder #canvas.having li:hover {cursor: url(/plugins/_visual-query-builder/element/having.cur),pointer!important;}
+#visual_query_builder #canvas.order li:hover {cursor: url(/plugins/_visual-query-builder/element/order.cur),pointer!important;}
+
+#visual_query_builder #canvas .table {width: 215px; margin: 0px; margin-bottom: 20px; height: 270px; border: 1px solid #ccc; float: left; -webkit-user-select: none; -moz-user-select: none;}
+#visual_query_builder #canvas .table:first-child {}
+#visual_query_builder #canvas .table_title {padding: 3px; background-color: #e5e5e5; cursor: move; }
+#visual_query_builder #canvas .table_title a.table_delete {float: right; display: block; width: 16px; height: 16px; background: url(/nuts/img/icon-delete.png) no-repeat; opacity: 0.1;}
+#visual_query_builder #canvas .table_fields {width:205px; padding:5px; height: 219px; background-color: white; overflow: scroll; overflow-x: hidden; -webkit-user-select: none; -moz-user-select: none; }
+#visual_query_builder #canvas .table_fields ul {padding: 0; margin: 0;}
+#visual_query_builder #canvas .table_fields ul li {background: url(/nuts/img/icon-field.png) no-repeat; padding-bottom: 3px; padding-left: 18px; user-select: none; -webkit-user-select: none; -moz-user-select: none; color: #999;}
+#visual_query_builder #canvas .table_fields ul li.in_select {font-weight: bold!important; color: black;}
+#visual_query_builder #canvas .table_fields ul li.in_join {text-decoration: underline; font-style: italic;}
+
+#visual_query_builder #canvas .table_fields ul li.pri {background: url(/nuts/img/icon-field_PK.png) no-repeat;}
+#visual_query_builder #canvas .table_fields ul li.mul {background: url(/nuts/img/icon-field_index.png) no-repeat;}
+#visual_query_builder #canvas .table_fields ul li.joker {background: none;}
+#visual_query_builder #canvas .table_fields ul li:hover {color:#74B9EF; cursor: pointer;}
+
+#visual_query_builder #canvas .table_alias {padding-left: 5px;}
+#visual_query_builder #canvas .table_alias .table_alias_input {background: #86CBDE; border-color: #e5e5e5; border:0; width:175px; margin-left: 3px; color: #e5e5e5;}
+#visual_query_builder #canvas .table_alias .table_alias_input:focus {background: white; color: black}
+
+#visual_query_builder #canvas .table {border-color: #74B9EF; }
+#visual_query_builder #canvas .table .table_title a.table_delete {opacity:1;}
+#visual_query_builder #canvas .table .table_title {background-color: #74B9EF; color:white;}
+#visual_query_builder #canvas .table .table_alias {background-color: #74B9EF; color:white;}
+
+
+#visual_query_builder #canvas .table:hover {/*box-shadow: 0px 0px 15px #999;*/ border-color: #4A8FCC;}
+#visual_query_builder #canvas .table:hover .table_title,
+#visual_query_builder #canvas .table:hover .table_alias,
+#visual_query_builder #canvas .table:hover .table_alias_input
+{background-color: #4A8FCC;}
+#visual_query_builder #canvas .table:hover .table_alias_input {color: #ccc;}
+
+
+#visual_query_builder .result_option {margin-bottom: 10px;}
+#visual_query_builder .result_option #Querylimit {text-align: center; width:40px; }
+#visual_query_builder #previewer {width: 97%; height:720px; background: white; border: 1px solid #ccc; padding: 10px; overflow: scroll;}
+
+#visual_query_builder_save {position: absolute; z-index: 5400; right: 10px; top: 10px;}
+#visual_query_builder_save input {padding-left: 18px; }
+
+#visual_query_builder #QueryPreviewButton {height: 22px;}

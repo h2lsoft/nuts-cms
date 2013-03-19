@@ -156,7 +156,7 @@ foreach($mods_group as $group)
 			}
 			else
 			{
-				$nuts->parse('parent.child.c_uri', $row['ExternalUrl']);
+				$nuts->parse('parent.child.c_uri', '');
 
 				$blank = (preg_match('#^(http|ftp|mailto)#i', $row['ExternalUrl'])) ? '_blank' : '';
 				$nuts->parse('parent.child.c_target', $blank);
@@ -169,11 +169,11 @@ foreach($mods_group as $group)
 			if($for == 'MAIN')
 			{
 				$break_before = '';
-				if($row['BreakBefore'] == 1)$break_before = '<li class="breaker"><hr /></li>';
+				if($row['BreakBefore'] == 1)$break_before = '<li class="breaker"></li>';
 				$nuts->parse('parent.child.break_before', $break_before);
 
 				$break_after = '';
-				if($row['BreakAfter'] == 1)$break_after = '<li class="breaker"><hr /></li>';
+				if($row['BreakAfter'] == 1)$break_after = '<li class="breaker"></li>';
 				$nuts->parse('parent.child.break_after', $break_after);
 
 			}
@@ -220,21 +220,22 @@ if($for == 'MAIN')
 
 	$help_menu = <<<EOF
 
-   <li onmouseout="this.style.backgroundColor='';" onmouseover="this.style.backgroundColor='#DC57B1';" style=""><a>?</a>
+   <!-- <li onmouseout="this.style.backgroundColor='';" onmouseover="this.style.backgroundColor='#DC57B1';" style=""><a>?</a> -->
+        <li class="parent" style=""><a>?</a>
 
 		<!-- child -->
-		<ul style="border-color: #DC57B1;" class="ulc">
+		<ul style="border-color: #DC57B1;">
 		<li>
-			<a target="_blank" href="https://github.com/h2lsoft/Nuts-CMS/issues"> <img width="16" height="16" src="/nuts/img/bug_48.png" align="bottom"> {$nuts_lang_msg[58]}</a>
+			<a target="_blank" href="https://github.com/h2lsoft/Nuts-CMS/issues"> <img src="/nuts/img/bug_48.png" align="bottom"> {$nuts_lang_msg[58]}</a>
 		</li>
 		<li>
-			<a target="_blank" href="https://github.com/h2lsoft/Nuts-CMS/issues"> <img width="16" height="16" src="/nuts/img/suggest_48.png"> {$nuts_lang_msg[59]}</a>
+			<a target="_blank" href="https://github.com/h2lsoft/Nuts-CMS/issues"> <img src="/nuts/img/suggest_48.png"> {$nuts_lang_msg[59]}</a>
 		</li>
 
-		<li class="breaker"><hr /></li>
+		<li class="breaker"></li>
 
 		<li>
-			<a target="_blank" href="$website_url"> <img width="16" height="16" src="/nuts/img/website_48.png"> {$nuts_lang_msg[60]}</a>
+			<a target="_blank" href="$website_url"> <img src="/nuts/img/website_48.png"> {$nuts_lang_msg[60]}</a>
 		</li>
 
 		</ul>

@@ -313,17 +313,23 @@ $arr = (array)glob(WEBSITE_PATH.'/plugins/*/info.yml');
 $files = array_merge($files, $arr);
 
 
+sort($files);
+
 $errors = 0;
 foreach($files as $file)
 {
-	$type = (is_dir($file)) ? 'folder' : 'file';
+    $type = (is_dir($file)) ? 'folder' : 'file';
 	$res = (is_writable($file)) ? 'accept' : 'error';
 
 	if(!is_writable($file))
 	{
+        $file = str_replace(WEBSITE_PATH.'/', '', $file);
 		$file = '<span style="color:red; font-weight:bold;">'.$file.'</span>';
 		$errors++;
 	}
+
+    $file = str_replace(WEBSITE_PATH.'/', '', $file);
+
 
 	$nuts->parse('files.type', $type);
 	$nuts->parse('files.res', $res);

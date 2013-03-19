@@ -51,9 +51,9 @@ $plugin->listSearchAddFieldSelectSql('Name', $lang_msg[2]);
 
 // create fields
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
-$plugin->listAddCol('Name', $lang_msg[2], '; width:30px; white-space:nowrap;', false); // with order by
+$plugin->listAddCol('Name', $lang_msg[2], '; white-space:nowrap;', false); // with order by
 $plugin->listAddCol('Fields', $lang_msg[21], 'center; width:30px; white-space:nowrap;', false);
-$plugin->listAddCol('Description', $lang_msg[3], '', false);
+// $plugin->listAddCol('Description', $lang_msg[3], '', false);
 
 $plugin->listAddCol('Export', ' ', 'center; width:30px; white-space:nowrap;', false);
 
@@ -65,12 +65,17 @@ $plugin->listRender(50, 'hookData');
 
 function hookData($row)
 {
-	global $lang_msg;
+	global $plugin,  $lang_msg;
 
 	$row['Fields'] = <<<EOF
 <a class="counter" href="javascript:popupModal('/nuts/?mod=_form-builder-fields&do=list&popup=1&NutsFormID={$row['ID']}&NutsFormID_operator=_equal_&user_se=1');"> <img src="img/widget.png" align="absmiddle" style="width:16px;" /> {$row['Fields']}</a>
 
 EOF;
+
+    if(!$plugin->listExportExcelMode)
+    {
+        $row['Name'] = "<b>{$row['Name']}</b><br>{$row['Description']}";
+    }
 
 	
 	// export

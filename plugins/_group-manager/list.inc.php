@@ -46,7 +46,7 @@ $plugin->listRender(20, 'hookData');
 function hookData($row)
 {
 	$uri = 'index.php?mod=_user-manager&do=list&ID_operator=_equal_&ID=&NutsGroupID_operator=_equal_&NutsGroupID='.$row['ID'];
-	$tmp = '<a class="counter" href="javascript:;" onclick="system_goto(\''.$uri.'\', \'content\');"><img src="img/icon-user.gif" align="absbottom" /> '.$row['Total'].'</a>';
+	$tmp = '<a class="counter" href="javascript:;" onclick="system_goto(\''.$uri.'\', \'content\');"><i class="icon-user-2"></i> '.$row['Total'].'</a>';
 	$row['Total'] = $tmp;
 
 	return $row;

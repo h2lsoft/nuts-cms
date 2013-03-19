@@ -76,7 +76,7 @@ $nuts_lang_msg[41] = "Main menu";
 
 // all
 $nuts_lang_msg[42] = "is an open source solution ";
-$nuts_lang_msg[43] = "Backoffice optimized for";
+$nuts_lang_msg[43] = "optimized for";
 
 
 $nuts_lang_msg[44] = "Lost Password ?";
@@ -173,6 +173,10 @@ Alt+S : Open / Close search box";
 
 
 $nuts_lang_msg[92] = "You have been disconnected because your ip is different";
+
+
+$nuts_lang_msg[93] = "My notes";
+$nuts_lang_msg[94] = "update my profile";
 
 
 

@@ -56,7 +56,7 @@ function hookData($row)
     if(!$plugin->listExportExcelMode)
     {
         if(empty($row['Avatar']))$row['Avatar'] = '/nuts/img/gravatar.jpg';
-        $row['Avatar'] = "<img src='{$row['Avatar']}' style='max-width:60px; max-height:60px;'>";
+        $row['Avatar'] = "<img src='{$row['Avatar']}' style='max-width:35px; max-height:35px;'>";
     }
 
 

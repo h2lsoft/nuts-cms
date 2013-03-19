@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Css Tests</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+</head>
+<body style="margin: 10px; margin-bottom: 50px;">
+
+    <h1 class="underline">Forms</h1>
+
+    <input type="button" value="test input" />
+    <input type="button" disabled value="test input disabled" />
+    <br />
+    <br />
+
+    <button>test button</button>
+    <button disabled>test button disabled</button>
+    <br />
+    <br />
+
+    <a href="" class="button">Test a.button</a>
+    <a href="" class="button" disabled>Test a.button disabled</a>
+    <br />
+    <br />
+
+    <input type="submit" value="test submit" />
+    <input type="submit" value="test submit disabled" disabled /><br />
+    <br />
+
+    <input type="text" value="" />
+    <input type="text" value="disabled" disabled />
+    <input type="text" value="readonly" readonly />
+    <br />
+    <br />
+
+    <input type="file" value="" /><br />
+    <input type="file" value="disabled" disabled /><br />
+    <input type="file" value="readonly" readonly />
+    <br />
+    <br />
+
+    <input type="password" value="" />
+    <input type="password" value="disabled" disabled />
+    <input type="password" value="readonly" readonly />
+    <br />
+    <br />
+
+    <input type="text" class="date" value="date" />
+    <input type="text" class="date" value="disabled" disabled />
+    <input type="text" class="date" value="readonly" readonly />
+    <br />
+    <br />
+
+    <input type="text" class="datetime" value="datetime" />
+    <input type="text" class="datetime" value="disabled" disabled />
+    <input type="text" class="datetime" value="readonly" readonly />
+    <br />
+    <br />
+
+    <input type="text" class="ajax_autocomplete" value="ajax_autocomplete" />
+    <input type="text" class="ajax_autocomplete" value="ajax_autocomplete disabled" disabled />
+    <input type="text" class="ajax_autocomplete" value="ajax_autocomplete readonly" readonly />
+    <br />
+    <br />
+
+    <input type="text" class="ac_input" value="ac_input" />
+    <input type="text" class="ac_input" value="ac_input disabled" disabled />
+    <input type="text" class="ac_input" value="ac_input readonly" readonly />
+    <br />
+    <br />
+
+    <input type="text" class="search" value="search" />
+    <input type="text" class="search" value="search disabled" disabled />
+    <input type="text" class="search" value="search readonly" readonly />
+    <br />
+    <br />
+
+    <input type="checkbox" />
+    <input type="checkbox" disabled />
+    <input type="checkbox" readonly />
+    <br />
+    <br />
+
+    <input type="radio" />
+    <input type="radio" disabled />
+    <input type="radio" readonly />
+    <br />
+    <br />
+
+
+    <textarea></textarea>
+    <textarea disabled></textarea>
+    <textarea  readonly></textarea>
+    <br />
+    <br />
+
+    <select><option>option 1</option><option>option 2</option><option>option 3</option></select>
+    <select disabled><option>option 1</option><option>option 2</option><option>option 3</option></select>
+    <select readonly><option>option 1</option><option>option 2</option><option>option 3</option></select>
+    <br />
+    <br />
+
+    <select multiple size="2"><option>option 1</option><option>option 2</option><option>option 3</option><option>option 1</option><option>option 2</option><option>option 3</option></select>
+    <select multiple size="2" disabled><option>option 1</option><option>option 2</option><option>option 3</option><option>option 1</option><option>option 2</option><option>option 3</option></select>
+    <select multiple size="2" readonly><option>option 1</option><option>option 2</option><option>option 3</option><option>option 1</option><option>option 2</option><option>option 3</option></select>
+    <br />
+    <br />
+
+    <fieldset><legend>My legend</legend></fieldset>
+    <br />
+    <br />
+
+    <h1 class="underline">.table</h1>
+
+    <table class="table">
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+        </tr>
+        <tr>
+            <td class="left">left</td>
+            <td class="center">center</td>
+            <td class="right">right</td>
+        </tr>
+        <tr>
+            <td class="left">left</td>
+            <td class="center">center</td>
+            <td class="right">right</td>
+        </tr>
+        <tr>
+            <td class="left">left</td>
+            <td class="center">center</td>
+            <td class="right">right</td>
+        </tr>
+    </table>
+
+    <h2>.simple</h2>
+    <table class="simple">
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+        </tr>
+        <tr>
+            <td class="left">left</td>
+            <td class="center">center</td>
+            <td class="right">right</td>
+        </tr>
+        <tr>
+            <td class="left">left</td>
+            <td class="center">center</td>
+            <td class="right">right</td>
+        </tr>
+        <tr>
+            <td class="left">left</td>
+            <td class="center">center</td>
+            <td class="right">right</td>
+        </tr>
+        <tr>
+            <th colspan="3" class="right">TOTAL: 2 0000 $</th>
+        </tr>
+    </table>
+
+
+    <h2>.datagrid</h2>
+    <table class="datagrid">
+        <caption>Test of datagrid component</caption>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th><a href="" class="datagrid_btn_add"></a></th>
+        </tr>
+        <tr>
+            <td class="left">left</td>
+            <td class="center">center</td>
+            <td class="right">right</td>
+            <td><a href="" class="datagrid_btn_delete"></a></td>
+        </tr>
+        <tr>
+            <td class="left">left</td>
+            <td class="center">center</td>
+            <td class="right">right</td>
+            <td class=""><a href="" class="datagrid_btn_delete"></a></td>
+        </tr>
+    </table>
+
+
+    <br />
+    <br />
+
+    <h1 class="underline">Texts</h1>
+
+    <pre>test code</pre>
+    <h1>Title 1</h1>
+    <h2>Title 2</h2>
+    <h3>Title 3</h3>
+    <span class="mini">Mini</span>
+    <span class="bold">.bold</span>
+    <span class="underline">.underline</span>
+    <span class="uppercase">.uppercase</span>
+
+    <span class="blue">.blue</span>
+    <span class="lightblue">.lightblue</span>
+
+
+
+
+
+
+</body>
+</html>

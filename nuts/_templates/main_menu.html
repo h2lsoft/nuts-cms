@@ -2,10 +2,12 @@
 
 	<!-- parent -->
 	<bloc::parent>
-	<li style="background-color:{color_sel};" onmouseover="this.style.backgroundColor='{color}';" onmouseout="this.style.backgroundColor='{color_sel}';"><a>{name}</a>
+	<!-- <li style="background-color:{color_sel};" onmouseover="this.style.backgroundColor='{color}';" onmouseout="this.style.backgroundColor='{color_sel}';"><a>{name}</a> -->
+
+    <li class="parent"><a>{name}</a>
 
 		<!-- child -->
-		<ul class="ulc" style="border-color:{color};">
+		<ul style="border-color:{color};">
 		<bloc::child>
         {break_before}
 		<li>

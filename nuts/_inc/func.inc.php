@@ -1311,11 +1311,18 @@ function getImageExtension($file)
 	$exts = explode('.', $file_name);
 	$ext = strtolower(end($exts));
 	$ext = trim($ext);
+    $ext2 = $ext;
 
-    if(strlen($ext) >= 4)$ext = substr($ext, 0 , 3);
+    if(strlen($ext) >= 4)$ext2 = substr($ext, 0 , 3);
 
 	$img = '<img src="/nuts/img/icon_extension/file.png" align="absmiddle" />';
 
+    if(file_exists(WEBSITE_PATH."/nuts/img/icon_extension/{$ext}.png"))
+        $img = "<img src=\"/nuts/img/icon_extension/{$ext}.png\" align=\"absmiddle\" />";
+    elseif(file_exists(WEBSITE_PATH."/nuts/img/icon_extension/{$ext2}.png"))
+        $img = "<img src=\"/nuts/img/icon_extension/{$ext2}.png\" align=\"absmiddle\" />";
+
+    /*
 	// doc
 	if(in_array($ext, array('doc', 'docx', 'odt')))
 	{
@@ -1340,7 +1347,7 @@ function getImageExtension($file)
 	elseif(in_array($ext, array('jpg', 'jpeg', 'gif', 'png', 'bmp', 'tiff', 'psd')))
 	{
 		$img = '<img src="/nuts/img/icon_extension/image.png" align="absmiddle" />';
-	}
+	}*/
 
 	return $img;
 }

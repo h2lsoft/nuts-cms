@@ -1,0 +1,26 @@
+#w_left_menu {width: 200px; float: left; position: fixed; top:0; left:0; border: 1px solid #ccc; }
+#w_left_menu .w_menu {padding: 10px; height: 22px; padding-top: 5px; font-size: 14px; background-color: #fff; }
+#w_left_menu .w_menu:hover  {cursor: pointer; background-color: #e5e5e5;}
+#w_left_menu .w_menu_selected {background-color: #1570B8!important; color: white;}
+#w_left_menu img {width: 24px; margin-right: 7px;}
+
+.widget_top_search {clear:left; float: left;  margin-left: 210px; margin-top: 5px; margin-bottom: 5px; display: none; position: fixed; background-color: white;}
+
+.w_tab {clear:left;  float: left; margin-left: 200px;  padding: 10px; display: none; padding-top:0px; width: 750px; margin-top: 35px;}
+.w_item {padding: 10px; border:1px solid #ccc; width: 100%; margin-bottom: 5px; background-color: white; color: #666;
+
+    min-height: 30px;
+
+}
+.w_item strong {font-size: 14px; font-weight: bold; color: #000;}
+.w_item .logo {width: 36px; margin-right: 2px; float: left; margin-right: 10px; clear: both; }
+.w_item:hover {cursor: pointer;
+
+    background-color: #1570B8;
+    border-color: #1570B8;
+    color: white;
+}
+
+.w_item .block_preview {max-width: 120px; max-height: 110px; border:1px solid #e5e5e5; vertical-align: middle; float: left; margin-right: 10px;}
+.w_item_block {height: 110px; color: #666;}
+.w_item_no_record {background-color: white; text-align: center; height: 260px; line-height: 260px;}

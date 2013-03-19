@@ -8,6 +8,10 @@ $("#list th a").each(
 	}
 );
 
+// add selected
+$("#list th.ordered").find("img[src$='actived.gif']").parents('th').addClass('selected');
+
+
 // table
 $('a.tt').tooltip({
     track: true,

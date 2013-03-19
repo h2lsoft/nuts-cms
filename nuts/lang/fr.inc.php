@@ -73,7 +73,7 @@ $nuts_lang_msg[41] = "Menu principal";
 
 // all
 $nuts_lang_msg[42] = "est une solution open source ";
-$nuts_lang_msg[43] = "Backoffice optimisé pour";
+$nuts_lang_msg[43] = "optimisé pour";
 
 $nuts_lang_msg[44] = "Mot de passe oublié ?";
 $nuts_lang_msg[45] = "Votre email";
@@ -163,6 +163,8 @@ Alt+A : Ajouter un enregistrement<br />
 Alt+S : Ouvrir/Fermer la recherche";
 
 $nuts_lang_msg[92] = "Vous avez été déconnecté car votre adresse IP est différente";
+$nuts_lang_msg[93] = "Mes notes";
+$nuts_lang_msg[94] = "Modifier mon profil";
 
 
 // main menu ***********************************************************************

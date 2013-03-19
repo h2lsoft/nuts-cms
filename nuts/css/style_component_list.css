@@ -1,0 +1,199 @@
+table#list {
+    width: 99%;
+    background-color:#ccc;
+}
+
+
+/** list add **********************************************************************************************************/
+div#list_container div#add {text-align:right; padding:10px; padding-bottom:0px; padding-left:0; margin-top:-35px;}
+
+div#list_container div#add input[type=button],
+div#list_container div#add button
+{
+    margin-left: 15px;
+}
+
+
+#list_add_button {
+    background-color: #3399FE;
+    border: 1px solid #3399FE;
+    color: white;
+}
+
+#list_add_button:hover {
+    background-color: #87cefa;
+}
+
+#list_add_button:active {
+    background-color: white;
+    color: #3399FE;
+}
+
+#norecord {font-weight:normal; text-align:center; height:155px; line-height:155px; border:1px solid #ccc; margin:10px 0;}
+
+
+/** list search *******************************************************************************************************/
+div#list_container fieldset {padding:0px; min-width:720px; margin-top:0;  margin-bottom:10px; z-index:2; position:absolute; background-color:#fff;}
+div#list_container fieldset legend {padding: 0px; margin-left:10px; padding-left:5px; padding-right:5px;}
+div#list_container fieldset legend a:hover {text-decoration:none; color: navy;}
+div#list_container fieldset legend a:active {color: #3399FE!important;}
+div#list_container fieldset legend span {padding: 0 3px; color: #666; font-weight: normal; font-size: 10px;}
+div#list_container fieldset legend i {font-size: 11px; color: #507FBC}
+div#list_container .list_searches_menu {position: absolute; z-index: 556; background-color: #e5e5e5; border: 1px solid #ccc;
+    padding: 0px;
+    background-color: white;
+    display: none;
+}
+div#list_container .list_searches_menu td.label {min-width: 120px; padding: 2px 8px;}
+div#list_container .list_searches_menu a { font-weight: normal!important; color: black;}
+div#list_container .list_searches_menu a:hover {color: #666;}
+div#list_container .list_searches_menu a:active {color: #3399FE;}
+div#list_container .list_searches_menu img:hover {opacity: 0.5; cursor: pointer;}
+
+div#list_container fieldset div#list_search_content {display:none; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);}
+div#list_container fieldset label {clear:left; width:120px; display:block; float:left; text-align:right; padding-right:10px; padding-top: 8px; cursor: pointer;}
+div#list_container fieldset label:hover {color:#999;}
+
+div#list_container fieldset input {width:220px; /* padding:1px;*/ }
+div#list_container fieldset div#list_search_content p input[type=checkbox] {position: relative; top:6px; }
+div#list_container fieldset div#list_search_content p input[type=text],
+div#list_container fieldset div#list_search_content p select
+    {display: none;}
+
+div#list_container fieldset p {margin:5px; padding:0; height: 18px;}
+div#list_container fieldset p#search_bottom {margin:1px; padding:0; text-align:right; padding:8px 0;  margin-top: 20px; }
+
+div#list_container fieldset p#search_bottom a {margin-right:15px; color:#507FBC; /*font-weight: bold;*/ }
+div#list_container fieldset p#search_bottom a:hover {text-decoration:none; color:#000;  }
+div#list_container fieldset p#search_bottom a:active {color:#3399FE; }
+
+
+div#list_container fieldset select {margin-left:0px;!important}
+div#list_container fieldset select.operator {width: auto; text-align: center;}
+
+/*
+div#list_container fieldset .date {background-image:url(calendar_gray.png); background-repeat:no-repeat; background-position:right;}
+div#list_container fieldset .datetime {background-image:url(calendar_gray.png); background-repeat:no-repeat; background-position:right;}
+div#list_container fieldset .ajax_autocomplete {width: 350px; background-image:url(search_gray.png); background-repeat:no-repeat; background-position:right;}
+*/
+
+
+/** list **************************************************************************************************************/
+table#list th.ordered:hover {background-color: white; color: black;}
+table#list th.ordered.selected  {background-color:#eeeeff;  color: #1570B8; }
+table#list th.ordered.selected img {vertical-align: bottom; }
+
+table#list th.ordered:active {color: white; background-color: #ccc;}
+table#list th.ordered:active img {vertical-align: bottom; }
+table#list th.ordered {-webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; cursor: pointer; color: black;}
+
+/*
+table#list tbody tr:nth-child(even) td {background-color: #eee;}
+table#list tbody tr:nth-child(odd) td {background-color: #fff;}
+*/
+
+table#list tbody td[noclick='1'] {/*background-color: #e5e5e5!important;*/ }
+table#list tbody tr:hover td {background-color: #FFFFCB;}
+table#list tbody tr.tr_selected> td {background-color: #DFE8F6;}
+table#list tbody .noprint img {opacity:0.3;}
+
+/*
+table#list pre {margin:0; padding: 3px; color:black; background-color: #e5e5e5; border-radius: 5px; }
+*/
+
+table#list tbody tr:hover> .noprint img {/*opacity:1;*/}
+table#list tbody .noprint img:hover {
+
+    /*-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 4px rgba(82, 168, 236, 0.6);
+    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 4px rgba(82, 168, 236, 0.6);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 4px rgba(82, 168, 236, 0.6);
+
+    -webkit-filter: grayscale(90%);
+    -moz-filter: grayscale(90%);*/
+
+    opacity:1;
+}
+
+
+table#list tbody .noprint img:active {
+    /*-webkit-filter: saturate(200%);
+    -moz-filter: saturate(200%);*/
+}
+
+
+table#list tbody .list_btn_delete img:hover {
+   /* -webkit-filter: hue-rotate(-180deg);
+    -moz-filter: hue-rotate(-180deg);*/
+
+    /*
+    -webkit-filter: invert(100%);
+    -moz-filter: invert(100%);*/
+
+
+
+
+
+}
+table#list tbody .listDnd img {opacity:1!important; vertical-align: middle;}
+table#list tbody .listDnd:hover {cursor: move; opacity:1;}
+
+
+table#list tfoot td input {text-align:center; width:35px;}
+
+
+table#list tfoot #list_previous, table#list tfoot #list_previous i, table#list tfoot #list_next, table#list tfoot #list_next i {color:#1570B8;}
+table#list tfoot #list_previous i, table#list tfoot #list_next i {position: relative;top: 2px;}
+table#list tfoot #list_previous:hover, table#list tfoot #list_next:hover {color:black; }
+table#list tfoot #list_previous:active, table#list tfoot #list_next:active {color:#507FBC; }
+table#list tfoot #list_previous:active i, table#list tfoot #list_next:active i {color:#507FBC; }
+
+
+table#list tfoot #list_previous, table#list tfoot #list_next {text-transform: uppercase}
+
+
+table#list tfoot td.total_count {font-size:14px; background:#fff; font-weight:normal; text-transform: uppercase; color:#333; text-align: right; padding-right:18px; padding-top: 15px; padding-bottom: 15px; height: auto;}
+table#list tfoot a.np { margin-left:10px; margin-right:10px; padding:5px; color:#666;}
+table#list tfoot a.np:hover {text-decoration:none; color:#507FBC;}
+
+table#list tfoot i {font-size: 16px; color: #666;}
+table#list tfoot i:hover {color: #000;}
+table#list tfoot i:active {color: #1570B8;}
+
+
+table#list .arrow_updown {
+    opacity:0.3;
+    -moz-opacity:0.3;
+    -webkit-opacity:0.3;
+
+    width: 20px;
+
+}
+table#list .arrow_updown:hover {
+    opacity:1;
+    -moz-opacity:1;
+    -webkit-opacity:1;
+}
+
+
+table#list .image_preview {padding: 3px; border: 1px solid #ccc;
+
+    transition: 1s;
+    -moz-transition: 1s;
+    -webkit-transition: 1s;
+}
+
+table#list .image_preview:hover {
+    border-color: black;
+}
+
+table#list a.counter {
+    padding: 5px 8px;
+    white-space:nowrap;
+    background-color: #E5E5E5;
+    text-decoration: none!important;
+    font-weight: bold!important;
+    color: black;
+}
+
+table#list a.counter:hover {background-color: #ccc; color: white;}
+table#list a.counter:active {background-color: #1570B8;}

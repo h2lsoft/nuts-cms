@@ -49,7 +49,7 @@ $lang_msg[30] = "Temps de conservation";
 
 $lang_msg[31] = "Titre de l'application";
 $lang_msg[32] = "Url du logo";
-$lang_msg[33] = "change le logo dimensions conseillées 290 x 65";
+$lang_msg[33] = "change le logo dimensions conseillées 215 x 35";
 
 $lang_msg[34] = "Login twitter";
 $lang_msg[35] = "affiche un lien dans `News Manager` pour ajouter un tweet (vide pour cacher)";

@@ -18,7 +18,7 @@
 
 
 	</head>
-	<body style="background-color:#888; background-image: none!important;">
+	<body>
 
 
 		<!-- w_left_menu -->
@@ -36,7 +36,7 @@
 		<!-- /w_left_menu -->
 
 
-		<input type="text" id="top_search_input" style="margin-left: 210px; margin-top: 3px; margin-bottom: 3px; display: none;" />
+		<input type="text" id="top_search_input" class="search widget_top_search" />
 
 
 		<!-- plugins -->
@@ -44,7 +44,7 @@
 
 			<bloc::plugins>
 			<div class="w_item" onclick="addToText($(this));" item="{item}">
-				<img class="logo" src="{img}" align="absmiddle" /> <strong>{name}</strong>
+				<img class="logo" src="{img}" align="absmiddle" /> {name}
 			</div>
 			</bloc::plugins>
 
@@ -56,7 +56,7 @@
 
 			<bloc::forms>
 			<div class="w_item" onclick="addToText($(this));" item="{item}">
-				<img class="logo" src="{img}" align="absmiddle" /> <strong>{name}</strong><br />
+				<img class="logo" src="{img}" align="absmiddle" /> {name}<br />
 				<span class="description">{desc}</span>
 			</div>
 			</bloc::forms>
@@ -69,7 +69,7 @@
 
 			<bloc::survey>
 			<div class="w_item" onclick="addToText($(this));" item="{item}">
-				<img class="logo" src="{img}" align="absmiddle" /> <strong>{name}</strong>
+				<img class="logo" src="{img}" align="absmiddle" /> {name}
 			</div>
 			</bloc::survey>
 		</div>
@@ -81,7 +81,7 @@
 
 			<bloc::blocks>
 			<div class="w_item w_item_block" onclick="addToText($(this));" item="{item}">
-				<img class="block_preview" src="{img}" /> <strong>{name}</strong><br />
+				<img class="block_preview" src="{img}" /> {name}<br />
 				<b>{$nuts_lang_msg[80]} : {group}</b><br />
 				<b>{$nuts_lang_msg[81]} : {sub_group}</b>
 			</div>
@@ -96,7 +96,7 @@
 			<bloc::patterns>
 			<div class="w_item" onclick="addToText($(this));" item="{item}">
 
-				<img class="logo" src="{img}" align="absmiddle" /> <strong>{name} ({type})</strong><br />
+				<img class="logo" src="{img}" align="absmiddle" /> {name} ({type})<br />
 				<span class="description">{desc}</span>
 
 			</div>
@@ -111,13 +111,11 @@
 			<bloc::regions>
 			<div class="w_item" onclick="addToText($(this));" item="{item}">
 
-				<img class="logo" src="{img}" align="absmiddle" /> <strong>{name}</strong><br />
+				<img class="logo" src="{img}" align="absmiddle" /> {name}<br />
 				<span class="description">{desc}</span>
 
 			</div>
 			</bloc::regions>
-
-
 		</div>
 		<!-- /regions -->
 
@@ -125,16 +123,11 @@
 		<div class="w_tab">
 
 			<bloc::zones>
-
 				<div class="w_item" onclick="addToText($(this));" item="{item}">
-
-					<img class="logo" src="{img}" align="absmiddle" /> <strong>{name}</strong><br />
+					<img class="logo" src="{img}" align="absmiddle" /> {name}<br />
 					<span class="description">{desc}</span>
-
 				</div>
-
 			</bloc::zones>
-
 
 		</div>
 		<!-- /zones -->

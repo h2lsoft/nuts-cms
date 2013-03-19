@@ -239,7 +239,7 @@ function formIt(title, url)
 			resizable: false,
 			position: ['center', topPos],
 			overlay: {
-				opacity: 0.6,
+				opacity: 0.2,
 				background: "black"
 			},
 
@@ -660,14 +660,134 @@ function popupModalV2(url, name, windowWidth, windowHeight, wtop, wleft, wstatus
 
 function initMainMenu()
 {
-	$('#menu ul li').click(function(){
-		$('#menu ul li ul').show('normal');
+    // main menu *******************************************************************************************************
+	$('#menu li.parent').click(function(){
+
+        // hide dd menu
+        $('.has-drop-down-menu').removeClass('selected');
+        $('.drop-down-menu').hide();
+
+        if($(this).hasClass('selected'))
+        {
+            $(this).removeClass('selected').css('background', 'none').css('border-color', '#ccc');
+            return;
+        }
+
+        $('#menu li.parent').removeClass('selected').css('background', 'none').css('border-color', '#ccc');
+        $(this).addClass('selected');
+        $(this).css('border-color', $('#nav_menu li.selected ul').css('border-color'));
+        $(this).css('background-color', $('#nav_menu li.selected ul').css('border-color'));
+
 	});
 
-	$('#menu ul li ul li').click(function(){
-		$('#menu ul li ul').hide('normal');
-	});
+    $('#menu ul ul li a').click(function(){
+
+        if($(this).attr('href').indexOf('http') != -1)
+        {
+            popupModal($(this).attr('href'));
+        }
+
+        $('#menu li.parent').removeClass('selected').css('background', 'none').css('border-color', '#ccc');
+        return false;
+    });
+
+
+    $('#content').mouseup(function(){
+        $('.has-drop-down-menu').removeClass('selected');
+        $('.drop-down-menu').hide();
+        $('#menu li.parent').removeClass('selected').css('background', 'none').css('border-color', '#ccc');
+    });
+
+    // drop-down-menu **************************************************************************************************
+
+    // resize badge menu
+    $('#user-badge-drop-down-menu').width($('#user_badge').width()-2);
+
+    // drop-down-menu
+    $('.has-drop-down-menu').mousedown(function(){
+
+        $('#menu li.parent').removeClass('selected').css('background', 'none').css('border-color', '#ccc');
+
+        dd_target = $(this).attr('data-drop-down-menu');
+        if(!$(this).hasClass('selected'))
+        {
+            $('.has-drop-down-menu').removeClass('selected');
+            $('.drop-down-menu').hide();
+
+            $(this).addClass('selected');
+            $('#'+dd_target).show();
+        }
+        else
+        {
+            $(this).removeClass('selected');
+            $('#'+dd_target).hide();
+        }
+    });
+
+    $('.drop-down-menu a').mouseup(function(){
+        $('.has-drop-down-menu').removeClass('selected');
+        $('.drop-down-menu').hide();
+    });
 }
+
+function initTopSearch()
+{
+    $("#top_search_input").autocomplete(plugin_list_ac, {
+        width: 310,
+        max: 10,
+        highlight: false,
+        autoFill: false,
+        minChars: 1,
+        scroll: true,
+        matchContains: true,
+        scrollHeight: 300,
+
+        formatMatch: function(row, i, max) {
+            return row.label;
+        },
+
+        formatItem: function(row, i, max) {
+
+            plugin_label = row.label;
+            plugin_name = row.name;
+            plugin_url = row.url;
+
+            if(!empty(plugin_name) && !empty(plugin_label))
+                return "<img src=\"/plugins/"+plugin_name+"/icon.png\" style=\"height:24px; vertical-align:middle;\" /> " + plugin_label;
+        },
+
+        formatResult: function(row) {
+
+            return row.label;
+        }
+    });
+
+    $("#top_search_input").result(function(event, row, formatted) {
+
+        plugin_label = row.label;
+        plugin_name = row.name;
+        plugin_url = row.url;
+        plugin_default_action = row.default_action;
+
+        if(!empty(plugin_url))
+        {
+            if(plugin_url.indexOf('http') == 0 ||  plugin_url.indexOf('ftp') == 0  ||  plugin_url.indexOf('mailto') == 0)
+                popupModal(plugin_url);
+            else
+                document.location.href = plugin_url;
+        }
+        else
+        {
+            system_goto('index.php?mod='+plugin_name+'&do='+plugin_default_action, 'content');
+        }
+
+        $("#top_search_input").val("").blur();
+
+    });
+}
+
+
+
 
 var dtimer_num = 0;
 
@@ -1131,14 +1251,15 @@ function getUserOnline(){
 	$.get(uri, {}, function (d) {
 
 		// refresh data
-		$('#user_online_count').text(d.length);
+        user_online = (d.length == 0) ?  1 : d.length;
+		$('#user_online_count').text(user_online);
 
 		str = '';
 		for(i=0; i < d.length; i++){
-			str += '<img src="'+d[i].avatar_url+'" /> '+d[i].Name+'<br /><span>'+d[i].Application+'</span><div style="clear:left;"></div>';
+			str += '<li><img src="'+d[i].avatar_url+'" /> '+d[i].Name+'<br /><span>'+d[i].Application+'</span></li>';
 		}
 
-		$('#user_online_list').html(str);
+		$('#user_online-drop-down-menu').html(str);
 
 	}, 'json');
 
@@ -1215,8 +1336,8 @@ function logoutForm(title)
 			resizable: false,
 			position: ['center', topPos],
 			overlay: {
-				opacity: 0.6,
-				background: "black"
+				opacity: 0.2,
+				background: "white"
 			}
 		});
 
@@ -1324,7 +1445,7 @@ function listSearchToggle(){
 
     $('#list_search_content').slideToggle('fast', function(){
         if($('#list_search_content').is(':visible') && !$('#list_search_content input[type=checkbox]:checked').length)
-
+410
             id = $('#list_search_content input[type=checkbox]').eq(0).attr('id')
             if(!empty(id))$('#'+id).focus();
     });

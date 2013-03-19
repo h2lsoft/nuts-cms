@@ -7,18 +7,7 @@
 	<meta name="robots" content="noindex, nofollow" />
 
 	<title>{CONST::APP_TITLE} - Login</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
 
-    <style type="text/css">
-    body
-    {
-        background: none;
-        background-image: none!important;
-        background-color: #e5e5e5;
-    }
-    </style>
-
-	<link rel="stylesheet" type="text/css" href="css/custom.css" />
 
 	<link rel="icon" href="favicon.ico" />
 
@@ -37,7 +26,8 @@
 	<!-- ui -->
 
 
-
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
 
 
 </head>
@@ -53,7 +43,7 @@
 
      <div id="login">
 
-        <div id="login_title">{$nuts_login_lang_msg[0]}</div>
+        <div id="login_title"><i class="icon-locked"></i> {$nuts_login_lang_msg[0]}</div>
 
          <p class="error"><img src="img/icon-error.gif" align="absmiddle" /> {$nuts_login_lang_msg[3]}<br />&nbsp;</p>
 
@@ -174,7 +164,7 @@
 <div id="bottom">
 
 	<bloc::trademark>
-	Nuts&#8482; CMS {$nuts_lang_msg[42]} <a href="http://www.nuts-cms.com" target="_blank">official website</a>
+	Nuts&#8482; {$nuts_lang_msg[42]} <a href="http://www.nuts-cms.com" target="_blank">official website</a>
 	</bloc::trademark>
 
 </div>
@@ -209,10 +199,16 @@ function lostPasswordInit()
 				autoOpen: false,
 				position: ['center', 'center'],
 				overlay: {
-					opacity: 0.3,
+					opacity: 0.2,
 					background: "black"
-				}
+				},
+
+                open: function( event, ui ) {
+                    setTimeout(function(){$('.ui-dialog-container #form_window_lp #Email').focus()}, 100);
+                }
+
 			});
+
 }
 
 function lostPassword()
@@ -227,6 +223,7 @@ function lostPassword()
 	$('#btn_submit_lp').removeAttr("disabled");
 
 	$("#form_window_lp").dialog("open");
+
 
 
 }

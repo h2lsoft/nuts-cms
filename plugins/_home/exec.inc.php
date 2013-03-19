@@ -1,5 +1,5 @@
 <?php
-
+/*
 $for = 'HOME';
 $allow_notify = (isset($_GET['category'])) ? false : true;
 $img_error = '<img src="img/icon-error.gif" align="absbottom" />';
@@ -85,11 +85,13 @@ EOF;
 // security warning
 if($allow_notify && is_dir(WEBSITE_PATH.'/install'))
 {
-    $menu .= "<script>notify('error', '<b>Security: please delete folder `/install`</b>')</script>";
+    $menu .= "<script>notify('error', 'Security: please delete folder `/install`')</script>";
 }
 
 
 $plugin->render = $menu;
+*/
 
+$plugin->render = "";
 
 ?>

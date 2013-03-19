@@ -48,13 +48,13 @@ $plugin->listSearchAddFieldText('NutsPageID', 'Page ID');
 
 
 // create fields
-$plugin->listAddCol('View', '', 'center; width:30px', false);
+$plugin->listAddCol('View', ' ', 'center; width:30px', false);
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
 $plugin->listAddCol('Date', '', 'center; width:30px; white-space:nowrap;', false);
 $plugin->listAddCol('Author', '', 'center; width:30px; white-space:nowrap;', false);
 $plugin->listAddCol('H1', '', '', false);
 $plugin->listAddCol('Note', '', 'font-size:10px;', false);
-$plugin->listAddCol('Option', '', 'center; width:30px', false);
+$plugin->listAddCol('Option', ' ', 'center; width:30px; white-space:nowrap;', false);
 
 
 $plugin->listSetFirstOrderBySort('desc');
@@ -81,7 +81,7 @@ EOF;
 
 	// no option for max page
 	$row['Option'] = <<<EOF
-	<a href="javascript:system_goto('?mod=_page-versionning&do=list&_action=set&ID={$row['ID']}&NutsPageID={$_GET['NutsPageID']}&NutsPageID_operator=_equal_&user_se=1&popup=1', 'content');">Replace</a>
+	<a href="javascript:system_goto('?mod=_page-versionning&do=list&_action=set&ID={$row['ID']}&NutsPageID={$_GET['NutsPageID']}&NutsPageID_operator=_equal_&user_se=1&popup=1', 'content');"><i class="icon-redo"></i>Replace</a>
 EOF;
 
 	if($maxPage == $row['ID'])$row['Option'] = '';

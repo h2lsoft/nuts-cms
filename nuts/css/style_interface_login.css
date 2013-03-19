@@ -1,0 +1,74 @@
+/** login */
+#login {
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:200px;
+    width:470px;
+    min-height: 220px;
+
+    border:1px solid #1570B8;
+    background-color:#fff;
+    padding:0px;
+
+    /*border-radius: 5px;*/
+    /*-moz-border-radius: 5px;*/
+    /*-webkit-border-radius: 5px;*/
+
+    /*box-shadow: 3px 5px 3px #ccc;*/
+
+    box-shadow: 0px 0px 30px #ccc;
+}
+
+#login #login_title {
+    font-size:20px;
+    color: #1570B8;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#login #btn_submit {
+    font-size: 14px;
+    letter-spacing: 1px;
+    border-radius: 0!important;
+}
+
+#login #btn_submit:hover {
+    background-color: 	#007dcf;
+}
+
+#login label {width:135px; display:block; float:left; text-align:right; padding-right:15px; }
+#login p {margin:3px; padding:0;}
+
+#login .login_p {padding-bottom: 3px!important; font-size: 13px; color:#666; }
+#login .login_p label {font-weight: normal; padding-top: 1px;}
+#login .login_p input {font-size: 13px; height: 20px; color:#000;}
+
+#login input[type=checkbox] {cursor: pointer; /*position: relative; top:3px;*/}
+#login #label_Remember {padding: 0; margin: 0; cursor: pointer; float: none; display: inline; font-weight: normal; text-align: left;}
+#login #label_Remember:hover {color: #999;}
+
+#login input[type=text], #login input[type=password] {width:230px;}
+#login p.error {display:none;color:red; padding:0px; margin-bottom:0px; margin:0; text-align:center;}
+#login p.bottom {text-align:right; padding-right:50px; padding-top:20px; padding-bottom:10px;}
+
+#login .ip_blocked {
+    display: block!important;
+    padding-top: 20px!important;
+    padding-bottom: 80px!important;
+    font-size: 14px;
+}
+
+#login .bottom a {margin-right: 10px; }
+#login .bottom a:hover {color: #3399ff;}
+#login .bottom a:active {color: #000;}
+
+#login_reflection {background-image: url(../img/login_reflection.png); background-position: top center; background-repeat: no-repeat; height: 70px; width: 429px; text-align: center; margin-left:auto; margin-right:auto;}
+#ip_current {color: #aaa; text-align: left; margin-left: auto; margin-right: auto; font-size: 10px; padding: 5px; padding-left: 15px; padding-top: 0;}
+
+#lp_error, #lp_error_mail {width:485px; display:none;  color:red; padding:10px; background-color:#FFE1FF; margin-bottom:15px; margin-top:5px;}
+#lp_ok {width:485px; display:none;  color:#009900; padding:10px; background-color:#DAF4D9; margin-bottom:15px;}
+#former_lp label {width: 150px; padding-left: 40px; padding-right: 20px; text-align: right;}
+#former_lp p {}

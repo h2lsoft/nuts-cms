@@ -1,0 +1,76 @@
+/** notify_it **/
+#notify_it, .notify_it  {
+
+    position: absolute;
+    z-index: 9999;
+    background: #fff;
+
+    color: black;
+
+    min-width: 450px;
+    height: 60px;
+    line-height: 60px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    font-size: 13px;
+
+    top: 20px;
+    right: 20px;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    display: none;
+    cursor: pointer;
+
+    border-radius: 0;
+    text-align: left;
+    height: 30px;
+    line-height: 30px;
+    min-width: 250px;
+}
+
+#notify_it b , .notify_it b {font-weight: normal; }
+
+.notify_itOK {
+    background-color: #DAF4D9;
+    color: #009900;
+    /*border:1px solid #009900;*/
+}
+.notify_itKO {
+
+    background-color: #FFE1FF;
+    color: #FF0000;
+    /*border:1px solid #FF0000;*/
+
+}
+
+/** notification counter **/
+/*
+.plugin_notification_counter {
+    position: absolute;
+    z-index: 5;
+    background-color: red;
+    text-align: center;
+    box-shadow: 0px 0px 5px #bbb!important;
+
+    padding: 3px;
+    width: 12px;
+    height: 11px;
+    line-height: 11px;
+
+    color: white!important;
+    font-weight: bold;
+
+    border-radius: 10px;
+    border:1px solid #C93F9E;
+
+    margin-top: 10px;
+    margin-left: 70px;
+    white-space: nowrap;
+
+}
+*/

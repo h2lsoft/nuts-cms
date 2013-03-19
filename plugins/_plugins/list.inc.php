@@ -133,8 +133,8 @@ function hookData($row)
 
     if(!$plugin->listExportExcelMode)
     {
-        if($row['BreakBefore'] == 1)$row['Name'] = "<hr noshade style='height:1px; background-color:#aaa; border:0;' />".$row['Name'];
-        if($row['BreakAfter'] == 1)$row['Name'] .= "<hr noshade style='height:1px; background-color:#aaa; border:0;' />";
+        // if($row['BreakBefore'] == 1)$row['Name'] = "<hr noshade style='height:1px; background-color:#aaa; border:0;' />".$row['Name'];
+        // if($row['BreakAfter'] == 1)$row['Name'] .= "<hr noshade style='height:1px; background-color:#aaa; border:0;' />";
     }
 
 
