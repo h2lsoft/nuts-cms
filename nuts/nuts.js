@@ -1526,45 +1526,45 @@ function listSearchSave(plugin_name){
         return;
     }
 
-
     msg = 'Please, enter the name of your search';
     if(nutsUserLang == 'fr')
         msg = 'Entrer le nom de votre recherche';
 
     name = prompt(msg);
+    if(name == 'null')return;
+    if(empty(name))return;
+
+
     name = trim(name);
-    if(name != '')
-    {
-        uri = 'index.php?_action=list_search_users&_action2=add&plugin='+plugin_name+'&name='+name;
+    uri = 'index.php?_action=list_search_users&_action2=add&plugin='+plugin_name+'&name='+name;
+    serialized = '';
+    $('#search_form input[type=checkbox]:checked').each(function(){
 
-        serialized = '';
-        $('#search_form input[type=checkbox]:checked').each(function(){
+        id = str_replace('_checkbox', '', $(this).attr('id'));
 
-            id = str_replace('_checkbox', '', $(this).attr('id'));
+        if(!empty(serialized))serialized += '\n';
+        serialized += id+';'+$('#search_form #'+id+'_operator').val()+';';
 
-            if(!empty(serialized))serialized += '\n';
-            serialized += id+';'+$('#search_form #'+id+'_operator').val()+';';
+        // select or input
+        if($('#search_form #se_'+id).is(':visible'))
+            serialized += $('#search_form #se_'+id).val();
+        else
+            serialized += $('#search_form #'+id).val();
 
-            // select or input
-            if($('#search_form #se_'+id).is(':visible'))
-                serialized += $('#search_form #se_'+id).val();
-            else
-                serialized += $('#search_form #'+id).val();
+    });
 
-        });
+    $.post(uri, {serialized:serialized}, function(data){
 
-        $.post(uri, {serialized:serialized}, function(data){
-
-            if(data['error'])
-            {
-                alert('Error: '+data['error_msg']);
-                return;
-            }
+        if(data['error'])
+        {
+            alert('Error: '+data['error_msg']);
+            return;
+        }
 
 
-        }, 'json');
+    }, 'json');
 
-    }
+
 
 
 }
