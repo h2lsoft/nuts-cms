@@ -11,9 +11,10 @@ if(!isset($_GET['parentID']))$_GET['parentID'] = '';
         <title>Code Editor</title>
 			 
         <script type="text/javascript" src="/library/js/jquery.js"></script>
-        <script language="text/javascript" src="/library/js/php.js"></script>			
+        <script language="text/javascript" src="/library/js/php.js"></script>
 
-	    <link rel="stylesheet" href="lib/codemirror.css">
+        <link rel="stylesheet" href="/nuts/css/style.css" />
+	    <link rel="stylesheet" href="lib/codemirror.css" />
 		<script src="lib/codemirror.js" type="text/javascript"></script>
        
 		

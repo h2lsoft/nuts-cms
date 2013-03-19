@@ -74,7 +74,7 @@ function updateFormContentHeight(err)
 loadRichEditor(currentTheme);
 updateFormContentHeight(false);
 helperInit('#form_content');
-$('textarea.resizable:not(.processed)').TextAreaResizer();
+// $('textarea.resizable:not(.processed)').TextAreaResizer();
 
 
 

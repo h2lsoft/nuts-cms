@@ -61,7 +61,7 @@ input[type=submit]:disabled {background-color: white; color: #353535; border-col
 
 
 /** textarea **/
-textarea {width:700px;  height:120px; padding-top: 2px; padding-bottom: 2px;}
+textarea {width:700px;  height:120px; padding-top: 2px; padding-bottom: 2px; -webkit-resize:vertical; -moz-resize:vertical; resize:vertical;}
 
 
 /** file **/
