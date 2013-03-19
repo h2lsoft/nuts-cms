@@ -523,7 +523,6 @@ class TPLN extends DB
 		$backtrace1 = array_reverse($backtrace1);
 		if(count($backtrace1) > 0)
 		{
-
 			$this->error_msg .= "<b>Stack</b>\n";
 			$this->error_msg .= "<pre style='border:1px solid #ccc; padding:5px;'>";
 
@@ -574,19 +573,20 @@ class TPLN extends DB
 			else
 				$url .= '?'.$_SERVER['QUERY_STRING'].'&tpln_w=adm';
 
-            $subject = (!isset($GLOBALS['nuts'])) ? '[NUTS] Alert Error' : '[TPLN] Alert Error';
+            $subject = (defined('WEBSITE_PATH')) ? '[NUTS] Alert Error' : '[TPLN] Alert Error';
 
             $err_msg = $this->error_msg;
 			$err_msg = str_replace('&lt;', '<', $err_msg);
 			$err_msg = str_replace('&gt;', '>', $err_msg);
 
-			$body = date('[Y-m-d H:i] ')." TPLN has detected an error\n\n";
-			$body .= $err_msg.' in '.$_SERVER['SCRIPT_FILENAME']."\n";
+			$body = date('[Y-m-d H:i] ')." System has detected an error\n\n";
+			// $body .= $err_msg.' in '.$_SERVER['SCRIPT_FILENAME']."\n";
+            $body .= $err_msg."\n";
 
 			// $body .= "===========================================\n";
 
             // add session stack if exists
-            if(isset($_SESSION))
+            if(isset($_SESSION) && count($_SESSION) > 0)
             {
                 $body .= "\n<b>Session :</b>";
                 $body .= "<pre style='border:1px solid #ccc; padding:5px;'>".@print_r($_SESSION, true).'</pre>'."\n";
@@ -609,18 +609,15 @@ class TPLN extends DB
             $body .= "<b>System :</b> ".@$browser['platform']."\n";
             $body .= "<b>Agent :</b> ".@$_SERVER['HTTP_USER_AGENT']."\n";
 
-            if(isset($GLOBALS['nuts']))
-                $body .= '<b>Powered by Nuts Component TPLN version '.TPLN_VERSION."</b>\n";
+            if(defined('WEBSITE_PATH'))
+                $body .= '<b>Powered by Nuts Component TPLN v.'.TPLN_VERSION."</b>\n";
             else
-                $body .= '<b>Powered by TPLN version '.TPLN_VERSION."</b>\n";
-
-
-
+                $body .= '<b>Powered by TPLN v.'.TPLN_VERSION."</b>\n";
 
             $body = str_replace("\n", "<br />", $body);
 
             // add trace mode for Nuts
-            if(isset($GLOBALS['nuts']) && $GLOBALS['nuts']->dbIsConnected())
+            if(defined('WEBSITE_PATH') && $GLOBALS['nuts']->dbIsConnected())
             {
                 xTrace('system-www', strip_tags($body));
             }

@@ -2024,9 +2024,6 @@ class Db extends Form
 			$this->error_msg .= "</pre>";
 		}
 
-
-
-
 		$this->outPutMessage($exit);
 	}
 
