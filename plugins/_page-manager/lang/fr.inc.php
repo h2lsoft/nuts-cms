@@ -45,7 +45,7 @@ $lang_msg[41] = "Description";
 
 $lang_msg[42] = "Media";
 $lang_msg[43] = "Tétière";
-$lang_msg[44] = "Image qui sera affichée (si le template sélectionnée accepte)";
+$lang_msg[44] = "Image qui sera affichée (si le template sélectionné accepte)";
 $lang_msg[45] = "Variables";
 $lang_msg[46] = "H1";
 $lang_msg[47] = "Résumé";
