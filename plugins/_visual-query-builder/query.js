@@ -282,6 +282,8 @@ function updateSqlCode()
     c = str_replace(' WEEK', ' '+bloc_start+'WEEK'+bloc_end, c);
     c = str_replace(' MONTH', ' '+bloc_start+'MONTH'+bloc_end, c);
     c = str_replace(' YEAR', ' '+bloc_start+'YEAR'+bloc_end, c);
+    c = str_replace('GROUP ', bloc_start+'GROUP'+bloc_end+' ', c);
+    c = str_replace(' BY', bloc_start+'BY'+bloc_end+' ', c);
 
 
     // imbricated query
