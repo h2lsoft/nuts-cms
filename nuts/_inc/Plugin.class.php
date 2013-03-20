@@ -1333,7 +1333,7 @@ EOF;
 		if($this->listCopyButton && ($this->listAddButton && $this->rightAllowed("add")) && ($this->listEditButton && $this->rightAllowed("edit")))
 		{
 			$img = '<img src="img/list_duplicate.png">';
-			$this->cols[] = '<a class="tt list_btn_duplicate" href="javascript:;" onclick="formIt(\''.$nuts_lang_msg[20].'\', \'?mod='.$this->name.'&do=add&cID={ID}\');" title="'.$nuts_lang_msg[74].'">'.$img.'</a>';
+			$this->cols[] = '<a style="display:{list_btn_copy_display};" class="tt list_btn_duplicate" href="javascript:;" onclick="formIt(\''.$nuts_lang_msg[20].'\', \'?mod='.$this->name.'&do=add&cID={ID}\');" title="'.$nuts_lang_msg[74].'">'.$img.'</a>';
 			$this->colsLabel[] = '';
 			$this->colsStyle[] = 'center; width:10px';
 			$this->colsOrderBy[] = false;
@@ -1347,7 +1347,7 @@ EOF;
 		if($this->listEditButton && $this->rightAllowed("edit"))
 		{
 			$img = '<img src="img/list_edit.png">';
-			$this->cols[] = '<a class="tt list_btn_edit" href="javascript:;" onclick="formIt(\''.$nuts_lang_msg[27].' - #{ID}\', \'?mod='.$this->name.'&do=edit&ID={ID}\');" title="'.$nuts_lang_msg[9].'">'.$img.'</a>';
+			$this->cols[] = '<a style="display:{list_btn_edit_display};" class="tt list_btn_edit" href="javascript:;" onclick="formIt(\''.$nuts_lang_msg[27].' - #{ID}\', \'?mod='.$this->name.'&do=edit&ID={ID}\');" title="'.$nuts_lang_msg[9].'">'.$img.'</a>';
 			$this->colsLabel[] = '';
 			$this->colsStyle[] = 'center; width:10px';
 			$this->colsOrderBy[] = false;
@@ -1360,7 +1360,7 @@ EOF;
 		if($this->listDeleteButton && $this->rightAllowed("delete"))
 		{
 			$img = '<img src="img/list_delete.png">';
-			$this->cols[] = '<a class="tt list_btn_delete" href="javascript:;" onclick="formIt(\''.$nuts_lang_msg[29].' - #{ID}\', \'?mod='.$this->name.'&do=delete&ID={ID}\');" title="'.$nuts_lang_msg[10].'">'.$img.'</a>';
+			$this->cols[] = '<a style="display:{list_btn_delete_display};" class="tt list_btn_delete" href="javascript:;" onclick="formIt(\''.$nuts_lang_msg[29].' - #{ID}\', \'?mod='.$this->name.'&do=delete&ID={ID}\');" title="'.$nuts_lang_msg[10].'">'.$img.'</a>';
 			$this->colsLabel[] = '';
 			$this->colsStyle[] = 'center; width:10px';
 			$this->colsOrderBy[] = false;
