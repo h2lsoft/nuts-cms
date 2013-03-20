@@ -1449,10 +1449,14 @@ function listSearchToggle(){
     $('#list_container .list_searches_menu').hide();
 
     $('#list_search_content').slideToggle('fast', function(){
-        if($('#list_search_content').is(':visible') && !$('#list_search_content input[type=checkbox]:checked').length)
-410
-            id = $('#list_search_content input[type=checkbox]').eq(0).attr('id')
-            if(!empty(id))$('#'+id).focus();
+
+        if($('#list_search_content').is(':visible') && $('#list_search_content input[type=checkbox]:checked').length > 0)
+        {
+            id = $('#list_search_content input[type=checkbox]').eq(0).attr('id');
+            if(typeof id === 'undefined' || empty(id)) return;
+            $('#'+id).focus();
+        }
+
     });
 
 }
