@@ -1342,7 +1342,6 @@ EOF;
 		}
 
 
-
 		// edit
 		if($this->listEditButton && $this->rightAllowed("edit"))
 		{
@@ -1684,7 +1683,6 @@ EOF;
 				$this->nuts->loop('data.total_count_row');
 			}
 		}
-
 
 		$count = -1;
         $this->listSQL     = $sql;
