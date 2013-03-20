@@ -1,11 +1,26 @@
-<input id="saver" type="button" accesskey="S" value="{$nuts_lang_msg[49]} (Alt + S)" style="position: absolute; z-index: 55; right: 0; top:5px; margin-right: 10px;" />
+<!-- <input id="saver" type="button" accesskey="S" value="{$nuts_lang_msg[49]} (Alt + S)" style="position: absolute; z-index: 55; right: 0; top:5px; margin-right: 10px;" /> -->
+
+<div style="text-align: center;">
+
+    <a href="javascript:;" id="adder" title="{$lang_msg[4]}"><i class="icon-plus-2"></i></a>
+
+    <select id="nuts_my_notes_items" style="min-width: 250px;">
+    </select>
+
+    <a href="javascript:;" id="renamer" title="{$lang_msg[6]}"><i class="icon-pencil"></i></a>
+    <a href="javascript:;" id="deleter" title="{$lang_msg[5]}"><i class="icon-minus-2"></i></a>
+    <a href="javascript:;" id="saver" title="{$nuts_lang_msg[49]} (Ctrl + S)" accesskey="S"><i class="icon-save"></i></a>
+
+</div>
 
 <textarea wrap="off" id="nuts_my_notes">{notes}</textarea>
 
 <script type="text/javascript">
-
-$('body, #content').css('margin', 0);
-$('body, #content').css('padding', 0);
+$('body, #content').css('margin', 0)
+                   .css('background-color', '#e5e5e5')
+                   .css('margin', 0)
+                   .css('margin-top', '5px')
+                   .css('padding', 0);
 
 $('#nuts_my_notes').width($(window).width()-68);
 $('#nuts_my_notes').height($(window).height()-89);
@@ -20,6 +35,30 @@ window.onresize = function (){
 	$('#nuts_my_notes').height($(window).height()-89);
 }
 
+
+function imReload(item_selection)
+{
+    uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=reload';
+    $('#nuts_my_notes_items').load(uri, function(){
+        if(item_selection)$('#nuts_my_notes_items').val(item_selection);
+        $('#nuts_my_notes_items').change();
+    });
+}
+
+
+$('#nuts_my_notes_items').change(function(){
+
+    $('#ajax_loader').css('top', '60px').css('left', '20px').show();
+
+    curID = $('#nuts_my_notes_items').val();
+    uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=get&ID='+curID;
+    $('#nuts_my_notes').load(uri, function(){
+        $('#ajax_loader').hide();
+    });
+
+});
+
+
 $('#saver').click(function(){
 
     v = $('#nuts_my_notes').val();
@@ -28,7 +67,8 @@ $('#saver').click(function(){
     $('#nuts_my_notes').css('opacity', 0.5);
     $('#ajax_loader').css('top', '60px').css('left', '20px').show();
 
-    $.post('index.php?mod=_internal-memo&do=edit', {text:v}, function(resp){
+    uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=save';
+    $.post(uri, {text:v, ID:$('#nuts_my_notes_items').val()}, function(resp){
 
         // window.close();
         $('#ajax_loader').hide();
@@ -36,5 +76,74 @@ $('#saver').click(function(){
 
     });
 
+
 });
+
+
+
+$('#deleter').click(function(){
+
+    // if only one error
+    if($('#nuts_my_notes_items option').length == 1)
+    {
+        alert("{$lang_msg[2]}");
+        return;
+    }
+
+    if((c=confirm("{$lang_msg[3]}")))
+    {
+        $('#ajax_loader').css('top', '60px').css('left', '20px').show();
+        curID = $('#nuts_my_notes_items').val();
+        uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=delete&ID='+curID;
+        $('#nuts_my_notes').load(uri, function(){
+            imReload(0);
+        });
+    }
+
+
+});
+
+$('#adder').click(function(){
+    msg = "{$lang_msg[1]}";
+    c = prompt(msg);
+
+    if(c)
+    {
+        uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=add&title='+urlencode(c);
+        $.get(uri, function(resp){
+            imReload(resp);
+        });
+    }
+
+});
+
+$('#renamer').click(function(){
+
+    title = $('#nuts_my_notes_items option:selected').text();
+    msg = "{$lang_msg[7]}";
+
+    new_title = prompt(msg, title)
+
+    if(new_title)
+    {
+        curID = $('#nuts_my_notes_items').val();
+        uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=rename&title='+urlencode(new_title)+'&ID='+curID;
+
+        $('#ajax_loader').css('top', '60px').css('left', '20px').show();
+        $.get(uri, function(resp){
+            $('#ajax_loader').hide();
+            $('#nuts_my_notes_items option:selected').text(new_title);
+        });
+    }
+
+});
+
+
+
+shortcut.add('CTRL+S', function(){$('#saver').click()});
+
+
+
+imReload(0);
+
 </script>
