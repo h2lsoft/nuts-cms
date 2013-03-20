@@ -122,6 +122,13 @@
 #visual_query_builder #canvas .table:first-child {}
 #visual_query_builder #canvas .table_title {padding: 3px; background-color: #e5e5e5; cursor: move; }
 #visual_query_builder #canvas .table_title a.table_delete {float: right; display: block; width: 16px; height: 16px; background: url(/nuts/img/icon-delete.png) no-repeat; opacity: 0.1;}
+
+#visual_query_builder #canvas .table_title a.table_field_search {float: right; display: block; width: 16px; height: 16px; opacity: 1; color: #e5e5e5; margin-right: 5px;}
+#visual_query_builder #canvas .table_title a.table_field_search:hover {color: white;}
+
+#visual_query_builder #canvas .table_title .table_field_search_input {background-color: white; color:#74B9EF; position: absolute; z-index: 60; margin-top: 15px; margin-left: 74px; width: 80px; display: none;}
+
+
 #visual_query_builder #canvas .table_fields {width:205px; padding:5px; height: 219px; background-color: white; overflow: scroll; overflow-x: hidden; -webkit-user-select: none; -moz-user-select: none; }
 #visual_query_builder #canvas .table_fields ul {padding: 0; margin: 0;}
 #visual_query_builder #canvas .table_fields ul li {background: url(/nuts/img/icon-field.png) no-repeat; padding-bottom: 3px; padding-left: 18px; user-select: none; -webkit-user-select: none; -moz-user-select: none; color: #999;}

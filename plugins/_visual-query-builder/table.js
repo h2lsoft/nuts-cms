@@ -1,3 +1,14 @@
+function checkEnterEscape(e, table_guid)
+{
+    if(e.which == 13 || e.keyCode == 13)
+    {
+        $('#'+table_guid+' .table_field_search_input').hide();
+        e.preventDefault();
+        return false;
+    }
+
+}
+
 var from_init = false;
 function tableAdd(table_name, alias_name)
 {
@@ -19,6 +30,8 @@ function tableAdd(table_name, alias_name)
         tpl = '<div class="table" id="table_'+guid+'">';
         tpl += '    <div class="table_title">'+table_name;
         tpl += '        <a href="javascript:;" onclick="tableDelete(\'table_'+guid+'\')" class="table_delete"></a>';
+        tpl += '        <a href="javascript:;" onclick="tableSearchToggle(\'table_'+guid+'\')" class="table_field_search"><i class="icon-search"></i></a>';
+        tpl += '        <input class="table_field_search_input" type="text" value=""  onkeydown="return checkEnterEscape(event, \'table_'+guid+'\')" onkeyup="tableSearchUpdate(\'table_'+guid+'\')"  />';
         tpl += '    </div>';
         tpl += '    <div class="table_fields">';
         tpl += '        <ul>';
@@ -355,11 +368,7 @@ function tableAdd(table_name, alias_name)
                         $('#sql_btns button').removeClass('selected');
                         $('#canvas').removeClass();
                     }
-
                 }
-
-
-
 
                 v = queryArray2String(arr);
                 $('#SqlCode').val(v);
@@ -402,6 +411,51 @@ function tableAdd(table_name, alias_name)
         }
 
     }, 'json');
+}
+
+function tableSearchToggle(table_guid)
+{
+    if(!$('#'+table_guid+' .table_field_search_input').is(':visible'))
+    {
+        $('#'+table_guid+' .table_field_search_input').show().focus();
+    }
+    else
+    {
+        $('#'+table_guid+' .table_field_search_input').hide();
+    }
+}
+
+function tableSearchUpdate(table_guid)
+{
+    v = $('#'+table_guid+' .table_field_search_input').val();
+    v = strtolower(v);
+
+    // console.log(v);
+
+    if(v == '')
+    {
+        $('#'+table_guid+' .table_fields li').show();
+    }
+    else
+    {
+        $('#'+table_guid+' .table_fields li').each(function(){
+
+            li_text = $(this).text();
+            li_text = trim(li_text);
+            li_text = strtolower(li_text);
+
+            if(li_text.indexOf(v) == 0)
+            {
+                $(this).show();
+            }
+            else
+            {
+                $(this).hide();
+            }
+
+        });
+    }
+
 }
 
 
