@@ -400,7 +400,13 @@ $('#former #H1').change(function(){
 
     if(empty($(this).val()) || $(this).val() == 'Untitled')return;
 
+
     cur_val = ucfirst($(this).val());
+
+    if($('#former #MenuName').val() == "Untitled")
+    {
+        $('#former #MenuName').val(cur_val);
+    }
 
     if(empty($('#former #MetaTitle').val()))
     {
