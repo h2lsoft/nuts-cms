@@ -20,6 +20,8 @@
         var WEBSITE_URL = "{CONST::WEBSITE_URL}";
         var load_folder = "{$load_folder}";
         var gPath = "{$_GET['path']}";
+
+        var select_object_before = "<i18n>Please one file or folder</i18n>";
         var select_one_file = "<i18n>Select only one file to insert !</i18n>";
         var insert_cancelled = "<i18n>Insert cancelled because there is no target to insert to !</i18n>";
         var invalid_characters_used = "<i18n>Invalid characters used !</i18n>";
@@ -33,6 +35,12 @@
         var user_select_error = "<i18n>Please select one user at least</i18n>";
         var open_msg = "<i18n>Would you like to read this file online (cancel to donwload) ?</i18n>";
         var PHPSESSID = "{$_COOKIE['PHPSESSID']}";
+
+        var share_file_expiration = "{$share_file_expiration}";
+        var share_file_subject = "{$share_file_msg_subject}";
+        var share_file_message = "{$share_file_msg_body}";
+        var share_zip_name = "{$share_zip_name}";
+
     </script>
     <!-- /vars -->
 
@@ -84,7 +92,7 @@
 <div id="addressbar" class="ab">
     <ol>
         <li class="root"><span>&nbsp;</span></li>
-        <li><a href="/library/media" title="media"><span>{$root_name}</span></a></li>
+        <li><a href="/library/media/" title="media"><span>{$root_name}</span></a></li>
     </ol>
 
     <div id="searchbar">
@@ -112,6 +120,10 @@
 
         {#if($_GET['editor'] == 'edm' && nutsUserHasRight('', '_edm-locks', 'list'))}
         <li><a href="javascript:;" onclick="popupModal('/nuts/?mod=_edm-locks&do=list');" class="children"><span><i18n>Locks</i18n></span></a>
+            {#endif}
+
+        {#if($_GET['editor'] == 'edm' && nutsUserHasRight('', '_edm-share', 'list'))}
+        <li><a href="javascript:;" onclick="popupModal('/nuts/?mod=_edm-share&do=list');" class="children"><span><i18n>Shares</i18n></span></a>
             {#endif}
 
             {#if($_GET['editor'] == 'edm' && nutsUserHasRight('', '_edm-logs', 'list'))}
@@ -237,15 +249,14 @@
 
 
 {#if($_GET['editor'] == 'edm' && EDM_ADMINISTRATOR == true)}
-
 <!-- rights window -->
 {#include('templates/window_rights.html');}
 {#include('templates/window_groups.html');}
 {#include('templates/window_users.html');}
 <!-- /rights window -->
-
 {#endif}
 
+{#include('templates/window_share_file.html');}
 
 
 </body>

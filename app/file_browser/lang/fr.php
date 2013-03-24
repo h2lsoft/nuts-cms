@@ -145,6 +145,21 @@ $lang = array(
     "Read / Execute" => "Lire / Executer",
     "Modification" => "Modification",
     "Write" => "Ecrire",
+
+    "Share" => "Partager",
+    "Shares" => "Partages",
+    "Please one file or folder" => "Merci de sélectionner au moins un fichier ou dossier",
+    "Share files" => "Partage de fichier(s)",
+    "Recipient" => "Destinataire",
+    "Enter your email address" => "Entrer une adresse email",
+    "Subject" => "Sujet",
+    "days" => "jours",
+    "Acknowledgment" => "Accusé de réception",
+    "Send files" => "Envoyer fichier(s)",
+    "Cancel" => "Annuler",
+    "File name" => "Nom du fichier",
+
+
     "loading..." => "chargement...",
 
     "Add a group" => "Ajouter un groupe",

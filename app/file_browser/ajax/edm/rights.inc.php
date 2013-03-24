@@ -73,11 +73,12 @@ foreach($tmp as $recordID => $vals)
 }
 
 // recursive ? *********************************************************************************************************
-if($recursive)
+if($recursive == 1)
 {
     $_cache_parent = array();
 
     $dirs = glob_recursiveX(WEBSITE_PATH.$folder.'*');
+
     foreach($dirs as $dir)
     {
         $cur_folder = str_replace(WEBSITE_PATH, '', $dir).'/';

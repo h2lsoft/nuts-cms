@@ -362,8 +362,17 @@ $(function(){
 
 
     // draggable window
-    $('.n_window').draggable({handle: ".n_titlebar", cursor:"move", cancel:".n_content" });
+    /* $('.n_window').draggable({handle: ".n_titlebar", cursor:"move", cancel:".n_content" }); */
+    $('.n_window').draggable({
+                                handle: ".n_titlebar",
+                                cursor:"move",
+                                stop: function(event, ui ) {
 
+                                    console.log(ui);
+
+                                }
+                            });
+    // .disableSelection().css('webkit-user-select','none')
 
     // detect ESC on window
     shortcut.add('Esc', function(){
@@ -385,6 +394,11 @@ $(function(){
 
         if($('#rights_window').is(':visible')){
             nWindowClose('rights_window');
+            return;
+        }
+
+        if($('#share_window').is(':visible')){
+            nWindowClose('share_window');
             return;
         }
 

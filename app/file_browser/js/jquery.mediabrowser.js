@@ -130,9 +130,9 @@
 
             src = URL;
             full_src = WEBSITE_URL+'/'+src;
-            ctarget = WEBSITE_URL+'/app/file_browser/service/pixlr/pixlr_save.php';
+            ctarget = WEBSITE_URL+'/library/js/tiny_mce/plugins/file_browser/service/pixlr/pixlr_save.php';
             relative_src = src;
-            exit_url = WEBSITE_URL+'/app/file_browser/service/pixlr/pixlr_exit.php';
+            exit_url = WEBSITE_URL+'/library/js/tiny_mce/plugins/file_browser/service/pixlr/pixlr_exit.php';
 
             pixlr.overlay.show({
                 service: 'express',
@@ -477,6 +477,22 @@
             $.MediaBrowser.showMessage(str);
             return false;
         },
+
+        share: function(){
+
+            $.MediaBrowser.copy(); // put in buffer
+            if($.MediaBrowser.clipboard.length == 0)
+            {
+                $.MediaBrowser.showMessage(select_object_before, "error");
+                return;
+            }
+
+            share_files_selected = $.MediaBrowser.clipboard;
+            $('div#files .selected').removeClass('selected');
+            $.MediaBrowser.clearClipboard();
+            showShareFile();
+        },
+
 
         clearClipboard: function(){
 

@@ -116,6 +116,8 @@ function showUsers(){
 
 
 
+
+
 function attachGroups(){
 
     groups = "";
@@ -229,3 +231,69 @@ function rightSelectAll(v, rID)
     cur_checked = v.checked;
     $('#rights_window tr[recId='+rID+'] input[type=checkbox]').attr('checked', cur_checked);
 }
+
+
+
+var share_folder_selected = '';
+var share_files_selected = [];
+function showShareFile(){
+
+    share_folder_selected = $.MediaBrowser.currentFolder;
+
+    nWindowOpen('share_window');
+
+    // assign default values
+    $('#share_window #Recipient').val('');
+    $('#share_window #Subject').val(share_file_subject);
+    $('#share_window #Message').val(share_file_message);
+    $('#share_window #Expiration').val(share_file_expiration);
+    $('#share_window #ZipName').val(share_zip_name);
+    $('#share_window #Acknowledgment').attr('checked', false);
+}
+
+
+function showShareFileSend(){
+
+    uri = getAjaxUri();
+    uri += '&action=share_file';
+
+    original = $('#share_window .btn_submit').val();
+    msg = (isLangFR) ? 'Chargement en cours...' : 'Please wait...';
+    $('#share_window .btn_submit').val(msg).attr('disabled', true);
+
+
+    acknowledgment = ($('#share_window #Acknowledgment').is(':checked')) ? 1 : 0;
+    $.post(uri, {
+                    folder: share_folder_selected,
+                    files: share_files_selected,
+                    recipient:$('#share_window #Recipient').val(),
+                    subject:$('#share_window #Subject').val(),
+                    message:$('#share_window #Message').val(),
+                    expiration:$('#share_window #Expiration').val(),
+                    zip_name:$('#share_window #ZipName').val(),
+                    acknowledgment:acknowledgment}, function(resp){
+
+
+                                                                $('#share_window .btn_submit').val(original).attr('disabled', false);
+                                                                if(resp.result == 'ko')
+                                                                {
+                                                                    $.MediaBrowser.showMessage(resp.message, "error");
+                                                                }
+                                                                else
+                                                                {
+                                                                    $.MediaBrowser.showMessage(resp.message, "ok");
+                                                                    nWindowClose('share_window');
+
+                                                                }
+
+
+
+    }, 'json');
+
+
+}
+
+
+
+
+

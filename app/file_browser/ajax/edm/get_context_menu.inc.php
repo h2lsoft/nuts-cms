@@ -97,6 +97,15 @@ EOF;
 $enabled = edmUserHasRight('DELETE', $folder);
 edmAddContext('foldercmenu', "Delete", $js, 'delete.gif', $enabled, true);
 
+// share
+if(edmUserHasRight('SHARE', $folder))
+{
+    $js = "$.MediaBrowser.share();";
+    edmAddContext('foldercmenu', "Share", $js, 'share.gif', $enabled, true);
+}
+
+
+
 // Administrator
 if(EDM_ADMINISTRATOR == true)
 {
@@ -162,6 +171,16 @@ EOF;
 $enabled = edmUserHasRight('DELETE', $folder);
 edmAddContext('filecmenu', "Delete", $js, 'delete.gif', $enabled, true);
 
+
+// share
+if(edmUserHasRight('SHARE', $folder))
+{
+    $js = "$.MediaBrowser.share();";
+    edmAddContext('filecmenu', "Share", $js, 'share.gif', $enabled, true);
+}
+
+
+
 // imagecmenu **********************************************************************************************************
 
 // Visualize
@@ -203,8 +222,12 @@ EOF;
 $enabled = edmUserHasRight('DELETE', $folder);
 edmAddContext('imagecmenu', "Delete", $js, 'delete.gif', $enabled, true);
 
-
-
+// share
+if(edmUserHasRight('SHARE', $folder))
+{
+    $js = "$.MediaBrowser.share();";
+    edmAddContext('imagecmenu', "Share", $js, 'share.gif', $enabled, true);
+}
 
 
 $output = '';

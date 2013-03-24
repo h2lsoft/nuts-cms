@@ -1,0 +1,46 @@
+<div class="n_window" id="share_window">
+
+    <div class="n_titlebar">
+        <div class="n_title"><i18n>Share files</i18n></div>
+        <div class="n_close">
+            <a class="close" href="javascript:;" onclick="nWindowClose('share_window');"></a>
+        </div>
+    </div>
+
+    <div class="n_content">
+
+        <p>
+            <label><i18n>Recipient</i18n></label>
+            <input type="text" name="Recipient" id="Recipient" value="" placeholder="<i18n>Enter your email address</i18n>" />
+        </p>
+        <p>
+            <label><i18n>Subject</i18n></label>
+            <input type="text" name="Subject" id="Subject" value="" />
+        </p>
+        <p>
+            <label><i18n>Message</i18n></label>
+            <textarea id="Message" name="Message"></textarea>
+        </p>
+        <p>
+            <label><i18n>File name</i18n></label>
+            <input type="text" name="ZipName" id="ZipName" style="width: 150px" value="" /> .zip
+        </p>
+        <p>
+            <label><i18n>Expiration</i18n></label>
+            <input type="text" name="Expiration" id="Expiration" value="15" style="width: 2em; text-align: center" /><i18n>days</i18n>
+        </p>
+        <p>
+            <label for="Acknowledgment"><i18n>Acknowledgment</i18n></label>
+            <input type="checkbox" name="Acknowledgment" id="Acknowledgment" value="1" />
+        </p>
+
+        <div class="n_bottom_buttons n_bottom_buttons_centered">
+
+            <input type="button" value="<i18n>Send files</i18n>" onclick="showShareFileSend();"  class="btn_submit" />
+            <input type="button" value="<i18n>Cancel</i18n>" onclick="nWindowClose('share_window');" class="btn_cancel" />
+
+        </div>
+
+    </div>
+
+</div>

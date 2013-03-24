@@ -141,6 +141,11 @@ elseif($_GET['editor'] = 'edm')
 
     include(NUTS_PLUGINS_PATH.'/_edm/config.inc.php');
 
+    $cur_lang  = ($_SESSION['Language'] == 'fr') ? 'fr' : 'en';
+    $share_file_msg_subject = $share_file_msg[$cur_lang]['subject'];
+    $share_file_msg_body = $share_file_msg[$cur_lang]['message'];
+    $share_zip_name = $share_file_msg[$cur_lang]['zip_name'];
+
     $root_name = translate('Root');
     $upload_path = WEBSITE_PATH."/plugins/_edm/_repository/";
     $upload_pathX = '/plugins/_edm/_repository/';

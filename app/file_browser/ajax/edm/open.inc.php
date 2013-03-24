@@ -36,7 +36,7 @@ if(!file_exists(WEBSITE_PATH.$file))
 
 if($viewer)
 {
-    /*$f = WEBSITE_URL.'/app/file_browser/index.php?editor=edm&';
+    /*$f = WEBSITE_URL.'/library/js/tiny_mce/plugins/file_browser/index.php?editor=edm&';
     $f .= 'do=exec&ajax=1&action=open&file='.urlencode($file);
     $f .= '&XPHPSESSID='.session_id();
     $f .= '&download=false';

@@ -414,7 +414,7 @@ div#file-specs #info div.filedim {top:82px;}
  *  File Browser Messages 
  * 
 **/
-div#message { left:50%; top:75px; display:none; position:absolute; color:#000; background-color:#FFF1A8; width:400px; margin-left:-200px; z-index:99; padding:10px; font-size:13px; font-weight:bold; border-radius:5px; -moz-border-radius:5px; text-align: center; }
+div#message { left:50%; top:75px; display:none; position:absolute; color:#000; background-color:#FFF1A8; width:400px; margin-left:-200px; z-index:99; padding:10px; font-size:13px; /*font-weight:bold; border-radius:5px; -moz-border-radius:5px;*/ text-align: center; }
 div#message.success {background-color:#CAFFCA; color:#360;}
 div#message.error {background-color:#FFDFDF; color:#900;}
 div#message p {margin: 0 0 5px 0;}

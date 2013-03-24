@@ -242,13 +242,37 @@ function glob_recursiveX($dir)
     if(systemIsWindows())
     {
         $dir = str_replace('/','\\', $dir);
-        $cmd = "DIR $dir /A:D /B /S /O:N /N";
-        $output = shell_exec($cmd);
-        $output = trim($output);
-        $dirs = explode("\n", $output);
+//        $cmd = "DIR $dir /A:D /B /S /O:N /N";
+//        $output = shell_exec($cmd);
+//        $output = trim($output);
+//        $dirs = explode("\n", $output);
+
+        $dir = escapeshellarg($dir);
+        exec("DIR $dir /A:D /B /S /O:N /N", $dirs);
+        $dirs = array_map('trim', $dirs);
+
+        $dirs2 = array();
+        foreach($dirs as $d)
+        {
+            $d = str_replace('\\', '/', $d);
+            // $d = str_replace(WEBSITE_PATH.'/plugins/_edm/_repository', '', $d);
+            $dirs2[] = $d;
+        }
+        $dirs = $dirs2;
+
+        // print_r($dirs);
+        // exit();
+
+
     }
     else
     {
+        $dirs = glob($dir);
+
+        foreach (glob(dirname($dir).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir)
+        {
+            $dirs = array_merge($dirs, glob_recursive($dir.'/'.basename($dir), $dirs));
+        }
 
     }
 

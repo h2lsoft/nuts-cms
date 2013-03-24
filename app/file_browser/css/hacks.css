@@ -1,5 +1,5 @@
-input[type=button] {padding: 2px 8px; margin-left: 5px; border: 1px solid #ccc; background: url(/nuts/css/button_bkg.png); border-radius: 3px; }
-input[type=button]:hover {border-color:#4C607A; color:#4C607A; background: url(/nuts/css/th_bkg.png); cursor: pointer;  }
+input[type=button] {padding: 2px 8px; margin-left: 5px; border: 1px solid #ccc; background: url(/nuts/css/button_bkg.png); /*border-radius: 3px;*/ }
+input[type=button]:hover {border-color:#4C607A; color:#666; background: none; cursor: pointer;  }
 input[type=checkbox] {cursor: pointer;}
 
 .plupload_scroll .plupload_filelist {height: 320px;}
@@ -94,10 +94,43 @@ form#fileform {display: none;}
     height: 500px;
 
 }
-.n_window input.search {background-color: transparent; border: 1px solid #A9B4BF; color: #6D6D6D; font-family: inherit; height: 18px; line-height: 18px; width: 205px; margin: 4px 0 0 5px; padding: 0;
+
+
+.n_window .n_content p {padding-bottom: 10px;}
+.n_window .n_content p label {display: block; width: 150px; float:left; text-align: right; padding-right: 10px;}
+.n_window .n_content p label[for] {cursor: pointer;}
+.n_window .n_content input[type=text], .n_window .n_content textarea, .n_window .n_content select {
+    border: 1px solid #A9B4BF;
+    color: #333;
+    height: 18px;
+    line-height: 18px;
+    width: 450px;
+    margin: 0;
+    margin-right: 5px;
+    padding: 0 3px;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+
+.n_window .n_content input:focus, .n_window textarea:focus, .n_window select:focus {
+    border-color: #396DB5;
+}
+
+.n_window .n_content textarea {height: 150px; padding:3px;}
+.n_window .n_content select {width: auto; padding: 0; height: 20px; line-height: 20px; }
+
+
+.n_window .n_bottom_buttons_centered {text-align: center; padding-top: 50px;}
+.n_window .btn_submit {background: #396DB5; color: white; border-color: #396DB5; margin-right: 50px;}
+.n_window .btn_submit:hover {background: #D6E3F7; color: #333;}
+
+
+.n_window .n_content input.search {background-color: transparent; border: 1px solid #A9B4BF; color: #6D6D6D; font-family: inherit; height: 18px; line-height: 18px; width: 205px; margin: 4px 0 0 5px; padding: 0;
     background: url(../img/addressbar.png) left -118px no-repeat;
     padding-left: 26px;
 }
+
 
 
 #upload_window .n_content {padding: 0;}

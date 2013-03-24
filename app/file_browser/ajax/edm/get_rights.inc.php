@@ -46,6 +46,7 @@ $modify_checked = (@$everybody_rights['MODIFY'] == 'YES') ? 'checked' : '';
 $delete_checked = (@$everybody_rights['DELETE'] == 'YES') ? 'checked' : '';
 $write_checked = (@$everybody_rights['WRITE'] == 'YES') ? 'checked' : '';
 $upload_checked = (@$everybody_rights['UPLOAD'] == 'YES') ? 'checked' : '';
+$share_checked = (@$everybody_rights['SHARE'] == 'YES') ? 'checked' : '';
 
 $str = <<<EOF
 <tr recId="0" class="group_everybody">
@@ -57,6 +58,7 @@ $str = <<<EOF
     <td class="center"><input type="checkbox" recId="0" name="rights[0]['delete']" value="delete" $delete_checked /></td>
     <td class="center"><input type="checkbox" recId="0" name="rights[0]['write']" value="write" $write_checked /></td>
     <td class="center"><input type="checkbox" recId="0" name="rights[0]['upload']" value="upload" $upload_checked /></td>
+    <td class="center"><input type="checkbox" recId="0" name="rights[0]['share']" value="share" $share_checked /></td>
     <td class="center">&nbsp;</td>
 </tr>
 EOF;
@@ -79,6 +81,7 @@ while($row = $nuts->dbFetch())
         $delete_checked = ($row['DELETE'] == 'YES') ? 'checked' : '';
         $write_checked = ($row['WRITE'] == 'YES') ? 'checked' : '';
         $upload_checked = ($row['UPLOAD'] == 'YES') ? 'checked' : '';
+        $share_checked = ($row['SHARE'] == 'YES') ? 'checked' : '';
 
         $type = strtolower($row['Type']);
         $str .= <<<EOF
@@ -91,6 +94,7 @@ while($row = $nuts->dbFetch())
                             <td class="center"><input type="checkbox" recId="{$row['ID']}" name="rights[{$row['ID']}]['delete']" value="delete" $delete_checked /></td>
                             <td class="center"><input type="checkbox" recId="{$row['ID']}" name="rights[{$row['ID']}]['write']" value="write" $write_checked /></td>
                             <td class="center"><input type="checkbox" recId="{$row['ID']}" name="rights[{$row['ID']}]['upload']" value="upload" $upload_checked /></td>
+                            <td class="center"><input type="checkbox" recId="{$row['ID']}" name="rights[{$row['ID']}]['share']" value="share" $share_checked /></td>
                             <td class="center"><a href="javascript:rightsDelete({$row['ID']})" class="delete"></a></td>
                         </tr>
 EOF;
