@@ -3,8 +3,8 @@
 header("content-type: text/css");
 
 
-include('../../nuts/config.inc.php');
-include('../../nuts/config_auto.inc.php');
+include('../nuts/config.inc.php');
+include('../nuts/config_auto.inc.php');
 
 if(!isset($_GET['t']) ||  empty($_GET['t']) || in_array($_GET['t'], array('.', '..')) || !file_exists($_GET['t'].'/style.css'))
 	die("");
