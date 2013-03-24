@@ -653,52 +653,69 @@ function email($email)
 	return preg_match($pattern, $email);
 
 }
+
 /**
  * Send an email by nuts
  *
- * @param string $msg
+ * @param array $msg key: subject and body
  * @param array $data array foreach replacement
  * @param string $email mail address
+ * @param boolean $ip_signature
+ * @param string $from_address default NUTS_EMAIL_NO_REPLY
+ * @param boolean $add_webapp_name_subject add WEBSITE_NAME to subject
  *
  * @return boolean success
  */
-function nutsSendEmail($msg, $data, $email)
+function nutsSendEmail($msg, $data, $email, $ip_signature=true, $from_address='', $add_webapp_name_subject=true)
 {
-	global $nuts;
+    global $nuts;
 
-	$subject = '['.WEBSITE_NAME.'] '.$msg['subject'];
-	$body = trim($msg['body']);
+    $subject = $msg['subject'];
+    if($add_webapp_name_subject)
+        $subject = '['.WEBSITE_NAME.'] '.$subject;
 
-	$body = str_replace('{WEBSITE_NAME}', WEBSITE_NAME, $body);
-	$body = str_replace('{WEBSITE_URL}', WEBSITE_URL, $body);
 
-	foreach($data as $key => $val)
-	{
-		$body = str_replace('{'.$key.'}', $val, $body);
-	}
+    $body = trim($msg['body']);
 
-	$body = rtrim($body);
-	$body .= "
+    $body = str_replace('{WEBSITE_NAME}', WEBSITE_NAME, $body);
+    $body = str_replace('{WEBSITE_URL}', WEBSITE_URL, $body);
+
+    foreach($data as $key => $val)
+    {
+        $body = str_replace('{'.$key.'}', $val, $body);
+    }
+
+    $body = rtrim($body);
+
+    if($ip_signature)
+    {
+        $body .= "
 
 --
 Powered by Nuts
 User IP: ".$nuts->getIP();
+    }
 
-	$headers = 'From: '.NUTS_EMAIL_NO_REPLY."\n";
-	$headers .= "Content-Type: text/plain; charset=utf-8\n";
-	// $headers .= 'To: '.$email."\n";
+    if(empty($from_address))
+        $headers = 'From: '.NUTS_EMAIL_NO_REPLY."\n";
+    else
+        $headers = 'From: '.$from_address."\n";
 
-	// utf8_decode
-	// $subject = utf8_decode($subject);
-	// $body = utf8_decode($body);
+    $headers .= "Content-Type: text/plain; charset=utf-8\n";
+    // $headers .= 'To: '.$email."\n";
 
-	$subject = html_entity_decode($subject);
-	if(!@mail($email, $subject, $body, $headers))
+    // utf8_decode
+    // $subject = utf8_decode($subject);
+    // $body = utf8_decode($body);
+
+    $subject = html_entity_decode($subject);
+    if(!@mail($email, $subject, $body, $headers))
         return false;
 
     return true;
 
 }
+
 
 /**
  * Send Email throw Email module
