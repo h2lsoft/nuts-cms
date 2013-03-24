@@ -1,0 +1,11 @@
+# General configuration
+version: 1.0
+author: H2Lsoft
+website: www.h2lsoft.com
+email: contact@h2lsoft.com
+webupdate: yes
+info: EDM share manager
+langs: en
+system required: >= 3.0
+actions: list
+default_action: list
