@@ -16,7 +16,7 @@ $timer = time();
 if(isset($_GET['XPHPSESSID']))$_COOKIE['PHPSESSID'] = $_GET['XPHPSESSID'];
 session_start();
 
-include('../../../../../nuts/config.inc.php');
+include('../../nuts/config.inc.php');
 include(WEBSITE_PATH.'/nuts/headers.inc.php');
 include('inc/func.inc.php');
 include('inc/edm_func.inc.php');
