@@ -959,7 +959,7 @@ function getQueryParam(key)
 
 function mediaBrowser(f, folder)
 {
-	uri = WEBSITE_URL+'/library/js/tiny_mce/plugins/file_browser/index.php?editor=standalone&filter=media&returnID='+f;
+	uri = WEBSITE_URL+'/app/file_browser/index.php?editor=standalone&filter=media&returnID='+f;
 	if(folder != '')
 		uri += "&path="+folder;
 
@@ -969,7 +969,7 @@ function mediaBrowser(f, folder)
 
 function allBrowser(f, folder)
 {
-	uri = WEBSITE_URL+'/library/js/tiny_mce/plugins/file_browser/index.php?editor=standalone&filter=file&returnID='+f;
+	uri = WEBSITE_URL+'/app/file_browser/index.php?editor=standalone&filter=file&returnID='+f;
 	if(folder != '')
 		uri += "&path="+folder;
 
@@ -978,7 +978,7 @@ function allBrowser(f, folder)
 
 function imgBrowser(f, folder)
 {
-	uri = WEBSITE_URL+'/library/js/tiny_mce/plugins/file_browser/index.php?editor=standalone&filter=image&returnID='+f;
+	uri = WEBSITE_URL+'/app/file_browser/index.php?editor=standalone&filter=image&returnID='+f;
 	if(folder != '')
 		uri += "&path="+folder;
 

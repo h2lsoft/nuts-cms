@@ -126,7 +126,7 @@ $nuts->open(PLUGIN_PATH.'/exec.html');
 
 // parsing themes
 $themes = array();
-$a = glob(WEBSITE_PATH.'/library/themes/*', GLOB_ONLYDIR);
+$a = glob(WEBSITE_PATH.'/themes/*', GLOB_ONLYDIR);
 foreach($a as $theme)
 {
     $theme_str = explode('/', $theme);

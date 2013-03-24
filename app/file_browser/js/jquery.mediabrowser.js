@@ -130,9 +130,9 @@
 
             src = URL;
             full_src = WEBSITE_URL+'/'+src;
-            ctarget = WEBSITE_URL+'/library/js/tiny_mce/plugins/file_browser/service/pixlr/pixlr_save.php';
+            ctarget = WEBSITE_URL+'/app/file_browser/service/pixlr/pixlr_save.php';
             relative_src = src;
-            exit_url = WEBSITE_URL+'/library/js/tiny_mce/plugins/file_browser/service/pixlr/pixlr_exit.php';
+            exit_url = WEBSITE_URL+'/app/file_browser/service/pixlr/pixlr_exit.php';
 
             pixlr.overlay.show({
                 service: 'express',

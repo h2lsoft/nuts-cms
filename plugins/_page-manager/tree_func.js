@@ -882,7 +882,7 @@ function dragPage()
 
 function imageBrowser(f, folder)
 {
-	uri = WEBSITE_URL+'/library/js/tiny_mce/plugins/file_browser/index.php?editor=standalone&filter=image&returnID='+f;
+	uri = WEBSITE_URL+'/app/file_browser/index.php?editor=standalone&filter=image&returnID='+f;
 	if(folder != '' && typeof folder !== 'undefined')
 		uri += "&path="+folder;
 	popupModal(uri, 'imgBrowser', 1024, 800, '');

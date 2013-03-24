@@ -10,7 +10,7 @@ if(@$_GET['iframe'])
 		<html>
 			<heade>
 				<title>Preview</title>
-				<link rel="stylesheet" type="text/css" href="../library/themes/default/style.css" />
+				<link rel="stylesheet" type="text/css" href="../themes/default/style.css" />
 			</head>
 			<body>
 				$txt

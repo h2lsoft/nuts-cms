@@ -454,7 +454,7 @@ function menu_media()
 		<script type="text/javascript">
 		function filebrowser(field_name, url, type, win)
 		{
-			fileBrowserURL = "<?php echo WEBSITE_URL; ?>/library/js/tiny_mce/plugins/file_browser/index.php?editor=tinymce&filter="+type;
+			fileBrowserURL = "<?php echo WEBSITE_URL; ?>/app/file_browser/index.php?editor=tinymce&filter="+type;
 
 			tinyMCE.activeEditor.windowManager.open({
 				title: "File Browser",

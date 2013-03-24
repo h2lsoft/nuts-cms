@@ -103,7 +103,7 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
         // $files[] = WEBSITE_PATH.'/nuts_auto_compress.css';
 		$files[] = WEBSITE_PATH.'/__cache';
 		// $files[] = WEBSITE_PATH.'/_tmp';
-        $files[] = WEBSITE_PATH.'/library/js/tiny_mce/plugins/file_browser/cache';
+        $files[] = WEBSITE_PATH.'/app/file_browser/cache';
 		$files[] = WEBSITE_PATH.'/uploads';
 		$files[] = WEBSITE_PATH.'/plugins/_gallery/_tmp';
 		$files[] = WEBSITE_PATH.'/plugins/_dropbox/_files';
