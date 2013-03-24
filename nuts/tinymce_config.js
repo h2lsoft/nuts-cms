@@ -357,7 +357,7 @@ function initWYSIWYGIFrame(id) {
 		head = getIFrameDocument('iframe_'+id).getElementsByTagName('head')[0];
 		link = document.createElement('link');
 		link.setAttribute('rel',"stylesheet");
-		link.setAttribute('href',"/library/themes/editor_css.php?t="+current_theme+"&ncache="+time());
+		link.setAttribute('href',"/themes/editor_css.php?t="+current_theme+"&ncache="+time());
 		link.setAttribute('type',"text/css");
         head.appendChild(link);
 

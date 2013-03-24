@@ -533,7 +533,7 @@ function menu_media()
 				theme_advanced_toolbar_align : "left",
 				theme_advanced_statusbar_location : "bottom",
 				theme_advanced_resizing : true,
-				content_css : "/library/themes/editor_css.php?t=<?php echo $_GET['theme']; ?>&tstmp=<?php echo @$_GET['t']; ?>",
+				content_css : "/themes/editor_css.php?t=<?php echo $_GET['theme']; ?>&tstmp=<?php echo @$_GET['t']; ?>",
 				document_base_url : "<?php echo WEBSITE_URL; ?>/",
 
 				relative_urls : false,
