@@ -34,7 +34,7 @@ function hookData($row)
 	global $nuts, $plugin;
 
     $row['Position'] = $plugin->listGetPositionContents($row['ID']);
-    $row['Logo'] = '<img src="/nuts_uploads/_useful-links/thumb_'.$row['LogoImage'].'?t='.time().'" style="height:60px;" class="image_preview" />';
+    $row['Logo'] = '<img src="/uploads/_useful-links/thumb_'.$row['LogoImage'].'?t='.time().'" style="height:60px;" class="image_preview" />';
     $row['Name'] = "<strong>{$row['Name']}</strong><br><a href='{$row['Url']}' target='_blank'>{$row['Url']}</a>";
 	
 	return $row;
