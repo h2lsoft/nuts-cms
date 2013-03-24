@@ -25,7 +25,7 @@ function hookData($row)
     global $plugin;
 
     $row['Position'] = $plugin->listGetPositionContents($row['ID']);
-    $row['Image'] = '<img src="/nuts_uploads/_slider-images/'.$row['SliderImage'].'?t='.time().'" style="height:60px;" class="image_preview" />';
+    $row['Image'] = '<img src="/uploads/_slider-images/'.$row['SliderImage'].'?t='.time().'" style="height:60px;" class="image_preview" />';
 
     return $row;
 }

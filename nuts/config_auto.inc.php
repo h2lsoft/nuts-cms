@@ -46,8 +46,8 @@ define('NUTS_THEMES_URL', NUTS_LIBRARY_URL.'/themes');
 
 
 // uploads
-define('NUTS_UPLOADS_PATH', WEBSITE_PATH.'/nuts_uploads'); 
-define('NUTS_UPLOADS_URL', WEBSITE_URL.'/nuts_uploads');
+define('NUTS_UPLOADS_PATH', WEBSITE_PATH.'/uploads');
+define('NUTS_UPLOADS_URL', WEBSITE_URL.'/uploads');
 
 
 // plugins

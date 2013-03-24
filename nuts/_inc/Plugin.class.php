@@ -1899,8 +1899,8 @@ EOF;
 		// image & file
 		if($type == 'image' || $type == 'file')
 		{
-			// assign default path nuts_uploads/plugin_name
-			if(!isset($options['path']))$options['path'] = WEBSITE_PATH.'/nuts_uploads/'.$this->name;
+			// assign default path uploads/plugin_name
+			if(!isset($options['path']))$options['path'] = WEBSITE_PATH.'/uploads/'.$this->name;
 
 			// assign default url
 			if(!isset($options['url']))$options['url'] = str_replace(WEBSITE_PATH, '', $options['path']);
