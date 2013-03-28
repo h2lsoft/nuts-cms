@@ -104,7 +104,7 @@
 	</form>
 	</div>
 	<script type="text/javascript">
-		var search_uri = "index.php?mod={$plugin->name}&do={$plugin->action}&user_se=1&";
+		var search_uri = "index.php?mod={$plugin->name}&do={$plugin->action}&user_se=1&{list_search_uri_added}";
         {#if(isset($_GET['popup']))}
         search_uri = search_uri+"popup=1&parentID={$_GET['parentID']}&";
         {#endif}

@@ -411,6 +411,25 @@ class Plugin
 		$this->listAddCol($col, $colLabel, $colStyle, $colOrderBy, $img);
 	}
 
+
+    private $listSearchAddUriParameters = '';
+
+    /**
+     * Add uri parameters to seach to preserve parameters after searching
+     *
+     * @param $uri string
+     */
+    public function listSearchAddUriParameters($uri)
+    {
+        $uri = trim($uri);
+        if(!empty($uri) && $uri[strlen($uri)-1] != '&')
+            $uri .= "&";
+
+        $this->listSearchAddUriParameters = $uri;
+    }
+
+
+
 	/**
 	 * @var bool open search engine on load
 	 */
@@ -1413,6 +1432,10 @@ EOF;
 		// virtual parsing
 		$this->nuts->setNavColor('#eee', '#fff');
 		$this->nuts->createVirtualTemplate($out);
+
+        // searching
+        @$this->nuts->parse('list_search_uri_added', $this->listSearchAddUriParameters);
+
 
 		// list all order by
 		$orders = array();
