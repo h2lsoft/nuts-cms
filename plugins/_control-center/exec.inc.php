@@ -77,12 +77,12 @@ elseif(@$_GET['_action'] == 'ip_allowed')
 }
 elseif(@$_GET['_action'] == 'clear_cache')
 {
-	$cache_files = (array)glob(WEBSITE_PATH.'/__cache/*.html');
+	$cache_files = (array)glob(WEBSITE_PATH.'/cache/*.html');
 	foreach($cache_files as $file)
 	{
 		@unlink($file);
 	}
-	$cache_files = (array)glob(WEBSITE_PATH.'/__cache/*.html');
+	$cache_files = (array)glob(WEBSITE_PATH.'/cache/*.html');
 	$cache_files_rest = count($cache_files);
 
 	if($cache_files_rest > 0)
@@ -199,7 +199,7 @@ $nuts->parse('ip_allowed', $ips_a);
 $nuts->parse('IpUser', $nuts->getIP());
 
 // cache
-$arr = (array)glob(WEBSITE_PATH.'/__cache/*.html');
+$arr = (array)glob(WEBSITE_PATH.'/cache/*.html');
 $nb_cache = count($arr);
 $nuts->parse('nb_cache', $nb_cache);
 

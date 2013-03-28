@@ -2318,7 +2318,7 @@ class Page extends NutsCore
 	 */
 	 private function cacheGetFileName()
 	 {
-		$cache_filename = WEBSITE_PATH.'/__cache/'.base64_encode($_SERVER['REQUEST_URI']).".html";
+		$cache_filename = WEBSITE_PATH.'/cache/'.base64_encode($_SERVER['REQUEST_URI']).".html";
 		return $cache_filename;
 	 }
 
