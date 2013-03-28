@@ -259,21 +259,10 @@ function glob_recursiveX($dir)
             $dirs2[] = $d;
         }
         $dirs = $dirs2;
-
-        // print_r($dirs);
-        // exit();
-
-
     }
     else
     {
-        $dirs = glob($dir);
-
-        foreach (glob(dirname($dir).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir)
-        {
-            $dirs = array_merge($dirs, glob_recursive($dir.'/'.basename($dir), $dirs));
-        }
-
+        $dirs = glob_recursive($dir.'*', GLOB_ONLYDIR|GLOB_NOSORT);
     }
 
 
@@ -290,7 +279,7 @@ function glob_recursiveX($dir)
  */
 function getDirTreeX($upload_path)
 {
-    $dirs = glob_recursiveX($upload_path);
+    $dirs = glob_recursiveX($upload_path, GLOB_ONLYDIR|GLOB_NOSORT);
 
     $formatted_dirs = array();
     foreach($dirs as $dir)
@@ -328,6 +317,22 @@ function systemIsWindows()
     return (PHP_OS == 'WINNT');
 }
 
+
+if(!function_exists('glob_recursive'))
+{
+
+    // Does not support flag GLOB_BRACE
+    function glob_recursive($pattern)
+    {
+        $files = glob($pattern, GLOB_ONLYDIR|GLOB_NOSORT);
+        foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir)
+        {
+            $files = array_merge($files, glob_recursive($dir.'/'.basename($pattern), GLOB_ONLYDIR|GLOB_NOSORT));
+        }
+
+        return $files;
+    }
+}
 
 
 
