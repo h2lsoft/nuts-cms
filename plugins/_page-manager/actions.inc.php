@@ -41,6 +41,12 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'get_meta_keywords')
 }
 
 
+// get_header_images ************************************************************************************
+if(isset($_GET['_action']) && $_GET['_action'] == 'get_header_images')
+{
+    echo "<option></option>";
+    die(nutsGetOptionsHeaderImage());
+}
 
 
 // comment_delete ***********************************************************************************

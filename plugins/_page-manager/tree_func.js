@@ -999,6 +999,15 @@ function refreshFolderNode(){
 
 
 
+function headerImageReload()
+{
+    $('#former #HeaderImage option').remove();
+
+    uri = "index.php?mod=_page-manager&do=exec&_action=get_header_images";
+    $('#former #HeaderImage').load(uri);
+
+}
+
 
 
 
