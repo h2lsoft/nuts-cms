@@ -624,6 +624,14 @@ function createThumb($fname, $thumbWidth, $create_new = false, $create_new_heigh
 		$new_height = $create_new_height;
 
     $tmp_img = @imagecreatetruecolor($new_width, $new_height);
+
+    // preserve transparency
+    if($ext == 'png' || $ext == 'gif')
+    {
+        @imagealphablending($tmp_img, false);
+        @imagesavealpha($tmp_img, true);
+    }
+
     //imagecopyresized( $tmp_img, $img, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
     imagecopyresampled( $tmp_img, $img, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
 
