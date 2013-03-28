@@ -41,8 +41,8 @@ define('NUTS_MEDIA_URL', NUTS_LIBRARY_URL.'/media');
 define('NUTS_IMAGES_PATH', NUTS_MEDIA_PATH.'/images');
 define('NUTS_IMAGES_URL', NUTS_MEDIA_URL.'/images');
 
-define('NUTS_HEADER_IMAGES_PATH', NUTS_IMAGES_PATH.'/header');
-define('NUTS_HEADER_IMAGES_URL', NUTS_IMAGES_URL.'/header');
+define('NUTS_HEADER_IMAGES_PATH', NUTS_IMAGES_PATH.'/user/header');
+define('NUTS_HEADER_IMAGES_URL', NUTS_IMAGES_URL.'/user/header');
 
 // gallery images
 define('NUTS_GALLERY_PATH', NUTS_IMAGES_PATH.'/gallery');
