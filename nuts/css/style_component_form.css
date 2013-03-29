@@ -40,6 +40,7 @@ div#form label, div#form_content label {width:165px; display:block; float:left; 
 div#form p, div#form p {padding:0; margin:3px; margin-top: 8px; }
 div#form input[type=text], div#form input[type=password], div#form textarea {width:710px; }
 div#form textarea {height:80px;}
+div#form textarea.mceEditor {height:130px;}
 div#form_content p select {margin-left: 0px!important;}
 
 
