@@ -27,6 +27,7 @@ $('#search_form').bind('submit', function(){
     });
 
 	system_goto(uri, 'list');
+    $('#list_search_content').slideUp();
 	return false;
 
 });
