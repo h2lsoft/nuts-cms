@@ -21,7 +21,7 @@
 #nav_menu > li {background: none; color: #666;}
 
 #nav_menu li.selected ul {left: 0px;}
-#nav_menu li ul {position: absolute; z-index: 100;  left: -999999px; width: 97%; /*max-width: 1120px;*/ border: 1px solid #ccc; border-left:0; /*border-right:0;*/  padding: 10px 10px; margin: 0; margin-top:4px; background-color: white; }
+#nav_menu li ul {position: absolute; z-index: 100;  left: -999999px; width: 99%; /*max-width: 1120px;*/ border: 1px solid #ccc; border-left:0; /*border-right:0;*/  padding: 10px 10px; margin: 0; margin-top:4px; background-color: white; }
 #nav_menu li ul li {display: block; float: left; width: 200px; margin-right: 10px; text-align: left; margin-bottom: 0px;}
 #nav_menu li ul li img {width: 25px; vertical-align: middle; margin-right: 3px; }
 #nav_menu li ul li:hover {cursor: default;}
