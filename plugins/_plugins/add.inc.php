@@ -21,7 +21,6 @@ if($plugin->formValid())
             $f['NutsMenuID'] = $CUR_ID;
             $f['NutsGroupID'] = 1;
             $f['Name'] = $plugins_right;
-
             $nuts->dbInsert('NutsMenuRight', $f);
         }
     }
