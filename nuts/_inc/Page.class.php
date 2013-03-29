@@ -277,7 +277,10 @@ class Page extends NutsCore
 
 		if(!preg_match('/^http/i', NUTS_ERROR404_TEMPLATE))
 		{
-			$this->open(NUTS_ERROR404_TEMPLATE);
+            $tpl = NUTS_ERROR404_TEMPLATE;
+            if($tpl == 'error404.html')$tpl = WEBSITE_PATH.'/nuts/_templates/error404.html';
+
+			$this->open($tpl);
 			echo $this->output();
 		}
 		else
