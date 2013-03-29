@@ -1,6 +1,5 @@
 transformSelectToAuctoComplete('Name', '#former');
 
-
 // assign default category
 if(empty($('#former #Category').val())){
 
