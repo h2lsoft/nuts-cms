@@ -179,6 +179,10 @@ $nuts_lang_msg[93] = "My notes";
 $nuts_lang_msg[94] = "update my profile";
 $nuts_lang_msg[95] = "Website";
 
+$nuts_lang_msg[96] = "In (separated by `,`)";
+$nuts_lang_msg[97] = "Not in (separated by `,`)";
+
+
 
 // main menu ***********************************************************************
 $mods_group[0]['name'] = 'Administration';

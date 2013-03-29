@@ -1110,8 +1110,8 @@ EOF;
 			if(!$this->listSearchOpenOnload)
 				$this->nuts->eraseBloc('search_display');
 
-            $operators_items = array('operator_equal', 'operator_not_equal', 'operator_gt', 'operator_gt_equal', 'operator_lt', 'operator_lt_equal', 'operator_begin', 'operator_not_begin', 'operator_countains', 'operator_not_countains');
-            $operators_signs = array('=', '!=', '>', '>=', '<', '<=', '^=', '!^=', '~=', '!~=');
+            $operators_items = array('operator_equal', 'operator_not_equal', 'operator_gt', 'operator_gt_equal', 'operator_lt', 'operator_lt_equal', 'operator_begin', 'operator_not_begin', 'operator_countains', 'operator_not_countains', 'operator_in', 'operator_not_in');
+            $operators_signs = array('=', '!=', '>', '>=', '<', '<=', '^=', '!^=', '~=', '!~=', 'in', '!in');
 
 			foreach($this->list_search as $s)
 			{
@@ -1533,7 +1533,7 @@ EOF;
 				isset($_GET[$s['name']]) &&
 			    strlen(trim($_GET[$s['name']])) &&
 			    isset($_GET[$s['name'].'_operator']) &&
-				in_array($_GET[$s['name'].'_operator'], array('_equal_', '_not_equal_', '_gt_', '_gtequal_', '_lt_', '_ltequal_', '_begin_', '_not_begin_', '_countains_', '_not_countains_'))
+				in_array($_GET[$s['name'].'_operator'], array('_equal_', '_not_equal_', '_gt_', '_gtequal_', '_lt_', '_ltequal_', '_begin_', '_not_begin_', '_countains_', '_not_countains_', '_in_', '_not_in_'))
 			  )
 			 {
 				if(isset($s['options']['alias']))
@@ -1560,6 +1560,8 @@ EOF;
 
 				elseif($_GET[$s['name'].'_operator'] == '_ltequal_')$x_sql .= ' <= ';
 				elseif(in_array($_GET[$s['name'].'_operator'], array('_begin_', '_countains_')))$x_sql .= ' LIKE ';
+				elseif(in_array($_GET[$s['name'].'_operator'], array('_in_')))$x_sql .= ' IN';
+				elseif(in_array($_GET[$s['name'].'_operator'], array('_not_in_')))$x_sql .= ' NOT IN';
 				else $x_sql .= ' NOT LIKE ';
 
 				// values
@@ -1577,7 +1579,7 @@ EOF;
 						}
 
 						$_GET[$s['name']] = (int)$_GET[$s['name']];
-						$x_sql .= addslashes($_GET[$s['name']])."\n";
+						$x_sql .= sqlX($_GET[$s['name']])."\n";
 					}
 					elseif(in_array($s['type'], array('date', 'datetime')))
 					{
@@ -1614,9 +1616,25 @@ EOF;
 					}
 					else
 					{
-						$x_sql .= "'".addslashes($_GET[$s['name']])."'\n";
+						$x_sql .= "'".sqlX($_GET[$s['name']])."'\n";
 					}
 				}
+                elseif(in_array($_GET[$s['name'].'_operator'], array('_in_', '_not_in_')))
+                {
+                    // protect list
+                    $tmp_list = explode(',', $_GET[$s['name']]);
+                    $tmp_list = array_map('trim', $tmp_list);
+
+                    $vs = '';
+                    foreach($tmp_list as $tmp_l)
+                    {
+                        if(!empty($vs))$vs .= ', ';
+                        $vs .= "'".sqlX($tmp_l)."'";
+                    }
+
+                    $x_sql .= "(".$vs.")\n";
+
+                }
 				else
 				{
 					$val = $_GET[$s['name'].'_operator'];

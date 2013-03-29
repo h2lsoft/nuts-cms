@@ -168,6 +168,9 @@ $nuts_lang_msg[94] = "Modifier mon profil";
 $nuts_lang_msg[95] = "Site internet";
 
 
+$nuts_lang_msg[96] = "dans (séparé par `,`)";
+$nuts_lang_msg[97] = "pas dans (séparé par `,`)";
+
 
 // main menu ***********************************************************************
 $mods_group[0]['name'] = 'Administration';
