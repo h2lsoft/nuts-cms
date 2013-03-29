@@ -84,6 +84,13 @@ div#form .checkbox_list label:hover, div#page_form .checkbox_list label:hover {c
 div#form .checkbox_list input[type=checkbox] {/* position: relative; top:3px;*/ margin-right: 5px;}
 
 
+/** file_upload **/
+.qq-upload-cancelAll {left: 170px; top:-20px;}
+.qq-upload-list li {border: 0!important;}
+.qq-upload-success {background-color: #DAF4D9!important; color: #009900!important; list-style: none; padding-left: 18px!important; background-image: url(../img/icon-accept.gif); background-repeat: no-repeat; background-position: center left;}
+.qq-upload-failed {background-color: #FFE1FF!important; color: #FF0000!important; list-style: none; padding-left: 18px!important; background-image: url(../img/icon-error.gif); background-repeat: no-repeat; background-position: center left;}
+.qq-upload-size {font-size:10px; }
+
 
 /** console **/
 div#console {padding:5px; background-color:#000; border:1px solid #000; font-family:"Courier New", Courier, monospace; font-size:11px; color:white;}
