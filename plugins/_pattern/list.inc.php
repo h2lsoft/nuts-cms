@@ -20,6 +20,7 @@ $plugin->listAddCol('Name', $lang_msg[2], ' width:5px', true);
 $plugin->listAddCol('Description', $lang_msg[3], 'white-space:nowrap;', false);
 $plugin->listAddCol('Pattern', '', 'left; white-space:nowrap; width:5px', false);
 $plugin->listAddCol('Code', '', '', false);
+$plugin->listAddCol('BlocInside', 'Inside', 'center; white-space:nowrap; width:5px', false);
 
 
 // render list
@@ -27,6 +28,16 @@ $plugin->listRender(20, 'hookData');
 function hookData($row)
 {
 	$row['Code'] = htmlentities($row['Code'], ENT_QUOTES, "UTF-8");
+
+    $row['BlocInside'] = '*';
+    if(!empty($row['BlocStart']) && !empty($row['BlocEnd']))
+    {
+        $row['BlocStart'] = htmlentities($row['BlocStart']);
+        $row['BlocEnd'] = htmlentities($row['BlocEnd']);
+        $row['BlocInside'] = "{$row['BlocStart']}(*){$row['BlocEnd']}";
+    }
+
+
 	return $row;
 }
 

@@ -14,5 +14,8 @@ $plugin->formAddFieldTextArea('Description', $lang_msg[3], false);
 $plugin->formAddFieldTextArea('Pattern', '', true);
 $plugin->formAddFieldTextArea('Code', '', true, 'tabby', '', '', "Php> use `\$rep` variable to set content");
 
+$plugin->formAddFieldText('BlocStart', 'Bloc start', false, '', '', '', '', 'pattern inside bloc');
+$plugin->formAddFieldText('BlocEnd', 'Bloc end', false, '', '', '', '', 'pattern inside bloc');
+
 
 ?>

@@ -381,6 +381,7 @@ class Page extends NutsCore
 		$url = $url[0];
 
         $curl = str_replace(WEBSITE_URL.'/', '', $url);
+
 		$curl = explode('/', $curl);
 
 
@@ -1065,30 +1066,66 @@ class Page extends NutsCore
         $sql = "SELECT
                         Pattern,
                         Type,
-                        Code
+                        Code,
+                        BlocStart,
+                        BlocEnd
                 FROM
                         NutsPattern
                 WHERE
                         Deleted = 'NO'";
-        $this->DoQuery($sql);
-        while($row = $this->DBFetch())
+        $this->doQuery($sql);
+        while($row = $this->dbFetch())
         {
             $rep = $row['Code'];
+            $bloc_inside_detected = false;
+
+            if(!empty($row['BlocStart']) && !empty($row['BlocEnd']))
+            {
+                $bloc_original = $this->extractStr($out, $row['BlocStart'], $row['BlocEnd'], true);
+                $bloc_inside_detected = true;
+            }
 
             if($row['Type'] == 'REGEX')
             {
-                $out = preg_replace($row['Pattern'], $rep, $out);
-            }
-            else
-            {
-                if($row['Type'] == 'PHP')
+                if(!$bloc_inside_detected)
                 {
-                    eval("\$rep = $rep;");
+                    $out = preg_replace($row['Pattern'], $rep, $out);
                 }
-                $out = str_replace($row['Pattern'], $rep, $out);
+                else
+                {
+                    $bloc_parsed = preg_replace($row['Pattern'], $rep, $bloc_original);
+                    $out = str_replace($bloc_original, $bloc_parsed, $out);
+                }
             }
-			$out = $this->formatOutput($out);
+            elseif($row['Type'] == 'PHP')
+            {
+                eval("\$rep = $rep;");
+                if(!$bloc_inside_detected)
+                {
+                    $out = str_replace($row['Pattern'], $rep, $out);
+                }
+                else
+                {
+                    $bloc_parsed = str_replace($row['Pattern'], $rep, $bloc_original);
+                    $out = str_replace($bloc_original, $bloc_parsed, $out);
+                }
+            }
+            elseif($row['Type'] == 'HTML')
+            {
+                if(!$bloc_inside_detected)
+                {
+                    $out = str_replace($row['Pattern'], $rep, $out);
+                }
+                else
+                {
+                    $bloc_parsed = str_replace($row['Pattern'], $rep, $bloc_original);
+                    $out = str_replace($bloc_original, $bloc_parsed, $out);
+                }
+            }
         }
+
+        $out = $this->formatOutput($out);
+
 		//</editor-fold>
 
 		// parsing ********************************************************************
