@@ -601,6 +601,41 @@ class Plugin
 		$this->listSearchAddField($name, $label, 'select', $options);
 	}
 
+    /**
+     * Add field type select enum load options from sql field
+     *
+     * @param string $name db column
+     * @param string $label label to display if empty $label = $name
+     * @param string $help help message
+     * @param string $operator operator selected (`=`, '!=', '>', '>=', '<', '<=', '^=', '!^=', '~=', '!~=')
+     * @param boolean $sort_options sort options  (true by default)
+     */
+    public function listSearchAddFieldSelectEnum($name, $label='', $help='', $operator='', $sort_options=true)
+    {
+        $opts = array();
+        $sql = "SHOW FIELDS FROM `{$this->dbtable}` LIKE '$name'";
+        $this->nuts->doQuery($sql);
+        $tmp = $this->nuts->dbFetch();
+        $opts = str_replace(array('enum(', "')"), array('',"'"), $tmp['Type']);
+        $opts = explode(",", $opts);
+        for($i=0; $i < count($opts); $i++)
+        {
+            if($opts[$i][0] == "'")$opts[$i][0] = '';
+            if($opts[$i][strlen($opts[$i])-1] == "'")$opts[$i][strlen($opts[$i])-1] = '';
+            $opts[$i] = trim($opts[$i]);
+        }
+
+        if($sort_options)sort($opts);
+
+
+        $options = array();
+        $options['options'] = $opts;
+        if(!empty($help))$options['help'] = $help;
+        if(!empty($operator))$options['operator'] = $operator;
+
+        $this->listSearchAddField($name, $label, 'select', $options);
+    }
+
 
 	/**
 	 * Add field type select-sql in search engine
@@ -2395,6 +2430,47 @@ EOF;
 
 		$this->formAddField($name, $label, 'select', $required, $options);
 	}
+
+    /**
+     * Add field type select in form options are generated from enum
+     *
+     * @param string $name db column name
+     * @param string $label label to display if empty $label = $name
+     * @param boolean $required field is required
+     * @param boolean $sort_options options sort options  (true by default)
+     * @param string $style css style to add
+     * @param string $after add string after field
+     * @param string $attributes add custom attributes in html input
+     * @param string $help help message
+     */
+    public function formAddFieldSelectEnum($name, $label='', $required, $sort_options=true, $style='', $after='', $attributes='', $help='')
+    {
+        $opts = array();
+        $sql = "SHOW FIELDS FROM `{$this->formDBTable[0]}` LIKE '$name'";
+        $this->nuts->doQuery($sql);
+        $tmp = $this->nuts->dbFetch();
+        $opts = str_replace(array('enum(', "')"), array('',"'"), $tmp['Type']);
+        $opts = explode(",", $opts);
+        for($i=0; $i < count($opts); $i++)
+        {
+            if($opts[$i][0] == "'")$opts[$i][0] = '';
+            if($opts[$i][strlen($opts[$i])-1] == "'")$opts[$i][strlen($opts[$i])-1] = '';
+            $opts[$i] = trim($opts[$i]);
+        }
+
+        if($sort_options)sort($opts);
+
+
+        $options = array();
+        $options['options'] = $opts;
+        if(!empty($required))$options['required'] = $required;
+        if(!empty($style))$options['style'] = $style;
+        if(!empty($after))$options['after'] = $after;
+        if(!empty($attributes))$options['attributes'] = $attributes;
+        if(!empty($help))$options['help'] = $help;
+
+        $this->formAddField($name, $label, 'select', $required, $options);
+    }
 
 	/**
 	 * Add field type select with html options directly in form
