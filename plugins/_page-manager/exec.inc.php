@@ -195,9 +195,9 @@ foreach($tpls as $tpl)
 		$nuts->parse('tpls_preview.theme', $theme);
 
 		// image preview
-		$tpl_preview = NUTS_LIBRARY_PATH.'/themes/'.$cur_theme.'/_preview/'.$tpl_name.'.png';
+		$tpl_preview = WEBSITE_PATH.'/themes/'.$cur_theme.'/_preview/'.$tpl_name.'.png';
 		if(!file_exists($tpl_preview))
-			$tpl_preview = NUTS_LIBRARY_PATH.'/_preview/no-preview.png';
+			$tpl_preview = WEBSITE_PATH.'/_preview/no-preview.png';
 		$tpl_preview = basename($tpl_preview);
 		$nuts->parse('tpls_preview.tpl_preview', $tpl_preview);
 
