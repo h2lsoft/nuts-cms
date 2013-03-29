@@ -9,7 +9,7 @@ if($('#fieldset_Uploader'))
 
 		var uploader = new qq.FileUploader({
                 element: $('#file-uploader')[0],
-				allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+				allowedExtensions: ['jpg', 'png', 'gif'],
                 action: 'index.php?mod=_gallery&do=add&_action=m_upload',
 				
 				onSubmit: function(id, fileName){
