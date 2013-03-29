@@ -1610,8 +1610,6 @@ EOF;
 						{
 							$v .= ":00";
 						}
-
-
                         $x_sql .= "'".$v."'\n";
 					}
 					else
@@ -1638,7 +1636,7 @@ EOF;
 				else
 				{
 					$val = $_GET[$s['name'].'_operator'];
-					$search = addslashes($_GET[$s['name']]);
+					$search = sqlX($_GET[$s['name']]);
 
 					// hacks special for date with 10 chars 00/00/0000
 					if(preg_match("#([0-9]{2})/([0-9]{2})/([0-9]{4})#i", $search))
