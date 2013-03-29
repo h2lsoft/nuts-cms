@@ -374,7 +374,7 @@ class Plugin
 		else
 		{
 			//if(!eregi('^http', $colImgName))
-			if(!preg_match('/^http/i', $colImgName))
+			if(!preg_match('/^http/i', $colImgName) && !preg_match('/\//i', $colImgName))
 				$colImgName = 'img/'.$colImgName;
 			elseif($colImgName[strlen($colImgName)-1] == '/')
 			{
