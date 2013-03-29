@@ -29,7 +29,7 @@ div#form_error {display:none;  color:red; padding:10px; background-color:#FFE1FF
 div#form_error img {margin-right:2px; vertical-align: middle;}
 div#form_ok {display:none; color:#009900; padding:10px; background-color:#DAF4D9; margin-bottom:15px;}
 div#form span.required {font-weight:bold; color:red;}
-div#form_valid {width:980px; text-align:center; font-weight:bold; padding-top:50px; font-size:14px;}
+div#form_valid {width:980px; text-align:center; padding-top:120px; font-size:14px;}
 div#form_content {height:450px; overflow:scroll; overflow-x:hidden; overflow-y:auto; padding-right:10px; padding-bottom:20px;}
 
 

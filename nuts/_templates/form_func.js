@@ -327,7 +327,7 @@ function showResponse(responseText, statusText)
                         else
                         {
                             system_refresh();
-                            setTimeout("$('#form_window').dialog('close')", 1500);
+                            setTimeout("$('#form_window').dialog('close')", 1700);
                         }
 					}
 

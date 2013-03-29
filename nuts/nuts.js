@@ -1746,9 +1746,12 @@ function transformSelectToAuctoComplete(objID, prefix)
     $(prefix+objID).autocomplete(tmp_arr, {
             width: 400,
             highlight: false,
-            multiple: false,
+            autoFill: false,
+            minChars: 1,
             scroll: true,
-            scrollHeight: 300
+            matchContains: true,
+            scrollHeight: 350,
+            multiple: false
     });
 
 
