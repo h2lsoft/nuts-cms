@@ -4,6 +4,8 @@
  */
 
 // controller **********************************************************************************************************
+$folder_param = @urldecode($_POST["folder"]);
+
 $files = (array)@$_POST["files"];
 for($i=0; $i < count($files); $i++)
     $files[$i] = urldecode($files[$i]);
@@ -11,6 +13,15 @@ for($i=0; $i < count($files); $i++)
 // no files
 if(!count($files))
     systemError(translate("No files to delete !"));
+
+// folder restriction upload_path
+if(!preg_match("#^$upload_pathX#", $folder_param))
+{
+    $msg = "Parameters folder `$folder_param` not correct !";
+    edmLog('DELETE', 'ERROR', $folder_param, $msg);
+    systemError(translate($msg));
+}
+
 
 // same folder parent
 $folder_dest = "";
@@ -30,7 +41,7 @@ foreach($files as $file)
     // folder-file restriction upload_path
     if(!preg_match("#^$upload_pathX#", $file))
     {
-        $msg = "Parameters files `$file` not correct !";
+        $msg = "Parameters files path `$file` not correct !";
         edmLog('DELETE', 'ERROR', $folder_dest, $msg);
         systemError(translate($msg));
     }
@@ -38,7 +49,7 @@ foreach($files as $file)
     // folder same root
     if($is_dir)
     {
-        if($file != $folder_dest)
+        if($file == $folder_param)
         {
             $msg = "Parameters folder `$file` folder not correct !";
             edmLog('DELETE', 'ERROR', $folder_dest, $msg);
@@ -48,7 +59,7 @@ foreach($files as $file)
     else
     {
         $cur_folder = str_replace(basename($file), "", $file);
-        if($cur_folder != $folder_dest)
+        if($cur_folder != $folder_param)
         {
             $msg = "Parameters files `$file` folder not correct !";
             edmLog('DELETE', 'ERROR', $folder_dest, $msg);
