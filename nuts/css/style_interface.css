@@ -159,6 +159,11 @@ iframe.nuts_editor:focus {
     border: 0;
     background: #F5EE7F!important;
     border: 20px solid maroon;
+
+    transition: none;
+    -webkit-transition: none;
+    -moz-transition: none;
+
 }
 
 #nuts_no_plugin {

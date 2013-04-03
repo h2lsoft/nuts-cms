@@ -22,18 +22,26 @@ $('body, #content').css('margin', 0)
                    .css('margin-top', '5px')
                    .css('padding', 0);
 
-$('#nuts_my_notes').width($(window).width()-68);
-$('#nuts_my_notes').height($(window).height()-89);
-$('#nuts_my_notes').tabby();
 
-$('#nuts_my_notes').focus();
+$(document).ready(function() {
+    $('#nuts_my_notes').css('width', ($(window).width()-68)+'px');
+    $('#nuts_my_notes').css('height', ($(window).height()-89)+'px');
+    $('#nuts_my_notes').tabby();
+    $('#nuts_my_notes').focus();
+    $('#main_title').hide();
+})
 
-$('#main_title').hide();
 
-window.onresize = function (){
-	$('#nuts_my_notes').width($(window).width()-68);
-	$('#nuts_my_notes').height($(window).height()-89);
+function resizedw(){
+	$('#nuts_my_notes').css('width', ($(window).width()-68)+'px');
+	$('#nuts_my_notes').css('height', ($(window).height()-89)+'px');
 }
+
+var doit;
+$(window).resize(function(){
+    clearTimeout(doit);
+    doit = setTimeout(resizedw, 100);
+});
 
 
 function imReload(item_selection)
