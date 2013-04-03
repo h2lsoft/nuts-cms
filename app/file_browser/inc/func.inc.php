@@ -86,6 +86,8 @@ function renderTree($dirs, $rootpath){
 
     if(!is_array($dirs))return;
 
+    @ksort($dirs);
+
     global $tree_hidden_folders;
 
     $html = "\t\t<ul>\n";
