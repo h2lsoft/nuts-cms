@@ -8,18 +8,30 @@
 /**
  * Verify if nuts user is logon
  *
- * @return boolean
+ * @param string $access_type front-office or back-office (default `front-office`)
+ * @return bool
  */
-function nutsUserIsLogon(){
-
+function nutsUserIsLogon($access_type='front-office')
+{
 	if(!session_id())@session_start();
 
-	if(
-		isset($_SESSION['NutsGroupID']) && $_SESSION['NutsGroupID'] != '' &&
-		isset($_SESSION['NutsUserID']) && $_SESSION['NutsUserID'] != '' &&
-		isset($_SESSION['FrontofficeAccess']) && $_SESSION['FrontofficeAccess'] == 'YES'
-	  )
-		return true;
+    if($access_type == 'front-office')
+    {
+        if(
+            isset($_SESSION['NutsGroupID']) && $_SESSION['NutsGroupID'] != '' &&
+            isset($_SESSION['NutsUserID']) && $_SESSION['NutsUserID'] != '' &&
+            isset($_SESSION['FrontofficeAccess']) && $_SESSION['FrontofficeAccess'] == 'YES'
+        )
+            return true;
+    }
+    else
+    {
+        if(
+            isset($_SESSION['NutsGroupID']) && $_SESSION['NutsGroupID'] != '' &&
+            isset($_SESSION['NutsUserID']) && $_SESSION['NutsUserID'] != ''
+        )
+            return true;
+    }
 
 	return false;
 }
