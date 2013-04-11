@@ -1859,6 +1859,41 @@ function youtubeGetPlayer($player_id, $youtube_url, $width='', $height='', $attr
     return $player;
 }
 
+/**
+ * Get Dailymotion player
+ *
+ * @param string $player_id
+ * @param $url url
+ * @param string $width
+ * @param string $height
+ * @param string $attributes
+ * @return string
+ */
+function dailymotionGetPlayer($player_id, $url, $width='', $height='', $attributes="")
+{
+    // get default parameters
+    $video_width = 640;
+    $video_height = 360;
+
+    if(!empty($width))$video_width = $width;
+    if(!empty($height))$video_height = $height;
+
+    preg_match('#http://www.dailymotion.com/video/([A-Za-z0-9]+)#s', $url, $matches);
+    $video_ID = @$matches[1];
+
+    $player = "<iframe class=\"nuts_dailymotion_iframe_player\" frameborder=\"0\" ";
+    $player .= " id=\"nuts_dailymotion_iframe_player_$player_id\" ";
+    $player .= " width=\"$video_width\" ";
+    $player .= " height=\"$video_height\" ";
+    $player .= " src=\"http://www.dailymotion.com/embed/video/$video_ID?logo=0\" ";
+    $player .= " $attributes ";
+    $player .= "></iframe>";
+
+    return $player;
+
+}
+
+
 
 /**
  * Return filesize in Mo

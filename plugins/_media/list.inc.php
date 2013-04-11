@@ -51,6 +51,21 @@ function hookData($row)
 
         $row['Preview'] = youtubeGetPlayer($row['ID'], $paramsX['url'], 240, 160);
     }
+    elseif($row['Type'] == 'DAILYMOTION')
+    {
+        $params = explode('@@', $row['Parameters']);
+        $paramsX = array();
+        foreach($params as $param)
+        {
+            if(!empty($param))
+            {
+                list($p,$v) = explode('=>', $param);
+                $paramsX[$p] = $v;
+            }
+        }
+
+        $row['Preview'] = dailymotionGetPlayer($row['ID'], $paramsX['url'], 240, 160);
+    }
 	elseif($row['Type'] == 'AUDIO')
 	{
 		/*$row['Preview'] = '<object type="application/x-shockwave-flash" data="../library/js/dewplayer/dewplayer.swf?mp3='.$row['Url'].'&amp;showtime=1" width="200" height="20">
@@ -126,6 +141,7 @@ function hookData($row)
         elseif($row['Type'] == 'VIDEO')$media = 'media_video';
         elseif($row['Type'] == 'AUDIO')$media = 'media_audio';
         elseif($row['Type'] == 'YOUTUBE VIDEO')$media = 'media_youtube';
+        elseif($row['Type'] == 'DAILYMOTION')$media = 'media_dailymotion';
 
 		$code = "<p><img class=\"nuts_tags\" src=\"/nuts/img/icon_tags/tag.php?tag={$media}&label=$label\" title=\"{@NUTS    TYPE='MEDIA'    OBJECT='{$row['Type']}'    ID='{$row['ID']}'    NAME='{$name}'}\" border=\"0\"></p>";
 		$code = str_replace('"', '``', $code);

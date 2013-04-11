@@ -9,7 +9,8 @@ include(PLUGIN_PATH.'/config.inc.php');
 $plugin->formDBTable(array('NutsMedia'));
 
 // fields
-$plugin->formAddFieldSelect('Type', $lang_msg[1], true, array('YOUTUBE VIDEO', 'EMBED CODE', 'VIDEO', 'AUDIO'));
+$plugin->formAddFieldSelectEnum('Type', $lang_msg[1], true);
+
 $plugin->formAddFieldText('Name', $lang_msg[2], 'notEmpty|unique', 'ucfirst');
 $plugin->formAddFieldTextArea('Description', $lang_msg[3], false, 'ucfirst', 'height:45px;');
 $plugin->formAddFieldMediaBrowser('Url', '', false);
@@ -24,6 +25,14 @@ $plugin->formAddFieldText('PVYT_height', $lang_msg[8], false, '', 'width:40px; t
 $plugin->formAddFieldsetEnd();
 // end of filters youtube video **************************************************
 
+// filters dailymotion *********************************************************
+$plugin->formAddFieldsetStart('DailymotionParams', $lang_msg[4]);
+$plugin->formAddFieldText('PVD_url', 'Dailymotion url', false);
+$plugin->formAddFieldText('PVD_width', $lang_msg[7], false, '', 'width:40px; text-align:center;', '', '', '', $video_default_width);
+$plugin->formAddFieldText('PVD_height', $lang_msg[8], false, '', 'width:40px; text-align:center;', '', '', '', $video_default_height);
+$plugin->formAddFieldsetEnd();
+// end of filters dailymotion **************************************************
+
 
 // filters audio *********************************************************
 $plugin->formAddFieldsetStart('AudioParams', $lang_msg[6]);
@@ -36,7 +45,6 @@ $plugin->formAddFieldsetEnd();
 
 // filters video *********************************************************
 $plugin->formAddFieldsetStart('VideoParams', $lang_msg[4]);
-
 $plugin->formAddFieldText('PV_width', $lang_msg[7], false, '', 'width:40px; text-align:center;', '', '', '', $video_default_width);
 $plugin->formAddFieldText('PV_height', $lang_msg[8], false, '', 'width:40px; text-align:center;', '', '', '', $video_default_height);
 $plugin->formAddFieldImageBrowser('PV_startimage', $lang_msg[9], false, '', $lang_msg[10]);
@@ -44,7 +52,6 @@ $plugin->formAddFieldBooleanX('PV_autoplay', 'Autoplay', false);
 $plugin->formAddFieldBooleanX('PV_loop', 'Loop', false);
 $plugin->formAddFieldText('PV_top1', 'Logo', false, '', '', '', '', $lang_msg[5], $video_default_top);
 $plugin->formAddFieldText('PV_skin', 'Skin', false, '', '', '', '', '', $video_default_skin);
-
 $plugin->formAddFieldsetEnd();
 // end of filters video **************************************************
 
@@ -52,10 +59,12 @@ $plugin->formAddFieldsetEnd();
 $plugin->formAddFieldHidden('Parameters', '', false);
 
 
-// forbiden
+// forbidden
 $plugin->formAddException('PVYT_*');
+$plugin->formAddException('PVD_*');
 $plugin->formAddException('PV_*');
 $plugin->formAddException('PA_*');
+
 
 
 // custom errors *************************************************************
@@ -66,12 +75,13 @@ if($_POST)
 	{
 		$nuts->notEmpty('Url');
 	}
-	elseif($_POST['Type'] == 'VIDEO' || $_POST['Type'] == 'YOUTUBE VIDEO')
+	elseif($_POST['Type'] == 'VIDEO' || $_POST['Type'] == 'YOUTUBE VIDEO' || $_POST['Type'] == 'DAILYMOTION')
 	{
 		$nuts->notEmpty('PV_width');
 		$nuts->notEmpty('PV_height');
 		if($_POST['Type'] == 'VIDEO')$nuts->notEmpty('Url');
 		if($_POST['Type'] == 'YOUTUBE VIDEO')$nuts->notEmpty('PVYT_url');
+		if($_POST['Type'] == 'DAILYMOTION')$nuts->notEmpty('PVD_url');
 
 	}
 	elseif($_POST['Type'] == 'EMBED CODE')
@@ -88,7 +98,8 @@ if($_POST && $nuts->formGetTotalError() == 0)
 
 	$pre = ($_POST['Type'] == 'AUDIO') ? 'PA' : 'PV';
     if($_POST['Type'] == 'YOUTUBE VIDEO')$pre = 'PVYT';
-	
+    if($_POST['Type'] == 'DAILYMOTION')$pre = 'PVD';
+
 	$_POST['Parameters'] = '';
 	foreach($_POST as $key => $val)
 	{

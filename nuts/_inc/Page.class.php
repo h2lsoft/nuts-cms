@@ -926,6 +926,21 @@ class Page extends NutsCore
 
                         $rep = youtubeGetPlayer($row['ID'], $paramsX['url'], $paramsX['width'], $paramsX['height']);
                     }
+                    elseif($row['Type'] == 'DAILYMOTION')
+                    {
+                        $params = explode('@@', $row['Parameters']);
+                        $paramsX = array();
+                        foreach($params as $param)
+                        {
+                            if(!empty($param))
+                            {
+                                list($p,$v) = explode('=>', $param);
+                                $paramsX[$p] = $v;
+                            }
+                        }
+
+                        $rep = dailymotionGetPlayer($row['ID'], $paramsX['url'], $paramsX['width'], $paramsX['height']);
+                    }
 					elseif($row['Type'] == 'AUDIO')
 					{
 						/*$autoreplay = ($parameters['autoreplay'] == 'NO') ? 0 : 1;
