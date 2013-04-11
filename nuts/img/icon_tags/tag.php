@@ -34,6 +34,8 @@ else
 
 	// create a new image and add label text
 	$string = utf8_decode(base64_decode($_GET['label']));
+    $string = html_entity_decode($string);
+
     $str = explode(' - PARAMETERS', $string);
     if(strlen($str[0]) >= 30) $str[0] = substr($str[0], 0, 30).'...';
     $string = $str[0];
