@@ -64,11 +64,11 @@ class Image
 	 * @param int $width image width
 	 * @param int $height image height
 	 * @param boolean $contraint
-	 * @param array $background_color 3 colors RGB
+	 * @param array $background_color 3 colors RGB default white
 	 * @param string $suffix add a suffix in image name
 	 * @param string $force_type convert original image: jpg, gif, png
 	 */
-	public function imgThumbnail($width, $height, $constraint=false, $background_color=array(0,0,0), $suffix='', $force_type='')
+	public function imgThumbnail($width, $height, $constraint=false, $background_color=array(255,255,255), $suffix='', $force_type='')
 	{
 
 		//recover the extension
