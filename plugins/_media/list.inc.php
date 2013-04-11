@@ -119,7 +119,14 @@ function hookData($row)
 	if(@$_GET['popup'] == 1)
 	{
 		$label = base64_encode($row['Name']);
-		$code = "<p><img class=\"nuts_tags\" src=\"/nuts/img/icon_tags/tag.php?tag=media&label=$label\" title=\"{@NUTS    TYPE='MEDIA'    OBJECT='{$row['Type']}'    ID='{$row['ID']}'    NAME='{$row['Name']}'}\" border=\"0\"></p>";
+
+        $media = 'media';
+        if($row['Type'] == 'EMBED CODE')$media = 'media_embed';
+        elseif($row['Type'] == 'VIDEO')$media = 'media_video';
+        elseif($row['Type'] == 'AUDIO')$media = 'media_audio';
+        elseif($row['Type'] == 'YOUTUBE VIDEO')$media = 'media_youtube';
+
+		$code = "<p><img class=\"nuts_tags\" src=\"/nuts/img/icon_tags/tag.php?tag={$media}&label=$label\" title=\"{@NUTS    TYPE='MEDIA'    OBJECT='{$row['Type']}'    ID='{$row['ID']}'    NAME='{$row['Name']}'}\" border=\"0\"></p>";
 		$code = str_replace('"', '``', $code);
 		$code = str_replace("'", "\\'", $code);
 
