@@ -323,7 +323,9 @@ function showResponse(responseText, statusText)
 						$('.ui-dialog').height(450).css('top', h_tmp);
 
                         if(form_plugin == '_user-profile')
-                            document.location.reload();
+                        {
+                            document.location.href= "/nuts/";
+                        }
                         else
                         {
                             system_refresh();
