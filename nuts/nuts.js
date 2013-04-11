@@ -1074,8 +1074,8 @@ function parse_nuts_tags(text)
                     if(cur_tags.indexOf("OBJECT='VIDEO'") != -1)tag_type = 'media_video';
                     if(cur_tags.indexOf("OBJECT='YOUTUBE VIDEO'") != -1)tag_type = 'media_youtube';
                     if(cur_tags.indexOf("OBJECT='EMBED CODE'") != -1)tag_type = 'media_embed';
+                    if(cur_tags.indexOf("OBJECT='DAILYMOTION'") != -1)tag_type = 'media_dailymotion';
                 }
-
 			}
 			else
 			{

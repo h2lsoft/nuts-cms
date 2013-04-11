@@ -22,9 +22,10 @@ else
 
     if($_GET['tag'] == 'media_youtube')$text_indent = 135;
     if($_GET['tag'] == 'media_audio')$text_indent = 118;
-    elseif($_GET['tag'] == 'media')$text_indent = 115;
+    if($_GET['tag'] == 'media')$text_indent = 115;
     if($_GET['tag'] == 'media_video')$text_indent = 118;
     if($_GET['tag'] == 'media_embed')$text_indent = 120;
+    if($_GET['tag'] == 'media_dailymotion')$text_indent = 160;
 
 	elseif($_GET['tag'] == 'zone')$text_indent = 110;
 	elseif($_GET['tag'] == 'region')$text_indent = 125;
