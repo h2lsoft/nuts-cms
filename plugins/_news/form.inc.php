@@ -100,6 +100,7 @@ $plugin->formAddFieldsetEnd();
 
 
 // Social networking
+/*
 if(TWITTER_LOGIN != '' || FACEBOOK_PUBLISH_URL != '' || GOOGLEP_PUBLISH_URL != '')
 {
 	$plugin->formAddFieldsetStart('Social networking');
@@ -130,7 +131,7 @@ if(TWITTER_LOGIN != '' || FACEBOOK_PUBLISH_URL != '' || GOOGLEP_PUBLISH_URL != '
 
 	$plugin->formAddFieldsetEnd();
 }
-
+*/
 
 
 $plugin->formAddEndText("

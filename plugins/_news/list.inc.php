@@ -101,6 +101,38 @@ if($news_new_system)
     $plugin->listAddCol('Url', '', 'center; width:40px; white-space:nowrap;', false);
 
 
+// social columns ?
+if(TWITTER_LOGIN != '' || FACEBOOK_PUBLISH_URL != '' || GOOGLEP_PUBLISH_URL != '')
+{
+    $plugin->listAddCol('Social', "", 'center; width:40px; white-space:nowrap;', false);
+
+/*
+    // facebook
+    if(FACEBOOK_PUBLISH_URL != '')
+    {
+        $plugin->listAddCol('Facebook', "", 'center; width:40px; white-space:nowrap;', false);
+    }
+
+
+    // twitter
+    if(TWITTER_LOGIN != '')
+    {
+        $plugin->listAddCol('Twitter', "", 'center; width:40px; white-space:nowrap;', false);
+    }
+
+    // google plus
+    if(GOOGLEP_PUBLISH_URL != '')
+    {
+        $plugin->listAddCol('GoogleP', "Google +", 'center; width:40px; white-space:nowrap;', false);
+    }
+*/
+
+}
+
+
+
+
+
 $plugin->listSetFirstOrderBy('DateGMT');
 
 
@@ -149,6 +181,34 @@ EOF;
         if(empty($row['Avatar']))$row['Avatar'] = '/nuts/img/gravatar.jpg';
         $row['Author'] = "<a class='tt' title=\"{$row['Author']}\"><img src='{$row['Avatar']}' style='max-width:40px; max-height:40px;'></a>";
     }
+
+
+    // social funcs
+    $row['Social'] = '';
+
+    // facebook
+    if(FACEBOOK_PUBLISH_URL != '')
+    {
+        $row['Social'] .= '<a title="Facebook" href="javascript:openFacebook(\''.FACEBOOK_PUBLISH_URL.'\');"><img src="/plugins/_social-share/img/facebook.png" style="width:16px;" /></a> ';
+    }
+
+    // twitter
+    if(TWITTER_LOGIN != '')
+    {
+        $status = $row['Title'];
+        if($news_new_system)
+            $status .= " => ".WEBSITE_URL.$row['VirtualPageName'];
+        $status = str_replace("'", "\'", $status);
+
+        $row['Social'] .= '<a title="Twitter" href="javascript:openTwitter(\''.$status.'\');"><img src="/plugins/_social-share/img/twitter.png" style="width:16px;" /></a> ';
+    }
+
+    // google plus
+    if(GOOGLEP_PUBLISH_URL != '')
+    {
+        $row['Social'] .= '<a title="Google plus" href="javascript:openGoogleP(\''.GOOGLEP_PUBLISH_URL.'\');"><img src="/plugins/_social-share/img/googlep.png" style="width:16px;" /></a> ';
+    }
+
 
 	return $row;
 }
