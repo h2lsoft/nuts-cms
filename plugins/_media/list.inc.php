@@ -118,7 +118,8 @@ function hookData($row)
 	// add code
 	if(@$_GET['popup'] == 1)
 	{
-		$label = base64_encode($row['Name']);
+        $name = str_replace("'", '`', $row['Name']);
+        $label = base64_encode($name);
 
         $media = 'media';
         if($row['Type'] == 'EMBED CODE')$media = 'media_embed';
@@ -126,7 +127,7 @@ function hookData($row)
         elseif($row['Type'] == 'AUDIO')$media = 'media_audio';
         elseif($row['Type'] == 'YOUTUBE VIDEO')$media = 'media_youtube';
 
-		$code = "<p><img class=\"nuts_tags\" src=\"/nuts/img/icon_tags/tag.php?tag={$media}&label=$label\" title=\"{@NUTS    TYPE='MEDIA'    OBJECT='{$row['Type']}'    ID='{$row['ID']}'    NAME='{$row['Name']}'}\" border=\"0\"></p>";
+		$code = "<p><img class=\"nuts_tags\" src=\"/nuts/img/icon_tags/tag.php?tag={$media}&label=$label\" title=\"{@NUTS    TYPE='MEDIA'    OBJECT='{$row['Type']}'    ID='{$row['ID']}'    NAME='{$name}'}\" border=\"0\"></p>";
 		$code = str_replace('"', '``', $code);
 		$code = str_replace("'", "\\'", $code);
 
