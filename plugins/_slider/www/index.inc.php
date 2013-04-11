@@ -31,8 +31,8 @@ else
     $plugin->parse('Direction', strtolower($slider['Direction']));
     $plugin->parse('Align', strtolower($slider['Align']));
     $plugin->parse('Padding', $slider['Padding']);
-    $plugin->parse('Circular', ($slider['Circular']=='YES') ? true : false);
-    $plugin->parse('Infinite', ($slider['Infinite']=='YES') ? true : false);
+    $plugin->parse('Circular', ($slider['Circular']=='YES') ? 1 : 0);
+    $plugin->parse('Infinite', ($slider['Infinite']=='YES') ? 1 : 0);
     $plugin->parse('Items', $slider['Items']);
     $plugin->parse('Fx', strtolower($slider['Fx']));
     $plugin->parse('PauseDuration', $slider['PauseDuration']);
