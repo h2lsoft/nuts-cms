@@ -18,5 +18,7 @@ $lang_msg[10] = "Merci de renseigner [UNSUSCRIBE_LINK] dans votre message ou tem
 $lang_msg[11] = "Votre message test a bien été envoyé";
 
 $lang_msg[12] = "Utiliser la touche Control pour sélectionner des options multiples";
+$lang_msg[13] = "Merci de renseigner les mots clefs [FIRSTNAME] et [LASTNAME] pour remplacement";
+
 
 ?>

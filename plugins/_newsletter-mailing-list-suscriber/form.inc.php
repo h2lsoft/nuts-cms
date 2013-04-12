@@ -11,6 +11,10 @@ $plugin->formAddFieldSelectSql('NutsNewsletterMailingListID', 'Mailing-list', tr
 $plugin->formAddFieldSelect('Language', $lang_msg[1], true, $nuts_lang_options);
 $plugin->formAddFieldDateTime('Date', $lang_msg[2], true);
 $plugin->formAddFieldText('Email', '', 'notEmpty|Email');
+$plugin->formAddFieldText('LastName', $lang_msg[4], false, 'ucfirst');
+$plugin->formAddFieldText('FirstName', $lang_msg[5], false, 'ucfirst');
+
+
 
 if($_POST)
 {

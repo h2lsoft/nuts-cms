@@ -9,6 +9,8 @@ $plugin->listSetDbTable('NutsNewsletterMailingListSuscriber', "(SELECT Name FROM
 // search engine
 $plugin->listSearchAddFieldSelectSql("NutsNewsletterMailingListID", 'Mailing-list');
 $plugin->listSearchAddFieldTextAjaxAutoComplete("Email", '', 'countains');
+$plugin->listSearchAddFieldTextAjaxAutoComplete("LastName", $lang_msg[4], 'countains');
+$plugin->listSearchAddFieldTextAjaxAutoComplete("FirstName", $lang_msg[5], 'countains');
 $plugin->listSearchAddFieldSelectSql("Language", $lang_msg[1]);
 $plugin->listSearchAddFieldDate("Date");
 $plugin->listSearchAddFieldDate("Date2", 'Date', "Date");
@@ -19,6 +21,8 @@ $plugin->listAddCol('MailingList', 'Mailing-list', '; width:30px; white-space:no
 $plugin->listAddColImg('Language', $lang_msg[1], '', true, NUTS_IMAGES_URL.'/flag/{Language}.gif');
 $plugin->listAddCol('Date', '', '; width:10px; white-space:nowrap;', true);
 $plugin->listAddCol('Email', '', '; white-space:nowrap;', true);
+$plugin->listAddCol('LastName', $lang_msg[4], '', true);
+$plugin->listAddCol('FirstName', $lang_msg[5], '', true);
 
 // render list
 $plugin->listRender(20, 'hookData');

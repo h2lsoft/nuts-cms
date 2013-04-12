@@ -14,7 +14,7 @@ $plugin->formDBTable(array('NutsNewsletter')); // put table here
 // fields
 $plugin->formAddFieldText('uFrom', $lang_msg[2], true, '', '', '', '', '', $NEWSLETTER_EXPEDITOR);
 $plugin->formAddFieldText('Subject', $lang_msg[1], true, '', '', '', '', '', mb_convert_encoding($NEWSLETTER_SUBJECT, 'utf-8'));
-$plugin->formAddFieldHtmlArea('Body', $lang_msg[6], true, 'height:500px');
+$plugin->formAddFieldHtmlArea('Body', $lang_msg[6], true, 'height:500px', $lang_msg[13]);
 
 // test mode
 $plugin->formAddFieldBoolean('ModeTest', $lang_msg[7], true);
@@ -84,6 +84,8 @@ if($_POST)
 		{
 			$nuts->mailTo($_POST['To']);
 			$body = str_replace('[UNSUSCRIBE_LINK]', '#test_mode', $body);
+			$body = str_replace('[FIRSTNAME]', '#Firstname', $body);
+			$body = str_replace('[LASTNAME]', '#Lastname', $body);
 			$nuts->addError('ModeTest', $lang_msg[11]);
 
 			$nuts->mailBody($body, 'HTML');

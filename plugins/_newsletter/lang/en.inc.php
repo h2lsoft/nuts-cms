@@ -18,6 +18,7 @@ $lang_msg[10] = "Please add [UNSUSCRIBE_LINK] in your message or template";
 $lang_msg[11] = "Test message has been sent";
 
 $lang_msg[12] = "Use Control key to select multiple choice";
+$lang_msg[13] = "Please use keywords [FIRSTNAME] and [LASTNAME] for replacement";
 
 
 

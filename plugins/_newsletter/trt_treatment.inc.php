@@ -27,7 +27,7 @@ $mailinglistIDs = join(',', $_POST['MailingList']);
 for($i=0; $i < count($mailinglistIDs); $i++)
 	$mailinglistIDs[$i] = (int)$mailinglistIDs[$i];
 
-$sql = "SELECT ID, Email, Language FROM NutsNewsletterMailingListSuscriber WHERE NutsNewsletterMailingListID IN($mailinglistIDs) AND Deleted = 'NO' GROUP BY Email LIMIT {$_SESSION['FormPercentParams'][0]}, ".PLUGIN_NEWSLETTER_BREAK;
+$sql = "SELECT ID, FirstName, LastName, Email, Language FROM NutsNewsletterMailingListSuscriber WHERE NutsNewsletterMailingListID IN($mailinglistIDs) AND Deleted = 'NO' GROUP BY Email LIMIT {$_SESSION['FormPercentParams'][0]}, ".PLUGIN_NEWSLETTER_BREAK;
 $nuts->doQuery($sql);
 $total_send = $_SESSION['FormPercentParams'][0];
 while($suscriber = $nuts->dbFetch())
@@ -40,6 +40,10 @@ while($suscriber = $nuts->dbFetch())
 	$enc = $suscriber['Email'].';'.$suscriber['ID'].';'.$_SESSION['FormPercentRecordID'];
 	$uri_unsuscribe = WEBSITE_URL.'/plugins/_newsletter/www/newsletter.php?action=unsuscribe&suscriber='.strrev(base64_encode($enc)).'&lang='.$suscriber['Language'];
 	$cur_body = str_replace('[UNSUSCRIBE_LINK]', $uri_unsuscribe, $body_original);
+
+    // replace [FIRSTNAME], [LASTNAME]
+    $cur_body = str_replace('[LASTNAME]', $suscriber['LastName'], $cur_body);
+    $cur_body = str_replace('[FIRSTNAME]', $suscriber['FirstName'], $cur_body);
 
 	// add image tracer
 	$uri_tracer = WEBSITE_URL.'/plugins/_newsletter/www/newsletter.php?action=affiliate&affiliateId='.strrev(base64_encode($enc));
