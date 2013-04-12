@@ -24,7 +24,7 @@ Your identification connection
 User: {Login}
 Password: {Password}
 
-To connect: {WEBSITE_URL}/nuts/";
+To connect: {WEBSITE_URL}{ConnectUrl}";
 $lang_msg[14] = "Send email to user with these identification information";
 
 

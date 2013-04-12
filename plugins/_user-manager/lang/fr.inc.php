@@ -25,7 +25,7 @@ Voici vos identifiants de connexion :
 Utilisateur: {Login}
 Mot de passe: {Password}
 
-Pour vous connecter: {WEBSITE_URL}/nuts/";
+Pour vous connecter: {WEBSITE_URL}{ConnectUrl}";
 $lang_msg[14] = "Envoyer un email à l'utilisateur avec ses informations d'identification";
 
 $lang_msg[15] = "Société";
