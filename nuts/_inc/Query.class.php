@@ -89,7 +89,7 @@ class Query
      * @param int $value
      * @return Query
      */
-    public function whereIDEqualTo($value){return $this->where('ID', '=', (int)$value);}
+    public function whereID($value){return $this->where('ID', '=', (int)$value);}
 
 
     /**
