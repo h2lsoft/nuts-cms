@@ -294,7 +294,9 @@ $nuts->parseDbRow('page_access');
 $userAllowedPluginUrlRewriting = nutsUserHasRight($_SESSION['NutsGroupID'], '_url_rewriting', 'list');
 $nuts->parse('userAllowedPluginUrlRewriting', $userAllowedPluginUrlRewriting);
 
-
+// block manager shortcut
+$userAllowedPluginBlockManager = nutsUserHasRight($_SESSION['NutsGroupID'], '_block_builder', 'list');
+$nuts->parse('userAllowedPluginBlockManager', $userAllowedPluginBlockManager);
 
 
 $plugin->render = $nuts->output();

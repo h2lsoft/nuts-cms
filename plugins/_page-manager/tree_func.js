@@ -1009,6 +1009,3 @@ function headerImageReload()
 }
 
 
-
-
-

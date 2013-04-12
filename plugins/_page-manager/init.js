@@ -53,18 +53,36 @@ if(v == 0)
 
 // block select multiple
 $("#tab3 select[multiple]").asmSelect({
-	addItemTarget: 'top',
 	sortable: true,
 	animate: false,
-	highlight: true,
+	highlight: false,
 	addItemTarget: 'bottom',
+    hideWhenAdded: true,
 	customized: true
 });
+
+
+// initialize option after asmSelect
+setTimeout(function(){
+
+    // block_options = ' <a href="javascript:blockReload();"><i class="icon-loop"></i></a>';
+
+    block_options = '';
+    if(userAllowedPluginBlockManager == '1')
+        block_options = ' <a href="javascript:popupModal(\'index.php?mod=_block_builder&do=list\', \'block builder\');"><img src="/nuts/img/icon-folder.png" align="absmiddle"></a>';
+
+    if(block_options != '')
+        $('#asmSelect0').after(block_options);
+
+}, 500);
+
+
+
 
 // update content
 $('#Content').width($('#page_form').width()-180);
 $('#Content').height(tab_height - 80);
- $('#ContentResume').width($('#page_form').width()-180);
+$('#ContentResume').width($('#page_form').width()-180);
 
 
 $("#dID").bind("keypress", function(e){
