@@ -86,6 +86,14 @@ class Query
 
     /**
      * Add where equal to (=)
+     * @param int $value
+     * @return Query
+     */
+    public function whereIDEqualTo($value){return $this->where('ID', '=', (int)$value);}
+
+
+    /**
+     * Add where equal to (=)
      * @param $column
      * @param $value
      * @return Query
