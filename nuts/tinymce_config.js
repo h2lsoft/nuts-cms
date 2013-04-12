@@ -457,7 +457,7 @@ function WYSIWYGIFrameReload(id)
 function openWYSIWYG(objID)
 {
 
-    WYSIWYGTextareaReload(id); // force before open
+    WYSIWYGTextareaReload(objID); // force before open
 
 	t = time();
 

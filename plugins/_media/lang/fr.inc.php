@@ -24,4 +24,8 @@ $lang_msg[14] = "Url de la page contenant le code pour la prévisualisation";
 
 $lang_msg[15] = "Insérer le code";
 
+$lang_msg[16] = "Prévisualiser";
+
+
+
 ?>

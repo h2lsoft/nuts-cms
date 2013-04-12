@@ -17,7 +17,7 @@ $plugin->listSearchAddFieldText('Name', $lang_msg[2]);
 $plugin->listAddCol('Type', $lang_msg[1], 'center;width:10px;  white-space:nowrap;', true);
 $plugin->listAddCol('Name', $lang_msg[2], '; white-space:nowrap;', true);
 // $plugin->listAddCol('Description', $lang_msg[3], '', false);
-$plugin->listAddCol('Preview', '', 'center;width:10px;', false);
+$plugin->listAddCol('Preview', $lang_msg[16], 'center;width:10px;', false);
 
 // popup
 if(@$_GET['popup'] == 1)
@@ -125,6 +125,21 @@ function hookData($row)
 								<param name="FlashVars" value="flv='.$row['Url'].'&amp;width=220&amp;height=160&amp;showstop=1&amp;showvolume=1&amp;showplayer=always&amp;showloading=always&amp;showfullscreen=1&amp;showiconplay=1&amp;ondoubleclick=fullscreen&amp;autoload=0&amp;srt=1&amp;iconplaybgalpha=50'.$startimage.'" />
 						</object>';
 	}
+    elseif($row['Type'] == 'IFRAME')
+    {
+        $params = explode('@@', $row['Parameters']);
+        $paramsX = array();
+        foreach($params as $param)
+        {
+            if(!empty($param))
+            {
+                list($p,$v) = explode('=>', $param);
+                $paramsX[$p] = $v;
+            }
+        }
+
+        $row['Preview'] = "<a style='font-weight: bold;' href=\"javascript:void(0);\" onclick=\"popupModal('{$paramsX['url']}', 'iframe preview', 1024, 768);\">{$lang_msg[16]}</a>";
+    }
 	elseif($row['Type'] == 'EMBED CODE')
 	{
 		$row['Preview'] = "<a style='font-weight: bold;' href=\"javascript:void(0);\" onclick=\"popupModal('{$row['EmbedCodePreviewUrl']}', 'embed preview', 1024, 768);\">{$lang_msg[11]}</a>";
@@ -142,6 +157,7 @@ function hookData($row)
         elseif($row['Type'] == 'AUDIO')$media = 'media_audio';
         elseif($row['Type'] == 'YOUTUBE VIDEO')$media = 'media_youtube';
         elseif($row['Type'] == 'DAILYMOTION')$media = 'media_dailymotion';
+        elseif($row['Type'] == 'IFRAME')$media = 'media_iframe';
 
 		$code = "<p><img class=\"nuts_tags\" src=\"/nuts/img/icon_tags/tag.php?tag={$media}&label=$label\" title=\"{@NUTS    TYPE='MEDIA'    OBJECT='{$row['Type']}'    ID='{$row['ID']}'    NAME='{$name}'}\" border=\"0\"></p>";
 		$code = str_replace('"', '``', $code);

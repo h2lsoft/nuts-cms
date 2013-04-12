@@ -7,6 +7,7 @@ $('#former #Type').change(function(){
     $('#former #fieldset_DailymotionParams').hide();
     $('#former #fieldset_VideoParams').hide();
     $('#former #fieldset_AudioParams').hide();
+    $('#former #fieldset_IframeParams').hide();
 
     if($(this).val() == 'YOUTUBE VIDEO')
     {
@@ -26,6 +27,10 @@ $('#former #Type').change(function(){
 		$('#former #Url').parents('p').show();
 		$('#former #fieldset_VideoParams').show();
 	}
+    else if($(this).val() == 'IFRAME')
+    {
+        $('#former #fieldset_IframeParams').show();
+    }
 	else if($(this).val() == 'EMBED CODE')
 	{
 		$('#former #EmbedCode').parents('p').show();
@@ -48,13 +53,11 @@ if(!empty(params))
 			v2 = explode('=>', tabs[i]);
 
 			prefix = 'PA_';
-			if($('#former #Type').val() == 'VIDEO')
-				prefix = 'PV_';
-            if($('#former #Type').val() == 'YOUTUBE VIDEO')
-                prefix = 'PVYT_';
-            if($('#former #Type').val() == 'DAILYMOTION')
-                prefix = 'PVD_';
-			
+			if($('#former #Type').val() == 'VIDEO')prefix = 'PV_';
+            if($('#former #Type').val() == 'YOUTUBE VIDEO')prefix = 'PVYT_';
+            if($('#former #Type').val() == 'DAILYMOTION')prefix = 'PVD_';
+            if($('#former #Type').val() == 'IFRAME')prefix = 'PIF_';
+
 			if(!empty(v2[0]))
 				$('#former #'+prefix+v2[0]).val(v2[1]);
 

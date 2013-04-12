@@ -173,6 +173,29 @@ elseif(@$_GET['action'] == 'get_links')
 	echo ');';
 	die();
 }
+
+// Nuts blocks menu *******************************************************************************
+function menu_block()
+{
+    global $nuts;
+
+    $nuts->DoQuery("SELECT ID, Name FROM NutsBlock WHERE Deleted = 'NO' AND Visible = 'YES' ORDER BY Name");
+    if($nuts->dbNumrows() == 0)return;
+    echo 'sub = m.addMenu({title : "Blocks"});';
+
+    while($row = $nuts->dbFetch())
+    {
+        $ID = $row['ID'];
+        $name = $row['Name'];
+        $code = sprintf("{@NUTS    TYPE='BLOCK'    NAME='%s'}", $name);
+
+        echo 'sub.add({title : "'.$name.'", onclick : function() {
+				tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
+			}});';
+    }
+}
+
+
 // Nuts forms menu ******************************************************************************
 function menu_form()
 {
@@ -180,7 +203,7 @@ function menu_form()
 
     $nuts->DoQuery("SELECT ID, Name FROM NutsForm WHERE Deleted = 'NO' ORDER BY Name");
 	if($nuts->dbNumrows() == 0)return;
-    echo 'sub = m.addMenu({title : "Nuts forms"});';
+    echo 'sub = m.addMenu({title : "Forms"});';
 
     while($row = $nuts->dbFetch())
     {
@@ -194,111 +217,6 @@ function menu_form()
     }
 }
 
-// Nuts survey menu ******************************************************************************
-function menu_survey()
-{
-    global $nuts;
-
-    $nuts->DoQuery("SELECT ID, Title FROM NutsSurvey WHERE Deleted = 'NO' ORDER BY Title");
-	if($nuts->dbNumrows() == 0)return;
-    echo 'sub = m.addMenu({title : "Nuts survey"});';
-
-    while($row = $nuts->dbFetch())
-    {
-        $ID = $row['ID'];
-        $title = str_replace("'", '`', $row['Title']);
-
-        $code = sprintf("{@NUTS    TYPE='SURVEY'    ID='%s'    TITLE='%s'}", $ID, $title);
-
-		echo 'sub.add({title : "'.$title.'", onclick : function() {
-				tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
-			}});';
-    }
-}
-
-// Nuts patterns menu ******************************************************************************
-function menu_pattern()
-{
-    global $nuts;
-
-    $nuts->DoQuery("SELECT Name, Pattern FROM NutsPattern WHERE Deleted = 'NO' ORDER BY Name");
-	if($nuts->dbNumrows() == 0)return;
-    echo 'sub = m.addMenu({title : "Nuts patterns"});';
-
-    while($row = $nuts->dbFetch())
-    {
-        $name = $row['Name'];
-        $pattern = $row['Pattern'];
-
-        $code = sprintf("%s", $pattern);
-
-		echo 'sub.add({title : "'.$name.'", onclick : function() {
-				tinyMCE.activeEditor.execCommand("mceInsertContent", false, "'.$code.'");
-			}});';
-    }
-}
-
-// Nuts regions menu *******************************************************************************
-function menu_region()
-{
-    global $nuts;
-
-    $nuts->DoQuery("SELECT Name FROM NutsRegion WHERE Deleted = 'NO' ORDER BY Name");
-	if($nuts->dbNumrows() == 0)return;
-    echo 'sub = m.addMenu({title : "Nuts regions"});';
-
-    while($row = $nuts->dbFetch())
-    {
-        $name = $row['Name'];
-        $code = sprintf("{@NUTS    TYPE='REGION'    NAME='%s'}", $name);
-		echo 'sub.add({title : "'.$name.'", onclick : function() {
-				tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
-			}});';
-    }
-}
-
-// Nuts blocks menu *******************************************************************************
-function menu_block()
-{
-    global $nuts;
-
-    $nuts->DoQuery("SELECT ID, Name FROM NutsBlock WHERE Deleted = 'NO' AND Visible = 'YES' ORDER BY Name");
-	if($nuts->dbNumrows() == 0)return;
-    echo 'sub = m.addMenu({title : "Nuts blocks"});';
-
-    while($row = $nuts->dbFetch())
-    {
-        $ID = $row['ID'];
-        $name = $row['Name'];
-        $code = sprintf("{@NUTS    TYPE='BLOCK'    NAME='%s'}", $name);
-
-		echo 'sub.add({title : "'.$name.'", onclick : function() {
-				tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
-			}});';
-    }
-}
-
-// Nuts zones menu ****************************************************************************
-function menu_zone()
-{
-    global $nuts;
-    $plugin = "_zone-manager";
-
-    $nuts->DoQuery("SELECT ID, Name FROM NutsZone WHERE Deleted = 'NO' AND Visible = 'YES' ORDER BY Name");
-	if($nuts->dbNumrows() == 0)return;
-    echo 'sub = m.addMenu({title : "Nuts zones"});';
-
-    while($row = $nuts->dbFetch())
-    {
-        $ID = $row['ID'];
-        $name = $row['Name'];
-		$code = sprintf("{@NUTS    TYPE='ZONE'    NAME='%s'}", $name);
-
-        echo 'sub.add({title : "'.$name.'", onclick : function() {
-						tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
-					}});';
-    }
-}
 
 // Nuts gallery menu ***************************************************************************
 function menu_gallery()
@@ -306,8 +224,8 @@ function menu_gallery()
     global $nuts;
 
     $nuts->DoQuery("SELECT ID, Name FROM NutsGallery WHERE Deleted = 'NO' AND Active = 'YES' ORDER BY Name");
-	if($nuts->dbNumrows() == 0)return;
-    echo 'sub = m.addMenu({title : "Nuts gallery"});';
+    if($nuts->dbNumrows() == 0)return;
+    echo 'sub = m.addMenu({title : "Gallery"});';
 
     while($row = $nuts->dbFetch())
     {
@@ -315,45 +233,13 @@ function menu_gallery()
         $name = $row['Name'];
         $code = sprintf("{@NUTS    TYPE='GALLERY'    NAME='%s'}", $name);
 
-		echo 'sub.add({title : "'.$name.'", onclick : function() {
+        echo 'sub.add({title : "'.$name.'", onclick : function() {
 				tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
 			}});';
     }
 }
 
-// Nuts plugin menu ******************************************************************************
-function menu_plugin()
-{
-	$dir_plugin = WEBSITE_PATH.'/plugins';
-    $plugins = glob($dir_plugin.'/*', GLOB_ONLYDIR);
 
-	$new_plugins = array();
-	foreach($plugins as $plugin)
-	{
-		 $plugin = str_replace($dir_plugin."/", '', $plugin);
-		 if(!in_array($plugin, array('_page-manager','_news')) && is_dir($dir_plugin."/".$plugin."/www"))
-			 $new_plugins[] = $plugin;
-	}
-
-
-	if(count($new_plugins) == 0)
-		return;
-
-
-
-    echo 'sub = m.addMenu({title : "Nuts plugins"});';
-
-    foreach($new_plugins as $plugin)
-    {
-        $plugin = str_replace($dir_plugin."/", '', $plugin);
-		$code = sprintf("{@NUTS    TYPE='PLUGIN'    NAME='%s'    PARAMETERS=''}", $plugin);
-
-        echo 'sub.add({title : "'.$plugin.'", onclick : function() {
-						tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
-
-					}});';
-    }
-}
 
 // Nuts media menu ******************************************************************************
 function menu_media()
@@ -364,7 +250,7 @@ function menu_media()
     $nuts->DoQuery("SELECT ID, Name FROM NutsMedia WHERE Type='YOUTUBE VIDEO' AND Deleted = 'NO' ORDER BY Name");
     if($nuts->dbNumrows() > 0)
     {
-        echo 'sub = m.addMenu({title : "Nuts Youtube video"});';
+        echo 'sub = m.addMenu({title : "Media> Youtube video"});';
         while($row = $nuts->dbFetch())
         {
             $ID = $row['ID'];
@@ -381,7 +267,7 @@ function menu_media()
     $nuts->DoQuery("SELECT ID, Name FROM NutsMedia WHERE Type='DAILYMOTION' AND Deleted = 'NO' ORDER BY Name");
     if($nuts->dbNumrows() > 0)
     {
-        echo 'sub = m.addMenu({title : "Nuts Dailymotion video"});';
+        echo 'sub = m.addMenu({title : "Media> Dailymotion video"});';
         while($row = $nuts->dbFetch())
         {
             $ID = $row['ID'];
@@ -394,11 +280,28 @@ function menu_media()
         }
     }
 
+    // iframe
+    $nuts->DoQuery("SELECT ID, Name FROM NutsMedia WHERE Type='IFRAME' AND Deleted = 'NO' ORDER BY Name");
+    if($nuts->dbNumrows() > 0)
+    {
+        echo 'sub = m.addMenu({title : "Media> Iframe"});';
+        while($row = $nuts->dbFetch())
+        {
+            $ID = $row['ID'];
+            $name = $row['Name'];
+            $code = sprintf("{@NUTS    TYPE='MEDIA'    OBJECT='IFRAME'    ID='%s'    NAME='%s'}", $ID, str_replace("'", "`", $name));
+
+            echo 'sub.add({title : "'.$name.'", onclick : function() {
+						tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
+				}});';
+        }
+    }
+
     // embed code
     $nuts->DoQuery("SELECT ID, Name FROM NutsMedia WHERE Type='EMBED CODE' AND Deleted = 'NO' ORDER BY Name");
     if($nuts->dbNumrows() > 0)
     {
-        echo 'sub = m.addMenu({title : "Nuts embed code"});';
+        echo 'sub = m.addMenu({title : "Media> Embed code"});';
         while($row = $nuts->dbFetch())
         {
             $ID = $row['ID'];
@@ -413,42 +316,166 @@ function menu_media()
 
 
 
-	// audio
+    // audio
     $nuts->DoQuery("SELECT ID, Name FROM NutsMedia WHERE Type='AUDIO' AND Deleted = 'NO' ORDER BY Name");
-	if($nuts->dbNumrows() > 0)
-	{
-		echo 'sub = m.addMenu({title : "Nuts audio"});';
-		while($row = $nuts->dbFetch())
-		{
-			$ID = $row['ID'];
-			$name = $row['Name'];
-			$code = sprintf("{@NUTS    TYPE='MEDIA'    OBJECT='AUDIO'    ID='%s'    NAME='%s'}", $ID, str_replace("'", "`", $name));
+    if($nuts->dbNumrows() > 0)
+    {
+        echo 'sub = m.addMenu({title : "Media> Audio"});';
+        while($row = $nuts->dbFetch())
+        {
+            $ID = $row['ID'];
+            $name = $row['Name'];
+            $code = sprintf("{@NUTS    TYPE='MEDIA'    OBJECT='AUDIO'    ID='%s'    NAME='%s'}", $ID, str_replace("'", "`", $name));
 
-			echo 'sub.add({title : "'.$name.'", onclick : function() {
+            echo 'sub.add({title : "'.$name.'", onclick : function() {
 							tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
 				}});';
-		}
-	}
-	// video
+        }
+    }
+    // video
     $nuts->DoQuery("SELECT ID, Name FROM NutsMedia WHERE Type='VIDEO' AND Deleted = 'NO' ORDER BY Name");
-	if($nuts->dbNumrows() > 0)
-	{
-		echo 'sub = m.addMenu({title : "Nuts video"});';
-		while($row = $nuts->dbFetch())
-		{
-			$ID = $row['ID'];
-			$name = $row['Name'];
-			$code = sprintf("{@NUTS    TYPE='MEDIA'    OBJECT='VIDEO'    ID='%s'    NAME='%s'}", $ID, str_replace("'", "`", $name));
+    if($nuts->dbNumrows() > 0)
+    {
+        echo 'sub = m.addMenu({title : "Media> Video"});';
+        while($row = $nuts->dbFetch())
+        {
+            $ID = $row['ID'];
+            $name = $row['Name'];
+            $code = sprintf("{@NUTS    TYPE='MEDIA'    OBJECT='VIDEO'    ID='%s'    NAME='%s'}", $ID, str_replace("'", "`", $name));
 
-			echo 'sub.add({title : "'.$name.'", onclick : function() {
+            echo 'sub.add({title : "'.$name.'", onclick : function() {
 						tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
 				}});';
-		}
-	}
+        }
+    }
 
 
 
 }
+
+// Nuts patterns menu ******************************************************************************
+function menu_pattern()
+{
+    global $nuts;
+
+    $nuts->DoQuery("SELECT Name, Pattern FROM NutsPattern WHERE Deleted = 'NO' ORDER BY Name");
+    if($nuts->dbNumrows() == 0)return;
+    echo 'sub = m.addMenu({title : "Patterns"});';
+
+    while($row = $nuts->dbFetch())
+    {
+        $name = $row['Name'];
+        $pattern = $row['Pattern'];
+
+        $code = sprintf("%s", $pattern);
+
+        echo 'sub.add({title : "'.$name.'", onclick : function() {
+				tinyMCE.activeEditor.execCommand("mceInsertContent", false, "'.$code.'");
+			}});';
+    }
+}
+
+
+// Nuts plugin menu ******************************************************************************
+function menu_plugin()
+{
+    $dir_plugin = WEBSITE_PATH.'/plugins';
+    $plugins = glob($dir_plugin.'/*', GLOB_ONLYDIR);
+
+    $new_plugins = array();
+    foreach($plugins as $plugin)
+    {
+        $plugin = str_replace($dir_plugin."/", '', $plugin);
+        if(!in_array($plugin, array('_page-manager','_news')) && is_dir($dir_plugin."/".$plugin."/www"))
+            $new_plugins[] = $plugin;
+    }
+
+
+    if(count($new_plugins) == 0)
+        return;
+
+
+
+    echo 'sub = m.addMenu({title : "Plugins"});';
+
+    foreach($new_plugins as $plugin)
+    {
+        $plugin = str_replace($dir_plugin."/", '', $plugin);
+        $code = sprintf("{@NUTS    TYPE='PLUGIN'    NAME='%s'    PARAMETERS=''}", $plugin);
+
+        echo 'sub.add({title : "'.$plugin.'", onclick : function() {
+						tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
+
+					}});';
+    }
+}
+
+
+
+// Nuts regions menu *******************************************************************************
+function menu_region()
+{
+    global $nuts;
+
+    $nuts->DoQuery("SELECT Name FROM NutsRegion WHERE Deleted = 'NO' ORDER BY Name");
+    if($nuts->dbNumrows() == 0)return;
+    echo 'sub = m.addMenu({title : "Regions"});';
+
+    while($row = $nuts->dbFetch())
+    {
+        $name = $row['Name'];
+        $code = sprintf("{@NUTS    TYPE='REGION'    NAME='%s'}", $name);
+        echo 'sub.add({title : "'.$name.'", onclick : function() {
+				tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
+			}});';
+    }
+}
+
+// Nuts survey menu ******************************************************************************
+function menu_survey()
+{
+    global $nuts;
+
+    $nuts->DoQuery("SELECT ID, Title FROM NutsSurvey WHERE Deleted = 'NO' ORDER BY Title");
+	if($nuts->dbNumrows() == 0)return;
+    echo 'sub = m.addMenu({title : "Survey"});';
+
+    while($row = $nuts->dbFetch())
+    {
+        $ID = $row['ID'];
+        $title = str_replace("'", '`', $row['Title']);
+
+        $code = sprintf("{@NUTS    TYPE='SURVEY'    ID='%s'    TITLE='%s'}", $ID, $title);
+
+		echo 'sub.add({title : "'.$title.'", onclick : function() {
+				tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
+			}});';
+    }
+}
+
+// Nuts zones menu ****************************************************************************
+function menu_zone()
+{
+    global $nuts;
+    $plugin = "_zone-manager";
+
+    $nuts->DoQuery("SELECT ID, Name FROM NutsZone WHERE Deleted = 'NO' AND Visible = 'YES' ORDER BY Name");
+	if($nuts->dbNumrows() == 0)return;
+    echo 'sub = m.addMenu({title : "Zones"});';
+
+    while($row = $nuts->dbFetch())
+    {
+        $ID = $row['ID'];
+        $name = $row['Name'];
+		$code = sprintf("{@NUTS    TYPE='ZONE'    NAME='%s'}", $name);
+
+        echo 'sub.add({title : "'.$name.'", onclick : function() {
+						tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
+					}});';
+    }
+}
+
+
 
 // no cache
 // header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
@@ -510,18 +537,15 @@ function menu_media()
 						c.onRenderMenu.add(function(c, m) {
 										var sub;
 										<?php
-												menu_zone();
-												menu_region();
 												menu_block();
-												menu_plugin();
 												menu_form();
-												menu_survey();
-												menu_pattern();
-
-												// user
 												menu_gallery();
 												menu_media();
-
+												menu_region();
+												menu_pattern();
+												menu_plugin();
+												menu_survey();
+												menu_zone();
 												include('tiny_mce_custom_menu.inc.php');
 										?>
 						});
@@ -628,6 +652,7 @@ echo $nuts->dbGetOne();
 			val = tinyMCE.get('RichEditor').getContent();
 			window.opener.$('textarea#'+parentID).val(val);
 			window.opener.WYSIWYGIFrameReload(parentID, val);
+            window.opener.refreshWYSIWYG(parentID);
 
 			if(direct_saving == true)
 			{

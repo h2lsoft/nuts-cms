@@ -26,6 +26,7 @@ else
     if($_GET['tag'] == 'media_video')$text_indent = 118;
     if($_GET['tag'] == 'media_embed')$text_indent = 120;
     if($_GET['tag'] == 'media_dailymotion')$text_indent = 160;
+    if($_GET['tag'] == 'media_iframe')$text_indent = 125;
 
 	elseif($_GET['tag'] == 'zone')$text_indent = 110;
 	elseif($_GET['tag'] == 'region')$text_indent = 125;

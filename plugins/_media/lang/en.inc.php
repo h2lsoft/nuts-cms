@@ -29,4 +29,6 @@ $lang_msg[14] = "Url for page preview";
 
 $lang_msg[15] = "Insert code";
 
+$lang_msg[16] = "Preview";
+
 ?>

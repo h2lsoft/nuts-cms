@@ -1022,6 +1022,21 @@ class Page extends NutsCore
 								<param name="FlashVars" value="'.$flash_vars.'" />
 							</object></div>';
 					}
+                    elseif($row['Type'] == 'IFRAME')
+                    {
+                        $params = explode('@@', $row['Parameters']);
+                        $paramsX = array();
+                        foreach($params as $param)
+                        {
+                            if(!empty($param))
+                            {
+                                list($p,$v) = explode('=>', $param);
+                                $paramsX[$p] = $v;
+                            }
+                        }
+
+                        $rep = "<iframe id=\"nuts_iframe_{$row['ID']}\" class=\"nuts_iframe\" src=\"{$paramsX['url']}\" frameborder=\"0\" width=\"{$paramsX['width']}\" height=\"{$paramsX['height']}\"></iframe>";
+                    }
 					elseif($row['Type'] == 'EMBED CODE')
 					{
 						$rep = $row['EmbedCode'];

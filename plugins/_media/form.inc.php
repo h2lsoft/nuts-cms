@@ -33,6 +33,14 @@ $plugin->formAddFieldText('PVD_height', $lang_msg[8], false, '', 'width:40px; te
 $plugin->formAddFieldsetEnd();
 // end of filters dailymotion **************************************************
 
+// filters iframe *********************************************************
+$plugin->formAddFieldsetStart('IframeParams', $lang_msg[4]);
+$plugin->formAddFieldText('PIF_url', 'Url', false);
+$plugin->formAddFieldText('PIF_width', $lang_msg[7], false, '', 'width:40px; text-align:center;', '', '', '', '99%');
+$plugin->formAddFieldText('PIF_height', $lang_msg[8], false, '', 'width:40px; text-align:center;', '', '', '', '500px');
+$plugin->formAddFieldsetEnd();
+// end of filters iframe **************************************************
+
 
 // filters audio *********************************************************
 $plugin->formAddFieldsetStart('AudioParams', $lang_msg[6]);
@@ -64,6 +72,7 @@ $plugin->formAddException('PVYT_*');
 $plugin->formAddException('PVD_*');
 $plugin->formAddException('PV_*');
 $plugin->formAddException('PA_*');
+$plugin->formAddException('PIF_*');
 
 
 
@@ -84,6 +93,12 @@ if($_POST)
 		if($_POST['Type'] == 'DAILYMOTION')$nuts->notEmpty('PVD_url');
 
 	}
+    elseif($_POST['Type'] == 'IFRAME')
+    {
+        $nuts->notEmpty('PIF_url');
+        $nuts->notEmpty('PIF_width');
+        $nuts->notEmpty('PIF_height');
+    }
 	elseif($_POST['Type'] == 'EMBED CODE')
 	{
 		$nuts->notEmpty('EmbedCode');
@@ -98,10 +113,10 @@ if($_POST && $nuts->formGetTotalError() == 0)
 
     $_POST['Name'] = str_replace("'", "`", $_POST['Name']);
 
-
 	$pre = ($_POST['Type'] == 'AUDIO') ? 'PA' : 'PV';
     if($_POST['Type'] == 'YOUTUBE VIDEO')$pre = 'PVYT';
     if($_POST['Type'] == 'DAILYMOTION')$pre = 'PVD';
+    if($_POST['Type'] == 'IFRAME')$pre = 'PIF';
 
 	$_POST['Parameters'] = '';
 	foreach($_POST as $key => $val)
