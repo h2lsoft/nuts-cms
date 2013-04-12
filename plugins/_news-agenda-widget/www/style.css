@@ -1,0 +1,22 @@
+.nuts_calendar_widget {border: 1px solid #ccc; width: 100%; margin-bottom: 15px;}
+.nuts_calendar_widget table {width: 100%; border-spacing: 1px; border-collapse: collapse;}
+.nuts_calendar_widget table th {text-align: center; background-color: #e5e5e5; color: black; text-align: center; font-size: 11px; padding: 3px 1px; color: #666; }
+
+.nuts_calendar_widget table th.cur_month_year {color: black; text-align: center;}
+.nuts_calendar_widget table th a.widget_calendar_left {display: block; width: 16px; height: 16px; background: url(/nuts/img/icon-previous.png); float: left;}
+.nuts_calendar_widget table th a.widget_calendar_right {display: block; width: 16px; height: 16px; background: url(/nuts/img/icon-next.png); float: right;}
+.nuts_calendar_widget table th a.widget_calendar_left:hover,
+.nuts_calendar_widget table th a.widget_calendar_right:hover
+    {opacity: 0.5;}
+
+.nuts_calendar_widget table tbody {}
+.nuts_calendar_widget table tbody td {color: #ccc; text-align: center; padding: 1px; font-size: 11px; }
+
+
+.nuts_calendar_widget_tooltip {position: absolute;  z-index: 55555; background-color: white; display: none; border: 1px solid #ccc; box-shadow: 0px 0px 10px #ccc; width: 250px; padding: 10px; padding-top: 3px; padding-bottom: 15px; font-size: 11px;}
+.nuts_calendar_widget_tooltip .widget_tooltip_close {display: block; float: right; width: 16px; height: 16px; margin-bottom: 0px; background: url(/plugins/_news-agenda-widget/www/icon-close.gif) no-repeat right;}
+.nuts_calendar_widget_tooltip .widget_tooltip_close:hover {opacity: 0.5;}
+.nuts_calendar_widget_tooltip .widget_tooltip_content {clear: both;}
+.nuts_calendar_widget_tooltip .widget_tooltip_content a:before {content: '\00BB ';}
+
+.nuts_calendar_widget .widget_filters select {width: 99%; height: auto; padding: 1px; border-radius: 0;}

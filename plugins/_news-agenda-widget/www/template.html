@@ -1,0 +1,69 @@
+<div id="nuts_calendar_widget" class="nuts_calendar_widget">
+
+    <!-- ajax::nuts_calendar_widget -->
+    <table>
+
+        <tr>
+            <th><a href="javascript:;" onclick="nutsCalendarWidgetEvent('prev', '{cur_month}', '{cur_year}');" class="widget_calendar_left"></a></th>
+            <th class="cur_month_year" colspan="5">{Month} {Year}</th>
+            <th><a href="javascript:;" onclick="nutsCalendarWidgetEvent('next', '{cur_month}', '{cur_year}');" class="widget_calendar_right"></a></th>
+        </tr>
+
+        <tr>
+            <th>{day1}</th>
+            <th>{day2}</th>
+            <th>{day3}</th>
+            <th>{day4}</th>
+            <th>{day5}</th>
+            <th>{day6}</th>
+            <th>{day7}</th>
+        </tr>
+
+        <tbody>
+            {tds_generated}
+        </tbody>
+
+
+        <bloc::widget_filters>
+        <tr class="widget_filters">
+            <td colspan="7">
+
+                <select id="nuts_calendar_widget_filters" onchange="nutsCalendarWidgetEvent('reload', '{cur_month}', '{cur_year}');">
+
+                    <option value=""></option>
+
+                    <bloc::filters>
+                        <option value="{value}" {selected}>{label}</option>
+                    </bloc::filters>
+
+                </select>
+            </td>
+        </tr>
+        </bloc::widget_filters>
+
+    </table>
+
+
+    <!-- tooltip -->
+    <bloc::tooltip>
+        <div class="nuts_calendar_widget_tooltip" id="nuts_calendar_widget_tooltip_{Date}">
+            <a href="javascript:;" onclick="nutsCalendarWidgetEvent('close');" class="widget_tooltip_close"></a>
+            <div class="widget_tooltip_content">
+                <bloc::tooltip_title>
+                    <a href="{VirtualPageName}"><b>{Type}</b> {Title}</a><br />
+                </bloc::tooltip_title>
+            </div>
+        </div>
+    </bloc::tooltip>
+    <!-- /tooltip -->
+
+    <script type="text/javascript">
+    var nuts_calendar_widget_page_url = '{nuts_calendar_widget_page_url}';
+    </script>
+
+    <!-- /ajax::nuts_calendar_widget -->
+</div>
+
+
+
+
