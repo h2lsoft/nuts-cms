@@ -2048,6 +2048,7 @@ EOF;
 			}
 		}
 
+
 		$this->formFields[] = array('name'  => $name,
 									'label' => $label,
 									'type'  => $type,
@@ -2328,6 +2329,25 @@ EOF;
 
 		$this->formAddField($name, $label, 'htmlarea', $required, $options);
 	}
+
+    /**
+     * Add field type simple htmlarea in form
+     *
+     * @param string $name db column name
+     * @param string $label label to display if empty $label = $name
+     * @param boolean $required field is required
+     * @param string $style css style to add
+     * @param string $help help message
+     */
+    public function formAddFieldHtmlAreaSimple($name, $label='', $required, $style='', $help='')
+    {
+        $options = array();
+        if(!empty($required))$options['required'] = $required;
+        if(!empty($style))$options['style'] = $style;
+        if(!empty($help))$options['help'] = $help;
+        $options['class'] = 'simple';
+        $this->formAddField($name, $label, 'htmlarea', $required, $options);
+    }
 
 	/**
 	 * Add field type file browser in form
@@ -3048,10 +3068,8 @@ EOF;
 					}
 					else
 					{
-						if($f['type'] == 'htmlarea')
-							$class = 'mceEditor';
-						elseif(empty($class))
-							$class = 'resizable';
+						if($f['type'] == 'htmlarea')$class .= ' mceEditor';
+						elseif(empty($class))$class .= ' resizable';
 					}
 					$this->nuts->parse('f.widgets.textarea.class', $class);
 					$this->nuts->parse('f.widgets.textarea.after', $f['opts']['after']);
