@@ -115,7 +115,8 @@ function initWYSIWYGOption()
         str += '<a tabindex="0" href="javascript:imgBrowser(\''+id+'\', \'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');">Image '+lbl_library+'</a><br />';
         str += '<a tabindex="0" href="javascript:mediaBrowser(\''+id+'\', \'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');">Media '+lbl_library+'</a><br />';
         str += '<a tabindex="0" href="javascript:allBrowser(\''+id+'\', \'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');">'+lbl_file+' '+lbl_library+'</a><br />';
-        str += '---------------------------------<br />';
+        // str += '----------------------------<br />';
+        str += '<hr />';
         str += '<a tabindex="0" href="javascript:cmdWYSIWYG(\''+id+'\', \'link\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');">'+lbl_custom+'</a><br />';
         str += '</div>';
 
@@ -126,7 +127,24 @@ function initWYSIWYGOption()
 		// gallery
         str += ' <img class="rte_button" src="/nuts/img/rte/browse.png" align="absmiddle" title="Images" onclick="imgBrowser(\'imgTag_'+id+'\', \'\');" />';
 		str += ' <img class="rte_button" style="width:16px;" title="'+nuts_lang_msg_72+'" src="/plugins/_gallery/icon.png" align="absmiddle" onclick="popupModal(\'index.php?mod=_gallery&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
-		str += ' <img class="rte_button" src="img/icon-media.png" align="absmiddle" title="'+nuts_lang_msg_73+'" onclick="popupModal(\'index.php?mod=_media&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
+		// str += ' <img class="rte_button" src="img/icon-media.png" align="absmiddle" title="'+nuts_lang_msg_73+'" onclick="popupModal(\'index.php?mod=_media&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
+
+        // media submenu
+        str += ' <img class="rte_button" src="img/icon-media.png" align="absmiddle" title="'+nuts_lang_msg_73+'" id="'+id+'_WYSIWYG_submenu_media_parent" onclick="javascript:WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');" />';
+
+        str += '<div id="'+id+'_WYSIWYG_submenu_media" class="WYSIWYG_submenu">';
+        str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=YOUTUBE%20VIDEO&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/youtube.png" style="width:16px" /> Youtube</a><br />';
+        str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=DAILYMOTION&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/dailymotion.png" style="width:16px" /> Dailymotion</a><br />';
+        str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=EMBED%20CODE&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/embed.png" style="width:16px" /> Embed code</a><br />';
+        str += '<hr />';
+        str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=IFRAME&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/iframe.png" style="width:16px" /> Iframe</a><br />';
+        str += '<hr />';
+        str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=VIDEO&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/video.png" style="width:16px" /> Video</a><br />';
+        str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=AUDIO&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/audio.png" style="width:16px" /> Audio</a><br />';
+        str += '</div>';
+
+
+
 		str += ' <img class="rte_button" src="/nuts/img/widget.png" title="Widgets" align="absmiddle" onclick="widgetsWindowOpen(\''+id+'\');" /> ';
 
 
