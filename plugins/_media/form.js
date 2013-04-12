@@ -1,3 +1,8 @@
+current_type_search = $('#Type').val();
+if(current_type_search != '')
+    $('#former #Type').val(current_type_search);
+
+
 $('#former #Type').change(function(){
 
     $('#former #Url').parents('p').hide();
