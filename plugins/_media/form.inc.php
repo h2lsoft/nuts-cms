@@ -9,7 +9,7 @@ include(PLUGIN_PATH.'/config.inc.php');
 $plugin->formDBTable(array('NutsMedia'));
 
 // fields
-$plugin->formAddFieldSelectEnum('Type', $lang_msg[1], true);
+$plugin->formAddFieldSelectEnum('Type', $lang_msg[1], true, false);
 
 $plugin->formAddFieldText('Name', $lang_msg[2], 'notEmpty|unique', 'ucfirst');
 $plugin->formAddFieldTextArea('Description', $lang_msg[3], false, 'ucfirst', 'height:45px;');
