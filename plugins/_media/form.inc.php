@@ -96,6 +96,9 @@ if($_POST)
 if($_POST && $nuts->formGetTotalError() == 0)
 {
 
+    $_POST['Name'] = str_replace("'", "`", $_POST['Name']);
+
+
 	$pre = ($_POST['Type'] == 'AUDIO') ? 'PA' : 'PV';
     if($_POST['Type'] == 'YOUTUBE VIDEO')$pre = 'PVYT';
     if($_POST['Type'] == 'DAILYMOTION')$pre = 'PVD';
