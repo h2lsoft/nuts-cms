@@ -17,13 +17,20 @@ $NEWSLETTER_SUSCRIBE_PLACEHOLDER = (@$page->language == 'fr') ? "mon@email" : "<
 
 
 // default template put [BODY] inside or let it empty
+$WEBSITE_URL = WEBSITE_URL;
 $HTML_TEMPLATE = <<<EOF
 <style type="text/css">
-body, td {font-family:arial; font-size:12px;}
+body, td {font-family:"Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;  font-size:12px;}
 img {border:0}
+#header {margin-bottom:10px; padding:0;}
 </style>
 
+<div id="header">
+<a href="{$WEBSITE_URL}"><img src="{$WEBSITE_URL}/nuts/img/logo.png" /></a>
+</div>
+
 [BODY]
+
 <br>
 <br>
 --
