@@ -369,13 +369,49 @@ function menu_media()
         {
             $ID = $row['ID'];
             $name = $row['Name'];
-            $code = sprintf("{@NUTS    TYPE='MEDIA'    OBJECT='VIDEO'    ID='%s'    NAME='%s'}", $ID, str_replace("'", "`", $name));
+            $code = sprintf("{@NUTS    TYPE='MEDIA'    OBJECT='YOUTUBE VIDEO'    ID='%s'    NAME='%s'}", $ID, str_replace("'", "`", $name));
 
             echo 'sub.add({title : "'.$name.'", onclick : function() {
 						tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
 				}});';
         }
     }
+
+    // dailymotion
+    $nuts->DoQuery("SELECT ID, Name FROM NutsMedia WHERE Type='DAILYMOTION' AND Deleted = 'NO' ORDER BY Name");
+    if($nuts->dbNumrows() > 0)
+    {
+        echo 'sub = m.addMenu({title : "Nuts Dailymotion video"});';
+        while($row = $nuts->dbFetch())
+        {
+            $ID = $row['ID'];
+            $name = $row['Name'];
+            $code = sprintf("{@NUTS    TYPE='MEDIA'    OBJECT='DAILYMOTION'    ID='%s'    NAME='%s'}", $ID, str_replace("'", "`", $name));
+
+            echo 'sub.add({title : "'.$name.'", onclick : function() {
+						tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
+				}});';
+        }
+    }
+
+    // embed code
+    $nuts->DoQuery("SELECT ID, Name FROM NutsMedia WHERE Type='EMBED CODE' AND Deleted = 'NO' ORDER BY Name");
+    if($nuts->dbNumrows() > 0)
+    {
+        echo 'sub = m.addMenu({title : "Nuts embed code"});';
+        while($row = $nuts->dbFetch())
+        {
+            $ID = $row['ID'];
+            $name = $row['Name'];
+            $code = sprintf("{@NUTS    TYPE='MEDIA'    OBJECT='EMBED CODE'    ID='%s'    NAME='%s'}", $ID, str_replace("'", "`", $name));
+
+            echo 'sub.add({title : "'.$name.'", onclick : function() {
+						tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
+				}});';
+        }
+    }
+
+
 
 	// audio
     $nuts->DoQuery("SELECT ID, Name FROM NutsMedia WHERE Type='AUDIO' AND Deleted = 'NO' ORDER BY Name");
@@ -403,22 +439,6 @@ function menu_media()
 			$ID = $row['ID'];
 			$name = $row['Name'];
 			$code = sprintf("{@NUTS    TYPE='MEDIA'    OBJECT='VIDEO'    ID='%s'    NAME='%s'}", $ID, str_replace("'", "`", $name));
-
-			echo 'sub.add({title : "'.$name.'", onclick : function() {
-						tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
-				}});';
-		}
-	}
-	// embed code
-    $nuts->DoQuery("SELECT ID, Name FROM NutsMedia WHERE Type='EMBED CODE' AND Deleted = 'NO' ORDER BY Name");
-	if($nuts->dbNumrows() > 0)
-	{
-		echo 'sub = m.addMenu({title : "Nuts embed code"});';
-		while($row = $nuts->dbFetch())
-		{
-			$ID = $row['ID'];
-			$name = $row['Name'];
-			$code = sprintf("{@NUTS    TYPE='MEDIA'    OBJECT='EMBED CODE'    ID='%s'    NAME='%s'}", $ID, str_replace("'", "`", $name));
 
 			echo 'sub.add({title : "'.$name.'", onclick : function() {
 						tinyMCE.activeEditor.execCommand("mceInsertContent", false, parse_nuts_tags("'.$code.'"));
