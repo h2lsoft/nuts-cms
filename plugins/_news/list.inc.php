@@ -102,32 +102,7 @@ if($news_new_system)
 
 
 // social columns ?
-if(TWITTER_LOGIN != '' || FACEBOOK_PUBLISH_URL != '' || GOOGLEP_PUBLISH_URL != '')
-{
-    $plugin->listAddCol('Social', "", 'center; width:40px; white-space:nowrap;', false);
-
-/*
-    // facebook
-    if(FACEBOOK_PUBLISH_URL != '')
-    {
-        $plugin->listAddCol('Facebook', "", 'center; width:40px; white-space:nowrap;', false);
-    }
-
-
-    // twitter
-    if(TWITTER_LOGIN != '')
-    {
-        $plugin->listAddCol('Twitter', "", 'center; width:40px; white-space:nowrap;', false);
-    }
-
-    // google plus
-    if(GOOGLEP_PUBLISH_URL != '')
-    {
-        $plugin->listAddCol('GoogleP', "Google +", 'center; width:40px; white-space:nowrap;', false);
-    }
-*/
-
-}
+$plugin->listAddCol('Social', "", 'center; width:40px; white-space:nowrap;', false);
 
 
 
@@ -144,7 +119,10 @@ $plugin->listRender(20, 'hookData');
 function hookData($row){
 
 	global $cf, $nuts, $news_new_system, $plugin;
-	
+
+
+    $original_date = $row['DateGMT'];
+
 	if($_SESSION['Language'] == 'fr')
 	{
 		$row['DateGMT'] = $nuts->db2date($row['DateGMT']);
@@ -185,6 +163,16 @@ EOF;
 
     // social funcs
     $row['Social'] = '';
+
+    // google agenda
+    $titleX = urlencode($row['Title']);
+    $datesX = str_replace('-', '', $original_date);
+
+    $uriX = urlencode(WEBSITE_URL.$row['VirtualPageName']);
+
+    $uri = "https://www.google.com/calendar/render?action=TEMPLATE&text=$titleX&dates=$datesX/$datesX&details=$uriX&location&trp=false&sprop&sprop=name:&sf=true&output=xml";
+    $row['Social'] .= '<a title="Google agenda" href="javascript:popupModal(\''.$uri.'\');"><img src="/plugins/_social-share/img/google_calendar.png" style="width:16px;" /></a> ';
+
 
     // facebook
     if(FACEBOOK_PUBLISH_URL != '')
