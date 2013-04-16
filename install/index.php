@@ -101,7 +101,7 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 		$files[] = WEBSITE_PATH.'/.htaccess';
 		// $files[] = WEBSITE_PATH.'/nuts_auto_compress.js';
         // $files[] = WEBSITE_PATH.'/nuts_auto_compress.css';
-		$files[] = WEBSITE_PATH.'/__cache';
+		$files[] = WEBSITE_PATH.'/cache';
 		// $files[] = WEBSITE_PATH.'/_tmp';
         $files[] = WEBSITE_PATH.'/app/file_browser/cache';
 		$files[] = WEBSITE_PATH.'/uploads';
@@ -298,11 +298,6 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 	</div>
 	<!-- header -->
 	
-	<!-- menu -->
-	<div id="menu">&nbsp;</div>
-	<!-- /menu -->
-	
-	
 	<!-- ni_left -->
 	<div id="ni_left">
 		
@@ -326,9 +321,7 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 		<div class="ni_content_text" style="display: block;">
 			
 			<h1>Welcome !</h1>
-			<h4>
-				Welcome to Nuts&trade; CMS Installer wizard.		
-			</h4>
+			<h4>Nuts&trade; CMS Installer wizard</h4>
 			
 			<fieldset>
 				<legend>Global configuration</legend>

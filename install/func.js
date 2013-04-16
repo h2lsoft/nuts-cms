@@ -26,8 +26,6 @@ function block(state){
 							width: '350px',
 							padding: '10px',
 							backgroundColor: '#fff',
-							'-webkit-border-radius': '10px',
-							'-moz-border-radius': '10px',
 							color: '#000'
 							}
 				});
@@ -88,8 +86,6 @@ function stepNext()
 										top: '300px',
 										padding: '15px',
 										backgroundColor: 'red',
-										'-webkit-border-radius': '10px',
-										'-moz-border-radius': '10px',
 										color: '#fff'
 								}
 							});
