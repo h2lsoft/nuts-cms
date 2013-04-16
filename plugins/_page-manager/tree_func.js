@@ -1,7 +1,7 @@
 var forbidden = array('ID', 'Language', 'NutsPageID','NutsUserID', 'CustomVars', 'FirstName', 'LastName', 'Email',
 					  'NutsGroupID', 'Timezone', 'GroupName', 'CommentsNb',
 					  'Position', '_HasChildren', 'Deleted', 'DateCreation', 'DateUpdate', 'Event', 'CommentName', 'CommentText', 'PageAccess',
-					  'NavigationBar');
+					  'NavigationBar', 'LockedUsername');
 var lastPageData;
 
 function treeView()
@@ -295,8 +295,17 @@ function renamePage(){
 	url = tree_static_url+'&_action=rename_page&language='+$('#Language').val()+'&zoneID='+$('#ZoneID').val()+'&ID='+nodeID+'&XName='+c;
 
 	$.get(url, {}, function(data){
-		nodeID = simpleTreeCollection.get(0).getSelected().attr('id');
-		$('li#'+nodeID+' span:first').text(c);
+
+        if(data != 'ok')
+        {
+            alert(data);
+        }
+        else
+        {
+            nodeID = simpleTreeCollection.get(0).getSelected().attr('id');
+            $('li#'+nodeID+' span:first').text(c);
+        }
+
 	});
 
 
@@ -314,6 +323,14 @@ function deletePage()
 		url = tree_static_url+'&_action=delete_page&language='+$('#Language').val()+'&zoneID='+$('#ZoneID').val()+'&ID='+nodeID;
 		$.get(url, {},
 			function(data){
+
+                // page locked
+                if(data.indexOf('|') == -1)
+                {
+                    alert(data);
+                    return;
+                }
+
 				simpleTreeCollection.get(0).delNode();
 
 				// parent has no child ?
@@ -475,6 +492,9 @@ function editPage(nodeID, selectTabs)
 			trtUpdateSitemap();
 
 			updatePublishingDate();
+
+            // locked ?
+            updateLocked(data);
 
 			// select template
 			tpl = $('#former #Template').val();
@@ -791,9 +811,17 @@ function cancelPageVerification()
 		if(!in_array(key, forbidden))
 		{
 			if(lastPageData[key] == null)lastPageData[key] = '';
-			if(!in_array(key, array('CustomBlock','BlocksNb', 'BlocksNames')) && $('#'+key).val() != lastPageData[key])
+            current_val = $('#'+key).val();
+            if(empty(current_val))current_val = "";
+
+            if(in_array(key, array('ZoneID', 'NutsPageContentViewID', 'CacheTime', 'PageZoneID')))
+            {
+                if(empty(current_val))current_val = 0;
+            }
+
+			if(!in_array(key, array('CustomBlock','BlocksNb', 'BlocksNames', 'LockedNutsUserID')) && trim(current_val) != trim(lastPageData[key]))
 			{
-				// log('change key => '+key+' value => '+lastPageData[key]+' input => '+$('#'+key).val());
+				// console.log('change key => `'+key+'` page_data => `'+lastPageData[key]+'` current_val => `'+current_val+'`');
 				changes = true;
 				break;
 			}
@@ -801,7 +829,7 @@ function cancelPageVerification()
 	}
 
 	// changes ?
-	if(changes == true)
+	if(changes == true && pageIsLocked == false)
 	{
 		if(!(c=confirm(lang_msg_56)))
 			return;
@@ -1008,4 +1036,31 @@ function headerImageReload()
 
 }
 
+
+function updateLocked(data)
+{
+    // unlocked
+    if(data['Locked'] != 'YES')
+    {
+        pageIsLocked = false;
+        $('#btn_submit').attr("disabled", false).val(nuts_lang_msg_21);
+    }
+    else
+    {
+        if(NutsUserID != data['LockedNutsUserID'])
+        {
+            pageIsLocked = true;
+            $('#btn_submit').attr("disabled", true).val(lang_msg_105);
+
+            msg = lang_msg_107;
+            msg = str_replace('[X]', lastPageData['LockedUsername'], msg);
+            alert(msg);
+        }
+        else
+        {
+            pageIsLocked = false;
+            $('#btn_submit').attr("disabled", false).val(nuts_lang_msg_21);
+        }
+    }
+}
 

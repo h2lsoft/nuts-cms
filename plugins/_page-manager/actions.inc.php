@@ -412,22 +412,40 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'duplicate_page')
 // rename page ***********************************************************************************
 if(isset($_GET['_action']) && $_GET['_action'] == 'rename_page')
 {
+    if(pageIsLocked($_GET['ID']))
+    {
+        die($lang_msg[108]);
+    }
 
     nutsTrigger('page-manager::rename_page', true, "action on rename page");
-
 	$nuts->dbUpdate('NutsPage', array('MenuName' => $_GET['XName']), "ID = ".(int)$_GET['ID']);
 	$plugin->trace('rename_page', (int)$_GET['ID']);
-	exit(1);
+	die('ok');
 }
 
 // delete page and sub pages ***********************************************************************************
 if(isset($_GET['_action']) && $_GET['_action'] == 'delete_page')
 {
+    // page is locked ?
+    if(pageIsLocked($_GET['ID']))
+    {
+        die($lang_msg[109]);
+    }
+
     // delete subpages
     $sub_pages = nutsPageGetChildrens((int)$_GET['ID']);
     $sub_pages = array_flatten($sub_pages);
     $sub_pages[] = (int)$_GET['ID'];
     $pagesIDs = join(',', $sub_pages);
+
+    // subpage is locked
+    foreach($sub_pages as $tmpPageID)
+    {
+        if(pageIsLocked($tmpPageID))
+        {
+            die($lang_msg[110].$tmpPageID);
+        }
+    }
 
 	// delete page with sub pages
 	$nuts->dbUpdate('NutsPage', array('Deleted' => 'YES'), "ID IN($pagesIDs)");
@@ -436,7 +454,7 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'delete_page')
 	
 	// get node master ID
 	$nuts->doQuery("SELECT NutsPageID FROM NutsPage WHERE ID = ".(int)$_GET['ID']);
-	$parentNodeID = (int)$nuts->getOne();
+	$parentNodeID = (int)$nuts->dbGetOne();
 	
 	$c = -1;
 	if($parentNodeID > 0)
@@ -449,7 +467,7 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'delete_page')
 						WHERE 
 								NutsPageID = $parentNodeID AND
 								Deleted = 'NO'");
-		$c = (int)$nuts->getOne();
+		$c = (int)$nuts->dbGetOne();
 		if($c == 0)	
 		{
 			$nuts->dbUpdate('NutsPage', array('_HasChildren' => 'NO'), 'ID = '.$parentNodeID);
@@ -529,7 +547,7 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'move_page')
 // data form ***********************************************************************************
 if(isset($_GET['_action']) && $_GET['_action'] == 'data_form')
 {
-	$nuts->doQuery("SELECT *, ZoneID AS PageZoneID FROM NutsPage WHERE ID = ".(int)$_GET['ID']);
+	$nuts->doQuery("SELECT *, ZoneID AS PageZoneID, (SELECT CONCAT(FirstName,' ',LastName, ' (',Login,')') FROM NutsUser WHERE ID = LockedNutsUserID) AS LockedUsername FROM NutsPage WHERE ID = ".(int)$_GET['ID']);
 	if($nuts->dbNumRows() != 1)
 		die('Error: data form record no found');
 
@@ -552,9 +570,8 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'data_form')
 					 		NutsUser.NutsGroupID = NutsGroup.ID AND
 							NutsUser.ID = {$row['NutsUserID']}");
 	$row2 = $nuts->dbFetch();
-	
 	$row = array_merge($row, $row2);
-			
+
 	
 	// get number of comments
 	$nuts->doQuery("SELECT COUNT(*) FROM NutsPageComment WHERE NutsPageID = ".(int)$_GET['ID']);
@@ -772,10 +789,6 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'save_page')
 	$_POST['ContentResume'] = @smartImageResizer($_POST['ContentResume']);
 	$_POST['Content'] = @smartImageResizer($_POST['Content']);
 
-
-
-	
-
 	// control data
 	$err = '';
 	if(empty($_POST['MenuName']))
@@ -788,6 +801,10 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'save_page')
 	}
 	else
 	{
+        // Update Locked
+        if($_POST['Locked'] == 'YES')
+            $_POST['LockedNutsUserID'] = $_SESSION['NutsUserID'];
+
 		// update own vars
 		$_POST['CustomVars'] = '';
 		if(count($custom_fields) > 0)
@@ -1037,9 +1054,31 @@ function duplicatePages($pageID_source, $pageID_target)
         }
 
     }
-
-
-
 }
+
+/**
+ * Verify if a page is locked
+ *
+ * @param int $ID
+ * @return boolean
+ */
+function pageIsLocked($ID)
+{
+    global $nuts;
+
+    Query::factory()->select('ID')
+                    ->from('NutsPage')
+                    ->whereID($ID)
+                    ->whereEqualTo('Locked', 'YES')
+                    ->whereNotEqualTo('LockedNutsUserID', $_SESSION['NutsUserID'])
+                    ->execute();
+
+    if($nuts->dbNumRows() != 0)
+        return true;
+
+    return false;
+}
+
+
 
 ?>

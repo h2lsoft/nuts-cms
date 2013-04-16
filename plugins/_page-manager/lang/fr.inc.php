@@ -134,5 +134,12 @@ $lang_msg[102] = "Vue de contenu";
 $lang_msg[103] = "Voulez-vous régénérer la `Meta Title` ?";
 $lang_msg[104] = "Voulez-vous régénérer la `Page Url` ?";
 
+$lang_msg[105] = "Verrouillé";
+$lang_msg[106] = "Verrouille la page pour les éditions";
+$lang_msg[107] = "Attention !\\n-------------\\nCette page est verrouillée par `[X]`.\\nVous ne pouvez donc pas éditer son contenu";
+$lang_msg[108] = "Vous ne pouvez pas renommer cette page car celle-ci est verrouillée";
+$lang_msg[109] = "Vous ne pouvez pas supprimer cette page car celle-ci est verrouillée";
+$lang_msg[110] = "Vous ne pouvez pas supprimer cette page car celle-ci possède une sous-page verrouillée #";
+
 
 ?>

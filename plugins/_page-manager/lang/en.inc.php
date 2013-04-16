@@ -140,6 +140,13 @@ $lang_msg[102] = "Content views";
 $lang_msg[103] = "Would you like to regenerate `Meta Title` ?";
 $lang_msg[104] = "Would you like to regenerate `Page Url` ?";
 
+$lang_msg[105] = "Locked";
+$lang_msg[106] = "Lock page for editing until you unlock the page";
+$lang_msg[107] = "Warning !\\n-------------\\nThis pages is locked by `[X]`.\\nYou can not edit its contents";
+$lang_msg[108] = "You can not rename this page, this page is locked";
+$lang_msg[109] = "You can not delete this page, this page is locked";
+$lang_msg[110] = "You can not delete this page, this page has a subpage locked #";
+
 
 
 ?>

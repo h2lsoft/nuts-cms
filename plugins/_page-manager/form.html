@@ -406,6 +406,13 @@
 			<label title="{$lang_msg[70]}">{$lang_msg[69]}</label>
 			<input type="text"  autocomplete="off" name="CacheTime" id="CacheTime" value="" style="text-align: center; width: 65px;" />
 		</p>
+        <p>
+            <label title="{$lang_msg[106]}">{$lang_msg[105]}</label>
+            <select id="Locked" name="Locked">
+                <option value="YES">{$nuts_lang_msg[30]}</option>
+                <option value="NO">{$nuts_lang_msg[31]}</option>
+            </select>
+        </p>
 
 
 
@@ -661,6 +668,8 @@ var lang_msg_101 = "{$lang_msg[101]}";
 
 var lang_msg_103 = "{$lang_msg[103]}";
 var lang_msg_104 = "{$lang_msg[104]}";
+var lang_msg_105 = "{$lang_msg[105]}";
+var lang_msg_107 = "{$lang_msg[107]}";
 
 var nuts_lang_msg_21 = "{$nuts_lang_msg[21]}";
 var nuts_lang_msg_23 = "{$nuts_lang_msg[23]}";
@@ -673,6 +682,8 @@ var from_tab_selected = "{$_GET['tab_selected']}";
 
 var userAllowedPluginUrlRewriting = "{userAllowedPluginUrlRewriting}";
 var userAllowedPluginBlockManager = "{userAllowedPluginBlockManager}";
+
+var pageIsLocked = false;
 
 </script>
 
