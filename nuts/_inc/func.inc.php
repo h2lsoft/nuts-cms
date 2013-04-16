@@ -730,11 +730,16 @@ User IP: ".$nuts->getIP();
  *
  * @param string $to seperated by comma
  * @param int $nutEmailID
- * @param array $datas
+ * @param array $datas to replace
+ * @param boolean $xtrace (default=false)
+ * @param string $app_name
+ * @param string $message
+ * @param int $recordID optionnal
+ * @param string $app_name optionnal
  *
  * @return boolean result
  */
-function nutsMailer($to, $nutEmailID, $datas = array())
+function nutsMailer($to, $nutEmailID, $datas = array(), $xtrace=false, $action="", $message="", $recordID=0, $app_name='job')
 {
 	global $nuts, $HTML_TEMPLATE;
 
@@ -793,6 +798,13 @@ function nutsMailer($to, $nutEmailID, $datas = array())
 			}
 		}
 	}
+
+    // xtrace ?
+    if($xtrace)
+    {
+        xTrace($action, $message, $recordID, $app_name);
+    }
+
 	return $trt_ok;
 }
 
