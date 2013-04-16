@@ -3939,7 +3939,7 @@ EOF;
 	private $viewDBTable = array();
     /**
      * Assign a database table
-     * @param string $viewDBTable
+     * @param array $viewDBTable
      */
 	public function viewDbTable($viewDBTable)
 	{
