@@ -66,7 +66,7 @@ div#page_tree_loader {position:absolute; z-index:555; padding:5px;}
 div#page_form .date {background-image:url(calendar.png); background-repeat:no-repeat; background-position:right;}
 div#page_form .datetime {background-image:url(calendar.png); background-repeat:no-repeat; background-position:right;}
 */
-div#page_form div#preview {float:left; padding:5px; padding-left:20px; }
+div#page_form div#preview {float:left; padding:5px; padding-top: 8px; padding-left:20px; }
 div#page_form #preview i {font-size: 14px;}
 div#page_form div#preview a {color:#999;}
 div#page_form div#preview a:hover {text-decoration: none; color:#000;}

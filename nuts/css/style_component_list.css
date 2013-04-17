@@ -38,7 +38,7 @@ div#list_container fieldset legend {padding: 0px; margin-left:10px; padding-left
 div#list_container fieldset legend a:hover {text-decoration:none; color: navy;}
 div#list_container fieldset legend a:active {color: #3399FE!important;}
 div#list_container fieldset legend span {padding: 0 3px; color: #666; font-weight: normal; font-size: 10px;}
-div#list_container fieldset legend i {font-size: 11px; color: #507FBC}
+div#list_container fieldset legend i {font-size: 11px; color: #507FBC; margin-right: 5px;}
 div#list_container .list_searches_menu {position: absolute; z-index: 556; background-color: #e5e5e5; border: 1px solid #ccc;
     padding: 0px;
     background-color: white;
@@ -68,8 +68,8 @@ div#list_container fieldset p#search_bottom a:hover {text-decoration:none; color
 div#list_container fieldset p#search_bottom a:active {color:#3399FE; }
 
 
-div#list_container fieldset select {margin-left:0px;!important}
-div#list_container fieldset select.operator {width: auto; text-align: center;}
+div#list_container fieldset select {margin-left:0px;!important; }
+div#list_container fieldset select.operator {width: auto;}
 
 /*
 div#list_container fieldset .date {background-image:url(calendar_gray.png); background-repeat:no-repeat; background-position:right;}

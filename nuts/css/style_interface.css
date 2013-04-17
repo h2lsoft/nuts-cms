@@ -3,7 +3,7 @@
     height: 35px; padding: 0px; background-image: none;
 }
 
-#header .bo_logo {max-height: 35px; padding: 0px; margin: 0;}
+#header .bo_logo {max-height: 35px; padding: 0px; margin: 0; margin-top: 5px;}
 
 #header_right {position: absolute; z-index: 2; right: 2px; top:2px; background: #fff;}
 

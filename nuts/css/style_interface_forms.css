@@ -1,5 +1,7 @@
 /** reset **/
 input, select, textarea, button {-webkit-appearance: none; -moz-appearance: none; border:1px solid #ccc;  border-radius: 0;}
+input[type=text], input[type=password], input[type=file], select {height: 16px;}
+
 input[type=text], input[type=password], input[type=file], textarea, select {padding-left:2px; transition:all .2s ease-in; -moz-transition:all .2s ease-in; -webkit-transition:all .2s ease-in;}
 input[type=text]:hover, input[type=password]:hover, input[type=file]:hover, textarea:hover {background-color:#FFFFDD; background-image:none; border-color:#aaa;}
 input[type=text]:focus, input[type=password]:focus, input[type=file]:focus, textarea:focus, select:focus, input[type=checkbox]:focus, input[type=radio]:focus {
@@ -24,11 +26,9 @@ input[type=radio]:checked {background: url(radio_checked.gif) no-repeat; backgro
 
 
 /** select **/
-select {padding-right: 20px; background: url(select_arrow_down.gif) no-repeat; background-position: 98% center; background-color: white;}
+select {padding-right: 20px; background: url(select_arrow_down.gif) no-repeat; background-position: 98% center; background-color: white; height: 22px;}
 select:hover {background-color:#FFFFDD; border-color:#aaa;}
-
 select[multiple] {background-image: none; padding-right: 0;}
-
 
 
 /** fieldset **/
@@ -69,7 +69,7 @@ input[type=file] {width: 420px;}
 
 
 /** misc **/
-.button {padding: 2px!important; height: auto!important; padding-left:3px!important; padding-right:3px!important; text-transform: none;}
+.button {padding: 2px!important; height: 22px!important; padding-left:3px!important; padding-right:3px!important; text-transform: none;}
 .button:hover {color: black;}
 .button:active {color: #3399FE;}
 

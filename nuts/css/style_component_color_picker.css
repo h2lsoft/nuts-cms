@@ -7,11 +7,17 @@
 
     float: left;
     width: 20px;
-    height: 19px;
+    height: 20px;
     border: 1px solid #AEB5C1;
 
     margin-right: 1px;
 
     position: relative;
-    top: 2px;
+    top: 0px;
+}
+
+
+.colorpicker input {
+    height: 12px;
+    padding: 0;
 }

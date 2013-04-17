@@ -1,3 +1,25 @@
+/* firefox */
+@-moz-document url-prefix() {
+
+    select {padding-right:0px!important; height:20px;}
+    .widget_colorpicker_preview {top:0;}
+    input[type=checkbox] {top:0px; border:0;}
+    div#form p.bottom #close_after {top: 2px;}
+    div#list_container fieldset div#list_search_content p input[type="checkbox"] {top:0;}
+    div#list_container fieldset label {padding-top:0px;}
+    div#list_container fieldset input {height:13px;}
+    div#list_container fieldset input[type=checkbox] {top:2px}
+    div#list_container fieldset select {height:20px;}
+
+    #visual_query_builder #right_view #SqlCodeHighlighter {padding:0px; padding-top:3px; padding-left:3px; }
+
+    .widget_top_search {position:static;}
+    .w_tab {margin-top: 5px;}
+}
+
+
+
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 
 /*
