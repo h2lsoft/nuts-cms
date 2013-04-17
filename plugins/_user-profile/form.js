@@ -1,0 +1,1 @@
+$('#former .thumb_preview').attr('style', 'margin-left:0!important');
