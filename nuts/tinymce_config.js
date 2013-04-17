@@ -74,26 +74,6 @@ function initWYSIWYGOption()
             select += ' <option value="H3">H3</option>';
             select += ' <option value="P">P</option>';
             select += ' <option value="BLOCKQUOTE">Blockquote</option>';
-
-
-            // justifié
-            /*p_label = (nutsUserLang == 'fr') ? 'Alignement' : 'Alignement';
-            select += ' <option class="title">'+p_label+'</option>';
-
-            p_label = (nutsUserLang == 'fr') ? 'Gauche' : 'Left';
-            select += ' <option value="P-LEFT">'+p_label+'</option>';
-
-            p_label = (nutsUserLang == 'fr') ? 'Centre' : 'Center';
-            select += ' <option value="P-CENTER">'+p_label+'</option>';
-
-            p_label = (nutsUserLang == 'fr') ? 'Droite' : 'Right';
-            select += ' <option value="P-RIGHT">'+p_label+'</option>';
-
-            p_label = (nutsUserLang == 'fr') ? 'Justifié' : 'Justify';
-            select += ' <option value="P-FULL">'+p_label+'</option>';
-            */
-
-
             select += '</select>';
 
             str += select;
@@ -121,7 +101,6 @@ function initWYSIWYGOption()
             str += '<a tabindex="0" href="javascript:imgBrowser(\''+id+'\', \'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');">Image '+lbl_library+'</a><br />';
             str += '<a tabindex="0" href="javascript:mediaBrowser(\''+id+'\', \'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');">Media '+lbl_library+'</a><br />';
             str += '<a tabindex="0" href="javascript:allBrowser(\''+id+'\', \'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');">'+lbl_file+' '+lbl_library+'</a><br />';
-            // str += '----------------------------<br />';
             str += '<hr />';
             str += '<a tabindex="0" href="javascript:cmdWYSIWYG(\''+id+'\', \'link\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');">'+lbl_custom+'</a><br />';
             str += '</div>';
@@ -133,7 +112,6 @@ function initWYSIWYGOption()
             // gallery
             str += ' <img class="rte_button" src="/nuts/img/rte/browse.png" align="absmiddle" title="Images" onclick="imgBrowser(\'imgTag_'+id+'\', \'\');" />';
             str += ' <img class="rte_button" style="width:16px;" title="'+nuts_lang_msg_72+'" src="/plugins/_gallery/icon.png" align="absmiddle" onclick="popupModal(\'index.php?mod=_gallery&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
-            // str += ' <img class="rte_button" src="img/icon-media.png" align="absmiddle" title="'+nuts_lang_msg_73+'" onclick="popupModal(\'index.php?mod=_media&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
 
             // media submenu
             str += ' <img class="rte_button" src="img/icon-media.png" align="absmiddle" title="'+nuts_lang_msg_73+'" id="'+id+'_WYSIWYG_submenu_media_parent" onclick="javascript:WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');" />';
@@ -148,8 +126,6 @@ function initWYSIWYGOption()
             str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=VIDEO&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/video.png" style="width:16px" /> Video</a><br />';
             str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=AUDIO&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/audio.png" style="width:16px" /> Audio</a><br />';
             str += '</div>';
-
-
 
             str += ' <img class="rte_button" src="/nuts/img/widget.png" title="Widgets" align="absmiddle" onclick="widgetsWindowOpen(\''+id+'\');" /> ';
 
@@ -203,7 +179,6 @@ function initWYSIWYGOption()
 		str += '</div>';
 		str += '</p>';
 
-		// $('#'+id).before('<p><label>&nbsp;</label>'+str+'</p>');
         if($('#'+id+'_WYSIWYG_toolbar').length == 0)
             $('textarea#'+id).parent('p:visible').before(str);
 
@@ -242,9 +217,6 @@ function WYSIWYGToggleIt(id)
 		$('#iframe_'+id).show();
 
         $(objs).css('visibility', 'visible');
-
-
-
 		WYSIWYGIFrameReload(id);
 	}
 	else
@@ -254,7 +226,6 @@ function WYSIWYGToggleIt(id)
 		WYSIWYGTextareaReload(id);
 
         $(objs).css('visibility', 'hidden');
-
 	}
 
     $(obj_source).css('visibility', 'visible');
@@ -268,6 +239,25 @@ function WYSIWYGEventFocus(id, e)
 
 
 function WYSIWYGEvent(id, e, shortcut){
+
+    // firefox capture ENTER
+    if(e.type == 'keypress' && BrowserDetect.browser == 'Firefox')
+    {
+        // ENTER
+        if(e.which == 13)
+        {
+           e.preventDefault();
+           html = '<p>&nbsp;</p>';
+           if(e.shiftKey)html = '<br />&nbsp;';
+
+           // document.getElementById('iframe_'+id).contentWindow.document.execCommand("insertHTML", false, html);
+           getIFrameDocument('iframe_'+id).execCommand("insertHTML", false, html);
+           getIFrameWindow('iframe_'+id).focus();
+
+           return false;
+        }
+    }
+
 
     // detect keyup, keydown
     if(e.type == 'keydown' || e.type == 'keyup'){
@@ -322,27 +312,7 @@ function initWYSIWYGIFrame(id) {
 
         // add special shortcut catcher for Chrome
         // tools: http://jonathan.tang.name/files/js_keycode/test_keycode.html
-        // if(BrowserDetect.browser == 'Chrome'){
-
-           if(BrowserDetect.browser == 'Firefox'){
-               // shortcut.remove("Ctrl+B");
-               // shortcut.remove("Ctrl+I");
-               // shortcut.remove("Ctrl+U");
-
-           }
-           // shortcut.remove("Ctrl+Alt+E");
-
-           // shortcut.remove("Ctrl+S");
-           // shortcut.remove("Ctrl+L");
-           // shortcut.remove("Ctrl+M");
-           // shortcut.remove("Ctrl+Q");
-           // shortcut.remove("Ctrl+0");
-           // shortcut.remove("Ctrl+1");
-           // shortcut.remove("Ctrl+2");
-           //  shortcut.remove("Ctrl+3");
-           // shortcut.remove("Esc");
-
-            setTimeout( function() {
+        setTimeout( function() {
 
                 cur_target = getIFrameWindow('iframe_'+id);
                 if(BrowserDetect.browser == 'Chrome')
@@ -366,18 +336,13 @@ function initWYSIWYGIFrame(id) {
                 shortcut.add('Ctrl+3', function(){cmdWYSIWYG(id, 'formatBlock', 'H3');}, {'target':cur_target});
                 shortcut.add('Esc', function(){$('#btn_cancel').click()}, {'target':cur_target});
 
-                // shortcut.add('Ctrl+V', function(){ WYSIWYGPaste(id); e.preventDefault(); }, {'target':cur_target});
-
-
             }, 500);
-
-
-           //}
 
         // parse nuts tags
 		getIFrameDocument('iframe_'+id).designMode = 'on';
 		getIFrameDocument('iframe_'+id).body.innerHTML = $('textarea#'+id).val();
         getIFrameDocument('iframe_'+id).body.spellcheck = false;
+        getIFrameDocument('iframe_'+id).execCommand('defaultParagraphSeparator', 0,  'p');// for chrome
 
 		head = getIFrameDocument('iframe_'+id).getElementsByTagName('head')[0];
 		link = document.createElement('link');
@@ -385,12 +350,6 @@ function initWYSIWYGIFrame(id) {
 		link.setAttribute('href',"/themes/editor_css.php?t="+current_theme+"&ncache="+time());
 		link.setAttribute('type',"text/css");
         head.appendChild(link);
-
-        if(BrowserDetect.browser == 'Chrome')
-        {
-            // add special handler support for img, table, td
-
-        }
 
 
         /*
@@ -445,14 +404,10 @@ function initWYSIWYGIFrame(id) {
         }, 600);
         */
 
-
-
-
         if($('#iframe_'+id).attr('code_source') == 'true'){
 			$('#former  #iframe_radio_'+id).attr('checked', true);
 			WYSIWYGToggleIt(id);
 		}
-
 
 	}, 500);
 
@@ -481,7 +436,6 @@ function WYSIWYGIFrameReload(id)
 
 function openWYSIWYG(objID)
 {
-
     WYSIWYGTextareaReload(objID); // force before open
 
 	t = time();
@@ -581,7 +535,6 @@ function cmdWYSIWYG(id, action, data)
     // source mode no command
     if($('#iframe_radio_'+id).is(':checked'))return;
 
-
     if(action == 'link')
     {
         var url = prompt("URL", 'http://');
@@ -611,7 +564,6 @@ function cmdWYSIWYG(id, action, data)
     content = getIFrameDocument('iframe_'+id).body.innerHTML;
     content = str_replace('[DATA:REPLACEX]', '" target="_blank', content);
     getIFrameDocument('iframe_'+id).body.innerHTML = content;
-
     getIFrameWindow('iframe_'+id).focus();
 }
 
@@ -684,10 +636,10 @@ function WYSIWYGPaste(id){
 
 
 // deprecated ********************************************************
-function killWYSIWYG(){
-}
+function killWYSIWYG(){}
+function toggleEditor(id, checktest){}
 
-function toggleEditor(id, checktest){
-}
+
+
 
 
