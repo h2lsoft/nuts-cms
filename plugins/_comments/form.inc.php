@@ -16,7 +16,7 @@ $plugin->formDBTable(array('NutsPageComment'));
 
 // fields
 $plugin->formAddFieldText('NutsPageID', "Page ID", true, 'number');
-$plugin->formAddFieldText('Url', "Page url", false);
+$plugin->formAddFieldText('Url', "Page url", false, 'url');
 
 // info
 $plugin->formAddFieldsetStart('Information');
