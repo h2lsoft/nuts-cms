@@ -12,7 +12,7 @@ $civs = array('Mr', 'Mme', 'Mlle', 'Miss', 'Pr', 'Dr');
 $plugin->formAddFieldSelect('Gender', $lang_msg[24], false, $civs, 'width:5em', '', 'maxlength="5"');
 $plugin->formAddFieldText('LastName', $lang_msg[2], true, 'ucfirst', 'width:40em', '', 'maxlength="50"');
 $plugin->formAddFieldText('FirstName', $lang_msg[3], true, 'ucfirst', 'width:40em', '', 'maxlength="50"');
-$plugin->formAddFieldText('Email', $lang_msg[4], 'unique|notEmpty', 'lower', 'width:40em', '', 'maxlength="50"');
+$plugin->formAddFieldText('Email', $lang_msg[4], 'unique|notEmpty', 'lower email', 'width:40em', '', 'maxlength="50"');
 $plugin->formAddFieldSelect('Language', $lang_msg[7], true, $nuts_lang_options);
 
 foreach($nuts_timezone_options as $opt)

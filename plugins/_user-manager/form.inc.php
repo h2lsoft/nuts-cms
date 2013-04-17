@@ -14,7 +14,7 @@ $civs = array('Mr', 'Mme', 'Mlle', 'Miss', 'Pr', 'Dr');
 $plugin->formAddFieldSelect('Gender', $lang_msg[24], false, $civs, 'width:5em', '', 'maxlength="5"');
 $plugin->formAddFieldText('LastName', $lang_msg[2], true, 'ucfirst', 'width:40em', '', 'maxlength="50"');
 $plugin->formAddFieldText('FirstName', $lang_msg[3], true, 'ucfirst', 'width:40em', '', 'maxlength="50"');
-$plugin->formAddFieldText('Email', $lang_msg[4], 'unique|notEmpty', 'lower', 'width:40em', '', 'maxlength="50"');
+$plugin->formAddFieldText('Email', $lang_msg[4], 'unique|notEmpty', 'lower email', 'width:40em', '', 'maxlength="50"');
 $plugin->formAddFieldSelect('Language', $lang_msg[7], true, $nuts_lang_options);
 
 foreach($nuts_timezone_options as $opt)
@@ -51,12 +51,12 @@ $plugin->formAddFieldText('NTVA', $lang_msg[25], false);
 $plugin->formAddFieldText('Address', $lang_msg[16], false, 'ucfirst');
 $plugin->formAddFieldText('Address2', $lang_msg[17], false, 'ucfirst');
 $plugin->formAddFieldText('Address3', $lang_msg[26], false, 'ucfirst');
-$plugin->formAddFieldText('ZipCode', $lang_msg[18], false);
+$plugin->formAddFieldText('ZipCode', $lang_msg[18], false, 'zip_code');
 $plugin->formAddFieldTextAjaxAutoComplete('City', $lang_msg[19], false);
 $plugin->formAddFieldTextAjaxAutoComplete('Country', $lang_msg[20], false);
-$plugin->formAddFieldText('Phone', $lang_msg[21], false);
-$plugin->formAddFieldText('Gsm', $lang_msg[22], false);
-$plugin->formAddFieldText('Fax', $lang_msg[23], false);
+$plugin->formAddFieldText('Phone', $lang_msg[21], false, 'phone');
+$plugin->formAddFieldText('Gsm', $lang_msg[22], false, 'gsm');
+$plugin->formAddFieldText('Fax', $lang_msg[23], false, 'fax');
 $plugin->formAddFieldTextAjaxAutoComplete('Job', '', false);
 $plugin->formAddFieldTextArea('Note', '', false);
 $plugin->formAddFieldsetEnd();
