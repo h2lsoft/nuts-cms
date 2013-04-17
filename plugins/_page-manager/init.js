@@ -84,6 +84,19 @@ $('#Content').width($('#page_form').width()-180);
 $('#Content').height(tab_height - 80);
 $('#ContentResume').width($('#page_form').width()-180);
 
+$(window).resize(function(){
+
+    $('div#page_form').width($(document).width()-$('div#page_tree').width()-65);
+    $('div#page_options_bottom').width($('div#page_form').width()-17);
+
+    $('#Content').width($('#page_form').width()-180);
+    $('#Content').height(tab_height - 80);
+    $('#ContentResume').width($('#page_form').width()-180);
+
+});
+
+
+
 
 $("#dID").bind("keypress", function(e){
 	if (e.keyCode == 13){
