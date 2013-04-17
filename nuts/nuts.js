@@ -675,8 +675,13 @@ function initMainMenu()
 
         $('#menu li.parent').removeClass('selected').css('background', 'none').css('border-color', '#ccc');
         $(this).addClass('selected');
-        $(this).css('border-color', $('#nav_menu li.selected ul').css('border-color'));
-        $(this).css('background-color', $('#nav_menu li.selected ul').css('border-color'));
+
+        c_color = $('#nav_menu li.selected ul').attr('style');
+        c_color = str_replace('border-color:', '', c_color);
+        c_color = str_replace(';', '', c_color);
+        c_color = trim(c_color);
+
+        $(this).css('border-color', c_color).css('background-color', c_color);
 
 	});
 
