@@ -170,6 +170,7 @@ $nuts_lang_msg[95] = "Site internet";
 
 $nuts_lang_msg[96] = "dans (séparé par `,`)";
 $nuts_lang_msg[97] = "pas dans (séparé par `,`)";
+$nuts_lang_msg[98] = "Mes raccourcis";
 
 
 // main menu ***********************************************************************

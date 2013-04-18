@@ -126,6 +126,64 @@ class Plugin
 		$this->description = (isset($this->configuration["info_".$_SESSION['Language']])) ? $this->configuration["info_".$_SESSION['Language']] : $this->configuration["info"];
 		$this->description = ucfirst($this->description);
 	}
+
+
+    /**
+     * Register plugin and group
+     *
+     * @param string $plugin_name
+     * @param integer $NutsGroupID (default $_SESSION['NutsGroupID'])
+     * @param int $category (default 1)
+     * @param boolean $visible (default false)
+     */
+    static function register($plugin_name, $NutsGroupID=0, $category=1, $visible=false)
+    {
+        global $nuts;
+
+        if(!$NutsGroupID)$NutsGroupID = $_SESSION['NutsGroupID'];
+
+        $yaml = Spyc::YAMLLoad(NUTS_PLUGINS_PATH.'/'.$plugin_name.'/info.yml');
+
+        $plugin_actions = explode(',', $yaml['actions']);
+        $plugin_actions = array_map('trim', $plugin_actions);
+
+        // plugin already registered
+        $sql = "SELECT ID FROM NutsMenu WHERE Name = '".sqlX($plugin_name)."' LIMIT 1";
+        $nuts->doQuery($sql);
+        if(!$nuts->dbNumRows())
+        {
+            $f = array();
+            $f['Name'] = $plugin_name;
+            $f['Category'] = $category;
+            $f['Visible'] = (!$visible) ? 'NO' : 'YES';
+            $pluginID = $nuts->dbInsert('NutsMenu', $f, array(), true);
+        }
+        else
+        {
+            $pluginID = $nuts->dbGetOne();
+        }
+
+        // add rights for group
+        if(count($plugin_actions) > 0)
+        {
+            $sql = "DELETE FROM NutsMenuRight WHERE NutsGroupID = $NutsGroupID AND NutsMenuID = $pluginID";
+            $nuts->doQuery($sql);
+        }
+
+        foreach($plugin_actions as $plugin_action)
+        {
+            if(!empty($plugin_action))
+            {
+                $f = array();
+                $f['NutsMenuID'] = $pluginID;
+                $f['NutsGroupID'] = $NutsGroupID;
+                $f['Name'] = $plugin_action;
+                $nuts->dbInsert('NutsMenuRight', $f, array(), true);
+            }
+        }
+    }
+
+
     /**
      *
      * Plugin validator (user rights or plugin not exists)

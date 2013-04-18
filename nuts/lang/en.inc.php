@@ -181,6 +181,7 @@ $nuts_lang_msg[95] = "Website";
 
 $nuts_lang_msg[96] = "In (separated by `,`)";
 $nuts_lang_msg[97] = "Not in (separated by `,`)";
+$nuts_lang_msg[98] = "My shortcuts";
 
 
 
