@@ -12,11 +12,7 @@
 
 
 include_once($plugin->plugin_path.'/config.inc.php');
-
-if($plugin->language == 'fr')
-    include_once($plugin->plugin_path.'/lang/fr.inc.php');
-else
-    include_once($plugin->plugin_path.'/lang/en.inc.php');
+include(Plugin::getIncludeUserLanguagePath());
 
 
 if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_useful-links/www/style.css');
