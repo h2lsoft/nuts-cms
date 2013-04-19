@@ -10,7 +10,17 @@
 /* @var $plugin Plugin */
 /* @var $nuts NutsCore */
 
-$shortcuts = Query::factory()->select('Plugin')->from('NutsUserShortcut')->whereEqualTo('NutsUserID', $_SESSION['NutsUserID'])->order_by('Position')->executeAndGetAllOne();
+Query::factory()->select('Plugin, (SELECT ExternalUrl FROM NutsMenu WHERE Name = NutsUserShortcut.Plugin) AS ExternalUrl')->from('NutsUserShortcut')->whereEqualTo('NutsUserID', $_SESSION['NutsUserID'])->order_by('Position')->execute();
+
+$shortcuts = array();
+$shortcuts_db = array();
+while($r = $nuts->dbFetch())
+{
+    $shortcuts[] = $r['Plugin'];
+    $shortcuts_db[$r['Plugin']] = $r['ExternalUrl'];
+}
+
+
 
 if(count($shortcuts) > 0)
 {
@@ -31,9 +41,25 @@ if(count($shortcuts) > 0)
         else
             include(NUTS_PLUGINS_PATH.'/'.$shortcut.'/lang/en.inc.php');
 
+
+        // external url
+        if(!empty($shortcuts_db[$shortcut]))
+        {
+            $blank = (preg_match('#^(http|ftp|mailto)#i', $shortcuts_db[$shortcut])) ? '_blank' : '';
+            if($shortcuts_db[$shortcut][0] == '/')$blank = '';
+            $uri = $shortcuts_db[$shortcut].'" target="'.$blank;
+        }
+        else
+        {
+            $yaml = Spyc::YAMLLoad(WEBSITE_PATH.'/plugins/'.$shortcut.'/info.yml');
+            $default_action = $yaml['default_action'];
+            $uri = 'javascript:;" onclick="system_goto(\'index.php?mod='.$shortcut.'&do='.$default_action.'\', \'content\'); return false;';
+        }
+
+
         $content .= <<<EOF
 
-            <a href="#" class="list-image">
+            <a href="{$uri}" class="list-image">
                 <img src="/plugins/{$shortcut}/icon.png" /><br />
                 {$lang_msg[0]}
             </a>
