@@ -217,6 +217,26 @@ class Plugin
                                                             );
     }
 
+    /**
+     * Get include path for language
+     *
+     * @param string $plugin (if empty take PLUGIN_PATH)
+     * @return string path
+     */
+    static function getIncludeUserLanguagePath($plugin='')
+    {
+        if(empty($plugin))$plugin = PLUGIN_PATH;
+
+        $pref_language = ($_SESSION['Language'] == 'fr') ? 'fr' : 'en';
+        if(file_exists(NUTS_PLUGINS_PATH.'/'.$plugin.'/lang/'.$pref_language.'.inc.php'))
+            $path = NUTS_PLUGINS_PATH.'/'.$plugin.'/lang/'.$pref_language.'.inc.php';
+        else
+            $path = NUTS_PLUGINS_PATH.'/'.$plugin.'/lang/en.inc.php';
+
+        return $path;
+
+    }
+
 
 
     /**

@@ -28,6 +28,9 @@ $lang_msg[19] = "Moi";
 
 $lang_msg[20] = "Les liens et les adresses mail sont automatiquement converties en état cliquable";
 
+$lang_msg[21] = "Nouveaux messages";
+$lang_msg[22] = "Vous n'avez pas de nouveaux messages";
+
 
 
 ?>

@@ -1,4 +1,4 @@
-#home {margin-top: 0px; text-align: center;}
+#home {margin-top: -10px; text-align: center;}
 
 #home_notification:empty {display: none;}
 #home_notification div {padding: 5px; padding-left: 23px; margin-bottom: 2px;  background-repeat: no-repeat; background-position: 3px center;}
@@ -15,6 +15,13 @@
 .dashboard-widget .dashboard-widget-content {padding: 10px;}
 .dashboard-widget .dashboard-widget-end {clear: both}
 
+.dashboard-widget .no-record {height: 65px; line-height: 65px;}
+.dashboard-widget .no-record i {font-size: 16px; color: #ccc; margin-right: 5px; margin-top: 5px;}
+
+.dashboard-widget table {width: 100%; margin: 0;}
+.dashboard-widget th {background-color: white; border-bottom: 1px solid #ccc;}
+.dashboard-widget tr.with_selector:hover> td {background-color: lightcyan; cursor: pointer;}
+
 
 /* rows */
 .dashboard-widget-row-full {clear:left; margin-bottom: 15px;}
@@ -26,6 +33,11 @@
 .dashboard-widget-row-3-rows-2 {margin:0 auto;}
 .dashboard-widget-row-3-rows-3 {float:right;}
 
+/* nTabs */
+.dashboard-widget .ntabs li {font-size: 11px; letter-spacing: 0px; text-transform: none; padding: 5px; }
+.dashboard-widget .ntabs li.selected {background-color: #e5e5e5; border-color: #e5e5e5; color: #333!important;}
+.dashboard-widget .ntab_content {padding: 10px; overflow: scroll; height: 250px;}
+.dashboard-widget .ntab_content .no-record {margin-top: 60px;}
 
 
 /* list image */

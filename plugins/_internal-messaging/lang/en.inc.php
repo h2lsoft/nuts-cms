@@ -29,4 +29,10 @@ $lang_msg[19] = "Me";
 
 $lang_msg[20] = "Links and mail addresses are automatically converted to clikable";
 
+
+$lang_msg[21] = "New messages";
+$lang_msg[22] = "You don't have new messages";
+
+
+
 ?>

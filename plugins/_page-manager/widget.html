@@ -1,0 +1,87 @@
+<ul id="ntabsPM" class="ntabs">
+    <li class="selected">{$lang_msg[111]} ({last_edited_nb})</li>
+    <li>{$lang_msg[112]}({draft_nb})</li>
+    <li>{$lang_msg[113]} ({locked_nb})</li>
+    <li>{$lang_msg[114]} ({waiting_moderation_nb})</li>
+</ul>
+
+
+<div id="ntabsPM_content" class="ntabs_content">
+
+    <!-- last edited -->
+    <div class="ntab_content">
+
+        <bloc::pages_le>
+        <table>
+
+        <bloc::page_le>
+        <tr class="with_selector" onclick="system_goto('index.php?mod=_page-manager&do=exec&pID={ID}', 'content')">
+            <td style="white-space: nowrap; width: 30px;">{Date}</td>
+            <td class="left"><i class="icon-file"></i> {Name} (#{ID})</td>
+        </tr>
+        </bloc::page_le>
+
+        </table>
+        </bloc::pages_le>
+
+    </div>
+    <!-- /last edited -->
+
+    <!-- draft -->
+    <div class="ntab_content">
+
+        <bloc::pages_dr>
+            <table>
+
+                <bloc::page_dr>
+                    <tr class="with_selector" onclick="system_goto('index.php?mod=_page-manager&do=exec&pID={ID}', 'content')">
+                        <td style="white-space: nowrap; width: 30px;">{Date}</td>
+                        <td class="left"><i class="icon-file"></i> {Name} (#{ID})</td>
+                    </tr>
+                </bloc::page_dr>
+
+            </table>
+        </bloc::pages_dr>
+
+    </div>
+    <!-- /draft -->
+
+    <!-- locked -->
+    <div class="ntab_content">
+        <bloc::pages_lk>
+            <table>
+
+                <bloc::page_lk>
+                    <tr class="with_selector" onclick="system_goto('index.php?mod=_page-manager&do=exec&pID={ID}', 'content')">
+                        <td style="white-space: nowrap; width: 30px;">{Date}</td>
+                        <td class="left"><i class="icon-file"></i> {Name} (#{ID})</td>
+                    </tr>
+                </bloc::page_lk>
+
+            </table>
+        </bloc::pages_lk>
+    </div>
+    <!-- /locked -->
+
+    <!-- waiting moderation -->
+    <div class="ntab_content">
+        <bloc::pages_wm>
+            <table>
+
+                <bloc::page_wm>
+                    <tr class="with_selector" onclick="system_goto('index.php?mod=_page-manager&do=exec&pID={ID}', 'content')">
+                        <td style="white-space: nowrap; width: 30px;">{Date}</td>
+                        <td class="left"><i class="icon-file"></i> {Name} (#{ID})</td>
+                    </tr>
+                </bloc::page_wm>
+
+            </table>
+        </bloc::pages_wm>
+    </div>
+    <!-- /waiting moderation -->
+
+</div>
+
+<script type="text/javascript">
+nTabInit('ntabsPM');
+</script>

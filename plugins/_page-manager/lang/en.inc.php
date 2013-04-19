@@ -147,6 +147,11 @@ $lang_msg[108] = "You can not rename this page, this page is locked";
 $lang_msg[109] = "You can not delete this page, this page is locked";
 $lang_msg[110] = "You can not delete this page, this page has a subpage locked #";
 
+$lang_msg[111] = "Last published";
+$lang_msg[112] = "Your drafts";
+$lang_msg[113] = "Locked";
+$lang_msg[114] = "Waiting for moderation";
+$lang_msg[115] = "No page found";
 
 
 ?>

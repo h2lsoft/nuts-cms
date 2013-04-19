@@ -141,5 +141,12 @@ $lang_msg[108] = "Vous ne pouvez pas renommer cette page car celle-ci est verrou
 $lang_msg[109] = "Vous ne pouvez pas supprimer cette page car celle-ci est verrouillée";
 $lang_msg[110] = "Vous ne pouvez pas supprimer cette page car celle-ci possède une sous-page verrouillée #";
 
+$lang_msg[111] = "Dernièrement publiées";
+$lang_msg[112] = "Vos brouillons";
+$lang_msg[113] = "Verrouillées";
+$lang_msg[114] = "En attente de modération";
+$lang_msg[115] = "Aucune page trouvée";
+
+
 
 ?>
