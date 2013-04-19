@@ -229,11 +229,29 @@ if(isset($_GET['mod']) && $_GET['mod'] == 'logout')
 }
 
 // plugin allowed **********************************************************************************************************************************
-if(!@in_array($_GET['mod'], array('_internal-messaging', '_internal-memo', '_user-profile'))  && (!plugin::validator() || !plugin::actValidator()))
+
+// auto register plugins
+if(!isset($_GET['ajax']))
+{
+    $plugins_auto_registered = array('_internal-messaging::list', '_internal-memo::edit', '_user-profile::edit', '_user-shortcuts::list');
+    foreach($plugins_auto_registered as $plugin_auto_registered)
+    {
+        list($cur_plugin, $cur_plugin_default_action) = explode('::', $plugin_auto_registered);
+        if(!nutsUserHasRight('', $cur_plugin, $cur_plugin_default_action))
+        {
+            Plugin::register($cur_plugin);
+        }
+    }
+}
+
+
+// if(!@in_array($_GET['mod'], array('_internal-messaging', '_internal-memo', '_user-profile'))  && (!plugin::validator() || !plugin::actValidator()))
+if(!plugin::validator() || !plugin::actValidator())
 {
 	$_GET['mod'] = '_error';
 	$_GET['do'] = 'exec';
 }
+
 
 // const plugin
 define('PLUGIN_PATH', WEBSITE_PATH.'/plugins/'.$_GET['mod']);

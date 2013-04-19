@@ -75,6 +75,8 @@ function system_goto(uri, target)
 	}
 
 	uri += '&ajax=1&target='+target+'&t='+t;
+    uri = str_replace('index.php&ajax', 'index.php?ajax', uri);
+
 
 	// log(uri, target);
 	// $.get(uri, {}, function (d) {

@@ -10,7 +10,11 @@ if($last_version)
 {
     if(NUTS_VERSION < $last_version)
     {
-        $plugin->addSystemNotification(1, '_updater');
+        $msg = "New version $last_version is vailable";
+        if($_SESSION['Language'] == 'fr')
+            $msg = "Nouvelle version $last_version disponible";
+
+        Plugin::dashboardAddNotification('info', $msg);
     }
 
 }

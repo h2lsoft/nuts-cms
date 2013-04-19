@@ -183,9 +183,43 @@ class Plugin
         }
     }
 
+    /**
+     * Add a notification on dashboard
+     *
+     * @param string $type (info, warning, error)
+     * @param string $message
+     */
+    static function dashboardAddNotification($type, $message)
+    {
+        global $dashboard_notifications;
+        $dashboard_notifications[] = array('type' => $type, 'message' => $message);
+    }
 
     /**
+     * Add a widget on dashboard
      *
+     * @param string $title
+     * @param string $priority (high, medium, low)
+     * @param string $id html attribute id of the widget
+     * @param string $rows (full, 2-rows, 3-rows)
+     * @param string $style html attribute style of the widget
+     * @param string $content
+     */
+    static function dashboardAddWidget($title, $priority, $id, $rows, $style, $content)
+    {
+        global $dashboard_widgets;
+        $dashboard_widgets[strtolower($priority)][] = array(
+                                                                'title' => $title,
+                                                                'id' => $id,
+                                                                'rows' => $rows,
+                                                                'style' => $style,
+                                                                'content' => $content
+                                                            );
+    }
+
+
+
+    /**
      * Plugin validator (user rights or plugin not exists)
      *
      * @return bool
