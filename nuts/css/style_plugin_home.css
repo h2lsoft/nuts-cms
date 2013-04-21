@@ -20,7 +20,7 @@
 
 .dashboard-widget table {width: 100%; margin: 0;}
 .dashboard-widget th {background-color: white; border-bottom: 1px solid #ccc;}
-.dashboard-widget tr.with_selector:hover> td {background-color: lightcyan; cursor: pointer;}
+.dashboard-widget tr.with_selector:hover> td {background-color: lightcyan; cursor: pointer; color: black;}
 
 
 /* rows */

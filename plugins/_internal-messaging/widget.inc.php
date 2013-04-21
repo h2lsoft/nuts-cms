@@ -55,12 +55,13 @@ EOF;
     }
 
     $content .= "</table>";
+    Plugin::dashboardAddWidget($title, 'medium', 'internal-messaging', 'full', 'max-height:120px; overflow:scroll;', $content);
 }
 
 
 
 
-Plugin::dashboardAddWidget($title, 'medium', 'internal-messaging', 'full', 'max-height:120px; overflow:scroll;', $content);
+
 
 
 
