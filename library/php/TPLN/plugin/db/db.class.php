@@ -1450,10 +1450,9 @@ class Db extends Form
 			{
 				$in = $this->getBlocInFile('data.pager.in');
 				$out = $this->getBlocInFile('data.pager.out');
-				// $this->eraseBloc("in");
-				// $this->eraseBloc("out");
-				$str = '';
 
+                /*
+				$str = '';
 				for($l = 1; $l <= $this->PageCount; $l++)
 				{
 					if($l == $this->PageNumber)
@@ -1469,7 +1468,46 @@ class Db extends Form
 
 						$str .= $tmp;
 					}
-				}
+				}*/
+
+                // Google pagination 10 by 10
+                $range = 10;
+                $range_min = ($range % 2 == 0) ? ($range / 2) - 1 : ($range - 1) / 2;
+                $range_max = ($range % 2 == 0) ? $range_min + 1 : $range_min;
+                $page_min = $this->PageNumber - $range_min;
+                $page_max = $this->PageNumber + $range_max;
+
+                $page_min = ($page_min < 1) ? 1 : $page_min;
+                $page_max = ($page_max < ($page_min + $range - 1)) ? $page_min + $range - 1 : $page_max;
+                if ($page_max > $this->PageCount)
+                {
+                    $page_min = ($page_min > 1) ? $this->PageCount - $range + 1 : 1;
+                    $page_max = $this->PageCount;
+                }
+
+                $page_min = ($page_min < 1) ? 1 : $page_min;
+
+
+                $str = '';
+                for($l = $page_min; $l <= $page_max; $l++)
+                {
+                    if($l == $this->PageNumber)
+                    {
+                        $str .= str_replace('{_Page}', $l, $in);
+                    }
+                    else
+                    {
+                        $url = $this->SRgetUrl($l);
+
+                        $tmp = str_replace('{_Page}', $l, $out);
+                        $tmp = str_replace('{_Url}', $url, $tmp);
+
+                        $str .= $tmp;
+                    }
+                }
+
+
+
 
 				$this->parseBloc('data.pager', $str);
 			}
