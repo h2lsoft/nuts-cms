@@ -388,8 +388,6 @@ class Page extends NutsCore
 		$url = explode('?', $url);
 		$url = $url[0];
 
-        new dBug($url);
-
         $curl = str_replace(WEBSITE_URL.'/', '', $url);
 		$curl = explode('/', $curl);
 
