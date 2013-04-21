@@ -78,7 +78,7 @@ if(count($dashboard_widgets) == 0)
 }
 else
 {
-    $widget_priorities = array('high', 'medium', 'low');
+    $widget_priorities = array('high', 'medium', 'low', 'final');
     foreach($widget_priorities as $widget_priority)
     {
         $cur_cols_style_index = 0;
