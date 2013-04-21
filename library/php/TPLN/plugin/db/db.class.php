@@ -1498,16 +1498,10 @@ class Db extends Form
                     else
                     {
                         $url = $this->SRgetUrl($l);
-
-                        $tmp = str_replace('{_Page}', $l, $out);
-                        $tmp = str_replace('{_Url}', $url, $tmp);
-
+                        $tmp = str_replace(array('{_Page}', '{_Url}'), array($l, $url), $out);
                         $str .= $tmp;
                     }
                 }
-
-
-
 
 				$this->parseBloc('data.pager', $str);
 			}
