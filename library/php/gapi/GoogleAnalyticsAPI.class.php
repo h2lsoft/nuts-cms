@@ -12,10 +12,17 @@
 *  @author            CERDAN Yohann <cerdanyohann@yahoo.fr>
 *  @copyright      (c) 2009  CERDAN Yohann, All rights reserved
 *  @ version         30/04/2011
+ *
+ * updated
+ *
 */
 
 class GoogleAnalyticsAPI
 {
+    /** is connected ? **/
+    public $isConnected = false;
+
+
 	/** Google account login (email) **/
 	private $login;
 
@@ -228,6 +235,7 @@ class GoogleAnalyticsAPI
 		// Auth=DQA...Sxq
 		if (preg_match('/Auth=(.*)$/', $hasil, $matches) > 0) {
 			$this->loginToken = $matches[1];
+            $this->isConnected = true;
 		} else {
 			trigger_error('Authentication problem', E_USER_WARNING);
 			return null;
@@ -383,7 +391,7 @@ class GoogleAnalyticsAPI
 			$url .= '&start-index=' . $this->startIndex;
 		}
 
-		if ($this->getContent($url) == 200) {
+		if($this->getContent($url) == 200) {
 			$XML_object = simplexml_load_string($this->response);
 			$dxp = $XML_object->entry->children('http://schemas.google.com/analytics/2009');
 			if (@count($dxp) > 0) {

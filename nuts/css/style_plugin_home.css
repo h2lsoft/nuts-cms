@@ -1,21 +1,23 @@
 #home {margin-top: -10px; text-align: center;}
 
+
+#home_notification {margin-bottom: 10px;}
 #home_notification:empty {display: none;}
 #home_notification div {padding: 5px; padding-left: 23px; margin-bottom: 2px;  background-repeat: no-repeat; background-position: 3px center;}
 
-#home_notification .info {background-color: #fafad2; color: #333; background-image: url(../img/icon-help.png);}
-#home_notification .warning {background-color: #e5e5e5; color: #333; background-image: url(../img/icon-tag-moderator.png);}
-#home_notification .error {background-color: #FFE1FF; color: #FF0000; background-image: url(../img/icon-error.gif);}
+#home_notification .info {background-color: #fafad2; color: #333; background-image: url(../img/icon-help.png); text-align: left;}
+#home_notification .warning {background-color: #e5e5e5; color: #333; background-image: url(../img/icon-tag-moderator.png); text-align: left;}
+#home_notification .error {background-color: #FFE1FF; color: #FF0000; background-image: url(../img/icon-error.gif); text-align: left;}
 
 #home #shortcut_empty {text-align: center; color: #666;}
 
-.dashboard-widget {border:1px solid #1570B8;}
+.dashboard-widget {border:1px solid #1570B8; text-align: left;}
 .dashboard-widget .dashboard-widget-title {background-color:#1570B8; color: #fff; padding: 2px 5px; text-align: left;}
 .dashboard-widget .dashboard-widget-title:empty {display: none;}
 .dashboard-widget .dashboard-widget-content {padding: 10px;}
 .dashboard-widget .dashboard-widget-end {clear: both}
 
-.dashboard-widget .no-record {height: 65px; line-height: 65px;}
+.dashboard-widget .no-record {height: 65px; line-height: 65px; text-align: center;}
 .dashboard-widget .no-record i {font-size: 16px; color: #ccc; margin-right: 5px; margin-top: 5px;}
 
 .dashboard-widget table {width: 100%; margin: 0;}
