@@ -24,23 +24,16 @@ while($r = $nuts->dbFetch())
 
 if(count($shortcuts) > 0)
 {
-    $pref_language = ($_SESSION['Language'] == 'fr') ? 'fr' : 'en';
+
     // get plugin name translated
-    if(file_exists(NUTS_PLUGINS_PATH.'/_user-shortcuts/lang/'.$pref_language.'.inc.php'))
-        include(NUTS_PLUGINS_PATH.'/_user-shortcuts/lang/'.$pref_language.'.inc.php');
-    else
-        include(NUTS_PLUGINS_PATH.'/'.$shortcut.'/lang/en.inc.php');
+    include(Plugin::getIncludeUserLanguagePath('_user-shortcuts'));
     $title = $lang_msg[0];
 
     $content = '';
     foreach($shortcuts as $shortcut)
     {
         // get plugin name translated
-        if(file_exists(NUTS_PLUGINS_PATH.'/'.$shortcut.'/lang/'.$pref_language.'.inc.php'))
-            include(NUTS_PLUGINS_PATH.'/'.$shortcut.'/lang/'.$pref_language.'.inc.php');
-        else
-            include(NUTS_PLUGINS_PATH.'/'.$shortcut.'/lang/en.inc.php');
-
+        include(Plugin::getIncludeUserLanguagePath($shortcut));
 
         // external url
         if(!empty($shortcuts_db[$shortcut]))

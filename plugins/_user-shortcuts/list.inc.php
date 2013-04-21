@@ -31,14 +31,11 @@ function hookData($row)
     $row['Position'] = $plugin->listGetPositionContents($row['ID']);
 
 
-    $pref_language = ($_SESSION['Language'] == 'fr') ? 'fr' : 'en';
+
 
     // get plugin name translated
     $plugin_folder_name = $row['Plugin'];
-    if(file_exists(NUTS_PLUGINS_PATH.'/'.$plugin_folder_name.'/lang/'.$pref_language.'.inc.php'))
-        include(NUTS_PLUGINS_PATH.'/'.$plugin_folder_name.'/lang/'.$pref_language.'.inc.php');
-    else
-        include(NUTS_PLUGINS_PATH.'/'.$plugin_folder_name.'/lang/en.inc.php');
+    include(Plugin::getIncludeUserLanguagePath($plugin_folder_name));
 
     $row['Plugin'] = <<<EOF
         <img src="/plugins/{$plugin_folder_name}/icon.png" style="width:32px;" align="absmiddle" /> {$lang_msg[0]} ($plugin_folder_name)

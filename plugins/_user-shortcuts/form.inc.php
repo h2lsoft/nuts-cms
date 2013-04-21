@@ -24,18 +24,13 @@ $sql = "SELECT
                 ID IN(SELECT DISTINCT NutsMenuID FROM NutsMenuRight WHERE NutsGroupID = '{$_SESSION['NutsGroupID']}')";
 $nuts->doQuery($sql);
 
-$pref_language = ($_SESSION['Language'] == 'fr') ? 'fr' : 'en';
 
 $opts = array();
 while($r = $nuts->dbFetch())
 {
     // get plugin name translated
     $plugin_folder_name = $r['Name'];
-
-    if(file_exists(NUTS_PLUGINS_PATH.'/'.$plugin_folder_name.'/lang/'.$pref_language.'.inc.php'))
-        include(NUTS_PLUGINS_PATH.'/'.$plugin_folder_name.'/lang/'.$pref_language.'.inc.php');
-    else
-        include(NUTS_PLUGINS_PATH.'/'.$plugin_folder_name.'/lang/en.inc.php');
+    include(Plugin::getIncludeUserLanguagePath($plugin_folder_name));
 
     $plugin_name = $lang_msg[0];
     $opts[] = array('label' => $plugin_name." ($plugin_folder_name)", 'value' => $plugin_folder_name);
