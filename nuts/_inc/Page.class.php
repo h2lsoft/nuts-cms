@@ -361,13 +361,21 @@ class Page extends NutsCore
 		$this->pageChronoStart = microtime(true);
 
 		// apply url custom rewriting
+        $uri_str_patterns = $uri_str_replaces = array();
+        $uri_patterns = $uri_replaces = array();
 		include(NUTS_PATH."/url_rewriting_rules.inc.php");
+
+        $original_request_uri = $_SERVER['REQUEST_URI'];
+        $tmp = explode('?', $original_request_uri);
+        $_SERVER['REQUEST_URI'] = $tmp[0];
 		$_SERVER['REQUEST_URI'] = str_replace($uri_str_patterns, $uri_str_replaces, $_SERVER['REQUEST_URI']);
 		$_SERVER['REQUEST_URI'] = preg_replace($uri_patterns, $uri_replaces, $_SERVER['REQUEST_URI']);
+        if(count($tmp) >= 2)
+            $_SERVER['REQUEST_URI'] .= '?'.$tmp[1];
 
 		// force uri get
 		$url_tmp = @parse_url($_SERVER['REQUEST_URI']);
-		if(!$url_tmp)$this->error404();
+        if(!$url_tmp)$this->error404();
 
 		if(isset($url_tmp['query']))
 			parse_str($url_tmp['query'], $_GET);
@@ -380,10 +388,10 @@ class Page extends NutsCore
 		$url = explode('?', $url);
 		$url = $url[0];
 
+        new dBug($url);
+
         $curl = str_replace(WEBSITE_URL.'/', '', $url);
-
 		$curl = explode('/', $curl);
-
 
 
 
@@ -446,7 +454,9 @@ class Page extends NutsCore
 					$this->plugin = trim($tmp[0]);
 
 					if($this->plugin != 'news' && !in_array($this->plugin, $nuts_front_plugins_direct_access))
-						$this->error404();
+                    {
+                        $this->error404();
+                    }
 
 					if(count($tmp) > 1)
 						$this->plugin_args = explode(',', $tmp[1]);
