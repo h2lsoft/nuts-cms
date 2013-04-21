@@ -199,7 +199,7 @@ class Plugin
      * Add a widget on dashboard
      *
      * @param string $title
-     * @param string $priority (high, medium, low)
+     * @param string $priority (high, medium, low, final)
      * @param string $id html attribute id of the widget
      * @param string $rows (full, 2-rows, 3-rows)
      * @param string $style html attribute style of the widget
