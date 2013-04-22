@@ -1,6 +1,7 @@
 <?php
 /**
  * Utils for Nuts
+ * @package Utils
  * @version 1.0
  */
 
