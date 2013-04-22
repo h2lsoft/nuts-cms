@@ -1020,3 +1020,83 @@ ALTER TABLE `NutsGallery` ADD COLUMN `ThumbnailConstraint` ENUM('YES','NO') NOT 
 ALTER TABLE `NutsGallery` ADD COLUMN `ThumbnailBackgroundColor` VARCHAR(20) NULL AFTER `ThumbnailConstraint` ;
 CREATE TABLE `NutsUsefulLinks` (`ID` int(10) unsigned NOT NULL AUTO_INCREMENT,`LogoImage` varchar(255) DEFAULT NULL,`Name` varchar(255) DEFAULT NULL,`Description` text,`Url` varchar(255) DEFAULT NULL,`Visible` enum('YES','NO') NOT NULL DEFAULT 'NO',`Position` int(10) unsigned NOT NULL,`Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',PRIMARY KEY (`ID`),KEY `Visible` (`Visible`),KEY `Position` (`Position`),KEY `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (2, '_useful-links', 22, 'YES');
+
+/* update v.4.0 */
+ALTER TABLE `NutsEDMFolderRights` ADD COLUMN `SHARE` ENUM('YES','NO') NOT NULL DEFAULT 'NO' AFTER `UPLOAD`;
+
+CREATE TABLE `NutsEDMShare` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NutsUserID` int(10) unsigned NOT NULL,
+  `DateCreate` datetime DEFAULT NULL,
+  `Token` varchar(255) DEFAULT NULL,
+  `Files` text,
+  `To` varchar(255) DEFAULT NULL,
+  `AR` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  `Expiration` int(10) unsigned NOT NULL,
+  `Subject` varchar(255) DEFAULT NULL,
+  `Message` text,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `DateCreate` (`DateCreate`),
+  KEY `NutsUserID` (`NutsUserID`),
+  KEY `Deleted` (`Deleted`),
+  KEY `Token` (`Token`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `NutsEDMShareLog`
+(
+	`ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`NutsEDMShareID` INT UNSIGNED NOT NULL,
+	`Date` DATETIME NULL,
+	`IP` VARCHAR(255) DEFAULT NULL,
+	`Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO',
+	PRIMARY KEY (`ID`),
+	INDEX `NutsEDMShareID` (`NutsEDMShareID`),
+	INDEX `Date` (`Date`),
+	INDEX `Deleted` (`Deleted`)
+) ENGINE=MYISAM DEFAULT CHARSET=utf8;;
+
+INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (5, '_edm-share', 5, 'NO');
+
+ALTER TABLE `NutsEDMShare` ADD COLUMN `ZipName` VARCHAR(255) NOT NULL AFTER `Files`;
+
+ALTER TABLE `NutsIMemo` ADD COLUMN `Title` VARCHAR(255) NULL AFTER `NutsUserID`;
+ALTER TABLE `NutsMedia` CHANGE COLUMN `Type` `Type` ENUM('YOUTUBE VIDEO', 'DAILYMOTION', 'IFRAME', 'EMBED CODE', 'AUDIO', 'VIDEO') NOT NULL;
+ALTER TABLE `NutsPattern` ADD COLUMN `BlocStart` VARCHAR(255) NULL AFTER `Code` ;
+ALTER TABLE `NutsPattern` ADD COLUMN `BlocEnd` VARCHAR(255) NULL AFTER `BlocStart`;
+
+ALTER TABLE `NutsNewsletterMailingListSuscriber` ADD COLUMN `LastName` VARCHAR(50) NULL;
+ALTER TABLE `NutsNewsletterMailingListSuscriber` ADD COLUMN `FirstName` VARCHAR(50) NULL;
+
+CREATE TABLE `NutsCron`
+(
+	`ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`Type` VARCHAR(255) NULL,
+	`Name` VARCHAR(255) NOT NULL,
+	`Description` TEXT NOT NULL,
+	`Command` TEXT NOT NULL,
+	`Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO',
+	PRIMARY KEY (`ID`),
+	INDEX `Deleted` (`Deleted`),
+	INDEX `Type` (`Type`)
+) ENGINE=MYISAM DEFAULT CHARSET=utf8;
+
+INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (1, '_cron-list', 6, 'NO');
+
+ALTER TABLE `NutsPage` ADD COLUMN `Locked` ENUM('YES','NO') NOT NULL DEFAULT 'NO' AFTER `State`;
+ALTER TABLE `NutsPage` ADD COLUMN `LockedNutsUserID` INT UNSIGNED NOT NULL AFTER `Locked`;
+ALTER TABLE `NutsPage` ADD INDEX `LockedNutsUserID` (`LockedNutsUserID`);
+ALTER TABLE `NutsPage` ADD INDEX `Locked` (`Locked`);
+
+CREATE TABLE `NutsUserShortcut` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NutsUserID` int(10) unsigned NOT NULL,
+  `Plugin` varchar(255) DEFAULT NULL,
+  `Position` int(10) unsigned NOT NULL,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `NutsUserID` (`NutsUserID`),
+  KEY `Position` (`Position`),
+  KEY `Deleted` (`Deleted`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+

@@ -85,7 +85,7 @@ define('FACEBOOK_PUBLISH_URL', 'http://www.facebook.com'); // enter wall url to 
 define('GOOGLEP_PUBLISH_URL', "https://plus.google.com");
 
 
-$nuts_session_preserve_keys = array('ShoppingCart'); // preserve session keys in login mecanism
+$nuts_session_preserve_keys = array(); // preserve session keys in login mecanism
 
 
 

@@ -1,6 +1,7 @@
 <?php
 
-$lang_msg[0] = "User manager"; // plugin name
+$lang_msg[0] = "Your Profile"; // plugin name
+
 $lang_msg[1] = "Group name";
 $lang_msg[2] = "Last Name";
 $lang_msg[3] = "First Name";
