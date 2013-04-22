@@ -47,6 +47,7 @@ div#form_content p select {margin-left: 0px!important;}
 div#form textarea.editor {
     border-left:10px solid #ccc;
     width:700px;
+    height: 180px;
     background-color: #fff;
     font-family: courier;
     font-size: 11px;
