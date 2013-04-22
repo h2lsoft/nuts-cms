@@ -1,6 +1,8 @@
 <?php
-/*
+/**
+ * Functions
  * @package Functions
+ * @version 1.0
  */
 
 /**
