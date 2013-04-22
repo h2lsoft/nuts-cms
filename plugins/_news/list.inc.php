@@ -165,7 +165,7 @@ EOF;
     $row['Social'] = '';
 
     // google agenda
-    $titleX = urlencode($row['Title']);
+    $titleX = urlencode(str_replace("'", "\'", $row['Title']));
     $datesX = str_replace('-', '', $original_date);
 
     $uriX = urlencode(WEBSITE_URL.$row['VirtualPageName']);
