@@ -183,7 +183,7 @@ EOF;
     // twitter
     if(TWITTER_LOGIN != '')
     {
-        $status = $row['Title'];
+        $status = urlencode(str_replace("'", "\'", $row['Title']));
         if($news_new_system)
             $status .= " => ".WEBSITE_URL.$row['VirtualPageName'];
         $status = str_replace("'", "\'", $status);
