@@ -1054,7 +1054,7 @@ CREATE TABLE `NutsEDMShareLog`
 	INDEX `NutsEDMShareID` (`NutsEDMShareID`),
 	INDEX `Date` (`Date`),
 	INDEX `Deleted` (`Deleted`)
-) ENGINE=MYISAM DEFAULT CHARSET=utf8;;
+) ENGINE=MYISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (5, '_edm-share', 5, 'NO');
 
