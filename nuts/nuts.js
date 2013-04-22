@@ -1269,7 +1269,10 @@ function getUserOnline(){
 
 		str = '';
 		for(i=0; i < d.length; i++){
-			str += '<li><img src="'+d[i].avatar_url+'" /> '+d[i].Name+'<br /><span>'+d[i].Application+'</span></li>';
+
+            if(!empty(d[i].Application))d[i].Application = '('+d[i].Application+')';
+
+			str += '<li><img src="'+d[i].avatar_url+'" /> '+d[i].Name+' <span>'+d[i].Application+'</span></li>';
 		}
 
 		$('#user_online-drop-down-menu').html(str);

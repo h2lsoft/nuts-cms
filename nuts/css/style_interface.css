@@ -21,10 +21,14 @@
 #header_right #user_online a i {font-size: 20px; margin: 0; padding: 0; }
 #header_right #user_online #user_online_count {font-size: 16px; margin: 0; padding: 0; }
 
-#header_right #user_online-drop-down-menu {font-size:11px; padding: 0px; margin: 0;}
+#header_right #user_online-drop-down-menu {font-size:11px; padding: 0px; margin: 0;  width: 280px;}
 #header_right #user_online-drop-down-menu img {width: 30px; float: left; margin-right: 5px; vertical-align: middle; }
-#header_right #user_online-drop-down-menu li {line-height: 30px; white-space:nowrap; padding: 3px; width: 170px;}
-#header_right #user_online-drop-down-menu li:hover {background: #2d89ef; color: white; cursor: pointer;}
+#header_right #user_online-drop-down-menu li {line-height: 30px; white-space:nowrap; padding: 3px; width: 274px;}
+#header_right #user_online-drop-down-menu li span {color: #666; font-size: 10px;}
+/*#header_right #user_online-drop-down-menu li:hover {background: #2d89ef; color: white; cursor: pointer;}
+#header_right #user_online-drop-down-menu li:hover span {color: #e5e5e5;}*/
+
+#header_right #user_online-drop-down-menu li:hover {color:#1570B8;}
 
 #header_right #user_badge {white-space:nowrap; float: left;}
 #header_right #user_badge .avatar {padding: 2px; line-height: 35px; padding-right: 10px; cursor: pointer; display: block; height: 30px;}

@@ -38,7 +38,7 @@
 /* nTabs */
 .dashboard-widget .ntabs li {font-size: 11px; letter-spacing: 0px; text-transform: none; padding: 5px; }
 .dashboard-widget .ntabs li.selected {background-color: #e5e5e5; border-color: #e5e5e5; color: #333!important;}
-.dashboard-widget .ntab_content {padding: 10px; overflow: scroll; height: 250px;}
+.dashboard-widget .ntab_content {padding: 10px; overflow: auto; overflow-x: hidden; height: 250px;}
 .dashboard-widget .ntab_content .no-record {margin-top: 60px;}
 
 
