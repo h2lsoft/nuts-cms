@@ -1056,7 +1056,7 @@ CREATE TABLE `NutsEDMShareLog`
 	INDEX `Deleted` (`Deleted`)
 ) ENGINE=MYISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (5, '_edm-share', 5, 'NO');
+INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (5, '_edm-share', 5, 'YES');
 
 ALTER TABLE `NutsEDMShare` ADD COLUMN `ZipName` VARCHAR(255) NOT NULL AFTER `Files`;
 
