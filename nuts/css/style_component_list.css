@@ -151,7 +151,7 @@ table#list tfoot #list_previous:active i, table#list tfoot #list_next:active i {
 table#list tfoot #list_previous, table#list tfoot #list_next {text-transform: uppercase}
 
 
-table#list tfoot td.total_count {font-size:14px; background:#fff; font-weight:normal; text-transform: uppercase; color:#333; text-align: right; padding-right:18px; padding-top: 15px; padding-bottom: 15px; height: auto;}
+table#list tfoot td.total_count {font-size:16px; background:#EEEEFF; font-weight:normal; text-transform: uppercase; color:#333; text-align: right; padding-right:18px; padding-top: 15px; padding-bottom: 15px; height: auto;}
 table#list tfoot a.np { margin-left:10px; margin-right:10px; padding:5px; color:#666;}
 table#list tfoot a.np:hover {text-decoration:none; color:#507FBC;}
 
