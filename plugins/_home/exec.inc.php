@@ -46,6 +46,7 @@ $sql = "SELECT
                 Name";
 $nuts->doQuery($sql);
 $all_plugins_allowed = $nuts->dbGetOneData();
+@sort($all_plugins_allowed);
 
 foreach($all_plugins_allowed as $plugin_allowed)
 {
