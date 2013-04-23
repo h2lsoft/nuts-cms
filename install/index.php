@@ -25,11 +25,21 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 			$error = true;
 			$error_msg = "`{$_POST['WEBSITE_PATH']}` doesn't exist";
 		}
+        elseif($_POST['WEBSITE_PATH'][strlen($_POST['WEBSITE_PATH'])-1] == '/')
+        {
+            $error = true;
+            $error_msg = "`WEBSITE PATH` has slash at end !";
+        }
 		elseif(@empty($_POST['WEBSITE_URL']))
 		{
 			$error = true;
 			$error_msg = "`WEBSITE URL` is empty";
 		}
+        elseif($_POST['WEBSITE_URL'][strlen($_POST['WEBSITE_URL'])-1] == '/')
+        {
+            $error = true;
+            $error_msg = "`WEBSITE URL` has slash at end !";
+        }
 		elseif(@!empty($website_root['path']))
 		{
 			$error = true;
@@ -504,7 +514,7 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 	<script>
 	function registration()
 	{
-		if(!$('#Register:checked'))
+		if($('#Register:checked').length == 0)
 		{
 			document.location.href='/nuts/login.php';
 		}	
