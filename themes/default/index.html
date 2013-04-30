@@ -1,74 +1,61 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="{@PAGE_LANGUAGE}">
 <head>
-		{#include("themes/default/_header.html");}
+    {#include("themes/default/_header.html");}
 </head>
 <body>
 
-	<!-- global -->
-	<div id="global" class="container_12">
+    <!-- global -->
+    <div id="global" class="container_12">
 
-		<!-- sub_header -->
-		<div id="sub_header" class="grid_12">
-			{#include("themes/default/_login_box.html");}
-		</div>
-		<div class="clear"></div>
-		<!-- /sub_header -->
+        <!-- login_box -->
+        <div id="login_box">
+            {#include("themes/default/_login_box.html");}
+        </div>
+        <!-- /login_box -->
 
+        <!-- header -->
+        <div id="header" class="container_12">
 
-		<!-- header -->
-		<div id="header" class="grid_9">
-			<a href="/" class="logo">{CONST::WEBSITE_NAME}</a>
-		</div>
-		<div id="top_search" class="grid_3">
-			{#include("themes/default/_top_search.html");}
-		</div>
-		<div class="clear"></div>
-		<!-- /header -->
+            <div id="header_logo" class="grid_6">
+                <a href="/" class="logo">{CONST::WEBSITE_NAME}</a>
+            </div>
 
-		<!-- top_menu -->
-		<div id="top_menu" class="container_12">
-			{@NUTS    TYPE='MENU'    CONTENT='ALL CHILDRENS'    FROM='Main menu'    ZONE_ID='0'    OUTPUT='LI>UL'    CSS='zone_0'    ATTRIBUTES=''    INCLUDE_PARENT='0'}
-		</div>
-		<div class="clear"></div>
-		<!-- /top_menu -->
+            <div id="top_search" class="grid_6">
+                {#include("themes/default/_top_search.html");}
+            </div>
 
+        </div>
+        <!-- /header -->
 
-		{#if(!$page->isHome)}
-		<!-- navbar -->
-		<div id="navbar" class="container_12">
-			&raquo; <a href="/">Home</a> {@NUTS    TYPE='NAVBAR'    SEPARATOR=' &raquo; '}
-		</div>
-		<div class="clear"></div>
-		<!-- /navbar -->
-		{#endif}
+        <div class="clearfix"></div>
+
+        <!-- top_menu -->
+        <div id="top_menu">
+            {@NUTS    TYPE='MENU'    CONTENT='ALL CHILDRENS'    FROM='Main menu'    ZONE_ID='0'    OUTPUT='LI>UL'    CSS='zone_0'    ATTRIBUTES=''    INCLUDE_PARENT='0'}
+        </div>
+        <!-- /top_menu -->
 
 
-		<!-- content -->
-		<div id="content" class="container_12">
+        <!-- content -->
+        <div id="content" class="grid_9 alpha">
+            {$NUTS_CONTENT}
+        </div>
+        <!-- /content -->
 
-			<div class="grid_9 alpha">
-				{$NUTS_CONTENT}
-			</div>
+        <!-- right -->
+        <div id="right"  class="grid_3 omega">
+            {@NUTS    TYPE='PLUGIN'    NAME='_news-agenda-widget'}
+            {@NUTS    TYPE='BLOCK'    GROUP='Right'}
+        </div>
+        <!-- /right -->
 
-			<!-- nocontent -->
-			<div id="right" class="grid_3 omega">
+        <div class="clearfix"></div>
 
-                {@NUTS    TYPE='PLUGIN'    NAME='_news-agenda-widget'}
+        {#include("themes/default/_footer.html");}
 
-
-				{@NUTS    TYPE='BLOCK'    GROUP='Right'}
-			</div>
-			<!-- /nocontent -->
-
-		</div>
-		<div class="clear"></div>
-		<!-- /content -->
-
-		{#include("themes/default/_footer.html");}
-
-	</div>
-	<!-- /global -->
+    </div>
+    <!-- /global -->
 
 </body>
 </html>
