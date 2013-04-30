@@ -15,7 +15,8 @@ if(!$news_new_system) # old system check
 }
 else
 {
-    $urix = $_SERVER['SCRIPT_URL'];
+    // $urix = (isset($_SERVER['SCRIPT_URL'])) ? $_SERVER['SCRIPT_URL'] : $_SERVER['REQUEST_URI'];
+    $urix = (isset($_SERVER['SCRIPT_URL'])) ? $_SERVER['SCRIPT_URL'] : $_SERVER['REDIRECT_URL'];
     $newsID = (int)Query::factory()->select('ID')->from('NutsNews')->where('VirtualPageName', '=', $urix)->executeAndGetOne();
     if(!$newsID)$plugin->error404();
 }
