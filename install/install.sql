@@ -45,7 +45,7 @@ CREATE TABLE `NutsUser` (
   PRIMARY KEY  (`ID`,`NutsGroupID`),
   KEY `Deleted` (`Deleted`),
   KEY `Active` (`Active`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `NutsUser` VALUES
 ('1','1',@ADMIN_FIRST_NAME, @ADMIN_LAST_NAME, @ADMIN_EMAIL, @ADMIN_LOGIN, 'admin', @ADMIN_LANG, @ADMIN_TIMEZONE,'YES','NO');
@@ -67,7 +67,7 @@ CREATE TABLE `NutsGroup` (
   PRIMARY KEY  (`ID`),
   KEY `Deleted` (`Deleted`),
   KEY `Name` (`Name`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `NutsGroup` VALUES
 ('1','SuperAdmin','User with maximum rights','Full','1','NO','');
@@ -87,7 +87,7 @@ CREATE TABLE `NutsTemplateConfiguration` (
   `Deleted` enum('YES','NO') NOT NULL default 'NO',
   PRIMARY KEY  (`ID`),
   KEY `Deleted` (`Deleted`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `NutsTemplateConfiguration` VALUES
 ('1','fr','','default','This is the default theme','NO');
@@ -108,7 +108,7 @@ CREATE TABLE `NutsZone` (
   KEY `Deleted` (`Deleted`),
   KEY `Type` (`Type`),
   KEY `Visible` (`Visible`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 
@@ -125,7 +125,7 @@ CREATE TABLE `NutsMenu` (
   PRIMARY KEY  (`ID`),
   KEY `Group` (`Categorie`),
   KEY `Position` (`Position`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `NutsMenu` VALUES
 ('1','1','_configuration','','1','1'),
@@ -156,7 +156,7 @@ CREATE TABLE `NutsMenuRight` (
   `NutsGroupID` int(10) unsigned NOT NULL default '0',
   `Name` varchar(50) NOT NULL default '',
   PRIMARY KEY  (`ID`,`NutsMenuID`,`NutsGroupID`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `NutsMenuRight` VALUES
 ('','8','1','edit');
@@ -196,7 +196,7 @@ CREATE TABLE `NutsNews` (
   KEY `Filter3` (`Filter3`),
   KEY `Archived` (`Archived`),
   FULLTEXT KEY `Tags` (`Tags`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 /*
@@ -244,7 +244,7 @@ CREATE TABLE `NutsPage` (
   KEY `Zone` (`ZoneID`),
   KEY `Comments` (`Comments`),
   FULLTEXT KEY `Tags` (`Tags`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 /*
@@ -265,7 +265,7 @@ CREATE TABLE `NutsLog` (
   KEY `Application` (`Application`),
   KEY `Deleted` (`Deleted`),
   KEY `Date` (`DateGMT`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*
 NutsBlock
@@ -281,7 +281,7 @@ CREATE TABLE `NutsBlock` (
   KEY `Deleted` (`Deleted`),
   KEY `Visible` (`Visible`),
   KEY `GroupName` (`GroupName`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*
 NutsContentType
@@ -292,7 +292,7 @@ CREATE TABLE `NutsContentType` (
   `Type` varchar(255) default NULL,
   `Option` text,
   PRIMARY KEY  (`ID`,`NutsPageID`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `NutsContentType` VALUES ('1','0','TEXT','');
 
@@ -311,7 +311,7 @@ CREATE TABLE `NutsGallery` (
   KEY `Active` (`Active`),
   KEY `Deleted` (`Deleted`),
   KEY `Position` (`Position`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*
 NutsGalleryImage
@@ -331,7 +331,7 @@ CREATE TABLE `NutsGalleryImage` (
   KEY `Deleted` (`Deleted`),
   KEY `Active` (`Active`),
   KEY `Position` (`Position`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 /*
@@ -363,7 +363,7 @@ CREATE TABLE `NutsPageComment` (
   KEY `Suscribe` (`Suscribe`),
   KEY `Deleted` (`Deleted`),
   KEY `NutsUserID` (`NutsUserID`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 /*
@@ -379,7 +379,7 @@ CREATE TABLE `NutsPattern` (
   `Deleted` enum('YES','NO') NOT NULL default 'NO',
   PRIMARY KEY  (`ID`),
   KEY `Deleted` (`Deleted`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 /*
@@ -401,7 +401,7 @@ CREATE TABLE `NutsRegion` (
   `Deleted` enum('YES','NO') character set latin1 default 'NO',
   PRIMARY KEY  (`ID`),
   KEY `Deleted` (`Deleted`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 
@@ -415,7 +415,7 @@ ALTER TABLE `NutsMenu` ADD COLUMN `Visible` ENUM('YES','NO') NOT NULL DEFAULT 'Y
 
 
 /* update v.0.86 */
-CREATE TABLE `NutsEmail`(`ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Language` VARCHAR(5) NULL, `Expeditor` VARCHAR(255) NULL, `Subject` VARCHAR(255) NULL, `Body` TEXT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Language` (`Language`), INDEX `Deleted` (`Deleted`)) ENGINE= MYISAM;
+CREATE TABLE `NutsEmail`(`ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Language` VARCHAR(5) NULL, `Expeditor` VARCHAR(255) NULL, `Subject` VARCHAR(255) NULL, `Body` TEXT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Language` (`Language`), INDEX `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 INSERT INTO NutsMenu (Category, Name, Position) VALUES (1, '_email', 10);
 
 
@@ -617,7 +617,7 @@ ALTER TABLE `NutsFormField`  ADD COLUMN `TextAfter` varchar(255) NOT NULL AFTER 
 ALTER TABLE NutsBlock ADD COLUMN `SubGroupName` VARCHAR(255) NOT NULL AFTER `GroupName`;
 ALTER TABLE NutsBlock ADD INDEX `SubGroupName` (`SubGroupName`);
 ALTER TABLE `NutsNews` ADD COLUMN `NewsImage` VARCHAR(255) NULL  AFTER `ID`;
-CREATE TABLE `NutsSpider`(    `ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,    `Title` VARCHAR(255) ,    `Text` LONGTEXT ,    `Url` VARCHAR(255) ,    PRIMARY KEY (`ID`) );
+CREATE TABLE `NutsSpider`(    `ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,    `Title` VARCHAR(255) ,    `Text` LONGTEXT ,    `Url` VARCHAR(255) ,    PRIMARY KEY (`ID`) ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 ALTER TABLE `NutsSpider` ADD FULLTEXT `Text` (`Title`, `Text`);
 INSERT INTO `NutsMenu`(Category,Name,Position, BreakBefore) VALUES(3, '_search-engine', 9, 1);
 
@@ -655,21 +655,21 @@ INSERT INTO NutsMenu (Category, Name, Position) VALUE(2, '_template_styles', 1);
 UPDATE NutsMenu SET BreakAfter = 1 WHERE Name = '_template_settings';
 
 /* update v.2.0 */
-CREATE TABLE `NutsRichEditor`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Content` TEXT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Deleted` (`Deleted`))ENGINE= MYISAM;
+CREATE TABLE `NutsRichEditor`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Content` TEXT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 INSERT INTO NutsMenu (Category, Name, Position) VALUE(1, '_rte_custom', 1);
 INSERT INTO NutsRichEditor (`ID`,`Content`,`Deleted`) VALUES ( '1','forced_root_block : \'\',\r\nforce_br_newlines : false,\r\nforce_p_newlines : false,    \r\nremove_linebreaks: true,\r\napply_source_formatting: false,\r\nconvert_newlines_to_brs : false,','NO');
-CREATE TABLE `NutsUrlRewriting`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Pattern` VARCHAR(255) NULL, `Replacement` VARCHAR(255) NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Deleted` (`Deleted`))ENGINE= MYISAM;
+CREATE TABLE `NutsUrlRewriting`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Pattern` VARCHAR(255) NULL, `Replacement` VARCHAR(255) NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 INSERT INTO NutsMenu (Category, Name, Position) VALUE(2, '_url_rewriting', 2);
 ALTER TABLE `NutsUrlRewriting` ADD COLUMN `Position` INT UNSIGNED NOT NULL AFTER `Replacement`;
 ALTER TABLE `NutsUrlRewriting` ADD INDEX `Position` (`Position`);
 ALTER TABLE `NutsUrlRewriting` ADD COLUMN `Type` ENUM('SIMPLE','REGEX') NOT NULL DEFAULT 'SIMPLE'  AFTER `ID`;
 
 /* update v.2.1 */
-CREATE TABLE `NutsPressKit`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Date` DATE NOT NULL, `Title` VARCHAR(255) NULL, `Source` VARCHAR(255) NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Date` (`Date`), INDEX `Deleted` (`Deleted`))ENGINE= MYISAM;
+CREATE TABLE `NutsPressKit`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `Date` DATE NOT NULL, `Title` VARCHAR(255) NULL, `Source` VARCHAR(255) NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `Date` (`Date`), INDEX `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 ALTER TABLE `NutsPressKit` ADD COLUMN `File` VARCHAR(255) NULL AFTER `Source` ;
 INSERT INTO NutsMenu (Category, Name, Position) VALUE(3, '_press-kit', 10);
 ALTER TABLE `NutsUser` ADD COLUMN `FrontOfficeToolbar` ENUM('YES','NO') NOT NULL DEFAULT 'YES';
-CREATE TABLE `NutsIMemo`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `NutsUserID` INT UNSIGNED NOT NULL, `Text` LONGTEXT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `NutsUserID` (`NutsUserID`), INDEX `Deleted` (`Deleted`))ENGINE= MYISAM;
+CREATE TABLE `NutsIMemo`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `NutsUserID` INT UNSIGNED NOT NULL, `Text` LONGTEXT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `NutsUserID` (`NutsUserID`), INDEX `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 ALTER TABLE `NutsNews` ADD COLUMN `NewsImageModel` VARCHAR(255) NULL AFTER `NewsImage` ;
 UPDATE NutsMenu SET Visible = 'NO' WHERE Name = '_internal-memo' ; 
 
@@ -872,7 +872,7 @@ CREATE TABLE `NutsUrlRedirect`
 	PRIMARY KEY (`ID`),
 	INDEX `Position` (`Position`),
 	INDEX `Deleted` (`Deleted`)
-)ENGINE= MYISAM DEFAULT CHARSET=utf8;
+) ENGINE=MYISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (2, '_url_redirect', 13, 'YES');
 
@@ -887,7 +887,7 @@ CREATE TABLE `NutsTrigger`
 	`Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO',
 	PRIMARY KEY (`ID`),
 	INDEX `Deleted` (`Deleted`)
-)ENGINE= MYISAM DEFAULT CHARSET=utf8;
+) ENGINE=MYISAM DEFAULT CHARSET=utf8;
 
 ALTER TABLE `NutsTrigger` ADD INDEX `Name` (`Name`);
 
