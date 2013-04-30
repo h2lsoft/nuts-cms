@@ -50,4 +50,7 @@ UPDATE NutsPage SET Content=REPLACE(Content, 'View our product 3', 'Consulter la
 UPDATE NutsPage SET Content=REPLACE(Content, 'This is the private space', 'Bienvenue dans votre espace prive')  WHERE ID = 12;
 UPDATE NutsPage SET MenuName='Plan du site', H1='Plan du site'    WHERE ID = 16;
 
+UPDATE NutsSpider SET Url=REPLACE(Url, '/en/', '/fr/');
+
+
 
