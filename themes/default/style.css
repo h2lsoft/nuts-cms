@@ -72,29 +72,24 @@ input[type=button], input[type=submit], input[type=reset], button {-webkit-appea
 
 
 /** top menu **/
-#top_menu {background-color: #1570B8; padding: 10px 0; height: 15px; margin-bottom: 10px;}
-#top_menu ul {display: inline; list-style: none; height: 30px; padding-top: 3px; }
-#top_menu ul li {float: left; color:white;}
-#top_menu ul li a {text-decoration: none; color:white; border-right: 1px solid #ccc; padding:0 20px;}
-#top_menu ul li a:hover {color:#ccc;}
-#top_menu > ul > li.selected > a {color:orange;}
-#top_menu ul > li:last-child a {border-right:0;}
-#top_menu ul ul {z-index: 55; display:block; float:none; visibility: hidden; padding:10px 0; height: auto; list-style: none; position: absolute; border: 1px solid #ccc; background-color: white; margin-top: 8px;}
-#top_menu ul ul li {padding: 5px; margin: 0; float: none; }
-#top_menu ul ul li a {color: #666; text-decoration: none; border: 0;}
-#top_menu ul ul li.selected a {color: #666;}
-#top_menu ul ul li a:hover {color: #000;}
+nav {background-color: #1570B8; padding: 10px 0; height: 15px; margin-bottom: 10px;}
+nav ul {display: inline; list-style: none; height: 30px; padding-top: 3px; }
+nav ul li {float: left; color:white;}
+nav ul li a {text-decoration: none; color:white; border-right: 1px solid #ccc; padding:0 20px;}
+nav ul li a:hover {color:#ccc;}
+nav > ul > li.selected > a {color:orange;}
+nav ul > li:last-child a {border-right:0;}
+nav ul ul {z-index: 55; display:block; float:none; visibility: hidden; padding:10px 0; height: auto; list-style: none; position: absolute; border: 1px solid #ccc; background-color: white; margin-top: 8px;}
+nav ul ul li {padding: 5px; margin: 0; float: none; }
+nav ul ul li a {color: #666; text-decoration: none; border: 0;}
+nav ul ul li.selected a {color: #666;}
+nav ul ul li a:hover {color: #000;}
 
 
-.nav>li>a:hover, .nav>li>a:focus {
-    text-decoration: none;
-    background:none;
-}
-
-/** navbar **/
-#navbar { font-size: 11px; padding-top: 10px; padding-bottom: 10px; padding-left: 2px;}
-#navbar a {text-decoration: none; color: #666; margin-right: 5px;}
-#navbar a:hover {color: #000;}
+/** breadcrumb **/
+#breadcrumb { font-size: 11px; padding-top: 10px; padding-bottom: 10px; padding-left: 2px;}
+#breadcrumb a {text-decoration: none; color: #666; margin-right: 5px;}
+#breadcrumb a:hover {color: #000;}
 
 /** content **/
 #content {min-height: 400px; padding-bottom: 20px}
@@ -102,17 +97,13 @@ input[type=button], input[type=submit], input[type=reset], button {-webkit-appea
 
 
 /** tight **/
-#right {padding-top: 20px; float: right; width: 230px;}
+#right {margin-top: -10px; float: right; width: 230px;}
 
-
-#bottom_menu {/*background-color: #666;*/ text-align: center; margin-top: 30px;}
-#footer {text-align: center;  font-size: 10px; font-family: verdana;  margin-top: 10px;  margin-bottom: 40px;}
-
-#footer a {text-transform: uppercase;}
-#footer #sitemap {text-align: right;}
-#footer #sitemap a {color: #999; background-image: url(img/sitemap.gif); background-repeat: no-repeat; padding-left: 20px;}
-#footer #sitemap a:hover {color: #333;}
-
+footer {text-align: center;  font-size: 10px; font-family: verdana;  margin-top: 10px;  margin-bottom: 40px;}
+footer a {text-transform: uppercase;}
+footer #sitemap {text-align: right;}
+footer #sitemap a {color: #999; background-image: url(img/sitemap.gif); background-repeat: no-repeat; padding-left: 20px;}
+footer #sitemap a:hover {color: #333;}
 
 /** nuts_ search_engine **/
 #nuts_search_engine_q {background-position: 3px 2px;}
@@ -190,3 +181,14 @@ p.event_resume:empty {display: none;}
 #nuts_search_engine .result {margin-bottom: 25px;}
 #nuts_search_engine .result .title {font-weight: 400; background-position: left center; text-transform: uppercase; letter-spacing: 1px; }
 #nuts_search_engine .result .resume {padding: 0;}
+
+
+/** browser hacks **/
+.ie7 header {margin-bottom: 20px;}
+.ie7 nav ul ul {margin-top:25px; margin-left: -95px;}
+.ie7 .nuts_slider_pager a {text-indent: 0; color: transparent;}
+
+
+
+
+

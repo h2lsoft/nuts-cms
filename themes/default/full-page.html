@@ -4,6 +4,8 @@
     {#include("themes/default/_header.html");}
 </head>
 <body>
+<!--[if IE 7]><div class="ie7"><!--<![endif]-->
+<!--[if IE 8]><div class="ie8"><!--<![endif]-->
 
 <!-- global -->
 <div id="global" class="container_12">
@@ -15,7 +17,7 @@
     <!-- /login_box -->
 
     <!-- header -->
-    <div id="header" class="container_12">
+    <header class="container_12">
 
         <div id="header_logo" class="grid_6">
             <a href="/" class="logo">{CONST::WEBSITE_NAME}</a>
@@ -25,16 +27,14 @@
             {#include("themes/default/_top_search.html");}
         </div>
 
-    </div>
+    </header>
     <!-- /header -->
 
-    <div class="clearfix"></div>
-
-    <!-- top_menu -->
-    <div id="top_menu">
+    <!-- nav -->
+    <nav>
         {@NUTS    TYPE='MENU'    CONTENT='ALL CHILDRENS'    FROM='Main menu'    ZONE_ID='0'    OUTPUT='LI>UL'    CSS='zone_0'    ATTRIBUTES=''    INCLUDE_PARENT='0'}
-    </div>
-    <!-- /top_menu -->
+    </nav>
+    <!-- /nav -->
 
 
     <!-- content -->
@@ -49,6 +49,9 @@
 
 </div>
 <!-- /global -->
+
+<!--[if IE 7]></div><!--<![endif]-->
+<!--[if IE 8]></div><!--<![endif]-->
 
 </body>
 </html>

@@ -5,6 +5,10 @@
 </head>
 <body>
 
+<!--[if IE 7]><div class="ie7"><!--<![endif]-->
+<!--[if IE 8]><div class="ie8"><!--<![endif]-->
+
+
     <!-- global -->
     <div id="global" class="container_12">
 
@@ -15,7 +19,7 @@
         <!-- /login_box -->
 
         <!-- header -->
-        <div id="header" class="container_12">
+        <header class="container_12">
 
             <div id="header_logo" class="grid_6">
                 <a href="/" class="logo">{CONST::WEBSITE_NAME}</a>
@@ -25,16 +29,21 @@
                 {#include("themes/default/_top_search.html");}
             </div>
 
-        </div>
+        </header>
         <!-- /header -->
 
-        <div class="clearfix"></div>
-
-        <!-- top_menu -->
-        <div id="top_menu">
+        <!-- nav -->
+        <nav>
             {@NUTS    TYPE='MENU'    CONTENT='ALL CHILDRENS'    FROM='Main menu'    ZONE_ID='0'    OUTPUT='LI>UL'    CSS='zone_0'    ATTRIBUTES=''    INCLUDE_PARENT='0'}
+        </nav>
+        <!-- /nav -->
+
+        <!-- breadcrumb -->
+        <div id="breadcrumb">
+            <a href="/">Home</a>
+            {@NUTS    TYPE='NAVBAR'    SEPARATOR='&raquo;'}
         </div>
-        <!-- /top_menu -->
+        <!-- /breadcrumb -->
 
 
         <!-- content -->
@@ -44,10 +53,10 @@
         <!-- /content -->
 
         <!-- right -->
-        <div id="right"  class="grid_3 omega">
+        <aside id="right"  class="grid_3 omega">
             {@NUTS    TYPE='PLUGIN'    NAME='_news-agenda-widget'}
             {@NUTS    TYPE='BLOCK'    GROUP='Right'}
-        </div>
+        </aside>
         <!-- /right -->
 
         <div class="clearfix"></div>
@@ -56,6 +65,11 @@
 
     </div>
     <!-- /global -->
+
+
+<!--[if IE 7]></div><!--<![endif]-->
+<!--[if IE 8]></div><!--<![endif]-->
+
 
 </body>
 </html>
