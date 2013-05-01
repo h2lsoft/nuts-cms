@@ -260,7 +260,7 @@ class Query
 			$i = 0;
 			foreach($froms as $from)
 			{
-				$from = end(explode(' ', $from));
+				$from = @end(explode(' ', $from));
 
 				if($i > 0)$sql .= " AND ";
 				$sql .= "		$from.Deleted = 'NO'"."\n";
