@@ -33,7 +33,7 @@ div#list_container div#add button
 
 
 /** list search *******************************************************************************************************/
-div#list_container fieldset {padding:0px; min-width:720px; margin-top:0;  margin-bottom:10px; z-index:2; position:absolute; background-color:#fff;}
+div#list_container fieldset {padding:0px; width: auto; min-width:720px; margin-top:0;  margin-bottom:10px; z-index:2; position:absolute; background-color:#fff;}
 div#list_container fieldset legend {padding: 0px; margin-left:10px; padding-left:5px; padding-right:5px;}
 div#list_container fieldset legend a:hover {text-decoration:none; color: navy;}
 div#list_container fieldset legend a:active {color: #3399FE!important;}
