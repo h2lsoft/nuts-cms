@@ -795,6 +795,9 @@ function initTopSearch()
 
         $("#top_search_input").val("").blur();
 
+        // hide main menu
+        $('#menu li.parent').removeClass('selected').css('background', 'none').css('border-color', '#ccc');
+
     });
 }
 
