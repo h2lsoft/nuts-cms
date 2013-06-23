@@ -1,6 +1,6 @@
 <?php
 
-$lang_msg[0] = "Form builder field"; // plugin name
+$lang_msg[0] = "Champs de votre formulaire"; // plugin name
 
 $lang_msg[1] = "Formulaire";
 $lang_msg[2] = "Nom";
