@@ -273,6 +273,7 @@ function updateSqlCode()
 
     c = str_replace(' IN(', ' '+bloc_start+'IN'+bloc_end+'(', c);
 
+    c = str_replace('DISTINCT ', bloc_start+'DISTINCT'+bloc_end+' ', c);
     c = str_replace(' BETWEEN ', ' '+bloc_start+'BETWEEN'+bloc_end+' ', c);
     c = str_replace(' INTERVAL ', ' '+bloc_start+'INTERVAL'+bloc_end+' ', c);
     c = str_replace(' SECOND', ' '+bloc_start+'SECOND'+bloc_end, c);
@@ -288,6 +289,7 @@ function updateSqlCode()
 
     // imbricated query
     c = str_replace('(SELECT ', '('+bloc_start+'SELECT'+bloc_end+' ', c);
+    c = str_replace(' DISTINCT ', ' '+bloc_start+'DISTINCT'+bloc_end+' ', c);
     c = str_replace(' FROM ', ' '+bloc_start+'FROM'+bloc_end+' ', c);
     c = str_replace(' WHERE ', ' '+bloc_start+'WHERE'+bloc_end+' ', c);
     c = str_replace(' AND ', ' '+bloc_start+'AND'+bloc_end+' ', c);
