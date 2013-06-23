@@ -23,7 +23,15 @@ $lang_msg[16] = "You can use for example {_PageCount}, {_PageNumber}, {_First}, 
 $lang_msg[17] = "Html Loop";
 
 $lang_msg[18] = "Html After";
-$lang_msg[19] = "For example: close table";
+$lang_msg[19] = "For example: close a table";
+
+$lang_msg[20] =  "Force url";
+$lang_msg[21] =  "Pager html previous";
+$lang_msg[22] =  "Pager html next";
+$lang_msg[23] =  "Add zones start/end";
+$lang_msg[24] =  "Pager html start";
+$lang_msg[25] =  "Pager html end";
+
 
 
 ?>

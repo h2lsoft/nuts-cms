@@ -6,7 +6,7 @@ email: contact@h2lsoft.com
 webupdate: yes
 info: manage regions in your template
 info_fr: gérer les régions dans vos templates
-langs: en
+langs: en, fr
 system: >= 1.0
 actions: list, add, edit, delete
 default_action: list

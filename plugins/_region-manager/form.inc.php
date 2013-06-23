@@ -23,13 +23,13 @@ $plugin->formAddFieldTextArea('HookData', '', false, 'php');
 $plugin->formAddFieldText('Result', $lang_msg[9], true, 'number', 'width:35px', '', '', $lang_msg[10]);
 
 $plugin->formAddFieldBooleanX('Pager', $lang_msg[13], true);
-$plugin->formAddFieldText('SetUrl', 'Set url', false, '', "", "", "", "Force url");
-$plugin->formAddFieldTextArea('PagerPreviousText', 'Pager Previous Text', false);
-$plugin->formAddFieldTextArea('PagerNextText', 'Pager Next Text', false);
+$plugin->formAddFieldText('SetUrl', $lang_msg[20], false, '', "", "", "", "Force url");
+$plugin->formAddFieldTextArea('PagerPreviousText', $lang_msg[21], false);
+$plugin->formAddFieldTextArea('PagerNextText', $lang_msg[22], false);
 
-$plugin->formAddFieldBooleanX('PreviousStartEndVisible', "Add start/end pager", true);
-$plugin->formAddFieldTextArea('PagerStartText', 'Pager Start Text', false);
-$plugin->formAddFieldTextArea('PagerEndText', 'Pager End Text', false);
+$plugin->formAddFieldBooleanX('PreviousStartEndVisible', $lang_msg[23], true);
+$plugin->formAddFieldTextArea('PagerStartText', $lang_msg[24], false);
+$plugin->formAddFieldTextArea('PagerEndText', $lang_msg[25], false);
 
 
 
