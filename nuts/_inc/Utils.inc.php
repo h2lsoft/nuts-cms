@@ -787,6 +787,4 @@ EOF;
     return $str;
 }
 
-
-
 ?>
