@@ -176,7 +176,7 @@ $nuts_lang_msg[92] = "You have been disconnected because your ip is different";
 
 
 $nuts_lang_msg[93] = "My notes";
-$nuts_lang_msg[94] = "update my profile";
+$nuts_lang_msg[94] = "Update my profile";
 $nuts_lang_msg[95] = "Website";
 
 $nuts_lang_msg[96] = "In (separated by `,`)";
