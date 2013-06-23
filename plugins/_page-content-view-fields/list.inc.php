@@ -24,10 +24,10 @@ $plugin->listSetDbTable("NutsPageContentViewField", "", "NutsPageContentViewID={
 $plugin->listAddColPosition('Position', 'NutsPageContentViewID', $_GET['NutsPageContentViewID']);
 
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
-$plugin->listAddCol('Name', '', '; width:30px; white-space:nowrap;', true);
+$plugin->listAddCol('Name', $lang_msg[1], '; width:30px; white-space:nowrap;', true);
 $plugin->listAddCol('Label', '', '; white-space:nowrap;', false);
 $plugin->listAddCol('Type', '', 'center; width:30px; white-space:nowrap;', false);
-$plugin->listAddColImg('HrAfter', 'Hr after');
+$plugin->listAddColImg('HrAfter', $lang_msg[2]);
 
 
 $plugin->listAddButtonUrlAdd("NutsPageContentViewID={$_GET['NutsPageContentViewID']}");

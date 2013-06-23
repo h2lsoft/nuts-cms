@@ -18,27 +18,18 @@ if($_GET['ID'] == 0)
 
 
 // fields
-$plugin->formAddFieldText('Name', "", "notEmpty|alphaNumeric", "ucfirst");
+$plugin->formAddFieldText('Name', $lang_msg[1], "notEmpty|alphaNumeric", "ucfirst");
 $plugin->formAddFieldText('Label', "", true, "ucfirst");
 
 $opts = array('TEXT', 'TEXTAREA', 'HTMLAREA', 'DATE', 'DATETIME', 'SELECT', 'SELECT-SQL', 'BOOLEAN', 'BOOLEANX', 'FILEMANAGER', 'FILEMANAGER_IMAGE', 'FILEMANAGER_MEDIA', 'COLORPICKER');
 $plugin->formAddFieldSelect('Type', "", true, $opts);
-
-$help = "Option for your field :
-
- * select : must be your values each lines are an option put | to separate option and label (ex: OPTION|LABEL)
- * select-sql : must be the sql code with columns label and value
- * filemanager-image : can be the default folder opened
- * filemanager-media : can be the default folder opened
-
-";
-$plugin->formAddFieldTextArea('SpecialOption', "Special option", false, "tabby", "", "", nl2br($help));
+$plugin->formAddFieldTextArea('SpecialOption', $lang_msg[7], false, "tabby", "", "", nl2br($lang_msg[3]));
 
 $plugin->formAddFieldText('CssStyle', "Css style", false, "lower");
-$plugin->formAddFieldText('Value', "Default value", false);
-$plugin->formAddFieldText('Help', "Help message", false, "ucfirst");
-$plugin->formAddFieldText('TextAfter', "Text after", false);
-$plugin->formAddFieldBooleanX('HrAfter', "Hr after", true);
+$plugin->formAddFieldText('Value', $lang_msg[4], false);
+$plugin->formAddFieldText('Help', $lang_msg[5], false, "ucfirst");
+$plugin->formAddFieldText('TextAfter', $lang_msg[6], false);
+$plugin->formAddFieldBooleanX('HrAfter', $lang_msg[2], true);
 
 
 
