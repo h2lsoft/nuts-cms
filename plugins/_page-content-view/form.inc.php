@@ -15,14 +15,10 @@
 $plugin->formDBTable(array('NutsPageContentView'));
 
 // fields
-$plugin->formAddFieldText('Name', "", true, "ucfirst");
+$plugin->formAddFieldText('Name', $lang_msg[1], true, "ucfirst");
 $plugin->formAddFieldTextarea('Description', "", false, "ucfirst", "height:65px;");
-
-$help = "Enter your html code here, variable are `{FieldName}`";
-$plugin->formAddFieldTextarea('Html', "", true, 'html', "height:200px;", "", $help);
-
-$help = "Enter your php code for treatment before parsing in variable `\$row`";
-$plugin->formAddFieldTextarea('HookData', "", false, 'php', "height:200px;", "", $help);
+$plugin->formAddFieldTextarea('Html', "", true, 'html', "height:200px;", "", $lang_msg[3]);
+$plugin->formAddFieldTextarea('HookData', "", false, 'php', "height:200px;", "", $lang_msg[4]);
 
 
 ?>

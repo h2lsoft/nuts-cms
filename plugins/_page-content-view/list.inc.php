@@ -18,12 +18,12 @@ $plugin->listSetDbTable('NutsPageContentView', "
 
 // search engine
 $plugin->listSearchAddFieldText('ID');
-$plugin->listSearchAddFieldTextAjaxAutoComplete('Name');
+$plugin->listSearchAddFieldTextAjaxAutoComplete('Name', $lang_msg[1]);
 
 // create fields
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
-$plugin->listAddCol('Name', '', '; width:30px; white-space:nowrap;', true);
-$plugin->listAddCol('Fields', '', 'center; width:30px; white-space:nowrap;', false);
+$plugin->listAddCol('Name', $lang_msg[1], '; width:30px; white-space:nowrap;', true);
+$plugin->listAddCol('Fields', $lang_msg[2], 'center; width:30px; white-space:nowrap;', false);
 $plugin->listAddCol('Description', '', '', false);
 
 

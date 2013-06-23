@@ -5,7 +5,8 @@ website: http://www.h2lsoft.com
 email: contact@h2lsoft.com
 webupdate: no
 info: manage page content views
-langs: en
+info_fr: gestion des vues de contenu de vos pages
+langs: en, fr
 system required: >= 3.0
 actions: list, add, edit, delete
 default_action: list
