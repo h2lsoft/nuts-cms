@@ -11,8 +11,8 @@ $plugin->formDBTable(array('NutsUrlRewriting')); // put table here
 // fields
 $plugin->formAddFieldSelect('Type', '', true, array('SIMPLE', 'REGEX'));
 $plugin->formAddFieldText('Pattern', '', true, '', '', '', '', 'Regex ex: `#/fr/thanks#i`');
-$plugin->formAddFieldText('Replacement', '', true, '', '', '', '', 'Regex replace $ by §');
-$plugin->formAddFieldText('Position', '', true, 'number', 'width:50px', '', '', 'put -1 to add at end');
+$plugin->formAddFieldText('Replacement', $lang_msg[1], true, '', '', '', '', 'Regex replace $ by §');
+$plugin->formAddFieldText('Position', '', true, 'number', 'width:50px', '', '', $lang_msg[2]);
 $plugin->formAddFieldTextAjaxAutoComplete('Tag', '', false);
 
 

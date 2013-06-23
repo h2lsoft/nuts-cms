@@ -19,19 +19,19 @@ $plugin->listSetDbTable('NutsUrlRewriting', '', "", "ORDER BY Position");
 $plugin->listSearchAddFieldText('ID');
 $plugin->listSearchAddFieldSelectSql('Type');
 $plugin->listSearchAddFieldText('Pattern');
-$plugin->listSearchAddFieldText('Replacement');
+$plugin->listSearchAddFieldText('Replacement', $lang_msg[1]);
 $plugin->listSearchAddFieldTextAjaxAutoComplete('Tag');
 
 
 // create fields
-$plugin->listAddButton('Generate', 'Generate urls', 'urlRewritingGenerate();');
+$plugin->listAddButton('Generate', $lang_msg[3], 'urlRewritingGenerate();');
 
 
 // $plugin->listAddColPosition('Position');
 $plugin->listAddCol('ID', '', 'center; width:30px', false); // with order by
 $plugin->listAddCol('Type', '', 'center; width:30px', false); // with order by
 $plugin->listAddCol('Pattern', '', '', false); // with order by
-$plugin->listAddCol('Replacement', '', '', false);
+$plugin->listAddCol('Replacement', $lang_msg[1], '', false);
 $plugin->listAddCol('Position', '', 'center; width:30px', true);
 $plugin->listAddCol('Tag', '', 'center; width:30px; white-space:nowrap;', false);
 
