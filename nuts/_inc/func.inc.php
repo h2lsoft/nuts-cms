@@ -737,11 +737,11 @@ User IP: ".$nuts->getIP();
  * @param string $app_name
  * @param string $message
  * @param int $recordID optionnal
- * @param string $app_name optionnal
+ * @param string $app_name optionnal (default=job)
  *
  * @return boolean result
  */
-function nutsMailer($to, $nutEmailID, $datas = array(), $xtrace=false, $action="", $message="", $recordID=0, $app_name='job')
+function nutsMailer($to, $nutEmailID, $datas = array(), $xtrace=false, $action="", $message="", $recordID=0, $app_name='cron')
 {
 	global $nuts, $HTML_TEMPLATE;
 
