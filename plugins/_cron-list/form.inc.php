@@ -15,12 +15,12 @@
 $plugin->formDBTable(array('NutsCron'));
 
 // fields
-$plugin->formAddFieldText('Name', "", true, 'ucfirst');
+$plugin->formAddFieldText('Name', $lang_msg[1], true, 'ucfirst');
 $plugin->formAddFieldTextArea('Description', "", true, 'ucfirst');
 $plugin->formAddFieldTextAjaxAutoComplete('Type', "", false);
 
 $val = "wget --delete-after \"".WEBSITE_URL."/cron/your_path"."\"";
-$plugin->formAddFieldTextarea('Command', "", true, "", "", "", "", $val);
+$plugin->formAddFieldTextarea('Command', $lang_msg[2], true, "", "", "", "", $val);
 
 if($_POST)
 {

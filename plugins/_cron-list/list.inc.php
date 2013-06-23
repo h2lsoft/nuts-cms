@@ -21,7 +21,7 @@ $plugin->listSearchAddFieldSelectSql('Type');
 // create fields
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
 $plugin->listAddCol('Type', '', 'center; width:30px', true);
-$plugin->listAddCol('Name', '', '', true);
+$plugin->listAddCol('Name', $lang_msg[1], '', true);
 
 
 // render list
