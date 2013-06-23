@@ -84,7 +84,7 @@ input.phone {width: 150px!important; background-image:url(phone_gray.png)!import
 input.gsm {width: 150px!important; background-image:url(gsm_gray.png)!important; background-repeat:no-repeat!important; background-position:3px 1px!important; padding-left:24px;}
 input.fax {width: 150px!important; background-image:url(fax_gray.png)!important; background-repeat:no-repeat!important; background-position:3px 1px!important; padding-left:24px;}
 input.zip_code {width: 60px!important; text-align: center;}
-input.money {width: 250px!important; text-align: center;}
+input.money {width: 90px!important; text-align: center;}
 input.url, input.link {background-image:url(link_gray.png)!important; background-repeat:no-repeat!important; background-position:3px 1px!important; padding-left:24px;}
 
 
