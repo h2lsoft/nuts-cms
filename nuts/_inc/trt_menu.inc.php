@@ -12,10 +12,10 @@ $i = 0;
 if($for == 'HOME' && !$allow_notify)
 {
 
-    $mods_group_tmp = $mods_group[($_GET['category']-1)];
-    $mods_group = array();
-    $mods_group[] = $mods_group_tmp;
-    $i = $_GET['category']-1;
+	$mods_group_tmp = $mods_group[($_GET['category']-1)];
+	$mods_group = array();
+	$mods_group[] = $mods_group_tmp;
+	$i = $_GET['category']-1;
 }
 
 
@@ -63,7 +63,7 @@ foreach($mods_group as $group)
 		while($row = $nuts->dbFetch())
 		{
 			$mod_parsed++;
-            $plugins_allowed[] = $row['Name'];
+			$plugins_allowed[] = $row['Name'];
 
 			$yaml = Spyc::YAMLLoad(WEBSITE_PATH.'/plugins/'.$row['Name'].'/info.yml');
 			$langs = array_map('trim', explode(',',$yaml['langs']));
@@ -103,35 +103,35 @@ foreach($mods_group as $group)
 						// $mod_title = $table->{'responseData'}->{'translatedText'};
 
 
-                        $uri = "http://www.nuts-cms.com/tools/translator/?";
-                        $uri .= "lngIn=".$default_lang;
-                        $uri .= "&lngOut=".$NutsUserLang;
-                        $uri .= "&txt=".urlencode($yaml['info']);
-                        $uri .= "&serverName=".WEBSITE_NAME;
-                        $uri .= "&website_uri=".WEBSITE_URL;
+						$uri = "http://www.nuts-cms.com/tools/translator/?";
+						$uri .= "lngIn=".$default_lang;
+						$uri .= "&lngOut=".$NutsUserLang;
+						$uri .= "&txt=".urlencode($yaml['info']);
+						$uri .= "&serverName=".WEBSITE_NAME;
+						$uri .= "&website_uri=".WEBSITE_URL;
 
-                        if(($content = file_get_contents($uri)))
-                        {
-                            $mod_title = $content;
+						if(($content = file_get_contents($uri)))
+						{
+							$mod_title = $content;
 
-                            $info_yml_contents = file_get_contents(WEBSITE_PATH.'/plugins/'.$row['Name'].'/info.yml');
-                            $info_yml_lines = explode("\n", $info_yml_contents);
+							$info_yml_contents = file_get_contents(WEBSITE_PATH.'/plugins/'.$row['Name'].'/info.yml');
+							$info_yml_lines = explode("\n", $info_yml_contents);
 
-                            // get line for replace
-                            $line = "";
-                            foreach($info_yml_lines as $ln)
-                            {
-                                if(($line = strstr($ln, 'info:')))
-                                    break;
-                            }
+							// get line for replace
+							$line = "";
+							foreach($info_yml_lines as $ln)
+							{
+								if(($line = strstr($ln, 'info:')))
+									break;
+							}
 
-                            if(!empty($line))
-                            {
-                                $line2 = $line."\n"."info_{$NutsUserLang}: $mod_title";
-                                $info_yml_contents = str_replace($line, $line2, $info_yml_contents);
-                                file_put_contents(WEBSITE_PATH.'/plugins/'.$row['Name'].'/info.yml', $info_yml_contents);
-                            }
-                        }
+							if(!empty($line))
+							{
+								$line2 = $line."\n"."info_{$NutsUserLang}: $mod_title";
+								$info_yml_contents = str_replace($line, $line2, $info_yml_contents);
+								file_put_contents(WEBSITE_PATH.'/plugins/'.$row['Name'].'/info.yml', $info_yml_contents);
+							}
+						}
 					}
 				}
 
@@ -156,13 +156,20 @@ foreach($mods_group as $group)
 			}
 			else
 			{
-				$nuts->parse('parent.child.c_uri', '');
+				if(strpos($row['ExternalUrl'], 'javascript:') === false)
+				{
+					$nuts->parse('parent.child.c_uri', '');
+					if($for == 'MAIN')$nuts->parse('parent.child.c_uri_direct', $row['ExternalUrl']);
+					$blank = (preg_match('#^(http|ftp|mailto)#i', $row['ExternalUrl'])) ? '_blank' : '';
+					$nuts->parse('parent.child.c_target', $blank);
+				}
+				else
+				{
+					$nuts->parse('parent.child.c_uri', str_replace('javascript:', '', $row['ExternalUrl']));
+					if($for == 'MAIN')$nuts->parse('parent.child.c_uri_direct', '');
+					$nuts->parse('parent.child.c_target', "");
+				}
 
-				$blank = (preg_match('#^(http|ftp|mailto)#i', $row['ExternalUrl'])) ? '_blank' : '';
-				$nuts->parse('parent.child.c_target', $blank);
-
-
-				if($for == 'MAIN')$nuts->parse('parent.child.c_uri_direct', $row['ExternalUrl']);
 			}
 
 			// hr ?
