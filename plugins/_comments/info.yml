@@ -4,7 +4,8 @@ author: H2lsoft
 website: http://www.h2lsoft.com
 email: contact@h2lsoft.com
 webupdate: no
-info: 
+info: manage comments
+info_fr: gestion des commentaires
 langs: fr, en
 system required: >= 3.0
 actions: list, edit, delete

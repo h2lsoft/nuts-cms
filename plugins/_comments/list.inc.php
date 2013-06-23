@@ -18,7 +18,7 @@ $plugin->listSetDbTable('NutsPageComment');
 $plugin->listSearchAddFieldText('ID');
 $plugin->listSearchAddFieldText('NutsPageID', 'Page ID');
 $plugin->listSearchAddFieldTextAjaxAutoComplete('Url');
-$plugin->listSearchAddFieldTextAjaxAutoComplete('Name');
+$plugin->listSearchAddFieldTextAjaxAutoComplete('Name', $lang_msg[1]);
 $plugin->listSearchAddFieldTextAjaxAutoComplete('Email');
 $plugin->listSearchAddFieldBoolean('Visible');
 
@@ -28,7 +28,7 @@ $plugin->listAddCol('NutsPageID', 'Page ID', 'center; width:30px', true);
 $plugin->listAddCol('Url', 'Page url', 'center; width:30px', true);
 $plugin->listAddCol('Avatar', '', 'center; width:30px', true);
 $plugin->listAddCol('Date', '', '; width:30px; white-space:nowrap;', true);
-$plugin->listAddCol('Name', '', '; width:30px; white-space:nowrap;', true);
+$plugin->listAddCol('Name', $lang_msg[1], '; width:30px; white-space:nowrap;', true);
 $plugin->listAddCol('Message', '', '', false);
 $plugin->listAddColImg('Visible');
 
