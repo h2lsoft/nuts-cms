@@ -52,7 +52,7 @@ if($_GET['type'] == 'lock')
     Query::factory()->select("(SELECT CONCAT(LastName,' ', FirstName) FROM NutsUser WHERE ID = NutsEDMLock.NutsUserID) AS UserName")
                     ->from('NutsEDMLock')
                     ->where("Folder = '".addslashes($folder)."'")
-                    ->where("File = '$file_only'")
+                    ->where("File = '".addslashes($file_only)."'")
                     ->where("NutsUserID != {$_SESSION['NutsUserID']}")
                     ->execute();
 
@@ -89,9 +89,10 @@ if($_GET['type'] == 'unlock')
     Query::factory()->select("ID")
                     ->from('NutsEDMLock')
                     ->where("Folder = '".addslashes($folder)."'")
-                    ->where("File = '$file_only'")
+                    ->where("File = '".addslashes($file_only)."'")
                     ->where("NutsUserID = {$_SESSION['NutsUserID']}")
                     ->execute();
+
     if(!$nuts->dbNumRows())
     {
         $msg = "No lock found";

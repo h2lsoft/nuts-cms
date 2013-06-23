@@ -9,33 +9,33 @@ if(!empty($folder) && $folder[strlen($folder)-1] != '/')$folder .= '/';
 // right access verification
 if(EDM_ADMINISTRATOR == false)
 {
-    edmLog('RIGHTS', 'ERROR', $folder);
-    systemError(translate("Action not allowed !"));
+	edmLog('RIGHTS', 'ERROR', $folder);
+	systemError(translate("Action not allowed !"));
 }
 
 // check path
 if(!is_dir(WEBSITE_PATH.$folder) || !preg_match("#^$upload_pathX#", $folder))
 {
-    edmLog('RIGHTS', 'ERROR', $folder, "Folder not exists");
-    systemError(translate("The folder path was tampered with !"));
+	edmLog('RIGHTS', 'ERROR', $folder, "Folder not exists");
+	systemError(translate("The folder path was tampered with !"));
 }
 
 // list all groups
 Query::factory()->select('NutsUserID')
-                ->from('NutsEDMFolderRights')
-                ->where("Folder = '".addslashes($folder)."'")
-                ->where("Type = 'USER'")
-                ->where('NutsUserID != 0')
-                ->execute();
+	->from('NutsEDMFolderRights')
+	->where("Folder = '".addslashes($folder)."'")
+	->where("Type = 'USER'")
+	->where('NutsUserID != 0')
+	->execute();
 
 $users_exluded = array();
 if($nuts->dbNumRows())
 {
-    while($row = $nuts->dbFetch())
-    {
-        if(!in_array($row['NutsUserID'], $users_exluded))
-            $users_exluded[] = $row['NutsUserID'];
-    }
+	while($row = $nuts->dbFetch())
+	{
+		if(!in_array($row['NutsUserID'], $users_exluded))
+			$users_exluded[] = $row['NutsUserID'];
+	}
 }
 $users_exluded[] = 0; # to avoid query bugs
 
@@ -67,25 +67,26 @@ $html = "";
 $qID = $nuts->dbGetQueryID();
 while($row = $nuts->dbFetch())
 {
-    // $name = $row['LastName'].' '.$row['FirstName'];
-    $name = strtoupper($row['LastName']);
-    $name .= " ".$row['FirstName'][0].".";
+	// $name = $row['LastName'].' '.$row['FirstName'];
+	$name = strtoupper($row['LastName']);
+	$name .= " ".$row['FirstName'][0].".";
+	$name = trim($name);
 
-    $name_l = strtolower($name);
+	$name_l = strtolower($name);
 
-    // get edm groups
-    Query::factory()->select('Name')
-                    ->from('NutsEDMGroup')
-                    ->where("ID IN(SELECT NutsEDMGroupID FROM NutsEDMGroupUser WHERE Deleted = 'NO' AND NutsUserID = {$row['ID']})")
-                    ->execute();
-    $groups = "";
-    while($row2 = $nuts->dbFetch())
-    {
-        if(!empty($groups)) $groups .= ', ';
-        $groups .= "{$row2['Name']}";
-    }
+	// get edm groups
+	Query::factory()->select('Name')
+		->from('NutsEDMGroup')
+		->where("ID IN(SELECT NutsEDMGroupID FROM NutsEDMGroupUser WHERE Deleted = 'NO' AND NutsUserID = {$row['ID']})")
+		->execute();
+	$groups = "";
+	while($row2 = $nuts->dbFetch())
+	{
+		if(!empty($groups)) $groups .= ', ';
+		$groups .= "{$row2['Name']}";
+	}
 
-    $html .= <<<EOF
+	$html .= <<<EOF
 
         <tr username="$name_l">
             <td class="center"><input type="checkbox" value="{$row['ID']}" /></td>
@@ -94,13 +95,15 @@ while($row = $nuts->dbFetch())
         </tr>
 EOF;
 
-
-    $nuts->dbSetQueryID($qID);
+	$nuts->dbSetQueryID($qID);
 }
 
-
+/*
 $resp['result'] = 'ok';
 $resp['html'] = $html;
+*/
+
+die($html);
 
 
 ?>

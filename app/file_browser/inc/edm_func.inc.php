@@ -43,11 +43,13 @@ function edmUserHasRight($right, $folder)
     if(!empty($group_user))
         $sql_added = " OR (Type = 'GROUP' AND NutsEDMGroupID IN($group_user)) ";
 
+	$folderX = addslashes($folder);
+
     // right for everybody, user or group
     Query::factory()->select('Folder')
                     ->from('NutsEDMFolderRights')
                     ->where("`$right` = 'YES'")
-                    ->where("Folder = '$folder'")
+                    ->where("Folder = '$folderX'")
                     ->where("(
                                 (Type = 'GROUP' AND NutsEDMGroupID = 0 AND NutsUserID = 0) OR
                                 (Type = 'USER' AND NutsUserID = {$_SESSION['NutsUserID']})
@@ -99,9 +101,14 @@ function edmCheckLock($folder, $file="", $error_output_format='json')
     global $nuts, $upload_pathX;
 
 
+	$fileX = addslashes($file);
+
     $sql_added = "";
     if(!empty($file))
-        $sql_added = " AND File = '$file'";
+        $sql_added = " AND File = '$fileX'";
+
+
+	$folderX = addslashes($folder);
 
     $sql = "SELECT
                     ID,
@@ -112,7 +119,7 @@ function edmCheckLock($folder, $file="", $error_output_format='json')
                     NutsEDMLock
             WHERE
                     Deleted = 'NO' AND
-                    (Folder LIKE '$folder%' OR Folder = '$folder')
+                    (Folder LIKE '$folderX%' OR Folder = '$folderX')
                     $sql_added
             LIMIT 1";
     $nuts->doQuery($sql);
@@ -145,14 +152,17 @@ function edmFileIsLocked($file_path)
     $folder = str_replace(basename($file_path), '', $file_path);
     $file = basename($file_path);
 
+	$folderX = addslashes($folder);
+	$fileX = addslashes($file);
+
     $sql = "SELECT
                     ID
             FROM
                     NutsEDMLock
             WHERE
                     Deleted = 'NO' AND
-                    Folder = '$folder' AND
-                    File = '$file'
+                    Folder = '$folderX' AND
+                    File = '$fileX'
             LIMIT 1";
     $nuts->doQuery($sql);
 
@@ -177,6 +187,9 @@ function edmGetLockInfo($file_path)
     $folder = str_replace(basename($file_path), '', $file_path);
     $file = basename($file_path);
 
+	$folderX = addslashes($folder);
+	$fileX = addslashes($file);
+
     $sql = "SELECT
                     Date,
                     (SELECT Login FROM NutsUser WHERE ID = NutsUserID) AS Login
@@ -184,8 +197,8 @@ function edmGetLockInfo($file_path)
                     NutsEDMLock
             WHERE
                     Deleted = 'NO' AND
-                    Folder = '$folder' AND
-                    File = '$file'
+                    Folder = '$folderX' AND
+                    File = '$fileX'
             ORDER BY
                     Date DESC
             LIMIT 1";
@@ -214,13 +227,16 @@ function edmGetFilesLocked($folder)
 {
     global $nuts;
 
+
+	$folderX = addslashes($folder);
+
     $sql = "SELECT
                     File
             FROM
                     NutsEDMLock
             WHERE
                     Deleted = 'NO' AND
-                    Folder = '$folder'";
+                    Folder = '$folderX'";
     $nuts->doQuery($sql);
 
     $files = array();

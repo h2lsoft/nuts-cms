@@ -96,20 +96,35 @@ function showUsers(){
 
     uri = getAjaxUri();
     uri += '&action=get_users';
+    /*$.post(uri, {folder:urlencode(rights_folder)}, function(resp){
+
+     if(resp.result == 'ko')
+     {
+     $('#users_window .n_table tbody').html("");
+     $.MediaBrowser.showMessage(resp.message, "error");
+     }
+     else
+     {
+     $('#users_window input').attr('disabled', false);
+     $('#users_window .n_table tbody').html(resp.html);
+     }
+
+     }, 'json');*/
+
     $.post(uri, {folder:urlencode(rights_folder)}, function(resp){
 
-        if(resp.result == 'ko')
+        if(resp.indexOf('ko') == -1)
         {
             $('#users_window .n_table tbody').html("");
-            $.MediaBrowser.showMessage(resp.message, "error");
+            $.MediaBrowser.showMessage(resp, "error");
         }
         else
         {
             $('#users_window input').attr('disabled', false);
-            $('#users_window .n_table tbody').html(resp.html);
+            $('#users_window .n_table tbody').html(resp);
         }
 
-    }, 'json');
+    });
 
 
 }
@@ -264,27 +279,27 @@ function showShareFileSend(){
 
     acknowledgment = ($('#share_window #Acknowledgment').is(':checked')) ? 1 : 0;
     $.post(uri, {
-                    folder: share_folder_selected,
-                    files: share_files_selected,
-                    recipient:$('#share_window #Recipient').val(),
-                    subject:$('#share_window #Subject').val(),
-                    message:$('#share_window #Message').val(),
-                    expiration:$('#share_window #Expiration').val(),
-                    zip_name:$('#share_window #ZipName').val(),
-                    acknowledgment:acknowledgment}, function(resp){
+        folder: share_folder_selected,
+        files: share_files_selected,
+        recipient:$('#share_window #Recipient').val(),
+        subject:$('#share_window #Subject').val(),
+        message:$('#share_window #Message').val(),
+        expiration:$('#share_window #Expiration').val(),
+        zip_name:$('#share_window #ZipName').val(),
+        acknowledgment:acknowledgment}, function(resp){
 
 
-                                                                $('#share_window .btn_submit').val(original).attr('disabled', false);
-                                                                if(resp.result == 'ko')
-                                                                {
-                                                                    $.MediaBrowser.showMessage(resp.message, "error");
-                                                                }
-                                                                else
-                                                                {
-                                                                    $.MediaBrowser.showMessage(resp.message, "ok");
-                                                                    nWindowClose('share_window');
+        $('#share_window .btn_submit').val(original).attr('disabled', false);
+        if(resp.result == 'ko')
+        {
+            $.MediaBrowser.showMessage(resp.message, "error");
+        }
+        else
+        {
+            $.MediaBrowser.showMessage(resp.message, "ok");
+            nWindowClose('share_window');
 
-                                                                }
+        }
 
 
 
