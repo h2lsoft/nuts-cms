@@ -16,11 +16,11 @@ $plugin->listSetDbTable('NutsTrigger');
 
 // search engine
 // $plugin->listSearchAddFieldText('ID');
-$plugin->listSearchAddFieldTextAjaxAutoComplete('Name');
+$plugin->listSearchAddFieldTextAjaxAutoComplete('Name', $lang_msg[1]);
 
 // create fields
 // $plugin->listAddCol('ID', '', 'center; width:30px', true);
-$plugin->listAddCol('Name', '', '; width:30px; white-space:nowrap;', true);
+$plugin->listAddCol('Name', $lang_msg[1], '; width:30px; white-space:nowrap;', true);
 $plugin->listAddCol('Description', '', '', false);
 
 

@@ -15,7 +15,7 @@
 $plugin->formDBTable(array('NutsTrigger'));
 
 // fields
-$plugin->formAddFieldText('Name', "", 'notEmpty|unique');
+$plugin->formAddFieldText('Name', $lang_msg[1], 'notEmpty|unique');
 $plugin->formAddFieldTextArea('Description', "", false, "processed", "height:60px;");
 $plugin->formAddFieldTextArea('PhpCode', "Php code", false, "php", "height:450px;");
 
