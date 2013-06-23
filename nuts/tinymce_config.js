@@ -73,6 +73,7 @@ function initWYSIWYGOption()
             select += ' <option value="H2">H2</option>';
             select += ' <option value="H3">H3</option>';
             select += ' <option value="P">P</option>';
+            select += ' <option value="PRE">Pre</option>';
             select += ' <option value="BLOCKQUOTE">Blockquote</option>';
             select += '</select>';
 
@@ -585,6 +586,7 @@ function WYSIWYGFormat(id){
     else if(v == 'P-RIGHT')cmdWYSIWYG(id, 'justifyRight');
     else if(v == 'P-FULL')cmdWYSIWYG(id, 'justifyFull');
     else if(v == 'BLOCKQUOTE')cmdWYSIWYG(id, 'formatBlock', 'BLOCKQUOTE');
+    else if(v == 'PRE')cmdWYSIWYG(id, 'formatBlock', 'PRE');
     else{
 
         // add span to selected text
