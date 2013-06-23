@@ -52,9 +52,9 @@ $plugin->listSetDbTable('NutsMenuCategory');
 
 // create fields
 // $plugin->listAddCol('ID', '', 'center; width:30px', true);
-$plugin->listAddCol('Name', '', '; width:30px', false);
+$plugin->listAddCol('Name', $lang_msg[1], '; width:30px', false);
 $plugin->listAddCol('Plugins', '', '', false);
-$plugin->listAddCol('Color', '', 'center; width:30px', false);
+$plugin->listAddCol('Color', $lang_msg[2], 'center; width:30px', false);
 $plugin->listAddCol('Position', '', 'center; width:30px', true);
 
 

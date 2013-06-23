@@ -15,9 +15,9 @@
 $plugin->formDBTable(array('NutsMenuCategory'));
 
 // fields
-$plugin->formAddFieldText('Name', "", true, 'ucfirst');
-$plugin->formAddFieldText('NameFr', "Name FR", true, 'ucfirst');
-$plugin->formAddFieldColorPicker('Color', "", true, "", "", "");
+$plugin->formAddFieldText('Name', $lang_msg[1], true, 'ucfirst');
+$plugin->formAddFieldText('NameFr', $lang_msg[1]." FR", true, 'ucfirst');
+$plugin->formAddFieldColorPicker('Color', $lang_msg[2], true, "", "", "");
 
 if($_GET['ID'])
     $plugin->formAddFieldText('Position', "", true, 'number', '', '', '');
@@ -36,7 +36,10 @@ if($_POST)
         $max_position = $plugin->formGetMaxPosition('Position');
         if($_POST['Position'] < 1 ||  $_POST['Position'] > $max_position)
         {
-            $nuts->addError('Position', "Position must be between 1 and $max_position");
+            $msg = "Position must be between 1 and $max_position";
+	        if($_SESSION['Language'] == 'fr')$msg = "Votre position doit être entre 1 et $max_position";
+
+	        $nuts->addError('Position', $msg);
         }
     }
 }
