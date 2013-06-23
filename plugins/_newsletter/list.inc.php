@@ -41,7 +41,15 @@ function hookData($row)
 	$total_views = round($total_views, 2);
 	$total_unsuscribe = (@($row['TotalUnsuscribe']/$row['TotalSend']) * 100);
 	$total_unsuscribe = round($total_unsuscribe, 2);
-	
+
+
+
+
+	// format
+	$row['TotalSend'] = int_formatX($row['TotalSend']);
+	$row['TotalViews'] = int_formatX($row['TotalViews']);
+	$row['TotalUnsuscribe'] = int_formatX($row['TotalUnsuscribe']);
+
 	// pourcentage
 	$row['TotalViews'] .= " (".$total_views." %)";
 	$row['TotalUnsuscribe'] .= " (".$total_unsuscribe." %)";
