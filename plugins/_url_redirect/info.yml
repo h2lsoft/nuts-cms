@@ -1,0 +1,12 @@
+# General configuration
+version: 1.0
+author: H2lsoft
+website: http://www.h2lsoft.com
+email: contact@h2lsoft.com
+webupdate: no
+info: manage .htaccess redirection
+info_fr: gestion des redirections .htaccess
+langs: en, fr
+system required: >= 3.0
+actions: list, add, edit, delete
+default_action: list
