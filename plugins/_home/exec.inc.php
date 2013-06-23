@@ -27,6 +27,11 @@ if(WEBSITE_MAINTENANCE && nutsUserHasRight('', '_control-center', 'exec'))
     Plugin::dashboardAddNotification('warning', $msg);
 }
 
+// install directory detected ******************************************************************************************
+if(is_dir(WEBSITE_PATH.'/install'))
+	Plugin::dashboardAddNotification('error', "Directory '/install' must be deleted");
+
+
 // notification available **********************************************************************************************
 foreach($plugins_allowed as $plugin_allowed)
 {
