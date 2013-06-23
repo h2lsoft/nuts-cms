@@ -51,6 +51,10 @@ else
             $plugin->parse('loop.SliderImage', $slider_image['SliderImage']);
             $plugin->parse('loop.Title', $slider_image['Title']);
             $plugin->parse('loop.Url', $slider_image['Url']);
+
+	        $target = (preg_match("/^http/", $slider_image['Url'])) ? '_blank' : '';
+
+            $plugin->parse('loop.Target', $target);
             $plugin->loop('loop');
         }
     }
