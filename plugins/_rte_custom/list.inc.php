@@ -5,7 +5,7 @@ $plugin->listSetDbTable('NutsRichEditor');
 
 // create fields
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
-$plugin->listAddCol('Content', '', '', false);
+$plugin->listAddCol('Content', $lang_msg[1], '', false);
 
 // render list
 $plugin->listRender(20, 'hookData');

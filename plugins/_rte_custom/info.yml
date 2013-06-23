@@ -5,7 +5,8 @@ website: http://www.nuts-cms.com
 email: contact@h2lsoft.com
 webupdate: yes
 info: customize formatting richeditor text options
-langs: en
+info_fr: customisation du richeditor
+langs: en, fr
 system required: >= 1.0
 actions: list, edit
 default_action: list
