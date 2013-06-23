@@ -32,9 +32,12 @@ select[multiple] {background-image: none; padding-right: 0; height: 100px;}
 
 
 /** fieldset **/
-fieldset {border: 1px solid #ccc;}
+fieldset {border: 1px solid #ccc; width: 97%;}
 fieldset {padding:5px; margin-top:0px; margin-bottom:10px; /* background: #e5e5e5; */ }
 fieldset:hover {border-color:#1570B8; background-color: #fffeee;}
+
+
+
 
 /** legend **/
 legend {/*font-weight:bold;*/ color:#1570B8; padding-left:5px; padding-right:5px; padding-top: 0px; padding-bottom: 10px; letter-spacing: 1px; text-transform: uppercase;}
