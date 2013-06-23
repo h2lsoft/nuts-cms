@@ -28,7 +28,7 @@ input[type=radio]:checked {background: url(radio_checked.gif) no-repeat; backgro
 /** select **/
 select {padding-right: 20px; background: url(select_arrow_down.gif) no-repeat; background-position: 98% center; background-color: white; height: 22px;}
 select:hover {background-color:#FFFFDD; border-color:#aaa;}
-select[multiple] {background-image: none; padding-right: 0;}
+select[multiple] {background-image: none; padding-right: 0; height: 100px;}
 
 
 /** fieldset **/

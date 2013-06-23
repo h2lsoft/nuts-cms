@@ -13,7 +13,7 @@ body, input, select, textarea, button {
 
 
 a {text-decoration:none; color:#1570B8;}
-a:hover {text-decoration:none; }
+a:hover {text-decoration:none; color: lightblue;}
 a:active {color: black;}
 
 img {border:0;}

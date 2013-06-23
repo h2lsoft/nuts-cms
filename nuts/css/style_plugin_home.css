@@ -15,6 +15,7 @@
 .dashboard-widget .dashboard-widget-title {background-color:#1570B8; color: #fff; padding: 2px 5px; text-align: left;}
 .dashboard-widget .dashboard-widget-title:empty {display: none;}
 .dashboard-widget .dashboard-widget-content {padding: 10px;}
+.dashboard-widget .dashboard-widget-content a:hover {color: lightblue;}
 .dashboard-widget .dashboard-widget-end {clear: both}
 
 .dashboard-widget .no-record {height: 65px; line-height: 65px; text-align: center;}
