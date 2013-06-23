@@ -5,7 +5,7 @@ website: http://www.nuts-cms.com
 email: contact@h2lsoft.com
 webupdate: yes
 info: manage your template html code for richeditor
-info_fr: gérer vos modèles code html pour le richeditor
+info_fr: gérer vos modèles de code html pour le richeditor
 langs: en, fr
 system required: >= 1.0
 actions: list, add, edit, delete

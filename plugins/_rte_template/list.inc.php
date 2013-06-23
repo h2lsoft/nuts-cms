@@ -9,11 +9,11 @@ $plugin->listSetDbTable('NutsRteTemplate', "");
 
 // create search engine
 $plugin->listSearchAddFieldText('ID');
-$plugin->listSearchAddFieldSelectSql('Name');
+$plugin->listSearchAddFieldSelectSql('Name', $lang_msg[1]);
 
 // create fields
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
-$plugin->listAddCol('Name', '', '', true); // with order by
+$plugin->listAddCol('Name', $lang_msg[1], '', true); // with order by
 $plugin->listAddCol('Description', '', '', false);
 
 
