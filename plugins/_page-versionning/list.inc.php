@@ -51,7 +51,7 @@ $plugin->listSearchAddFieldText('NutsPageID', 'Page ID');
 $plugin->listAddCol('View', ' ', 'center; width:30px', false);
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
 $plugin->listAddCol('Date', '', 'center; width:30px; white-space:nowrap;', false);
-$plugin->listAddCol('Author', '', 'center; width:30px; white-space:nowrap;', false);
+$plugin->listAddCol('Author', $lang_msg[1], 'center; width:30px; white-space:nowrap;', false);
 $plugin->listAddCol('H1', '', '', false);
 $plugin->listAddCol('Note', '', 'font-size:10px;', false);
 $plugin->listAddCol('Option', ' ', 'center; width:30px; white-space:nowrap;', false);
@@ -61,7 +61,7 @@ $plugin->listSetFirstOrderBySort('desc');
 
 // open search
 $plugin->listWaitingForUserSearching = true;
-$plugin->listWaitingForUserSearchingMessage = "Please enter your page ID";
+$plugin->listWaitingForUserSearchingMessage = $lang_msg[2];
 $plugin->listSearchOpenOnload = true;
 if($plugin->listUserIsSearching())$plugin->listSearchOpenOnload = false;
 
@@ -73,7 +73,7 @@ $plugin->listRender(20, 'hookData');
 
 function hookData($row)
 {
-	global $maxPage;
+	global $maxPage, $lang_msg;
 
 	$row['View'] = <<<EOF
 	<a href="javascript:popupModal('?mod=_page-versionning&do=viewer&ID={$row['ID']}&popup=1', 'Version Preview', 1024, 768);"><img src="img/list_view.png" /></a>
@@ -81,7 +81,7 @@ EOF;
 
 	// no option for max page
 	$row['Option'] = <<<EOF
-	<a href="javascript:system_goto('?mod=_page-versionning&do=list&_action=set&ID={$row['ID']}&NutsPageID={$_GET['NutsPageID']}&NutsPageID_operator=_equal_&user_se=1&popup=1', 'content');"><i class="icon-redo"></i>Replace</a>
+	<a href="javascript:system_goto('?mod=_page-versionning&do=list&_action=set&ID={$row['ID']}&NutsPageID={$_GET['NutsPageID']}&NutsPageID_operator=_equal_&user_se=1&popup=1', 'content');"><i class="icon-redo"></i>{$lang_msg[4]}</a>
 EOF;
 
 	if($maxPage == $row['ID'])$row['Option'] = '';

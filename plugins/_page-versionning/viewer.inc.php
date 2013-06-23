@@ -2,12 +2,12 @@
 
 $sql = "SELECT Content FROM NutsPageVersion WHERE ID = {$_GET['ID']}";
 $nuts->doQuery($sql);
-$txt = $nuts->getOne();
+$txt = $nuts->dbGetOne();
 echo <<<EOF
 		
 		<html>
 			<heade>
-				<title>Content Preview</title>
+				<title>{$lang_msg[3]}</title>
 				<link rel="stylesheet" type="text/css" href="../themes/default/style.css" />
 			</head>
 			<body>
