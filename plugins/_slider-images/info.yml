@@ -4,7 +4,8 @@ author: H2lsoft
 website: http://www.h2lsoft.com
 email: contact@h2lsoft.com
 webupdate: no
-info: manage your slider
+info: manage images of sliders
+info_fr: gestion des images de votre slider
 langs: en
 system required: >= 3.0
 actions: list, add, edit, delete
