@@ -306,7 +306,7 @@ class Plugin
 		{
 			// get first action by default
 			$msg = "plugin `{$_GET['mod']}` no action defined";
-			Plugin::setError($msg);
+			@Plugin::setError($msg);
 			nutsTrace('_system', 'none', $msg);
 
 			return false;
