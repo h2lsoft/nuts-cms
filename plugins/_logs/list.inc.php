@@ -40,7 +40,7 @@ $plugin->listAddCol('ID', '', 'center; width:30px', true); // with order by
 $plugin->listAddCol('DateGMT', $lang_msg[2], 'center; width:120px', true); // with order by
 $plugin->listAddCol('GroupName', $lang_msg[1], 'center', true); // with order by
 $plugin->listAddCol('NutsUserName', 'Login', 'center', true);
-$plugin->listAddCol('Application', '', 'center', true);
+$plugin->listAddCol('Application', '', 'center; white-space:nowrap;', true);
 $plugin->listAddCol('Action', '', 'center', true);
 $plugin->listAddCol('Resume', '', '');
 $plugin->listAddCol('IP', '', 'center;', true);
@@ -56,6 +56,7 @@ function hookData($row)
 	
 	$row['IP'] = long2ip($row['IP']);
 	$row['IP'] = '<a href="http://www.geoiptool.com/en/?IP='.$row['IP'].'" target="_blank">'.$row['IP'].'</a>';	
+	$row['Resume'] = '<span class="mini">'.$row['Resume'].'</span>';
 
 	return $row;
 }
