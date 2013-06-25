@@ -476,7 +476,8 @@ function inputDate(objID, type)
 			inputField     :    objID,     // id of the input field
 			singleClick    :    true,
 			daFormat	   :	format,
-			ifFormat	   :	format
+			ifFormat	   :	format,
+            firstDay    : 1
 		});
    }
    else
@@ -486,7 +487,8 @@ function inputDate(objID, type)
 			singleClick    :    true,
 			showsTime	   :	true,
 			daFormat	   :	format,
-			ifFormat	   :	format
+			ifFormat	   :	format,
+            firstDay    : 1
 		});
 
 		$('#'+objID).width(130);
