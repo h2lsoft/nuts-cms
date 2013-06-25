@@ -55,6 +55,7 @@ $plugin->formAddFieldText('ZipCode', $lang_msg[18], false, 'zip_code');
 $plugin->formAddFieldTextAjaxAutoComplete('City', $lang_msg[19], false);
 $plugin->formAddFieldTextAjaxAutoComplete('Country', $lang_msg[20], false);
 $plugin->formAddFieldText('Phone', $lang_msg[21], false, 'phone');
+$plugin->formAddFieldText('PhoneStandard', $lang_msg[27], false, 'phone');
 $plugin->formAddFieldText('Gsm', $lang_msg[22], false, 'gsm');
 $plugin->formAddFieldText('Fax', $lang_msg[23], false, 'fax');
 $plugin->formAddFieldTextAjaxAutoComplete('Job', '', false);
