@@ -68,7 +68,15 @@ function nutsDestroyIt($error='')
     // redirection
     $redirect_uri = '';
 
-    if(isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] != '/nuts/index.php?mod=logout')
+    if(
+			isset($_SERVER['REQUEST_URI']) &&
+			$_SERVER['REQUEST_URI'] != '/nuts/index.php?mod=logout' &&
+			strpos($_SERVER['REQUEST_URI'], '&do=add') === false &&
+			strpos($_SERVER['REQUEST_URI'], '&do=view') === false &&
+			strpos($_SERVER['REQUEST_URI'], '&do=edit') === false &&
+			strpos($_SERVER['REQUEST_URI'], '&do=delete') === false
+
+       )
     {
         if(!empty($uri_added))$uri_added .= '&';
 
@@ -78,6 +86,9 @@ function nutsDestroyIt($error='')
         $query_string = str_replace('&target=list', '', $query_string);
         $query_string = str_replace('&target=content', '', $query_string);
         $query_string = str_replace('mod=logout', '', $query_string);
+	    $query_string = str_replace('&popup=&', '', $query_string);
+	    $query_string = str_replace('parentID=&', '&', $query_string);
+	    $query_string = str_replace('&&', '&', $query_string);
 
         $uri_added .= 'r='.urlencode($query_string);
     }
