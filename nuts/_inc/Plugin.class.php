@@ -336,7 +336,7 @@ class Plugin
 		if($res == 0)
 		{
 			$msg = "plugin `{$_GET['mod']}` action not allowed";
-			Plugin::setError($msg);
+			@Plugin::setError($msg);
 			nutsTrace('_system', 'none', $msg);
 
 			return false;
