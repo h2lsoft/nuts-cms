@@ -147,8 +147,8 @@ class Page extends NutsCore
                 $maintenance_msg .= '   <title>'.WEBSITE_NAME.'</title>';
                 $maintenance_msg .= '<head>';
                 $maintenance_msg .= '<body>';
-                $maintenance_msg .= '   <div style="margin: 100px auto 0 auto; width:550px; white-space: nowrap; text-align:center; padding:15px; font-family: arial; font-weight: bold; font-size: 16px; border: 1px solid navy; border-radius: 5px; color: navy;">';
-                $maintenance_msg .= '   <img src="/nuts/img/icon-tag-moderator.png" align="absmiddle" /> ';
+                $maintenance_msg .= '   <div style="margin: 100px auto 0 auto; width:550px; white-space: nowrap; text-align:center; padding:15px; font-family: \'Segoe UI\', Candara, \'Bitstream Vera Sans\', \'DejaVu Sans\', \'Trebuchet MS\', Verdana, sans-serif; font-size: 16px; border: 1px solid navy;">';
+                // $maintenance_msg .= '   <img src="/nuts/img/icon-tag-moderator.png" align="absmiddle" /> ';
                 $maintenance_msg .= WEBSITE_MAINTENANCE_MESSAGE;
                 $maintenance_msg .= '   </div>';
                 $maintenance_msg .= '</body>';
