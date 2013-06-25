@@ -59,6 +59,7 @@
  *  pass none of "inputField", "displayArea" or "button" you'll get a warning
  *  saying "nothing to setup".
  */
+
 Calendar.setup = function (params) {
 	function param_default(pname, def) { if (typeof params[pname] == "undefined") { params[pname] = def; } };
 
@@ -72,7 +73,7 @@ Calendar.setup = function (params) {
 	param_default("disableFunc",    null);
 	param_default("dateStatusFunc", params["disableFunc"]);	// takes precedence if both are defined
 	param_default("dateText",       null);
-	param_default("firstDay",       null);
+	param_default("firstDay",       1);
 	param_default("align",          "Bl");
 	param_default("range",          [1900, 2999]);
 	param_default("weekNumbers",    true);
