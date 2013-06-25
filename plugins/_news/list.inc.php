@@ -174,27 +174,35 @@ EOF;
     $row['Social'] .= '<a title="Google agenda" href="javascript:popupModal(\''.$uri.'\');"><img src="/plugins/_social-share/img/google_calendar.png" style="width:16px;" /></a> ';
 
 
+	// status message
+	$status = urlencode(str_replace("'", "\'", $row['Title']));
+	if($news_new_system)
+		$status .= " => ".WEBSITE_URL.$row['VirtualPageName'];
+	$status = str_replace("'", "\'", $status);
+
+	// for Facebook, Google+
+	$status_normal = str_replace("'", "\'", $row['Title']);
+	$status_normal = str_replace('"', "`", $status_normal);
+	if($news_new_system)
+		$status_normal .= " => ".WEBSITE_URL.$row['VirtualPageName'];
+
+
     // facebook
     if(FACEBOOK_PUBLISH_URL != '')
     {
-        $row['Social'] .= '<a title="Facebook" href="javascript:openFacebook(\''.FACEBOOK_PUBLISH_URL.'\');"><img src="/plugins/_social-share/img/facebook.png" style="width:16px;" /></a> ';
+        $row['Social'] .= '<a title="Facebook" href="javascript:openFacebook(\''.FACEBOOK_PUBLISH_URL.'\', \''.$status_normal.'\');"><img src="/plugins/_social-share/img/facebook.png" style="width:16px;" /></a> ';
     }
 
     // twitter
     if(TWITTER_LOGIN != '')
     {
-        $status = urlencode(str_replace("'", "\'", $row['Title']));
-        if($news_new_system)
-            $status .= " => ".WEBSITE_URL.$row['VirtualPageName'];
-        $status = str_replace("'", "\'", $status);
-
         $row['Social'] .= '<a title="Twitter" href="javascript:openTwitter(\''.$status.'\');"><img src="/plugins/_social-share/img/twitter.png" style="width:16px;" /></a> ';
     }
 
     // google plus
     if(GOOGLEP_PUBLISH_URL != '')
     {
-        $row['Social'] .= '<a title="Google plus" href="javascript:openGoogleP(\''.GOOGLEP_PUBLISH_URL.'\');"><img src="/plugins/_social-share/img/googlep.png" style="width:16px;" /></a> ';
+        $row['Social'] .= '<a title="Google plus" href="javascript:openGoogleP(\''.GOOGLEP_PUBLISH_URL.'\', \''.$status_normal.'\');"><img src="/plugins/_social-share/img/googlep.png" style="width:16px;" /></a> ';
     }
 
 

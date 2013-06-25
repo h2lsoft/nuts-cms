@@ -1,5 +1,8 @@
 // facebook
-function openFacebook(url){
+function openFacebook(url, status){
+
+    copyToClipboard(status);
+
     window.open(url, 'facebook_publish', 'width=780,height=250, top=0, left=0, scrollbars=no');
 }
 
@@ -10,7 +13,10 @@ function openTwitter(status){
 }
 
 // google+
-function openGoogleP(url){
+function openGoogleP(url, status){
+
+    copyToClipboard(status);
+
 
     window.open(url, 'googlep_publish', 'width=780,height=250, top=0, left=0, scrollbars=no');
 
