@@ -1817,14 +1817,26 @@ EOF;
 			echo "\n";
 			while($row = $this->nuts->dbFetch())
 			{
-                if($this->listExportExcelModeApplyHookData && function_exists('hookData'))
-                    $row = hookData($row);
+                $hooked = false;
+				if($this->listExportExcelModeApplyHookData && function_exists('hookData'))
+				{
+					$row = hookData($row);
+					$hooked = true;
+				}
 
 				for($i=0; $i <  count($this->cols)-$del; $i++)
 				{
 					$txt = str_replace('"', '\"', @$row[$this->cols[$i]]);
 					$txt = str_replace("\r", '\r', $txt);
 					$txt = str_replace("\n", '\n', $txt);
+
+					// format number for float excel replace dot by comma
+					if(!$hooked)
+					{
+						if(@filter_var($txt, FILTER_VALIDATE_FLOAT) !== false)
+							$txt = str_replace('.', ',', $txt);
+					}
+
 					echo '"'.utf8_decode($txt).'";';
 				}
 				echo "\n";
