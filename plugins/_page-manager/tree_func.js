@@ -96,11 +96,14 @@ function reloadResizer()
 		maxWidth: $(document).width()-700-100,
 		resize: function(event, ui) {
 
+            /*
 			w = $('div#page_tree').width()
 			$('div#page_form').width($(document).width()-w-50);
 			$('div#page_options_bottom').width($('div#page_form').width()-15);
 			$('#Content').width($('#page_form').width()-180);
 			$('#iframe_Content').width($('#Content').width());
+			*/
+            $(window).resize();
 		},
 
 		stop: function(event, ui){
