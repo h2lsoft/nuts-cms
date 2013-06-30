@@ -7,6 +7,7 @@
 
 #header_right {position: absolute; z-index: 2; right: 2px; top:2px; background: #fff;}
 
+/** internal message **/
 #header_right #internal_message {float: left; margin-right: 15px; }
 #header_right #internal_message a {display: block; height: 34px; line-height: 34px; color: #e5e5e5;}
 #header_right #internal_message a:hover {color: #999!important;}
@@ -14,6 +15,7 @@
 #header_right #internal_message a i {font-size: 20px; margin: 0; padding: 0; }
 #header_right #internal_message #internal_message_count {font-size: 16px; margin: 0; padding: 0; }
 
+/** user online **/
 #header_right #user_online {float: left; margin-right: 10px; }
 #header_right #user_online:hover .drop-down-arrow {border-top-color:#666;}
 #header_right #user_online a {display: block; height: 34px; line-height: 34px; color: #e5e5e5;}
@@ -23,13 +25,38 @@
 
 #header_right #user_online-drop-down-menu {font-size:11px; padding: 0px; margin: 0;  width: 280px;}
 #header_right #user_online-drop-down-menu img {width: 30px; float: left; margin-right: 5px; vertical-align: middle; }
-#header_right #user_online-drop-down-menu li {line-height: 30px; white-space:nowrap; padding: 3px; width: 274px;}
+#header_right #user_online-drop-down-menu li {line-height: 30px; white-space:nowrap; padding: 3px; width: 270px;}
 #header_right #user_online-drop-down-menu li span {color: #666; font-size: 10px;}
-/*#header_right #user_online-drop-down-menu li:hover {background: #2d89ef; color: white; cursor: pointer;}
-#header_right #user_online-drop-down-menu li:hover span {color: #e5e5e5;}*/
-
 #header_right #user_online-drop-down-menu li:hover {color:#1570B8;}
 
+/** user_shortcuts **/
+#header_right #user_shortcuts {float: left; margin-right: 10px; margin-top: 0px; }
+#header_right #user_shortcuts a {display: block; height: 34px; line-height: 34px; color: #e5e5e5;}
+#header_right #user_shortcuts a:hover {color: #999;}
+#header_right #user_shortcuts a i {font-size: 20px; margin: 0; padding: 0; }
+#header_right #user_shortcuts .drop-down-arrow {}
+
+#header_right #user_shortcuts-drop-down-menu {font-size:11px; padding: 0px; margin: 0;  width: 350px;}
+
+#header_right #user_shortcuts-drop-down-menu li {padding: 0; margin: 0;  width: 350px; height: 24px; line-height: 24px;  color: #333; margin-bottom: 10px;}
+#header_right #user_shortcuts-drop-down-menu li img {width: 24px; margin-right: 5px; vertical-align: middle; padding-left: 10px; }
+
+#header_right #user_shortcuts-drop-down-menu li a {color: #000; display: block; padding: 0; margin:0; width: 350px;}
+#header_right #user_shortcuts-drop-down-menu li a:hover {color: white;}
+#header_right #user_shortcuts-drop-down-menu li.norecord {text-align: center;}
+
+#header_right #user_shortcuts-drop-down-menu li.add_new {margin: 0; text-align: right; width: 340px; height: 15px!important; line-height: 15px!important; font-size: 11px; padding: 5px;}
+#header_right #user_shortcuts-drop-down-menu li.add_new a {color: #1570B8; display: inline; padding: 0;  margin:0; height: auto; position: relative; top:-8px;}
+#header_right #user_shortcuts-drop-down-menu li.add_new a:hover {background: none;}
+#header_right #user_shortcuts-drop-down-menu li.add_new a:active {color: #666;}
+
+
+
+
+
+
+
+/** user badge **/
 #header_right #user_badge {white-space:nowrap; float: left;}
 #header_right #user_badge .avatar {padding: 2px; line-height: 35px; padding-right: 10px; cursor: pointer; display: block; height: 30px;}
 #header_right #user_badge .avatar img {width: 30px; float: left; margin-right: 10px;}

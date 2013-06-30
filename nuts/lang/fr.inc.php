@@ -172,6 +172,12 @@ $nuts_lang_msg[96] = "dans (séparé par `,`)";
 $nuts_lang_msg[97] = "pas dans (séparé par `,`)";
 $nuts_lang_msg[98] = "Mes raccourcis";
 
+$nuts_lang_msg[99] = "Vous n'avez pas de raccourci";
+$nuts_lang_msg[100] = "+ Ajouter un raccourci";
+
+
+
+
 
 // main menu ***********************************************************************
 $mods_group[0]['name'] = 'Administration';

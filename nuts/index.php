@@ -308,7 +308,7 @@ else
 /*if(!NUTS_TRADEMARK)
 	$nuts->eraseBloc('trademark');*/
 
-if(!isset($_GET['ajax']) && !isset($_GET['target']) && !isset($_GET['popup']))
+if(!isset($_GET['ajax']) && !isset($_GET['target']) && @$_GET['popup'] != 1 && @$_GET['popup'] != 'true')
 {
 	// gravatar old
     $avatar_image = nutsUserGetData('', 'Avatar');
@@ -337,6 +337,7 @@ if(!isset($_GET['ajax']) && !isset($_GET['target']) && !isset($_GET['popup']))
 					NutsMenu.Name ";
     $nuts->doQuery($sql);
     $plugin_list_ac = array();
+	$plugin_list = array();
     while($row = $nuts->dbFetch())
     {
         $plugin_name = $row['Name'];
@@ -360,12 +361,85 @@ if(!isset($_GET['ajax']) && !isset($_GET['target']) && !isset($_GET['popup']))
         $plugin_default_action = $plugin_info['default_action'];
 
         $plugin_list_ac[] = array('label' => $plugin_label, 'name' =>  $plugin_name, 'url' => $plugin_url, 'default_action' => $plugin_default_action);
+	    $plugin_list[$plugin_name] = array('label' => $plugin_label, 'name' =>  $plugin_name, 'url' => $plugin_url, 'default_action' => $plugin_default_action);
     }
 
     $plugin_list_ac = json_encode($plugin_list_ac);
     $nuts->fastParse('plugin_list_ac');
 
+
+	// listing favorite user shortcut
+	$shortcuts = Query::factory()->select("
+											ID,
+											Plugin
+										")
+		->from('NutsUserShortcut')
+		->whereEqualTo('NutsUserID', $_SESSION['NutsUserID'])
+		->order_by('Position')
+		->executeAndGetAll();
+
+	if(count($shortcuts) == 0)
+	{
+		$nuts->eraseBloc('shorcuts');
+	}
+	else
+	{
+		$shorcut_valids = array();
+		foreach($shortcuts as $shortcut)
+		{
+			if(isset($plugin_list[$shortcut['Plugin']]))
+			{
+				$shorcut_valids[] = $plugin_list[$shortcut['Plugin']];
+			}
+		}
+
+		if(count($shorcut_valids) == 0)
+		{
+			$nuts->eraseBloc('shorcuts');
+		}
+		else
+		{
+			$nuts->eraseBloc('no_shortcut');
+
+			foreach($shorcut_valids as $shorcut_valid)
+			{
+				$nuts->parse('shorcuts.Plugin', $shorcut_valid['name']);
+				$nuts->parse('shorcuts.PluginName', $shorcut_valid['label']);
+
+				$uri = "";
+				if(empty($shorcut_valid['url']))
+				{
+					$uri = "javascript:system_goto('index.php?mod={$shorcut_valid['name']}&do={$shorcut_valid['default_action']}', 'content');";
+				}
+				else
+				{
+					$tmp = $shorcut_valid['url'];
+					if(stripos($tmp, 'javascript:') !== false)
+					{
+						$uri = $shorcut_valid['url'];
+					}
+					elseif(stripos($tmp, 'http') !== false)
+					{
+						$uri = $shorcut_valid['url'].'" target="blank"';
+					}
+					else
+					{
+						$uri = "javascript:system_goto('{$shorcut_valid['url']}', 'content');";
+					}
+				}
+
+				$nuts->parse('shorcuts.PluginUrl', $uri);
+				$nuts->loop('shorcuts');
+			}
+
+		}
+	}
 }
+
+
+
+
+
 
 // navigation bar
 $navbar[] = array('mod' => '_home', 'do' => 'exec', 'name' => $nuts_lang_msg[3]);
