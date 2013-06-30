@@ -29,8 +29,10 @@ if(WEBSITE_MAINTENANCE && nutsUserHasRight('', '_control-center', 'exec'))
 
 // install directory detected ******************************************************************************************
 if(is_dir(WEBSITE_PATH.'/install'))
-	Plugin::dashboardAddNotification('error', "Directory '/install' must be deleted");
-
+{
+	$msg = ($_SESSION['Language'] == 'fr') ? "Le dossier '/install' doit être supprimé" : "Directory '/install' must be deleted";
+	Plugin::dashboardAddNotification('error', $msg);
+}
 
 // notification available **********************************************************************************************
 foreach($plugins_allowed as $plugin_allowed)
