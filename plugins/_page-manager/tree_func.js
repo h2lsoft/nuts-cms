@@ -140,10 +140,7 @@ function reloadPage(pageID)
 	$('#page_tree').fadeTo(0, 0.33);
 
 	var offs = $('#page_tree').offset({scroll:false});
-	$('#page_tree_loader').css( {'position':'absolute',
-						'z-index':'1000',
-						'left': (offs.left),
-						'top': (offs.top)} );
+	$('#page_tree_loader').css( {'position':'absolute', 'z-index':'1000', 'left': (offs.left), 'top': (offs.top)} );
 	$('#page_tree_loader').show();
 
 
@@ -183,6 +180,13 @@ function reloadPage(pageID)
 						setTimeout("$('#"+pageID+" span').addClass('active');editPage(0);", 250);
 					}
 				}
+                else
+                {
+                    // dID ?
+                    dID = $('#dID').val();
+                    if(!isNaN(dID))
+                        setTimeout("$('#"+dID+" span').addClass('active');editPage(0);$('#page_tree_loader').hide();", 350);
+                }
 
 				$('#page_tree_loader').hide();
 				$('#page_tree').fadeTo(0.33, 1);
