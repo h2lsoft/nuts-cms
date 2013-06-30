@@ -181,7 +181,9 @@ function initWYSIWYGOption()
 		str += '</p>';
 
         if($('#'+id+'_WYSIWYG_toolbar').length == 0)
-            $('textarea#'+id).parent('p:visible').before(str);
+        {
+           $('textarea#'+id).attr('wrap', '').parent('p:visible').before(str);
+        }
 
 	});
 }
