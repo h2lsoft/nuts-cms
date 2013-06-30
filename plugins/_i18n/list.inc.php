@@ -23,7 +23,9 @@ $plugin->listRender(20, 'hookData');
 
 function hookData($row)
 {
-	$row['Pattern'] = '<pre>'.htmlentities($row['Pattern']).'</pre>';
+	$row['Pattern'] = str_replace('<', '<', $row['Pattern']);
+	$row['Pattern'] = str_replace('>', '>', $row['Pattern']);
+	$row['Pattern'] = '<pre>'.$row['Pattern'].'</pre>';
 
 	return $row;
 }
