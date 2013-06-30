@@ -73,6 +73,7 @@ function initWYSIWYGOption()
             select += ' <option value="H2">H2</option>';
             select += ' <option value="H3">H3</option>';
             select += ' <option value="P">P</option>';
+            // select += ' <option value="CITE">Citation</option>';
             select += ' <option value="PRE">Pre</option>';
             select += ' <option value="BLOCKQUOTE">Blockquote</option>';
             select += '</select>';
@@ -337,6 +338,12 @@ function initWYSIWYGIFrame(id) {
                 shortcut.add('Ctrl+1', function(){cmdWYSIWYG(id, 'formatBlock', 'H1');}, {'target':cur_target});
                 shortcut.add('Ctrl+2', function(){cmdWYSIWYG(id, 'formatBlock', 'H2');}, {'target':cur_target});
                 shortcut.add('Ctrl+3', function(){cmdWYSIWYG(id, 'formatBlock', 'H3');}, {'target':cur_target});
+
+
+                shortcut.add('Ctrl+Z', function(){getIFrameDocument('iframe_'+id).execCommand('undo', false, null);}, {'target':cur_target});
+                shortcut.add('Ctrl+Y', function(){getIFrameDocument('iframe_'+id).execCommand('redo', false, null);}, {'target':cur_target});
+
+
                 shortcut.add('Esc', function(){$('#btn_cancel').click()}, {'target':cur_target});
 
             }, 500);
@@ -587,8 +594,11 @@ function WYSIWYGFormat(id){
     else if(v == 'P-CENTER')cmdWYSIWYG(id, 'justifyCenter');
     else if(v == 'P-RIGHT')cmdWYSIWYG(id, 'justifyRight');
     else if(v == 'P-FULL')cmdWYSIWYG(id, 'justifyFull');
-    else if(v == 'BLOCKQUOTE')cmdWYSIWYG(id, 'formatBlock', 'BLOCKQUOTE');
+    else if(v == 'CITE')cmdWYSIWYG(id, 'formatBlock', 'CITE');
     else if(v == 'PRE')cmdWYSIWYG(id, 'formatBlock', 'PRE');
+    else if(v == 'BLOCKQUOTE')cmdWYSIWYG(id, 'formatBlock', 'BLOCKQUOTE');
+
+
     else{
 
         // add span to selected text
