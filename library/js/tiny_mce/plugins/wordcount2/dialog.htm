@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#wordcount2_dlg.title}</title>
+
+	<script type="text/javascript" src="/library/js/php.js"></script>
+
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="js/dialog.js"></script>
+</head>
+<body>
+
+<!-- <form onsubmit="ExampleDialog.insert();return false;" action="#"> -->
+<!-- <p><b>{#wordcount2_dlg.title}</b></p> -->
+	
+	<p>
+		<b>{#wordcount2_dlg.words}:</b> <span id="words"></span>
+		<br />
+		<b>{#wordcount2_dlg.cars1}:</b> <span id="cars1"></span>
+		<br />
+		<b>{#wordcount2_dlg.cars2}:</b> <span id="cars2"></span>
+		
+	</p>
+	<br />
+	<br />
+	
+	<div class="mceActionPanel">
+		<!-- <input type="button" id="insert" name="insert" value="{#insert}" onclick="ExampleDialog.insert();" /> -->
+		<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+	</div>
+<!-- </form> --
+
+</body>
+</html>
