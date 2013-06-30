@@ -3336,7 +3336,7 @@ EOF;
 
 		$toolbar = <<<EOF
 
-		<div id="nuts_maintenance_toolbar" style="font-weight:bold; background-color:red; border-top:2px solid pink; color:white; text-align:center; padding:5px; width:99%; position: fixed; bottom:0; ">
+		<div id="nuts_maintenance_toolbar" style="background-color:red; border-top:2px solid pink; color:white; text-align:center; padding:5px; width:99%; position: fixed; bottom:0; ">
 			$lng
 		</div>
 
