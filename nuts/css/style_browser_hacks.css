@@ -15,6 +15,9 @@
 
     .widget_top_search {position:static;}
     .w_tab {margin-top: 5px;}
+
+
+    .WYSIWYG_toolbar input[type="checkbox"] {top:3px;}
 }
 
 
