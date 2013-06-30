@@ -225,11 +225,17 @@ function WYSIWYGToggleIt(id)
 	}
 	else
 	{
-		$('textarea#'+id).show();
-		$('#iframe_'+id).hide();
-		WYSIWYGTextareaReload(id);
 
+		$('#iframe_'+id).hide();
+        WYSIWYGTextareaReload(id);
         $(objs).css('visibility', 'hidden');
+
+        html = htmlFormatter($('textarea#'+id).val());
+        $('textarea#'+id).val(html);
+        $('textarea#'+id).show();
+
+
+
 	}
 
     $(obj_source).css('visibility', 'visible');
@@ -645,7 +651,53 @@ function WYSIWYGPaste(id){
 }
 
 
+function htmlFormatter(html)
+{
+    html = str_replace('<p', '\n<p', html);
+    html = str_replace('</p>', '</p>\n\n', html);
 
+    html = str_replace('<h1', '\n<h1', html);
+    html = str_replace('</h1>', '</h1>\n\n', html);
+
+    html = str_replace('<h2', '\n<h2', html);
+    html = str_replace('</h2>', '</h2>\n\n', html);
+
+    html = str_replace('<h3', '\n<h3', html);
+    html = str_replace('</h3>', '</h3>\n\n', html);
+
+    html = str_replace('<div', '\n<div', html);
+    html = str_replace('</div>', '</div>\n\n', html);
+
+    html = str_replace('<table', '\n<table', html);
+    html = str_replace('</table>', '</table>\n\n', html);
+
+    html = str_replace('<tr>', '\n<tr>', html);
+    html = str_replace('</tr>', '</tr>\n', html);
+
+    html = str_replace('<td', '\n<td', html);
+    html = str_replace('</td>', '</td>\n', html);
+
+    html = str_replace('<caption>', '\n<caption>', html);
+    html = str_replace('</caption>', '</caption>\n', html);
+
+    html = str_replace('<cite', '\n<cite', html);
+    html = str_replace('</cite>', '</cite>\n', html);
+
+    html = str_replace('<ul', '\n<ul', html);
+    html = str_replace('</ul>', '</ul>\n\n', html);
+
+    html = str_replace('<ol', '\n<ol', html);
+    html = str_replace('</ol>', '</ol>\n\n', html);
+
+    html = str_replace('<li', '\n<li', html);
+    html = str_replace('</li>', '</li>\n\n', html);
+
+
+    html = str_replace('\n\n', '\n', html);
+
+    html = trim(html);
+    return html;
+}
 
 
 
