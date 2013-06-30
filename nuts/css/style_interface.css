@@ -49,7 +49,7 @@
 #header_right #user_shortcuts-drop-down-menu li.add_new a {color: #1570B8; display: inline; padding: 0;  margin:0; height: auto; position: relative; top:-8px;}
 #header_right #user_shortcuts-drop-down-menu li.add_new a:hover {background: none;}
 #header_right #user_shortcuts-drop-down-menu li.add_new a:active {color: #666;}
-
+#header_right #user_shortcuts-drop-down-menu li.add_new a i {font-size: 12px;}
 
 
 
