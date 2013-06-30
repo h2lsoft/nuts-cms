@@ -92,7 +92,7 @@ function reloadResizer()
 {
 	$("#page_tree").resizable({
 		handles: 'e',
-		minWidth: 220,
+		minWidth: 225,
 		maxWidth: $(document).width()-700-100,
 		resize: function(event, ui) {
 
