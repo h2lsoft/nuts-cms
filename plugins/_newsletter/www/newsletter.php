@@ -8,7 +8,6 @@ include_once("../../../nuts/config.inc.php");
 include_once(WEBSITE_PATH."/nuts/headers.inc.php");
 include_once("../config.inc.php");
 
-
 // controller *************************************************************************
 if(!isset($_GET['action']) || !in_array($_GET['action'], array('suscribe', 'affiliate', 'unsuscribe')))
 	die("Error: action parameter");
@@ -127,8 +126,8 @@ elseif($_GET['action'] == 'unsuscribe')
     $m_msg .= '   <title>'.WEBSITE_NAME.'</title>';
     $m_msg .= '<head>';
     $m_msg .= '<body>';
-    $m_msg .= '   <div style="margin: 100px auto 0 auto; width:550px; white-space: nowrap; text-align:center; padding:15px; font-family: arial; font-weight: bold; font-size: 16px; border: 1px solid navy; border-radius: 5px; color: navy;">';
-    $m_msg .= '   <img src="/nuts/img/icon-accept.gif" align="absmiddle" /> '.$msg;
+	$m_msg .= '   <div style="margin: 100px auto 0 auto; width:550px; white-space: nowrap; text-align:center; padding:15px; font-family: \'Segoe UI\', Candara, \'Bitstream Vera Sans\', \'DejaVu Sans\', \'Trebuchet MS\', Verdana, sans-serif; font-size: 16px; color: green;">';
+    $m_msg .= '     <img src="/nuts/img/icon-accept.gif" align="absmiddle" /> '.$msg;
     $m_msg .= '   </div>';
     $m_msg .= '</body>';
     $m_msg .= '</html>';
