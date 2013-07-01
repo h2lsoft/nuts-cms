@@ -1598,6 +1598,17 @@ function listSearchSave(plugin_name){
 
 function listSearchDelete(plugin_name, ID){
 
+    msg = "Would you like to delete this search ?";
+    if(nutsUserLang == 'fr')
+        msg = "Voulez-vous supprimer cet enregistrement ?";
+
+    if(!(c=confirm(msg)))
+    {
+        return;
+    }
+
+
+
     uri = 'index.php?_action=list_search_users&_action2=delete&plugin='+plugin_name+'&ID='+ID;
     $.get(uri, {}, function(data){
 
