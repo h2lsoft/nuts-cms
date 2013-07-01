@@ -3,13 +3,19 @@
 <div style="text-align: center;">
 
     <a href="javascript:;" id="adder" title="{$lang_msg[4]}"><i class="icon-plus-2"></i></a>
+    <a href="javascript:;" id="renamer" title="{$lang_msg[6]}"><i class="icon-pencil"></i></a>
+    <a href="javascript:;" id="deleter" title="{$lang_msg[5]}"><i class="icon-minus-2"></i></a>
 
     <select id="nuts_my_notes_items" style="min-width: 250px;">
     </select>
 
-    <a href="javascript:;" id="renamer" title="{$lang_msg[6]}"><i class="icon-pencil"></i></a>
-    <a href="javascript:;" id="deleter" title="{$lang_msg[5]}"><i class="icon-minus-2"></i></a>
+    <a href="javascript:;" id="reloader" class="button" style="margin-right: 10px;">ok</a>
+
+
+
     <a href="javascript:;" id="saver" title="{$nuts_lang_msg[49]} (Ctrl + S)" accesskey="S"><i class="icon-save"></i></a>
+
+
 
 </div>
 
@@ -49,22 +55,10 @@ function imReload(item_selection)
     uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=reload';
     $('#nuts_my_notes_items').load(uri, function(){
         if(item_selection)$('#nuts_my_notes_items').val(item_selection);
-        $('#nuts_my_notes_items').change();
+        $('#reloader').click();
     });
+
 }
-
-
-$('#nuts_my_notes_items').change(function(){
-
-    $('#ajax_loader').css('top', '60px').css('left', '20px').show();
-
-    curID = $('#nuts_my_notes_items').val();
-    uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=get&ID='+curID;
-    $('#nuts_my_notes').load(uri, function(){
-        $('#ajax_loader').hide();
-    });
-
-});
 
 
 $('#saver').click(function(){
@@ -146,6 +140,21 @@ $('#renamer').click(function(){
 
 });
 
+
+$('#reloader').click(function(){
+
+    $('#ajax_loader').css('top', '60px').css('left', '20px').show();
+
+    curID = $('#nuts_my_notes_items').val();
+    uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=get&ID='+curID;
+
+
+    $.get(uri, function(resp){
+        $('#nuts_my_notes').val(resp);
+        $('#ajax_loader').hide();
+    });
+
+});
 
 
 shortcut.add('CTRL+S', function(){$('#saver').click()});
