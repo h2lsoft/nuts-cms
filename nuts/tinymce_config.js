@@ -131,6 +131,8 @@ function initWYSIWYGOption()
             str += '</div>';
 
             str += ' <img class="rte_button" src="/nuts/img/widget.png" title="Widgets" align="absmiddle" onclick="widgetsWindowOpen(\''+id+'\');" /> ';
+            str += ' <img class="rte_button" style="width: 16px;" src="/plugins/_rte_template/icon.png" title="Code" align="absmiddle" onclick="popupModal(\'index.php?mod=_rte_template&do=list&popup=1&parent_refresh=no&parentID='+id+'\');" />';
+
 
 
             // richeditor
