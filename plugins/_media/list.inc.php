@@ -163,7 +163,7 @@ function hookData($row)
 		$code = str_replace('"', '``', $code);
 		$code = str_replace("'", "\\'", $code);
 
-		$row['AddCode'] = '<a href="javascript:;" onclick="window.opener.WYSIWYGAddText(\''.$_GET['parentID'].'\', \''.$code.'\'); window.close();" class="tt" title="'.$lang_msg[15].'"><img src="img/icon-next.png" align=\"absmiddle\" /></a>';
+		$row['AddCode'] = '<a href="javascript:;" onclick="window.opener.WYSIWYGAddText(\''.$_GET['parentID'].'\', \''.$code.'\'); window.close();" class="tt" title="'.$lang_msg[15].'"><i class="icon-arrow-down-3" style="font-size:18px; margin:0; padding:0;"></i></a>';
 	}
 
     // excel export ?
