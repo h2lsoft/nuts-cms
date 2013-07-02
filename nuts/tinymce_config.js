@@ -656,8 +656,10 @@ function WYSIWYGPaste(id){
 
 function WYSIWYGspellchecker(id)
 {
-    content = getIFrameDocument('iframe_'+id).body.innerHTML;
-    alert("Spellchecker => "+id);
+    // content = getIFrameDocument('iframe_'+id).body.innerHTML;
+    // alert("Spellchecker => "+id);
+    popupModal('/nuts/rte_spellchecker.php?parent='+id+'&lang='+nutsCurrentPageLang, "Spellchecker");
+
 }
 
 
