@@ -7,7 +7,10 @@ include(PLUGIN_PATH.'/config.inc.php');
 
 
 // assign table to db
-$plugin->listSetDbTable('NutsGallery', "(SELECT COUNT(*) FROM NutsGalleryImage WHERE NutsGalleryImage.NutsGalleryID = NutsGallery.ID AND Deleted = 'NO') AS Total", "", "ORDER BY Position");
+$plugin->listSetDbTable('NutsGallery', "
+											(SELECT COUNT(*) FROM NutsGalleryImage WHERE NutsGalleryImage.NutsGalleryID = NutsGallery.ID AND Deleted = 'NO') AS Total,
+											(SELECT MainImage FROM NutsGalleryImage WHERE NutsGalleryImage.NutsGalleryID = NutsGallery.ID AND Deleted = 'NO' AND Active = 'YES' AND MainImage != '' ORDER BY RAND() LIMIT 1) AS PreviewImageReplaced
+											", "", "ORDER BY Position");
 
 // create search engine
 $plugin->listSearchAddFieldText('ID');
@@ -47,7 +50,7 @@ function hookData($row)
 		$code = str_replace('"', '``', $code);
 		$code = str_replace("'", "\\'", $code);
 
-		$row['AddCode'] = '<a href="javascript:;" onclick="window.opener.WYSIWYGAddText(\''.$_GET['parentID'].'\', \''.$code.'\'); window.close();" class="tt" title="'.$lang_msg[7].'"><img src="img/icon-next.png" align=\"absmiddle\" /></a>';
+		$row['AddCode'] = '<a href="javascript:;" onclick="window.opener.WYSIWYGAddText(\''.$_GET['parentID'].'\', \''.$code.'\'); window.close();" class="tt" title="'.$lang_msg[7].'"><i class="icon-arrow-down-3" style="font-size:18px; margin:0; padding:0;"></i></a>';
 	}
 
 	$row['Position'] = $plugin->listGetPositionContents($row['ID']);
@@ -63,7 +66,11 @@ function hookData($row)
 	}
     else
     {
-        $row['Thumbnail'] = '<img src="/nuts/img/no-preview.png" style="height:65px; max-width:160px;" />';
+		/*if(file_exists(NUTS_GALLERY_IMAGES_PATH.'/'.$row['PreviewImageReplaced']))
+			$row['Thumbnail'] = '<img src="'.NUTS_GALLERY_IMAGES_URL.'/thumb_'.$row['PreviewImageReplaced'].'" style="height:65px; max-width:160px;" />';
+		else*/
+			$row['Thumbnail'] = '<img src="/nuts/img/no-preview.png" style="height:65px; max-width:160px;" />';
+
     }
 
 	$row['Total'] = " <a href=\"javascript:popupModal('index.php?mod=_gallery_image&do=list&ID_operator=_equal_&ID=&NutsGalleryID_operator=_equal_&NutsGalleryID={$row['ID']}&user_se=1&popup=1', 'pops');\" class=\"tt counter\"><i class=\"icon-pictures\"></i> {$row['Total']}</a>";
