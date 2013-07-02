@@ -1,0 +1,12 @@
+# General configuration
+version: 1.0
+author: H2lsoft
+website: http://www.h2lsoft.com
+email: contact@h2lsoft.com
+webupdate: no
+info: manage frequently asked question
+info_fr: gestion des question fréquentes
+langs: en, fr
+system required: >= 4.0
+actions: list, add, edit, delete
+default_action: list

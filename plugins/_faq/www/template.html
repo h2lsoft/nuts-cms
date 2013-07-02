@@ -1,0 +1,38 @@
+<div id="nuts_faq">
+
+    <bloc::norecord>
+    <div class="no_record">
+        {no_record_msg}
+    </div>
+    </bloc::norecord>
+
+    <div id="nuts_questions">
+    <bloc::questions>
+
+        <h2>{Category}</h2>
+
+        <ul>
+        <bloc::question>
+            <li><a href="#q{ID}">{Question}</a></li>
+        </bloc::question>
+        </ul>
+    </bloc::questions>
+    </div>
+
+    <bloc::answers>
+    <div id="q{ID}" class="nuts_answers">
+
+        <h3>{AQuestion}</h3>
+
+        <div class="nuts_answer">
+        {Answer}
+        </div>
+
+        <div class="nuts_answer_top">
+            <a href="#top"></a>
+        </div>
+
+    </div>
+    </bloc::answers>
+
+</div>
