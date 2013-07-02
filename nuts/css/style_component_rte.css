@@ -1,7 +1,9 @@
 .WYSIWYG_toolbar {position:relative; top:4px;}
 .WYSIWYG_toolbar input[type=checkbox] {position: relative; top:8px;}
 .WYSIWYG_toolbar .rte_button {cursor: pointer;  filter: grayscale(100%);  -webkit-filter: grayscale(100%); }
-.WYSIWYG_toolbar .rte_button:hover {/*opacity: 0.2; -moz-opacity: 0.2; -webkit-opacity: 0.2;*/ filter: grayscale(0%);  -webkit-filter: grayscale(0%);}
+.WYSIWYG_toolbar .rte_button:hover {filter: grayscale(0%); -webkit-filter: grayscale(0%);}
+.WYSIWYG_toolbar .rte_button:active {opacity: 0.4; -moz-opacity: 0.4; -webkit-opacity: 0.4;}
+
 .WYSIWYG_toolbar a:hover {color:#000; text-decoration: none;}
 .WYSIWYG_toolbar a {outline: 0;}
 
@@ -13,6 +15,10 @@
 .WYSIWYG_toolbar select option {padding-left: 15px;}
 .WYSIWYG_toolbar select option.title {padding-left:5px; border: 1px solid #ccc; font-weight: bold; background-color: #e5e5e5;}
 .WYSIWYG_toolbar select:focus {box-shadow: none;}
+
+
+.WYSIWYG_toolbar input[type=button]:hover {background-color: #1570ee; border-color:#1570ee;  color: white;}
+.WYSIWYG_toolbar input[type=button]:active {background-color: white; border-color:#1570ee;  color: #1570ee;}
 
 
 /** richeditor_layer **/
