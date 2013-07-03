@@ -827,12 +827,13 @@ function nutsClearCache($app)
 }
 
 /**
- * Create a cacche application
+ * Create a cache application
  *
  * @param $app
+ * @param $contents
  * @param $expiration (sql mode YYYY-MM-DD HH:II:SS)
  */
-function nutsSetCache($app, $expiration)
+function nutsSetCache($app, $contents, $expiration)
 {
 	global $nuts;
 
