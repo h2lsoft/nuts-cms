@@ -12,7 +12,8 @@
 /* @var $nuts NutsCore */
 
 
-$google_analytics_ooID = ''; // please go to => http://oocharts.org/ and click get a OOid
+$google_analytics_account_email = ''; // google email account
+$google_analytics_account_password = ''; // google email password
 $google_analytics_profil_id = ''; // google profil ID => https://www.google.com/analytics/web/#home/a11345062w43527078p[PROFIL_ID_HERE]/
 
 
