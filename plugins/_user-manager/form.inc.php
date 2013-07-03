@@ -63,6 +63,8 @@ $plugin->formAddFieldTextArea('Note', '', false);
 $plugin->formAddFieldsetEnd();
 // end of info
 
+include(PLUGIN_PATH."/custom.inc.php");
+
 
 // options
 if($_GET['ID'])
@@ -77,7 +79,7 @@ if($_GET['ID'])
 }
 // end of options
 
-include(PLUGIN_PATH."/custom.inc.php");
+
 
 
 if($_POST)
