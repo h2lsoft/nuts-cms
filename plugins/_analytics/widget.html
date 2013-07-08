@@ -1,71 +1,58 @@
-<div id="timeline-div"></div>
+<div id="ga_timeline"></div>
 
 <table>
-<tr>
+    <tr>
 
-    <td class="center">
-        <i class="icon-user-2"></i> <span id="met2"></span> {visits}
-    </td>
+        <td class="center">
+            <i class="icon-user-2"></i> <span id="met2">{total_visits}</span> {visits}
+        </td>
 
-    <td class="center">
-        <i class="icon-user-2"></i> <span id="met3"></span> {visits_uniq}
-    </td>
+        <td class="center">
+            <i class="icon-user-2"></i> <span id="met3">{total_visits_uniq}</span> {visits_uniq}
+        </td>
 
-    <td class="center">
-        <i class="icon-eye"></i> <span id="met1"></span> {page_views}
-    </td>
+        <td class="center">
+            <i class="icon-eye"></i> <span id="met1">{total_page_views}</span> {page_views}
+        </td>
 
-    <td class="center">
-        <a href="{ga_url}" target="_blank"><i class="icon-bars"></i> Google Analytics</a>
-    </td>
+        <td class="center">
+            <a href="{ga_url}" target="_blank"><i class="icon-bars"></i> Google Analytics</a>
+        </td>
 
-</tr>
+    </tr>
 </table>
 
 
-<script type="text/javascript" src="/library/js/oocharts/oocharts.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
-oo.setOOId("{google_analytics_ooID}");
-oo.load(doCharts);
+google.load("visualization", "1", {packages:["corechart"]});
 
-function doCharts()
-{
-    ga_profil_id = "{google_analytics_profil_id}";
-    ga_date_start = new Date("{date_start}");
-    ga_date_end = new Date("{date_end}");
+function drawWidgetGAChart() {
 
-    // metrics
-    var metric1 = new oo.Metric(ga_profil_id, ga_date_start, ga_date_end);
-    metric1.setMetric('ga:pageviews');
-    metric1.draw('met1', function(){
-        v = $('#met1').text();
-        v = number_format(v, 0, '.', ' ');
-        $('#met1').text(v);
-    });
+    var data = new google.visualization.DataTable();
+    data.addColumn('date', '{day}');
+    data.addColumn('number', '{visits}');
+    data.addColumn('number', '{visits_uniq}');
 
-    var met2 = new oo.Metric(ga_profil_id, ga_date_start, ga_date_end);
-    met2.setMetric('ga:visits');
-    met2.draw('met2', function(){
-        v = $('#met2').text();
-        v = number_format(v, 0, '.', ' ');
-        $('#met2').text(v);
-    });
+    data.addRows([
 
-    var met3 = new oo.Metric(ga_profil_id, ga_date_start, ga_date_end);
-    met3.setMetric('ga:visitors');
-    met3.draw('met3', function(){
-        v = $('#met3').text();
-        v = number_format(v, 0, '.', ' ');
-        $('#met3').text(v);
-    });
+          <bloc::datas>
+            {c_comma}[new Date({c_YYYY}, {c_MM}, {c_DD}), {c_visits}, {c_visitors}]
+          </bloc::datas>
 
-    // timeline
-    var tl = new oo.Timeline(ga_profil_id, ga_date_start, ga_date_end);
-    tl.setOption('title', "{title}");
-    tl.setOption('colors', ['green', 'orange']);
-    tl.addMetric('ga:visits', '{visits}');
-    tl.addMetric('ga:visitors', '{visits_uniq}');
-    tl.draw("timeline-div");
+    ]);
+
+    var wga_options = {
+        title: "{title}",
+        height:220,
+        colors: ['green', 'orange']
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('ga_timeline'));
+    chart.draw(data, wga_options);
 
 }
+
+
+$(function(){drawWidgetGAChart();});
 </script>

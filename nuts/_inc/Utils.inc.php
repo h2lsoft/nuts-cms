@@ -840,6 +840,7 @@ function nutsSetCache($app, $contents, $expiration)
 	$f = array();
 	$f['Date'] = 'NOW()';
 	$f['Application'] = $app;
+	$f['Content'] = $contents;
 	$f['Expiration'] = $expiration;
 
 	$nuts->dbInsert('NutsCache', $f);
