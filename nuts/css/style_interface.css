@@ -59,6 +59,7 @@
 /** user badge **/
 #header_right #user_badge {white-space:nowrap; float: left;}
 #header_right #user_badge .avatar {padding: 2px; line-height: 35px; padding-right: 10px; cursor: pointer; display: block; height: 30px;}
+#header_right #user_badge .avatar:hover {color:#666;}
 #header_right #user_badge .avatar img {width: 30px; float: left; margin-right: 10px;}
 #header_right #user_badge .drop-down-arrow {vertical-align: text-bottom;}
 #header_right #user_badge:hover .drop-down-arrow {border-top-color:#666;}
