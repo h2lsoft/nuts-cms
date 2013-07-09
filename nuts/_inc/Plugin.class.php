@@ -178,7 +178,7 @@ class Plugin
                 $f['NutsMenuID'] = $pluginID;
                 $f['NutsGroupID'] = $NutsGroupID;
                 $f['Name'] = $plugin_action;
-                $nuts->dbInsert('NutsMenuRight', $f, array(), true);
+                $nuts->dbInsert('NutsMenuRight', $f, array());
             }
         }
     }
