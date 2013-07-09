@@ -32,6 +32,7 @@ $plugin->listAddCol('Timezone', $lang_msg[9], 'center; width:10px', false);
 $plugin->listAddColImg('Email', $lang_msg[4], '', false, 'email.png', 'mailto:{Email}');
 $plugin->listAddColImg('Language', $lang_msg[7], '', true, NUTS_IMAGES_URL.'/flag/{Language}.gif');
 $plugin->listAddColImg('Active', $lang_msg[8], '', true);
+$plugin->listAddCol('LastConnection', $lang_msg[28], 'center; width:10px; white-space:nowrap;', true);
 
 include(PLUGIN_PATH."/custom.inc.php");
 
@@ -60,6 +61,15 @@ function hookData($row)
     }
 
 
+	$format = ($_SESSION['Language'] == 'fr') ? 'd/m/y H:i' : 'Y-m-d H:i';
+	if(empty($row['LastConnection']) || $row['LastConnection'] == '0000-00-00 00:00:00')
+	{
+		$row['LastConnection'] = '-';
+	}
+	else
+	{
+		$row['LastConnection'] = date($format, strtotime($row['LastConnection']));
+	}
 	
 
 	return $row;

@@ -166,6 +166,10 @@ if($_POST)
 		$_SESSION = $row;
 		$_SESSION['NutsUserID'] = $row['ID'];
 		nutsTrace('_system', 'logon');
+
+		$nuts->dbUpdate('NutsUser', array('LastConnection' => 'NOW()'), "ID={$_SESSION['NutsUserID']}");
+
+
 		$nuts->dbClose();
 		exit(1);
 	}

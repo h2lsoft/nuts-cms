@@ -218,6 +218,10 @@ function nutsUserLogin($NutsUserID, $sql_fields_added = "", $preserve_session_ke
 	$_SESSION['NutsUserID'] = $row['ID'];
 	$_SESSION = array_merge($_SESSION, $session_keys);
 
+	$nuts->dbUpdate('NutsUser', array('LastConnection' => 'NOW()'), "ID={$_SESSION['NutsUserID']}");
+
+
+
 }
 
 
@@ -328,7 +332,8 @@ function nutsUserRegister($fields, $except=array())
 {
 	/* @var $nuts Page */
 	global $nuts;
-	
+
+	$fields['LastConnection'] = 'NOW()';
 	$USER_ID = $nuts->dbInsert('NutsUser', $fields, $except, true);
 
 	if(array_key_exists('Password', $fields))
