@@ -205,7 +205,6 @@ EOF;
         $row['Social'] .= '<a title="Google plus" href="javascript:openGoogleP(\''.GOOGLEP_PUBLISH_URL.'\', \''.$status_normal.'\');"><img src="/plugins/_social-share/img/googlep.png" style="width:16px;" /></a> ';
     }
 
-
 	return $row;
 }
 
