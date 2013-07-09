@@ -138,9 +138,12 @@ table#list tbody .listDnd img {opacity:1!important; vertical-align: middle;}
 table#list tbody .listDnd:hover {cursor: move; opacity:1;}
 
 
+table#list tbody td.error {background-color: #FFE1FF;}
+table#list tbody td.success {background-color: #DAF4D9;}
+table#list tbody td.warning {background-color: #fafad2;}
+
+
 table#list tfoot td input {text-align:center; width:35px;}
-
-
 table#list tfoot #list_previous, table#list tfoot #list_previous i, table#list tfoot #list_next, table#list tfoot #list_next i {color:#1570B8;}
 table#list tfoot #list_previous i, table#list tfoot #list_next i {position: relative;top: 2px;}
 table#list tfoot #list_previous:hover, table#list tfoot #list_next:hover {color:black; }
