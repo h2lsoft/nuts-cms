@@ -274,7 +274,7 @@ class Plugin
 		if($res == 0)
 		{
 			$msg = "plugin `{$_GET['mod']}` not found";
-			Plugin::setError($msg);
+			@Plugin::setError($msg);
 			nutsTrace('_system', 'none', $msg);
 
 			return false;
@@ -284,7 +284,7 @@ class Plugin
 		if(!is_dir(WEBSITE_PATH.'/plugins/'.$_GET['mod']))
 		{
 			$msg = "plugin `{$_GET['mod']}` not installed correctly";
-			Plugin::setError($msg);
+			@Plugin::setError($msg);
 			nutsTrace('_system', 'none', $msg);
 
 			return false;
