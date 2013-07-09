@@ -1,0 +1,152 @@
+<div class="nuts_gmaps" id="nuts_gmaps_{ID}"></div>
+<div class="nuts_gmaps_places" id="nuts_gmaps_places_{ID}"></div>
+
+
+<script type="text/javascript">
+$(function(){
+
+   var gtype = "{Type}";
+   var gmarkers = {Markers};
+
+   if(gtype == 'CLASSIC')
+   {
+       var map = new GMaps({
+           div: '#nuts_gmaps_{ID}',
+           lat: {Latitude},
+           lng: {Longitude},
+           width: "{Width}px",
+           height: "{Height}px",
+           zoom: {Zoom}
+       });
+
+       // geolocalize
+       map.addControl({
+           position: 'top_right',
+           content: 'Geolocalize',
+           style: {
+               margin: '5px',
+               padding: '1px 6px',
+               border: 'solid 1px #717B87',
+               background: '#fff'
+           },
+           events: {
+               click: function(){
+                   GMaps.geolocate({
+                       success: function(position){
+                           map.setCenter(position.coords.latitude, position.coords.longitude);
+                       },
+                       error: function(error){
+                           alert('Geolocation failed: ' + error.message);
+                       },
+                       not_supported: function(){
+                           alert("Your browser does not support geolocation");
+                       }
+                   });
+               }
+           }
+       });
+
+
+
+       // markers
+       for(i=0; i < gmarkers.length; i++)
+       {
+           info_window = gmarkers[i].InfoWindow;
+           if(empty(info_window))
+           {
+               info_window = "<h3>"+gmarkers[i].Title+"</h3>";
+               info_window += '<p class="nuts_gmaps_tt_complete_address">';
+               info_window += '<span class="nuts_gmaps_tt_address">'+gmarkers[i].Address+"</span>";
+               info_window += '<br />';
+               info_window += '<span class="nuts_gmaps_tt_zip_code">'+gmarkers[i].ZipCode+"</span>"+" "+'<span class="nuts_gmaps_tt_city">'+gmarkers[i].City+"</span>";
+               info_window += '<br />';
+               info_window += '<span class="nuts_gmaps_tt_country">'+gmarkers[i].Country+"</span>";
+               info_window += "</p>";
+           }
+
+           info_window = '<div class="nuts_gmaps_tt">'+info_window+'</div>';
+
+
+           if(!empty(gmarkers[i].Icon))
+           {
+               var pinImage = gmarkers[i].Icon;
+               var pinColor = "";
+               var pinShadow = "";
+           }
+           else
+           {
+               var pinColor = "FE7569";
+               if(gmarkers[i].Color == 'orange')var pinColor = "FFCC00";
+               if(gmarkers[i].Color == 'blue')var pinColor = "43AAFE";
+               if(gmarkers[i].Color == 'green')var pinColor = "34BA46";
+               if(gmarkers[i].Color == 'yellow')var pinColor = "FFFF57";
+
+               var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+                       new google.maps.Size(21, 34),
+                       new google.maps.Point(0,0),
+                       new google.maps.Point(10, 34));
+
+               var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+                       new google.maps.Size(40, 37),
+                       new google.maps.Point(0, 0),
+                       new google.maps.Point(12, 35));
+           }
+
+
+
+           map.addMarker({
+               lat : gmarkers[i].Latitude,
+               lng : gmarkers[i].Longitude,
+               // icon: gmarkers[i].Icon,
+
+               icon: pinImage,
+               shadow: pinShadow,
+
+               size: strtolower(gmarkers[i].Size),
+               color: strtolower(gmarkers[i].Color),
+               title: gmarkers[i].Title,
+               infoWindow: {
+                   content: info_window
+               },
+
+               details: {
+                   ID: gmarkers[i].ID
+               }
+
+           });
+       }
+
+       map.fitZoom();
+
+   }
+   else if(gtype == 'STATIC')
+   {
+       var map = GMaps.staticMapURL ({
+           lat: {Latitude},
+           lng: {Longitude},
+           width: "{Width}px",
+           height: "{Height}px",
+           zoom: {Zoom},
+           markers: gmarkers
+       });
+
+       $('<img/>').attr('src', map).appendTo('#nuts_gmaps_{ID}');
+   }
+   else if(gtype == 'STREET VIEW')
+   {
+       $('#nuts_gmaps_{ID}').width("{Width}").height("{Height}");
+
+       var map = GMaps.createPanorama ({
+           el: '#nuts_gmaps_{ID}',
+           lat: {Latitude},
+           lng: {Longitude},
+           zoom: {Zoom}
+       });
+   }
+
+
+
+
+})
+
+</script>

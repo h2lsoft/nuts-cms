@@ -1796,5 +1796,37 @@ function transformSelectToAuctoComplete(objID, prefix)
 
 
 
+function geocoder(lat, long, default_address)
+{
+    msg = "Please, enter your address, example: street, city, country";
+    if(nutsUserLang == 'fr')
+        msg = "Merci de renseigner votre adresse, exemple: rue, ville, pays";
 
+    p = prompt(msg, default_address);
+    address = urlencode(p);
+
+    // http://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&sensor=true
+    // uri = "http://maps.googleapis.com/maps/api/geocode/json?address="+address+"&sensor=false";
+    uri = "/nuts/index.php?mod=_gmaps&do=list&ajaxer=1&_action=geocoder&address="+address;
+    $.getJSON(uri, function(resp){
+
+        if(resp.status != 'OK')
+        {
+            msg = "Error: please retry";
+            if(nutsUserLang == 'fr')
+                msg = "Erreur: merci de réessayer";
+            alert(msg);
+        }
+        else
+        {
+            r_lat = resp.results[0].geometry.location.lat;
+            r_long = resp.results[0].geometry.location.lng;
+            $('#'+lat).val(r_lat);
+            $('#'+long).val(r_long);
+        }
+
+    });
+
+
+}
 
