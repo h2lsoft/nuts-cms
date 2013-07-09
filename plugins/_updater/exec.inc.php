@@ -749,8 +749,46 @@ else
 			}
 			else
 			{
-				$output .= "\nNuts is updated, please to <a href=\"".WEBSITE_URL."/nuts/index.php?mod=_updater&do=exec\">reload updater</a> then go to <a href=\"".WEBSITE_URL."/nuts/index.php?mod=_right-manager&do=edit\">right manager</a>";
+
+				// reload all rights for SUPERADMIN group **************************************************************
+				$sql = "DELETE FROM NutsMenuRight WHERE NutsGroupID = 1";
+				$nuts->doQuery($sql);
+
+
+				$sql = "SELECT ID, Name FROM NutsMenu WHERE Deleted = 'NO'";
+				$nuts->doQuery($sql);
+				while($row = $nuts->dbFetch())
+				{
+					$pluginID = $row['ID'];
+					$plugin_name = $row['Name'];
+					$tmp_cfg = NUTS_PLUGINS_PATH.'/'.$plugin_name.'/info.yml';
+
+					if(file_exists($tmp_cfg))
+					{
+						$yaml = Spyc::YAMLLoad($tmp_cfg);
+						$plugin_actions = explode(',', $yaml['actions']);
+						$plugin_actions = array_map('trim', $plugin_actions);
+
+						if(count($plugin_actions) > 0)
+						{
+							foreach($plugin_actions as $plugin_action)
+							{
+								if(!empty($plugin_action))
+								{
+									$f = array();
+									$f['NutsMenuID'] = $pluginID;
+									$f['NutsGroupID'] = 1;
+									$f['Name'] = $plugin_action;
+									$nuts->dbInsert('NutsMenuRight', $f, array());
+								}
+							}
+						}
+					}
+				}
 			}
+
+			$output .= "\nReload all rights for SuperAdmin group";
+			$output .= "\n\nNuts is updated, please to <a href=\"".WEBSITE_URL."/nuts/index.php?mod=_updater&do=exec\">reload updater</a> then go to <a href=\"".WEBSITE_URL."/nuts/index.php?mod=_right-manager&do=edit\">right manager</a>";
 		}
 		else
 		{
