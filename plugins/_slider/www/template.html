@@ -33,17 +33,27 @@ $(function() {
         infinite: {Infinite},
         items : {Items},
 
+        responsive: true,
+
         pagination  : "#nuts_slider_pager_{sliderID}",
         prev    : {button : '#nuts_slider_prev_{sliderID}'},
         next    : {button : '#nuts_slider_next_{sliderID}'},
 
-            scroll : {
-            items : {Items},
-            fx: '{Fx}',
-            pauseOnHover: true,
-            timeoutDuration: {PauseDuration},
-            duration: {ScrollDuration}
-        }
+            scroll :
+            {
+                items : {Items},
+                fx: '{Fx}',
+                pauseOnHover: true,
+                timeoutDuration: {PauseDuration},
+                duration: {ScrollDuration}
+            },
+
+
+            swipe :
+            {
+                onTouch : true
+            }
+
 
 
 

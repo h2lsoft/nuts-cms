@@ -22,7 +22,11 @@ else
     include_once($plugin->plugin_path.'/config.inc.php');
 
     if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_slider/www/style.css');
-    if($include_plugin_js)$plugin->addHeaderFile('js', '/plugins/_slider/www/jquery.carouFredSel.js', false);
+    if($include_plugin_js)
+    {
+	    $plugin->addHeaderFile('js', '/plugins/_slider/www/jquery.carouFredSel-6.2.1-packed.js', false);
+	    $plugin->addHeaderFile('js', '/plugins/_slider/www/jquery.touchSwipe.min.js', false);
+    }
 
     $plugin->openPluginTemplate();
     $plugin->parse('sliderID', $sliderID);
