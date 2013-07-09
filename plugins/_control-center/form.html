@@ -95,7 +95,7 @@
             <!-- htaccess -->
             <div class="ntab_content">
 
-                <input style="float: right;" type="button" class="button" value="Save .htaccess" onclick="updater('htaccess');" />
+                <input style="float: right; margin-right: 5px; margin-bottom:3px;" type="button" class="button" value="Save .htaccess" onclick="updater('htaccess');" />
                 <textarea  wrap="off" class="resizable" id="htaccess" style="width: 99%; height: 550px;">{htaccess}</textarea>
 
             </div>
@@ -104,7 +104,7 @@
             <!-- robots.txt -->
             <div class="ntab_content">
 
-                <input style="float: right;" type="button" class="button" value="Save robots.txt" onclick="updater('robots');" />
+                <input style="float: right; margin-right: 5px; margin-bottom:3px;" type="button" class="button" value="Save robots.txt" onclick="updater('robots');" />
                 <textarea  wrap="off" class="resizable" id="robots" style="width: 99%; height: 550px;">{robots}</textarea>
 
             </div>
@@ -153,9 +153,10 @@ $('a.tt').tooltip({track: true, delay: 0, showURL: false, showBody: " - ", opaci
 $('#htaccess, #robots').tabby();
 
 
-$('#ntabs0_content input, #ntabs0_content select').keypress(function(event){
+// $('#ntabs0_content input, #ntabs0_content select').keypress(function(event){
+$('#ntabs0_content input, #ntabs0_content select').change(function(){
 
-    if(event.which == 13){
+    // if(event.which == 13){
         event.preventDefault();
 
         if($(this).hasClass('ntabs_loading'))return;
@@ -187,7 +188,7 @@ $('#ntabs0_content input, #ntabs0_content select').keypress(function(event){
             $('body').css('cursor', 'default');
             $('#'+objID).removeClass('ntabs_loading');
         });
-    }
+    // }
 
 });
 
