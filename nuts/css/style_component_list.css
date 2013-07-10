@@ -137,7 +137,6 @@ table#list tbody .list_btn_delete img:hover {
 table#list tbody .listDnd img {opacity:1!important; vertical-align: middle;}
 table#list tbody .listDnd:hover {cursor: move; opacity:1;}
 
-
 table#list tbody td.error {background-color: #FFE1FF;}
 table#list tbody td.success {background-color: #DAF4D9;}
 table#list tbody td.warning {background-color: #fafad2;}
@@ -200,3 +199,7 @@ table#list a.counter {
 
 table#list a.counter:hover {background-color: #ccc; color: white;}
 table#list a.counter:active {background-color: #1570B8;}
+
+
+div#list_container #batch_actions {margin-top: 10px;}
+

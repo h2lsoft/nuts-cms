@@ -183,6 +183,12 @@ if("{$_GET['popup']}" == 1)
 <caption>{$nuts_lang_msg[4]}</caption>
 <thead>
 <tr>
+
+    <bloc::th_batch>
+        <th style="width:15px;" class="noprint"><input type="checkbox" id="list_batch_all" onclick="listBatchActionCheck();"></th>
+    </bloc::th_batch>
+
+
 	<bloc::th_view>
 	<th style="width:15px;" class="noprint">&nbsp;</th>
 	</bloc::th_view>
@@ -199,6 +205,10 @@ if("{$_GET['popup']}" == 1)
 
 < bloc::loop>
 <tr sel_color="{_NavColor}" id="ls_tr_{ID}" class="row" data-id="{ID}">
+
+    <bloc::td_batch>
+        <td style="width:15px;" class="noprint {td_class}"><input type="checkbox" class="list_batch" value="{ID}"></td>
+    </bloc::td_batch>
 
 	<bloc::td_view>
 	<td noclick="1"  class="noprint {td_class}" style="width:15px;"><a class="tt list_btn_view" href="javascript:" onclick="formIt('{$nuts_lang_msg[28]} - #{ID}', '?mod={$plugin->name}&do=view&ID={ID}');" title="{$nuts_lang_msg[8]}"><img src="img/list_view.png" /></a></td>
@@ -333,6 +343,25 @@ if("{$_GET['popup']}" == 1)
 </tfoot>
 
 </table>
+
+<bloc::batch_actions>
+<div id="batch_actions">
+
+<select id="select_batch_actions">
+
+    <option></option>
+
+    <bloc::batch_option>
+    <option value="{b_uri}" data-msg-ok="{b_msg_ok}">{b_label}</option>
+    </bloc::batch_option>
+
+</select>
+
+<input type="button" value="{btn_bacth_action}" onclick="listBatchActionExecute();" />
+
+</div>
+</bloc::batch_actions>
+
 
 
 < bloc::norecord>

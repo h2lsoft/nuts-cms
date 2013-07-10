@@ -85,3 +85,86 @@ if($("#list tbody .listDnd").length)
 }
 
 
+// batch actions
+function listBatchActionExecute()
+{
+    // no action
+    if(empty($('#select_batch_actions').val()))
+    {
+        msg = "You must select your action";
+        if(nutsUserLang == 'fr')
+            msg = "Vous devez choisir votre action";
+
+        alert(msg);
+        $("#select_batch_actions").focus();
+        return;
+    }
+
+    // no ID
+    if($('#list_container .list_batch:checked').length == 0)
+    {
+        msg = "You must select at least one record";
+        if(nutsUserLang == 'fr')
+            msg = "Vous devez sélectionner au moins un enregistrement";
+        alert(msg);
+        return;
+    }
+
+    IDS = '';
+    $('#list_container .list_batch:checked').each(function(){
+
+        if(!empty(IDS))IDS += ';';
+        IDS += $(this).val();
+    });
+
+
+    uri = $('#select_batch_actions').val();
+    uri += '&IDS='+IDS;
+
+    $.get(uri, function(resp){
+
+        if(resp.indexOf('ko;') == 0)
+        {
+            msg = str_replace('ko;', '', resp);
+            notify('error', msg);
+            return;
+        }
+        else if(resp != 'ok')
+        {
+            msg = "Unknow error please retry";
+            if(nutsUserLang == 'fr')
+                msg = "Erreur inconnue, merci de recommencer";
+            notify('error', msg);
+            return;
+        }
+        else if(resp = 'ok')
+        {
+            r = (nutsUserLang == 'fr') ? 'enregistrement(s)' : 'records(s)';
+            msg_ok = $('#select_batch_actions option:selected').text()+" : "+$('#list_container .list_batch:checked').length+" "+r+"(s)";
+
+            p = parseUri(uri);
+            if(!empty($('#select_batch_actions option:selected').attr('data-msg-ok')))
+            {
+                msg_ok = $('#select_batch_actions option:selected').attr('data-msg-ok');
+                msg_ok = str_replace('{X}', $('#list_container .list_batch:checked').length, msg_ok);
+            }
+
+            notify('ok', msg_ok);
+            system_refresh();
+        }
+
+    });
+
+}
+
+function listBatchActionCheck()
+{
+    if($('#list_batch_all').is(':checked'))
+    {
+        $('#list_container .list_batch').attr('checked', true);
+    }
+    else
+    {
+        $('#list_container .list_batch').attr('checked', false);
+    }
+}

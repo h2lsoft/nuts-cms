@@ -3,6 +3,35 @@
 /* @var $plugin Plugin */
 /* @var $nuts NutsCore */
 
+
+// ajax ****************************************************************************************************************
+if(@$_GET['ajaxer'] == 1)
+{
+	// read
+	if(in_array($_GET['_action'], array('read', 'unread')))
+	{
+		$IDS = @explode(';', $_GET['IDS']);
+		foreach($IDS as $cur_id)
+		{
+			$cur_id = (int)$cur_id;
+			if($cur_id != 0)
+			{
+				$viewed = ($_GET['_action'] == 'read') ? 'YES' : 'NO';
+				$nuts->dbUpdate('NutsIM', array('Viewed' => $viewed), "NutsUserID = {$_SESSION['ID']} AND ID=$cur_id");
+			}
+		}
+
+		die('ok');
+
+	}
+
+	exit(1);
+
+}
+
+
+
+
 // list only message for User or All Group
 if(isset($_GET['action']) && $_GET['action'] == 'nb_read')
 {
@@ -71,7 +100,13 @@ $plugin->listAddCol('Reply', ' ', 'center; width:10px; white-space:nowrap;', fal
 $plugin->listSetFirstOrderBy('Date');
 $plugin->listSetFirstOrderBySort('DESC');
 
-$plugin->listRender(20, 'hookData');
+// batch actions
+$plugin->listAllowBatchActions = true;
+$uri = "index.php?mod=_internal-messaging&do=list&ajaxer=1&_action";
+$plugin->listAddBatchAction($lang_msg[23], $uri.'=read');
+$plugin->listAddBatchAction($lang_msg[24], $uri.'=unread');
+$plugin->listRender(50, 'hookData');
+
 
 
 function hookData($row)

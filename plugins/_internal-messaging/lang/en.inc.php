@@ -33,6 +33,9 @@ $lang_msg[20] = "Links and mail addresses are automatically converted to clikabl
 $lang_msg[21] = "New messages";
 $lang_msg[22] = "You don't have new messages";
 
+$lang_msg[23] = "Mark message(s) as read";
+$lang_msg[24] = "Mark message(s) as unread";
+
 
 
 ?>

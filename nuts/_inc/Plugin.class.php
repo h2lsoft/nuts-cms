@@ -426,6 +426,22 @@ class Plugin
 	}
 
 
+	public $listAllowBatchActions = false;
+	private $listBatchActions = array();
+
+	/**
+	 * Add bacth action
+	 *
+	 * @param string $label
+	 * @param string $url where ajax is launched (automatic concat &IDS=XX;XX;XX)
+	 * @param string $msg_ok (optional) notification message put {X} in message to be parsed by number of IDS
+	 */
+	public function listAddBatchAction($label, $url, $msg_ok="")
+	{
+		$this->listBatchActions[] = array('label' => $label, 'url' => $url, 'msg_ok' => $msg_ok);
+	}
+
+
 	private $cols = array();
 	private $colsLabel = array();
 	private $colsStyle = array();
@@ -1481,6 +1497,38 @@ EOF;
 			    $this->nuts->loadArrayInBloc('buttons', $this->list_buttons);
 			}
 		}
+
+
+		// batch actions
+		if(!$this->listAllowBatchActions)
+		{
+			$this->nuts->eraseBloc('th_batch');
+			$this->nuts->eraseBloc('td_batch');
+			$this->nuts->eraseBloc('batch_actions');
+		}
+		else
+		{
+			$this->nuts->parse('btn_bacth_action', $nuts_lang_msg[101]);
+
+			if(count($this->listBatchActions) == 0)
+			{
+				$this->nuts->eraseBloc('batch_option');
+			}
+			else
+			{
+				foreach($this->listBatchActions as $ba)
+				{
+					$uri = $ba['url'];
+					$this->nuts->parse('batch_option.b_uri', $uri);
+					$this->nuts->parse('batch_option.b_msg_ok', $ba['msg_ok']);
+					$this->nuts->parse('batch_option.b_label', $ba['label']);
+					$this->nuts->loop('batch_option');
+				}
+			}
+
+			$nb_cols++;
+		}
+
 
 		// view
         if(!$this->rightAllowed("view")) $this->listViewButton = false;

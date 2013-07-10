@@ -186,7 +186,7 @@ $nuts_lang_msg[98] = "My shortcuts";
 
 $nuts_lang_msg[99] = "No shortcut found";
 $nuts_lang_msg[100] = "Add a shortcut";
-
+$nuts_lang_msg[101] = "Execute";
 
 // main menu ***********************************************************************
 $mods_group[0]['name'] = 'Administration';

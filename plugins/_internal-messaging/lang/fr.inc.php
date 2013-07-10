@@ -31,6 +31,7 @@ $lang_msg[20] = "Les liens et les adresses mail sont automatiquement converties 
 $lang_msg[21] = "Nouveaux messages";
 $lang_msg[22] = "Vous n'avez pas de nouveaux messages";
 
-
+$lang_msg[23] = "Marquer message(s) comme lu(s)";
+$lang_msg[24] = "Marquer message(s) comme non lu(s)";
 
 ?>
