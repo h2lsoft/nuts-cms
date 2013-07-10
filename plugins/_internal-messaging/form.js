@@ -22,3 +22,6 @@ $("#NutsUserIDFrom").autocomplete(uri, {
 			
 		}
 });
+
+
+$('#form p.bottom').css('margin-top', '-20px');
