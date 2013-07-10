@@ -319,6 +319,7 @@ function initWYSIWYGIFrame(id) {
 		obj.addEventListener('keydown', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEvent(id, e, true);}, false);
         obj.addEventListener('mousedown', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEvent(id, e, false);}, false);
         obj.addEventListener('keypress', function(e){id = str_replace('iframe_', '', this.name);WYSIWYGEvent(id, e, true);}, false);
+        obj.addEventListener('paste', function(e){id = str_replace('iframe_', '', this.name); WYSIWYGHandlePaste(this, e, id); }, false);
 
         // obj.addEventListener('paste', function(e){e.preventDefault();}, false);
 
@@ -335,6 +336,9 @@ function initWYSIWYGIFrame(id) {
                     shortcut.add('Ctrl+B', function(){ cmdWYSIWYG(id, 'bold', '');}, {'target':cur_target});
                     shortcut.add('Ctrl+I', function(){ cmdWYSIWYG(id, 'italic', '');}, {'target':cur_target});
                     shortcut.add('Ctrl+U', function(){ cmdWYSIWYG(id, 'underline', '');}, {'target':cur_target});
+
+                    shortcut.add('Ctrl+V', function(){WYSIWYGHandlePaste(this, e, id); }, {'target':cur_target});
+
                 }
 
                 shortcut.add('Ctrl+Alt+E', function(){openWYSIWYG(id);}, {'target':cur_target});
@@ -428,9 +432,37 @@ function initWYSIWYGIFrame(id) {
 			WYSIWYGToggleIt(id);
 		}
 
+
 	}, 500);
 
 	// $('#iframe_'+objID).show();
+}
+
+
+function WYSIWYGHandlePaste(obj, e, id)
+{
+    if(BrowserDetect.browser == 'Firefox')
+    {
+        WYSIWYGPaste(id);
+        e.stopPropagation();
+        e.preventDefault();
+        return false;
+    }
+    else
+    {
+        clipboard_txt = e.clipboardData.getData('text/html');
+
+        // detect if text is from ms word
+        if(clipboard_txt.indexOf('MsoNormal') != -1 || clipboard_txt.indexOf('class="Mso') != -1 || clipboard_txt.indexOf('<!--[if !')  != -1)
+        {
+            WYSIWYGPaste(id);
+            e.stopPropagation();
+            e.preventDefault();
+            return false;
+        }
+    }
+
+
 }
 
 
