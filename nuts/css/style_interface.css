@@ -141,9 +141,9 @@ div#delete p.bottom #confirm_btn:active {border-color: red; background-color: wh
 
 
 
-#error {width:99%; font-size:14px; font-weight:bold; height:310px; line-height:310px; text-align:center; border:1px dashed #FF0000; background-color:#FFDEDE;
+#error {width:99%; font-size:14px; height:310px; line-height:310px; text-align:center; /* background-color:#FFDEDE; */
 
-    background-image: url(icon_error.png);
+    background-image: url(/plugins/_error/icon.png);
     background-repeat: no-repeat;
     background-position: center 80px;
 
