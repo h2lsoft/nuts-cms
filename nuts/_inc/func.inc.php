@@ -2058,6 +2058,60 @@ function rm_r($path)
 }
 
 
+/**
+ * Verify if ajaxer is requested
+ * @return bool
+ */
+function ajaxerRequested()
+{
+	return (@$_GET['ajaxer'] == 1);
+}
+
+/**
+ * Verify if action if allower
+ * @param string $action
+ *
+ * @return bool
+ */
+function ajaxerAction($action)
+{
+	return (@$_GET['_action'] == $action);
+}
+
+
+/**
+ * Construct url for ajaxer
+ *
+ * @param string $action (ajax action)
+ * @param string $plugin_name (plugin name if empty current plugin)
+ * @param string $plugin_default_action (if empty 'list')
+ * @param string|array $params_added parameters added
+ *
+ * @return mixed
+ */
+function ajaxerUrlConstruct($action, $plugin_name='', $plugin_default_action='list', $params_added='')
+{
+	if(empty($plugin_name))
+		$plugin_name = PLUGIN_NAME;
+
+	$uri = "index.php?mod={$plugin_name}&do={$plugin_default_action}&ajaxer=1&_action={$action}&t=".time();
+
+	if(is_array($params_added))
+	{
+		$tmp = '';
+		foreach($params_added as $key => $val)
+		{
+			$tmp .= "&{$key}=".urlencode($val);
+		}
+	}
+
+	$uri .= $params_added;
+	$uri = str_replace('&&', '&', $uri);
+	return $uri;
+}
+
+
+
 
 
 ?>
