@@ -6,7 +6,8 @@ function queryFormatCode(sql)
     // in ajax
     $('#SqlCodeHighlighter').html(lang_msg_11);
 
-    uri = '?mod=_visual-query-builder&do=exec&ajaxer=1&action=format_sql';
+    // uri = '?mod=_visual-query-builder&do=exec&ajaxer=1&action=format_sql';
+    uri = ajaxerUrlConstruct('format_sql', '_visual-query-builder', 'exec');
     $.post(uri, {sql:sql}, function(resp){
 
         // ajax_loader

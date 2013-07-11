@@ -233,7 +233,8 @@ $(document).ready(function(){
         $('#ajax_loader').css('left', pos.left+10+'px');
         $('#ajax_loader').show();
 
-        uri = '?mod=_visual-query-builder&do=exec&ajaxer=1&action=query_preview';
+        // uri = '?mod=_visual-query-builder&do=exec&ajaxer=1&action=query_preview';
+        uri = ajaxerUrlConstruct('query_preview', '_visual-query-builder', 'exec');
         $.post(uri, {query:v, limit:limit}, function(resp){
             $('#previewer').html(resp);
             $('#ajax_loader').hide();

@@ -21,7 +21,8 @@ function tableAdd(table_name, alias_name)
     }
 
 
-    uri = '?mod=_visual-query-builder&do=exec&ajaxer=1&action=get_fields'
+    // uri = '?mod=_visual-query-builder&do=exec&ajaxer=1&action=get_fields'
+    uri = ajaxerUrlConstruct('get_fields', '_visual-query-builder', 'exec');
     $.post(uri, {table:table_name}, function(resp){
 
         c = $('#canvas').html();
