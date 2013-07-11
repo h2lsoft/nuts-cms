@@ -231,7 +231,7 @@ if(isset($_GET['mod']) && $_GET['mod'] == 'logout')
 // plugin allowed **********************************************************************************************************************************
 
 // auto register plugins
-if(!isset($_GET['ajax']))
+if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']))
 {
     $plugins_auto_registered = array('_internal-messaging::list', '_internal-memo::edit', '_user-profile::edit', '_user-shortcuts::list');
     foreach($plugins_auto_registered as $plugin_auto_registered)
@@ -276,7 +276,7 @@ $plugin = new Plugin();
 include(PLUGIN_PATH.'/'.$_GET['do'].'.inc.php');
 
 // get all groups
-if(!isset($_GET['ajax']) || !isset($_GET['target']))
+if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']) && !isset($_GET['target']))
 {
 	$for = 'MAIN';
 	include('_inc/trt_menu.inc.php');
@@ -309,7 +309,7 @@ else
 /*if(!NUTS_TRADEMARK)
 	$nuts->eraseBloc('trademark');*/
 
-if(!isset($_GET['ajax']) && !isset($_GET['target']) && @$_GET['popup'] != 1 && @$_GET['popup'] != 'true')
+if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']) && !isset($_GET['target']) && @$_GET['popup'] != 1 && @$_GET['popup'] != 'true')
 {
 	// gravatar old
     $avatar_image = nutsUserGetData('', 'Avatar');
@@ -512,7 +512,6 @@ if(!isset($_GET['ajax']) || !isset($_GET['target']))
 }
 else
 {
-	
     $out = $nuts->getAjaxBloc($_GET['target'], $out);    
     echo $out;
 }
