@@ -53,7 +53,7 @@ catch (PDOException $e)
 {
 	$err_code = $e->getCode();
 	$err_msg = $e->getMessage();
-	$html = "<b>Errror $err_code :</b><pre style='border:1px solid #ccc; padding:5px;'>".$err_msg.'</pre>';
+	$html = "<b>Error $err_code :</b><pre style='border:1px solid #ccc; padding:5px;'>".$err_msg.'</pre>';
 	die($html);
 }
 
