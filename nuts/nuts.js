@@ -1846,6 +1846,7 @@ function ajaxerUrlConstruct(action, plugin_name, plugin_default_action, params_a
     }
     else
     {
+        if(empty(params_added))params_added = '';
         uri += params_added;
     }
 
