@@ -1835,7 +1835,7 @@ function ajaxerUrlConstruct(action, plugin_name, plugin_default_action, params_a
 {
     if(empty(plugin_default_action))plugin_default_action = 'list';
 
-    uri = "index.php?mod="+plugin_name+"&do="+plugin_default_action+"&ajaxer=1&_action="+action+"&t="+time();
+    uri = "index.php?mod="+plugin_name+"&do="+plugin_default_action+"&ajaxer=1&_action="+action
 
     if(is_array(params_added))
     {
@@ -1850,6 +1850,7 @@ function ajaxerUrlConstruct(action, plugin_name, plugin_default_action, params_a
         uri += params_added;
     }
 
+    uri += "&t="+time();
     uri = str_replace('&&', '&', uri);
     return uri;
 }
