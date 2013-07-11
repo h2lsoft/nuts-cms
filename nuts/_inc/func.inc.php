@@ -2068,15 +2068,18 @@ function ajaxerRequested()
 }
 
 /**
- * Verify if action if allower
- * @param string $action
+ * Verify if action if allowed
+ * @param string or array $action
  *
  * @return bool
  */
 function ajaxerAction($action)
 {
+	if(is_array($action))return (in_array(@$_GET['_action'], $action));
 	return (@$_GET['_action'] == $action);
 }
+
+
 
 
 /**
@@ -2109,6 +2112,42 @@ function ajaxerUrlConstruct($action, $plugin_name='', $plugin_default_action='li
 	$uri .= "&t=".time();
 	$uri = str_replace('&&', '&', $uri);
 	return $uri;
+}
+
+
+/**
+ * Control parameter ajax parameter
+ *
+ * @param string $index
+ * @param string $cast (int, float)
+ * @param string $method (get by default, post, session)
+ */
+function ajaxerParameterRequired($index, $cast='', $method='get')
+{
+	$method = strtolower($method);
+
+	if($method == 'get')
+	{
+		if(!isset($_GET[$index]))die("Error: parameter `$index` not found in $_GET");
+		$v = &$_GET[$index];
+	}
+	elseif($method == 'post')
+	{
+		if(!isset($_POST[$index]))die("Error: parameter `$index` not found in $_POST");
+		$v = &$_POST[$index];
+	}
+	elseif($method == 'session')
+	{
+		if(!isset($_SESSION[$index]))die("Error: parameter `$index` not found in $_SESSION");
+		$v = &$_SESSION[$index];
+	}
+
+	// control validation
+	if(!empty($cast))
+	{
+		if($cast == 'int')$v = (int)$v;
+		if($cast == 'float')$v = (float)$v;
+	}
 }
 
 
