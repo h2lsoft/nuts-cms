@@ -3,37 +3,39 @@
 /* @var $plugin Plugin */
 /* @var $nuts NutsCore */
 
-// export ********************************************************
-if(@$_GET['action'] == 'export')
+// ajaxer **************************************************************************************************************
+if(ajaxerRequested())
 {
-	$_GET['ID'] = (int)@$_GET['ID'];
-
-	$file_name = 'form_records_export';
-	header("Content-type: application/csv, charset=UTF-8; encoding=UTF-8");
-	header("Content-disposition: attachment; filename=\"$file_name.csv\"");
-
-
-	$sql = "SELECT * FROM NutsFormData WHERE NutsFormID = {$_GET['ID']} AND Deleted = 'NO' ORDER BY ID ASC";
-	$nuts->doQuery($sql);
-
-	$init = false;
-	while($row = $nuts->dbFetch())
+	// export
+	if(ajaxerAction('export'))
 	{
-		echo $row['Date'].';'.$row['DataSerialize']."\n";
+		ajaxerParameterRequired('ID', 'int');
+
+		$file_name = 'form_records_export';
+		header("Content-type: application/csv, charset=UTF-8; encoding=UTF-8");
+		header("Content-disposition: attachment; filename=\"$file_name.csv\"");
+
+		$sql = "SELECT * FROM NutsFormData WHERE NutsFormID = {$_GET['ID']} AND Deleted = 'NO' ORDER BY ID ASC";
+		$nuts->doQuery($sql);
+
+		$init = false;
+		while($row = $nuts->dbFetch())
+		{
+			echo $row['Date'].';'.$row['DataSerialize']."\n";
+		}
+		exit();
 	}
-	
-	
-	exit();
 
+	// clean
+	if(ajaxerAction('clean'))
+	{
+		ajaxerParameterRequired('ID', 'int');
+		$nuts->doQuery("DELETE FROM NutsFormData WHERE NutsFormID = {$_GET['ID']}");
+		exit();
+	}
 }
 
-// clean ********************************************************
-if(@$_GET['action'] == 'clean')
-{
-	$_GET['ID'] = (int)@$_GET['ID'];
-	$nuts->doQuery("DELETE FROM NutsFormData WHERE NutsFormID = {$_GET['ID']}");
-	exit();
-}
+
 
 
 // assign table to db

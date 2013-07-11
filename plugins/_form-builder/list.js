@@ -9,7 +9,8 @@ function cleanForm(formID)
 
 	if((c=confirm(msg)))
 	{
-		$.get("/nuts/index.php", {mod:'_form-builder', do: 'list', action: 'clean', ID: formID}, function (){
+        uri = ajaxerUrlConstruct('clean', '_form-builder', '', {ID:formID});
+		$.get(uri, function (){
 			$('#form_'+formID).html(' - ');
 		});
 	}

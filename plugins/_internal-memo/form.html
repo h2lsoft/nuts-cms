@@ -30,17 +30,18 @@ $('body, #content').css('margin', 0)
 
 
 $(document).ready(function() {
-    $('#nuts_my_notes').css('width', ($(window).width()-68)+'px');
-    $('#nuts_my_notes').css('height', ($(window).height()-89)+'px');
-    $('#nuts_my_notes').tabby();
-    $('#nuts_my_notes').focus();
+    $('#nuts_my_notes').css('width', ($(window).width()-68)+'px')
+                       .css('height', ($(window).height()-89)+'px')
+                       .tabby()
+                       .focus();
+
     $('#main_title').hide();
 })
 
 
 function resizedw(){
-	$('#nuts_my_notes').css('width', ($(window).width()-68)+'px');
-	$('#nuts_my_notes').css('height', ($(window).height()-89)+'px');
+	$('#nuts_my_notes').css('width', ($(window).width()-68)+'px')
+                       .css('height', ($(window).height()-89)+'px');
 }
 
 var doit;
@@ -52,7 +53,8 @@ $(window).resize(function(){
 
 function imReload(item_selection)
 {
-    uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=reload';
+    // uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=reload';
+    uri = ajaxerUrlConstruct('reload', '_internal-memo', 'edit');
     $('#nuts_my_notes_items').load(uri, function(){
         if(item_selection)$('#nuts_my_notes_items').val(item_selection);
         $('#reloader').click();
@@ -69,7 +71,8 @@ $('#saver').click(function(){
     $('#nuts_my_notes').css('opacity', 0.5);
     $('#ajax_loader').css('top', '60px').css('left', '20px').show();
 
-    uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=save';
+    // uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=save';
+    uri = ajaxerUrlConstruct('save', '_internal-memo', 'edit');
     $.post(uri, {text:v, ID:$('#nuts_my_notes_items').val()}, function(resp){
 
         // window.close();
@@ -96,7 +99,9 @@ $('#deleter').click(function(){
     {
         $('#ajax_loader').css('top', '60px').css('left', '20px').show();
         curID = $('#nuts_my_notes_items').val();
-        uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=delete&ID='+curID;
+
+        // uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=delete&ID='+curID;
+        uri = ajaxerUrlConstruct('delete', '_internal-memo', 'edit', {ID: curID});
         $('#nuts_my_notes').load(uri, function(){
             imReload(0);
         });
@@ -111,7 +116,8 @@ $('#adder').click(function(){
 
     if(c)
     {
-        uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=add&title='+urlencode(c);
+        // uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=add&title='+urlencode(c);
+        uri = ajaxerUrlConstruct('add', '_internal-memo', 'edit', {title: c});
         $.get(uri, function(resp){
             imReload(resp);
         });
@@ -129,7 +135,8 @@ $('#renamer').click(function(){
     if(new_title)
     {
         curID = $('#nuts_my_notes_items').val();
-        uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=rename&title='+urlencode(new_title)+'&ID='+curID;
+        // uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=rename&title='+urlencode(new_title)+'&ID='+curID;
+        uri = ajaxerUrlConstruct('rename', '_internal-memo', 'edit', {title: new_title, ID:curID});
 
         $('#ajax_loader').css('top', '60px').css('left', '20px').show();
         $.get(uri, function(resp){
@@ -146,9 +153,8 @@ $('#reloader').click(function(){
     $('#ajax_loader').css('top', '60px').css('left', '20px').show();
 
     curID = $('#nuts_my_notes_items').val();
-    uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=get&ID='+curID;
-
-
+    // uri = '?mod=_internal-memo&do=edit&ajaxer=1&action=get&ID='+curID;
+    uri = ajaxerUrlConstruct('get', '_internal-memo', 'edit', {ID:curID});
     $.get(uri, function(resp){
         $('#nuts_my_notes').val(resp);
         $('#ajax_loader').hide();
