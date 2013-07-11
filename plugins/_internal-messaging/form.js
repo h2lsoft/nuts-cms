@@ -1,5 +1,6 @@
 ﻿// autocomplete
-uri = 'index.php?mod=_internal-messaging&do=list&action=get_user';
+// 'index.php?mod=_internal-messaging&do=list&action=get_user';
+uri = ajaxerUrlConstruct('get_user', '_internal-messaging');
 $("#NutsUserIDFrom").autocomplete(uri, {
 		width: 300,
 		multiple: true,
