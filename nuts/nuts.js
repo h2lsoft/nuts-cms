@@ -1244,11 +1244,11 @@ function iframeResizeByContents(iframe, height_added)
 
 function privateBoxRefresh(){
 
-	uri = 'index.php?mod=_internal-messaging&do=list&action=nb_read';
+	// uri = 'index.php?mod=_internal-messaging&do=list&action=nb_read';
+    uri = ajaxerUrlConstruct('nb_read', '_internal-messaging');
 	$.get(uri, {}, function (d) {
 
 			d = parseInt(d);
-
 			if(d == 0)
 			{
 				msg = nuts_lang_msg_65;
