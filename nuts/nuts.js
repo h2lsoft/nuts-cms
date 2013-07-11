@@ -1830,3 +1830,25 @@ function geocoder(lat, long, default_address)
 
 }
 
+
+function ajaxerUrlConstruct(action, plugin_name, plugin_default_action, params_added)
+{
+    if(empty(plugin_default_action))plugin_default_action = 'list';
+
+    uri = "index.php?mod="+plugin_name+"&do="+plugin_default_action+"&ajaxer=1&_action="+action+"&t="+time();
+
+    if(is_array(params_added))
+    {
+        for(key in params_added)
+        {
+            uri += "&"+key+"="+urlencode(params_added[key]);
+        }
+    }
+    else
+    {
+        uri += params_added;
+    }
+
+    uri = str_replace('&&', '&', uri);
+    return uri;
+}
