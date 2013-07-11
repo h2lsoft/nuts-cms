@@ -254,6 +254,7 @@ if(!plugin::validator() || !plugin::actValidator())
 
 
 // const plugin
+define('PLUGIN_NAME', $_GET['mod']);
 define('PLUGIN_PATH', WEBSITE_PATH.'/plugins/'.$_GET['mod']);
 define('PLUGIN_URL', WEBSITE_URL.'/plugins/'.$_GET['mod']);
 define('PLUGIN_UPLOADS_PATH', NUTS_UPLOADS_PATH.'/'.$_GET['mod']);
