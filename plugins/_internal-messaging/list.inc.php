@@ -5,10 +5,10 @@
 
 
 // ajax ****************************************************************************************************************
-if(@$_GET['ajaxer'] == 1)
+if(ajaxerRequested())
 {
-	// read
-	if(in_array($_GET['_action'], array('read', 'unread')))
+	// read && unread
+	if(ajaxerAction('read') || ajaxerAction('unread'))
 	{
 		$IDS = @explode(';', $_GET['IDS']);
 		foreach($IDS as $cur_id)
@@ -16,42 +16,28 @@ if(@$_GET['ajaxer'] == 1)
 			$cur_id = (int)$cur_id;
 			if($cur_id != 0)
 			{
-				$viewed = ($_GET['_action'] == 'read') ? 'YES' : 'NO';
+				$viewed = (ajaxerAction('read')) ? 'YES' : 'NO';
 				$nuts->dbUpdate('NutsIM', array('Viewed' => $viewed), "NutsUserID = {$_SESSION['ID']} AND ID=$cur_id");
 			}
 		}
 
 		die('ok');
-
 	}
 
-	exit(1);
+	// get nuts users for ac
+	if(ajaxerAction('get_user'))
+	{
+		$str = "";
 
-}
+		$_GET['q'] = strip_tags($_GET['q']);
+		$q = addslashes($_GET['q']);
+		$q = str_replace(array('%', '_'), array('', '\\_'), $q);
 
+		$q = explode(',', $q);
+		$q = end($q);
+		$q = trim($q);
 
-
-
-// list only message for User or All Group
-if(isset($_GET['action']) && $_GET['action'] == 'nb_read')
-{
-	$nuts->doQuery("SELECT COUNT(*) FROM NutsIM WHERE NutsUserID = {$_SESSION['ID']} AND Viewed = 'NO' AND Deleted = 'NO'");
-	die($nuts->dbGetOne());
-}
-// get nuts user by ajax
-if(isset($_GET['action']) && $_GET['action'] == 'get_user')
-{
-	$str = "";
-
-	$_GET['q'] = strip_tags($_GET['q']);
-	$q = addslashes($_GET['q']);
-	$q = str_replace(array('%', '_'), array('', '\\_'), $q);
-
-	$q = explode(',', $q);
-	$q = end($q);
-	$q = trim($q);
-
-	$nuts->doQuery("SELECT
+		$nuts->doQuery("SELECT
 							ID,
 							FirstName,
 							LastName
@@ -63,15 +49,26 @@ if(isset($_GET['action']) && $_GET['action'] == 'get_user')
 							(Lastname LIKE '$q%' OR Firstname LIKE '$q%' OR Login LIKE '$q%')
 					ORDER BY
 							LastName, FirstName");
-	while($row = $nuts->dbFetch())
-	{
-		$str .= "{$row['FirstName']} {$row['LastName']} (#{$row['ID']})\n";
+		while($row = $nuts->dbFetch())
+		{
+			$str .= "{$row['FirstName']} {$row['LastName']} (#{$row['ID']})\n";
+		}
+
+		$str = trim($str);
+		die($str);
 	}
 
-	$str = trim($str);
-	die($str);
-}
 
+	// get nb unread message
+	if(ajaxerAction('nb_read'))
+	{
+		$nuts->doQuery("SELECT COUNT(*) FROM NutsIM WHERE NutsUserID = {$_SESSION['ID']} AND Viewed = 'NO' AND Deleted = 'NO'");
+		die($nuts->dbGetOne());
+	}
+
+	exit(1);
+
+}
 
 
 $plugin->listAddButtonLabel = $lang_msg[7];
@@ -102,9 +99,8 @@ $plugin->listSetFirstOrderBySort('DESC');
 
 // batch actions
 $plugin->listAllowBatchActions = true;
-$uri = "index.php?mod=_internal-messaging&do=list&ajaxer=1&_action";
-$plugin->listAddBatchAction($lang_msg[23], $uri.'=read');
-$plugin->listAddBatchAction($lang_msg[24], $uri.'=unread');
+$plugin->listAddBatchAction($lang_msg[23], ajaxerUrlConstruct('read'));
+$plugin->listAddBatchAction($lang_msg[24], ajaxerUrlConstruct('unread'));
 $plugin->listRender(50, 'hookData');
 
 
