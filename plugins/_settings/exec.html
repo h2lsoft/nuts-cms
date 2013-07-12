@@ -126,6 +126,19 @@
                 <hr noshade>
 
                 <p>
+                    <label>{$lang_msg[50]} <span class="required">*</span></label>
+                    <input type="text" id="NUTS_PAGE_THUMBNAIL_WIDTH" value="{CONST::NUTS_PAGE_THUMBNAIL_WIDTH}"  style="width:40px; text-align: center;" /> px
+                </p>
+                <p>
+                    <label>{$lang_msg[51]} <span class="required">*</span></label>
+                    <input type="text" id="NUTS_PAGE_THUMBNAIL_HEIGHT" value="{CONST::NUTS_PAGE_THUMBNAIL_HEIGHT}"  style="width:40px; text-align: center;" /> px
+                </p>
+
+
+
+                <hr noshade>
+
+                <p>
                     <label>{$lang_msg[22]} <span class="required">*</span></label>
                     <input type="text" id="NUTS_ERROR404_TEMPLATE" value="{CONST::NUTS_ERROR404_TEMPLATE}"  style="width:250px" />
                     <span>{$lang_msg[23]}</span>
@@ -137,6 +150,7 @@
                 </p>
 
                 <hr noshade>
+
 
 
                 <p>
@@ -264,10 +278,10 @@ function testLogoUrl() {
 
 }
 
-$('#ntabs0_content input, #ntabs0_content select').keypress(function(event){
-
-    if(event.which == 13){
-        event.preventDefault();
+// $('#ntabs0_content input, #ntabs0_content select').keypress(function(event){
+$('#ntabs0_content input, #ntabs0_content select').change(function(){
+    // if(event.which == 13){
+         //event.preventDefault();
 
         if($(this).hasClass('ntabs_loading'))return;
 
@@ -294,7 +308,7 @@ $('#ntabs0_content input, #ntabs0_content select').keypress(function(event){
 
         });
 
-    }
+    // }
 
 });
 

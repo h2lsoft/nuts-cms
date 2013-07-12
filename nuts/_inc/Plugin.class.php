@@ -4446,9 +4446,6 @@ EOF;
                                                                 'plugin_background_color' => $plugin_background_color
                                                                );
     }
-
-
-
 }
 
 

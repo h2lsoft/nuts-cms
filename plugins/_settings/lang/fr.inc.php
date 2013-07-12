@@ -57,7 +57,7 @@ $lang_msg[35] = "affiche un lien dans `News Manager` pour ajouter un tweet (vide
 $lang_msg[36] = "Facebook Lien Publication";
 $lang_msg[37] = "affiche un lien dans `News Manager` pour ajouter un message (vide pour cacher)";
 
-$lang_msg[38] = "* Appuyer sur entrée pour valider dans un champ";
+$lang_msg[38] = "* Enregistrement à la sortie du champ";
 
 $lang_msg[39] = "Votre changement a été sauvegardé";
 $lang_msg[40] = "secondes en cache";
@@ -73,6 +73,12 @@ $lang_msg[47] = "affiche un lien dans `News Manager` pour ajouter un message (vi
 
 
 $lang_msg[48] = "Session auto";
-$lang_msg[49] = "starts automatically session";
+$lang_msg[49] = "démarre automatiquement la session";
+
+$lang_msg[50] = "Page vignette largeur";
+$lang_msg[51] = "Page vignette hauteur";
+
+
+
 
 ?>

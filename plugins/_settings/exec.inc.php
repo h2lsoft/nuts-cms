@@ -26,7 +26,8 @@ if(@$_GET['ajaxer'] == 1 && $_POST && !@empty($_POST['objID']))
                                        'MetaTitle', 'MetaDescription', 'MetaKeywords', 'NUTS_ERROR404_TEMPLATE', 'NUTS_ERROR_PAGE_REDIRECT',
                                        'NUTS_WWW_SESSION_INIT', 'NUTS_LOG_ERROR_404', 'NUTS_LOG_ERROR_TAGS', 'NUTS_TIDY', 'NUTS_HTML_COMPRESS', 'NUTS_HTML_COMPRESS_TIME',
                                        'APP_TITLE', 'BACKOFFICE_LOGO_URL', 'TWITTER_LOGIN', 'FACEBOOK_PUBLISH_URL', 'GOOGLEP_PUBLISH_URL',
-                                        'nuts_theme_selected'
+                                       'nuts_theme_selected',
+	                                   'NUTS_PAGE_THUMBNAIL_WIDTH', 'NUTS_PAGE_THUMBNAIL_HEIGHT'
                                       )))
     {
         // fichier de configuration non editable
@@ -73,12 +74,12 @@ if(@$_GET['ajaxer'] == 1 && $_POST && !@empty($_POST['objID']))
             }
         }
 
-        if($_POST['objID'] == 'NUTS_HTML_COMPRESS_TIME')
+        if(in_array($_POST['objID'], array('NUTS_HTML_COMPRESS_TIME', 'NUTS_PAGE_THUMBNAIL_WIDTH', 'NUTS_PAGE_THUMBNAIL_HEIGHT')))
         {
             $val = (int)$val;
             if($val == 0)
             {
-                $msg = ($_SESSION['Language'] == 'fr') ? "Le temps de cache de compression doit être un nombre" : "Compress cache time but be a digit";
+                $msg = ($_SESSION['Language'] == 'fr') ? "La valeur doit être un entier positif" : "Value must be a positive integer";
                 die($msg);
             }
         }

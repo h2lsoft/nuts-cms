@@ -58,7 +58,7 @@ $lang_msg[35] = "display link in `News Manager` to add a tweet (empty to hide)";
 $lang_msg[36] = "Facebook Publish Url";
 $lang_msg[37] = "display link in `News Manager` to add a message to your wall (empty to hide)";
 
-$lang_msg[38] = "* Press Enter to validate in fields";
+$lang_msg[38] = "* Save automatically on field change";
 
 $lang_msg[39] = "Your change has been successfully saved";
 $lang_msg[40] = "seconds in cache";
@@ -76,7 +76,11 @@ $lang_msg[47] = "display link in `News Manager` to add a message to your wall (e
 
 
 $lang_msg[48] = "Session auto";
-$lang_msg[49] = "démarrage automatiquement la session";
+$lang_msg[49] = "starts automatically session";
+$lang_msg[50] = "Page Thumbnail width";
+$lang_msg[51] = "Page Thumbnail height";
+
+
 
 
 
