@@ -57,8 +57,8 @@ define('WEBSITE_MAINTENANCE_MESSAGE', "Website in maintenance, please come back 
 // database ************************************************************************************************************
 define('NUTS_DB_TYPE', 'mysql');
 define('NUTS_DB_HOST', "localhost");
-define('NUTS_DB_USER', "nuts-cms");
-define('NUTS_DB_PASSWORD', "kyyv4pzErk");
+define('NUTS_DB_USER', "nuts-cms-demo");
+define('NUTS_DB_PASSWORD', "");
 define('NUTS_DB_BASE', "dev");
 define('NUTS_DB_PORT', "");
 
