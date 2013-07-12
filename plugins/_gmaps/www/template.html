@@ -20,7 +20,7 @@ $(function(){
        });
 
        // geolocalize
-       map.addControl({
+       /*map.addControl({
            position: 'top_right',
            content: 'Geolocalize',
            style: {
@@ -44,7 +44,7 @@ $(function(){
                    });
                }
            }
-       });
+       });*/
 
 
 
@@ -116,7 +116,7 @@ $(function(){
            });
        }
 
-       map.fitZoom();
+       if(gmarkers.length > 2)map.fitZoom();
 
    }
    else if(gtype == 'STATIC')
