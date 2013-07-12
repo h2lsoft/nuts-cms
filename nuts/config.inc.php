@@ -30,9 +30,11 @@ define('MetaDescription', "");
 define('MetaKeywords', "");
 define('NUTS_ERROR404_TEMPLATE', "error404.html");
 define('NUTS_WWW_SESSION_INIT', false); // auto start session in front-office
-
 $nuts_front_plugins_direct_access = array();
 $nuts_theme_selected = 'default'; // theme selected
+define('NUTS_PAGE_THUMBNAIL_WIDTH', "230");
+define('NUTS_PAGE_THUMBNAIL_HEIGHT', 140); // height of thumbnail
+
 
 // redirect error page absolute url
 define('NUTS_ERROR_PAGE_REDIRECT', "");
@@ -57,8 +59,8 @@ define('WEBSITE_MAINTENANCE_MESSAGE', "Website in maintenance, please come back 
 // database ************************************************************************************************************
 define('NUTS_DB_TYPE', 'mysql');
 define('NUTS_DB_HOST', "localhost");
-define('NUTS_DB_USER', "nuts-cms");
-define('NUTS_DB_PASSWORD', "kyyv4pzErk");
+define('NUTS_DB_USER', "nuts-cms-demo");
+define('NUTS_DB_PASSWORD', "");
 define('NUTS_DB_BASE', "dev");
 define('NUTS_DB_PORT', "");
 
