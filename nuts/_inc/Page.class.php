@@ -1099,6 +1099,30 @@ class Page extends NutsCore
         }
         // </editor-fold>
 
+
+		// LIST-IMAGES  replacement ! *************************************************************************************************
+		// <editor-fold defaultstate="collapsed">
+
+		preg_match_all("#\{@NUTS	TYPE='LIST-IMAGES'	NAME='(.*)'	ID='(.*)'\}#U", $out, $matches);
+		if (count($matches) >= 2)
+		{
+			$matches[1] = array_unique($matches[1]);
+
+			// get each block with content
+			foreach($matches[2] as $cmd)
+			{
+				$rep = $this->getListImages($cmd);
+				$rep = $this->setNutsCommentMarkup('list-images '. $cmd, $rep);
+				$out = str_replace($matches[0][0], $rep, $out);
+			}
+			$out = $this->formatOutput($out);
+		}
+		// </editor-fold>
+
+
+
+
+
         // PATTERN replacement ##############################################################################
 		//<editor-fold defaultstate="collapsed">
         $sql = "SELECT
@@ -2973,8 +2997,103 @@ EOF;
 
 
 	/**
+	 * Create list images
+	 * @param int $pageID
+	 *
+	 * @return string string
+	 */
+	private function getListImages($pageID)
+	{
+		$pageID = (int)$pageID;
+		if($pageID == 0)return "";
+
+		$sql_access_restricted = $this->sqlAddedAccessRestricted();
+		$sql = "SELECT
+						ID,
+						Language,
+						H1,
+						MenuName,
+						VirtualPagename,
+						Thumbnail
+				FROM
+						NutsPage
+				WHERE
+
+						NutsPageID = '%s' AND
+						MenuVisible = 'YES' AND
+						$sql_access_restricted
+						".$this->sqlAdded()."
+				ORDER BY
+						Position";
+		$this->dbSelect($sql, array($pageID));
+		if($this->dbNumRows() == 0)return "";
+
+		$sub_pages = $this->dbGetData();
+
+
+		$str = '<div class="nuts_list_images" id="nuts_list_images_'.$pageID.'">'.CR;
+		$str .= '   <ul>'.CR;
+
+		foreach($sub_pages as $sub_page)
+		{
+			// has thumbs ?
+			$no_preview = false;
+			if(empty($sub_page['Thumbnail']))
+			{
+				$thumb_file = NUTS_PAGE_THUMBNAIL_PATH.'/0-'.NUTS_PAGE_THUMBNAIL_WIDTH.'x'.NUTS_PAGE_THUMBNAIL_HEIGHT.'.jpg';
+				$no_preview = true;
+			}
+			else
+			{
+				$thumb_file = NUTS_PAGE_THUMBNAIL_PATH.'/'.$sub_page['ID'].'-'.NUTS_PAGE_THUMBNAIL_WIDTH.'x'.NUTS_PAGE_THUMBNAIL_HEIGHT.'.jpg';
+			}
+
+
+			// create thumbs ?
+			if(!file_exists($thumb_file))
+			{
+				$im = @imagecreatetruecolor(NUTS_PAGE_THUMBNAIL_WIDTH, NUTS_PAGE_THUMBNAIL_HEIGHT);
+
+				if($no_preview)
+				{
+					$bg = imagecolorallocate($im, 255, 255, 255);
+					imagefilledrectangle($im, 0, 0, NUTS_PAGE_THUMBNAIL_WIDTH, NUTS_PAGE_THUMBNAIL_HEIGHT, $bg);
+					imagejpeg($im, $thumb_file, 100);
+				}
+				else
+				{
+					copy(WEBSITE_PATH.$sub_page['Thumbnail'], $thumb_file);
+					$this->imgThumbnailSetOriginal($thumb_file);
+					$this->imgThumbnail(NUTS_PAGE_THUMBNAIL_WIDTH, NUTS_PAGE_THUMBNAIL_HEIGHT, true, array(255,255,255), '', 'jpg');
+				}
+			}
+
+
+			$page_url = $this->getUrl($sub_page['ID'], $sub_page['Language'], $sub_page['VirtualPagename']);
+			$title = (empty($sub_page['H1'])) ? $sub_page['MenuName'] : $sub_page['H1'];
+
+			// list
+			$str .= '       <li>'.CR;
+			$str .= '            <a title="'.$title.'" href="'.$page_url.'"><img src="'.str_replace(WEBSITE_PATH, '', $thumb_file).'" /><span class="title">'.$title.'</span></a>';
+			$str .= '       </li>'.CR;
+
+		}
+
+		$str .= '   </ul>'.CR;
+		$str .= '</div>';
+
+
+		return $str;
+
+	}
+
+
+
+
+	/**
 	 * Create the survey
 	 * @param string $surveyID
+	 *
 	 * @return string
 	 */
 	private function getSurvey($surveyID)

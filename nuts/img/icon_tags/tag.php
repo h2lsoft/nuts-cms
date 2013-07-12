@@ -20,19 +20,20 @@ else
 	$text_indent = 130;
 	if($_GET['tag'] == 'form')$text_indent = 110;
 
-    if($_GET['tag'] == 'media_youtube')$text_indent = 135;
-    if($_GET['tag'] == 'media_audio')$text_indent = 118;
-    if($_GET['tag'] == 'media')$text_indent = 115;
-    if($_GET['tag'] == 'media_video')$text_indent = 118;
-    if($_GET['tag'] == 'media_embed')$text_indent = 120;
-    if($_GET['tag'] == 'media_dailymotion')$text_indent = 160;
-    if($_GET['tag'] == 'media_iframe')$text_indent = 125;
-
+	elseif($_GET['tag'] == 'media_youtube')$text_indent = 135;
+    elseif($_GET['tag'] == 'media_audio')$text_indent = 118;
+    elseif($_GET['tag'] == 'media')$text_indent = 115;
+    elseif($_GET['tag'] == 'media_video')$text_indent = 118;
+    elseif($_GET['tag'] == 'media_embed')$text_indent = 120;
+    elseif($_GET['tag'] == 'media_dailymotion')$text_indent = 160;
+    elseif($_GET['tag'] == 'media_iframe')$text_indent = 125;
 	elseif($_GET['tag'] == 'zone')$text_indent = 110;
 	elseif($_GET['tag'] == 'region')$text_indent = 125;
 	elseif($_GET['tag'] == 'block')$text_indent = 120;
 	elseif($_GET['tag'] == 'plugin')$text_indent = 120;
 	elseif($_GET['tag'] == 'survey')$text_indent = 125;
+	elseif($_GET['tag'] == 'list-images')$text_indent = 160;
+
 
 	// create a new image and add label text
 	$string = utf8_decode(base64_decode($_GET['label']));

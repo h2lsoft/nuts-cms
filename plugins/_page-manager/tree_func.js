@@ -764,6 +764,23 @@ function linkPages()
 	alertLink(s);
 }
 
+function linkListImages()
+{
+    hideContext();
+    nodeID = simpleTreeCollection.get(0).getSelected().attr('id');
+
+    // copy to clipboard
+    nodeText = getTreeNodeText();
+
+    s = '{@NUTS	TYPE=\'LIST-IMAGES\'	NAME=\''+nodeText+'\'	ID=\'�\'}';
+    s = str_replace('�', nodeID, s);
+
+    // copyToClipboard(s);
+    alertLink(s);
+}
+
+
+
 function linkZone()
 {
 	hideContext();

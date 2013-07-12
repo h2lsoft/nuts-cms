@@ -157,4 +157,7 @@ $lang_msg[116] = "Thumbnail";
 $lang_msg[117] = "If empty the first image of your page and automatically resize";
 
 
+$lang_msg[118] = "Copy command list images";
+
+
 ?>

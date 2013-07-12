@@ -1082,7 +1082,7 @@ function parse_nuts_tags(text)
 			tag_type = trim(tag_type);
 
 			//console.log('tag_type => `'+tag_type+'` tags => `'+cur_tags+'`');
-			if(in_array(tag_type, array('PLUGIN', 'MEDIA', 'REGION', 'BLOCK', 'MENU', 'GALLERY', 'ZONE', 'FORM', 'SURVEY')))
+			if(in_array(tag_type, array('PLUGIN', 'MEDIA', 'REGION', 'BLOCK', 'MENU', 'GALLERY', 'ZONE', 'FORM', 'SURVEY', 'LIST-IMAGES')))
 			{
 				tag_type = strtolower(tag_type);
 
