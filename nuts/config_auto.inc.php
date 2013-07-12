@@ -58,6 +58,9 @@ define('NUTS_GALLERY_IMAGES_HD_URL', NUTS_IMAGES_URL.'/gallery_images_hd');
 define('NUTS_NEWS_IMAGES_PATH', NUTS_IMAGES_PATH.'/news');
 define('NUTS_NEWS_IMAGES_URL', NUTS_IMAGES_URL.'/news');
 
+// thumbnail
+define('NUTS_PAGE_THUMBNAIL_PATH', NUTS_IMAGES_PATH.'/page');
+define('NUTS_PAGE_THUMBNAIL_URL', NUTS_IMAGES_URL.'/page');
 
 
 $nutsBackLogo = (BACKOFFICE_LOGO_URL == '') ? 'img/logo.png' : BACKOFFICE_LOGO_URL;
