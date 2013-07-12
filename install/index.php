@@ -128,6 +128,7 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 		$files[] = WEBSITE_PATH.'/library/media/images/gallery_images';
 		$files[] = WEBSITE_PATH.'/library/media/images/gallery_images_hd';
 		$files[] = WEBSITE_PATH.'/library/media/images/news';
+		$files[] = WEBSITE_PATH.'/library/media/images/page';
 		$files[] = WEBSITE_PATH.'/library/media/multimedia';
 		$files[] = WEBSITE_PATH.'/library/media/other';
         $files[] = WEBSITE_PATH.'/library/media/images/user/nuts_news_models';
