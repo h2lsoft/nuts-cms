@@ -420,6 +420,12 @@
 
 		<fieldset id="fieldset_Media">
 		<legend>{$lang_msg[42]}</legend>
+
+        <p>
+            <label title="{$lang_msg[117]}">{$lang_msg[116]}</label>
+            <input type="text" name="Thumbnail" id="Thumbnail" value="" /> <a class="tt" title="{$nuts_lang_msg[87]}" href="javascript:imageBrowser('Thumbnail', '');"><img src="/nuts/img/icon-folder.png" align="absmiddle" /></a>
+            <a href="javascript:;" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('Thumbnail');"><img align="absmiddle" src="img/icon-preview-mini.gif" align="absmiddle" /></a>
+        </p>
 		<p>
 			<label title="{$lang_msg[44]}">{$lang_msg[43]}</label>
 			<select id="HeaderImage" name="HeaderImage" onchange="updateHeaderImg()">
@@ -428,7 +434,7 @@
 			</select>
 
             <a href="javascript:headerImageReload();"><i class="icon-loop"></i></a>
-            <a href="javascript:imageBrowser('HeaderImage', 'header');"><img src="/nuts/img/icon-folder.png"></a>
+            <a class="tt" title="{$nuts_lang_msg[87]}" href="javascript:imageBrowser('HeaderImage', 'header');"><img src="/nuts/img/icon-folder.png" align="absmiddle" /></a>
 
 		</p>
 

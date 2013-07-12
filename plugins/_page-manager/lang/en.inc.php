@@ -153,5 +153,8 @@ $lang_msg[113] = "Locked";
 $lang_msg[114] = "Waiting for moderation";
 $lang_msg[115] = "No page found";
 
+$lang_msg[116] = "Thumbnail";
+$lang_msg[117] = "If empty the first image of your page and automatically resize";
+
 
 ?>

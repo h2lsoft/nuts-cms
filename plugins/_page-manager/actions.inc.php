@@ -356,6 +356,7 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'duplicate_page')
 	$rec['_HasChildren'] = (@$_GET['duplicate_sub'] == 1) ? 'YES' : 'NO';
 	$rec['State'] = 'DRAFT';
 
+
 	$lastID = $nuts->dbInsert('NutsPage', $rec, array(), true);
 
     // copy view data
@@ -882,7 +883,39 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'save_page')
 			if(!empty($_POST['DateEnd']))
 				$_POST['DateEnd'] = $nuts->date2db($_POST['DateEnd']).':00';
 		}
-								
+
+		// thumbnail
+		$thumb_path = NUTS_PAGE_THUMBNAIL_PATH.'/'.$_GET['ID'].'-'.NUTS_PAGE_THUMBNAIL_WIDTH.'x'.NUTS_PAGE_THUMBNAIL_HEIGHT.'.jpg';
+		@unlink($thumb_path);
+
+		// take first from content
+		if(empty($_POST['Thumbnail']))
+		{
+			$img = array();
+			preg_match_all('/<img [^>]+>/iS', $_POST['Content'], $imgs);
+			if(count($imgs[0]) > 0)
+			{
+				$first_img_src = '';
+				foreach($imgs[0] as $img)
+				{
+					$src = $nuts->extractStr($img, 'src="', '"');
+
+					if(!preg_match('/^http/i', $src))
+					{
+						$first_img_src = $src;
+						break;
+					}
+				}
+
+				if(!empty($first_img_src))
+				{
+					$_POST['Thumbnail'] = $first_img_src;
+				}
+			}
+		}
+
+
+
 		// save
 		$nuts->dbUpdate('NutsPage', $_POST, "ID = ".(int)$_GET['ID'], array('PageZoneID', 'cf*', 'Status', 'asm*', 'dID', 'CommentName', 'CommentText', 'PageAccess', 'PageAccessX', 'ContentView*'));
 
@@ -930,6 +963,10 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'save_page')
                 $nuts->dbInsert('NutsPageContentViewFieldData', $f);
             }
         }
+
+
+
+
 
 
 		// tags

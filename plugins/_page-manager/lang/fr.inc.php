@@ -147,6 +147,8 @@ $lang_msg[113] = "Verrouillées";
 $lang_msg[114] = "En attente de modération";
 $lang_msg[115] = "Aucune page trouvée";
 
+$lang_msg[116] = "Vignette";
+$lang_msg[117] = "Si vide la première image de votre contenu sera prise (le redimensionnement est automatique)";
 
 
 ?>
