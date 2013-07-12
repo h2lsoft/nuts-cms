@@ -900,10 +900,17 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'save_page')
 				{
 					$src = $nuts->extractStr($img, 'src="', '"');
 
-					if(!preg_match('/^http/i', $src))
+					if(preg_match('#^/library/media/images/user/#i', $src))
 					{
-						$first_img_src = $src;
-						break;
+						// check width and height
+						list($width, $height, $type, $attr) = @getimagesize(WEBSITE_PATH.$src);
+						$width = (int)@$width;
+						$height = (int)@$height;
+						if($width >= NUTS_PAGE_THUMBNAIL_WIDTH && $height >= NUTS_PAGE_THUMBNAIL_HEIGHT)
+						{
+							$first_img_src = $src;
+							break;
+						}
 					}
 				}
 
