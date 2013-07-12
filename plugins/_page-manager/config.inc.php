@@ -30,7 +30,7 @@ $custom_fields = array(); # do not touch this line
 
 
 /** update 0.7 */
-$hidden_fields = "ContentType, TopBar, BottomBar, Tags, ContentResume, fieldset_Media"; # comma separated
+$hidden_fields = "ContentType, TopBar, BottomBar, Tags"; # comma separated
 
 /** update 0.87 **/
 $allowed_groups_block = array("Right");
