@@ -617,7 +617,7 @@ class TPLN extends DB
             $body = str_replace("\n", "<br />", $body);
 
             // add trace mode for Nuts
-            if(defined('WEBSITE_PATH') && $GLOBALS['nuts']->dbIsConnected())
+            if(defined('WEBSITE_PATH') && @$GLOBALS['nuts']->dbIsConnected())
             {
                 xTrace('system-www', strip_tags($body));
             }
