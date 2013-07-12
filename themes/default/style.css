@@ -189,6 +189,14 @@ p.event_resume:empty {display: none;}
 .ie7 .nuts_slider_pager a {text-indent: 0; color: transparent;}
 
 
-
+/** list-image **/
+.nuts_list_images {clear:both; min-height: 250px;}
+.nuts_list_images ul {list-style: none; margin: 0; padding: 0;}
+.nuts_list_images ul li {float: left; display: inline; width: auto; margin-right: 10px; padding: 10px;}
+.nuts_list_images ul li a {color: #1570ee;}
+.nuts_list_images ul li:hover {background-color: #e5e5e5;}
+.nuts_list_images ul li a:hover img {border-color: #1570ee;}
+.nuts_list_images ul li a img {border:1px solid #ccc; width: 200px;}
+.nuts_list_images ul li a span.title {padding: 10px; display: block; width: 100%; text-align: center;}
 
 
