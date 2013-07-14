@@ -3036,55 +3036,20 @@ EOF;
 
 		foreach($sub_pages as $sub_page)
 		{
-			// has thumbs ?
-			$no_preview = false;
-			if(empty($sub_page['Thumbnail']))
-			{
-				$thumb_file = NUTS_PAGE_THUMBNAIL_PATH.'/0-'.NUTS_PAGE_THUMBNAIL_WIDTH.'x'.NUTS_PAGE_THUMBNAIL_HEIGHT.'.jpg';
-				$no_preview = true;
-			}
-			else
-			{
-				$thumb_file = NUTS_PAGE_THUMBNAIL_PATH.'/'.$sub_page['ID'].'-'.NUTS_PAGE_THUMBNAIL_WIDTH.'x'.NUTS_PAGE_THUMBNAIL_HEIGHT.'.jpg';
-			}
-
-
-			// create thumbs ?
-			if(!file_exists($thumb_file))
-			{
-				$im = @imagecreatetruecolor(NUTS_PAGE_THUMBNAIL_WIDTH, NUTS_PAGE_THUMBNAIL_HEIGHT);
-
-				if($no_preview)
-				{
-					$bg = imagecolorallocate($im, 255, 255, 255);
-					imagefilledrectangle($im, 0, 0, NUTS_PAGE_THUMBNAIL_WIDTH, NUTS_PAGE_THUMBNAIL_HEIGHT, $bg);
-					imagejpeg($im, $thumb_file, 100);
-				}
-				else
-				{
-					copy(WEBSITE_PATH.$sub_page['Thumbnail'], $thumb_file);
-					$this->imgThumbnailSetOriginal($thumb_file);
-					$this->imgThumbnail(NUTS_PAGE_THUMBNAIL_WIDTH, NUTS_PAGE_THUMBNAIL_HEIGHT, true, array(255,255,255), '', 'jpg');
-				}
-			}
-
-
+			$thumb_url = nutsGetPageThumbnailUrl($sub_page['ID'], $sub_page['Thumbnail']);
 			$page_url = $this->getUrl($sub_page['ID'], $sub_page['Language'], $sub_page['VirtualPagename']);
 			$title = (empty($sub_page['H1'])) ? $sub_page['MenuName'] : $sub_page['H1'];
 
 			// list
 			$str .= '       <li>'.CR;
-			$str .= '            <a title="'.$title.'" href="'.$page_url.'"><img src="'.str_replace(WEBSITE_PATH, '', $thumb_file).'" /><span class="title">'.$title.'</span></a>';
+			$str .= '            <a title="'.$title.'" href="'.$page_url.'"><img src="'.$thumb_url.'" /><span class="title">'.$title.'</span></a>'.CR;
 			$str .= '       </li>'.CR;
-
 		}
 
 		$str .= '   </ul>'.CR;
 		$str .= '</div>';
 
-
 		return $str;
-
 	}
 
 

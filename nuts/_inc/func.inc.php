@@ -821,7 +821,54 @@ function nutsMailer($to, $nutEmailID, $datas = array(), $xtrace=false, $action="
 	return $trt_ok;
 }
 
+/**
+ * Get thumbnail url for page
+ *
+ * @param $pageID
+ * @param $pageThumbnailOriginal
+ *
+ * @return mixed
+ */
+function nutsGetPageThumbnailUrl($pageID, $pageThumbnailOriginal)
+{
+	global $nuts;
 
+	// has thumbs ?
+	$no_preview = false;
+
+	if(empty($pageThumbnailOriginal))
+	{
+		$thumb_file = NUTS_PAGE_THUMBNAIL_PATH.'/0-'.NUTS_PAGE_THUMBNAIL_WIDTH.'x'.NUTS_PAGE_THUMBNAIL_HEIGHT.'.jpg';
+		$no_preview = true;
+	}
+	else
+	{
+		$thumb_file = NUTS_PAGE_THUMBNAIL_PATH.'/'.$pageID.'-'.NUTS_PAGE_THUMBNAIL_WIDTH.'x'.NUTS_PAGE_THUMBNAIL_HEIGHT.'.jpg';
+	}
+
+	// create thumbs ?
+	if(!file_exists($thumb_file))
+	{
+		$im = @imagecreatetruecolor(NUTS_PAGE_THUMBNAIL_WIDTH, NUTS_PAGE_THUMBNAIL_HEIGHT);
+
+		if($no_preview)
+		{
+			$bg = imagecolorallocate($im, 255, 255, 255);
+			imagefilledrectangle($im, 0, 0, NUTS_PAGE_THUMBNAIL_WIDTH, NUTS_PAGE_THUMBNAIL_HEIGHT, $bg);
+			imagejpeg($im, $thumb_file, 100);
+		}
+		else
+		{
+			copy(WEBSITE_PATH.$pageThumbnailOriginal, $thumb_file);
+			$this->imgThumbnailSetOriginal($thumb_file);
+			$this->imgThumbnail(NUTS_PAGE_THUMBNAIL_WIDTH, NUTS_PAGE_THUMBNAIL_HEIGHT, true, array(255,255,255), '', 'jpg');
+		}
+	}
+
+	$thumb_file = str_replace(WEBSITE_PATH, '', $thumb_file);
+
+	return $thumb_file;
+}
 
 
 
