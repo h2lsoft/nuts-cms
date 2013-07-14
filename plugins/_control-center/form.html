@@ -2,12 +2,12 @@
     <div id="form">
 
         <ul id="ntabs0" class="ntabs">
-            <li class="selected">Website</li>
-            <li>IP blocked ({ip_blocked})</li>
+            <li class="selected">{$lang_msg[1]}</li>
+            <li>{$lang_msg[2]} ({ip_blocked})</li>
             <li>.Htaccess</li>
             <li>Robots.txt</li>
-            <li>System checking ({system_errors}) </li>
-            <li>Php Configuration</li>
+            <li>{$lang_msg[3]} ({system_errors}) </li>
+            <li>{$lang_msg[4]}</li>
         </ul>
         <div id="ntabs0_content" class="ntabs_content">
 
@@ -17,24 +17,24 @@
                 <p>
                     <label>Maintenance</label>
                     <select id="Maintenance" action="maintenance">
-                        <option value="YES" {maintenance_yes_selected}>YES</option>
-                        <option value="NO" {maintenance_no_selected}>NO</option>
+                        <option value="YES" {maintenance_yes_selected}>{$nuts_lang_msg[30]}</option>
+                        <option value="NO" {maintenance_no_selected}>{$nuts_lang_msg[31]}</option>
                     </select>
                 </p>
 
                 <p>
-                    <label>IP allowed (separator ',')</label>
+                    <label>{$lang_msg[5]}</label>
                     <input type="text" id="IPAllowed" value="{ip_allowed}" style="width: 350px;"  action="ip_allowed" />
-                    &nbsp;&nbsp;&nbsp; <input type="button" class="button" id="btnUserIP" ip="{IpUser}" value="&laquo; Add my ip `{IpUser}`" onclick="addMyIp()" />
+                    &nbsp;&nbsp;&nbsp; <input type="button" class="button" id="btnUserIP" ip="{IpUser}" value="&laquo; {$lang_msg[11]} `{IpUser}`" onclick="addMyIp()" />
                 </p>
 
                 <p>
-                    <label>Maintenance message</label>
+                    <label>{$lang_msg[6]}</label>
                     <input type="text" id="MaintenanceMessage" value="{MaintenanceMessage}" style="width: 500px;"  action="maintenance_message" />
                 </p>
 
                 <fieldset>
-                    <legend>Errors page and nuts tags <span style="color:red; font-weight: bold;" id="website_error_count"></span> <a style="display:none;" id="website_error_delete" href="javascript:updater('errors_all');"><img src="/nuts/img/list_delete.png" style="width: 16px;" align="absmiddle" /></a></legend>
+                    <legend>{$lang_msg[7]} <span style="color:red; font-weight: bold;" id="website_error_count"></span> <a style="display:none;" id="website_error_delete" href="javascript:updater('errors_all');"><img src="/nuts/img/list_delete.png" style="width: 16px;" align="absmiddle" /></a></legend>
 
                     <bloc::website_clean>
                     <p>
@@ -68,7 +68,7 @@
                     <legend>Cache</legend>
                     <p>
                         <label>Cache page</label>
-                        <span id="nb_cache">{nb_cache}</span> file(s) <a class="tt"  title="Delete files cached" href="javascript:updater('clear_cache');"><img src="/nuts/img/list_delete.png" style="width: 16px;" align="absmiddle" /></a>
+                        <span id="nb_cache">{nb_cache}</span> {$lang_msg[8]} <a class="tt"  title="Delete files cached" href="javascript:updater('clear_cache');"><img src="/nuts/img/list_delete.png" style="width: 16px;" align="absmiddle" /></a>
                     </p>
                 </fieldset>
 
@@ -82,7 +82,7 @@
 
                 <bloc::ips_blocked>
                     <p id="ip_{IpID}">
-                        <label>{Date} - </label><a href="http://www.geoiptool.com/en/?IP={IpOk}" title="localize IP" target="_blank">{IpOk}</a> [<a href="javascript:updater('unblock', '{IpOk}', '{Date}', '{IpID}');">Unblock</a>] <br />
+                        <label>{Date} - </label><a href="http://www.geoiptool.com/en/?IP={IpOk}" title="localize IP" target="_blank">{IpOk}</a> [<a href="javascript:updater('unblock', '{IpOk}', '{Date}', '{IpID}');">{$lang_msg[9]}</a>] <br />
                     </p>
                 </bloc::ips_blocked>
 
@@ -139,7 +139,7 @@
 
 
             <p class="ntabs_info">
-                * Save automatically on field changes
+                {$lang_msg[10]}
             </p>
 
 
