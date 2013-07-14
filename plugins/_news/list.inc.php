@@ -79,10 +79,10 @@ if(!in_array('Type', $hidden_fields_arr))
 
 $plugin->listAddCol('DateGMT', $lang_msg[2], 'center; width:40px; white-space:nowrap;', true);
 if(!in_array('DateGMTExpiration', $hidden_fields_arr))$plugin->listAddCol('DateGMTExpiration', $lang_msg[3], 'center; width:40px; white-space:nowrap;', true);
+$plugin->listAddColImg('Language', "&nbsp;", '', false, NUTS_IMAGES_URL.'/flag/{Language}.gif');
 $plugin->listAddCol('Title', $lang_msg[4], '', true);
 
 $plugin->listAddCol('Author', $lang_msg[16], 'center; width:10px;', false);
-$plugin->listAddColImg('Language', $lang_msg[1], '', true, NUTS_IMAGES_URL.'/flag/{Language}.gif');
 
 
 for($i=0; $i <  count($cf); $i++)
