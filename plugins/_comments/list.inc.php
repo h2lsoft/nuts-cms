@@ -11,6 +11,26 @@
 /* @var $nuts NutsCore */
 
 
+// ajaxer **************************************************************************************************************
+if(ajaxerRequested())
+{
+	$IDS = ajaxerGetIDS();
+
+	if(ajaxerAction('visible') || ajaxerAction('hidden'))
+	{
+		$bool = (ajaxerAction('visible')) ? 'YES' : 'NO';
+		$nuts->dbUpdate('NutsPageComment', array('Visible' => $bool), "ID IN($IDS)");
+	}
+	elseif(ajaxerAction('deleted'))
+	{
+		$nuts->dbUpdate('NutsPageComment', array('Deleted' => 'YES'), "ID IN($IDS)");
+	}
+
+	die('ok');
+}
+
+
+
 // assign table to db
 $plugin->listSetDbTable('NutsPageComment');
 
@@ -31,6 +51,12 @@ $plugin->listAddCol('Date', '', '; width:30px; white-space:nowrap;', true);
 $plugin->listAddCol('Name', $lang_msg[1], '; width:30px; white-space:nowrap;', true);
 $plugin->listAddCol('Message', '', '', false);
 $plugin->listAddColImg('Visible');
+
+// batch actions
+$plugin->listAllowBatchActions = true;
+$plugin->listAddBatchAction($lang_msg[2], ajaxerUrlConstruct('visible'));
+$plugin->listAddBatchAction($lang_msg[3], ajaxerUrlConstruct('hidden'));
+$plugin->listAddBatchAction($lang_msg[4], ajaxerUrlConstruct('deleted'));
 
 
 // render list
@@ -60,6 +86,12 @@ function hookData($row)
         if(empty($row['Avatar']))$row['Avatar'] = $grav_url;
         $row['Avatar'] = "<img src='{$row['Avatar']}' style='max-width:60px; max-height:60px;'>";
     }
+
+	// error
+	if($row['Visible'] == 'NO')
+	{
+		$row['td_class'] = 'error';
+	}
 
 
 	return $row;
