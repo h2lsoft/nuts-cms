@@ -211,11 +211,7 @@ function nutsGetTheme()
  */
 function nutsGetOptionsContentType($type='select')
 {
-	$GLOBALS['nuts']->doQuery("SELECT
-										Type
-								FROM
-										NutsContentType");
-
+	$GLOBALS['nuts']->doQuery("SELECT Type FROM NutsContentType");
 	$rows = $GLOBALS['nuts']->getData();
 	if($type == 'select')
 	{
@@ -2127,6 +2123,25 @@ function ajaxerAction($action)
 }
 
 
+/**
+ * Return selected ID separated by comma
+ */
+function ajaxerGetIDS()
+{
+	$IDS = @explode(';', $_GET['IDS']);
+
+	$tmp = '';
+	foreach($IDS as $tmpID)
+	{
+		if(!empty($tmpID))
+		{
+			if(!empty($tmp))$tmp .= ',';
+			$tmp .= (int)$tmpID;
+		}
+	}
+
+	return $tmp;
+}
 
 
 /**
