@@ -137,8 +137,18 @@ if($plugin->formIsValid())
     // trigger
     nutsTrigger('_login', true, "user logon successful");
 
-	// redirect logon page
-	nutsAccessRestrictedRedirectPage('logon');
+
+	// redirect page detection
+	if(@$_GET['r'][0] == '/')
+	{
+		$nuts->redirect($_GET['r']);
+	}
+	else
+	{
+		// redirect logon page
+		nutsAccessRestrictedRedirectPage('logon');
+	}
+
 }
 
 

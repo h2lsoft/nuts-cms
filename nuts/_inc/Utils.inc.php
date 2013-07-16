@@ -61,6 +61,21 @@ function nutsAccessRestrictedRedirectPage($type='login')
 		die("Error: `$d_const` not defined");
 	}
 
+	// login case add current page redirection
+	if($type == 'login')
+	{
+		$cur_uri = (isset($_SERVER['SCRIPT_URL'])) ? $_SERVER['SCRIPT_URL'] : $_SERVER['REQUEST_URI'];
+
+		if($cur_uri != $uri)
+		{
+			if(strpos($uri, '?') === false)
+				$uri .= '?';
+			$uri .= "&r=$cur_uri";
+		}
+	}
+
+
+
 	$nuts->redirect($uri);
 
 }
