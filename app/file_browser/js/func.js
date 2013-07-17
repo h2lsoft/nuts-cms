@@ -192,7 +192,7 @@ function nWindowOpen(objId)
     top = (b_height - w_height) / 2;
 
 
-    $('#'+objId).css('top', top+'px');
+    $('#'+objId).css('top', '120px');
     $('#'+objId).css('left', left+'px');
     $('#'+objId).show();
 
