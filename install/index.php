@@ -229,13 +229,13 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 				// writing file sitemap key ************************************************************************
 				$sub = 'adse861d2M1df3sdf55';
 				$f = file_get_contents('../plugins/_sitemap/config.inc.php');
-				$f = str_replace($sub, uniqid('key'), $f);
+				$f = str_replace($sub, md5(uniqid('key')), $f);
 				file_put_contents('../plugins/_sitemap/config.inc.php', $f);
 								
 				// writing file search-engine key ************************************************************************
 				$sub = 'CAkuc7ax5CheTHus';
 				$f = file_get_contents('../plugins/_search-engine/config.inc.php');
-				$f = str_replace($sub, uniqid('key'), $f);
+				$f = str_replace($sub, md5(uniqid('key')), $f);
 				file_put_contents('../plugins/_search-engine/config.inc.php', $f);
 				
 				// writing sitemap.xml ************************************************************************
