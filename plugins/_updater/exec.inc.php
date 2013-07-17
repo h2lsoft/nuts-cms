@@ -757,6 +757,7 @@ else
 
 				$sql = "SELECT ID, Name FROM NutsMenu WHERE Deleted = 'NO'";
 				$nuts->doQuery($sql);
+				$qID = $nuts->dbGetQueryID();
 				while($row = $nuts->dbFetch())
 				{
 					$pluginID = $row['ID'];
@@ -784,6 +785,9 @@ else
 							}
 						}
 					}
+
+					$nuts->dbSetQueryID($qID);
+
 				}
 			}
 
