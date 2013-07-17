@@ -1100,3 +1100,94 @@ CREATE TABLE `NutsUserShortcut` (
   KEY `Deleted` (`Deleted`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+
+
+/* update v.4.1 */
+ALTER TABLE `NutsUser` ADD COLUMN `PhoneStandard` VARCHAR(50) NULL AFTER `Phone` ;
+
+CREATE TABLE `NutsFAQ`
+(
+  `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `Language` CHAR(5) NOT NULL,
+  `Category` VARCHAR(255) NULL,
+  `Question` VARCHAR(255) NOT NULL,
+  `Answer` MEDIUMTEXT NULL,
+  `Visible` ENUM('YES','NO') NOT NULL DEFAULT 'YES',
+  `Position` INT UNSIGNED NOT NULL,
+  `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  INDEX `Language` (`Language`),
+  INDEX `Category` (`Category`),
+  INDEX `Deleted` (`Deleted`),
+  INDEX `Visible` (`Visible`),
+  INDEX `Position` (`Position`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (3, '_faq', 5, 'YES');
+
+
+
+CREATE TABLE `NutsCache`
+(
+  `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `Application` VARCHAR(255) NULL,
+  `Date` DATETIME NULL,
+  `Expiration` DATETIME NOT NULL,
+  `Content` LONGBLOB NULL,
+  `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  INDEX `Application` (`Application`),
+  INDEX `Date` (`Date`),
+  INDEX `Expiration` (`Expiration`),
+  INDEX `Deleted` (`Deleted`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `NutsGMaps` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) DEFAULT NULL,
+  `Description` varchar(255) DEFAULT NULL,
+  `Width` varchar(10) DEFAULT NULL,
+  `Height` varchar(10) DEFAULT NULL,
+  `Zoom` varchar(10) DEFAULT NULL,
+  `Type` varchar(20) DEFAULT NULL,
+  `Latitude` varchar(25) DEFAULT NULL,
+  `Longitude` varchar(25) DEFAULT NULL,
+  `Pico` longtext,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `Name` (`Name`),
+  KEY `Type` (`Type`),
+  KEY `Deleted` (`Deleted`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (2, '_gmaps', 10, 'YES');
+
+
+CREATE TABLE `NutsGMapsPOI` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NutsGMapsID` int(10) unsigned NOT NULL,
+  `Title` varchar(255) DEFAULT NULL,
+  `Address` varchar(255) DEFAULT NULL,
+  `ZipCode` varchar(50) DEFAULT NULL,
+  `City` varchar(255) DEFAULT NULL,
+  `Country` varchar(255) DEFAULT NULL,
+  `Latitude` varchar(25) DEFAULT NULL,
+  `Longitude` varchar(25) DEFAULT NULL,
+  `Color` varchar(50) DEFAULT NULL,
+  `Size` varchar(50) DEFAULT NULL,
+  `InfoWindow` varchar(255) DEFAULT NULL,
+  `Icon` varchar(255) DEFAULT NULL,
+  `Deleted` enum('YES','NO') NOT NULL DEFAULT 'NO',
+  PRIMARY KEY (`ID`),
+  KEY `NutsGMapsID` (`NutsGMapsID`),
+  KEY `City` (`City`),
+  KEY `Country` (`Country`),
+  KEY `Deleted` (`Deleted`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (2, '_gmaps-poi', 10, 'NO');
+
+ALTER TABLE `NutsUser` ADD COLUMN `LastConnection` DATETIME NOT NULL;
+
+ALTER TABLE `NutsPage` ADD COLUMN `Thumbnail` VARCHAR(255) NULL AFTER `LockedNutsUserID` ;
