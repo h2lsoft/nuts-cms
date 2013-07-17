@@ -533,6 +533,11 @@ class Page extends NutsCore
 		if(empty($this->vars['MetaDescription']))$this->vars['MetaDescription'] = MetaDescription;
 		if(empty($this->vars['MetaKeywords']))$this->vars['MetaKeywords'] = MetaKeywords;
 
+		// chgeck page language vs url
+		if($this->language != $this->vars['Language'])
+			$this->error404();
+
+
 		// output
 		$this->open(NUTS_THEMES_PATH.'/'.$this->theme.'/'.$this->vars['Template']);
 		// $this->htmlCompress(NUTS_HTML_COMPRESS);
