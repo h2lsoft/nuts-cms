@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin comments - action List
- * 
+ *
  * @version 1.0
  * @date 31/12/2012
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -45,11 +45,12 @@ $plugin->listSearchAddFieldBoolean('Visible');
 // create fields
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
 $plugin->listAddCol('NutsPageID', 'Page ID', 'center; width:30px', true);
-$plugin->listAddCol('Url', 'Page url', 'center; width:30px', true);
-$plugin->listAddCol('Avatar', '', 'center; width:30px', true);
-$plugin->listAddCol('Date', '', '; width:30px; white-space:nowrap;', true);
+$plugin->listAddCol('Avatar', ' ', 'center; width:30px', false);
 $plugin->listAddCol('Name', $lang_msg[1], '; width:30px; white-space:nowrap;', true);
+$plugin->listAddCol('Date', '', '; width:30px; white-space:nowrap;', true);
 $plugin->listAddCol('Message', '', '', false);
+$plugin->listAddCol('Url', 'Page url', 'center; width:30px', true);
+
 $plugin->listAddColImg('Visible');
 
 // batch actions
@@ -84,7 +85,7 @@ function hookData($row)
         $default = '/nuts/img/gravatar.jpg';
         $grav_url = "http://www.gravatar.com/avatar/".md5(strtolower(trim($row['Email'])))."?d=".urlencode($default)."&s=60";
         if(empty($row['Avatar']))$row['Avatar'] = $grav_url;
-        $row['Avatar'] = "<img src='{$row['Avatar']}' style='max-width:60px; max-height:60px;'>";
+        $row['Avatar'] = "<img src='{$row['Avatar']}' style='max-width:40px; max-height:40px;'>";
     }
 
 	// error
@@ -92,6 +93,8 @@ function hookData($row)
 	{
 		$row['td_class'] = 'error';
 	}
+
+	if(!$row['NutsPageID'])$row['NutsPageID'] = '-';
 
 
 	return $row;
