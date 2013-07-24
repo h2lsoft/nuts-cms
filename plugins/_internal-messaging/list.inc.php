@@ -88,7 +88,7 @@ $plugin->listSearchAddFieldBooleanX('Viewed', $lang_msg[6]);
 
 
 // create fields
-$plugin->listAddCol('uFrom', $lang_msg[3], 'center; width:10px; white-space:nowrap;', true);
+$plugin->listAddCol('uFrom', $lang_msg[3], '; width:10px; white-space:nowrap;', true);
 $plugin->listAddCol('Date', $lang_msg[5], 'center;  width:10px; white-space:nowrap;', true);
 $plugin->listAddCol('Subject', $lang_msg[2], '', false);
 $plugin->listAddCol('Reply', ' ', 'center; width:10px; white-space:nowrap;', false);
