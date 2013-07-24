@@ -36,16 +36,16 @@
 #header_right #user_shortcuts a i {font-size: 20px; margin: 0; padding: 0; }
 #header_right #user_shortcuts .drop-down-arrow {}
 
-#header_right #user_shortcuts-drop-down-menu {font-size:11px; padding: 0px; margin: 0;  width: 350px;}
+#header_right #user_shortcuts-drop-down-menu {font-size:11px; padding: 0px; margin: 0;  width: 280px;}
 
-#header_right #user_shortcuts-drop-down-menu li {padding: 0; margin: 0;  width: 350px; height: 24px; line-height: 24px;  color: #333; margin-bottom: 10px;}
+#header_right #user_shortcuts-drop-down-menu li {padding: 0; margin: 0;  width: 280px; height: 24px; line-height: 24px;  color: #333; margin-bottom: 10px;}
 #header_right #user_shortcuts-drop-down-menu li img {width: 24px; margin-right: 5px; vertical-align: middle; padding-left: 10px; }
 
-#header_right #user_shortcuts-drop-down-menu li a {color: #000; display: block; padding: 0; margin:0; width: 350px;}
+#header_right #user_shortcuts-drop-down-menu li a {color: #000; display: block; padding: 0; margin:0; width: 280px;}
 #header_right #user_shortcuts-drop-down-menu li a:hover {color: white;}
-#header_right #user_shortcuts-drop-down-menu li.norecord {text-align: center;}
+#header_right #user_shortcuts-drop-down-menu li.norecord {text-align: center; padding-top: 20px;}
 
-#header_right #user_shortcuts-drop-down-menu li.add_new {margin: 0; text-align: right; width: 340px; height: 15px!important; line-height: 15px!important; font-size: 11px; padding: 5px;}
+#header_right #user_shortcuts-drop-down-menu li.add_new {margin: 0; text-align: right; width: 260px; height: 15px!important; line-height: 15px!important; font-size: 11px; padding: 5px;}
 #header_right #user_shortcuts-drop-down-menu li.add_new a {color: #1570B8; display: inline; padding: 0;  margin:0; height: auto; position: relative; top:-8px;}
 #header_right #user_shortcuts-drop-down-menu li.add_new a:hover {background: none;}
 #header_right #user_shortcuts-drop-down-menu li.add_new a:active {color: #666;}
