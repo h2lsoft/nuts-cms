@@ -94,7 +94,7 @@ $(function(){
 
 
 
-           map.addMarker({
+           marker = map.addMarker({
                lat : gmarkers[i].Latitude,
                lng : gmarkers[i].Longitude,
                // icon: gmarkers[i].Icon,
@@ -114,9 +114,16 @@ $(function(){
                }
 
            });
+
+           if(gmarkers.length == 1)
+           {
+               new google.maps.event.trigger( marker, 'click' );
+               map.fitLatLngBounds();
+           }
        }
 
        if(gmarkers.length > 2)map.fitZoom();
+
 
    }
    else if(gtype == 'STATIC')
