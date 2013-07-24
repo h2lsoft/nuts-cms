@@ -1854,3 +1854,38 @@ function ajaxerUrlConstruct(action, plugin_name, plugin_default_action, params_a
     uri = str_replace('&&', '&', uri);
     return uri;
 }
+
+
+
+function getGeneratedPassword(plength, include_maj, include_number, include_special_chars)
+{
+    if(empty(plength))plength = 8;
+    if(empty(include_maj))include_maj = true;
+    if(empty(include_number))include_number = true;
+    if(empty(include_special_chars))include_special_chars = false;
+
+    keylist = "abcdefghijklmnopqrstuvwxyz";
+    if(include_maj)keylist += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if(include_number)keylist += "1234567890";
+    if(include_special_chars)keylist += "!$#_-@";
+
+    pass = '';
+
+    for(i=0; i < plength; i++)
+    {
+        char = keylist.charAt(Math.floor(Math.random()*keylist.length));
+
+        if(i < 2)
+        {
+            while(!isNaN(char))
+            {
+                char = keylist.charAt(Math.floor(Math.random()*keylist.length));
+            }
+        }
+
+        pass += char;
+    }
+
+    return pass;
+
+}
