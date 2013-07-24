@@ -295,7 +295,7 @@ if(nutsUserHasRight($_SESSION['NutsGroupID'], '_visual-query-builder', 'exec'))
 $nuts->parse('AllowVisualQueryBuilder', $AllowVisualQueryBuilder);
 
 // popup
-if(isset($_GET['popup']) && $_GET['popup'])
+if(isset($_GET['popup']) && ($_GET['popup'] == 1 || $_GET['popup'] == 'true'))
 {
 	$nuts->parse('popup_display', 'display:none;');
 	$nuts->eraseBloc('gravatar');
@@ -435,6 +435,10 @@ if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']) && !isset($_GET['target']) &
 
 		}
 	}
+}
+else
+{
+	$nuts->erasebloc('shorcuts');
 }
 
 
