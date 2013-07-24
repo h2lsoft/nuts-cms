@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin faq - Front office
- * 
+ *
  * @version 1.0
  * @date 02/07/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -10,6 +10,8 @@
 /* @var $plugin Page */
 /* @var $nuts Page */
 include(NUTS_PLUGINS_PATH.'/_faq/config.inc.php');
+if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_faq/www/style.css');
+
 
 $lang_file = NUTS_PLUGINS_PATH.'/_faq/lang/'.$page->language.'.inc.php';
 if(!file_exists($lang_file))
@@ -17,8 +19,8 @@ if(!file_exists($lang_file))
 include($lang_file);
 
 
+// execution ***********************************************************************************************************
 $plugin->openPluginTemplate();
-if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_faq/www/style.css');
 
 Query::factory()->select('*')
 				->from('NutsFAQ')
@@ -35,48 +37,34 @@ while($row = $nuts->dbFetch())
 
 if(count($answers) == 0)
 {
-	$nuts->erasebloc('questions');
-	$nuts->erasebloc('answers');
+	$nuts->erasebloc('qas');
 	$nuts->parse('no_record_msg', $lang_msg[8]);
 }
 else
 {
 	$nuts->erasebloc('norecord');
+	$qas = array();
 
-	$all_questions = array();
-
-	// parsing questions
+	// parsing qas
 	foreach($answers as $category => $questions)
 	{
-		$nuts->parse('questions.Category', $category);
+		$nuts->parse('qas.Category', $category);
 
 		foreach($questions as $question)
 		{
-			$nuts->parse('questions.question.ID', $question['ID']);
-			$nuts->parse('questions.question.Question', $question['Question']);
-			$nuts->loop('questions.question');
-			$all_questions[] = $question;
+			$nuts->parse('qas.qa.ID', $question['ID']);
+			$nuts->parse('qas.qa.Question', $question['Question']);
+			$nuts->parse('qas.qa.Answer', $question['Answer']);
+			$nuts->loop('qas.qa');
 		}
 
-		$nuts->loop('questions');
-	}
-
-	// parsing answers
-	foreach($all_questions as $question)
-	{
-		$nuts->parse('answers.ID', $question['ID']);
-		$nuts->parse('answers.AQuestion', $question['Question']);
-		$nuts->parse('answers.Answer', $question['Answer']);
-		$nuts->loop('answers');
+		$nuts->loop('qas');
 	}
 
 }
 
 
-
-
 $plugin->setNutsContent();
-
 
 
 ?>

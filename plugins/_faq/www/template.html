@@ -1,38 +1,51 @@
 <div id="nuts_faq">
 
     <bloc::norecord>
-    <div class="no_record">
-        {no_record_msg}
-    </div>
+        <div class="no_record">
+            {no_record_msg}
+        </div>
     </bloc::norecord>
 
-    <div id="nuts_questions">
-    <bloc::questions>
+
+    <div id="nuts_qas">
+    <bloc::qas>
 
         <h2>{Category}</h2>
 
-        <ul>
-        <bloc::question>
-            <li><a href="#q{ID}">{Question}</a></li>
-        </bloc::question>
-        </ul>
-    </bloc::questions>
-    </div>
+        <bloc::qa>
+        <div class="nuts_qa">
 
-    <bloc::answers>
-    <div id="q{ID}" class="nuts_answers">
+            <a class="nuts_question" id="nuts_question_{ID}" href="javascript:;" onclick="nutsFaQView({ID})">{Question}</a>
+            <div class="nuts_answer" id="nuts_answer_{ID}">{Answer}</div>
 
-        <h3>{AQuestion}</h3>
-
-        <div class="nuts_answer">
-        {Answer}
         </div>
+        </bloc::qa>
 
-        <div class="nuts_answer_top">
-            <a href="#top"></a>
-        </div>
-
+    </bloc::qas>
     </div>
-    </bloc::answers>
 
 </div>
+
+<script type="text/javascript">
+var nuts_faq_lastID = 0;
+function nutsFaQView(ID)
+{
+    if(nuts_faq_lastID == ID)
+    {
+        $('.nuts_question').removeClass('selected');
+        $('.nuts_answer').slideUp();
+        nuts_faq_lastID = 0;
+        return;
+    }
+
+
+    $('.nuts_question').removeClass('selected');
+    $('.nuts_answer').hide();
+    $('#nuts_question_'+ID).addClass('selected');
+    $('#nuts_answer_'+ID).slideToggle('normal');
+    nuts_faq_lastID = ID;
+}
+
+
+
+</script>

@@ -1,8 +1,9 @@
 #nuts_faq {margin-bottom: 80px;}
 #nuts_faq .no_record {text-align: center; height: 50px; line-height: 50px;}
-#nuts_faq #nuts_questions {margin-bottom: 150px;}
-#nuts_faq .nuts_answers {margin-bottom: 50px;}
-#nuts_faq .nuts_answers .nuts_answer {clear: left;}
-#nuts_faq .nuts_answers h3 {border-bottom: 1px solid #e5e5e5; padding-bottom: 15px;}
-#nuts_faq .nuts_answers .nuts_answer_top {clear: left; display: block; text-align: right;}
-#nuts_faq .nuts_answers .nuts_answer_top a {display: block; float: right; width: 14px; height: 14px; background: url(arrow_top.gif) no-repeat;}
+#nuts_faq #nuts_qas h2 {}
+#nuts_faq #nuts_qas .nuts_qa {padding: 5px; margin-bottom: 0px;}
+#nuts_faq #nuts_qas .nuts_qa a.nuts_question {border: 1px solid #ccc; padding: 10px; display: block;}
+#nuts_faq #nuts_qas .nuts_qa a.nuts_question:hover {background-color: #e5e5e5;}
+#nuts_faq #nuts_qas .nuts_qa a.selected {background-color: #e5e5e5;}
+
+#nuts_faq #nuts_qas .nuts_qa .nuts_answer {display: none; padding: 10px; border: 1px solid #ccc; border-top:0px;}
