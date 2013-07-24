@@ -159,12 +159,12 @@ function nutsUserExists($login_key, $login_value, $CurrentUserID = 0)
 {
 	/* @var $nuts Page */
 	global $nuts;
-	
-	$sql = "SELECT 
-					ID 
-			FROM 
-					NutsUser 
-			WHERE 
+
+	$sql = "SELECT
+					ID
+			FROM
+					NutsUser
+			WHERE
 					$login_key = '%s' AND
 					Deleted = 'NO' AND
 					ID != $CurrentUserID
@@ -188,10 +188,10 @@ function nutsUserLogin($NutsUserID, $sql_fields_added = "", $preserve_session_ke
 {
 	/* @var $nuts Page */
 	global $nuts, $nuts_session_preserve_keys;
-	
+
 	$preserve_session_key = array_merge($nuts_session_preserve_keys, $preserve_session_key);
 	$preserve_session_key = array_unique($preserve_session_key);
-	
+
 	$NutsUserID = (int)$NutsUserID;
 	if(!empty($sql_fields_added))$sql_fields_added = ', '.$sql_fields_added;
 	$nuts->dbSelect("SELECT
@@ -313,8 +313,8 @@ function nutsUserGetData($NutsUserID="", $fields="*")
 }
 
 /**
- * Verify if user is correct 
- *  
+ * Verify if user is correct
+ *
  * @param string $login Login verification alphanum + `_`
  * @return boolean
  */
@@ -325,8 +325,8 @@ function nustUserLoginIsValid($login)
 }
 
 /**
- * Verify if password is correct 
- *  
+ * Verify if password is correct
+ *
  * @param string $pass Password verification alphanum + `_` + `-`
  * @return boolean
  */
@@ -338,8 +338,8 @@ function nustUserPasswordIsValid($pass)
 
 /**
  * Register new user
- * 
- * @param array fields 
+ *
+ * @param array fields
  * @param array fields exception (optional)
  * @return int userID
  */
@@ -353,37 +353,37 @@ function nutsUserRegister($fields, $except=array())
 
 	if(array_key_exists('Password', $fields))
 		nutsUserSetPassword($USER_ID, $fields['Password']);
-	
+
 	return $USER_ID;
 }
 
 /**
  * Update user password
- *  
+ *
  * @param int $NutsUserID
- * @param string $password 
+ * @param string $password
  */
 function nutsUserSetPassword($NutsUserID, $password)
 {
 	/* @var $nuts Page */
 	global $nuts;
-	
-	
+
+
 	// $password = utf8_encode($password);
-	
-	$sql = "UPDATE 
-					NutsUser 
-			SET 
-					Password = ENCODE('$password', '".NUTS_CRYPT_KEY."') 
-			WHERE 
-					ID = $NutsUserID";	
-	$nuts->doQuery($sql);	
-	
+
+	$sql = "UPDATE
+					NutsUser
+			SET
+					Password = ENCODE('$password', '".NUTS_CRYPT_KEY."')
+			WHERE
+					ID = $NutsUserID";
+	$nuts->doQuery($sql);
+
 }
 
 /**
  * Get user password
- * 
+ *
  * @param int $NutsUserID
  * @return string $password uncrypted password
  */
@@ -391,19 +391,19 @@ function nutsUserGetPassword($NutsUserID)
 {
 	/* @var $nuts Page */
 	global $nuts;
-	
-	$sql = "SELECT 
+
+	$sql = "SELECT
 					DECODE(Password, '".NUTS_CRYPT_KEY."') AS Password
 			FROM
 					NutsUser
-			WHERE 
-					ID = $NutsUserID";	
-	$nuts->doQuery($sql);	
+			WHERE
+					ID = $NutsUserID";
+	$nuts->doQuery($sql);
 	$password = $nuts->dbGetOne();
-	
-	
+
+
 	return $password;
-	
+
 }
 
 /**
@@ -851,7 +851,7 @@ function nutsClearCache($app)
  *
  * @param $app
  * @param $contents
- * @param $expiration (sql mode YYYY-MM-DD HH:II:SS)
+ * @param $expiration (sql mode YYYY-MM-DD HH:II:SS or string begins by + example + 1 hour current time + one hour)
  */
 function nutsSetCache($app, $contents, $expiration)
 {
@@ -861,6 +861,13 @@ function nutsSetCache($app, $contents, $expiration)
 	$f['Date'] = 'NOW()';
 	$f['Application'] = $app;
 	$f['Content'] = $contents;
+
+	if(@$expiration[0] == '+')
+	{
+		$expiration = date('Y-m-d H:i:s', strtotime($expiration));
+	}
+
+
 	$f['Expiration'] = $expiration;
 
 	$nuts->dbInsert('NutsCache', $f);
