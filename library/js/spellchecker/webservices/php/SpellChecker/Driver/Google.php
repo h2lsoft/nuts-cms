@@ -38,7 +38,7 @@ class Google extends \SpellChecker\Driver
 		$response = array();
 
 		foreach($texts as $text)
-		{    
+		{
 			$words = $this->get_matches($text);
 
 			$incorrect_words = array();
@@ -79,11 +79,11 @@ class Google extends \SpellChecker\Driver
 		$xml_response = curl_exec($ch);
 		curl_close($ch);
 
-		$xml = simplexml_load_string($xml_response);
+		$xml = @simplexml_load_string($xml_response);
 
 		$matches = array();
 
-		foreach($xml->c as $word)
+		foreach(@$xml->c as $word)
 		{
 			$matches[] = array(
 				(int) $word->attributes()->o,
