@@ -1,5 +1,5 @@
 <?php
 
-$lang_msg[0] = "Updater"; // plugin name
+$lang_msg[0] = "Live updater"; // plugin name
 
 ?>
