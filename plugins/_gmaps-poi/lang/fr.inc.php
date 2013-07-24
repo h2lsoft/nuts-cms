@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin gmaps-poi - Language file
- * 
+ *
  * @version 1.0
  * @date 09/07/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -16,7 +16,7 @@ $lang_msg[4] = "Ville";
 $lang_msg[5] = "Pays";
 
 $lang_msg[6] = "Icône";
-$lang_msg[7] = "Coleur";
+$lang_msg[7] = "Couleur";
 $lang_msg[8] = "Taille";
 $lang_msg[9] = "Information";
 
