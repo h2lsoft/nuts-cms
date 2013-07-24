@@ -1,16 +1,27 @@
 <div class="nuts_gmaps" id="nuts_gmaps_{ID}"></div>
-<div class="nuts_gmaps_places" id="nuts_gmaps_places_{ID}"></div>
+<div class="nuts_gmaps_places" id="nuts_gmaps_places_{ID}">
+
+    <bloc::pois>
+    <ul>
+        <bloc::poi>
+        <li><a href="javascript:new google.maps.event.trigger(gmarkersGenerated[{i}], 'click');"><span class="poi_title">{Title}</span> <span class="poi_sep"> - </span> <span class="poi_address">{Address}</span> <span class="poi_city">{City}</span> <span class="poi_country_sep">, </span><span class="poi_country">{Country}</span></a></li>
+        </bloc::poi>
+    </ul>
+    </bloc::pois>
+
+</div>
 
 
 <script type="text/javascript">
-$(function(){
+var gtype = "{Type}";
+var gmarkers = {Markers};
+var gmarkersGenerated = new Array;
 
-   var gtype = "{Type}";
-   var gmarkers = {Markers};
+$(function(){
 
    if(gtype == 'CLASSIC')
    {
-       var map = new GMaps({
+       var nuts_gmaps_{ID} = new GMaps({
            div: '#nuts_gmaps_{ID}',
            lat: {Latitude},
            lng: {Longitude},
@@ -19,34 +30,7 @@ $(function(){
            zoom: {Zoom}
        });
 
-       // geolocalize
-       /*map.addControl({
-           position: 'top_right',
-           content: 'Geolocalize',
-           style: {
-               margin: '5px',
-               padding: '1px 6px',
-               border: 'solid 1px #717B87',
-               background: '#fff'
-           },
-           events: {
-               click: function(){
-                   GMaps.geolocate({
-                       success: function(position){
-                           map.setCenter(position.coords.latitude, position.coords.longitude);
-                       },
-                       error: function(error){
-                           alert('Geolocation failed: ' + error.message);
-                       },
-                       not_supported: function(){
-                           alert("Your browser does not support geolocation");
-                       }
-                   });
-               }
-           }
-       });*/
-
-
+       map = nuts_gmaps_{ID};
 
        // markers
        for(i=0; i < gmarkers.length; i++)
@@ -65,7 +49,6 @@ $(function(){
            }
 
            info_window = '<div class="nuts_gmaps_tt">'+info_window+'</div>';
-
 
            if(!empty(gmarkers[i].Icon))
            {
@@ -92,38 +75,29 @@ $(function(){
                        new google.maps.Point(12, 35));
            }
 
-
-
            marker = map.addMarker({
                lat : gmarkers[i].Latitude,
                lng : gmarkers[i].Longitude,
-               // icon: gmarkers[i].Icon,
-
                icon: pinImage,
                shadow: pinShadow,
-
                size: strtolower(gmarkers[i].Size),
                color: strtolower(gmarkers[i].Color),
                title: gmarkers[i].Title,
-               infoWindow: {
-                   content: info_window
-               },
-
-               details: {
-                   ID: gmarkers[i].ID
-               }
-
+               infoWindow: {content: info_window},
+               details: {ID: gmarkers[i].ID}
            });
+           gmarkersGenerated[gmarkersGenerated.length] = marker;
 
-           if(gmarkers.length == 1)
-           {
-               new google.maps.event.trigger( marker, 'click' );
-               map.fitLatLngBounds();
-           }
+       }
+
+       if(gmarkers.length == 1)
+       {
+           setTimeout(function(){
+               new google.maps.event.trigger(marker, 'click');
+           }, 800);
        }
 
        if(gmarkers.length > 2)map.fitZoom();
-
 
    }
    else if(gtype == 'STATIC')
@@ -138,6 +112,7 @@ $(function(){
        });
 
        $('<img/>').attr('src', map).appendTo('#nuts_gmaps_{ID}');
+       $('#nuts_gmaps_places_{ID}').hide();
    }
    else if(gtype == 'STREET VIEW')
    {
@@ -149,11 +124,8 @@ $(function(){
            lng: {Longitude},
            zoom: {Zoom}
        });
+       $('#nuts_gmaps_places_{ID}').hide();
    }
 
-
-
-
 })
-
 </script>

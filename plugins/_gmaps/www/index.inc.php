@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin gmaps - Front office
- * 
+ *
  * @version 1.0
  * @date 08/07/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -40,12 +40,13 @@ else
 	$nuts->parse('Width', $rec['Width']);
 	$nuts->parse('Height', $rec['Height']);
 
-	// POI
+	// POIS
 	$markers = Query::factory()->select('*')
 							   ->from('NutsGMapsPOI')
 							   ->whereEqualTo('NutsGMapsID', $rec['ID'])
 							   ->executeAndGetAll();
 
+	$pois = $markers;
 	if($rec['Type'] == 'STATIC')
 	{
 		$tmp = array();
@@ -66,6 +67,22 @@ else
 
 	$nuts->parse('Markers', json_encode($markers));
 
+	if($rec['Type'] != 'CLASSIC' || !count($markers))
+	{
+		$nuts->eraseBloc('pois');
+	}
+	else
+	{
+		for($i=0; $i < count($pois); $i++)
+		{
+			$nuts->parse('poi.Title', $pois[$i]['Title']);
+			$nuts->parse('poi.Address', $pois[$i]['Address']);
+			$nuts->parse('poi.City', $pois[$i]['City']);
+			$nuts->parse('poi.Country', $pois[$i]['Country']);
+			$nuts->parse('poi.i', $i);
+			$nuts->loop('poi');
+		}
+	}
 
 	$plugin->setNutsContent();
 }
