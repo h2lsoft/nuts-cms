@@ -122,9 +122,4 @@ Plugin::dashboardAddWidget($lang_msg[0], 'medium', 'shortcut', 'full', '', $nuts
 
 
 
-
-
-
 ?>
-
-

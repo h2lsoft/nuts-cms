@@ -105,31 +105,7 @@ else
 		Plugin::dashboardAddWidget($lang_msg[0], 'final', 'analytics', 'full', '', $contents);
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
-
-
-
 ?>
-
-
