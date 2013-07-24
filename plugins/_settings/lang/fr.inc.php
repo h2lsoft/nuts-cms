@@ -27,7 +27,7 @@ $lang_msg[12] = "Oui";
 $lang_msg[13] = "Hôte";
 $lang_msg[14] = "Login";
 $lang_msg[15] = "Mot de passe";
-$lang_msg[16] = "Base de sonnées";
+$lang_msg[16] = "Base de données";
 $lang_msg[17] = "Port";
 $lang_msg[18] = "(par défaut si vide 3306)";
 
