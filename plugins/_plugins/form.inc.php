@@ -14,7 +14,7 @@ foreach($mods_group as $mod)
 	$opts[] = array('label' => $mod['name'], 'value' => $k);
 	$k++;
 }
-$plugin->formAddFieldSelect('Category', '', true, $opts);
+$plugin->formAddFieldSelect('Category', $lang_msg[3], true, $opts);
 
 // plugin list
 $plugins_list = (array)glob(NUTS_PLUGINS_PATH.'/*');
@@ -25,9 +25,9 @@ foreach($plugins_list as $plg)
 	$plg = str_replace(NUTS_PLUGINS_PATH.'/', '', $plg);
 	$plugin_list .= '<option value="'.$plg.'">'.$plg.'</option>'."\n";
 }
-$plugin->formAddFieldSelectHtml('Name', '', true, $plugin_list);
+$plugin->formAddFieldSelectHtml('Name', $lang_msg[4], true, $plugin_list);
 $plugin->formAddFieldText('Position', '', true, '', 'width:3em; text-align:center', '', '', $lang_msg[1]);
-$plugin->formAddFieldText('ExternalUrl', '', false);
+$plugin->formAddFieldText('ExternalUrl', $lang_msg[6], false);
 
 /*$options = array();
 $options[] = array('value' => 0, 'label' => 'No');

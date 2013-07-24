@@ -16,7 +16,7 @@ foreach($mods_group as $mod) {
 	$k++;
 }
 
-$plugin->listSearchAddFieldSelect('Category', '', $opts);
+$plugin->listSearchAddFieldSelect('Category', $lang_msg[3], $opts);
 // $plugin->listSearchAddFieldBoolean('Visible');
 
 
@@ -29,9 +29,9 @@ if(isset($_GET['Category']))
 	$plugin->listAddColPosition('Position', 'Category', $_GET['Category']);
 //$plugin->listAddCol('Position', '', 'center; width:10px', true);
 
-$plugin->listAddCol('Category', '', 'center; width:30px', true, array());
+$plugin->listAddCol('Category', $lang_msg[3], 'center; width:30px', true, array());
 $plugin->listAddCol('Icon', ' ', 'center; width:10px;', false);
-$plugin->listAddCol('Name', '', '', true);
+$plugin->listAddCol('Name', $lang_msg[4], '', true);
 $plugin->listAddCol('Version', '', 'center; width:10px;  white-space:nowrap;', false);
 $plugin->listAddCol('Language', '', 'center; width:10px; white-space:nowrap;', false);
 $plugin->listAddCol('Author', $lang_msg[2], 'center; width:10px; white-space:nowrap;', false);
@@ -52,7 +52,7 @@ if(nutsUserHasRight($_SESSION['NutsGroupID'], '_configuration', 'edit'))
 $plugin->listCopyButton = false;
 $plugin->listSearchOpenOnload = true;
 $plugin->listWaitingForUserSearching = true;
-$plugin->listWaitingForUserSearchingMessage = "Please select a category";
+$plugin->listWaitingForUserSearchingMessage = $lang_msg[5];
 
 if(nutsUserHasRight($_SESSION['NutsGroupID'], '_right-manager', 'edit'))
 {
