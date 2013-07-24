@@ -18,7 +18,7 @@ function generatePassword()
 
         temp += char;
     }
-	
+
 	$('#former #Password').val(temp);
 }
 
@@ -104,10 +104,14 @@ $(function(){
         $(this).select();
     });
 
-
-
-
-
+    // add mode
+    if(formGetCurrentID() == 0)
+    {
+        if(!empty($('#list_search_content #NutsGroupID').val()))
+        {
+            $('#former #NutsGroupID').val($('#list_search_content #NutsGroupID').val());
+        }
+    }
 });
 
 
