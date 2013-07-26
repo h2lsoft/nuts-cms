@@ -2265,8 +2265,22 @@ function ajaxerParameterRequired($index, $cast='', $method='get')
 	}
 }
 
+/**
+ * Automatic cast super globals with key ID or finish by ID for $_GET, $_POST
+ */
+function autocastSuperGlobals()
+{
+	foreach($_GET as $key => $val){
+		if(!is_array($val) && ($key == 'ID' || preg_match('/ID$/', $key)))
+			$_GET[$key] = (int)$val;
+	}
 
+	foreach($_POST as $key => $val){
+		if(!is_array($val) && ($key == 'ID' || preg_match('/ID$/', $key)))
+			$_POST[$key] = (int)$val;
+	}
 
+}
 
 
 ?>

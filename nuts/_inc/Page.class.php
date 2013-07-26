@@ -121,6 +121,8 @@ class Page extends NutsCore
      */
 	public function __construct()
 	{
+		parent::__construct();
+
 		// preview
 		if(isset($_GET['nuts_preview']) && $_GET['nuts_preview'] == 1)
 		{

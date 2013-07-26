@@ -15,7 +15,6 @@ include('nuts/_inc/NutsCRUD.class.php');
 FB::setEnabled(FirePHP_enabled);
 
 
-
 // auto include files
 $scripts = glob('x_includes/*.php');
 if(is_array($scripts)){
