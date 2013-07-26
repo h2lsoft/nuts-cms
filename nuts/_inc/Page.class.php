@@ -3553,7 +3553,7 @@ EOF;
 	 * @return bool
 	 */
 	public function pluginHasParameter(){
-		$bool = (!count($this->plugin_embed[$this->plugin_real_name])) ? false : true;
+		$bool = (!@count($this->plugin_embed[$this->plugin_real_name])) ? false : true;
 		return $bool;
 	}
 
