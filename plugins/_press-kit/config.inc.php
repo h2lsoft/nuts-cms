@@ -2,7 +2,7 @@
 
 // en
 $plugins_lng['en']['no_record_msg'] = "No document found";
-$plugins_lng['en']['date_format'] = "%Y/%m/%d"; // in sql mode with %
+$plugins_lng['en']['date_format'] = "%Y-%m-%d"; // in sql mode with %
 
 $plugins_lng['en']['source'] = "Source / Author";
 $plugins_lng['en']['title'] = "Title";
