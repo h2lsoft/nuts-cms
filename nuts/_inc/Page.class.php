@@ -3544,7 +3544,11 @@ EOF;
 	 * @param $index
 	 */
 	public function getPluginParameter($index){
-		return @$this->plugin_embed[$this->plugin_real_name][$index];
+
+		$param = @$this->plugin_embed[$this->plugin_real_name][$index];
+		if(!empty($param)) $param = str_replace("`", "'", $param);
+
+		return $param;
 	}
 
 
