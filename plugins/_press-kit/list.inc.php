@@ -8,13 +8,15 @@ $plugin->listSetDbTable('NutsPressKit');
 
 // search engine
 $plugin->listSearchAddFieldText('ID');
-$plugin->listSearchAddFieldDate('Date');
+$plugin->listSearchAddFieldSelectSql('Category', $lang_msg[5]);
 $plugin->listSearchAddFieldSelectSql('Source', $lang_msg[3]);
 $plugin->listSearchAddFieldText('Title', $lang_msg[2]);
+$plugin->listSearchAddFieldDate('Date');
 
 
 // create fields
 $plugin->listAddCol('ID', '', 'center; width:30px', true); // with order by
+$plugin->listAddCol('Category', $lang_msg[5], '; width:50px; white-space:nowrap;', true);
 $plugin->listAddCol('Source', $lang_msg[3], '; width:50px; white-space:nowrap;', true);
 $plugin->listAddCol('Title', $lang_msg[2], '', true);
 $plugin->listAddCol('File', $lang_msg[4], 'center; width:50px; white-space:nowrap;');
@@ -30,7 +32,7 @@ function hookData($row)
 	$image = getImageExtension($row['File']);
 	$dl = '<a title="[FILE]" class="tt"  href="[FILE]" target="_blank">'.$image.'</a>';
 	$row['File'] = str_replace('[FILE]', $row['File'], $dl);
-		
+
 	return $row;
 }
 

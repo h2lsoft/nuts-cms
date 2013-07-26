@@ -7,8 +7,15 @@
 include_once($plugin->plugin_path.'/config.inc.php');
 
 $cur_cf = (isset($plugins_lng[$plugin->vars['Language']])) ? $plugins_lng[$plugin->vars['Language']] : $plugins_lng['en'];
+$sql_added = '';
+if($plugin->pluginHasParameter())
+{
+	$category = $plugin->getPluginParameter(0);
+	if(!empty($category))
+		$sql_added = " AND Category = '".sqlX($category)."'";
+}
 
-// execution ******************************************
+// execution ***********************************************************************************************************
 $plugin->openPluginTemplate();
 
 $sql = "SELECT
@@ -18,6 +25,7 @@ $sql = "SELECT
 				NutsPressKit
 		WHERE
 				Deleted = 'NO'
+				$sql_added
 		ORDER BY
 				Date DESC";
 $plugin->doQuery($sql);

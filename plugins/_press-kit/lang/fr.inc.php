@@ -6,6 +6,7 @@ $lang_msg[1] = "Date";
 $lang_msg[2] = "Titre";
 $lang_msg[3] = "Auteur / Source";
 $lang_msg[4] = "Fichier";
+$lang_msg[5] = "Catégorie";
 
 
 ?>
