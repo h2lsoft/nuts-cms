@@ -1,7 +1,7 @@
 <?php
 /**
  * List nuts widgets:
- * 
+ *
  *	- plugin
  *	- forms
  *	- survey
@@ -16,7 +16,7 @@ include_once("config.inc.php");
 include_once("headers.inc.php");
 
 // initialization
-$nuts = new NutsCore();
+$nuts = new NutsCore(false);
 $nuts->DbConnect();
 include_once("_inc/session.inc.php");
 include(WEBSITE_PATH."/nuts/lang/{$_SESSION['Language']}.inc.php");
@@ -37,7 +37,7 @@ foreach($plugins as $plugin)
 {
 	$plugin = str_replace($dir_plugin."/", '', $plugin);
 	if(!in_array($plugin, array('_page-manager','_news')) && is_dir($dir_plugin."/".$plugin."/www"))
-		$new_plugins[] = $plugin;		 
+		$new_plugins[] = $plugin;
 }
 
 // parse items
@@ -52,10 +52,10 @@ else
 		$img = '/plugins/_dropbox/icon.png';
 		if(file_exists(WEBSITE_PATH."/plugins/$item/icon.png"))
 			$img = "/plugins/$item/icon.png";
-		
-		
+
+
 		$item_c = "{@NUTS    TYPE='PLUGIN'    NAME='$item'    PARAMETERS=''}";
-		
+
 		$nuts->parse('plugins.item', $item_c);
 		$nuts->parse('plugins.img', $img);
 		$nuts->parse('plugins.name', $item);
@@ -85,8 +85,8 @@ else
 	while($row = $nuts->dbFetch())
 	{
 		$item_c = "{@NUTS    TYPE='FORM'    NAME='{$row['Name']}'}";
-		
-		$nuts->parse('forms.item', $item_c);		
+
+		$nuts->parse('forms.item', $item_c);
 		$nuts->parse('forms.img', $img);
 		$nuts->parse('forms.name', ucfirst($row['Name']));
 		$nuts->parse('forms.desc', ucfirst($row['Description']));
@@ -118,8 +118,8 @@ else
 	while($row = $nuts->dbFetch())
 	{
 		$item_c = sprintf("{@NUTS    TYPE='SURVEY'    ID='%s'    TITLE='%s'}", $row['ID'], $row['Title']);
-		
-		$nuts->parse('survey.item', $item_c);		
+
+		$nuts->parse('survey.item', $item_c);
 		$nuts->parse('survey.img', $img);
 		$nuts->parse('survey.name', ucfirst($row['Title']));
 		$nuts->loop('survey');
@@ -146,26 +146,26 @@ if(!$res)
 }
 else
 {
-	
+
 	while($row = $nuts->dbFetch())
 	{
 		$item_c = sprintf("{@NUTS    TYPE='BLOCK'    NAME='%s'}", $row['Name']);
-		
+
 		$img = NUTS_THEMES_URL.'/default/_preview/no-preview.png';
 		if(!empty($row['Preview']))
 			$img = $row['Preview'];
-		
+
 		if(empty($row['GroupName']))$row['GroupName'] = "-";
 		if(empty($row['SubGroupName']))$row['SubGroupName'] = "-";
-				
-		$nuts->parse('blocks.item', $item_c);	
+
+		$nuts->parse('blocks.item', $item_c);
 		$nuts->parse('blocks.img', $img);
 		$nuts->parse('blocks.name', ucfirst($row['Name']));
 		$nuts->parse('blocks.group', ucfirst($row['GroupName']));
 		$nuts->parse('blocks.sub_group', ucfirst($row['SubGroupName']));
 		$nuts->loop('blocks');
 	}
-	
+
 }
 
 
@@ -189,8 +189,8 @@ else
 	while($row = $nuts->dbFetch())
 	{
 		$item_c = $row['Pattern'];
-		
-		$nuts->parse('patterns.item', $item_c);		
+
+		$nuts->parse('patterns.item', $item_c);
 		$nuts->parse('patterns.img', $img);
 		$nuts->parse('patterns.name', ucfirst($row['Name']));
 		$nuts->parse('patterns.type', $row['Type']);
@@ -222,8 +222,8 @@ else
 	while($row = $nuts->dbFetch())
 	{
 		$item_c = sprintf("{@NUTS    TYPE='REGION'    NAME='%s'}", $row['Name']);
-		
-		$nuts->parse('regions.item', $item_c);		
+
+		$nuts->parse('regions.item', $item_c);
 		$nuts->parse('regions.img', $img);
 		$nuts->parse('regions.name', ucfirst($row['Name']));
 		$nuts->parse('regions.desc', ucfirst($row['Description']));
@@ -253,8 +253,8 @@ else
 	while($row = $nuts->dbFetch())
 	{
 		$item_c = sprintf("{@NUTS    TYPE='ZONE'    NAME='%s'}", $row['Name']);
-		
-		$nuts->parse('zones.item', $item_c);		
+
+		$nuts->parse('zones.item', $item_c);
 		$nuts->parse('zones.img', $img);
 		$nuts->parse('zones.name', ucfirst($row['Name']));
 		$nuts->parse('zones.desc', ucfirst($row['Description']));

@@ -16,7 +16,7 @@ include('headers.inc.php');
 FB::setEnabled(FirePHP_enabled);
 include('_inc/Plugin.class.php');
 
-$nuts = new NutsCore();
+$nuts = new NutsCore(false);
 $nuts->dbSetProtection(false); # remove data protection
 $nuts->dbConnect();
 include('_inc/session.inc.php');
@@ -60,7 +60,7 @@ if(@$_GET['_action'] == 'users_online')
 
     $gravatar_url = '/nuts/img/gravatar.jpg';
     $users_online[] = array('avatar_url' => $gravatar_url, 'Name' => $_SESSION['Login'], 'ID' => $row['NutsUserID'], 'Application' => '');
-	
+
 	die(json_encode($users_online));
 }
 
@@ -267,10 +267,10 @@ else
 	$yaml = Spyc::YAMLLoad(PLUGIN_PATH.'/info.yml');
 	$default_lang = array_map('trim', explode(',',$yaml['langs']));
 	$default_lang = $default_lang[0];
-	
+
 	include(PLUGIN_PATH.'/lang/'.$default_lang.'.inc.php');
 }
-	
+
 
 $plugin = new Plugin();
 include(PLUGIN_PATH.'/'.$_GET['do'].'.inc.php');
@@ -516,7 +516,7 @@ if(!isset($_GET['ajax']) || !isset($_GET['target']))
 }
 else
 {
-    $out = $nuts->getAjaxBloc($_GET['target'], $out);    
+    $out = $nuts->getAjaxBloc($_GET['target'], $out);
     echo $out;
 }
 

@@ -3547,6 +3547,18 @@ EOF;
 		return @$this->plugin_embed[$this->plugin_real_name][$index];
 	}
 
+
+	/**
+	 * check if current plugin has parameter
+	 * @return bool
+	 */
+	public function pluginHasParameter(){
+		$bool = (!count($this->plugin_embed[$this->plugin_real_name])) ? false : true;
+		return $bool;
+	}
+
+
+
 }
 
 

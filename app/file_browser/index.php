@@ -26,7 +26,7 @@ if(@$_SESSION['NutsGroupID'] == '' || @$_SESSION['NutsUserID'] == '')
     systemError("You must be logged");
 
 // init
-$nuts = new NutsCore();
+$nuts = new NutsCore(false);
 $nuts->dbConnect();
 
 

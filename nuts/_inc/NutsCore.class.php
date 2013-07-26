@@ -14,8 +14,8 @@
 
 class NutsCore extends TPLN {
 
-	public function __construct(){
-		autocastSuperGlobals();
+	public function __construct($autocast_globals=true){
+		if($autocast_globals)autocastSuperGlobals();
 	}
 
 
