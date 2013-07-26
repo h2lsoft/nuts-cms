@@ -199,7 +199,11 @@
                         msg = "Entrer les paramètres du plugin (séparé par `;`)";
                     params = prompt(msg);
 
-                    if(empty(params))params = '';
+
+                    if(empty(params))
+                        params = '';
+                    else
+                        params = str_replace("'", "`", params);
 
                     content = str_replace("PARAMETERS=''", "PARAMETERS='"+params+"'", content);
                 }
