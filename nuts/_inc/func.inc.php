@@ -115,6 +115,59 @@ function nutsGetGMTDate()
 {
 	return gmdate('Y-m-d H:i:s');
 }
+
+
+/**
+ * Convert user Date to GMT date depend on user date format
+ * @param $date
+ *
+ * @return string sql_date
+ */
+function nutsConvertUserDateToGMT($user_date)
+{
+	if(empty($user_date) || $user_date == '0000-00-00 00:00:00' || $user_date == '0000-00-00')return '';
+
+	// reformat date fr or en
+	$convert_date = $user_date;
+	$convert_date_sql = '';
+	$user_date_type = '';
+	if(preg_match('#[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}#', $convert_date))
+	{
+		$date_format = 'd/m/Y H:i';
+		list($d, $m, $Y) = explode('/', $convert_date);
+		list($Y, $hours) = explode(' ', $Y);
+		list($H, $i) = explode(':', $hours);
+		$hours = trim($H);
+		$convert_date_sql = "$Y-$m-$d $H:$i";
+	}
+	elseif(preg_match('#[0-9]{2}/[0-9]{2}/[0-9]{4}#', $convert_date))
+	{
+		$date_format = 'd/m/Y';
+		list($d, $m, $Y) = explode('/', $convert_date);
+		$convert_date_sql = "$Y-$m-$d";
+
+	}
+	elseif(preg_match('#[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}#', $convert_date))
+	{
+		$date_format = 'Y-m-d H:i';
+		$convert_date_sql = $convert_date;
+	}
+	elseif(preg_match('#[0-9]{4}-[0-9]{2}-[0-9]{2}#', $convert_date))
+	{
+		$date_format = 'Y-m-d';
+		$convert_date_sql = $convert_date;
+	}
+
+	$inv_timezone = $_SESSION['Timezone'] * -1;
+	$convert_date_sql = strtotime("$convert_date_sql $inv_timezone hour");
+	$convert_date_gmt = date($date_format, $convert_date_sql);
+
+	return $convert_date_gmt;
+}
+
+
+
+
 /**
  * Return date in GMT
  *

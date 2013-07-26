@@ -5,14 +5,21 @@
 
 include(PLUGIN_PATH.'/config.inc.php');
 
+// reajuts DateGMT
+if($plugin->listUserIsSearching())
+{
+	if(!@empty($_GET['DateGMT']))$_GET['DateGMT'] = nutsConvertUserDateToGMT($_GET['DateGMT']);
+	if(!@empty($_GET['DateGMT2']))$_GET['DateGMT2'] = nutsConvertUserDateToGMT($_GET['DateGMT2']);
+}
+
 
 // assign table to db
 $plugin->listSetDbTable('NutsLog',
 									"DATE_ADD(DateGMT, INTERVAL {$_SESSION['Timezone']} HOUR) AS DateGMT,
-									 DATE_ADD(DateGMT, INTERVAL {$_SESSION['Timezone']} HOUR) AS DateGMT2,									
+									 DATE_ADD(DateGMT, INTERVAL {$_SESSION['Timezone']} HOUR) AS DateGMT2,
 									(SELECT Name FROM NutsGroup WHERE ID = NutsLog.NutsGroupID) AS GroupName,
 									(SELECT Login FROM NutsUser WHERE ID = NutsLog.NutsUserID) AS NutsUserName");
-							
+
 // search engine
 $plugin->listSearchAddFieldDatetime('DateGMT', $lang_msg[2], '', '', '>=');
 $plugin->listSearchAddFieldDatetime('DateGMT2', $lang_msg[2], 'DateGMT', '', '<=');
@@ -53,9 +60,9 @@ $plugin->listRender(100, 'hookData');
 function hookData($row)
 {
 	global $nuts;
-	
+
 	$row['IP'] = long2ip($row['IP']);
-	$row['IP'] = '<a href="http://www.geoiptool.com/en/?IP='.$row['IP'].'" target="_blank">'.$row['IP'].'</a>';	
+	$row['IP'] = '<a href="http://www.geoiptool.com/en/?IP='.$row['IP'].'" target="_blank">'.$row['IP'].'</a>';
 	$row['Resume'] = '<span class="mini">'.$row['Resume'].'</span>';
 
 	return $row;
