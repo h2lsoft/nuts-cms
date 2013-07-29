@@ -9,6 +9,7 @@ $plugin->formDBTable(array('NutsRegion'));
 
 // fields
 $plugin->formAddFieldText('Name', $lang_msg[1], 'unique|notEmpty', '', '', '', 'maxlength="50"');
+$plugin->formAddFieldTextAjaxAutoComplete('Category', $lang_msg[26], false);
 $plugin->formAddFieldTextArea('Description', $lang_msg[2], false);
 
 $plugin->formAddFieldTextArea('Query', $lang_msg[6], true, 'sql', 'height:250px;', '', 'Add {@PAGE_ID} to replace with current page ID');
@@ -31,6 +32,13 @@ $plugin->formAddFieldBooleanX('PreviousStartEndVisible', $lang_msg[23], true);
 $plugin->formAddFieldTextArea('PagerStartText', $lang_msg[24], false);
 $plugin->formAddFieldTextArea('PagerEndText', $lang_msg[25], false);
 
+
+if($_POST)
+{
+	$_POST['Name'] = ucfirst($_POST['Name']);
+	$_POST['Description'] = ucfirst($_POST['Description']);
+	$_POST['Category'] = ucfirst($_POST['Category']);
+}
 
 
 ?>

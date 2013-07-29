@@ -31,6 +31,6 @@ $lang_msg[22] =  "Pagination html suivant";
 $lang_msg[23] =  "Ajouter zones début/fin";
 $lang_msg[24] =  "Pagination html début";
 $lang_msg[25] =  "Pagination html fin";
-
+$lang_msg[26] =  "Catégorie";
 
 ?>

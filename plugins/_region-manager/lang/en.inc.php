@@ -31,6 +31,7 @@ $lang_msg[22] =  "Pager html next";
 $lang_msg[23] =  "Add zones start/end";
 $lang_msg[24] =  "Pager html start";
 $lang_msg[25] =  "Pager html end";
+$lang_msg[26] =  "Category";
 
 
 
