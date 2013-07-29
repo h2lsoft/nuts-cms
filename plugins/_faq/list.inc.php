@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin faq - action List
- * 
+ *
  * @version 1.0
  * @date 02/07/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -28,6 +28,7 @@ $plugin->listAddCol('Position', $lang_msg[6], 'center; width:30px', false);
 
 
 // render list
+$plugin->listSetFirstOrderBySort('ASC');
 $plugin->listRender(100, 'hookData');
 
 

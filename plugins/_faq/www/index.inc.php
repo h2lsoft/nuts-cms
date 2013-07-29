@@ -48,6 +48,8 @@ else
 	// parsing qas
 	foreach($answers as $category => $questions)
 	{
+		if($category[0] == '-')$category[0] = '';
+		$category = trim($category);
 		$nuts->parse('qas.Category', $category);
 
 		foreach($questions as $question)

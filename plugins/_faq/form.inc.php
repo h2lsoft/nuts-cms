@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin faq - Form layout
- * 
+ *
  * @version 1.0
  * @date 02/07/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -18,7 +18,7 @@ $plugin->formDBTable(array('NutsFAQ'));
 $lngs = nutsGetOptionsLanguages();
 
 $plugin->formAddFieldSelectHtml('Language', $lang_msg[1], true, $lngs);
-$plugin->formAddFieldTextAjaxAutoComplete('Category', $lang_msg[2], true, 'ucfirst');
+$plugin->formAddFieldTextAjaxAutoComplete('Category', $lang_msg[2], true, 'ucfirst', '', '', '', '', '', '', '', '', $lang_msg[9]);
 $plugin->formAddFieldText('Question', $lang_msg[3], true, 'ucfirst');
 $plugin->formAddFieldHtmlArea('Answer', $lang_msg[7], true, 'height:500px');
 $plugin->formAddFieldBoolean('Visible', $lang_msg[4], true);
