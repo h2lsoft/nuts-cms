@@ -451,5 +451,10 @@ $(function(){
     });
 
 
+    // add lazy loading
+    $('#files').scroll(function(){
+        $.MediaBrowser.lazyLoading();
+    });
+
 
 });

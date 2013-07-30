@@ -131,7 +131,7 @@ else
                                             <a href="%1$s" title="%2$s" class="image">
                                                 <span class="begin"></span>
                                                 <span class="filename">%2$s</span>
-                                                <span class="icon image"><img src="phpthumb/phpThumb.php?h=97&w=97&src=%4$s&far=1&bg=0000FF" /></span>
+                                                <span class="icon image"><img class="lazy" width="97" height="97" src="img/spacer.gif" data-original="phpthumb/phpThumb.php?h=97&w=97&src=%4$s&far=1&bg=0000FF" /></span>
                                             </a>
                                         </li>'.CR,
                         $pathX,
@@ -162,7 +162,7 @@ else
                                             <a href="%1$s" title="%2$s" class="image">
                                                 <span class="begin"></span>
                                                 <span class="filename">%2$s</span>
-                                                <span class="icon image"><img src="phpthumb/phpThumb.php?h=48&w=48&src=%4$s&far=1&bg=0000FF" /></span>
+                                                <span class="icon image"><img width="48" height="48" class="lazy" src="img/spacer.gif" data-original="phpthumb/phpThumb.php?h=48&w=48&src=%4$s&far=1&bg=0000FF" /></span>
                                             </a>
                                         </li>'.CR,
                         $pathX,
@@ -296,7 +296,7 @@ else
                                                 <span class="filename">%2$s</span>
                                                 <span class="filetype">%8$s</span>
                                                 <span class="filedim">%6$s x %7$s</span>
-                                                <span class="icon image"><img src="phpthumb/phpThumb.php?h=48&w=48&src=%4$s&far=1&bg=0000FF" /></span>
+                                                <span class="icon image"><img class="lazy" width="48" height="48" src="img/spacer.gif" data-original="phpthumb/phpThumb.php?h=48&w=48&src=%4$s&far=1&bg=0000FF" /></span>
                                             </a>
                                         </li>'.CR,
                                         $pathX,

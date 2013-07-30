@@ -45,19 +45,19 @@ a {text-decoration: none;}
 div.loading {height:31px; width:31px; background-image: url(../img/ajaxLoader.gif); margin:10px;}
 
 /**
- * 
+ *
  *  Resize handlers
- * 
+ *
 **/
 div#vertical-resize-handler { cursor: e-resize; background: url(../img/resize-handler-vertical.png) top left repeat-y; width: 3px; display: block; height: 100%; float: left;}
 div#horizontal-resize-handler { /*cursor: n-resize; background: url(../img/resize-handler-horizontal.png) top left repeat-y;*/ height: 3px; display: block; width: 100%; float: left;}
- 
- 
- 
+
+
+
 /**
- * 
+ *
  *  Address Bar
- *  
+ *
 **/
 div.ab { background: url(../img/addressbar.png) 0 0 repeat-x; height: 24px; padding: 6px; }
 div.ab ol { background:url(../img/addressbar.png) left -36px no-repeat; margin: 0; padding: 0; list-style: none none; height: 24px; margin-right: 300px; overflow:hidden;}
@@ -71,21 +71,21 @@ div.ab ol li.root span { background:url(../img/addressbar.png) left -98px no-rep
 
 
 /**
- * 
- *  Searchbar 
+ *
+ *  Searchbar
  *
 **/
-div#searchbar {	position: relative;	background:url(../img/addressbar.png) right -36px no-repeat; float: right; width: 295px; height: 24px; margin-top: -24px; } 
-div#searchbar .cap { position: absolute; background:url(../img/addressbar.png) left -36px no-repeat; left: 0; width: 2px; height: 24px; } 
+div#searchbar {	position: relative;	background:url(../img/addressbar.png) right -36px no-repeat; float: right; width: 295px; height: 24px; margin-top: -24px; }
+div#searchbar .cap { position: absolute; background:url(../img/addressbar.png) left -36px no-repeat; left: 0; width: 2px; height: 24px; }
 div#searchbar input { background-color:transparent; border:0; color:#6D6D6D; font-family:inherit; height:18px; width:265px; margin: 4px 0 0 5px; padding: 0; }
 div#searchbar div.button { position: absolute; background:url(../img/addressbar.png) left -118px no-repeat; top: 3px; right: 4px; margin: 0; padding: 0; height:18px; width:18px; }
 
 
 
-/** 
- * 
+/**
+ *
  *  Navbar
- * 
+ *
 **/
 div.nb { background: transparent url(../img/navbar.png) 0 0 repeat-x; height: 31px; padding:0 3px; }
 div.nb ul {margin: 0; padding: 0; list-style: none none;}
@@ -100,7 +100,7 @@ div.nb ul li a.selected span { background: url(../img/navbar.png) left -55px no-
 div.nb ul ul { display: none;}
 div.nb ul li a span img { border: 0;}
 div.nb ul li a span.options { width: 20px; background: transparent url(../img/navbar.png) 0 -31px no-repeat; padding: 0;}
-div.nb ul li a:hover span.options, 
+div.nb ul li a:hover span.options,
 div.nb ul li a.selected span.options { background: transparent url(../img/navbar.png) -22px -31px no-repeat;}
 
 div.nb ul li.label div#cbItems {display: inline;}
@@ -114,7 +114,7 @@ div.nb ul.right a.help span img{ margin-top:4px;}
 
 
 /**
- * Navbar submenu 
+ * Navbar submenu
 **/
 div.nb ul ul { display:none; position:absolute; z-index:99; top:31px; left:0; margin:0; padding:1px; list-style:none; background:#F0F0F0 url(../img/contextmenu/cmenu-w7-bg.gif) repeat-y left top; border: 1px solid #979797; border-top: 0; min-width: 140px; }
 div.nb ul.right ul { right:0; left:auto; }
@@ -134,8 +134,8 @@ div.nb ul ul li a:hover { background:none; padding:0px 16px 0px 32px; border:1px
 
 /**
  *
- * Explorer 
- * 
+ * Explorer
+ *
 **/
 div#explorer { display:block; height:200px; position:relative; background-color:#fff;}
 a.close { position: absolute; right: 5px; top: 5px; width: 16px; height: 16px; background: url(../img/cancel.png) top left no-repeat; text-indent: -10000px;}
@@ -143,9 +143,9 @@ a.close { position: absolute; right: 5px; top: 5px; width: 16px; height: 16px; b
 
 
 /**
- * 
+ *
  *  Explorer Treeview
- *  
+ *
 **/
 
 div#tree { width: 200px; position: relative; padding:0; margin:0; display: block; overflow: auto; overflow-x: hidden; height: 100%; float: left;}
@@ -172,8 +172,8 @@ ul.treeview li a.open {background: url(../img/handler.gif) -21px 0 no-repeat;}
 
 
 /**
- * 
- *  Explorer Main 
+ *
+ *  Explorer Main
  *
 **/
 div#main { background:#fff url(../img/main_back.jpg) top left no-repeat; display:block; float: right; position: relative; overflow:auto;}
@@ -191,16 +191,16 @@ input.path {background-color:transparent;}
 
 
 /**
- *  
+ *
  *  Explorer New Folder
- *  
+ *
 **/
 div#newfolder {display: none;}
 
 
 
 /**
- * 
+ *
  *  Explorer Upload File (SWFUpload)
  *
 **/
@@ -230,20 +230,20 @@ a.progressCancel { font-size: 0; display: block; height: 16px; width: 16px; back
 
 
 /**
- * 
+ *
  *  Explorer Settings
- *  
+ *
 **/
-div#settings dt { float: left; clear: left; width: 100px; font-weight: bold; } 
+div#settings dt { float: left; clear: left; width: 100px; font-weight: bold; }
 div#settings dt:after {content: ':';}
 div#settings dd { margin: 0 0 0 110px; padding: 0 0 0.5em 0; }
 div#settings div.window hr { margin: 10px 0;}
 
 
 /**
- *  
+ *
  *   Explorer Help
- *   
+ *
 **/
 div#help p { margin: 10px 0; width:500px;}
 div#help ul { list-style-position: inside;}
@@ -251,21 +251,21 @@ div#help ul { list-style-position: inside;}
 
 
 /**
- * 
+ *
  *  Explorer Files
- * 
+ *
 **/
 div#files {height: 100%; overflow: auto;}
 div#files .cut{ opacity: 0.4;}
 
 /**
- * 
+ *
  *  Views (layout)
- * 
+ *
  */
 
 /**
- * List Layout 
+ * List Layout
 **/
 div#files ul#list { list-style: none none; margin: 0; padding: 10px; }
 div#files ul#list li { display: block; padding: 0; margin: 2px 0; height: 20px;}
@@ -281,7 +281,7 @@ div#files ul#list li.selected a span.begin { background:url(../img/view_list.png
 
 
 /**
- * Tiles Layout 
+ * Tiles Layout
 **/
 div#files ul#tiles { list-style: none none; margin: 0; padding: 10px; }
 div#files ul#tiles li { display: block; padding: 0; margin: 2px 1% 2px 0; width: 32%; float: left;}
@@ -302,7 +302,7 @@ div#files ul#tiles li.selected a span.begin { background:url(../img/view_list.pn
 
 
 /**
- * Small Images Layout 
+ * Small Images Layout
 **/
 div#files ul#small_images { list-style: none none; margin: 0; padding: 10px; }
 div#files ul#small_images li { display: block; padding: 0; margin: 5px; height: 98px; width: 80px; float: left;}
@@ -318,7 +318,7 @@ div#files ul#small_images li.selected a span.begin { background:url(../img/view_
 
 
 /**
- * Large Images Layout 
+ * Large Images Layout
 **/
 div#files ul#large_images { list-style: none none; margin: 0; padding: 10px; }
 div#files ul#large_images li { display: block; padding: 0; margin: 5px; height: 131px; width: 105px; float: left;}
@@ -334,7 +334,7 @@ div#files ul#large_images li.selected a span.begin { background:url(../img/view_
 
 
 /**
- * Content Layout 
+ * Content Layout
 **/
 div#files ul#content { list-style: none none; margin: 0; padding: 10px; }
 div#files ul#content li { display: block; padding: 0; margin: 0;}
@@ -355,7 +355,7 @@ div#files ul#content li.selected a span.begin { background:url(../img/view_list.
 
 
 /**
- * Details Layout 
+ * Details Layout
 **/
 div#files table#details { padding:0; border:0; margin:0; margin-bottom:10px; border-collapse:collapse; }
 div#files table#details thead th { height: 24px; line-height: 24px; text-align: left; font-weight: normal; color: #4C607A; padding: 0 5px; background: url(../img/view_details_thead_separator.png) top right no-repeat;}
@@ -394,9 +394,9 @@ div#files table#details tbody tr.selected td.end {background-position:right -20p
 
 
 /**
- * 
- *  File Specs footer 
- *  
+ *
+ *  File Specs footer
+ *
 **/
 div#file-specs {position:relative; height:150px; background:#F1F5FB url(../img/details_back_top.gif) top left repeat-x;}
 div#file-specs #info div { position:absolute; width:400px; height:20px; left: 165px; color:#1E395B;}
@@ -410,9 +410,9 @@ div#file-specs #info div.filedim {top:82px;}
 
 
 /**
- * 
- *  File Browser Messages 
- * 
+ *
+ *  File Browser Messages
+ *
 **/
 div#message { left:50%; top:75px; display:none; position:absolute; color:#000; background-color:#FFF1A8; width:400px; margin-left:-200px; z-index:99; padding:10px; font-size:13px; /*font-weight:bold; border-radius:5px; -moz-border-radius:5px;*/ text-align: center; }
 div#message.success {background-color:#CAFFCA; color:#360;}
@@ -421,10 +421,10 @@ div#message p {margin: 0 0 5px 0;}
 
 
 
-/** 
- * 
+/**
+ *
  *  File Browser File Input
- * 
+ *
 **/
 input.path {font-family:sans-serif; color:#000000; font-size:14px; font-weight: bold; border:0; width: 300px;}
 input.path.border {border:1px solid #B9D1EA;}
@@ -439,9 +439,9 @@ form#fileform div label { line-height:20px; display:block; padding-left:25px;}
 
 
 /**
- * 
+ *
  *  Media Browser Icons
- *  
+ *
 **/
 
 
@@ -450,27 +450,27 @@ form#fileform div label { line-height:20px; display:block; padding-left:25px;}
 **/
 div#files ul#list li a span.icon{ background: url(../img/16/icon.png) top left no-repeat; position: absolute; left: 3px; top: 2px; width: 16px; height: 16px;  text-align: center; vertical-align: middle;}
 /* Images */
-div#files ul#list li a span.icon.image{ background-image: none;} 
+div#files ul#list li a span.icon.image{ background-image: none;}
 div#files ul#list li a span.icon.jpg,
-div#files ul#list li a span.icon.jpeg{ background-image: url(../img/16/jpg.png);} 
+div#files ul#list li a span.icon.jpeg{ background-image: url(../img/16/jpg.png);}
 div#files ul#list li a span.icon.gif,
 div#files ul#list li a span.icon.png{ background-image: url(../img/16/gif.png);}
 div#files ul#list li a span.icon.bmp{ background-image: url(../img/16/bmp.png);}
 div#files ul#list li a span.icon.tif,
 div#files ul#list li a span.icon.tiff{ background-image: url(../img/16/tiff.png);}
 /* Movies */
-div#files ul#list li a span.icon.mov{ background-image: url(../img/16/mov.png);} 
+div#files ul#list li a span.icon.mov{ background-image: url(../img/16/mov.png);}
 div#files ul#list li a span.icon.mpeg,
 div#files ul#list li a span.icon.mpg{ background-image: url(../img/16/mpeg.png);}
 div#files ul#list li a span.icon.avi{ background-image: url(../img/16/avi.png);}
 div#files ul#list li a span.icon.flv{ background-image: url(../img/16/flv.png);}
 div#files ul#list li a span.icon.wmv{ background-image: url(../img/16/wmv.png);}
 /* Audio */
-div#files ul#list li a span.icon.mp3{ background-image: url(../img/16/mp3.png);} 
+div#files ul#list li a span.icon.mp3{ background-image: url(../img/16/mp3.png);}
 div#files ul#list li a span.icon.wav{ background-image: url(../img/16/wav.png);}
 div#files ul#list li a span.icon.wma{ background-image: url(../img/16/wma.png);}
 /* Web */
-div#files ul#list li a span.icon.asp{ background-image: url(../img/16/asp.png);}  
+div#files ul#list li a span.icon.asp{ background-image: url(../img/16/asp.png);}
 div#files ul#list li a span.icon.aspx{ background-image: url(../img/16/aspx.png);}
 div#files ul#list li a span.icon.css{ background-image: url(../img/16/css.png);}
 div#files ul#list li a span.icon.html,
@@ -483,7 +483,7 @@ div#files ul#list li a span.icon.php{ background-image: url(../img/16/php.png);}
 div#files ul#list li a span.icon.xml{ background-image: url(../img/16/xml.png);}
 /* Adobe */
 div#files ul#list li a span.icon.eps{ background-image: url(../img/16/eps.png);}
-div#files ul#list li a span.icon.pdf{ background-image: url(../img/16/pdf.png);} 
+div#files ul#list li a span.icon.pdf{ background-image: url(../img/16/pdf.png);}
 div#files ul#list li a span.icon.psd{ background-image: url(../img/16/psd.png);}
 div#files ul#list li a span.icon.swf{ background-image: url(../img/16/swf.png);}
 /* Microsoft */
@@ -509,7 +509,7 @@ div#files ul#list li a span.icon.xlsx{ background-image: url(../img/16/xls.png);
 div#files ul#list li a span.icon.otf{ background-image: url(../img/16/font.png);}
 div#files ul#list li a span.icon.ttf{ background-image: url(../img/16/ttf.png);}
 /* Archives */
-div#files ul#list li a span.icon.tgz,											 
+div#files ul#list li a span.icon.tgz,
 div#files ul#list li a span.icon.tar,
 div#files ul#list li a span.icon.rar,
 div#files ul#list li a span.icon.zip,
@@ -522,27 +522,27 @@ div#files ul#list li a span.icon.gz{ background-image: url(../img/16/zip.png);}
 **/
 div#files ul#tiles li a span.icon{ background: url(../img/48/icon.png) top left no-repeat; position: absolute; left: 2px; top: 1px; width: 48px; height: 48px;  text-align: center; vertical-align: middle;}
 /* Images */
-div#files ul#tiles li a span.icon.image{ background-image: none;} 
+div#files ul#tiles li a span.icon.image{ background-image: none;}
 div#files ul#tiles li a span.icon.jpg,
-div#files ul#tiles li a span.icon.jpeg{ background-image: url(../img/48/jpg.png);} 
+div#files ul#tiles li a span.icon.jpeg{ background-image: url(../img/48/jpg.png);}
 div#files ul#tiles li a span.icon.gif{ background-image: url(../img/48/gif.png);}
 div#files ul#tiles li a span.icon.png{ background-image: url(../img/48/png.png);}
 div#files ul#tiles li a span.icon.bmp{ background-image: url(../img/48/bmp.png);}
 div#files ul#tiles li a span.icon.tif,
 div#files ul#tiles li a span.icon.tiff{ background-image: url(../img/48/tiff.png);}
 /* Movies */
-div#files ul#tiles li a span.icon.mov{ background-image: url(../img/48/mov.png);} 
+div#files ul#tiles li a span.icon.mov{ background-image: url(../img/48/mov.png);}
 div#files ul#tiles li a span.icon.mpeg,
 div#files ul#tiles li a span.icon.mpg{ background-image: url(../img/48/mpeg.png);}
 div#files ul#tiles li a span.icon.avi{ background-image: url(../img/48/avi.png);}
 div#files ul#tiles li a span.icon.flv{ background-image: url(../img/48/flv.png);}
 div#files ul#tiles li a span.icon.wmv{ background-image: url(../img/48/wmv.png);}
 /* Audio */
-div#files ul#tiles li a span.icon.mp3{ background-image: url(../img/48/mp3.png);} 
+div#files ul#tiles li a span.icon.mp3{ background-image: url(../img/48/mp3.png);}
 div#files ul#tiles li a span.icon.wav{ background-image: url(../img/48/wav.png);}
 div#files ul#tiles li a span.icon.wma{ background-image: url(../img/48/wma.png);}
 /* Web */
-div#files ul#tiles li a span.icon.asp{ background-image: url(../img/48/asp.png);}  
+div#files ul#tiles li a span.icon.asp{ background-image: url(../img/48/asp.png);}
 div#files ul#tiles li a span.icon.aspx{ background-image: url(../img/48/aspx.png);}
 div#files ul#tiles li a span.icon.css{ background-image: url(../img/48/css.png);}
 div#files ul#tiles li a span.icon.html,
@@ -555,7 +555,7 @@ div#files ul#tiles li a span.icon.php{ background-image: url(../img/48/php.png);
 div#files ul#tiles li a span.icon.xml{ background-image: url(../img/48/xml.png);}
 /* Adobe */
 div#files ul#tiles li a span.icon.eps{ background-image: url(../img/48/eps.png);}
-div#files ul#tiles li a span.icon.pdf{ background-image: url(../img/48/pdf.png);} 
+div#files ul#tiles li a span.icon.pdf{ background-image: url(../img/48/pdf.png);}
 div#files ul#tiles li a span.icon.psd{ background-image: url(../img/48/psd.png);}
 div#files ul#tiles li a span.icon.swf{ background-image: url(../img/48/swf.png);}
 /* Microsoft */
@@ -581,7 +581,7 @@ div#files ul#tiles li a span.icon.xlsx{ background-image: url(../img/48/xls.png)
 div#files ul#tiles li a span.icon.otf{ background-image: url(../img/48/font.png);}
 div#files ul#tiles li a span.icon.ttf{ background-image: url(../img/48/ttf.png);}
 /* Archives */
-div#files ul#tiles li a span.icon.tgz,											 
+div#files ul#tiles li a span.icon.tgz,
 div#files ul#tiles li a span.icon.tar,
 div#files ul#tiles li a span.icon.rar,
 div#files ul#tiles li a span.icon.zip,
@@ -594,27 +594,27 @@ div#files ul#tiles li a span.icon.gz{ background-image: url(../img/48/zip.png);}
 **/
 div#files ul#small_images li a span.icon{ background: url(../img/48/icon.png) top center no-repeat; position: absolute; top: 2px; width: 80px; height: 48px;  text-align: center;}
 /* Images */
-div#files ul#small_images li a span.icon.image{ background-image: none;} 
+div#files ul#small_images li a span.icon.image{ background-image: none;}
 div#files ul#small_images li a span.icon.jpg,
-div#files ul#small_images li a span.icon.jpeg{ background-image: url(../img/48/jpg.png);} 
+div#files ul#small_images li a span.icon.jpeg{ background-image: url(../img/48/jpg.png);}
 div#files ul#small_images li a span.icon.gif{ background-image: url(../img/48/gif.png);}
 div#files ul#small_images li a span.icon.png{ background-image: url(../img/48/png.png);}
 div#files ul#small_images li a span.icon.bmp{ background-image: url(../img/48/bmp.png);}
 div#files ul#small_images li a span.icon.tif,
 div#files ul#small_images li a span.icon.tiff{ background-image: url(../img/48/tiff.png);}
 /* Movies */
-div#files ul#small_images li a span.icon.mov{ background-image: url(../img/48/mov.png);} 
+div#files ul#small_images li a span.icon.mov{ background-image: url(../img/48/mov.png);}
 div#files ul#small_images li a span.icon.mpeg,
 div#files ul#small_images li a span.icon.mpg{ background-image: url(../img/48/mpeg.png);}
 div#files ul#small_images li a span.icon.avi{ background-image: url(../img/48/avi.png);}
 div#files ul#small_images li a span.icon.flv{ background-image: url(../img/48/flv.png);}
 div#files ul#small_images li a span.icon.wmv{ background-image: url(../img/48/wmv.png);}
 /* Audio */
-div#files ul#small_images li a span.icon.mp3{ background-image: url(../img/48/mp3.png);} 
+div#files ul#small_images li a span.icon.mp3{ background-image: url(../img/48/mp3.png);}
 div#files ul#small_images li a span.icon.wav{ background-image: url(../img/48/wav.png);}
 div#files ul#small_images li a span.icon.wma{ background-image: url(../img/48/wma.png);}
 /* Web */
-div#files ul#small_images li a span.icon.asp{ background-image: url(../img/48/asp.png);}  
+div#files ul#small_images li a span.icon.asp{ background-image: url(../img/48/asp.png);}
 div#files ul#small_images li a span.icon.aspx{ background-image: url(../img/48/aspx.png);}
 div#files ul#small_images li a span.icon.css{ background-image: url(../img/48/css.png);}
 div#files ul#small_images li a span.icon.html,
@@ -627,7 +627,7 @@ div#files ul#small_images li a span.icon.php{ background-image: url(../img/48/ph
 div#files ul#small_images li a span.icon.xml{ background-image: url(../img/48/xml.png);}
 /* Adobe */
 div#files ul#small_images li a span.icon.eps{ background-image: url(../img/48/eps.png);}
-div#files ul#small_images li a span.icon.pdf{ background-image: url(../img/48/pdf.png);} 
+div#files ul#small_images li a span.icon.pdf{ background-image: url(../img/48/pdf.png);}
 div#files ul#small_images li a span.icon.psd{ background-image: url(../img/48/psd.png);}
 div#files ul#small_images li a span.icon.swf{ background-image: url(../img/48/swf.png);}
 /* Microsoft */
@@ -653,7 +653,7 @@ div#files ul#small_images li a span.icon.xlsx{ background-image: url(../img/48/x
 div#files ul#small_images li a span.icon.otf{ background-image: url(../img/48/font.png);}
 div#files ul#small_images li a span.icon.ttf{ background-image: url(../img/48/ttf.png);}
 /* Archives */
-div#files ul#small_images li a span.icon.tgz,											 
+div#files ul#small_images li a span.icon.tgz,
 div#files ul#small_images li a span.icon.tar,
 div#files ul#small_images li a span.icon.rar,
 div#files ul#small_images li a span.icon.zip,
@@ -666,27 +666,27 @@ div#files ul#small_images li a span.icon.gz{ background-image: url(../img/48/zip
 **/
 div#files ul#large_images li a span.icon{ background: url(../img/96/icon.png) top center no-repeat; position: absolute; top: 2px; width: 105px; height: 97px;  text-align: center;}
 /* Images */
-div#files ul#large_images li a span.icon.image{ background-image: none;} 
+div#files ul#large_images li a span.icon.image{ background-image: none;}
 div#files ul#large_images li a span.icon.jpg,
-div#files ul#large_images li a span.icon.jpeg{ background-image: url(../img/96/jpg.png);} 
+div#files ul#large_images li a span.icon.jpeg{ background-image: url(../img/96/jpg.png);}
 div#files ul#large_images li a span.icon.gif{ background-image: url(../img/96/gif.png);}
 div#files ul#large_images li a span.icon.png{ background-image: url(../img/96/png.png);}
 div#files ul#large_images li a span.icon.bmp{ background-image: url(../img/96/bmp.png);}
 div#files ul#large_images li a span.icon.tif,
 div#files ul#large_images li a span.icon.tiff{ background-image: url(../img/96/tiff.png);}
 /* Movies */
-div#files ul#large_images li a span.icon.mov{ background-image: url(../img/96/mov.png);} 
+div#files ul#large_images li a span.icon.mov{ background-image: url(../img/96/mov.png);}
 div#files ul#large_images li a span.icon.mpeg,
 div#files ul#large_images li a span.icon.mpg{ background-image: url(../img/96/mpeg.png);}
 div#files ul#large_images li a span.icon.avi{ background-image: url(../img/96/avi.png);}
 div#files ul#large_images li a span.icon.flv{ background-image: url(../img/96/flv.png);}
 div#files ul#large_images li a span.icon.wmv{ background-image: url(../img/96/wmv.png);}
 /* Audio */
-div#files ul#large_images li a span.icon.mp3{ background-image: url(../img/96/mp3.png);} 
+div#files ul#large_images li a span.icon.mp3{ background-image: url(../img/96/mp3.png);}
 div#files ul#large_images li a span.icon.wav{ background-image: url(../img/96/wav.png);}
 div#files ul#large_images li a span.icon.wma{ background-image: url(../img/96/wma.png);}
 /* Web */
-div#files ul#large_images li a span.icon.asp{ background-image: url(../img/96/asp.png);}  
+div#files ul#large_images li a span.icon.asp{ background-image: url(../img/96/asp.png);}
 div#files ul#large_images li a span.icon.aspx{ background-image: url(../img/96/aspx.png);}
 div#files ul#large_images li a span.icon.css{ background-image: url(../img/96/css.png);}
 div#files ul#large_images li a span.icon.html,
@@ -699,7 +699,7 @@ div#files ul#large_images li a span.icon.php{ background-image: url(../img/96/ph
 div#files ul#large_images li a span.icon.xml{ background-image: url(../img/96/xml.png);}
 /* Adobe */
 div#files ul#large_images li a span.icon.eps{ background-image: url(../img/96/eps.png);}
-div#files ul#large_images li a span.icon.pdf{ background-image: url(../img/96/pdf.png);} 
+div#files ul#large_images li a span.icon.pdf{ background-image: url(../img/96/pdf.png);}
 div#files ul#large_images li a span.icon.psd{ background-image: url(../img/96/psd.png);}
 div#files ul#large_images li a span.icon.swf{ background-image: url(../img/96/swf.png);}
 /* Microsoft */
@@ -725,7 +725,7 @@ div#files ul#large_images li a span.icon.xlsx{ background-image: url(../img/96/x
 div#files ul#large_images li a span.icon.otf{ background-image: url(../img/96/font.png);}
 div#files ul#large_images li a span.icon.ttf{ background-image: url(../img/96/ttf.png);}
 /* Archives */
-div#files ul#large_images li a span.icon.tgz,											 
+div#files ul#large_images li a span.icon.tgz,
 div#files ul#large_images li a span.icon.tar,
 div#files ul#large_images li a span.icon.rar,
 div#files ul#large_images li a span.icon.zip,
@@ -738,27 +738,27 @@ div#files ul#large_images li a span.icon.gz{ background-image: url(../img/96/zip
 **/
 div#files ul#content li a span.icon{ background: url(../img/32/icon.png) top left no-repeat; position: absolute; left: 8px; top: 8px; width: 32px; height: 32px; }
 /* Images */
-div#files ul#content li a span.icon.image{ background-image: none;} 
+div#files ul#content li a span.icon.image{ background-image: none;}
 div#files ul#content li a span.icon.jpg,
-div#files ul#content li a span.icon.jpeg{ background-image: url(../img/32/jpg.png);} 
+div#files ul#content li a span.icon.jpeg{ background-image: url(../img/32/jpg.png);}
 div#files ul#content li a span.icon.gif{ background-image: url(../img/32/gif.png);}
 div#files ul#content li a span.icon.png{ background-image: url(../img/32/png.png);}
 div#files ul#content li a span.icon.bmp{ background-image: url(../img/32/bmp.png);}
 div#files ul#content li a span.icon.tif,
 div#files ul#content li a span.icon.tiff{ background-image: url(../img/32/tiff.png);}
 /* Movies */
-div#files ul#content li a span.icon.mov{ background-image: url(../img/32/mov.png);} 
+div#files ul#content li a span.icon.mov{ background-image: url(../img/32/mov.png);}
 div#files ul#content li a span.icon.mpeg,
 div#files ul#content li a span.icon.mpg{ background-image: url(../img/32/mpeg.png);}
 div#files ul#content li a span.icon.avi{ background-image: url(../img/32/avi.png);}
 div#files ul#content li a span.icon.flv{ background-image: url(../img/32/flv.png);}
 div#files ul#content li a span.icon.wmv{ background-image: url(../img/32/wmv.png);}
 /* Audio */
-div#files ul#content li a span.icon.mp3{ background-image: url(../img/32/mp3.png);} 
+div#files ul#content li a span.icon.mp3{ background-image: url(../img/32/mp3.png);}
 div#files ul#content li a span.icon.wav{ background-image: url(../img/32/wav.png);}
 div#files ul#content li a span.icon.wma{ background-image: url(../img/32/wma.png);}
 /* Web */
-div#files ul#content li a span.icon.asp{ background-image: url(../img/32/asp.png);}  
+div#files ul#content li a span.icon.asp{ background-image: url(../img/32/asp.png);}
 div#files ul#content li a span.icon.aspx{ background-image: url(../img/32/aspx.png);}
 div#files ul#content li a span.icon.css{ background-image: url(../img/32/css.png);}
 div#files ul#content li a span.icon.html,
@@ -771,7 +771,7 @@ div#files ul#content li a span.icon.php{ background-image: url(../img/32/php.png
 div#files ul#content li a span.icon.xml{ background-image: url(../img/32/xml.png);}
 /* Adobe */
 div#files ul#content li a span.icon.eps{ background-image: url(../img/32/eps.png);}
-div#files ul#content li a span.icon.pdf{ background-image: url(../img/32/pdf.png);} 
+div#files ul#content li a span.icon.pdf{ background-image: url(../img/32/pdf.png);}
 div#files ul#content li a span.icon.psd{ background-image: url(../img/32/psd.png);}
 div#files ul#content li a span.icon.swf{ background-image: url(../img/32/swf.png);}
 /* Microsoft */
@@ -797,7 +797,7 @@ div#files ul#content li a span.icon.xlsx{ background-image: url(../img/32/xls.pn
 div#files ul#content li a span.icon.otf{ background-image: url(../img/32/font.png);}
 div#files ul#content li a span.icon.ttf{ background-image: url(../img/32/ttf.png);}
 /* Archives */
-div#files ul#content li a span.icon.tgz,											 
+div#files ul#content li a span.icon.tgz,
 div#files ul#content li a span.icon.tar,
 div#files ul#content li a span.icon.rar,
 div#files ul#content li a span.icon.zip,
@@ -810,27 +810,27 @@ div#files ul#content li a span.icon.gz{ background-image: url(../img/32/zip.png)
 **/
 div#files table#details td.icon span{ display:block; background: url(../img/16/icon.png) top left no-repeat; width: 16px; height: 16px; margin-top:2px; }
 /* Images */
-div#files table#details td.icon span.image{ background-image: none;} 
+div#files table#details td.icon span.image{ background-image: none;}
 div#files table#details td.icon span.jpg,
-div#files table#details td.icon span.jpeg{ background-image: url(../img/16/jpg.png);} 
+div#files table#details td.icon span.jpeg{ background-image: url(../img/16/jpg.png);}
 div#files table#details td.icon span.gif,
 div#files table#details td.icon span.png{ background-image: url(../img/16/gif.png);}
 div#files table#details td.icon span.bmp{ background-image: url(../img/16/bmp.png);}
 div#files table#details td.icon span.tif,
 div#files table#details td.icon span.tiff{ background-image: url(../img/16/tiff.png);}
 /* Movies */
-div#files table#details td.icon span.mov{ background-image: url(../img/16/mov.png);} 
+div#files table#details td.icon span.mov{ background-image: url(../img/16/mov.png);}
 div#files table#details td.icon span.mpeg,
 div#files table#details td.icon span.mpg{ background-image: url(../img/16/mpeg.png);}
 div#files table#details td.icon span.avi{ background-image: url(../img/16/avi.png);}
 div#files table#details td.icon span.flv{ background-image: url(../img/16/flv.png);}
 div#files table#details td.icon span.wmv{ background-image: url(../img/16/wmv.png);}
 /* Audio */
-div#files table#details td.icon span.mp3{ background-image: url(../img/16/mp3.png);} 
+div#files table#details td.icon span.mp3{ background-image: url(../img/16/mp3.png);}
 div#files table#details td.icon span.wav{ background-image: url(../img/16/wav.png);}
 div#files table#details td.icon span.wma{ background-image: url(../img/16/wma.png);}
 /* Web */
-div#files table#details td.icon span.asp{ background-image: url(../img/16/asp.png);}  
+div#files table#details td.icon span.asp{ background-image: url(../img/16/asp.png);}
 div#files table#details td.icon span.aspx{ background-image: url(../img/16/aspx.png);}
 div#files table#details td.icon span.css{ background-image: url(../img/16/css.png);}
 div#files table#details td.icon span.html,
@@ -843,7 +843,7 @@ div#files table#details td.icon span.php{ background-image: url(../img/16/php.pn
 div#files table#details td.icon span.xml{ background-image: url(../img/16/xml.png);}
 /* Adobe */
 div#files table#details td.icon span.eps{ background-image: url(../img/16/eps.png);}
-div#files table#details td.icon span.pdf{ background-image: url(../img/16/pdf.png);} 
+div#files table#details td.icon span.pdf{ background-image: url(../img/16/pdf.png);}
 div#files table#details td.icon span.psd{ background-image: url(../img/16/psd.png);}
 div#files table#details td.icon span.swf{ background-image: url(../img/16/swf.png);}
 /* Microsoft */
@@ -869,7 +869,7 @@ div#files table#details td.icon span.xlsx{ background-image: url(../img/16/xls.p
 div#files table#details td.icon span.otf{ background-image: url(../img/16/font.png);}
 div#files table#details td.icon span.ttf{ background-image: url(../img/16/ttf.png);}
 /* Archives */
-div#files table#details td.icon span.tgz,											 
+div#files table#details td.icon span.tgz,
 div#files table#details td.icon span.tar,
 div#files table#details td.icon span.rar,
 div#files table#details td.icon span.zip,
@@ -882,7 +882,7 @@ div#files table#details td.icon span.gz{ background-image: url(../img/16/zip.png
 **/
 div#file-specs #info div.icon{ width: 140px; height: 140px; left: 10px; top: 5px; background: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/icon.png&far=1&bg=0000FF) top left no-repeat;}
 /* Images */
-div#file-specs #info div.icon.image{ background-image: none;} 
+div#file-specs #info div.icon.image{ background-image: none;}
 div#file-specs #info div.icon.jpg,
 div#file-specs #info div.icon.jpeg{ background-image: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/jpg.png&far=1&bg=0000FF);}
 div#file-specs #info div.icon.gif{ background-image: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/gif.png&far=1&bg=0000FF);}
@@ -942,7 +942,7 @@ div#file-specs #info div.icon.xlsx{ background-image: url(../phpthumb/phpThumb.p
 div#file-specs #info div.icon.otf{ background-image: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/font.png&far=1&bg=0000FF);}
 div#file-specs #info div.icon.ttf{ background-image: url(../phpthumb/phpThumb.php?h=140&w=140&src=../img/256/ttf.png&far=1&bg=0000FF);}
 /* Archives */
-div#file-specs #info div.icon.tgz,											 
+div#file-specs #info div.icon.tgz,
 div#file-specs #info div.icon.tar,
 div#file-specs #info div.icon.rar,
 div#file-specs #info div.icon.zip,
@@ -965,7 +965,7 @@ div#file-specs #info div.icon.gz{ background-image: url(../phpthumb/phpThumb.php
 
 
 /**
- * 
+ *
  *  Slimbox
  *
 **/
@@ -978,9 +978,9 @@ div#file-specs #info div.icon.gz{ background-image: url(../phpthumb/phpThumb.php
 
 
 /**
- * 
- *  Clearing 
- *  
+ *
+ *  Clearing
+ *
 **/
 .clear:after { clear:both; content:"."; display:block; height:0pt; visibility:hidden; }
 .clear {}
@@ -990,9 +990,9 @@ div#file-specs #info div.icon.gz{ background-image: url(../phpthumb/phpThumb.php
 
 
 /**
- * 
+ *
  *  Image preview
- *  
+ *
 **/
 #image_previewer {position: absolute; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: #000; opacity: 0.4; display: none;}
 #image_previewer_content { cursor: pointer; position: absolute; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; vertical-align: middle; text-align: center;  display: none; }

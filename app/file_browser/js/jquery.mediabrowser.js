@@ -18,6 +18,7 @@
 		shiftKeyPressed: false,
 		tableHeadersFixed: 0,
 		timeout: null,
+        lazyLoadingLoading: false,
 
 
         searchLaunch: function(){
@@ -63,6 +64,9 @@
                     }
 
                 }
+
+                $.MediaBrowser.lazyLoading();
+
             }, 250);
         },
 
@@ -893,11 +897,46 @@
                     $('div#files').html(resp.html);
 
                     $.MediaBrowser.filter();
-
                     $.MediaBrowser.contextmenu();
+
+                    $('#files').scrollTop(0);
+                    $.MediaBrowser.lazyLoading();
+
                 }
             });
         },
+
+
+        lazyLoading: function(){
+
+            // setTimeout(function(){
+                if($.MediaBrowser.lazyLoadingLoading)return;
+                $.MediaBrowser.lazyLoadingLoading = true;
+
+                cY =  $('#files').offset().top + $('#files').height() + $('#files').scrollTop();
+
+                $("img.lazy").each(function(index){
+
+                    elemY = $(this).height() + $(this).offset().top;
+                    elemY += 50;
+
+                    if(elemY < cY)
+                    {
+                        cur_src = $(this).attr('data-original');
+                        $(this).attr('src', cur_src).removeClass('lazy');
+                    }
+                    else
+                    {
+                        $.MediaBrowser.lazyLoadingLoading = false;
+                        return false;
+                    }
+                });
+
+                $.MediaBrowser.lazyLoadingLoading = false;
+
+            //  }, 500);
+        },
+
 
         setCurrentFolder: function(str){
             $.MediaBrowser.currentFolder = str;
@@ -1012,7 +1051,3 @@
 	};
 
 })(jQuery);
-
-
-
-
