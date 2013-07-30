@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin slider - action List
- * 
+ *
  * @version 1.0
  * @date 01/01/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -24,7 +24,9 @@ $plugin->listSearchAddFieldTextAjaxAutoComplete('Name', $lang_msg[1]);
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
 $plugin->listAddCol('Name', $lang_msg[1], '', true);
 $plugin->listAddCol('Images', '', 'center; width:30px', false);
+$plugin->listAddColImg('GenerateJs', "Javascript", '', false);
 $plugin->listAddCol('Code', "", '', false);
+
 
 
 // render list
@@ -47,7 +49,7 @@ function hookData($row)
 
 EOF;
 
-	
+
 	return $row;
 }
 

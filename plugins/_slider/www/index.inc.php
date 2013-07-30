@@ -44,42 +44,45 @@ else
 
     $slider_images = Query::factory()->select('*')->from('NutsSliderImage')->where('NutsSliderID', '=', $sliderID)->where('Visible', '=', 'YES')->order_by('Position')->executeAndGetAll();
 
-    if(!count($slider_images))
-    {
-        $plugin->eraseBloc('loop');
-    }
-    else
-    {
-        foreach($slider_images as $slider_image)
-        {
-            $plugin->parse('loop.SliderImage', $slider_image['SliderImage']);
-            $plugin->parse('loop.Title', $slider_image['Title']);
-            $plugin->parse('loop.Url', $slider_image['Url']);
+	if(!count($slider_images))
+	{
+		$plugin->eraseBloc('loop');
+	}
+	else
+	{
+		foreach($slider_images as $slider_image)
+		{
+			$plugin->parse('loop.SliderImage', $slider_image['SliderImage']);
+			$plugin->parse('loop.Title', $slider_image['Title']);
+			$plugin->parse('loop.Url', $slider_image['Url']);
 
-	        $target = (preg_match("/^http/", $slider_image['Url'])) ? '_blank' : '';
+			$target = (preg_match("/^http/", $slider_image['Url'])) ? '_blank' : '';
 
-	        // dynamic width and height
-	        $img_props = @getimagesize(NUTS_UPLOADS_PATH.'/_slider-images/'.$slider_image['SliderImage']);
-	        if(!$img_props)
-	        {
-		        $width = $slider['Width'];
-			    $height = $slider['Height'];
-	        }
-	        else
-	        {
-		        $width = $img_props[0];
-		        $height = $img_props[1];
-	        }
+			// dynamic width and height
+			$img_props = @getimagesize(NUTS_UPLOADS_PATH.'/_slider-images/'.$slider_image['SliderImage']);
+			if(!$img_props)
+			{
+				$width = $slider['Width'];
+				$height = $slider['Height'];
+			}
+			else
+			{
+				$width = $img_props[0];
+				$height = $img_props[1];
+			}
 
-	        $plugin->parse('loop.width', $width);
-	        $plugin->parse('loop.height', $height);
+			$plugin->parse('loop.width', $width);
+			$plugin->parse('loop.height', $height);
 
-            $plugin->parse('loop.Target', $target);
-            $plugin->loop('loop');
-        }
-    }
+			$plugin->parse('loop.Target', $target);
+			$plugin->loop('loop');
+		}
+	}
 
-
+	if($slider['GenerateJs'] == 'NO')
+	{
+		$plugin->eraseBloc('js');
+	}
 
     $plugin->setNutsContent();
 }

@@ -19,6 +19,8 @@
 
 </div>
 
+
+<bloc::js>
 <script type="text/javascript">
 $(function() {
 
@@ -30,13 +32,14 @@ $(function() {
         padding: {Padding},
         circular: {Circular},
         infinite: {Infinite},
+        responsive: true,
+
         items : {
             visible : "{Items}",
             width : {Width},
             height: {Height}
         },
 
-        responsive: true,
         pagination  : "#nuts_slider_pager_{sliderID}",
         prev    : {button : '#nuts_slider_prev_{sliderID}'},
         next    : {button : '#nuts_slider_next_{sliderID}'},
@@ -56,3 +59,4 @@ $(function() {
     });
 });
 </script>
+</bloc::js>

@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin slider - Form layout
- * 
+ *
  * @version 1.0
  * @date 01/01/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -17,6 +17,8 @@ $plugin->formDBTable(array('NutsSlider'));
 // fields
 $plugin->formAddFieldText('Name', $lang_msg[1], true, 'ucfirst');
 $plugin->formAddFieldTextarea('Description', "", false, 'ucfirst', 'height:45px;');
+$plugin->formAddFieldBoolean('GenerateJs', "Javascript", true, $lang_msg[2]);
+
 
 // options
 $plugin->formAddFieldsetStart('Options');
@@ -24,8 +26,6 @@ $plugin->formAddFieldText('Width', "", true, 'number', 'width:45px; text-align:c
 $plugin->formAddFieldText('Height', "", true, 'number', 'width:45px; text-align:center;', '', '');
 $plugin->formAddFieldBoolean('Circular', "", true);
 $plugin->formAddFieldBoolean('Infinite', "", true);
-// $plugin->formAddFieldBooleanX('Responsive', "", true);
-
 $opts = array('left', 'right', 'up', 'down');
 $plugin->formAddFieldSelect('Direction', "", true, $opts);
 
