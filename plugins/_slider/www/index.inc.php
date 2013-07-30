@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin slider - Front office
- * 
+ *
  * @version 1.0
  * @date 01/01/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -57,6 +57,22 @@ else
             $plugin->parse('loop.Url', $slider_image['Url']);
 
 	        $target = (preg_match("/^http/", $slider_image['Url'])) ? '_blank' : '';
+
+	        // dynamic width and height
+	        $img_props = @getimagesize(NUTS_UPLOADS_PATH.'/_slider-images/'.$slider_image['SliderImage']);
+	        if(!$img_props)
+	        {
+		        $width = $slider['Width'];
+			    $height = $slider['Height'];
+	        }
+	        else
+	        {
+		        $width = $img_props[0];
+		        $height = $img_props[1];
+	        }
+
+	        $plugin->parse('loop.width', $width);
+	        $plugin->parse('loop.height', $height);
 
             $plugin->parse('loop.Target', $target);
             $plugin->loop('loop');
