@@ -4,7 +4,7 @@
         <ul>
             <bloc::loop>
             <li>
-                <a href="{Url}" target="{Target}"><img src="/uploads/_slider-images/{SliderImage}" alt="{Title}" /></a>
+                <a href="{Url}" target="{Target}"><img src="/uploads/_slider-images/{SliderImage}" alt="{Title}" width="{width}" height="{height}" /></a>
             </li>
             </bloc::loop>
         </ul>
@@ -25,42 +25,34 @@ $(function() {
     $('#nuts_slider_{sliderID} ul').carouFredSel({
         width: {Width},
         height: {Height},
-
         direction: '{Direction}',
         align: '{Align}',
         padding: {Padding},
         circular: {Circular},
         infinite: {Infinite},
-        items : {Items},
+        items : {
+            visible : "{Items}",
+            width : {Width},
+            height: {Height}
+        },
 
         responsive: true,
-
         pagination  : "#nuts_slider_pager_{sliderID}",
         prev    : {button : '#nuts_slider_prev_{sliderID}'},
         next    : {button : '#nuts_slider_next_{sliderID}'},
 
-            scroll :
-            {
-                items : {Items},
-                fx: '{Fx}',
-                pauseOnHover: true,
-                timeoutDuration: {PauseDuration},
-                duration: {ScrollDuration}
-            },
+        scroll :{
+            items : {Items},
+            fx: '{Fx}',
+            pauseOnHover: true,
+            timeoutDuration: {PauseDuration},
+            duration: {ScrollDuration},
+        },
 
-
-            swipe :
-            {
-                onTouch : true
-            }
-
-
-
-
-
+        swipe :{
+            onTouch : true
+        }
 
     });
-
-
 });
 </script>
