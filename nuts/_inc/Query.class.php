@@ -65,14 +65,22 @@ class Query
 
         if(in_array($operator, array('IN', 'NOT IN')))
         {
-            $tmp = '';
-            foreach($str as $val)
-            {
-                if(!empty($tmp))$tmp .= ', ';
-                $tmp .= "'".sqlX($val)."'";
-            }
+	        if(is_array($str))
+	        {
+		        $tmp = '';
+		        foreach($str as $val)
+		        {
+			        if(!empty($tmp))$tmp .= ', ';
+			        $tmp .= "'".sqlX($val)."'";
+		        }
 
-            $conditions = $conditions.' '.$operator."(".$tmp.")";
+		        $conditions = $conditions.' '.$operator."(".$tmp.")";
+	        }
+	        else
+	        {
+		        $conditions = $conditions.' '.$operator.' '.$str;
+	        }
+
         }
         elseif(!empty($operator))
         {
