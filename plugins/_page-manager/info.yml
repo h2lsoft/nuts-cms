@@ -8,5 +8,5 @@ info: manage the content of your pages
 info_fr: gérer le contenu de vos pages
 langs: en, fr
 system required: >= 1.0
-actions: exec
+actions: exec, main pages creation
 default_action: exec

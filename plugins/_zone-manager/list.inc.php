@@ -3,6 +3,25 @@
 /* @var $plugin Plugin */
 /* @var $nuts NutsCore */
 
+// ajaxer **************************************************************************************************************
+if(ajaxerRequested())
+{
+	if(ajaxerAction('get_rights'))
+	{
+		// die("ID = {$_GET['ID']}");
+		ajaxerParameterRequired('ID', 'int');
+		$rights = Query::factory()->select('Rights')->from('NutsZone')->whereID($_GET['ID'])->executeAndGetOne();
+		die(json_encode(unserialize($rights)));
+	}
+
+	die();
+
+}
+
+
+
+// execution ***********************************************************************************************************
+
 // assign table to db
 $plugin->listSetDbTable('NutsZone');
 

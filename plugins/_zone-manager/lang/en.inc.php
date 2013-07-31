@@ -12,6 +12,11 @@ $lang_msg[6] = "Useful for navbar for example";
 $lang_msg[7] = "Navbar";
 $lang_msg[8] = "Visible in the navbar";
 
+$lang_msg[9] = "Rights";
+$lang_msg[10] = "Main pages creation";
+
+
+
 
 
 ?>
