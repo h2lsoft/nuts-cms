@@ -121,13 +121,15 @@ function initWYSIWYGOption()
             str += '<div id="'+id+'_WYSIWYG_submenu_media" class="WYSIWYG_submenu">';
             str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=YOUTUBE%20VIDEO&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/youtube.png" style="width:16px" /> Youtube</a><br />';
             str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=DAILYMOTION&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/dailymotion.png" style="width:16px" /> Dailymotion</a><br />';
-            str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=EMBED%20CODE&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/embed.png" style="width:16px" /> Embed code</a><br />';
-            str += '<hr />';
-            str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=IFRAME&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/iframe.png" style="width:16px" /> Iframe</a><br />';
-            str += '<hr />';
-
             str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=VIDEO&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/video.png" style="width:16px" /> Video</a><br />';
             str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=AUDIO&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/audio.png" style="width:16px" /> Audio</a><br />';
+            str += '<hr />';
+            str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_gmaps&do=list&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_gmaps/icon.png" style="width:16px" /> Map</a><br />';
+            str += '<hr />';
+            str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=IFRAME&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/iframe.png" style="width:16px" /> Iframe</a><br />';
+            str += '<a tabindex="0" href="javascript:popupModal(\'index.php?mod=_media&do=list&user_se=1&Type=EMBED%20CODE&Type_operator=_equal_&popup=1&parent_refresh=no&parentID='+id+'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_media\');"><img align="absbottom" src="/plugins/_media/img/embed.png" style="width:16px" /> Embed code</a><br />';
+
+
             str += '</div>';
 
             str += ' <img class="rte_button" src="/nuts/img/widget.png" title="Widgets" align="absmiddle" onclick="widgetsWindowOpen(\''+id+'\');" /> ';

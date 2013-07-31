@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin gmaps - action List
- * 
+ *
  * @version 1.0
  * @date 08/07/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -38,6 +38,12 @@ $plugin->listAddCol('Type', '', 'center; width:30px; white-space:nowrap;', true)
 $plugin->listAddCol('POI', '', 'center; width:30px; white-space:nowrap;', false);
 $plugin->listAddCol('Code', '', 'white-space:nowrap;', false);
 
+// popup
+if(@$_GET['popup'] == 1)
+{
+	$plugin->listAddCol('AddCode', '&nbsp;', 'center; width:35px');
+}
+
 
 // render list
 $plugin->listRender(20, 'hookData');
@@ -46,6 +52,8 @@ $plugin->listRender(20, 'hookData');
 function hookData($row)
 {
 	global $nuts, $plugin, $lang_msg;
+
+	$original_name = $row['Name'];
 
 	$name = $row['Name'];
 	$name = str_replace("'", "`", $name);
@@ -65,7 +73,26 @@ function hookData($row)
 	$tmp = '<a class="counter" href="javascript:;" onclick="popupModal(\''.$uri.'\', \'POI\');"><i class="icon-location"></i> '.$row['POI'].'</a>';
 	$row['POI'] = $tmp;
 
-	
+
+
+	// add code
+	if(@$_GET['popup'] == 1)
+	{
+
+		$original_name = str_replace("'", '`', $original_name);
+		$map_name = $original_name;
+		$original_name = 'gmaps - '.$original_name;
+		$label = base64_encode($original_name);
+
+		$media = 'plugin';
+		$code = "<p><img class=\"nuts_tags\" src=\"/nuts/img/icon_tags/tag.php?tag={$media}&label=$label\" title=\"{@NUTS    TYPE='PLUGIN'    NAME='_gmaps'    PARAMETERS='{$row['ID']};$map_name'}\" border=\"0\"></p>";
+		$code = str_replace('"', '``', $code);
+		$code = str_replace("'", "\\'", $code);
+
+		$row['AddCode'] = '<a href="javascript:;" onclick="window.opener.WYSIWYGAddText(\''.$_GET['parentID'].'\', \''.$code.'\'); window.close();" class="tt" title="'.$lang_msg[6].'"><i class="icon-arrow-down-3" style="font-size:18px; margin:0; padding:0;"></i></a>';
+	}
+
+
 	return $row;
 }
 
