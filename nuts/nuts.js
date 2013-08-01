@@ -255,10 +255,7 @@ function formIt(title, url)
                 $('body').css('overflow-y', 'scroll');
             }
 
-
 		});
-
-
 
 		forceWYSIWYGUpdate();
 		$(this).show();
@@ -267,6 +264,45 @@ function formIt(title, url)
 
 	});
 }
+
+var nuts_alert_is_opened = false;
+function nutsAlert(message)
+{
+    if(empty(message) || nuts_alert_is_opened)return;
+
+    nuts_alert_is_opened = true;
+
+    str = '<div id="nuts_alert_window">';
+    str += '<img src="/nuts/img/icon-error.gif" class="icon"/> ';
+    str += message;
+    str += '</div>';
+
+    $("#form_window").html(str).dialog({
+        width:900,
+        height:250,
+        modal: true,
+        title: '',
+        resizable: false,
+        position: ['center', 'center'],
+        overlay: {
+            opacity: 0.2,
+            background: "black"
+        },
+
+        close: function(){
+            nuts_alert_is_opened = false;
+        }
+    }).show();
+
+    $('body').css('cursor', 'default');
+
+}
+
+
+
+
+
+
 
 var codemirror_editor = '';
 function initCodeEditor(objID, syntax, popup_version, url_added)

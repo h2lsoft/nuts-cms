@@ -142,7 +142,9 @@ $lang_msg[104] = "Would you like to regenerate `Page Url` ?";
 
 $lang_msg[105] = "Locked";
 $lang_msg[106] = "Lock page for editing until you unlock the page";
-$lang_msg[107] = "Warning !\\n-------------\\nThis pages is locked by `[X]`.\\nYou can not edit its contents";
+// $lang_msg[107] = "Warning !\\n-------------\\nThis pages is locked by `[X]`.\\nYou can not edit its contents";
+$lang_msg[107] = "This pages is locked by `[X]`.<br>You can not edit its contents";
+
 $lang_msg[108] = "You can not rename this page, this page is locked";
 $lang_msg[109] = "You can not delete this page, this page is locked";
 $lang_msg[110] = "You can not delete this page, this page has a subpage locked #";
@@ -158,6 +160,19 @@ $lang_msg[117] = "If empty the first image of your page and automatically resize
 
 
 $lang_msg[118] = "Copy command list images";
+
+$lang_msg[119] = "Rights";
+$lang_msg[120] = "Read";
+$lang_msg[121] = "Edit";
+$lang_msg[122] = "Delete";
+$lang_msg[123] = "Move";
+$lang_msg[124] = "Duplicate";
+$lang_msg[125] = "Subpage";
+$lang_msg[126] = "Comments";
+$lang_msg[127] = "Apply sub pages";
+$lang_msg[128] = "Lock";
+
+
 
 
 ?>

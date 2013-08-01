@@ -22,6 +22,7 @@ function treeView()
 		},
 
 		afterMove:function(destination, source, pos){
+
 			hideContext();
 			cancelPage();
 
@@ -42,7 +43,14 @@ function treeView()
 
 			$.get(url, {},
 							function(data){
-									//alert(data);
+
+                                if(data != 'ok')
+                                {
+                                    nutsAlert(data);
+                                    reloadPage();
+                                    return;
+                                }
+
   							}
 			);
 
@@ -185,7 +193,12 @@ function reloadPage(pageID)
                     // dID ?
                     dID = $('#dID').val();
                     if(!isNaN(dID))
-                        setTimeout("$('#"+dID+" span').addClass('active');editPage(0);$('#page_tree_loader').hide();", 350);
+                    {
+                        if(from_tab_selected == 'options')
+                            setTimeout("$('#"+dID+" span').addClass('active');editPage(0, 5);$('#page_tree_loader').hide();", 350);
+                        else
+                            setTimeout("$('#"+dID+" span').addClass('active');editPage(0);$('#page_tree_loader').hide();", 350);
+                    }
                 }
 
 				$('#page_tree_loader').hide();
@@ -212,6 +225,13 @@ function addPage(parentID)
 	url = tree_static_url+'&_action=add_page&language='+$('#Language').val()+'&zoneID='+$('#ZoneID').val()+'&parentID='+parentID;
 	$.getJSON(url, {},
 		function(data){
+
+            if(data.error == true)
+            {
+                nutsAlert(data.error_message);
+                return
+            }
+
 
 			if(parentID == 0)
 			{
@@ -254,6 +274,14 @@ function duplicatePage()
 	$.getJSON(url, {},
 		function(data){
 
+            // error
+            if(data.error)
+            {
+                nutsAlert(data.error_message);
+                return;
+            }
+
+
 			// add to simple tree node
 			curID = simpleTreeCollection.get(0).getSelected().attr('id');
 			pID = $('.simpleTree #'+curID).parents('li').attr('id');
@@ -295,7 +323,7 @@ function renamePage(){
 	while(empty(c))
 	{
 		c = prompt(lang_msg_97+' ?', nodeText);
-		if(empty(c))alert(lang_msg_98);
+		if(empty(c))nutsAlert(lang_msg_98);
 	}
 
 	nodeID = simpleTreeCollection.get(0).getSelected().attr('id');
@@ -305,26 +333,24 @@ function renamePage(){
 
         if(data != 'ok')
         {
-            alert(data);
+            nutsAlert(data);
+            return;
         }
         else
         {
             nodeID = simpleTreeCollection.get(0).getSelected().attr('id');
             $('li#'+nodeID+' span:first').text(c);
         }
-
 	});
-
-
-
 }
+
 
 function deletePage()
 {
 	nodeText = getTreeNodeText();
 	if(c=confirm(lang_msg_50+" `"+nodeText+"` "+lang_msg_51+" ?"))
 	{
-		cancelPage();
+        cancelPage();
 
 		nodeID = simpleTreeCollection.get(0).getSelected().attr('id');
 		url = tree_static_url+'&_action=delete_page&language='+$('#Language').val()+'&zoneID='+$('#ZoneID').val()+'&ID='+nodeID;
@@ -334,7 +360,7 @@ function deletePage()
                 // page locked
                 if(data.indexOf('|') == -1)
                 {
-                    alert(data);
+                    nutsAlert(data);
                     return;
                 }
 
@@ -502,6 +528,8 @@ function editPage(nodeID, selectTabs)
 
             // locked ?
             updateLocked(data);
+            updateRightsTab(data['ID']);
+
 
 			// select template
 			tpl = $('#former #Template').val();
@@ -541,7 +569,7 @@ function showRequest(formData, jqForm, options)
 	{
 		if($("#fieldset_Access input[type=checkbox]:checked").length == 0)
 		{
-			alert(lang_msg_85);
+			nutsAlert(lang_msg_85);
 			return false;
 		}
 	}
@@ -549,12 +577,12 @@ function showRequest(formData, jqForm, options)
 	// verify dates
 	if($('#DateStartOption').val() == 'YES' && empty($('#DateStart').val()))
 	{
-		alert(lang_msg_94);
+        nutsAlert(lang_msg_94);
 		return false;
 	}
 	if($('#DateEndOption').val() == 'YES' && empty($('#DateEnd').val()))
 	{
-		alert(lang_msg_95);
+        nutsAlert(lang_msg_95);
 		return false;
 	}
 
@@ -613,7 +641,8 @@ function showResponse(responseText, statusText)
 
 	if(responseText != 'ok')
 	{
-		alert(responseText);
+		nutsAlert(responseText);
+
 	}
 	else
 	{
@@ -947,7 +976,7 @@ function imagePreview(f)
 
 	if(empty(v))
 	{
-		alert(nuts_lang_msg_61);
+		nutsAlert(nuts_lang_msg_61);
 		return;
 	}
 
@@ -960,7 +989,7 @@ function directID()
 	v = $('#dID').val();
 	if(!empty(v) && isNaN(v))
 	{
-		alert(lang_msg_65);
+        nutsAlert(lang_msg_65);
 		$('#dID').focus().select();
 		return false;
 	}
@@ -1078,7 +1107,7 @@ function updateLocked(data)
 
             msg = lang_msg_107;
             msg = str_replace('[X]', lastPageData['LockedUsername'], msg);
-            alert(msg);
+            nutsAlert(msg);
         }
         else
         {
@@ -1087,4 +1116,39 @@ function updateLocked(data)
         }
     }
 }
+
+function updateRightsTab(ID)
+{
+    $('#rights_matrix input[type=checkbox]').attr('disabled', false)
+                                            .attr('checked', false);
+
+    $('#rights_matrix .rm_1').attr('checked', true).attr('disabled', true);
+
+
+    // apply right_matrix
+    uri = "index.php?mod=_page-manager&do=exec&_action=get_rights&ID="+ID;
+    $.getJSON(uri, function(data){
+
+       if(data.js == 'disabled')
+           $('#rights_matrix input[type=checkbox]').attr('disabled', true);
+
+       for(i=0; i <  data.rights.length; i++)
+       {
+           gid = data.rights[i]['NutsGroupID'];
+           action = data.rights[i]['Action'];
+           $('#rights_matrix input[type=checkbox][name="RightMatrix['+gid+']['+action+']"]').attr('checked', true);
+       }
+
+        // alert user no edition possible
+        if(data.error_right_edit)
+        {
+            nutsAlert(data.error_right_edit_message);
+        }
+
+
+    });
+
+
+}
+
 

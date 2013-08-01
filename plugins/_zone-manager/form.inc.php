@@ -19,6 +19,7 @@ $groups = Query::factory()->select('ID as value, Name AS label')
 						  ->from('NutsGroup')
 						  ->whereEqualTo('BackofficeAccess', 'YES')
 						  ->where('ID', 'IN', "(SELECT NutsGroupID FROM NutsMenuRight WHERE NutsGroupID = NutsGroup.ID AND NutsMenuID = (SELECT ID FROM NutsMenu WHERE Name = '_page-manager' AND Deleted = 'NO'))")
+					      ->order_by('Priority ASC')
 						  ->executeAndGetAll();
 
 // rights

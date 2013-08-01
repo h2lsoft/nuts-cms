@@ -1,5 +1,5 @@
 function commentPostToggle(){
-	
+
 	if(!$('#comment_post').is(':visible'))
 	{
 		$('#comment_post').show();
@@ -42,7 +42,7 @@ function commentPostSubmit()
 		$('#comment_post').hide();
 
 		commentList();
-		
+
 	});
 
 
@@ -83,7 +83,7 @@ function commentList(){
 		tpl += '<a href="javascript:commentVisible([ID]);">'+lang_msg_76+'</a>';
 
 		tpl += ' | ';
-		
+
 		// delete
 		tpl += '<img src="/nuts/img/list_delete.png" /> ';
 		tpl += '<a href="javascript:commentDelete([ID]);">'+lang_msg_77+'</a>';
@@ -117,7 +117,7 @@ function commentList(){
 		str = strt[0]+' ('+json_data.length+')';
 		$(".ui-tabs-nav-item a").eq(6).text(str);
 	});
-	
+
 
 
 }
@@ -130,15 +130,21 @@ function commentVisible(cID){
 	uri = "index.php?mod=_page-manager&do=exec&_action=comment_visible&ID="+nodeID;
 
 	$.get(uri, {CommentID:cID}, function(data){
-		
+
 		$("#comment"+cID).fadeTo(0, 1);
 
-		src = 'img/YES.gif';
-		if(data == 'NO')
-			src = 'img/icon-error.gif';
+        if(data != 'ok' && data != 'NO' && data != 'YES')
+        {
+            alert(data);
+            return;
+        }
+        else
+        {
+            src = 'img/YES.gif';
+            if(data == 'NO')src = 'img/icon-error.gif';
+            $("#comment"+cID+" .ImgVisible").attr('src', src);
+        }
 
-		$("#comment"+cID+" .ImgVisible").attr('src', src);
-		
 	});
 
 }
@@ -153,21 +159,30 @@ function commentDelete(cID){
 		nodeID = simpleTreeCollection.get(0).getSelected().attr('id');
 		uri = "index.php?mod=_page-manager&do=exec&_action=comment_delete&ID="+nodeID;
 
-		$.get(uri, {CommentID:cID}, function(){
+		$.get(uri, {CommentID:cID}, function(resp){
 
-			$("#comment"+cID).remove();
+            if(resp != 'ok')
+            {
+                $("#comment"+cID).fadeTo(0, 1);
+                alert(resp);
+                return;
+            }
+            else
+            {
+                $("#comment"+cID).remove();
 
-			// update comment nb
-			str = $(".ui-tabs-nav-item a").eq(5).text();
-			strt = explode(' (', str);
-			str = strt[0]+' ('+$(".comment").length+')';
-			$(".ui-tabs-nav-item a").eq(5).text(str);
+                // update comment nb
+                str = $(".ui-tabs-nav-item a").eq(5).text();
+                strt = explode(' (', str);
+                str = strt[0]+' ('+$(".comment").length+')';
+                $(".ui-tabs-nav-item a").eq(5).text(str);
+            }
 		});
 	}
 
 }
 
-function commentCite(cID){	
+function commentCite(cID){
 
 	v = '<blockquote>';
 	v += '<span>'+$("#commentAuthor"+cID).text()+' : </span>\n\n';

@@ -104,6 +104,10 @@
 		<li class="ui-tabs-nav-item"><a href="#tab4" id="tab_variables">{$lang_msg[45]}</a></li>
 		<li class="ui-tabs-nav-item"><a href="#tab6" id="tab_options">Options</a></li>
 		<li class="ui-tabs-nav-item"><a href="#tab5" id="tab_comments">{$lang_msg[13]}</a></li>
+
+
+        <li class="ui-tabs-nav-item"><a href="#tab7" id="tab_rights">{$lang_msg[119]}</a></li>
+
 	</ul>
     <div id="preview"> <a href="javascript:;" onclick="previewPage(0);">{$lang_msg[14]} <i class="icon-new-tab"></i></a></div>
 
@@ -630,6 +634,54 @@
 
 	</div>
 	<!-- /options -->
+
+
+
+    <!-- rights -->
+    <div id="tab7" class="ui-tabs-panel ui-tabs-hide">
+
+        <table class="table" id="rights_matrix" cellpadding="5" cellspacing="0">
+        <tr>
+             <th>&nbsp;</th>
+             <th>{$lang_msg[121]}</th>
+             <th>{$lang_msg[122]}</th>
+             <th>{$lang_msg[123]}</th>
+             <th>{$lang_msg[128]}</th>
+             <th>{$lang_msg[124]}</th>
+             <th>{$lang_msg[125]}</th>
+             <th>{$lang_msg[126]}</th>
+        </tr>
+
+        <tbody>
+
+        <bloc::right_matrix>
+        <tr>
+            <td><input type="checkbox" onclick="if('{GroupID}' == 1)this.checked = true; $('#rights_matrix .rm_{GroupID}').attr('checked', this.checked);"> <b>{GroupName}</b></td>
+            <td class="center"><input type="checkbox" class="rm_{GroupID}" name="RightMatrix[{GroupID}][edit]" value="1"></td>
+            <td class="center"><input type="checkbox" class="rm_{GroupID}" name="RightMatrix[{GroupID}][delete]" value="1"></td>
+            <td class="center"><input type="checkbox" class="rm_{GroupID}" name="RightMatrix[{GroupID}][drag]" value="1"></td>
+            <td class="center"><input type="checkbox" class="rm_{GroupID}" name="RightMatrix[{GroupID}][lock]" value="1"></td>
+            <td class="center"><input type="checkbox" class="rm_{GroupID}" name="RightMatrix[{GroupID}][duplicate]" value="1"></td>
+            <td class="center"><input type="checkbox" class="rm_{GroupID}" name="RightMatrix[{GroupID}][subpages]" value="1"></td>
+            <td class="center"><input type="checkbox" class="rm_{GroupID}" name="RightMatrix[{GroupID}][comments]" value="1"></td>
+        </tr>
+        </bloc::right_matrix>
+
+        </tbody>
+
+        <tfoot>
+        <tr>
+            <td colspan="8" style="text-align: right">
+                {$lang_msg[127]} <input type="checkbox" name="RightMatrixApplySubPages" value="1" />
+            </td>
+        </tr>
+        </tfoot>
+
+
+        </table>
+
+    </div>
+    <!-- /rights -->
 
 
 </div>

@@ -134,34 +134,26 @@ div#delete p.bottom #confirm_btn {margin-right: 80px;}
 div#delete p.bottom #confirm_btn:hover {border-color: red; background-color: red; color: white;}
 div#delete p.bottom #confirm_btn:active {border-color: red; background-color: white; color: red;}
 
-
-
-
-
+/** delete ************************************************************************************************************/
+#nuts_alert_window {text-align:center; font-size:14px; color: red;  padding-top:80px; width: 70%; margin:0 auto;}
 
 
 
 #error {width:99%; font-size:14px; height:310px; line-height:310px; text-align:center; /* background-color:#FFDEDE; */
-
     background-image: url(/plugins/_error/icon.png);
     background-repeat: no-repeat;
     background-position: center 80px;
-
 }
 
 #ajax_loader {
     display:none;
-
     position:absolute; z-index:5556;
-
     background-color:#fff;
     color: #333;
-
     padding:4px;
 }
 
 #code_editor_loader {
-
     padding: 3px;
     background-color: #fff;
     color:#333;

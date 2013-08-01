@@ -24,6 +24,27 @@ include(PLUGIN_PATH.'/actions.inc.php');
 
 $nuts->open(PLUGIN_PATH.'/form.html');
 
+// rights matrix ******************************************************************************************
+
+// groups allowed in page manager
+$groups = Query::factory()->select('ID, Name')
+						  ->from('NutsGroup')
+						  ->whereEqualTo('BackofficeAccess', 'YES')
+						  ->where('ID', 'IN', "(SELECT NutsGroupID FROM NutsMenuRight WHERE NutsGroupID = NutsGroup.ID AND NutsMenuID = (SELECT ID FROM NutsMenu WHERE Name = '_page-manager' AND Deleted = 'NO'))")
+						  ->order_by('Priority ASC')
+						  ->executeAndGetAll();
+
+foreach($groups as $group)
+{
+	$nuts->parse('right_matrix.GroupID', $group['ID']);
+	$nuts->parse('right_matrix.GroupName', $group['Name']);
+	$nuts->loop('right_matrix');
+}
+
+
+
+
+
 // custom vars ******************************************************************************************
 if(count($custom_fields) == 0)
 {

@@ -1613,7 +1613,7 @@ function nutsPageGetChildrens($pageID, $init=false)
 	}
 
 	$IDs[] = $pageID;
-	$nuts->doQuery("SELECT ID FROM NutsPage WHERE NutsPageID = $pageID");
+	$nuts->doQuery("SELECT ID FROM NutsPage WHERE NutsPageID = $pageID AND Deleted = 'NO'");
 	$qID = $nuts->dbGetQueryID();
 	while($pg = $nuts->dbFetch())
 	{
@@ -2281,6 +2281,72 @@ function autocastSuperGlobals()
 	}
 
 }
+
+
+/**
+ *
+ * @param int $NutsGroupID
+ */
+function nutsPageManagerUserHasRight($NutsGroupID=0, $right, $zoneID, $pageID=0)
+{
+	global $nuts;
+
+	$NutsGroupID = (int)$NutsGroupID;
+	if(!$NutsGroupID)$NutsGroupID = $_SESSION['NutsGroupID'];
+
+	// superadmin allows all rights
+	if($NutsGroupID == 1)return true;
+
+
+	// add_main_page
+	if(!$pageID)
+	{
+		if($right == 'add_main_page')
+		{
+			// main zone ?
+			if(!$zoneID)
+			{
+				return nutsUserHasRight('', '_page-manager', 'main pages creation');
+			}
+			else
+			{
+				// groups allowed in page manager
+				$zone_rights = Query::factory()->select('Rights')
+										       ->from('NutsZone')
+											   ->whereID($zoneID)
+										       ->executeAndGetOne();
+
+				$zone_rights = (array)unserialize($zone_rights);
+				return in_array($NutsGroupID, $zone_rights);
+			}
+		}
+	}
+	else
+	{
+		// check if page author
+		$authorID = Query::factory()->select('NutsUserID')->from('NutsPage')->whereID($pageID)->executeAndGetOne();
+		if($authorID == $_SESSION['NutsUserID'])
+			return true;
+
+
+		// check if group has right
+		Query::factory()->select('ID')
+						->from('NutsPageRights')
+						->whereEqualTo('NutsGroupID', $NutsGroupID)
+						->whereEqualTo('NutsPageID', $pageID)
+						->whereEqualTo('Action', $right)
+						->limit(1)
+						->execute();
+
+		if($nuts->dbNumRows() == 1)
+			return true;
+	}
+
+
+	return false;
+
+}
+
 
 
 ?>

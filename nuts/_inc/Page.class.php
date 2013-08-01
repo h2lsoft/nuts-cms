@@ -3349,6 +3349,31 @@ EOF;
 			$add_sub_option = '';
 			$page_option = '';
 		}
+		else
+		{
+			// check if user has right main pages creation
+			if(!$this->vars['NutsPageID'])
+			{
+				if(!nutsPageManagerUserHasRight(0, 'add_main_page', $this->vars['ZoneID']))
+				{
+					$add_option = '';
+				}
+			}
+
+			// edit right
+			if(!nutsPageManagerUserHasRight(0, 'edit', 0, $this->pageID))
+			{
+				$edit_option = '';
+			}
+
+
+			// sub pages right ?
+			if(!nutsPageManagerUserHasRight(0, 'subpages', 0, $this->pageID))
+			{
+				$add_sub_option = '';
+			}
+
+		}
 
 		$toolbar = <<<EOF
 
@@ -3364,7 +3389,7 @@ EOF;
 			&nbsp;&nbsp;|&nbsp;&nbsp;<img alt="" src="/nuts/img/icon-refresh.png" style="width:16px; vertical-align:middle;" /> <a style="color:black!important;text-decoration:none!important;" href="javascript:history.go(0);">$refresh_lbl</a>
 
 		</div>
-		<div id="nuts_front_toolbar_button" style="user-select:none; webkit-user-select:none; border:1px solid #ccc; border-top:0; width:auto; position:fixed; z-index:570; right:0px; top:2px; padding:5px; text-align:center; color:black; background-color:#e5e5e5; margin-right:20px; margin-top:-4px;"><a style="color:#0000; text-transform:uppercase; user-select:none; webkit-user-select:none; font-size:10px;" href="javascript:nutsFrontToolbarOpenClose();">$open_close_lbl</a></div>
+		<div id="nuts_front_toolbar_button" style="user-select:none; webkit-user-select:none; border:1px solid #ccc; border-top:0; width:auto; position:fixed; z-index:570; right:0px; top:2px; padding:5px; text-align:center; color:black; background-color:#e5e5e5; margin-right:20px; margin-top:-4px;"><a style="letter-spacing:1px; color:#0000; text-transform:uppercase; user-select:none; webkit-user-select:none; font-size:10px;" href="javascript:nutsFrontToolbarOpenClose();">$open_close_lbl</a></div>
 
 		<script type="text/javascript">
 		$('#nuts_elements').attr('checked', false);
@@ -3395,13 +3420,27 @@ EOF;
 
 		    if(posTop == 2)
 		    {
-                $('#nuts_front_toolbar, #nuts_front_toolbar_button').animate({top: '+=32'}, 400);
+                $('#nuts_front_toolbar, #nuts_front_toolbar_button').animate({top: '+=32'}, 0);
+                status = 'open';
 		    }
 		    else
 		    {
-                $('#nuts_front_toolbar, #nuts_front_toolbar_button').animate({top: '-=32'}, 400);
+                $('#nuts_front_toolbar, #nuts_front_toolbar_button').animate({top: '-=32'}, 0);
+                status = 'close';
 		    }
 
+		    // store in cookie
+			date = new Date();
+            date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+            var expires = "; expires=" + date.toGMTString();
+            document.cookie = "nuts_front_office_toolbar=" + status + expires + ";";
+		}
+
+		// init toolbar from cookie
+		c_value = document.cookie;
+		if(c_value.indexOf("nuts_front_office_toolbar=open") != -1 && c_value.indexOf("nuts_front_office_toolbar=close") == -1)
+		{
+			nutsFrontToolbarOpenClose();
 		}
 		</script>
 EOF;

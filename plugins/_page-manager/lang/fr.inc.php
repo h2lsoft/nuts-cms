@@ -136,7 +136,10 @@ $lang_msg[104] = "Voulez-vous régénérer la `Page Url` ?";
 
 $lang_msg[105] = "Verrouillé";
 $lang_msg[106] = "Verrouille la page pour les éditions";
-$lang_msg[107] = "Attention !\\n-------------\\nCette page est verrouillée par `[X]`.\\nVous ne pouvez donc pas éditer son contenu";
+// $lang_msg[107] = "Attention !\\n-------------\\nCette page est verrouillée par `[X]`.\\nVous ne pouvez donc pas éditer son contenu";
+$lang_msg[107] = "Cette page est verrouillée par `[X]`.<br>Vous ne pouvez donc pas éditer son contenu";
+
+
 $lang_msg[108] = "Vous ne pouvez pas renommer cette page car celle-ci est verrouillée";
 $lang_msg[109] = "Vous ne pouvez pas supprimer cette page car celle-ci est verrouillée";
 $lang_msg[110] = "Vous ne pouvez pas supprimer cette page car celle-ci possède une sous-page verrouillée #";
@@ -152,6 +155,17 @@ $lang_msg[117] = "Si vide la première image de votre contenu sera prise (le red
 
 $lang_msg[118] = "Copier la commande liste images";
 
+
+$lang_msg[119] = "Droits";
+$lang_msg[120] = "Lecture";
+$lang_msg[121] = "Editer";
+$lang_msg[122] = "Supprimer";
+$lang_msg[123] = "Repositionner";
+$lang_msg[124] = "Dupliquer";
+$lang_msg[125] = "Sous page";
+$lang_msg[126] = "Commentaires";
+$lang_msg[127] = "Appliquer aux sous pages";
+$lang_msg[128] = "Verrouiller";
 
 
 ?>
