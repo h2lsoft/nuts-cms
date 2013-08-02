@@ -188,6 +188,11 @@ $nuts_lang_msg[99] = "No shortcut found";
 $nuts_lang_msg[100] = "Add a shortcut";
 $nuts_lang_msg[101] = "Execute";
 
+
+$nuts_lang_msg[102] = "columns";
+
+
+
 // main menu ***********************************************************************
 $mods_group[0]['name'] = 'Administration';
 $mods_group[0]['color'] = '#00AAFF';

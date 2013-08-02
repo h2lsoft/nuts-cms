@@ -168,3 +168,105 @@ function listBatchActionCheck()
         $('#list_container .list_batch').attr('checked', false);
     }
 }
+
+
+// init toggle column
+$('list_column_toggler_menu').hide();
+if($('#list_column_toggler_menu').length == 1)
+{
+
+    tmp_list_hidden_columns = array();
+
+    // init array
+    list_key_exists = false;
+    for(i=0; i < list_toggle_columns.length; i++)
+    {
+        if(list_toggle_columns[i][0] == current_plugin_name)
+        {
+            list_key_exists = true;
+            tmp_list_hidden_columns = explode('µ', list_toggle_columns[i][1]);
+            break;
+        }
+    }
+    if(!list_key_exists)
+    {
+        list_toggle_columns[list_toggle_columns.length] = [current_plugin_name, ''];
+    }
+
+
+
+    str = '';
+    $('#list th').each(function(index){
+
+        label = $(this).html();
+        label = str_replace('&nbsp;', ' ', label);
+        label = strip_tags(label);
+        label = trim(label);
+
+        column = $(this).attr('data-column');
+
+        if(empty(label) && !empty(column))
+        {
+            label = '('+column+')';
+        }
+
+        if(!empty(label))
+        {
+            label = str_replace("'", "\'", label);
+
+
+            checked = ' checked';
+            if(in_array(column, tmp_list_hidden_columns))
+            {
+                checked = '';
+                $("#list th[data-column="+column+"]").toggle();
+                $("#list td[data-column="+column+"]").toggle();
+            }
+
+            tpl = '<label><input type="checkbox" data-column="'+column+'" onclick="listColumnToggle(\''+column+'\', this);" '+checked+' /> '+label+'</label>';
+            str += tpl;
+        }
+    });
+
+    $('#list_column_toggler_menu').html(str);
+}
+
+
+
+
+function listColumnToggle(colID, obj)
+{
+    visible = obj.checked;
+
+    // check at leat one column visible
+    if(!$('#list_column_toggler_menu input:checked').length)
+    {
+        msg = "One column must be visible at least";
+        if(nutsUserLang == 'fr')
+            msg = "Au moins une colonne doit être visible";
+        obj.checked = true;
+        alert(msg);
+        return;
+    }
+
+    $("#list th[data-column="+colID+"]").toggle();
+    $("#list td[data-column="+colID+"]").toggle();
+
+
+    // save all hidden
+    for(i=0; i <  list_toggle_columns.length; i++)
+    {
+        if(list_toggle_columns[i][0] == current_plugin_name)
+        {
+            not_checked = array();
+
+            $('#list_column_toggler_menu input:not(:checked)').each(function(){
+                not_checked[not_checked.length] = $(this).attr('data-column');
+            });
+
+            list_toggle_columns[i][1] = join('µ', not_checked);
+            break;
+        }
+    }
+
+}

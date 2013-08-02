@@ -8,11 +8,9 @@ table#list {
 div#list_container div#add {text-align:right; padding:10px; padding-bottom:0px; padding-left:0; margin-top:-35px;}
 
 div#list_container div#add input[type=button],
-div#list_container div#add button
-{
+div#list_container div#add button {
     margin-left: 15px;
 }
-
 
 #list_add_button {
     background-color: #3399FE;
@@ -30,7 +28,6 @@ div#list_container div#add button
 }
 
 #norecord {font-weight:normal; text-align:center; height:155px; line-height:155px; border:1px solid #ccc; margin:10px 0;}
-
 
 /** list search *******************************************************************************************************/
 div#list_container fieldset {padding:0px; width: auto; min-width:720px; margin-top:0;  margin-bottom:10px; z-index:2; position:absolute; background-color:#fff;}
@@ -86,6 +83,14 @@ table#list th.ordered.selected img {vertical-align: bottom; }
 table#list th.ordered:active {color: white; background-color: #ccc;}
 table#list th.ordered:active img {vertical-align: bottom; }
 table#list th.ordered {-webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; cursor: pointer; color: black;}
+
+table#list #list_column_toggler {float: right; }
+table#list #list_column_toggler a {color: #666;}
+table#list #list_column_toggler a:hover {color: #000;}
+table#list #list_column_toggler_menu {padding: 10px; background: #fff; border: 1px solid #ccc; width: 250px; overflow: hidden; overflow-y: scroll; min-height: 120px; max-height: 650px; position: absolute; z-index: 3; margin-left: -203px; display: none;}
+table#list #list_column_toggler_menu label {width: 99%; display: block; cursor: pointer;}
+table#list #list_column_toggler_menu label:hover {color: #000;}
+
 
 /*
 table#list tbody tr:nth-child(even) td {background-color: #eee;}

@@ -1,3 +1,4 @@
+<script>var current_plugin_name = "{CONST::PLUGIN_NAME}";</script>
 <div id="list_container">
 
 <!-- search -->
@@ -158,12 +159,10 @@ if("{$_GET['popup']}" == 1)
     $(function(){
         $('#add').css('margin-top', '-30px');
     });
-
 }
 </script>
 
 </bloc::add>
-
 
 
 <div id="list">
@@ -180,7 +179,14 @@ if("{$_GET['popup']}" == 1)
 < bloc::data>
 
 <table id="list" cellpadding="3" cellspacing="1" style="{list_style_width}">
-<caption>{$nuts_lang_msg[4]}</caption>
+<caption>{$nuts_lang_msg[4]}
+
+    <div id="list_column_toggler">
+        <a href="javascript:;" onclick="$('#list_column_toggler_menu').toggle();">{$nuts_lang_msg[102]} <img src="/library/php/TPLN/img/order_desc.gif" /></a>
+        <div id="list_column_toggler_menu"></div>
+    </div>
+
+</caption>
 <thead>
 <tr>
 
@@ -194,7 +200,7 @@ if("{$_GET['popup']}" == 1)
 	</bloc::th_view>
 
 	<bloc::th>
-	<th class="{class}" style="text-align:{style};">{name} {order_by}</th>
+	<th data-column="{field}" class="{class}" style="text-align:{style};">{name} {order_by}</th>
 	</bloc::th>
 </tr>
 </thead>
@@ -215,7 +221,7 @@ if("{$_GET['popup']}" == 1)
 	</bloc::td_view>
 
 	<bloc::td>
-	<td class="{class} {td_class}" noclick="{noclick}" style="text-align:{style};">{ {name} }</td>
+	<td data-column="{field}" class="{class} {td_class}" noclick="{noclick}" style="text-align:{style};">{ {name} }</td>
 	</bloc::td>
 </tr>
 < /bloc::loop>

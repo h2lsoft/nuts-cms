@@ -176,7 +176,7 @@ $nuts_lang_msg[99] = "Vous n'avez pas de raccourci";
 $nuts_lang_msg[100] = "Ajouter un raccourci";
 $nuts_lang_msg[101] = "Executer";
 
-
+$nuts_lang_msg[102] = "colonnes";
 
 
 // main menu ***********************************************************************

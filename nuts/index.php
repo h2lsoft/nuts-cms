@@ -366,7 +366,7 @@ if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']) && !isset($_GET['target']) &
     }
 
     $plugin_list_ac = json_encode($plugin_list_ac);
-    $nuts->fastParse('plugin_list_ac');
+    @$nuts->parse('plugin_list_ac', $plugin_list_ac);
 
 
 	// listing favorite user shortcut

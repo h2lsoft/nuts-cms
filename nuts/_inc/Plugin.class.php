@@ -1581,10 +1581,14 @@ EOF;
 			$nb_cols++;
 		}
 
-
 		for($i=0; $i <  count($this->cols); $i++)
 		{
 			// thead
+			if($this->colsClass[$i] == 'noprint')
+				$this->nuts->parse('th.field', '');
+			else
+				$this->nuts->parse('th.field', $this->cols[$i]);
+
 			$this->nuts->parse('th.name', $this->colsLabel[$i]);
 			$this->nuts->parse('th.style', $this->colsStyle[$i]);
 			$this->nuts->parse('th.class', $this->colsClass[$i]);
@@ -1598,6 +1602,11 @@ EOF;
 			$this->nuts->loop('th');
 
 			// tbody
+			if($this->colsClass[$i] == 'noprint')
+				$this->nuts->parse('td.field', '');
+			else
+				$this->nuts->parse('td.field', $this->cols[$i]);
+
 			$this->nuts->parse('td.class', $this->colsClass[$i]);
 			$noclick = false;
 			if(empty($this->colsLabel[$i]))$noclick = true;
