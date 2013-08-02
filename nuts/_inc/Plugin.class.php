@@ -3278,6 +3278,13 @@ EOF;
 					$style = (isset($f['opts']['style'])) ? $f['opts']['style'] : '';
 					$this->nuts->parse('f.widgets.select.style', $style);
 
+					// boolean && booleanX add switch class
+					if(in_array($f['type'], array('boolean', 'booleanX')))
+					{
+						$f['opts']['class'] .= ' switch';
+					}
+
+
 					$this->nuts->parse('f.widgets.select.class', $f['opts']['class']);
 					$this->nuts->parse('f.widgets.select.after', $f['opts']['after']);
 

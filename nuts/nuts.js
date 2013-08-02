@@ -1947,3 +1947,42 @@ function tpl_parser(arr, tpl, func)
 }
 
 
+
+
+function transformSelectToSwitch(id_prefix, real_boolean, trigger)
+{
+    $('select.switch').each(function(){
+
+        id = $(this).attr('id');
+        val = $(this).val();
+
+        checked = '';
+        if(val == '1' || val == 'YES')
+            checked = ' checked';
+
+        str = '<input type="checkbox" class="switcher" id="switch_'+id+'" ';
+        str += checked;
+        str += ' />';
+
+        $(this).hide().removeClass('switch');
+
+        if(!trigger)
+        {
+            $(str).insertAfter($(this));
+        }
+        else
+        {
+            $(str).insertAfter($(this)).bind('click change blur', function(){
+                v = ($(this).is(':checked')) ? 'YES' : 'NO';
+                if(real_boolean)v = (v == 'YES') ? 1 : 0;
+
+                id = str_replace('switch_', '', $(this).attr('id'));
+                if(!empty(id_prefix))id_prefix += ' ';
+                $(id_prefix+'#'+id).val(v).change();
+            });
+        }
+
+    });
+
+}
+

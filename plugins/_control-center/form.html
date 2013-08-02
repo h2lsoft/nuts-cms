@@ -16,7 +16,7 @@
 
                 <p>
                     <label>Maintenance</label>
-                    <select id="Maintenance" action="maintenance">
+                    <select id="Maintenance" action="maintenance" class="switch">
                         <option value="YES" {maintenance_yes_selected}>{$nuts_lang_msg[30]}</option>
                         <option value="NO" {maintenance_no_selected}>{$nuts_lang_msg[31]}</option>
                     </select>
@@ -151,6 +151,7 @@
 nTabInit('ntabs0');
 $('a.tt').tooltip({track: true, delay: 0, showURL: false, showBody: " - ", opacity: 0.85});
 $('#htaccess, #robots').tabby();
+transformSelectToSwitch('', false, false);
 
 
 // $('#ntabs0_content input, #ntabs0_content select').keypress(function(event){
@@ -164,10 +165,19 @@ $('#ntabs0_content input, #ntabs0_content select').change(function(){
         objID = $(this).attr('id');
         $(this).addClass('ntabs_loading');
         $('body').css('cursor', 'wait');
-
-
         action = $(this).attr('action');
         val = $(this).val();
+
+
+        // switch detection
+        if($(this).hasClass('switcher'))
+        {
+            objID = str_replace('switch_', '', $(this).attr('id'));
+            val = ($(this).is(':checked')) ? 'YES' : 'NO';
+            switcher_detected = true;
+            action = strtolower(objID);
+        }
+
 
         if(action == '')return;
 
@@ -184,6 +194,10 @@ $('#ntabs0_content input, #ntabs0_content select').change(function(){
             {
                 notify('ok', resp[1]);
             }
+
+            if(switcher_detected)
+                objID = 'switch_'+objID;
+
 
             $('body').css('cursor', 'default');
             $('#'+objID).removeClass('ntabs_loading');

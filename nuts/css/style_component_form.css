@@ -77,6 +77,10 @@ div#form .file_preview input[type=checkbox] {float:left; top: -4px; margin-left:
 div#form .icon:hover {opacity: 0.5;}
 
 
+/** checkbox **/
+div#form input[type=checkbox] {margin-left: 1px; top:0;}
+
+
 
 /** checkbox list **/
 div#form .checkbox_list, div#page_form .checkbox_list {overflow: scroll; height: 125px; overflow-x: hidden; width: 465px; padding-bottom: 10px;}

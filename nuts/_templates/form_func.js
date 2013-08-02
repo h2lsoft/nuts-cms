@@ -74,6 +74,7 @@ function updateFormContentHeight(err)
 loadRichEditor(currentTheme);
 updateFormContentHeight(false);
 helperInit('#form_content');
+transformSelectToSwitch('#former', false, true);
 // $('textarea.resizable:not(.processed)').TextAreaResizer();
 
 
@@ -136,6 +137,8 @@ $('#former .widget_colorpicker').each(function(){
     $('#former #'+current_id+'_colorpicker_preview').css('background-color', $('#former #'+current_id).val());
 
 });
+
+
 
 
 

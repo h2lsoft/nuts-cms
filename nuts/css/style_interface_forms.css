@@ -30,6 +30,9 @@ select {padding-right: 20px; background: url(select_arrow_down.gif) no-repeat; b
 select:hover {background-color:#FFFFDD; border-color:#aaa;}
 select[multiple] {background-image: none; padding-right: 0; height: 100px;}
 
+/** select.switch **/
+
+
 
 /** fieldset **/
 fieldset {border: 1px solid #ccc; width: 97%;}

@@ -6,7 +6,6 @@
             <li>{$lang_msg[2]}</li>
             <li>{$lang_msg[3]}</li>
             <li>{$lang_msg[4]}</li>
-
         </ul>
         <div id="ntabs0_content" class="ntabs_content">
 
@@ -37,7 +36,7 @@
 
                 <p>
                     <label>{$lang_msg[41]}</label>
-                    <select id="FirePHP_enabled">
+                    <select id="FirePHP_enabled" class="switch">
                         <option value="0">{$lang_msg[11]}</option>
                         <option value="1">{$lang_msg[12]}</option>
                     </select>
@@ -155,7 +154,7 @@
 
                 <p>
                     <label>{$lang_msg[48]}</label>
-                    <select id="NUTS_WWW_SESSION_INIT">
+                    <select id="NUTS_WWW_SESSION_INIT" class="switch">
                         <option value="0">{$lang_msg[11]}</option>
                         <option value="1">{$lang_msg[12]}</option>
                     </select>
@@ -169,7 +168,7 @@
 
                 <p>
                     <label>{$lang_msg[26]}</label>
-                    <select id="NUTS_LOG_ERROR_404">
+                    <select id="NUTS_LOG_ERROR_404" class="switch">
                         <option value="0">{$lang_msg[11]}</option>
                         <option value="1">{$lang_msg[12]}</option>
                     </select>
@@ -179,7 +178,7 @@
                 </p>
                 <p>
                     <label>{$lang_msg[27]}</label>
-                    <select id="NUTS_LOG_ERROR_TAGS">
+                    <select id="NUTS_LOG_ERROR_TAGS" class="switch">
                         <option value="0">{$lang_msg[11]}</option>
                         <option value="1">{$lang_msg[12]}</option>
                     </select>
@@ -193,7 +192,7 @@
 
                 <p>
                     <label>{$lang_msg[28]}</label>
-                    <select id="NUTS_TIDY">
+                    <select id="NUTS_TIDY" class="switch">
                         <option value="0">{$lang_msg[11]}</option>
                         <option value="1">{$lang_msg[12]}</option>
                     </select>
@@ -206,7 +205,7 @@
 
                 <p>
                     <label>{$lang_msg[29]}</label>
-                    <select id="NUTS_HTML_COMPRESS">
+                    <select id="NUTS_HTML_COMPRESS" class="switch">
                         <option value="0">{$lang_msg[11]}</option>
                         <option value="1">{$lang_msg[12]}</option>
                     </select>
@@ -273,6 +272,7 @@
 
 <script>
 nTabInit('ntabs0');
+transformSelectToSwitch('', true, false);
 
 function testLogoUrl() {
 
@@ -286,11 +286,28 @@ $('#ntabs0_content input, #ntabs0_content select').change(function(){
         if($(this).hasClass('ntabs_loading'))return;
 
         objID = $(this).attr('id');
+        objVal = $(this).val();
+        switcher_detected = false;
+
+        // switch detection
+        if($(this).hasClass('switcher'))
+        {
+            objID = str_replace('switch_', '', $(this).attr('id'));
+            objVal = ($(this).is(':checked')) ? 1 : 0;
+            switcher_detected = true;
+        }
+
+
         $(this).addClass('ntabs_loading');
         $('body').css('cursor', 'wait');
 
         uri = "index.php?mod=_settings&do=exec&ajaxer=1";
-        $.post(uri, {objID: objID, objVal: $(this).val()}, function(data){
+        $.post(uri, {objID: objID, objVal: objVal}, function(data){
+
+            if(switcher_detected)
+            {
+                objID = "switch_"+objID;
+            }
 
             if(data != 'ok'){
                 notify('error', data);
@@ -301,10 +318,8 @@ $('#ntabs0_content input, #ntabs0_content select').change(function(){
                 notify('ok', "{$lang_msg[39]}");
             }
 
-
             $('body').css('cursor', 'default');
             $('#'+objID).removeClass('ntabs_loading');
-
 
         });
 
