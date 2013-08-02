@@ -1925,3 +1925,25 @@ function getGeneratedPassword(plength, include_maj, include_number, include_spec
     return pass;
 
 }
+
+function tpl_parser(arr, tpl, func)
+{
+    str = '';
+    for(i=0; i < arr.length; i++){
+
+        tpl_parsed = tpl;
+
+        if(typeof func === 'function')
+            arr[i] = func(arr[i]);
+
+        for(item in arr[i]){
+            tpl_parsed = str_replace('{'+item+'}', arr[i][item], tpl_parsed);
+        }
+
+        str += tpl_parsed
+    }
+
+    return str;
+}
+
+
