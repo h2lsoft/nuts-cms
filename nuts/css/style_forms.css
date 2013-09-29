@@ -1,0 +1,95 @@
+fieldset {
+    border-radius:8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 5px;
+}
+
+
+input, select, textarea, button {
+    border:1px solid #ccc;
+    font-family:Arial;
+    font-size:11px;
+}
+
+input[type=text], input[type=file], input[type=password], textarea
+{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+
+input[type=button], button, input[type=submit]   {/*font-size:14px;*/ font-weight:bold;
+
+    background-image:url(button_bkg.png);
+    border:1px solid #ccc;
+    height:24px;
+    cursor:pointer;
+
+    padding-left:7px;
+    padding-right:7px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    transition:background .2s ease-in;
+    -moz-transition:background .2s ease-in;
+    -webkit-transition:background .2s ease-in;
+}
+
+button:hover, input[type=button]:hover, input[type=submit]:hover {
+
+    color:white;
+    text-shadow: 1px 1px 1px #000;
+    border-color:#bbb;
+
+    background-image:none;
+    background-color: #aaa;
+
+}
+
+input[type=submit]:hover {
+
+    background-color: green;
+
+}
+
+#btn_submit {/* background-color: green; */}
+#btn_cancel {/*background-color: red;*/}
+
+
+input[type=text], input[type=password], input[type=file], textarea, select {padding-left:2px; background-image:url(../img/input_bkg.gif); background-repeat:repeat-x;
+
+    transition:all .2s ease-in;
+    -moz-transition:all .2s ease-in;
+    -webkit-transition:all .2s ease-in;
+
+}
+textarea {height:150px;}
+input[type=text]:hover, input[type=password]:hover, input[type=file]:hover, textarea:hover, select:hover {background-color:#FFFFDD; background-image:none; border-color:#aaa;}
+input[type=text]:focus, input[type=password]:focus, input[type=file]:focus, textarea:focus, select:focus {
+
+    background-color:#fff;
+    /*background-image:none;*/
+    border-color:#74B9F0;
+
+    outline: 0;
+    border-color: rgba(82, 168, 236, 0.8);
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 4px rgba(82, 168, 236, 0.6);
+    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 4px rgba(82, 168, 236, 0.6);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 4px rgba(82, 168, 236, 0.6);
+}
+
+input[disabled], textarea[disabled], select[disabled]
+{
+    background: none;
+    background-color: #e5e5e5!important;
+}
+
+
+input[type=file] {width: 420px;}
+.button {padding: 0px!important; height: auto!important; padding-left:3px!important; padding-right:3px!important;}
+
+
+
+
+

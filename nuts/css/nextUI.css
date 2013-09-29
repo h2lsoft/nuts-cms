@@ -1,0 +1,35 @@
+#top_search {display: none;}
+#logout {display: none;}
+#main_title {display: none;}
+#navbar {display: none;}
+
+
+/** general **/
+body, input, select, textarea, button {
+    font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+    font-size: 12px;
+}
+
+a {color:#1570B8;}
+
+#notify_it, .notify_it {border-radius: 0; text-align: left; height: 30px; line-height: 30px; min-width: 250px;}
+#notify_it b , .notify_it b {font-weight: normal; }
+table#list th {padding: 3px;  }
+table#list th.ordered:hover {border-bottom:1px; }
+table#list td {padding: 3px; }
+
+fieldset {
+    border-radius:0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+}
+
+#header {height: 35px; padding: 0px; /*border-bottom: 2px solid #ccc;*/ }
+#header .bo_logo {max-height: 35px; padding: 0px; margin: 0;}
+
+
+/** home **/
+div#home table {border:0;}
+div#home table th {font-weight: normal; font-size: 18px; background: none; border-bottom: 1px solid #e5e5e5;}
+div#home .mod {border-radius: 0; border-color: #ddd;}
+div#home div:hover {box-shadow: none; border-color: #666; background-color: #e5e5e5;}
