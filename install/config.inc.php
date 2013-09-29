@@ -37,7 +37,6 @@ define('NUTS_PAGE_THUMBNAIL_WIDTH', 230); // width of thumbnail
 define('NUTS_PAGE_THUMBNAIL_HEIGHT', 140); // height of thumbnail
 
 
-
 // redirect error page absolute url
 define('NUTS_ERROR_PAGE_REDIRECT', ""); // fill `/error500.php` if you want to hide error
 

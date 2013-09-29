@@ -52,5 +52,3 @@ UPDATE NutsPage SET MenuName='Plan du site', H1='Plan du site'    WHERE ID = 16;
 
 UPDATE NutsSpider SET Url=REPLACE(Url, '/en/', '/fr/'), Language='fr';
 
-
-

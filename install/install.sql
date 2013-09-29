@@ -1191,3 +1191,12 @@ INSERT INTO NutsMenu (Category, Name, Position, Visible) VALUES (2, '_gmaps-poi'
 ALTER TABLE `NutsUser` ADD COLUMN `LastConnection` DATETIME NOT NULL;
 
 ALTER TABLE `NutsPage` ADD COLUMN `Thumbnail` VARCHAR(255) NULL AFTER `LockedNutsUserID` ;
+
+/* update v.4.5 */
+ALTER TABLE `NutsPressKit` ADD COLUMN `Category` VARCHAR(255) NULL AFTER `ID` ;
+ALTER TABLE `NutsPressKit` ADD INDEX `Category` (`Category`);
+ALTER TABLE `NutsRegion` ADD COLUMN `Category` VARCHAR(255) NULL AFTER `ID`;
+ALTER TABLE `NutsRegion` ADD INDEX `Category` (`Category`);
+ALTER TABLE `NutsSlider` ADD COLUMN `GenerateJs` ENUM('YES','NO') NOT NULL DEFAULT 'YES' AFTER `Items`;
+ALTER TABLE `NutsZone` ADD COLUMN `Rights` BLOB NULL AFTER `Visible`;
+CREATE TABLE `NutsPageRights` (`ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,`NutsGroupID` INT UNSIGNED NOT NULL,`NutsPageID` INT UNSIGNED NOT NULL,`Action` VARCHAR(50) NULL,`Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO',PRIMARY KEY (`ID`),INDEX `NutsPageID` (`NutsPageID`),INDEX `Action` (`Action`),INDEX `Deleted` (`Deleted`),INDEX `NutsGroupID` (`NutsGroupID`)) ENGINE=MYISAM;
