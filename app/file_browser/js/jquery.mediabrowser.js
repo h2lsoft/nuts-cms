@@ -937,7 +937,7 @@
             //  }, 500);
         },
 
-
+        
         setCurrentFolder: function(str){
             $.MediaBrowser.currentFolder = str;
             $('input#uploadpath, input#folderpath').val(str);
