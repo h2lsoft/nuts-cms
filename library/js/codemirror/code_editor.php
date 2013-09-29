@@ -9,43 +9,43 @@ if(!isset($_GET['parentID']))$_GET['parentID'] = '';
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Code Editor</title>
-			 
+
         <script type="text/javascript" src="/library/js/jquery.js"></script>
         <script language="text/javascript" src="/library/js/php.js"></script>
 
         <link rel="stylesheet" href="/nuts/css/style.css" />
 	    <link rel="stylesheet" href="lib/codemirror.css" />
 		<script src="lib/codemirror.js" type="text/javascript"></script>
-       
-		
-		<?php if($_GET['syntax'] == 'php'): ?>	
-		
-		<script src="mode/xml/xml.js" type="text/javascript"></script>	
-		<script src="mode/javascript/javascript.js" type="text/javascript"></script>	
-		<script src="mode/css/css.js" type="text/javascript"></script>			
-		<script src="mode/clike/clike.js" type="text/javascript"></script>	
+
+
+		<?php if($_GET['syntax'] == 'php'): ?>
+
+		<script src="mode/xml/xml.js" type="text/javascript"></script>
+		<script src="mode/javascript/javascript.js" type="text/javascript"></script>
+		<script src="mode/css/css.js" type="text/javascript"></script>
+		<script src="mode/clike/clike.js" type="text/javascript"></script>
 		<script src="mode/php/php.js" type="text/javascript"></script>
-		
-		<?php elseif($_GET['syntax'] == 'html'): ?>	
-		
-		<script src="mode/xml/xml.js" type="text/javascript"></script>	
-		<script src="mode/javascript/javascript.js" type="text/javascript"></script>	
-		<script src="mode/css/css.js" type="text/javascript"></script>			
-		
-		<?php elseif($_GET['syntax'] == 'sql'): ?>	
-		
-		<script src="mode/mysql/mysql.js" type="text/javascript"></script>
-		
-		<?php elseif($_GET['syntax'] == 'js'): ?>	
-		
+
+		<?php elseif($_GET['syntax'] == 'html'): ?>
+
+		<script src="mode/xml/xml.js" type="text/javascript"></script>
+		<script src="mode/javascript/javascript.js" type="text/javascript"></script>
+		<script src="mode/css/css.js" type="text/javascript"></script>
+
+		<?php elseif($_GET['syntax'] == 'sql'): ?>
+
+		<script src="mode/sql/sql.js" type="text/javascript"></script>
+
+		<?php elseif($_GET['syntax'] == 'js'): ?>
+
 		<script src="mode/javascript/javascript.js" type="text/javascript"></script>
 
-		<?php elseif($_GET['syntax'] == 'css'): ?>	
-		
-		<script src="mode/css/css.js" type="text/javascript"></script>		
-		
+		<?php elseif($_GET['syntax'] == 'css'): ?>
+
+		<script src="mode/css/css.js" type="text/javascript"></script>
+
 		<?php endif ?>
-		
+
 		<style type="text/css">
 		body {padding:0px; margin:0;}
 		#save_bar {text-align: right; position: absolute; z-index: 5; top: 0; right: 0; padding-right: 10px; padding-top: 5px;}
@@ -54,7 +54,7 @@ if(!isset($_GET['parentID']))$_GET['parentID'] = '';
 		span.cm-comment {color: black!important; background-color: #FFCC99;}
 		.activeline {background: #E9EFF8 !important;}
 		</style>
-        
+
         <script>
 		var syntax = '<?php echo $_GET['syntax']; ?>';
 		var editor = '';
@@ -71,21 +71,21 @@ if(!isset($_GET['parentID']))$_GET['parentID'] = '';
 
 
     </head>
-	
+
    <body>
-	  
+
 	   <div id="save_bar">
 		   <input type="button" id="saver" value="Save (Alt+S)" onclick="my_save();" accesskey="s" disabled />
 	   </div>
-	  
+
 	   <textarea name="CodeEditor" id="CodeEditor"></textarea>
-		
-		
+
+
         <script>
 		new_value = window.opener.document.getElementById('<?php echo $_GET['parentID']; ?>').value;
 		$('#CodeEditor').val(new_value);
-		
-		
+
+
 		// init codemirror
 		if(syntax == 'php')
 		{
@@ -94,7 +94,7 @@ if(!isset($_GET['parentID']))$_GET['parentID'] = '';
 		else if(syntax == 'html')
 		{
 			curMode = "text/html";
-		}		
+		}
 		else if(syntax == 'sql')
 		{
 			curMode = "text/x-mysql";
@@ -108,11 +108,11 @@ if(!isset($_GET['parentID']))$_GET['parentID'] = '';
 			curMode = "text/css";
 		}
 
-		
-		
+
+
 		var editor = CodeMirror.fromTextArea(document.getElementById("CodeEditor"), {
-				
-							lineNumbers: true,							
+
+							lineNumbers: true,
 							matchBrackets: true,
 							mode: curMode,
 							indentUnit: 4,
@@ -120,23 +120,23 @@ if(!isset($_GET['parentID']))$_GET['parentID'] = '';
 							smartIndent:false,
 							enterMode: "keep",
 							tabMode: "shift",
-							
+
 							onCursorActivity: function() {
 								editor.setLineClass(hlLine, null);
 								hlLine = editor.setLineClass(editor.getCursor().line, "activeline");
 							},
-							
+
 							onChange: function (){
-								
+
 								$("#saver").attr('disabled', "");
-								
+
 							}
-							
-							
+
+
 				});
-		
-		
-		var hlLine = editor.setLineClass(0, "activeline");		
+
+
+		var hlLine = editor.setLineClass(0, "activeline");
         </script>
 
 
