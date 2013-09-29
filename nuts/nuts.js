@@ -434,13 +434,13 @@ function codeEditorInline(objID, syntax)
         tabMode: "shift",
 
 		onCursorActivity: function() {
-								codemirror_editor.setLineClass(hlLine, null);
-								hlLine = codemirror_editor.setLineClass(codemirror_editor.getCursor().line, "activeline");
+								// codemirror_editor.setLineClass(hlLine, null);
+								// hlLine = codemirror_editor.setLineClass(codemirror_editor.getCursor().line, "activeline");
 							}
 
       });
 
-	 var hlLine = codemirror_editor.setLineClass(0, "activeline");
+	 // var hlLine = codemirror_editor.setLineClass(0, "activeline");
 
 
 /*
