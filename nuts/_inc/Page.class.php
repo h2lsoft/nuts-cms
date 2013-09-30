@@ -2278,6 +2278,10 @@ class Page extends NutsCore
 				$rep = $this->vars['H1'];
 			break;
 
+			case 'PAGE_H2':
+				$rep = $this->vars['H2'];
+			break;
+
             case 'PAGE_CONTENT_RESUME':
                 $rep = $this->vars['ContentResume'];
             break;
