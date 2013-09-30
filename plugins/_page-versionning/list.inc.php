@@ -17,9 +17,13 @@ if(isset($_GET['_action']) && $_GET['_action'] == 'set')
 										'NutsUserID' => $rec['NutsUserID'],
 										'DateUpdate' => 'NOW()',
 										'H1' => $rec['H1'],
+										'H2' => $rec['H2'],
 										'Note' => $rec['Note'],
 										'ContentResume' => $rec['ContentResume'],
-										'Content' => $rec['Content']),
+										'Content' => $rec['Content'],
+										'NutsPageContentViewID' => $rec['NutsPageContentViewID']
+
+                              ),
 					"ID = {$_GET['NutsPageID']}");
 	$nuts->dbInsert('NutsPageVersion', $rec, array('ID'));
 	$nuts->dbUpdate('NutsPageVersion', array('Deleted' => 'YES'), "ID={$_GET['ID']}");
