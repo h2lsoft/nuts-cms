@@ -86,7 +86,7 @@ div#form input[type=checkbox] {margin-left: 1px; top:0;}
 div#form .checkbox_list, div#page_form .checkbox_list {overflow: scroll; height: 125px; overflow-x: hidden; width: 465px; padding-bottom: 10px;}
 div#form .checkbox_list label, div#page_form .checkbox_list label{margin-left: 0; padding-left: 0; text-align: left; display: block; float: none; font-weight: normal; white-space: nowrap; width: auto;}
 div#form .checkbox_list label:hover, div#page_form .checkbox_list label:hover {color:#666; cursor: pointer;}
-div#form .checkbox_list input[type=checkbox] {/* position: relative; top:3px;*/ margin-right: 5px;}
+div#form .checkbox_list input[type=checkbox] {/* position: relative; top:3px;*/ margin-right: 5px; top:6px;}
 
 
 /** file_upload **/
