@@ -1285,20 +1285,7 @@ function privateBoxRefresh(){
 	$.get(uri, {}, function (d) {
 
 			d = parseInt(d);
-			if(d == 0)
-			{
-				msg = nuts_lang_msg_65;
-			}
-			else
-			{
-				msg = nuts_lang_msg_66;
-				msg = str_replace('[MAIL_NB]', d, msg);
-				if(d > 1)
-					msg += 's';
-				msg = '<span>'+msg+'</span>';
-			}
-
-			$('span.internal_message a').html(msg);
+			$('#internal_message_count').html(d);
 			getUserOnline();
 
 	}, 'text');
