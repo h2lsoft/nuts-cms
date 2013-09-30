@@ -3031,7 +3031,7 @@ EOF;
 				WHERE
 
 						NutsPageID = '%s' AND
-						MenuVisible = 'YES' AND
+						-- MenuVisible = 'YES' AND
 						$sql_access_restricted
 						".$this->sqlAdded()."
 				ORDER BY
