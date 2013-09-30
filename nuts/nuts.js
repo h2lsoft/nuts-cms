@@ -361,7 +361,7 @@ function initCodeEditor(objID, syntax, popup_version, url_added)
         if(!empty(url_added))uri += url_added
 
         vqb += '<img src="/plugins/_visual-query-builder/icon.png" align="absmiddle" style="width:16px;" /> ';
-        vqb += '<a class="visual_query_builder" href="javascript:;" onclick="popupModalV2(\''+uri+'\', \'Visual query builder\', 1100, 900, 0, 0, 0, 0, 0, \'\');"> Visual query builder</a>';
+        vqb += '<a class="visual_query_builder" href="javascript:;" onclick="popupModalV2(\''+uri+'\', \'Visual query builder\', 1150, 1000, 0, 0, 0, 0, 0, \'\');"> Visual query builder</a>';
         vqb += '&nbsp;&nbsp;&nbsp;';
     }
 
