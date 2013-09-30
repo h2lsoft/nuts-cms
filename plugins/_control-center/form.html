@@ -170,6 +170,7 @@ $('#ntabs0_content input, #ntabs0_content select').change(function(){
 
 
         // switch detection
+        switcher_detected = false;
         if($(this).hasClass('switcher'))
         {
             objID = str_replace('switch_', '', $(this).attr('id'));
