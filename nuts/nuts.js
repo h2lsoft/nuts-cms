@@ -1285,7 +1285,8 @@ function privateBoxRefresh(){
 	$.get(uri, {}, function (d) {
 
 			d = parseInt(d);
-			$('#internal_message_count').html(d);
+            if(empty(d))d = 0;
+			$('#internal_message_count').text(d);
 			getUserOnline();
 
 	}, 'text');
