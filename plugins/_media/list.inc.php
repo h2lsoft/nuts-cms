@@ -15,7 +15,7 @@ $plugin->listSearchAddFieldText('Name', $lang_msg[2]);
 
 // create fields
 $plugin->listAddCol('Type', $lang_msg[1], 'center;width:10px;  white-space:nowrap;', true);
-$plugin->listAddCol('Name', $lang_msg[2], '; white-space:nowrap;', true);
+$plugin->listAddCol('Name', $lang_msg[2], ';', true);
 // $plugin->listAddCol('Description', $lang_msg[3], '', false);
 $plugin->listAddCol('Preview', $lang_msg[16], 'center;width:10px;', false);
 
