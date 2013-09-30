@@ -89,6 +89,22 @@
 <body>
 
 
+<!-- upload window -->
+{#include('templates/window_upload.html');}
+<!-- /upload window -->
+
+
+{#if($_GET['editor'] == 'edm' && EDM_ADMINISTRATOR == true)}
+<!-- rights window -->
+{#include('templates/window_rights.html');}
+{#include('templates/window_groups.html');}
+{#include('templates/window_users.html');}
+<!-- /rights window -->
+{#endif}
+
+{#include('templates/window_share_file.html');}
+
+
 <!-- address bar -->
 <div id="addressbar" class="ab">
     <ol>
@@ -244,20 +260,6 @@
 <a style="display: none;" id="fancybox" href=""><img src="" /></a>
 <!-- /fancybox -->
 
-<!-- upload window -->
-{#include('templates/window_upload.html');}
-<!-- /upload window -->
-
-
-{#if($_GET['editor'] == 'edm' && EDM_ADMINISTRATOR == true)}
-<!-- rights window -->
-{#include('templates/window_rights.html');}
-{#include('templates/window_groups.html');}
-{#include('templates/window_users.html');}
-<!-- /rights window -->
-{#endif}
-
-{#include('templates/window_share_file.html');}
 
 
 </body>
