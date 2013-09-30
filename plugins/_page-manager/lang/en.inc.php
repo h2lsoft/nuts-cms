@@ -172,6 +172,8 @@ $lang_msg[126] = "Comments";
 $lang_msg[127] = "Apply sub pages";
 $lang_msg[128] = "Lock";
 
+$lang_msg[129] = "H2";
+
 
 
 

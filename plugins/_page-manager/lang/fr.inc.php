@@ -167,5 +167,7 @@ $lang_msg[126] = "Commentaires";
 $lang_msg[127] = "Appliquer aux sous pages";
 $lang_msg[128] = "Verrouiller";
 
+$lang_msg[129] = "H2";
+
 
 ?>

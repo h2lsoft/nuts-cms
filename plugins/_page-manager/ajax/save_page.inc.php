@@ -253,8 +253,10 @@ else
 		                'NutsPageID' => $_GET['ID'],
 		                'Date' => 'NOW()',
 		                'H1' => $_POST['H1'],
+		                'H2' => $_POST['H2'],
 		                'ContentResume' => $_POST['ContentResume'],
 		                'Content' => $_POST['Content'],
+		                'NutsPageContentViewID' => $_POST['NutsPageContentViewID'],
 		                'Note' => $_POST['Note']
 	                ));
 
