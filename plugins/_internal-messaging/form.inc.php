@@ -7,6 +7,7 @@
 // include(PLUGIN_PATH."/config.inc.php");
 
 // mark read
+$subject = '';
 if(isset($_GET['replyID']))
 {
 	$_GET['replyID'] = (int)$_GET['replyID'];
@@ -30,7 +31,7 @@ $plugin->formAddFieldTextArea('NutsUserIDFrom', $lang_msg[10], false, '', "heigh
 $plugin->formAddFieldsetEnd();
 
 $reply = (isset($_GET['reply'])) ? 'Re : '.$_GET['reply'] : '';
-$plugin->formAddFieldText('Subject', $lang_msg[1], true, 'ucfirst', '', '', '', $reply);
+$plugin->formAddFieldText('Subject', $lang_msg[1], true, 'ucfirst', '', '', '', '', $reply);
 $plugin->formAddFieldTextArea('Message', $lang_msg[2], true, 'ucfirst', "height:380px", "", $lang_msg[20]);
 $plugin->formAddFieldBoolean('EmailAlert', $lang_msg[17], true, $lang_msg[18]);
 
