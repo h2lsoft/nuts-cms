@@ -113,7 +113,7 @@ function showUsers(){
 
     $.post(uri, {folder:urlencode(rights_folder)}, function(resp){
 
-        if(resp.indexOf('ko') == -1)
+        if(resp.indexOf('ko') != -1)
         {
             $('#users_window .n_table tbody').html("");
             $.MediaBrowser.showMessage(resp, "error");
