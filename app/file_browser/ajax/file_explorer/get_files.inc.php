@@ -13,6 +13,8 @@ if(!($selected_path = checkpath($selected_path, $upload_path)))
 }
 else
 {
+	$_SESSION['file-browser'][$_GET['filter']]['last-path'] = $_GET['path'];
+
     $dirs = getDirTree($selected_path, true, false);
 
     // hide files for no super admin

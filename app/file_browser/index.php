@@ -37,6 +37,11 @@ if(file_exists($lang_file))
 else
     require_once("lang/en.php");
 
+
+// store folder
+
+
+
 // vars
 if(in_array($_GET['editor'], array('standalone', 'tinymce')))
 {
@@ -84,6 +89,19 @@ if(in_array($_GET['editor'], array('standalone', 'tinymce')))
     $load_folder = '';
     if(!$_GET['ajax'])
     {
+	    if(empty($_GET['path']))
+	    {
+		    if(!@empty($_SESSION['file-browser'][$_GET['filter']]['last-path']))
+		    {
+			    $_GET['path'] = str_replace('//', '/', $_SESSION['file-browser'][$_GET['filter']]['last-path']);
+			    $_GET['path'] = str_replace('/library/media/images/user/', '', $_GET['path']);
+			    $_GET['path'] = str_replace('/library/media/multimedia/', '', $_GET['path']);
+			    $_GET['path'] = str_replace('/library/media/other/', '', $_GET['path']);
+			    $_GET['path'] = trim($_GET['path']);
+			    $_GET['path'] = str_replace('//', '/', $_GET['path']);
+		    }
+	    }
+
         if(@empty($_GET['path']))
         {
             if($_GET['filter'] == 'image')$load_folder = "/library/media/images/user/";
@@ -110,6 +128,8 @@ if(in_array($_GET['editor'], array('standalone', 'tinymce')))
                     systemError("Path not found `/library/media/other/{$_GET['path']}`");
                 $load_folder = "/library/media/other/{$_GET['path']}/";
             }
+
+	        $load_folder = str_replace('//', '/', $load_folder);
         }
     }
 
@@ -125,6 +145,10 @@ if(in_array($_GET['editor'], array('standalone', 'tinymce')))
 
     // init view cookie
     if(!empty($_COOKIE["pdw-view"]))$viewLayout = $_COOKIE["pdw-view"];
+
+
+
+
 
 }
 elseif($_GET['editor'] = 'edm')
