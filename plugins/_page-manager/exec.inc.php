@@ -210,6 +210,7 @@ foreach($tpls as $tpl)
 	$tpl_name_file = $tpl_name;
 	$tpl_name = str_replace('.html', '', $tpl_name);
 	$tpl_nameX = ucfirst($tpl_name);
+	$tpl_nameX = str_replace('-', ' ', $tpl_nameX);
 
 	if($tpl_name[0] != '_' && (($init && $tpl_name != 'index') || (!$init && $tpl_name == 'index')))
 	{
