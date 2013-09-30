@@ -1,1 +1,1 @@
-imaghe of thumbnail page
+image of thumbnail page
