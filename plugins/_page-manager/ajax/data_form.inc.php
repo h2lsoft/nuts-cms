@@ -2,7 +2,7 @@
 
 $nuts->doQuery("SELECT *, ZoneID AS PageZoneID, (SELECT CONCAT(FirstName,' ',LastName, ' (',Login,')') FROM NutsUser WHERE ID = LockedNutsUserID) AS LockedUsername FROM NutsPage WHERE ID = ".(int)$_GET['ID']);
 if($nuts->dbNumRows() != 1)
-	die('Error: data form record no found');
+	die('Error: data form record not found');
 
 $row = $nuts->dbFetch();
 $row = array_map('trim', $row);
