@@ -25,6 +25,14 @@ function upload_error($num, $filename=''){
     elseif($num == 13)$msg = ($_lang != 'fr') ? "Error: file `%s` not uploaded": "Erreur: fichier `%s` non uploadé";
 
     $msg = sprintf($msg, $filename);
+	if($num == 13)
+	{
+		$tmp = error_get_last();
+		$php_last_error = @$tmp['message'];
+		$msg .= " ($php_last_error)";
+	}
+
+
 
     die($msg);
 }

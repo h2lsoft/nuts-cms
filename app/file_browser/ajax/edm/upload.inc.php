@@ -26,6 +26,12 @@ function upload_error($num, $filename=''){
     elseif($num == 14)$msg = ($_lang != 'fr') ? "Error: file `%s` already exists": "Erreur: fichier `%s` existe déjà";
 
     $msg = sprintf($msg, $filename);
+	if($num == 13)
+	{
+		$tmp = error_get_last();
+		$php_last_error = @$tmp['message'];
+		$msg .= " ($php_last_error)";
+	}
 
     edmLog('UPLOAD', 'ERROR', @$_POST['path'], $msg);
 
