@@ -380,6 +380,8 @@ function initCodeEditor(objID, syntax, popup_version, url_added)
 		str += '</div>';
 		str += '<label>&nbsp;</label>';
 
+
+        $('#'+objID).attr('spellcheck', 'false');
 		$('#'+objID).before(''+str+'');
 		$('#form_content #'+objID).tabby();
 	}
@@ -405,7 +407,7 @@ function initCodeEditor(objID, syntax, popup_version, url_added)
 			$('#code_editor_loader').remove();
 			$('#code_editor_toolbar').remove();
 
-		}, 1500);
+		}, 1000);
 	}
 
     $('#'+objID).addClass('editor');
