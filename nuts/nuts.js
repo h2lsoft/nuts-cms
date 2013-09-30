@@ -381,7 +381,7 @@ function initCodeEditor(objID, syntax, popup_version, url_added)
 		str += '<label>&nbsp;</label>';
 
 
-        $('#'+objID).attr('spellcheck', 'false');
+        $('#'+objID).attr('spellcheck', false);
 		$('#'+objID).before(''+str+'');
 		$('#form_content #'+objID).tabby();
 	}
