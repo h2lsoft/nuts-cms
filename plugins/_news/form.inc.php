@@ -70,7 +70,7 @@ if(!in_array('DateGMTExpiration', $hidden_fields_arr))
 }
 
 $plugin->formAddFieldText('Title', $lang_msg[4], true, 'ucfirst');
-if(!in_array('Resume', $hidden_fields_arr))$plugin->formAddFieldHtmlArea('Resume', $lang_msg[5], false, '', $lang_msg[13]);
+if(!in_array('Resume', $hidden_fields_arr))$plugin->formAddFieldHtmlArea('Resume', $lang_msg[5], false, 'height:90px', $lang_msg[13]);
 if(!in_array('Text', $hidden_fields_arr))$plugin->formAddFieldHtmlArea('Text', $lang_msg[6], false, "height:400px");
 
 $plugin->formAddFieldTextArea('Tags', $lang_msg[7], false, '', '', '', $lang_msg[14]);
