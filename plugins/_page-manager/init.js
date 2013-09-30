@@ -80,6 +80,7 @@ setTimeout(function(){
 
 
 // update content
+$('#ContentResume').height(100);
 $('#Content').width($('#page_form').width()-180);
 $('#Content').height(tab_height - 80);
 $('#ContentResume').width($('#page_form').width()-180);
