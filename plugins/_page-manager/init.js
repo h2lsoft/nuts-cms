@@ -466,3 +466,4 @@ $('#former #H1').change(function(){
 
 });
 
+pageManagerInit();
