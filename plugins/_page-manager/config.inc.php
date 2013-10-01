@@ -37,9 +37,7 @@ $allowed_groups_block = array("Right");
 
 /** update 0.92 **/
 $javascript_onsubmit_function = ""; // name of the js function to verify custom value
-$javascript_oninit_function = ""; // name of the js function after first init
-$javascript_page_onload_function = ""; // name of the js function after get information data
-$javascript_page_onview_function = ""; // name of the js function after display data
+
 
 
 ?>
