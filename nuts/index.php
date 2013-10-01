@@ -52,13 +52,12 @@ if(@$_GET['_action'] == 'users_online')
 
 		// $gravatar_url = 'http://www.gravatar.com/avatar/'.md5($row['Email']).'?s=60&d=http%3A%2F%2Fwww.nuts-cms.com%2Fnuts%2Fimg%2Fgravatar.jpg';
         $gravatar_url = $row['Avatar'];
-        if(empty($gravatar_url))$gravatar_url = '/nuts/img/gravatar.jpg';
+        if(empty($gravatar_url))$gravatar_url = WEBSITE_URL.'/nuts/img/gravatar.jpg';
 
         if($row['NutsUserID'] != $_SESSION['NutsUserID'])
 		    $users_online[] = array('avatar_url' => $gravatar_url, 'Name' => $row['Name'], 'ID' => $row['NutsUserID'], 'Application' => $row['Application']);
 	}
 
-    $gravatar_url = '/nuts/img/gravatar.jpg';
     $users_online[] = array('avatar_url' => $gravatar_url, 'Name' => $_SESSION['Login'], 'ID' => $row['NutsUserID'], 'Application' => '');
 
 	die(json_encode($users_online));
@@ -484,10 +483,6 @@ if(($plugin->name != '_home' && $plugin->name != '_error') || ($plugin->name == 
         $navbar[] = array('mod' => '_home', 'do' => 'exec&category='.$category_info['CategoryNumber'], 'name' => $cat);
 
     }
-
-
-
-
 }
 
 // configuration
