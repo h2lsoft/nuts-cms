@@ -30,6 +30,4 @@ $gallery_images_hd_allowed_thumbnail_height = 120;
 $gallery_images_hd_allowed_thumbnail_constraint = true;
 $gallery_images_hd_allowed_thumbnail_background_color = array(255,255,255); // if constraint, force width and height
 
-
-
 ?>
