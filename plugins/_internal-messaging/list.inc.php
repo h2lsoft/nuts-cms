@@ -144,7 +144,7 @@ function hookData($row)
 	// $default = WEBSITE_URL.'/plugins/_comments/www/anonymous.gif';
     // $grav_url = "http://www.gravatar.com/avatar/".md5(strtolower(trim($row['uEmail'])))."?d=".urlencode($default)."&s=40";
     $grav_url = $row['uAvatar'];
-    if(empty($grav_url))$grav_url = '/nuts/img/gravatar.jpg';
+    if(empty($grav_url))$grav_url = WEBSITE_URL.'/nuts/img/gravatar.jpg';
 	$row['uFrom'] = '<img style="border:1px solid #ccc; width:30px;height:30px;" valign="middle" src="'.$grav_url.'" /> '.ucfirst($row['uFrom']);
 
     // date format
