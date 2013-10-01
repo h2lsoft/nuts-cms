@@ -451,6 +451,7 @@ function editPage(nodeID, selectTabs)
 				}
 			}
 
+
 			// assign navigation
 			$('#page_navigation_urls').html(data['NavigationBar']);
 
@@ -553,6 +554,9 @@ function editPage(nodeID, selectTabs)
             // refresh view
             $('#NutsPageContentViewID').change();
 
+            pageManagerPageOnLoad(nodeID, data);
+
+
             // autofocus H1
             if(selectTabs == 2)
             {
@@ -590,13 +594,18 @@ function showRequest(formData, jqForm, options)
 		return false;
 	}
 
-
-
+    /*
 	if(!empty(formerOnSubmit))
 	{
-		ret = eval(formerOnSubmit)();
+		ret = eval(formerOnSubmit);
 		if(!ret)return false;
 	}
+	*/
+
+    ret = pageManagerPageOnSave(formData);
+    if(!ret)return false;
+
+
 
 	// WYSIWYG interception
 	for(l=0; l < formData.length; l++)
