@@ -403,13 +403,16 @@ function deletePage()
 
 function editPage(nodeID, selectTabs)
 {
+    if(nodeID == 0)
+        nodeID = simpleTreeCollection.get(0).getSelected().attr('id');
+
+    if(typeof nodeID === 'undefined')
+        return;
+
     if(typeof selectTabs === "undefined")selectTabs = 2;
 
 	cancelPage();
 	hideContext();
-
-	if(nodeID == 0)
-		nodeID = simpleTreeCollection.get(0).getSelected().attr('id');
 
 	$('#page_form > ul').tabs('select', 0);
 
@@ -419,10 +422,11 @@ function editPage(nodeID, selectTabs)
 
 	// load data in the form
 	url = tree_static_url+'&_action=data_form&ID='+nodeID;
+
 	$.getJSON(url, {},
 		function(data){
 
-			lastPageData  = data;
+            lastPageData  = data;
 
 			// load information
 			n = '';
