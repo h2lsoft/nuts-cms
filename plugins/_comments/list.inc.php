@@ -82,7 +82,7 @@ function hookData($row)
     // avatar
     if(!$plugin->listExportExcelMode)
     {
-        $default = '/nuts/img/gravatar.jpg';
+        $default = WEBSITE_URL.'/nuts/img/gravatar.jpg';
         $grav_url = "http://www.gravatar.com/avatar/".md5(strtolower(trim($row['Email'])))."?d=".urlencode($default)."&s=60";
         if(empty($row['Avatar']))$row['Avatar'] = $grav_url;
         $row['Avatar'] = "<img src='{$row['Avatar']}' style='max-width:40px; max-height:40px;'>";
