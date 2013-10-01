@@ -6,15 +6,26 @@ if(@$_GET['iframe'])
 	$nuts->doQuery($sql);
 	$txt = $nuts->getOne();
 	echo <<<EOF
-		
+
 		<html>
-			<heade>
+			<head>
 				<title>Preview</title>
 				<link rel="stylesheet" type="text/css" href="../themes/default/style.css" />
+				<script type="text/javascript" src="/library/js/jquery.js"></script>
 			</head>
 			<body>
-				$txt
-			<body>
+			$txt
+
+			<script>
+			$(document).keydown(function(e){
+				code = e.keyCode ? e.keyCode : e.which;
+                if(code == 27)window.close();
+            });
+			</script>
+
+			</body>
+
+
 
 		</html>
 
