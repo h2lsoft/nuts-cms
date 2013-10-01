@@ -127,8 +127,8 @@ function hookData($row){
 	{
 		$row['DateGMT'] = $nuts->db2date($row['DateGMT']);
 		$row['DateGMTExpiration'] = $nuts->db2date($row['DateGMTExpiration']);
-	}	
-	
+	}
+
 	if(!empty($row['NewsImage']))
 	{
 		$row['NewsImage'] = '<img src="'.NUTS_NEWS_IMAGES_URL.'/thumb_'.$row['NewsImage'].'?t='.time().'" style="height:40px;" class="image_preview" />';
@@ -156,7 +156,7 @@ EOF;
     // author
     if(!$plugin->listExportExcelMode)
     {
-        if(empty($row['Avatar']))$row['Avatar'] = '/nuts/img/gravatar.jpg';
+        if(empty($row['Avatar']))$row['Avatar'] = WEBSITE_URL.'/nuts/img/gravatar.jpg';
         $row['Author'] = "<a class='tt' title=\"{$row['Author']}\"><img src='{$row['Avatar']}' style='max-width:40px; max-height:40px;'></a>";
     }
 
