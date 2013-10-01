@@ -739,7 +739,7 @@ var lang_msg_107 = "{$lang_msg[107]}";
 var nuts_lang_msg_21 = "{$nuts_lang_msg[21]}";
 var nuts_lang_msg_23 = "{$nuts_lang_msg[23]}";
 
-var formerOnSubmit = "{$javascript_onsubmit_function}";
+// var formerOnSubmit = "{$javascript_onsubmit_function}"; DEPRECATED user folder js_event_trigger
 
 var from_mode = "{$_GET['from']}";
 var from_mode_action = "{$_GET['from_action']}";
@@ -754,11 +754,15 @@ var pageIsLocked = false;
 
 <script>var hfs = explode(',', "{$hidden_fields}");</script>
 
-<script src="../plugins/{$plugin->name}/custom.js"></script>
-<script src="../plugins/{$plugin->name}/comments.js"></script>
-<script src="../plugins/{$plugin->name}/tree_func.js"></script>
-<script src="../plugins/{$plugin->name}/init.js"></script>
+<script src="/plugins/_page-manager/custom.js"></script>
+<script src="/plugins/_page-manager/comments.js"></script>
+<script src="/plugins/_page-manager/tree_func.js"></script>
 
+<script src="/plugins/_page-manager/js_events_trigger/page-manager__load.js"></script>
+<script src="/plugins/_page-manager/js_events_trigger/page__onload.js"></script>
+<script src="/plugins/_page-manager/js_events_trigger/page__onsave.js"></script>
+
+<script src="/plugins/_page-manager/init.js"></script>
 
 
 <script>
