@@ -4,7 +4,7 @@ include_once($plugin->plugin_path.'/config.inc.php');
 
 
 /* @var $plugin Page */
-$plugin->openPluginTemplate();
+$plugin->openPluginTemplate($newsletter_www_template);
 
 $plugin->parse('error1', $NEWSLETTER_SUSCRIBE_ERROR_1);
 $plugin->parse('error2', $NEWSLETTER_SUSCRIBE_ERROR_2);
