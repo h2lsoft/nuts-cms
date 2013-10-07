@@ -3059,6 +3059,9 @@ EOF;
 	 */
 	private function getListImages($pageID, $params=array())
 	{
+		$params['LIMIT'] = (int)@$params['LIMIT'];
+		if(!$params['LIMIT'])$params['LIMIT'] = 10;
+
 		$pageID = (int)$pageID;
 		if($pageID == 0)return "";
 
@@ -3071,7 +3074,8 @@ EOF;
 		$sql_added_end = '';
 		if(@$params['LIMIT'] != '-1')
 		{
-			$sql_added_end = 'LIMIT 20';
+
+			$sql_added_end = 'LIMIT '.$params['LIMIT'];
 		}
 
 
