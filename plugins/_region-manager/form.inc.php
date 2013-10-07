@@ -12,7 +12,7 @@ $plugin->formAddFieldText('Name', $lang_msg[1], 'unique|notEmpty', '', '', '', '
 $plugin->formAddFieldTextAjaxAutoComplete('Category', $lang_msg[26], false);
 $plugin->formAddFieldTextArea('Description', $lang_msg[2], false);
 
-$plugin->formAddFieldTextArea('Query', $lang_msg[6], true, 'sql', 'height:250px;', '', 'Add {@PAGE_ID} to replace with current page ID');
+$plugin->formAddFieldTextArea('Query', $lang_msg[6], true, 'sql', 'height:250px;', '', $lang_msg[27]);
 $plugin->formAddFieldTextArea('PhpCode', $lang_msg[4], false, 'php', 'height:150px;', '', $lang_msg[5]);
 $plugin->formAddFieldTextArea('HtmlBefore', $lang_msg[15], false, 'html', '', '', $lang_msg[16]);
 $plugin->formAddFieldTextArea('Html', $lang_msg[17], true, 'html');

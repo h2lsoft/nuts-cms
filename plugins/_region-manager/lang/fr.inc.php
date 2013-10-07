@@ -33,4 +33,7 @@ $lang_msg[24] =  "Pagination html début";
 $lang_msg[25] =  "Pagination html fin";
 $lang_msg[26] =  "Catégorie";
 
+$lang_msg[27] =  "{@PAGE_ID} remplace avec ID de la page courante<br>{@PARAMETER_X} : paramètre de la région à remplacer (X est un entier)";
+
+
 ?>
