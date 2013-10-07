@@ -397,6 +397,15 @@ class Plugin
 	}
 
 	/**
+	 * Is popup mode
+	 * @return bool
+	 */
+	public function listPopUpMode()
+	{
+		return (@$_GET['popup'] == 1 || $_GET['popup'] == 'true');
+	}
+
+	/**
      * Choose Table in list mode
      *
      * @param string $dbtable
