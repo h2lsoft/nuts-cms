@@ -108,8 +108,6 @@ if(!isset($_GET['parentID']))$_GET['parentID'] = '';
 			curMode = "text/css";
 		}
 
-
-
 		var editor = CodeMirror.fromTextArea(document.getElementById("CodeEditor"), {
 
 							lineNumbers: true,
@@ -119,24 +117,28 @@ if(!isset($_GET['parentID']))$_GET['parentID'] = '';
 							indentWithTabs: true,
 							smartIndent:false,
 							enterMode: "keep",
-							tabMode: "shift",
+							tabMode: "shift"
 
-							onCursorActivity: function() {
+							/*onCursorActivity: function() {
 								editor.setLineClass(hlLine, null);
 								hlLine = editor.setLineClass(editor.getCursor().line, "activeline");
 							},
-
-							onChange: function (){
+							change: function (cm, change){
+								alert("fire change");
 
 								$("#saver").attr('disabled', "");
 
-							}
+							}*/
 
 
 				});
 
+		// var hlLine = editor.setLineClass(0, "activeline");
 
-		var hlLine = editor.setLineClass(0, "activeline");
+		editor.on("change", function(cm) {
+			$("#saver").attr('disabled', "");
+		});
+
         </script>
 
 
