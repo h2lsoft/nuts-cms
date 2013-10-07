@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin page-content-view-fields - action List
- * 
+ *
  * @version 1.0
  * @date 20/11/2012
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -10,6 +10,7 @@
 /* @var $plugin Plugin */
 /* @var $nuts NutsCore */
 
+$plugin->mainTitleAddUrl("&NutsPageContentViewID={$_GET['NutsPageContentViewID']}");
 
 // assign table to db
 $plugin->listSetDbTable("NutsPageContentViewField", "", "NutsPageContentViewID={$_GET['NutsPageContentViewID']}", "ORDER BY Position");

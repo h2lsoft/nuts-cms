@@ -3,6 +3,9 @@
 /* @var $plugin Plugin */
 /* @var $nuts NutsCore */
 
+
+$plugin->mainTitleAddUrl("&NutsSliderID={$_GET['NutsSliderID']}");
+
 // assign table to db
 $plugin->listSetDbTable("NutsSliderImage", "", "NutsSliderID={$_GET['NutsSliderID']}", "ORDER BY Position");
 

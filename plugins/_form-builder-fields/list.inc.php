@@ -5,6 +5,9 @@
 
 $multiLanguage = isWebsiteMultiLang();
 
+$plugin->mainTitleAddUrl("&NutsFormID={$_GET['NutsFormID']}");
+
+
 // assign table to db
 $plugin->listSetDbTable("NutsFormField", "", "NutsFormID={$_GET['NutsFormID']}", "ORDER BY Position");
 
@@ -19,9 +22,7 @@ $plugin->listAddCol('Type', $lang_msg[4], 'center; width:30px; white-space:nowra
 $plugin->listAddColImg('Required', $lang_msg[5]);
 $plugin->listAddColImg('Email', "Email", "", false);
 
-if($multiLanguage)
-	$plugin->listAddColImg('I18N', "I18N", "", false);
-
+if($multiLanguage)$plugin->listAddColImg('I18N', "I18N", "", false);
 
 $plugin->listAddButtonUrlAdd("NutsFormID={$_GET['NutsFormID']}");
 

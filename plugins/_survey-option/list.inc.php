@@ -6,6 +6,8 @@
 /* @var $plugin Plugin */
 $multiLanguage = isWebsiteMultiLang();
 
+$plugin->mainTitleAddUrl("&NutsSurveyID={$_GET['NutsSurveyID']}");
+
 // assign table to db
 $plugin->listSetDbTable("NutsSurveyOption", "", "NutsSurveyID={$_GET['NutsSurveyID']}", "ORDER BY Position");
 
@@ -27,7 +29,7 @@ $plugin->listCopyButton = false;
 $plugin->listRender(0, 'hookData');
 
 function hookData($row)
-{	
+{
 	global $plugin;
 
 	$row['Position'] = $plugin->listGetPositionContents($row['ID']);
