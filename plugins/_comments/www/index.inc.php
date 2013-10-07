@@ -31,7 +31,7 @@ else
 	}
 
 	// display & apply translation
-	$plugin->openPluginTemplate();
+	$plugin->openPluginTemplate($comments_template);
 	if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_comments/style.css');
 
 	if(!$comments_captcha)
@@ -65,6 +65,7 @@ else
 	if($plugin->dbNumRows() == 0)
 	{
         $label = ($page->language == 'fr') ? 'Aucun' : 'No';
+		$plugin->parse("CommentNb", $label);
         $plugin->eraseBloc("nuts_comments");
 	}
 	else
