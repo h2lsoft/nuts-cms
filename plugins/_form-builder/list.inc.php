@@ -76,17 +76,20 @@ EOF;
 
     if(!$plugin->listExportExcelMode)
     {
-        $row['Name'] = "<b>{$row['Name']}</b><br>{$row['Description']}";
+	    $name_original = $row['Name'];
+
+        $row['Name'] = "<b>{$row['Name']}</b><br>{$row['Description']}<br>";
+        $row['Name'] .= "<pre>{@NUTS    TYPE='FORM'    NAME='$name_original'}</pre>";
     }
 
-	
+
 	// export
 	if($row['Export'] > 0)
 	{
 		$row['Export'] = '<span id="form_'.$row['ID'].'"><a class="tt" title="'.$lang_msg[27].'" href="/nuts/?mod=_form-builder&do=list&action=export&ID='.$row['ID'].'"><img src="img/icon-excel.png" align="absbottom" /> '.$row['Export'].'</a>';
 		$row['Export'] .= ' <a class="tt" title="'.$lang_msg[33].'" href="javascript:cleanForm('.$row['ID'].');"><img style="width:12px;" src="img/list_delete.png" align="absmiddle" /></a></span>';
 	}
-	
+
 	if($row['FormStockData'] == "NO")$row['Export'] = " - ";
 
 
