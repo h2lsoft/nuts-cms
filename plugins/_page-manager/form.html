@@ -126,8 +126,8 @@
 			<div id="tpls_preview">
 
 				<bloc::tpls_preview>
-					<div>
-						<img src="/themes/{theme}/_preview/{tpl_preview}" val="{tpl_name_file}" onclick="$('#former #Template').val('{tpl_name_file}');$('#tpls_preview img').removeClass();$(this).addClass('tpl_selected')" />
+					<div title="{tpl_nameX}">
+						<img  title="{tpl_nameX}" src="/themes/{theme}/_preview/{tpl_preview}" val="{tpl_name_file}" onclick="$('#former #Template').val('{tpl_name_file}');$('#tpls_preview img').removeClass();$(this).addClass('tpl_selected')" />
 						<span>{tpl_nameX}</span>
 					</div>
 				</bloc::tpls_preview>
