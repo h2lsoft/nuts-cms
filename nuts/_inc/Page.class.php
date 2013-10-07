@@ -1133,18 +1133,13 @@ class Page extends NutsCore
 
 				$params = $tmp;
 				$rep = $this->getListImages($params['ID'], $params);
-
-
-
 				$rep = $this->setNutsCommentMarkup('list-images '. $list_image_name.' #'.$params['ID'], $rep);
 				$out = str_replace($matches[0][0], $rep, $out);
 			}
+
 			$out = $this->formatOutput($out);
 		}
 		// </editor-fold>
-
-
-
 
 
         // PATTERN replacement ##############################################################################
@@ -1263,7 +1258,7 @@ class Page extends NutsCore
 							{
 								$sql = "SELECT ID FROM NutsZone WHERE Name = '".addslashes($cmd2['NAME'])."' AND Deleted = 'NO'";
 								$this->doQuery($sql);
-								$cmd2['ZONE_ID'] = $this->getOne();
+								$cmd2['ZONE_ID'] = $this->dbGetOne();
 								$cmd2['ID']  = 'ZONE '.$cmd2['ZONE_ID'];
 							}
 
@@ -3078,6 +3073,15 @@ EOF;
 			$sql_added_end = 'LIMIT '.$params['LIMIT'];
 		}
 
+		$sql_position = '';
+		if(@empty($params['POSITION']))@$params['POSITION'] = 'ASC';
+		$params['POSITION'] = strtoupper($params['POSITION']);
+
+		if(@$params['POSITION'] != 'ASC' && @$params['POSITION'] != 'DESC')
+		{
+			$params['POSITION'] = "ASC";
+		}
+
 
 		$sql_access_restricted = $this->sqlAddedAccessRestricted();
 		$sql = "SELECT
@@ -3096,7 +3100,8 @@ EOF;
 						$sql_access_restricted
 						".$this->sqlAdded()."
 				ORDER BY
-						Position
+						Position {$params['POSITION']}
+
 				$sql_added_end";
 
 		$this->dbSelect($sql, array($pageID));
