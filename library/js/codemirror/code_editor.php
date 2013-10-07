@@ -66,6 +66,7 @@ if(!isset($_GET['parentID']))$_GET['parentID'] = '';
 			window.opener.document.getElementById('<?php echo $_GET['parentID']; ?>').value = val;
 			$("#saver").attr('disabled', true);
 			editor.focus();
+	        window.close();
 		}
         </script>
 
