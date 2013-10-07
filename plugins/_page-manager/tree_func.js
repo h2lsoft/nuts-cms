@@ -814,7 +814,7 @@ function linkListImages()
     // copy to clipboard
     nodeText = getTreeNodeText();
 
-    s = '{@NUTS	TYPE=\'LIST-IMAGES\'	NAME=\''+nodeText+'\'	ID=\'�\'	MENU_VISIBLE=\'1\'	POSITION=\'ASC\'	LIMIT=\'-1\'}';
+    s = '{@NUTS	TYPE=\'LIST-IMAGES\'	NAME=\''+nodeText+'\'	ID=\'�\'	MENU_VISIBLE=\'1\'	POSITION=\'ASC\'	LIMIT=\'20\'}';
     s = str_replace('�', nodeID, s);
 
     // copyToClipboard(s);
