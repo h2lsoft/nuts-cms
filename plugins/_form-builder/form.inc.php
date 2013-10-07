@@ -11,7 +11,7 @@ $lng_options = '<option value="AUTO">'.$lang_msg[18].'</option>'."\n".$lng_optio
 
 $plugin->formAddFieldSelect('Language', $lang_msg[1], true, $lng_options);
 $plugin->formAddFieldText('Name', $lang_msg[2], true);
-$plugin->formAddFieldText('Description', $lang_msg[3], false);
+$plugin->formAddFieldText('Description', $lang_msg[3], false, 'ucfirst');
 $plugin->formAddFieldTextArea('Caption', $lang_msg[25], false, "", "", "", $lang_msg[26]);
 $plugin->formAddFieldBooleanX('Captcha', '', true, $lang_msg[22]);
 $plugin->formAddFieldHtmlArea('Information', '', false, "", $lang_msg[28]);
@@ -50,7 +50,7 @@ $nuts->alphaNumeric('Name','_');
 
 if($_POST)
 {
-	
+
 	if($_POST['FormValidMailer'] == 'YES')
 	{
 		$nuts->notEmpty('FormValidMailerFrom');
@@ -59,7 +59,7 @@ if($_POST)
         // $nuts->email('FormValidMailerTo');
 		$nuts->notEmpty('FormValidMailerSubject');
 	}
-	
+
 }
 
 
