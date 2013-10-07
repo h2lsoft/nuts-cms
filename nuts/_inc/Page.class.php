@@ -789,7 +789,10 @@ class Page extends NutsCore
 				$cmd2 = $this->parseCommand($cmd);
 				if(isset($cmd2['TYPE']) && $cmd2['TYPE'] == 'REGION')
 				{
-					$rep = $this->getShowRecords($cmd2['NAME']);
+					if(!isset($cmd2['PARAMETERS']))$cmd2['PARAMETERS'] = '';
+					$params = explode(',', $cmd2['PARAMETERS']);
+					$params = array_map('trim', $params);
+					$rep = $this->getShowRecords($cmd2['NAME'], $params);
 
 					$rep = $this->setNutsCommentMarkup('region '.$cmd2['NAME'], $rep);
 					$out = str_replace("{@$cmd}", $rep, $out);
@@ -2107,9 +2110,10 @@ class Page extends NutsCore
      * Execute region treatment
      *
      * @param string $regionName
+     * @param array $parameters
      * @return string
      */
-	private function getShowRecords($regionName)
+	private function getShowRecords($regionName, $parameters=array())
 	{
 		$this->dbSelect("SELECT * FROM NutsRegion WHERE Name = '%s' AND Deleted = 'NO'", array($regionName));
         if($this->dbNumRows() == 0)return "Error: `$regionName` not found";
@@ -2207,8 +2211,19 @@ class Page extends NutsCore
 		$sql = $r['Query'];
 		if(!empty($r['PhpCode']))eval($r['PhpCode']);
 
-        // repalce keyword in sql
+        // replace keyword in sql
         $sql = str_replace('{@PAGE_ID}', $this->vars['ID'], $sql);
+
+		// repalce {@PARAMETER_X}
+		$z = 0;
+		if(is_array($parameters))
+		{
+			foreach($parameters as $param)
+			{
+				$sql = str_replace('{@PARAMETER_'.$z.'}', $param, $sql);
+				$z++;
+			}
+		}
 
 
 		// output
