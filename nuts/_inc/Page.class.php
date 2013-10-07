@@ -1533,6 +1533,15 @@ class Page extends NutsCore
 
 		$out = $this->chronoReplace($out);
 
+
+		// ajaxer ******************************************************************************************************
+		if(@$_GET['ajaxer'] == 1 && !@empty($_GET['ajaxer_bloc']))
+		{
+			$out = $this->getAjaxBloc($_GET['ajaxer_bloc'], $out);
+			die($out);
+		}
+
+
 		// Html compression *********************************************************************************************
 		if(NUTS_HTML_COMPRESS)
 		{
@@ -1664,10 +1673,12 @@ class Page extends NutsCore
 				}
 			}
 
-
-
-
 		}
+
+
+
+
+
 
 		// Tidy correction *************************************************************************************************
 		if(NUTS_TIDY)
@@ -1689,6 +1700,9 @@ class Page extends NutsCore
 			$out = join("\n", $lines);
 			$out = str_replace("\n\n", "\n", $out);
 		}
+
+
+
 
 
 		die($out);
