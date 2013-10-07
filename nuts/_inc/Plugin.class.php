@@ -435,6 +435,19 @@ class Plugin
 	}
 
 
+	public $url_tracked = '';
+
+	/**
+	 * Add parmater to plugin main title
+	 * @param $uri
+	 */
+	public function mainTitleAddUrl($uri)
+	{
+		$this->url_tracked = $uri;
+	}
+
+
+
 	public $listAllowBatchActions = false;
 	private $listBatchActions = array();
 
