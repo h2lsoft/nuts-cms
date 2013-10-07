@@ -156,6 +156,19 @@ if($_GET['parentID'] > 0)
 			$nuts->dbSetQueryID($qID);
 		}
 	}
+
+	// copy page rights from $_GET['parentID']
+	$sql = "SELECT * FROM NutsPageRights WHERE NutsPageID = {$_GET['parentID']}";
+	$nuts->doQuery($sql);
+	$qID = $nuts->dbGetQueryID();
+	while($r = $nuts->dbFetch())
+	{
+		$nuts->dbInsert('NutsPageRights', array('NutsGroupID' => $r['NutsGroupID'], 'NutsPageID' => $lastID, 'Action' => $r['Action']));
+		$nuts->dbSetQueryID($qID);
+	}
+
+
+
 }
 
 nutsTrigger('page-manager::add_page', true, "action add new page");
