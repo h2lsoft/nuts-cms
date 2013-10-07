@@ -1113,16 +1113,30 @@ class Page extends NutsCore
 		// LIST-IMAGES  replacement ! *************************************************************************************************
 		// <editor-fold defaultstate="collapsed">
 
-		preg_match_all("#\{@NUTS	TYPE='LIST-IMAGES'	NAME='(.*)'	ID='(.*)'\}#U", $out, $matches);
+		preg_match_all("#\{@NUTS	TYPE='LIST-IMAGES'	NAME='(.*)\}#U", $out, $matches);
 		if (count($matches) >= 2)
 		{
 			$matches[1] = array_unique($matches[1]);
 
 			// get each block with content
-			foreach($matches[2] as $cmd)
+			foreach($matches[1] as $cmd)
 			{
-				$rep = $this->getListImages($cmd);
-				$rep = $this->setNutsCommentMarkup('list-images '. $cmd, $rep);
+				$params = explode("'\t", $cmd);
+				$list_image_name = $params[0];
+
+				$tmp = array();
+				for($i=1; $i < count($params); $i++)
+				{
+					list($name, $value) = explode('=', $params[$i]);
+					$tmp[$name] = str_replace("'", '', $value);
+				}
+
+				$params = $tmp;
+				$rep = $this->getListImages($params['ID'], $params);
+
+
+
+				$rep = $this->setNutsCommentMarkup('list-images '. $list_image_name.' #'.$params['ID'], $rep);
 				$out = str_replace($matches[0][0], $rep, $out);
 			}
 			$out = $this->formatOutput($out);
@@ -3039,13 +3053,27 @@ EOF;
 	/**
 	 * Create list images
 	 * @param int $pageID
+	 * @param array $params
 	 *
 	 * @return string string
 	 */
-	private function getListImages($pageID)
+	private function getListImages($pageID, $params=array())
 	{
 		$pageID = (int)$pageID;
 		if($pageID == 0)return "";
+
+		$sql_added = '';
+		if(@$params['MENU_VISIBLE'] == '1')
+		{
+			$sql_added .= " MenuVisible	= 'YES' AND ";
+		}
+
+		$sql_added_end = '';
+		if(@$params['LIMIT'] != '-1')
+		{
+			$sql_added_end = 'LIMIT 20';
+		}
+
 
 		$sql_access_restricted = $this->sqlAddedAccessRestricted();
 		$sql = "SELECT
@@ -3060,11 +3088,13 @@ EOF;
 				WHERE
 
 						NutsPageID = '%s' AND
-						-- MenuVisible = 'YES' AND
+						$sql_added
 						$sql_access_restricted
 						".$this->sqlAdded()."
 				ORDER BY
-						Position";
+						Position
+				$sql_added_end";
+
 		$this->dbSelect($sql, array($pageID));
 		if($this->dbNumRows() == 0)return "";
 
