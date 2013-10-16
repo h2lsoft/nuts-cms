@@ -200,6 +200,10 @@ else
 															'Suscribe' => 'YES',
 															'IP' => $IP_long,
 															'Visible' => 'NO'), array(), true);
+
+		nutsTrigger('comment::new', true, "New comment posted");
+
+
 		// send email to administrators
 		$plugin->mailCharset('UTF8');
 		$plugin->mailFrom($comments_email_notify_from);
