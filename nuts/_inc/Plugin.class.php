@@ -4434,7 +4434,7 @@ EOF;
 
             if(!$this->deleteRealMode)
 			    $this->nuts->doQuery("UPDATE {$this->deleteDbTable[0]} SET Deleted = 'YES' WHERE ID = {$_GET['ID']}");
-            elseif(!$this->deleteRealMode)
+            else
                 $this->nuts->doQuery("DELETE FROM {$this->deleteDbTable[0]} WHERE ID = {$_GET['ID']} LIMIT 1");
 
 			if(count($this->deleteDbTable) >= 2)
@@ -4455,15 +4455,6 @@ EOF;
 
 		$this->render = $this->nuts->output();
 	}
-
-
-    /**
-     *
-     *
-     * @param $counter
-     * @param $background_color optionnal
-     * @param string $plugin_name
-     */
 
 
     /**
