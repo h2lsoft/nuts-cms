@@ -47,7 +47,3 @@ $lang_msg[26] = "Address 3";
 $lang_msg[27] = "Importer";
 
 
-
-
-
-?>

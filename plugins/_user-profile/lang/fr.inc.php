@@ -45,4 +45,4 @@ $lang_msg[25] = "TVA N°";
 $lang_msg[26] = "Adresse 3";
 $lang_msg[27] = "Importer";
 
-?>
+

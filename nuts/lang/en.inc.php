@@ -280,5 +280,3 @@ $nuts_lang_options[] = array('value' => 'pl', 'label' => 'Polish');
 
 
 
-
-?>

@@ -262,6 +262,3 @@ $nuts_lang_options[] = array('value' => 'hu', 'label' => 'Hongrois');
 $nuts_lang_options[] = array('value' => 'pl', 'label' => 'Polonais');
 
 
-
-
-?>

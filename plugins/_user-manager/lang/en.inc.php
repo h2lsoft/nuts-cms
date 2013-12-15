@@ -47,7 +47,3 @@ $lang_msg[27] = "Standard";
 $lang_msg[28] = "Last connection";
 
 
-
-
-
-?>

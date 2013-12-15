@@ -41,3 +41,4 @@ Mot de passe: {Password}
 
 Pour vous connecter: {WEBSITE_URL}".LOGIN_PAGE_URL_FR;
 
+
