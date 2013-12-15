@@ -30,9 +30,6 @@ function hookData($row)
 
     $row['Position'] = $plugin->listGetPositionContents($row['ID']);
 
-
-
-
     // get plugin name translated
     $plugin_folder_name = $row['Plugin'];
     include(Plugin::getIncludeUserLanguagePath($plugin_folder_name));

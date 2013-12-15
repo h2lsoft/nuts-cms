@@ -24,7 +24,6 @@ $sql = "SELECT
                 ID IN(SELECT DISTINCT NutsMenuID FROM NutsMenuRight WHERE NutsGroupID = '{$_SESSION['NutsGroupID']}')";
 $nuts->doQuery($sql);
 
-
 $opts = array();
 while($r = $nuts->dbFetch())
 {
@@ -51,5 +50,8 @@ if($_POST)
     }
 
 }
+
+
+
 
 
