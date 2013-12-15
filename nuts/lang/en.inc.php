@@ -193,6 +193,9 @@ $nuts_lang_msg[101] = "Execute";
 
 $nuts_lang_msg[102] = "columns";
 
+$nuts_lang_msg[103] = "Please copy this line to your clipboard  (Ctrl+C / Apple+C) :";
+
+
 
 
 // main menu ***********************************************************************

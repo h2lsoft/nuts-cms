@@ -79,7 +79,7 @@ EOF;
 	    $name_original = $row['Name'];
 
         $row['Name'] = "<b>{$row['Name']}</b><br>{$row['Description']}<br>";
-        $row['Name'] .= "<pre>{@NUTS    TYPE='FORM'    NAME='$name_original'}</pre>";
+        $row['Name'] .= "<pre class='copy'>{@NUTS    TYPE='FORM'    NAME='$name_original'}</pre>";
     }
 
 
@@ -98,5 +98,3 @@ EOF;
 }
 
 
-
-?>

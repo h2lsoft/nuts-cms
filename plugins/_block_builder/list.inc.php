@@ -36,15 +36,12 @@ $plugin->listRender(20, 'hookData');
 
 function hookData($row)
 {
-	$row['Code'] = "<pre>{@NUTS	TYPE='BLOCK'	NAME='{$row['Name']}'}</pre>";
+	$row['Code'] = "<pre class='copy'>{@NUTS	TYPE='BLOCK'	NAME='{$row['Name']}'}</pre>";
 
 	if(empty($row['Preview']))$row['Preview'] = '/nuts/img/no-preview.png';
 	$row['Preview'] = '<img src="'.$row['Preview'].'" class="image_preview" style="height:65px; max-width:160px;" />';
-	
+
 
 	return $row;
 }
 
-
-
-?>

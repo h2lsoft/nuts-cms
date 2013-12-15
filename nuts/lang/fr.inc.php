@@ -179,6 +179,7 @@ $nuts_lang_msg[100] = "Ajouter un raccourci";
 $nuts_lang_msg[101] = "Executer";
 
 $nuts_lang_msg[102] = "colonnes";
+$nuts_lang_msg[103] = "Merci de copier cette ligne dans votre presse papier (Ctrl+C / Pomme+C) :";
 
 
 // main menu ***********************************************************************

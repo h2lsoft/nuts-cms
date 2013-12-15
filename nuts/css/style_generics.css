@@ -28,6 +28,9 @@ h2 {font-size: 16px;}
 h3 {font-size: 14px;}
 
 pre {padding: 5px; background-color: #e5e5e5;}
+pre.copy {padding-left: 25px; background-image: url(../img/list_duplicate.png); background-repeat: no-repeat; background-position: 3px center; font-size: 11px;}
+pre.copy:hover {background-color: #ccc; cursor: pointer;}
+
 
 .underline {text-decoration: underline;}
 .bold {font-weight: bold;}

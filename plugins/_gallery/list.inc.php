@@ -42,7 +42,7 @@ function hookData($row)
 {
 	global $lang_msg, $plugin, $gallery_images_allowed_max_width, $gallery_images_allowed_max_height, $gallery_images_allowed_thumbnail_width, $gallery_images_allowed_thumbnail_height;
 
-	$row['Code'] = "<pre>{@NUTS	TYPE='GALLERY'	NAME='{$row['Name']}'}</pre>";
+	$row['Code'] = "<pre class='copy'>{@NUTS	TYPE='GALLERY'	NAME='{$row['Name']}'}</pre>";
 	if(@$_GET['popup'] == 1)
 	{
 		$label = base64_encode($row['Name']);
@@ -96,6 +96,3 @@ function hookData($row)
 	return $row;
 }
 
-
-
-?>

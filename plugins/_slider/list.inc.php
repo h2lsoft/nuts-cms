@@ -39,7 +39,7 @@ function hookData($row)
 
 
 	$row['Name'] = "<b>{$row['Name']}</b><br><span class='mini'>{$row['Description']}</span>";
-	$row['Code'] = "<pre>{@NUTS    TYPE='PLUGIN'    NAME='_slider'    PARAMETERS='{$row['ID']}'}</pre>";
+	$row['Code'] = "<pre class='copy'>{@NUTS    TYPE='PLUGIN'    NAME='_slider'    PARAMETERS='{$row['ID']}'}</pre>";
 
     $row['Images'] = <<<EOF
 

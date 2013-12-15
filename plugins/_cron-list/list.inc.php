@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin _cron-list - action List
- * 
+ *
  * @version 1.0
  * @date 16/04/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -33,11 +33,9 @@ function hookData($row)
 	global $nuts, $plugin;
 
     $row['Name'] .= "<br><span class='mini'>{$row['Description']}</span>";
-    $row['Name'] .= "<pre>{$row['Command']}</pre>";
-	
+    $row['Name'] .= "<pre class='copy'>{$row['Command']}</pre>";
+
 	return $row;
 }
 
 
-
-?>

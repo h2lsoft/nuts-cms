@@ -268,5 +268,11 @@ function listColumnToggle(colID, obj)
             break;
         }
     }
-
 }
+
+// pre copy
+$('#list pre.copy').click(function(){
+
+    copy2Clipboard($(this).text());
+
+});

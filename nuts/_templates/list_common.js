@@ -111,3 +111,4 @@ shortcut.add('Escape', function(){
         imageBoxClose();
 
 });
+

@@ -1986,3 +1986,11 @@ function transformSelectToSwitch(id_prefix, real_boolean, triggered)
 
 }
 
+
+
+function copy2Clipboard(text)
+{
+    text = str_replace('\t', '    ', text);
+    prompt(nuts_lang_msg_103+"\n\n", text);
+
+}

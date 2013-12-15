@@ -25,7 +25,7 @@ function hookData($row)
 {
 	global $nuts;
 
-	$row['Code'] = sprintf("<pre>{@NUTS	TYPE='REGION'	NAME='%s'    PARAMETERS=''}</pre>", $row['Name']);
+	$row['Code'] = sprintf("<pre class='copy'>{@NUTS	TYPE='REGION'	NAME='%s'    PARAMETERS=''}</pre>", $row['Name']);
 	$row['Name'] = "<b>{$row['Name']}</b><br>{$row['Description']}";
 
 
@@ -33,5 +33,3 @@ function hookData($row)
 	return $row;
 }
 
-
-?>

@@ -66,7 +66,7 @@ function hookData($row)
 	elseif($row['Type'] == 'STREET VIEW')$row['Type'] = $lang_msg[1][2]['label'];
 
 
-	$row['Code'] = "<pre>{@NUTS    TYPE='PLUGIN'    NAME='_gmaps'    PARAMETERS='{$row['ID']}; $name'}</pre>";
+	$row['Code'] = "<pre class='copy'>{@NUTS    TYPE='PLUGIN'    NAME='_gmaps'    PARAMETERS='{$row['ID']}; $name'}</pre>";
 
 
 	$uri = 'index.php?mod=_gmaps-poi&do=list&NutsGMapsID_operator=_equal_&NutsGMapsID='.$row['ID'];
@@ -96,5 +96,3 @@ function hookData($row)
 	return $row;
 }
 
-
-?>
