@@ -36,6 +36,8 @@ while($r = $nuts->dbFetch())
 }
 sort($opts);
 
+$opts = array_merge(array('label' => '', 'value' => ''), $opts);
+
 $plugin->formAddFieldSelect('Plugin', "", true, $opts);
 
 if($_POST)
