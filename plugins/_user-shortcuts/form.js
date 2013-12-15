@@ -1,0 +1,1 @@
+transformSelectToAuctoComplete('Plugin', '#former ');
