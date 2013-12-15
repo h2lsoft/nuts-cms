@@ -2344,6 +2344,32 @@ class Page extends NutsCore
 				$rep = $this->vars['MetaDescription'];
 			break;
 
+			// page navigation ********************************************************
+			case 'PAGE_URL':
+				$rep = $this->getUrl($this->pageID);
+			break;
+
+			case 'PAGE_COMPLETE_URL':
+				$rep = WEBSITE_URL.$this->getUrl($this->pageID);
+			break;
+
+			case 'PAGE_PARENT_URL':
+				$rep = $this->getParentPageUrl();
+			break;
+
+			case 'PAGE_PARENT_ID':
+				$rep = $this->getParentPageID();
+			break;
+
+
+			case 'PAGE_CHILDREN_URL':
+				$rep = $this->getChildrenPageUrl();
+			break;
+
+			case 'PAGE_CHILDREN_ID':
+				$rep = $this->getChildrenPageID();
+			break;
+
 
 
 			// page author ********************************************************
