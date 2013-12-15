@@ -8,7 +8,7 @@
 <fieldset>
 
 	<legend>
-        <i class="icon-search"></i><a accesskey="S" href="javascript:;" onclick="listSearchToggle()">{$nuts_lang_msg[11]}</a>
+        <i class="icon-search"></i><a accesskey="s" href="javascript:;" onclick="listSearchToggle()">{$nuts_lang_msg[11]}</a>
 
         <span>|</span>
 
@@ -149,7 +149,7 @@
 	</bloc::buttons>
 
 	<bloc::add_button>
-    <input type="button" id="list_add_button" value="{add_button_label}" accesskey="A" onclick="formIt('{$nuts_lang_msg[20]}', '?mod={$plugin->name}&do=add&{add_parameters}');" />
+    <input type="button" id="list_add_button" value="{add_button_label}" accesskey="a" onclick="formIt('{$nuts_lang_msg[20]}', '?mod={$plugin->name}&do=add&{add_parameters}');" />
     </bloc::add_button>
 
 </div>
@@ -298,7 +298,7 @@ if("{$_GET['popup']}" == 1)
             <a class="tt" href="javascript:window.print();" title="{$nuts_lang_msg[52]}"><i class="icon-printer"></i></a>
 
             <span style="position:relative; top:-4px;">&nbsp; | </span>
-			<a class="tt" accesskey="R"  href="javascript:system_refresh();" title="{$nuts_lang_msg[50]}"><i class="icon-loop"></i></a>
+			<a class="tt" accesskey="r"  href="javascript:system_refresh();" title="{$nuts_lang_msg[50]}"><i class="icon-loop"></i></a>
             <a class="tooltip yellow-tooltip" href="javascript:;"><i class="icon-help-2"></i><dd>{$nuts_lang_msg[91]}</dd></a>
 
 
@@ -308,7 +308,7 @@ if("{$_GET['popup']}" == 1)
 		<!-- pager -->
 		<bloc::pager>
 		< bloc::previous>
-		<a id="list_previous" accesskey="B" href="javascript:;" onclick="system_goto('{_Url}', 'list');" class="np"> <i class="icon-arrow-left-3"></i> {$nuts_lang_msg[18]}</a>
+		<a id="list_previous" accesskey="b" href="javascript:;" onclick="system_goto('{_Url}', 'list');" class="np"> <i class="icon-arrow-left-3"></i> {$nuts_lang_msg[18]}</a>
 		< /bloc::previous>
 
 		{$nuts_lang_msg[5]} &nbsp;
@@ -339,7 +339,7 @@ if("{$_GET['popup']}" == 1)
 		 {_PageCount}
 
  		< bloc::next>
-		<a id="list_next" accesskey="N" href="javascript:;" onclick="system_goto('{_Url}', 'list');" class="np">{$nuts_lang_msg[19]} <i class="icon-arrow-right-3"></i></a>
+		<a id="list_next" accesskey="n" href="javascript:;" onclick="system_goto('{_Url}', 'list');" class="np">{$nuts_lang_msg[19]} <i class="icon-arrow-right-3"></i></a>
 		< /bloc::next>
 		</bloc::pager>
 		<!-- /pager -->
