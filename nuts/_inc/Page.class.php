@@ -2737,7 +2737,7 @@ class Page extends NutsCore
 			if(!in_array($field['Type'], array('SECTION', 'HTML')))
 			{
 				$form['fields'] .= "\n<div id=\"wrapper_{$field['FieldName']}\" class=\"wrapper\">\n";
-				$form['fields'] .= "\n<span class=\"label\">{$field['Label']} $required  :</span>\n";
+				$form['fields'] .= "\n<span class=\"label\">{$field['Label']} $required <span class='dots'>:</span></span>\n";
 				$form['fields'] .= "\n{$input}\n";
 
 				if(!empty($field['TextAfter']))
