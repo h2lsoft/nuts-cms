@@ -21,7 +21,6 @@ $nuts->dbSetProtection(false); # remove data protection
 $nuts->dbConnect();
 include('_inc/session.inc.php');
 
-
 // ajax:users_online *************************************************************************
 if(@$_GET['_action'] == 'users_online')
 {
@@ -58,10 +57,14 @@ if(@$_GET['_action'] == 'users_online')
 		    $users_online[] = array('avatar_url' => $gravatar_url, 'Name' => $row['Name'], 'ID' => $row['NutsUserID'], 'Application' => $row['Application']);
 	}
 
-    $users_online[] = array('avatar_url' => $gravatar_url, 'Name' => $_SESSION['Login'], 'ID' => $row['NutsUserID'], 'Application' => '');
+	$tmp = nutsUserGetData('', 'Avatar');
+	$gravatar_url = (empty($tmp['Avatar'])) ? WEBSITE_URL.'/nuts/img/gravatar.jpg' : $tmp['Avatar'];
+	$me = ($_SESSION['Language'] == 'fr') ? 'Moi' : 'Me';
+    $users_online[] = array('avatar_url' => $gravatar_url, 'Name' => $me." ({$_SESSION['Login']})", 'ID' => $row['NutsUserID'], 'Application' => '');
 
 	die(json_encode($users_online));
 }
+
 
 // ajax:list_search_users **********************************************************************************************
 if(@$_GET['_action'] == 'list_search_users')
