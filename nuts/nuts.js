@@ -1973,7 +1973,12 @@ function transformSelectToSwitch(id_prefix, real_boolean, triggered)
 
             // add event change on parent
             $(this).bind('change', function(){
-                $('#switch_'+id).change();
+
+                if($(this).val() == 'YES')
+                    $(id_prefix+'#switch_'+id).attr('checked', true);
+                else
+                    $(id_prefix+'#switch_'+id).attr('checked', false);
+
             });
         }
 
