@@ -14,7 +14,5 @@ $lang_msg[9] = "Débloquer";
 $lang_msg[10] = "* Enregistrement automatique au changement du champ";
 $lang_msg[11] = "Ajouter mon ip";
 
+$lang_msg[12] = "Aucune erreur trouvée";
 
-
-
-?>

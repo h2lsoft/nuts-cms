@@ -15,4 +15,5 @@ $lang_msg[10] = "* Save automatically on field changes";
 $lang_msg[11] = "Add my ip";
 
 
-?>
+$lang_msg[12] = "No error found";
+

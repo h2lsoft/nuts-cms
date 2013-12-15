@@ -327,16 +327,25 @@ foreach($files as $file)
         $file = str_replace(WEBSITE_PATH.'/', '', $file);
 		$file = '<span style="color:red; font-weight:bold;">'.$file.'</span>';
 		$errors++;
+
+
+		$file = str_replace(WEBSITE_PATH.'/', '', $file);
+		$nuts->parse('files.type', $type);
+		$nuts->parse('files.res', $res);
+		$nuts->parse('files.file', $file);
+		$nuts->loop('files');
+
 	}
+}
 
-    $file = str_replace(WEBSITE_PATH.'/', '', $file);
-
-
-	$nuts->parse('files.type', $type);
-	$nuts->parse('files.res', $res);
-	$nuts->parse('files.file', $file);
+if(!$errors)
+{
+	$nuts->parse('files.type', 'folder');
+	$nuts->parse('files.res', 'accept');
+	$nuts->parse('files.file', $lang_msg[12]);
 	$nuts->loop('files');
 }
+
 
 $nuts->parse('system_errors', $errors);
 
