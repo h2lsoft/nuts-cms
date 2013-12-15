@@ -10,7 +10,10 @@ $login_key = 'Email'; // Email or Login key to connect
 $session_add_sql_fields = ""; // add sql fields in session for Login
 $session_preserve_keys = array(); // Preserve initial session key like Basket for example
 
+$email_template = array();
+
 // mail:english **************************************************************************************************
+$email_template['en'] = array();
 $email_template['en']['subject'] = "Your account information";
 $email_template['en']['body'] = "
 
@@ -25,6 +28,7 @@ To connect: {WEBSITE_URL}".LOGIN_PAGE_URL_EN;
 
 
 // mail:french **************************************************************************************************
+$email_template['fr'] = array();
 $email_template['fr']['subject'] = "Vos informations de connexion";
 $email_template['fr']['body'] = "
 
@@ -37,10 +41,3 @@ Mot de passe: {Password}
 
 Pour vous connecter: {WEBSITE_URL}".LOGIN_PAGE_URL_FR;
 
-
-
-
-
-
-
-?>

@@ -45,5 +45,3 @@ define('PLUGIN_NEWSLETTER_SLEEPTIME', 3); # pause in seconds
 
 $newsletter_www_template = 'template.html'; // leave blank to use default plugin template
 
-
-?>

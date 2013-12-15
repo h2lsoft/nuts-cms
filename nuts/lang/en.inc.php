@@ -84,6 +84,8 @@ $nuts_lang_msg[45] = "Your email";
 
 $nuts_lang_msg[46] = "Your email is not correct or has not be found";
 $nuts_lang_msg[47] = "Your information has been sent by email";
+
+$nuts_lang_msg[48] = array();
 $nuts_lang_msg[48]['subject'] = "Your information";
 $nuts_lang_msg[48]['body'] = "
 Hi {FirstName} {LastName},

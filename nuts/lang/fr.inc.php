@@ -79,6 +79,8 @@ $nuts_lang_msg[44] = "Mot de passe oublié ?";
 $nuts_lang_msg[45] = "Votre email";
 $nuts_lang_msg[46] = "Votre email n'a pas été trouvée ou bien celle ci est invalide";
 $nuts_lang_msg[47] = "Vos informations ont été envoyées par email";
+
+$nuts_lang_msg[48] = array();
 $nuts_lang_msg[48]['subject'] = "Vos informations";
 $nuts_lang_msg[48]['body'] = "
 Bonjour {FirstName} {LastName},

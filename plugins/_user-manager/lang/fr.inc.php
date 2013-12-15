@@ -16,6 +16,7 @@ $lang_msg[12] = "Email Identification";
 
 
 // email alert
+$lang_msg[13] = array();
 $lang_msg[13]['subject'] = "Vos informations";
 $lang_msg[13]['body'] = "
 Bienvenue {FirstName} {LastName},
