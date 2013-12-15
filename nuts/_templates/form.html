@@ -186,13 +186,13 @@
 </div>
 
 <p class="bottom">
-	<input type="submit" name="btn_submit" id="btn_submit" value="{$nuts_lang_msg[21]}" accesskey="s" />
+	<input type="submit" name="btn_submit" id="btn_submit" value="{$nuts_lang_msg[21]}" accesskey="s" title="Alt + S" />
 	<label id="label_close_after" style="margin:0; float:none; display:inline;"><input type="checkbox" id="close_after" checked /> {$nuts_lang_msg[26]}</label>
 
-    <input type="button" name="btn_cancel" id="btn_cancel" value="{$nuts_lang_msg[26]}" onclick="if('{$_GET['popup']}' == '1'){window.close();}else{$('#form_window').dialog('close');}" />
+    <input type="button" name="btn_cancel" id="btn_cancel" value="{$nuts_lang_msg[26]}" accesskey="w" title="Alt + W" onclick="if('{$_GET['popup']}' == '1'){window.close();}else{$('#form_window').dialog('close');}" />
 
 	<div id="form_bottom_printer_layout">
-		<a class="noprint tt" title="{$nuts_lang_msg[52]}" href="javascript:printDialog();"><i class="icon-printer"></i></a>
+		<a class="noprint tt" title="{$nuts_lang_msg[52]}" href="javascript:printDialog();" accesskey="p" title="Alt + P"><i class="icon-printer"></i></a>
 	</div>
 </p>
 

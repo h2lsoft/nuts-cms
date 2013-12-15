@@ -1,7 +1,7 @@
 <form id="former" action="index.php?mod={$plugin->name}&do={$plugin->action}" method="post">
 
 <div id="form_error">
-<img src="img/icon-error.gif" align="absmiddle" />  {$lang_msg[1]} 
+<img src="img/icon-error.gif" align="absmiddle" />  {$lang_msg[1]}
 </div>
 
 <div id="form_ok">
@@ -9,10 +9,10 @@
 </div>
 
 
-{$lang_msg[4]} 
+{$lang_msg[4]}
 <select id="f" name="f" onchange="updateCfFile()">
 {$select_config_files}
-</select> <input id="btn_submit" type="submit" value="{$nuts_lang_msg[49]}" class="button" />
+</select> <input id="btn_submit" type="submit" value="{$nuts_lang_msg[49]} (Alt+S)" class="button" accesskey="s" />
 <br />
 <br />
 
@@ -21,14 +21,14 @@ v = "{$_GET['f']}";
 if(v != "")
 {
 	$('#f').val(v);
-}	
+}
 </script>
 
 <script>
 function updateCfFile()
 {
-	v = $('#f').val();	
-	uri = "index.php?mod={$plugin->name}&do={$plugin->action}&_action2=get&f="+v;	
+	v = $('#f').val();
+	uri = "index.php?mod={$plugin->name}&do={$plugin->action}&_action2=get&f="+v;
 	system_goto(uri, 'content');
 }
 </script>
@@ -47,27 +47,27 @@ initCodeEditor('Configuration', '{$Syntax}', 0);
 
 <script>
 var options = {
-	beforeSubmit:  showRequest,  // pre-submit callback 
-	success:       showResponse  // post-submit callback 
+	beforeSubmit:  showRequest,  // pre-submit callback
+	success:       showResponse  // post-submit callback
 };
 $('#former').ajaxForm(options);
 
 
-// pre-submit callback 
-function showRequest(formData, jqForm, options) {  
+// pre-submit callback
+function showRequest(formData, jqForm, options) {
 
-	var queryString = $.param(formData);  
-    // jqForm is a jQuery object encapsulating the form element.  To access the 
-    // DOM element for the form do this: 
-    // var formElement = jqForm[0]; 
+	var queryString = $.param(formData);
+    // jqForm is a jQuery object encapsulating the form element.  To access the
+    // DOM element for the form do this:
+    // var formElement = jqForm[0];
 	$('#btn_submit').attr('value', "{$nuts_lang_msg[23]}");
  	$('#btn_submit').attr("disabled", true);
 	$('#Configuration').fadeTo(0, 0.33);
-	
-    return true; 
+
+    return true;
 }
- 
-// post-submit callback 
+
+// post-submit callback
 function showResponse(responseText, statusText)  {
 
 	if(responseText == 'ok')
@@ -82,12 +82,12 @@ function showResponse(responseText, statusText)  {
 		// $('#form_ok').hide();
 		notify('error', "{$lang_msg[1]}");
 	}
-	
+
 	$('#Configuration').fadeTo(0.33, 1);
-	
+
 	$('#btn_submit').attr('value', "{$nuts_lang_msg[21]}");
  	$('#btn_submit').removeAttr("disabled");
-} 
+}
 </script>
 
 
