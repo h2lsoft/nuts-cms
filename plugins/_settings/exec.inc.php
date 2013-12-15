@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin _settings - action Exec
- * 
+ *
  * @version 1.0
  * @date 29/05/2012
  * @author H2Lsoft (contact@h2lsoft.com) - www.h2lsoft.com
@@ -191,6 +191,3 @@ $nuts->parse('Languages', $data[0]['Languages']);
 
 $plugin->render = $nuts->output();
 
-
-
-?>

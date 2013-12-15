@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin settings - Language file
- * 
+ *
  * @version 1.0
  * @date 29/05/2012
  * @author H2Lsoft (contact@h2lsoft.com) - www.h2lsoft.com
@@ -80,8 +80,8 @@ $lang_msg[49] = "starts automatically session";
 $lang_msg[50] = "Page Thumbnail width";
 $lang_msg[51] = "Page Thumbnail height";
 
+$lang_msg[52] = "Social";
 
 
 
 
-?>

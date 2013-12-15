@@ -78,7 +78,6 @@ $lang_msg[49] = "démarre automatiquement la session";
 $lang_msg[50] = "Page vignette largeur";
 $lang_msg[51] = "Page vignette hauteur";
 
+$lang_msg[52] = "Social";
 
 
-
-?>
