@@ -227,7 +227,7 @@ class Plugin
     {
         if(empty($plugin))$plugin = PLUGIN_PATH;
 
-        $pref_language = ($_SESSION['Language'] == 'fr') ? 'fr' : 'en';
+        $pref_language = $_SESSION['Language'];
         if(file_exists(NUTS_PLUGINS_PATH.'/'.$plugin.'/lang/'.$pref_language.'.inc.php'))
             $path = NUTS_PLUGINS_PATH.'/'.$plugin.'/lang/'.$pref_language.'.inc.php';
         else
