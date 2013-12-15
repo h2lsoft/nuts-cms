@@ -308,8 +308,8 @@ else
 }
 
 // trademark
-/*if(!NUTS_TRADEMARK)
-	$nuts->eraseBloc('trademark');*/
+if(!NUTS_TRADEMARK)$nuts->eraseBloc('trademark');
+
 
 if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']) && !isset($_GET['target']) && @$_GET['popup'] != 1 && @$_GET['popup'] != 'true')
 {
