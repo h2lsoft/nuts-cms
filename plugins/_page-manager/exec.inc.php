@@ -105,6 +105,25 @@ else
 			{
 				foreach($c['options'] as $opt)
 				{
+					if(is_array($opt))
+					{
+						if(isset($opt['value']) && isset($opt['label']))
+						{
+							$label = $opt['label'];
+							$value = $opt['value'];
+						}
+						else
+						{
+							$label = $opt[0];
+							$value = (count($opt) > 1) ? $opt[1] : $opt[0];
+						}
+					}
+					else
+					{
+						$label = $opt;
+						$value = $opt;
+					}
+
 					$nuts->parse('custom_fields.custom_fields_select.custom_fields_select_options.custom_fields_opt', $opt);
 					$nuts->loop('custom_fields.custom_fields_select.custom_fields_select_options');
 				}
