@@ -47,6 +47,3 @@ $plugin->formAddFieldsetEnd();
 
 
 
-
-
-?>
