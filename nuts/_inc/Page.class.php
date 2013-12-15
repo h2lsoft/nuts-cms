@@ -3103,7 +3103,7 @@ EOF;
 		if(@empty($params['POSITION']))@$params['POSITION'] = 'ASC';
 		$params['POSITION'] = strtoupper($params['POSITION']);
 
-		if(@$params['POSITION'] != 'ASC' && @$params['POSITION'] != 'DESC')
+		if(@$params['POSITION'] != 'ASC' && @$params['POSITION'] != 'DESC' && @$params['POSITION'] != 'RAND()')
 		{
 			$params['POSITION'] = "ASC";
 		}
