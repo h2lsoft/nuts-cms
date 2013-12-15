@@ -2243,17 +2243,17 @@ function ajaxerParameterRequired($index, $cast='', $method='get')
 
 	if($method == 'get')
 	{
-		if(!isset($_GET[$index]))die("Error: parameter `$index` not found in $_GET");
+		if(!isset($_GET[$index]))die("Error: parameter `$index` not found in \$_GET");
 		$v = &$_GET[$index];
 	}
 	elseif($method == 'post')
 	{
-		if(!isset($_POST[$index]))die("Error: parameter `$index` not found in $_POST");
+		if(!isset($_POST[$index]))die("Error: parameter `$index` not found in \$_POST");
 		$v = &$_POST[$index];
 	}
 	elseif($method == 'session')
 	{
-		if(!isset($_SESSION[$index]))die("Error: parameter `$index` not found in $_SESSION");
+		if(!isset($_SESSION[$index]))die("Error: parameter `$index` not found in \$_SESSION");
 		$v = &$_SESSION[$index];
 	}
 
