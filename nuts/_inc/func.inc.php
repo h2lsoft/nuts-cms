@@ -2282,69 +2282,18 @@ function autocastSuperGlobals()
 
 }
 
-
 /**
+ * Convert string strtolower and ucfirst
+ * @param $str
  *
- * @param int $NutsGroupID
+ * @return string
  */
-function nutsPageManagerUserHasRight($NutsGroupID=0, $right, $zoneID, $pageID=0)
+function ucFirstLower($str)
 {
-	global $nuts;
+	$str = mb_strtolower($str, 'utf-8');
+	$str = ucfirst($str);
 
-	$NutsGroupID = (int)$NutsGroupID;
-	if(!$NutsGroupID)$NutsGroupID = $_SESSION['NutsGroupID'];
-
-	// superadmin allows all rights
-	if($NutsGroupID == 1)return true;
-
-
-	// add_main_page
-	if(!$pageID)
-	{
-		if($right == 'add_main_page')
-		{
-			// main zone ?
-			if(!$zoneID)
-			{
-				return nutsUserHasRight('', '_page-manager', 'main pages creation');
-			}
-			else
-			{
-				// groups allowed in page manager
-				$zone_rights = Query::factory()->select('Rights')
-										       ->from('NutsZone')
-											   ->whereID($zoneID)
-										       ->executeAndGetOne();
-
-				$zone_rights = (array)unserialize($zone_rights);
-				return in_array($NutsGroupID, $zone_rights);
-			}
-		}
-	}
-	else
-	{
-		// check if page author
-		$authorID = Query::factory()->select('NutsUserID')->from('NutsPage')->whereID($pageID)->executeAndGetOne();
-		if($authorID == $_SESSION['NutsUserID'])
-			return true;
-
-
-		// check if group has right
-		Query::factory()->select('ID')
-						->from('NutsPageRights')
-						->whereEqualTo('NutsGroupID', $NutsGroupID)
-						->whereEqualTo('NutsPageID', $pageID)
-						->whereEqualTo('Action', $right)
-						->limit(1)
-						->execute();
-
-		if($nuts->dbNumRows() == 1)
-			return true;
-	}
-
-
-	return false;
-
+	return $str;
 }
 
 
