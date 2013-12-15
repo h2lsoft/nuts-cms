@@ -1939,7 +1939,7 @@ function tpl_parser(arr, tpl, func)
 
 
 
-function transformSelectToSwitch(id_prefix, real_boolean, trigger)
+function transformSelectToSwitch(id_prefix, real_boolean, triggered)
 {
     $('select.switch').each(function(){
 
@@ -1956,7 +1956,7 @@ function transformSelectToSwitch(id_prefix, real_boolean, trigger)
 
         $(this).hide().removeClass('switch');
 
-        if(!trigger)
+        if(!triggered)
         {
             $(str).insertAfter($(this));
         }
@@ -1969,6 +1969,11 @@ function transformSelectToSwitch(id_prefix, real_boolean, trigger)
                 id = str_replace('switch_', '', $(this).attr('id'));
                 if(!empty(id_prefix))id_prefix += ' ';
                 $(id_prefix+'#'+id).val(v).change();
+            });
+
+            // add event change on parent
+            $(this).bind('change', function(){
+                $('#switch_'+id).change();
             });
         }
 
