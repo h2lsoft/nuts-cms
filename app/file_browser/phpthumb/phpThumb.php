@@ -9,12 +9,13 @@
 //                                                         ///
 //////////////////////////////////////////////////////////////
 
-@error_reporting(E_ALL);
-@ini_set('display_errors', '1');
+@error_reporting(0);
+@ini_set('display_errors', '0');
 @ini_set('magic_quotes_runtime', '0');
 if (@ini_get('magic_quotes_runtime')) {
 	die('"magic_quotes_runtime" is set in php.ini, cannot run phpThumb with this enabled');
 }
+
 $starttime = array_sum(explode(' ', microtime()));
 
 // this script relies on the superglobal arrays, fake it here for old PHP versions
