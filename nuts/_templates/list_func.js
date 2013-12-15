@@ -14,7 +14,7 @@ $("#list th.ordered").find("img[src$='actived.gif']").parents('th').addClass('se
 
 // table
 $('a.tt').tooltip({
-    track: true,
+    track: false,
     delay: 0,
     showURL: false,
     showBody: " - ",

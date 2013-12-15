@@ -51,7 +51,7 @@ $('#form_content .ucfirst').blur(function(e) {$(this).val(ucfirst($(this).val())
 // margin-left:150px;
 
 $('a.tt').tooltip({
-    track: true,
+    track: false,
     delay: 0,
     showURL: false,
     showBody: " - ",
