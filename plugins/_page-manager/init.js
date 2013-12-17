@@ -127,6 +127,9 @@ function generateFromH1(){
 	v = strtolower(v);
 	v = trim(v);
 
+    v = str_replace("/", '', v);
+
+
 	v = str_replace("'", '-', v);
 	v = str_replace('"', '-', v);
 	v = str_replace(' ', '-', v);
