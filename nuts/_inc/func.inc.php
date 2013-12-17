@@ -909,8 +909,8 @@ function nutsGetPageThumbnailUrl($pageID, $pageThumbnailOriginal)
 		else
 		{
 			copy(WEBSITE_PATH.$pageThumbnailOriginal, $thumb_file);
-			$this->imgThumbnailSetOriginal($thumb_file);
-			$this->imgThumbnail(NUTS_PAGE_THUMBNAIL_WIDTH, NUTS_PAGE_THUMBNAIL_HEIGHT, true, array(255,255,255), '', 'jpg');
+			$nuts->imgThumbnailSetOriginal($thumb_file);
+			$nuts->imgThumbnail(NUTS_PAGE_THUMBNAIL_WIDTH, NUTS_PAGE_THUMBNAIL_HEIGHT, true, array(255,255,255), '', 'jpg');
 		}
 	}
 
