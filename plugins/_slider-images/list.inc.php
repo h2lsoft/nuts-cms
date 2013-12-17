@@ -30,6 +30,8 @@ function hookData($row)
     $row['Position'] = $plugin->listGetPositionContents($row['ID']);
     $row['Image'] = '<img src="/uploads/_slider-images/'.$row['SliderImage'].'?t='.time().'" style="height:60px;" class="image_preview" />';
 
+	$row['Title'] .= "<br><span class='little'>{$row['Url']}</span>";
+
     return $row;
 }
 
