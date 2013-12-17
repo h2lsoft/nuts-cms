@@ -3146,7 +3146,7 @@ EOF;
 			$title = (empty($sub_page['H1'])) ? $sub_page['MenuName'] : $sub_page['H1'];
 
 			// list
-			$str .= '       <li>'.CR;
+			$str .= '       <li data-page-id="'.$sub_page['ID'].'">'.CR;
 			$str .= '            <a title="'.$title.'" href="'.$page_url.'"><img src="'.$thumb_url.'" /><span class="title">'.$title.'</span></a>'.CR;
 			$str .= '       </li>'.CR;
 		}
@@ -3703,6 +3703,3 @@ EOF;
 }
 
 
-
-
-?>
