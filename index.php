@@ -1,17 +1,31 @@
 <?php
 
+ini_set('display_errors', 1);
+
+
 // includes ******************************************************************************
 include('nuts/config.inc.php');
-include('nuts/config_auto.inc.php');
+include(WEBSITE_PATH.'/nuts/config_auto.inc.php');
+
+$auto_include_paths = array('_funcs/generics/*.php', '_funcs/*.php', '_components/*.php', );
+foreach($auto_include_paths as $auto_include_path)
+{
+	// includes functions
+	$functions = glob(WEBSITE_PATH.'/nuts/'.$auto_include_path);
+	if(is_array($functions))
+	{
+		foreach($functions as $function)
+			include_once($function);
+	}
+}
+
+
 include(NUTS_PHP_PATH.'/TPLN/TPLN.php');
 include(NUTS_PHP_PATH.'/FirePHPCore/fb.php');
 include('nuts/_inc/NutsCore.class.php');
-include('nuts/_inc/func.inc.php');
 include('nuts/_inc/Page.class.php');
-include('nuts/_inc/Utils.inc.php');
-include('nuts/_inc/NutsORM.class.php');
-include('nuts/_inc/Query.class.php');
-include('nuts/_inc/NutsCRUD.class.php');
+
+
 FB::setEnabled(FirePHP_enabled);
 
 
@@ -48,5 +62,3 @@ $_GET = $page->xssProtect($_GET);
 $_POST = $page->xssProtect($_POST);
 
 $page->write();
-
-?>

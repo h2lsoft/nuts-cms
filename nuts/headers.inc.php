@@ -3,12 +3,18 @@
  * Use this script to easily includes headers in your job files (like cron task)
  */
 include(WEBSITE_PATH.'/nuts/config_auto.inc.php');
-include(NUTS_PATH.'/_inc/func.inc.php');
-include(NUTS_PATH.'/_inc/custom.inc.php');
 
-include_once(NUTS_PATH.'/_inc/Utils.inc.php');
-include_once(NUTS_PATH.'/_inc/Query.class.php');
-include_once(NUTS_PATH.'/_inc/NutsORM.class.php');
+$auto_include_paths = array('_funcs/generics/*.php', '_funcs/*.php', '_components/*.php', );
+foreach($auto_include_paths as $auto_include_path)
+{
+	// includes functions
+	$functions = glob(WEBSITE_PATH.'/nuts/'.$auto_include_path);
+	if(is_array($functions))
+	{
+		foreach($functions as $function)
+			include_once($function);
+	}
+}
 
 include(NUTS_PHP_PATH.'/TPLN/TPLN.php');
 include(NUTS_PATH.'/_inc/NutsCore.class.php');
@@ -31,5 +37,4 @@ if(is_array($scripts))
 		include_once($scr);
 }
 
-
-?>
+include(NUTS_PATH.'/_inc/custom.inc.php');
