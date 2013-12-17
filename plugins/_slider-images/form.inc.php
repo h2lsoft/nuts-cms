@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin slider image - Form layout
- * 
+ *
  * @version 1.0
  * @date 01/01/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -22,11 +22,14 @@ if($plugin->formModeIsAdding())
 // fields
 $plugin->formAddFieldImage('Slider', 'Image', true);
 $plugin->formAddFieldText('Title', $lang_msg[1], true, 'ucfirst');
-$plugin->formAddFieldText('Url', '', true);
+$plugin->formAddFieldText('Url', '', false);
 $plugin->formAddFieldBoolean('Visible', '', true);
 
 if($_POST)
 {
+	if(empty($_POST['Url']))$_POST['Url'] = 'javascript:;';
+
+
     // form assignation
     if($plugin->formModeIsAdding())
     {
