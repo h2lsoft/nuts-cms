@@ -8,7 +8,7 @@ if(@$_GET['ajax'] == 1 && $_POST)
 
     libxml_use_internal_errors(true);
     $doc = new DOMDocument();
-    $doc->loadHTML($source);
+    @$doc->loadHTML($source);
     $htmlX = $doc->saveHTML();
     $htmlX = strip_tags($htmlX, '<b><u><i><s><em><strong><strike><p><table><th><td><tr><br><h1><h2><h3><h4><h5><h6><ul><ol><li>');
 
