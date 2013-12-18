@@ -27,6 +27,3 @@ $job->dbConnect();
 
 $job->dbClose();
 
-
-
-?>
