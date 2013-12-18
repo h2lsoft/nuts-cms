@@ -833,14 +833,19 @@ class Page extends NutsCore
 				else
 				{
 
-					$rep = '<div class="nuts_gallery">'."\n";
-					$rep .= '<ul>'."\n";
+
 
 					$generate_js = false;
 					$nuts_gallery_id = 0;
-
+					$init = false;
 					while($row = $this->DBFetch())
 					{
+						if(!$init)
+						{
+							$rep = '<div id="nuts_gallery_'.$row['NutsGalleryID'].'" class="nuts_gallery">'."\n";
+							$rep .= '<ul>'."\n";
+						}
+
 						if(!$nuts_gallery_id)
 						{
 							$nuts_gallery_id = $row['NutsGalleryID'];
@@ -866,6 +871,9 @@ class Page extends NutsCore
 
 						$rep .= str_replace('  ', ' ', $img);
 						$rep .= '</a></li>'."\n";
+
+						$init = true;
+
 					}
 
 					$rep .= '</ul>'."\n";
