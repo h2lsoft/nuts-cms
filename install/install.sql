@@ -41,7 +41,7 @@ CREATE TABLE `NutsUser` (
   `Timezone` varchar(50) NOT NULL default '',
   `Active` enum('YES','NO') NOT NULL default 'YES',
   `Deleted` enum('YES','NO') NOT NULL default 'NO',
-  
+
   PRIMARY KEY  (`ID`,`NutsGroupID`),
   KEY `Deleted` (`Deleted`),
   KEY `Active` (`Active`)
@@ -671,7 +671,7 @@ INSERT INTO NutsMenu (Category, Name, Position) VALUE(3, '_press-kit', 10);
 ALTER TABLE `NutsUser` ADD COLUMN `FrontOfficeToolbar` ENUM('YES','NO') NOT NULL DEFAULT 'YES';
 CREATE TABLE `NutsIMemo`( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, `NutsUserID` INT UNSIGNED NOT NULL, `Text` LONGTEXT NULL, `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO', PRIMARY KEY (`ID`), INDEX `NutsUserID` (`NutsUserID`), INDEX `Deleted` (`Deleted`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 ALTER TABLE `NutsNews` ADD COLUMN `NewsImageModel` VARCHAR(255) NULL AFTER `NewsImage` ;
-UPDATE NutsMenu SET Visible = 'NO' WHERE Name = '_internal-memo' ; 
+UPDATE NutsMenu SET Visible = 'NO' WHERE Name = '_internal-memo' ;
 
 
 
@@ -1200,3 +1200,9 @@ ALTER TABLE `NutsRegion` ADD INDEX `Category` (`Category`);
 ALTER TABLE `NutsSlider` ADD COLUMN `GenerateJs` ENUM('YES','NO') NOT NULL DEFAULT 'YES' AFTER `Items`;
 ALTER TABLE `NutsZone` ADD COLUMN `Rights` BLOB NULL AFTER `Visible`;
 CREATE TABLE `NutsPageRights` (`ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,`NutsGroupID` INT UNSIGNED NOT NULL,`NutsPageID` INT UNSIGNED NOT NULL,`Action` VARCHAR(50) NULL,`Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO',PRIMARY KEY (`ID`),INDEX `NutsPageID` (`NutsPageID`),INDEX `Action` (`Action`),INDEX `Deleted` (`Deleted`),INDEX `NutsGroupID` (`NutsGroupID`)) ENGINE=MYISAM;
+
+
+/* update v.4.7 */
+ALTER TABLE `NutsPage` ADD COLUMN `H2` VARCHAR(255) NOT NULL AFTER `H1`;
+ALTER TABLE `NutsPageVersion` ADD COLUMN `H2` VARCHAR(255) NULL AFTER `H1`;
+ALTER TABLE `NutsPageVersion` ADD COLUMN `NutsPageContentViewID` INT UNSIGNED NOT NULL AFTER `ContentResume`;
