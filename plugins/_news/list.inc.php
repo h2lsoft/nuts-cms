@@ -164,15 +164,6 @@ EOF;
     // social funcs
     $row['Social'] = '';
 
-    // google agenda
-    $titleX = urlencode(str_replace("'", "\'", $row['Title']));
-    $datesX = str_replace('-', '', $original_date);
-
-    $uriX = urlencode(WEBSITE_URL.$row['VirtualPageName']);
-
-    $uri = "https://www.google.com/calendar/render?action=TEMPLATE&text=$titleX&dates=$datesX/$datesX&details=$uriX&location&trp=false&sprop&sprop=name:&sf=true&output=xml";
-    $row['Social'] .= '<a title="Google agenda" href="javascript:popupModal(\''.$uri.'\');"><img src="/plugins/_social-share/img/google_calendar.png" style="width:16px;" /></a> ';
-
 
 	// status message
 	$status = urlencode(str_replace("'", "\'", $row['Title']));
@@ -205,10 +196,17 @@ EOF;
         $row['Social'] .= '<a title="Google plus" href="javascript:openGoogleP(\''.GOOGLEP_PUBLISH_URL.'\', \''.$status_normal.'\');"><img src="/plugins/_social-share/img/googlep.png" style="width:16px;" /></a> ';
     }
 
+	// google agenda
+	$titleX = urlencode(str_replace("'", "\'", $row['Title']));
+	$datesX = str_replace('-', '', $original_date);
+
+	$uriX = urlencode(WEBSITE_URL.$row['VirtualPageName']);
+
+	$uri = "https://www.google.com/calendar/render?action=TEMPLATE&text=$titleX&dates=$datesX/$datesX&details=$uriX&location&trp=false&sprop&sprop=name:&sf=true&output=xml";
+	$row['Social'] .= '<a title="Google agenda" href="javascript:popupModal(\''.$uri.'\');"><img src="/plugins/_social-share/img/google_calendar.png" style="width:16px;" /></a> ';
+
+
 	return $row;
 }
 
 
-
-
-?>
