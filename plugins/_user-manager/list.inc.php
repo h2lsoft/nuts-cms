@@ -74,7 +74,7 @@ function hookData($row)
 	if($row['ID'] == $_SESSION['NutsUserID'])
 	{
 		$row = $plugin->listRowSetDeleteButtonHidden($row);
-		$row = $plugin->listRowSetColor('warning', $row);
+		$row = $plugin->listRowSetColor('error', $row);
 	}
 
 	return $row;
