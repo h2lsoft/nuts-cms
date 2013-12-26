@@ -245,7 +245,7 @@
 
 
 
-{#if(@!isset($_GET['popup']))}
+{#if(@!isset($_GET['popup']) || @$_GET['popup'] == '' || @$_GET['popup'] == 0)}
 <!-- menu -->
 <div id="menu" style="{popup_display}">
     {$menu}
