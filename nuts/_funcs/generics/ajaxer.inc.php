@@ -15,6 +15,26 @@ function ajaxerRequested()
 }
 
 /**
+ * Trigger an error for ajaxer (useful in batch mode)
+ * @param string $msg
+ */
+function ajaxerActionErrorTrigger($msg)
+{
+	die("ko;$msg");
+}
+
+/**
+ * Message success for ajaxer (useful in batch mode)
+ * @param string $msg (if empty display ok or ok;+msg)
+ */
+function ajaxerActionSuccess($msg="")
+{
+	if(!empty($msg))$msg = ';'.$msg;
+	die("ok$msg");
+}
+
+
+/**
  * Verify if action if allowed
  * @param string or array $action
  *

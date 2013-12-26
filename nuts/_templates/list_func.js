@@ -137,7 +137,7 @@ function listBatchActionExecute()
             notify('error', msg);
             return;
         }
-        else if(resp = 'ok')
+        else if(resp == 'ok')
         {
             r = (nutsUserLang == 'fr') ? 'enregistrement(s)' : 'records(s)';
             msg_ok = $('#select_batch_actions option:selected').text()+" : "+$('#list_container .list_batch:checked').length+" "+r+"(s)";
@@ -150,6 +150,12 @@ function listBatchActionExecute()
             }
 
             notify('ok', msg_ok);
+            system_refresh();
+        }
+        else if(resp.indexOf('ok;') == 0)
+        {
+            msg = str_replace('ok;', '', resp);
+            notify('ok', msg);
             system_refresh();
         }
 
