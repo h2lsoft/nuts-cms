@@ -120,9 +120,13 @@ $('#former select[type=select-multiple].checkbox-list').each(function(){
 $('#former .widget_colorpicker').each(function(){
 
     current_id = $(this).attr('id');
+    $('#former #'+current_id+'_colorpicker_preview').css('background-color', $('#former #'+current_id).val());
+
     $('#former #'+current_id).ColorPicker({
 
 	    onSubmit: function(hsb, hex, rgb, el) {
+            current_id = $(el).attr('id');
+
 		    $(el).val('#'+hex);
 		    $('#former #'+current_id+'_colorpicker_preview').css('background-color', $(el).val());
 		    $(el).ColorPickerHide();
@@ -130,11 +134,16 @@ $('#former .widget_colorpicker').each(function(){
 
         onBeforeShow: function () {
             v = str_replace('#', '', this.value);
-		    $(this).ColorPickerSetColor(v);
+		    // $(this).ColorPickerSetColor(v);
+            $(this).ColorPickerSetColor(this.value);
 	    }
-    });
 
-    $('#former #'+current_id+'_colorpicker_preview').css('background-color', $('#former #'+current_id).val());
+    })
+    .bind('keypress', function(){
+        current_id = $(el).attr('id');
+        $(this).ColorPickerSetColor(this.value);
+        $('#former #'+current_id+'_colorpicker_preview').css('background-color', $(el).val());
+    });
 
 });
 
