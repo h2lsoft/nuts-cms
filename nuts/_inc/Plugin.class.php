@@ -1207,6 +1207,56 @@ EOF;
 									  );
 	}
 
+	/**
+	 * Hide view button in current row
+	 * @param $row
+	 *
+	 * @return array row
+	 */
+	function listRowViewButtonSetHidden($row)
+	{
+		$row['list_btn_view_display'] = 'none';
+		return $row;
+	}
+
+
+	/**
+	 * Hide edit button in current row
+	 * @param $row
+	 *
+	 * @return array row
+	 */
+	function listRowEditButtonSetHidden($row)
+	{
+		$row['list_btn_edit_display'] = 'none';
+		return $row;
+	}
+
+	/**
+	 * Hide copy button in current row
+	 * @param $row
+	 *
+	 * @return array row
+	 */
+	function listRowCopyButtonSetHidden($row)
+	{
+		$row['list_btn_copy_display'] = 'none';
+		return $row;
+	}
+
+	/**
+	 * Hide delete button in current row
+	 * @param $row
+	 *
+	 * @return array row
+	 */
+	function listRowDeleteButtonSetHidden($row)
+	{
+		$row['list_btn_delete_display'] = 'none';
+		return $row;
+	}
+
+
     /**
      *
      * Display the list view
@@ -4476,6 +4526,3 @@ EOF;
                                                                );
     }
 }
-
-
-?>
