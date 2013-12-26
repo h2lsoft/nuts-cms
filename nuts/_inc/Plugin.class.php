@@ -1213,7 +1213,7 @@ EOF;
 	 *
 	 * @return array row
 	 */
-	function listRowViewButtonSetHidden($row)
+	function listRowSetViewButtonHidden($row)
 	{
 		$row['list_btn_view_display'] = 'none';
 		return $row;
@@ -1226,7 +1226,7 @@ EOF;
 	 *
 	 * @return array row
 	 */
-	function listRowEditButtonSetHidden($row)
+	function listRowSetEditButtonHidden($row)
 	{
 		$row['list_btn_edit_display'] = 'none';
 		return $row;
@@ -1238,7 +1238,7 @@ EOF;
 	 *
 	 * @return array row
 	 */
-	function listRowCopyButtonSetHidden($row)
+	function listRowSetCopyButtonHidden($row)
 	{
 		$row['list_btn_copy_display'] = 'none';
 		return $row;
@@ -1250,12 +1250,23 @@ EOF;
 	 *
 	 * @return array row
 	 */
-	function listRowDeleteButtonSetHidden($row)
+	function listRowSetDeleteButtonHidden($row)
 	{
 		$row['list_btn_delete_display'] = 'none';
 		return $row;
 	}
 
+	/**
+	 * Chnage current row color
+	 * @param $class warning, success, error
+	 *
+	 * @return array row
+	 */
+	function listRowSetColor($class, $row)
+	{
+		$row['td_class'] = $class;
+		return $row;
+	}
 
     /**
      *

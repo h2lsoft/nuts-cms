@@ -43,14 +43,14 @@ $plugin->listRender(20, 'hookData');
 function hookData($row)
 {
 	global $nuts, $plugin;
-	
+
 	$row['Gender'] = trim(ucwords(strtolower($row['Gender'])));
 	$row['LastName'] = trim(ucwords(strtolower($row['LastName'])));
 	$row['LastName'] = "{$row['Gender']} {$row['LastName']} {$row['FirstName']}";
-	
+
 	// $row['Password'] = nutsCrypt($row['Password'], false);
 	$qID = $nuts->dbGetQueryId();
-	$row['Password'] = nutsUserGetPassword($row['ID']);	
+	$row['Password'] = nutsUserGetPassword($row['ID']);
 	$nuts->dbSetQueryId($qID);
 
     // avatar
@@ -70,11 +70,13 @@ function hookData($row)
 	{
 		$row['LastConnection'] = date($format, strtotime($row['LastConnection']));
 	}
-	
+
+	if($row['ID'] == $_SESSION['NutsUserID'])
+	{
+		$row = $plugin->listRowSetDeleteButtonHidden($row);
+		$row = $plugin->listRowSetColor('warning', $row);
+	}
 
 	return $row;
 }
 
-
-
-?>
