@@ -3153,6 +3153,7 @@ EOF;
 				// after
 				if(!isset($f['opts']['after']))$f['opts']['after'] = '';
 
+				$this->nuts->parse('f.widgets.name', $f['name']);
 				$this->nuts->parse('f.widgets.label', $f['label']);
 
 
