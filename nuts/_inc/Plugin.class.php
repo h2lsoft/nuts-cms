@@ -1257,12 +1257,13 @@ EOF;
 	}
 
 	/**
-	 * Chnage current row color
+	 * Change current row color
 	 * @param $class warning, success, error
+	 * @param $row array
 	 *
 	 * @return array row
 	 */
-	function listRowSetColor($class, $row)
+	function listRowSetBackgroundColor($class, $row)
 	{
 		$row['td_class'] = $class;
 		return $row;
