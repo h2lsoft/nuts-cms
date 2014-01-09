@@ -65,6 +65,7 @@ if($view == 'paste'){
 
 
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
