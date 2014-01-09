@@ -16,6 +16,7 @@ else
 
 echo <<<EOF
 
+		<!doctype html>
 		<html>
 			<head>
 				<title>{$lang_msg[3]}</title>

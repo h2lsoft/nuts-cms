@@ -7,6 +7,7 @@ if(@$_GET['iframe'])
 	$txt = $nuts->getOne();
 	echo <<<EOF
 
+		<!doctype html>
 		<html>
 			<head>
 				<title>Preview</title>

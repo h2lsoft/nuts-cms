@@ -143,7 +143,8 @@ class Page extends NutsCore
             $maintenance_msg = WEBSITE_MAINTENANCE_MESSAGE;
             if(strpos($maintenance_msg, 'http') === false && strpos($maintenance_msg, '<script') === false)
             {
-                $maintenance_msg = '<html>';
+                $maintenance_msg = '<!doctype html>';
+                $maintenance_msg .= '<html>';
                 $maintenance_msg .= '<head>';
                 $maintenance_msg .= '   <META NAME="robots" CONTENT="noindex,nofollow">';
                 $maintenance_msg .= '   <title>'.WEBSITE_NAME.'</title>';

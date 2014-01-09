@@ -482,6 +482,7 @@ function menu_zone()
 // header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 
 ?>
+<!doctype html>
 <html>
     <head>
 		<meta http-equiv="X-UA-Compatible" content="chrome=1" />

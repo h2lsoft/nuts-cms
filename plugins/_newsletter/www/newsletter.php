@@ -44,13 +44,13 @@ if($_GET['action'] == 'unsuscribe')
 
 // suscribe
 if($_GET['action'] == 'suscribe')
-{	
+{
 	if(!isset($_POST['Email']) || !email(trim($_POST['Email'])))
 		die("-1");
 
 	if(!isset($_POST['Language']))
 		die("-2");
-	
+
 	if(!isset($_POST['MailingListID']))
 		die("-3");
 
@@ -77,13 +77,13 @@ elseif($_GET['action'] == 'unsuscribe')
 {
 	$nuts->dbUpdate("NutsNewsletterMailingListSuscriber", array(
 													'Deleted' => 'YES',
-													'UnsuscribeDate' => 'NOW()',													
+													'UnsuscribeDate' => 'NOW()',
 													'UnsuscribeNewletterID' => $aff[2]), "ID={$aff[1]}");
 }
 // suscribe
 elseif($_GET['action'] == 'suscribe')
 {
-	$nuts->dbSelect("SELECT 
+	$nuts->dbSelect("SELECT
 							ID
 					 FROM
 							NutsNewsletterMailingListSuscriber
@@ -120,7 +120,8 @@ elseif($_GET['action'] == 'unsuscribe')
     // message appears
     $msg = (@strtolower($_GET['lang']) == 'fr') ? "L'adresse email `{$aff[0]}` a bien été désabonnée" : "Email address `{$aff[0]}` has been correctly unsuscribed";
 
-    $m_msg = '<html>';
+    $m_msg = '<!doctype html>';
+    $m_msg .= '<html>';
     $m_msg .= '<head>';
     $m_msg .= '   <META NAME="robots" CONTENT="noindex,nofollow">';
     $m_msg .= '   <title>'.WEBSITE_NAME.'</title>';
