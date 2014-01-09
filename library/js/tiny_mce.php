@@ -1,12 +1,19 @@
 <?php
 
 include('../../nuts/config.inc.php');
+include('../../nuts/headers.inc.php');
+
+/*
 include('../../nuts/config_auto.inc.php');
 include('../../nuts/_inc/func.inc.php');
 // include('../../nuts/_inc/custom.inc.php');
 
 include(NUTS_PHP_PATH.'/TPLN/TPLN.php');
-$nuts = new TPLN;
+$nuts = new TPLN;*/
+
+
+$nuts = new NutsCore();
+
 $nuts->DbConnect();
 include('../../nuts/_inc/session.inc.php');
 include(WEBSITE_PATH."/nuts/lang/{$_SESSION['Language']}.inc.php");
