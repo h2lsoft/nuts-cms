@@ -3296,7 +3296,7 @@ EOF;
 								}
 
                                 // extension image
-                                $ext = strtolower(end(explode('.', $file)));
+                                $ext = @strtolower(end(explode('.', $file)));
                                 $ext2 = (strlen($ext) >= 4) ? substr($ext, 0, 3) : $ext;
                                 if(file_exists(WEBSITE_PATH."/nuts/img/icon_extension/$ext.png"))
                                     $file_image_extension = $ext;
