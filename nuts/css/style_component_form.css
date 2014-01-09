@@ -111,7 +111,7 @@ div#console a {color: #00AAFF; color: #00AAFF;}
 #trt_progress_window iframe {display: none;}
 
 #trt_progress_window {
-    background-color: #F3F3F3;
+    background-color: white;
     position: relative; top:-70px; left: 100px;
     width: 780px; height: 150px;
     text-align: center;
