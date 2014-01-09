@@ -165,7 +165,7 @@ span.tag,
 span.tag_warning,
 span.tag_error,
 span.tag_ok
-{padding: 2px 5px; background-color: #ccc; /*border-radius: 3px;*/ border: 1px; color:black;}
+{padding: 2px 5px; background-color: #ccc; border-radius: 3px; border: 1px; color:black;}
 
 span.tag:hover {background-color: #ddd}
 
