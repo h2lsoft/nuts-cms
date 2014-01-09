@@ -4,7 +4,6 @@ header("content-type:text/html; charset=utf-8");
 // includes ******************************************************************
 include('config.inc.php');
 include('config_auto.inc.php');
-include('_inc/func.inc.php');
 include('_inc/custom.inc.php');
 include(NUTS_PHP_PATH.'/TPLN/TPLN.php');
 include('_inc/NutsCore.class.php');
