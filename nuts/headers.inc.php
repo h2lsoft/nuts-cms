@@ -37,4 +37,4 @@ if(is_array($scripts))
 		include_once($scr);
 }
 
-include(NUTS_PATH.'/_inc/custom.inc.php');
+
