@@ -4233,6 +4233,28 @@ EOF;
 		$this->viewCols[] = array('name' => $name, 'label' => $label, 'path' => $path);
 	}
 
+	/**
+	 * Add fieldset start
+	 *
+	 * @param string $name
+	 * @param string $label (optionnal)
+	 */
+	public function viewAddFieldsetStart($name, $label='')
+	{
+		if(empty($label))$label = $name;
+		$this->viewCols[] = array('name' => $name, 'label' => $label, 'path' => 'fieldset_start');
+	}
+
+	/**
+	 * Add fieldset end
+	 */
+	public function viewAddFieldsetEnd()
+	{
+		$this->viewCols[] = array('name' => '', 'label' => '', 'path' => 'fieldset_end');
+	}
+
+
+
 
 	private $viewSQLAddField = array();
     /**
@@ -4285,13 +4307,34 @@ EOF;
 				}
 			}
 
-			$this->nuts->eraseBloc('fieldset_start');
-			$this->nuts->eraseBloc('fieldset_end');
 
 			foreach($this->viewCols as $c)
 			{
-				$this->nuts->parse('f.label', $c['label']);
-				$this->nuts->parse('f.name', $c['name']);
+				if(in_array($c['path'], array('fieldset_start', 'fieldset_end')))
+				{
+					$this->nuts->eraseBloc('f.p');
+					if($c['path'] == 'fieldset_start')
+					{
+						$this->nuts->eraseBloc('f.fieldset_end');
+						$this->nuts->parse('f.fieldset_start.name', $c['name']);
+						$this->nuts->parse('f.fieldset_start.legend', $c['label']);
+					}
+					elseif($c['path'] == 'fieldset_end')
+					{
+						$this->nuts->eraseBloc('f.fieldset_start');
+						$this->nuts->parse('f.fieldset_end.name', $c['name']);
+					}
+				}
+				else
+				{
+					$this->nuts->eraseBloc('f.fieldset_start');
+					$this->nuts->eraseBloc('f.fieldset_end');
+
+					$this->nuts->parse('f.p.label', $c['label']);
+					$this->nuts->parse('f.p.name', $c['name']);
+					$this->nuts->loop('f.p');
+				}
+
 				$this->nuts->loop('f');
 			}
 
@@ -4319,54 +4362,55 @@ EOF;
 
 			foreach($this->viewCols as $c)
 			{
-				// auto conversion for dateGMT
-				if(preg_match('/^DateGMT/', $c['name']))
+				if(!in_array($c['path'], array('fieldset_start', 'fieldset_end')))
 				{
-					if($row[$c['name']] == '0000-00-00 00:00:00')
-						$row[$c['name']] = '';
-					else
-						$row[$c['name']] = nutsGetGMTDateUser($row[$c['name']]);
+					// auto conversion for dateGMT
+					if(preg_match('/^DateGMT/', $c['name']))
+					{
+						if($row[$c['name']] == '0000-00-00 00:00:00')
+							$row[$c['name']] = '';
+						else
+							$row[$c['name']] = nutsGetGMTDateUser($row[$c['name']]);
+					}
+
+					// date french
+					if(preg_match('/^Date/', $c['name']) && $_SESSION['Language'] == "fr")
+					{
+						$row[$c['name']] = $this->nuts->db2date($row[$c['name']]);
+					}
+
+					if($c['name'] == 'Language')
+					{
+						$row[$c['name']] = strtolower($row[$c['name']]);
+						$row[$c['name']] = sprintf('<img src="%s/%s.gif" align="absmiddle" /> %s', NUTS_IMAGES_URL.'/flag', $row[$c['name']], strtoupper($row[$c['name']]));
+					}
+
+					// empty
+					$row[$c['name']] = trim($row[$c['name']]);
+					$lbl = trim($c['label']);
+					if(empty($row[$c['name']]) && !empty($lbl))
+						$row[$c['name']] = '-';
+
+					// image
+					if(!empty($c['path']))
+					{
+						$p = $c['path'].'/'.$row[$c['name']];
+						$p_tmp = str_replace(WEBSITE_URL, '..', $p);
+
+						if(!file_exists($p_tmp))
+							$row[$c['name']] = '&nbsp;';
+						else
+							$row[$c['name']] = '<img src="'.$p.'" align="absmiddle" />';
+					}
+
+					// boolean
+					if($row[$c['name']] == 'YES')
+						$row[$c['name']] = '<img src="img/YES.gif" align="absmiddle" />';
+					elseif($row[$c['name']] == 'NO')
+						$row[$c['name']] = '<img src="img/NO.gif" align="absmiddle" />';
+
+					$this->nuts->parse($c['name'], $row[$c['name']]);
 				}
-
-				// date french
-				if(preg_match('/^Date/', $c['name']) && $_SESSION['Language'] == "fr")
-				{
-					$row[$c['name']] = $this->nuts->db2date($row[$c['name']]);
-				}
-
-				if($c['name'] == 'Language')
-				{
-					$row[$c['name']] = strtolower($row[$c['name']]);
-					$row[$c['name']] = sprintf('<img src="%s/%s.gif" align="absmiddle" /> %s', NUTS_IMAGES_URL.'/flag', $row[$c['name']], strtoupper($row[$c['name']]));
-				}
-
-				// empty
-				$row[$c['name']] = trim($row[$c['name']]);
-				if(empty($row[$c['name']]))$row[$c['name']] = '-';
-
-
-				// image
-				if(!empty($c['path']))
-				{
-					$p = $c['path'].'/'.$row[$c['name']];
-					$p_tmp = str_replace(WEBSITE_URL, '..', $p);
-
-					if(!file_exists($p_tmp))
-						$row[$c['name']] = '&nbsp;';
-					else
-						$row[$c['name']] = '<img src="'.$p.'" align="absmiddle" />';
-				}
-
-				// boolean
-				if($row[$c['name']] == 'YES')
-					$row[$c['name']] = '<img src="img/YES.gif" align="absmiddle" />';
-				elseif($row[$c['name']] == 'NO')
-					$row[$c['name']] = '<img src="img/NO.gif" width="16px" align="absmiddle" />';
-
-
-
-
-				$this->nuts->parse($c['name'], $row[$c['name']]);
 			}
 
 			$this->render = $this->nuts->output();

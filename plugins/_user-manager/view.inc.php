@@ -6,8 +6,8 @@
 $plugin->viewDbTable(array('NutsUser'));
 $plugin->viewAddSQLField("(SELECT Name FROM NutsGroup WHERE ID = NutsGroupID) AS NutsGroup");
 
+$plugin->viewAddFieldsetStart("Identification", "");
 $plugin->viewAddVar('Avatar', '&nbsp;');
-
 $plugin->viewAddVar('NutsGroup', $lang_msg[1]);
 $plugin->viewAddVar('Gender', $lang_msg[24]);
 $plugin->viewAddVar('LastName', $lang_msg[2]);
@@ -18,8 +18,11 @@ $plugin->viewAddVar('Login', $lang_msg[5]);
 $plugin->viewAddVar('Language', $lang_msg[7]);
 $plugin->viewAddVar('Timezone', $lang_msg[9]);
 $plugin->viewAddVar('Active', $lang_msg[8]);
+$plugin->viewAddFieldsetEnd();
+
 
 // info
+$plugin->viewAddFieldsetStart("Information", "");
 $plugin->viewAddVar('Company', $lang_msg[15]);
 $plugin->viewAddVar('NTVA', $lang_msg[25]);
 $plugin->viewAddVar('Address', $lang_msg[16]);
@@ -33,7 +36,12 @@ $plugin->viewAddVar('Phone', $lang_msg[21]);
 $plugin->viewAddVar('Gsm', $lang_msg[22]);
 $plugin->viewAddVar('Fax', $lang_msg[23]);
 $plugin->viewAddVar('Job', '');
-$plugin->viewAddVar('NoteField', ' ');
+$plugin->viewAddFieldsetEnd();
+
+$plugin->viewAddFieldsetStart("Note", "");
+$plugin->viewAddVar('Note', ' ');
+$plugin->viewAddFieldsetEnd();
+
 // end of info
 
 $plugin->viewRender("hookData");
@@ -43,7 +51,7 @@ function hookData($row){
 
 	$row['Gender'] = ucfirst(strtolower($row['Gender']));
 	$row['Note'] = nl2br($row['Note']);
-	$row['NoteField'] = '<fieldset style="display:block;"><legend>Note</legend>'.$row['Note'].'</fieldset>';
+	// $row['NoteField'] = '<fieldset style="display:block;"><legend>Note</legend>'.$row['Note'].'</fieldset>';
 
 
     // avatar
@@ -57,5 +65,3 @@ function hookData($row){
 
 
 
-
-?>
