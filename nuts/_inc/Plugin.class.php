@@ -2761,9 +2761,12 @@ EOF;
 
         if($sort_options)sort($opts);
 
-
         $options = array();
         $options['options'] = $opts;
+
+	    if(count($opts) > 0 && $opts[0] != '')
+		    $options['options'] = array_merge(array(''), $opts);
+
         if(!empty($required))$options['required'] = $required;
         if(!empty($style))$options['style'] = $style;
         if(!empty($after))$options['after'] = $after;
