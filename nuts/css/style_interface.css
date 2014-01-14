@@ -134,6 +134,9 @@ div#delete p.bottom #confirm_btn {margin-right: 80px;}
 div#delete p.bottom #confirm_btn:hover {border-color: red; background-color: red; color: white;}
 div#delete p.bottom #confirm_btn:active {border-color: red; background-color: white; color: red;}
 
+div#delete .delete_warning_message {color: red; margin-top: 0;}
+
+
 /** delete ************************************************************************************************************/
 #nuts_alert_window {text-align:center; font-size:14px; color: red;  padding-top:80px; width: 70%; margin:0 auto;}
 

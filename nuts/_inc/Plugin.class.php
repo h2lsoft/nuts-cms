@@ -4515,6 +4515,12 @@ EOF;
     public  $deleteRealMode = false;
 
 
+	public $deleteWarningMessage = '';
+	public function deleteAddWarningMessage($msg)
+	{
+		$this->deleteWarningMessage = $msg;
+	}
+
     /**
      * Render delete record treatment
      */
@@ -4534,6 +4540,7 @@ EOF;
 		if(!$_POST)
 		{
 			$this->nuts->eraseBloc('after_confirm_ok');
+			$this->nuts->parse('delete_warning_message', $this->deleteWarningMessage);
 		}
 		else
 		{

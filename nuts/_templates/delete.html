@@ -3,6 +3,7 @@
 <div id="delete">
 
     {$nuts_lang_msg[33]}
+    <p class="delete_warning_message">{delete_warning_message}</p>
 
     <p class="bottom">
         <input id="confirm_btn" type="button" value="{$nuts_lang_msg[30]}" onclick="sendIt()" />
@@ -28,7 +29,7 @@ function sendIt()
 		function (text){
 		}
 	);
-	
+
 }
 </script>
 
@@ -39,13 +40,13 @@ function sendIt()
 	{$nuts_lang_msg[34]}<br />
 	<br />
 	<input autofocus="1" type="button" value="{$nuts_lang_msg[26]}" onclick="$('#form_window').dialog('close');RTERefresh();" />
-	
+
 	<script>
 	system_refresh();
 	RTERefresh();
 	setTimeout("$('#form_window').dialog('close')", 1500);
 	</script>
-		
+
 </bloc::after_confirm_ok>
 
 <!-- /ajax::form -->
