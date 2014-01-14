@@ -3442,8 +3442,8 @@ EOF;
 								}
 								else
 								{
-									$opt['value'] = (!isset($zopt['value'])) ? $zopt : $zopt['value'];
-									$opt['label'] = (!isset($zopt['value'])) ? $zopt : $zopt['label'];
+									$opt['value'] = (!isset($zopt['value'])) ? $zopt[0] : $zopt['value'];
+									$opt['label'] = (!isset($zopt['value'])) ? $zopt[1] : $zopt['label'];
 								}
 
 								$this->nuts->parse('f.widgets.select.options.label', $opt['label']);
