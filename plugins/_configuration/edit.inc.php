@@ -23,7 +23,7 @@ if($_POST)
 	$fext = strtolower(end(explode('.', $_POST['f'])));
 	if($fext == 'php')
 	{
-		$_POST['Configuration'] = "<?php\n\n".trim($_POST['Configuration'])."\n\n?>";
+		$_POST['Configuration'] = "<?php\n\n".trim($_POST['Configuration'])."\n\n";
 	}
 
 	// $_POST['f'] = str_replace('config.inc.php', '__backup_config.inc.php', $_POST['f']);
@@ -52,7 +52,7 @@ foreach($cfs as $cf)
 	if($name[0] == '_')$name[0] = '';
 	$name = str_replace('-', ' ', $name);
 	$name = trim(ucwords($name));
-	$select_config_files .= '<option value="'.$cf.'">'.ucfirst($name).'</option>"'."\n";	
+	$select_config_files .= '<option value="'.$cf.'">'.ucfirst($name).'</option>"'."\n";
 }
 
 
@@ -75,4 +75,3 @@ $nuts->parse('cfg', $cfg);
 $plugin->render = $nuts->output();
 
 
-?>
