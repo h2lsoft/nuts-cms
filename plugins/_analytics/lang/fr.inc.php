@@ -10,6 +10,7 @@ $lang_msg[4] = "Visites";
 $lang_msg[5] = "Visiteurs uniques";
 $lang_msg[6] = "Pages vues";
 
+$lang_msg[7] = "provenances";
+$lang_msg[8] = "recherches";
+$lang_msg[9] = "pays";
 
-
-?>

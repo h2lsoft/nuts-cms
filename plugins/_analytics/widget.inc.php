@@ -27,7 +27,6 @@ else
 	{
 		if(!($contents = nutsGetCache('widget-ga')))
 		{
-
 			$date_start_mkt = strtotime('-31 days');
 			$date_start = date('Y-m-d', $date_start_mkt);
 
@@ -61,6 +60,40 @@ else
 			$reporting = $tmp;
 
 
+			// ga TOP 10
+			$reporting_top10 = array();
+
+			// referers
+			$reporting_top10['REFERERS'] = array();
+			$ga->requestReportData($google_analytics_profil_id, array('fullReferrer'), array('pageviews', 'visits'), '-visits', '', '', '', 1, 10);
+			foreach($ga->getResults() as $result)
+			{
+				$name = (string)$result;
+				$v = (int)$result->getVisits();
+
+				$reporting_top10['REFERERS'][] = array($name, $v);
+			}
+
+			// keywords
+			$reporting_top10['KEYWORDS'] = array();
+			$ga->requestReportData($google_analytics_profil_id, array('keyword'), array('pageviews', 'visits'), '-visits', '', '', '', 1, 10);
+			foreach($ga->getResults() as $result)
+			{
+				$name = (string)$result;
+				$v = (int)$result->getVisits();
+				$reporting_top10['KEYWORDS'][] = array($name, $v);
+			}
+
+			// country
+			$reporting_top10['COUNTRIES'] = array();
+			$ga->requestReportData($google_analytics_profil_id, array('country'), array('pageviews', 'visits'), '-visits', '', '', '', 1, 10);
+			foreach($ga->getResults() as $result)
+			{
+				$name = (string)$result;
+				$v = (int)$result->getVisits();
+				$reporting_top10['COUNTRIES'][] = array($name, $v);
+			}
+
 			// parsing
 			$nuts->open(NUTS_PLUGINS_PATH.'/_analytics/widget.html');
 			$nuts->parse('visits', $lang_msg[4]);
@@ -78,6 +111,73 @@ else
 			$date_format = ($_SESSION['Language'] == 'fr') ? "d/m/Y" : "Y-m-d";
 			$msg = $lang_msg[3]." (".date($date_format, $date_start_mkt).' - '.date($date_format, $date_end_mkt).")";
 			$nuts->parse('title', $msg);
+
+			// top 10 referers
+			$nuts->parse('top_referers_label', $lang_msg[7]);
+			$tmp = $reporting_top10['REFERERS'];
+			if(!count($tmp))
+			{
+				$nuts->eraseBloc('data_ref');
+			}
+			else
+			{
+				$init = false;
+				foreach($tmp as $col)
+				{
+					$comma = (!$init) ? '' : ',';
+
+					$nuts->parse('data_ref.ref_col1', $col[0]);
+					$nuts->parse('data_ref.ref_col2', $col[1]);
+					$nuts->parse('data_ref.ref_comma', $comma);
+					$nuts->loop('data_ref');
+
+					$init = true;
+				}
+			}
+
+			// top 10 searches
+			$nuts->parse('top_searchs_label', $lang_msg[8]);
+			$tmp = $reporting_top10['KEYWORDS'];
+			if(!count($tmp))
+			{
+				$nuts->eraseBloc('data_se');
+			}
+			else
+			{
+				$init = false;
+				foreach($tmp as $col)
+				{
+					$comma = (!$init) ? '' : ',';
+					$nuts->parse('data_se.se_col1', $col[0]);
+					$nuts->parse('data_se.se_col2', $col[1]);
+					$nuts->parse('data_se.se_comma', $comma);
+					$nuts->loop('data_se');
+					$init = true;
+				}
+			}
+
+			// top 10 countries
+			$nuts->parse('top_countries_label', $lang_msg[9]);
+			$tmp = $reporting_top10['COUNTRIES'];
+			if(!count($tmp))
+			{
+				$nuts->eraseBloc('data_c');
+			}
+			else
+			{
+				$init = false;
+				foreach($tmp as $col)
+				{
+					$comma = (!$init) ? '' : ',';
+					$nuts->parse('data_c.c_col1', $col[0]);
+					$nuts->parse('data_c.c_col2', $col[1]);
+					$nuts->parse('data_c.c_comma', $comma);
+					$nuts->loop('data_c');
+					$init = true;
+				}
+			}
+
+
 
 			// parsing json array
 			$init = false;
@@ -99,7 +199,7 @@ else
 
 			$contents = $nuts->output();
 
-			nutsSetCache('widget-ga', $contents, date('Y-m-d 00:00:00', strtotime('tomorrow')));
+			nutsSetCache('widget-ga', $contents, '+1 day');
 		}
 
 		Plugin::dashboardAddWidget($lang_msg[0], 'final', 'analytics', 'full', '', $contents);
@@ -107,4 +207,4 @@ else
 	}
 }
 
-?>
+

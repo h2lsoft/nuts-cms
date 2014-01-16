@@ -22,6 +22,25 @@
     </tr>
 </table>
 
+<table style="width:80%; margin-left: auto; margin-right: auto;">
+    <tr>
+        <td class="w33percent" style="vertical-align: top">
+            <h3 class="center">Top 10 {top_referers_label} :</h3>
+            <div id="top_referers"></div>
+        </td>
+        <td class="w33percent" style="vertical-align: top">
+            <h3 class="center">Top 10 {top_searchs_label} :</h3>
+            <div id="top_searches"></div>
+        </td>
+        <td class="w33percent" style="vertical-align: top">
+            <h3 class="center">Top 10 {top_countries_label} :</h3>
+            <div id="top_countries"></div>
+        </td>
+
+    </tr>
+</table>
+
+
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
@@ -33,13 +52,10 @@ function drawWidgetGAChart() {
     data.addColumn('date', '{day}');
     data.addColumn('number', '{visits}');
     data.addColumn('number', '{visits_uniq}');
-
     data.addRows([
-
           <bloc::datas>
             {c_comma}[new Date({c_YYYY}, {c_MM}, {c_DD}), {c_visits}, {c_visitors}]
           </bloc::datas>
-
     ]);
 
     var wga_options = {
@@ -50,6 +66,49 @@ function drawWidgetGAChart() {
 
     var chart = new google.visualization.LineChart(document.getElementById('ga_timeline'));
     chart.draw(data, wga_options);
+
+
+    // top referers
+    var options = {'chartArea': {'width': '100%', 'height': '100%'}, pieHole: 0.4};
+
+    var data_referers = new google.visualization.DataTable();
+    data_referers.addColumn('string', '{top_referers_label}');
+    data_referers.addColumn('number', '{visits}');
+    data_referers.addRows([
+            <bloc::data_ref>
+            {ref_comma}["{ref_col1}", {ref_col2}]
+            </bloc::data_ref>
+    ]);
+
+    var chart_top_referer = new google.visualization.PieChart(document.getElementById('top_referers'));
+    chart_top_referer.draw(data_referers, options);
+
+    // top searches
+    var data_searches = new google.visualization.DataTable();
+    data_searches.addColumn('string', '{top_searches_label}');
+    data_searches.addColumn('number', '{visits}');
+    data_searches.addRows([
+            <bloc::data_se>
+            {se_comma}["{se_col1}", {se_col2}]
+            </bloc::data_se>
+    ]);
+
+    var chart_top_se = new google.visualization.PieChart(document.getElementById('top_searches'));
+    chart_top_se.draw(data_searches, options);
+
+    // top countries
+    var data_c = new google.visualization.DataTable();
+    data_c.addColumn('string', '{top_countries_label}');
+    data_c.addColumn('number', '{visits}');
+    data_c.addRows([
+            <bloc::data_c>
+            {c_comma}["{c_col1}", {c_col2}]
+            </bloc::data_c>
+    ]);
+
+    var chart_top_se = new google.visualization.PieChart(document.getElementById('top_countries'));
+    chart_top_se.draw(data_c, options);
+
 
 }
 

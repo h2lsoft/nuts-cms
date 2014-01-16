@@ -11,8 +11,6 @@ $lang_msg[4] = "Visits";
 $lang_msg[5] = "Unique visitors";
 $lang_msg[6] = "Page views";
 
-
-
-
-
-?>
+$lang_msg[7] = "referers";
+$lang_msg[8] = "searchs";
+$lang_msg[9] = "countries";
