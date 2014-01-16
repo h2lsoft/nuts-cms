@@ -29,7 +29,7 @@ $plugin->formAddFieldsetStart('MailingList', 'Mailing-List');
 $nuts->doQuery("SELECT
 						NutsNewsletterMailingList.ID,
 						NutsNewsletterMailingList.Name,
-						(SELECT COUNT(*) FROM NutsNewsletterMailingListSuscriber WHERE Deleted = 'NO' AND NutsNewsletterMailingListID = NutsNewsletterMailingList.ID) AS Count
+						(SELECT COUNT(*) FROM NutsNewsletterMailingListSuscriber WHERE Deleted = 'NO' AND UnsuscribeNewletterID = 0 AND NutsNewsletterMailingListID = NutsNewsletterMailingList.ID) AS Count
 				FROM
 						NutsNewsletterMailingList
 				WHERE
@@ -38,6 +38,7 @@ $nuts->doQuery("SELECT
 $ml_options = array();
 while($ml = $nuts->dbFetch())
 {
+	$ml['Count'] = int_formatX($ml['Count']);
 	$ml_options[] = array('label' => $ml['Name']." ({$ml['Count']})", 'value' => $ml['ID']);
 }
 
@@ -104,4 +105,3 @@ if($_POST)
 
 
 
-?>
