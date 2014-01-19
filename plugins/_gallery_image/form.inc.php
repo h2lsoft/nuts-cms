@@ -22,14 +22,10 @@ if(!empty($gallery_config['ThumbnailBackgroundColor']))$gallery_images_allowed_t
 
 // sql table
 $plugin->formDBTable(array('NutsGalleryImage'));
-
-
-
-
 /*$plugin->formAddField('Main', $lang_msg[7], 'image', false, array('path' => NUTS_IMAGES_PATH.'/gallery_images',
-																  'url' => NUTS_IMAGES_URL.'/gallery_images', 
-																  'size' => $gallery_images_allowed_max_size, 
-																  'exts' => $gallery_images_allowed_exts, 
+																  'url' => NUTS_IMAGES_URL.'/gallery_images',
+																  'size' => $gallery_images_allowed_max_size,
+																  'exts' => $gallery_images_allowed_exts,
 																  'mimes' => $gallery_images_allowed_mimes,
 
 																  'parent_resize' => true,
@@ -45,11 +41,11 @@ $plugin->formDBTable(array('NutsGalleryImage'));
 $plugin->formAddFieldImage('Main', $lang_msg[7], true,
 														NUTS_IMAGES_PATH.'/gallery_images',
 														NUTS_IMAGES_URL.'/gallery_images',
-														$gallery_images_allowed_max_size, 
+														$gallery_images_allowed_max_size,
 														$gallery_images_allowed_exts,
 														$gallery_images_allowed_mimes,
 														'',
-														'', 
+														'',
 														true,
 														$gallery_images_allowed_max_width,
 														$gallery_images_allowed_max_height,
@@ -70,10 +66,10 @@ $plugin->formAddFieldHtmlArea('Description', $lang_msg[3], false);
 $plugin->formAddFieldBoolean('Active', $lang_msg[4], true);
 
 /*
-$plugin->formAddField('HD', $lang_msg[6], 'image', false, array('path' => NUTS_IMAGES_PATH.'/gallery_images_hd', 
-																'url' => NUTS_IMAGES_URL.'/gallery_images_hd', 
-																'size' => $gallery_images_hd_allowed_max_size, 
-																'exts' => $gallery_images_hd_allowed_exts, 
+$plugin->formAddField('HD', $lang_msg[6], 'image', false, array('path' => NUTS_IMAGES_PATH.'/gallery_images_hd',
+																'url' => NUTS_IMAGES_URL.'/gallery_images_hd',
+																'size' => $gallery_images_hd_allowed_max_size,
+																'exts' => $gallery_images_hd_allowed_exts,
 																'mimes' => $gallery_images_hd_allowed_mimes,
 																'thumbnail_width' => $gallery_images_hd_allowed_thumbnail_width,
 																'thumbnail_height' => $gallery_images_hd_allowed_thumbnail_height,
@@ -82,14 +78,14 @@ $plugin->formAddField('HD', $lang_msg[6], 'image', false, array('path' => NUTS_I
 																'thumbnail_new' => true));
  */
 /*
-$plugin->formAddFieldImage('HD', $lang_msg[6], false, 
+$plugin->formAddFieldImage('HD', $lang_msg[6], false,
 														NUTS_IMAGES_PATH.'/gallery_images',
 														NUTS_IMAGES_URL.'/gallery_images',
-														$gallery_images_hd_allowed_max_size, 
+														$gallery_images_hd_allowed_max_size,
 														$gallery_images_hd_allowed_exts,
 														$gallery_images_hd_allowed_mimes,
 														'',
-														'', 
+														'',
 														'',
 														'',
 														'',
@@ -123,8 +119,3 @@ if($_POST)
 		$_POST['Position'] += 1;
 	}
 }
-
-
-
-
-?>
