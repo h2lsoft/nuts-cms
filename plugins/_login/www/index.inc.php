@@ -12,6 +12,7 @@ $plugin->formSetDisplayMode('T');
 // pre execution *************************************************************************
 $caption = ($plugin->language == 'fr') ? 'Espace sécurisé' : 'User login';
 $login_label = ($plugin->language == 'fr') ? 'Identifiant' : 'Login';
+$rememberme_label = ($plugin->language == 'fr') ? 'Se souvenir' : 'Remember me';
 if($login_key == 'Email') $login_label = "Email";
 $submit_label = ($plugin->language == 'fr') ? 'Envoyer' : 'Submit';
 $password_label = ($plugin->language == 'fr') ? 'Mot de passe' : 'Password';
@@ -29,12 +30,47 @@ $plugin->formSetObjectNames(array('uLogin' => $login_label, 'uPassword' => $pass
 if(nutsUserIsLogon())
 {
 	if(isset($_GET['logout']) && $_GET['logout'] == 1)
+	{
+		// erase cookie connection
+		setcookie("nuts_fo_logon", "", time() - 3600);
 		nutsUserLogout($session_preserve_keys);
+	}
 	else
 		nutsAccessRestrictedRedirectPage('logon');
 }
 else
 {
+	// check if cookie exists
+	if(!@empty($_COOKIE['nuts_fo_logon']))
+	{
+		$str = $_COOKIE['nuts_fo_logon'];
+		$str = base64_decode($str);
+		$str = strrev($str);
+		$identified = explode('[@@@]', $str);
+
+		if(count($identified) != 2)
+		{
+			setcookie("nuts_fo_logon", "", time() - 3600);
+		}
+		else
+		{
+			$login = $identified[0];
+			$pwd = $identified[1];
+
+			if(empty($login) || empty($pwd) || ($login_key == 'Email' && !email($login)))
+			{
+				setcookie("nuts_fo_logon", "", time() - 3600);
+			}
+			else
+			{
+				$_POST['uLogin'] = $login;
+				$_POST['uPassword'] = $pwd;
+				$_POST['RememberMe'] = 1;
+			}
+		}
+	}
+
+
 	// lost password
 	if(@$_GET['action'] == 'lost_password')
 	{
@@ -84,9 +120,9 @@ if(empty($template))$template = 'template.html';
 $plugin->openPluginTemplate($template);
 
 if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_login/style.css');
-
 if($plugin->itemExists('caption'))$plugin->parse("caption", $caption);
 if($plugin->itemExists('login_label'))$plugin->parse("login_label", $login_label);
+if($plugin->itemExists('rememberme_label'))$plugin->parse("rememberme_label", $rememberme_label);
 if($plugin->itemExists('password_label'))$plugin->parse("password_label", $password_label);
 if($plugin->itemExists('required_fields_label'))$plugin->parse("required_fields_label", $required_fields_label);
 if($plugin->itemExists('lost_passwd_label'))$plugin->parse("lost_passwd_label", $lost_passwd_label);
@@ -122,6 +158,10 @@ if($_POST && !empty($_POST['uLogin']) && $_POST['uPassword'])
 		if($trace_mode)
 			nutsTrace('front-office', 'login', 'error => '.'`'.htmlentities($_POST['uLogin']).'`'."; ".'`'.htmlentities($_POST['uPassword']).'`', 0);
 		$nuts->addError('uLogin', $error_login_label);
+
+		// erase cookie if exists
+		unset($_COOKIE['nuts_fo_logon']);
+
 	}
 }
 
@@ -137,6 +177,20 @@ if($plugin->formIsValid())
     // trigger
     nutsTrigger('_login', true, "user logon successful");
 
+
+	// cookie saved ?
+	if(@$_POST['uRememberMe'] == 1)
+	{
+		$str = "{$_POST['uLogin']}[@@@]{$_POST['uPassword']}";
+		$str = strrev($str);
+		$str = base64_encode($str);
+		// $_COOKIE['nuts_fo_logon'] = $str;
+		setcookie("nuts_fo_logon", $str, time()+(3600 * 24 * 7)); // 1 week
+	}
+	else
+	{
+		setcookie("nuts_fo_logon", "", time() - 3600);
+	}
 
 	// redirect page detection
 	if(@$_GET['r'][0] == '/')
@@ -156,5 +210,3 @@ if($plugin->formIsValid())
 $plugin->setNutsContent();
 
 
-
-?>

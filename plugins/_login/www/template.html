@@ -23,9 +23,19 @@
 						<span class="label"><i18n>{password_label}</i18n> <span class="required">*</span>  :</span>
 						<input type="password" name="uPassword" id="uPassword"  />
 					</div>
+
+
+                    <div id="wrapper_uRememberMe" class="wrapper">
+                        <input type="checkbox" name="uRememberMe" id="uRememberMe" value="1"  />
+                        <i18n>{rememberme_label}</i18n>
+                    </div>
+
+
+                    <!--
 					<div class="wrapper form_required">
 						<span class="required">*</span> {required_fields_label}
 					</div>
+					-->
 
 					<div class="wrapper form_bottom">
 						<a href="javascript:;" onclick="$('#nuts_login_lost_password').slideToggle('normal', function(){if('{login_label}' == 'Email')$('#uEmail').val($('#uLogin').val());$('#uEmail').focus();});">{lost_passwd_label}</a>

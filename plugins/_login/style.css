@@ -9,10 +9,13 @@
 #nuts_login .submit {float: none; margin-right: 0px; margin-left: 20px;}
 #nuts_login #layout_form_form {padding-bottom: 20px;}
 
+#nuts_login #wrapper_uRememberMe {}
+#nuts_login #wrapper_uRememberMe input {margin-left: 151px; margin-bottom: 10px;}
+
 
 #nuts_login  #nuts_login_lost_password {
 	margin-top: 10px;
-	
+
 }
 
 #nuts_login  #nuts_login_lost_password .lost_password_form_message {
@@ -26,7 +29,7 @@
 #nuts_login  #nuts_login_lost_password .lost_password_form_message_ok {
 
 	color: green;
-	
+
 }
 
 
