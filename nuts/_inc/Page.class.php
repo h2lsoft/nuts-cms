@@ -3400,28 +3400,28 @@ EOF;
 		$edit_lbl = ($_SESSION['Language'] == 'fr') ? 'Editer' : 'Edit';
 		$edit_option = <<<EOF
 &nbsp;&nbsp;|&nbsp;&nbsp;
-			<img  alt="" src="/library/js/jquery-simpletree/images/page_edit.png" style="width:16px; vertical-align:middle;" /> <a id="nuts_page_link" style="color:black!important;text-decoration:none!important;" href="/nuts/index.php?mod=_page-manager&amp;do=exec&amp;pID={$this->pageID}&amp;popup=1&amp;parent_refresh=0&amp;from=iframe">$edit_lbl (#{$this->pageID})</a>
+			<img  alt="" src="/library/js/jquery-simpletree/images/page_edit.png" style="width:16px; vertical-align:middle;" /> <a data-fancybox-type="iframe" id="nuts_page_link" style="color:black!important;text-decoration:none!important;" href="/nuts/index.php?mod=_page-manager&amp;do=exec&amp;pID={$this->pageID}&amp;popup=1&amp;parent_refresh=0&amp;from=iframe">$edit_lbl (#{$this->pageID})</a>
 EOF;
 
 		// page options
 		$page_option_lbl = 'Options';
 		$page_option = <<<EOF
 &nbsp;&nbsp;|&nbsp;&nbsp;
-			<img  alt="" src="/nuts/img/widget.png" style="vertical-align:middle;" /> <a id="nuts_page_link4" style="color:black!important;text-decoration:none!important;" href="/nuts/index.php?mod=_page-manager&amp;do=exec&amp;pID={$this->pageID}&amp;popup=1&amp;parent_refresh=0&amp;from=iframe&amp;tab_selected=options">{$page_option_lbl}</a>
+			<img  alt="" src="/nuts/img/widget.png" style="vertical-align:middle;" /> <a data-fancybox-type="iframe"  id="nuts_page_link4" style="color:black!important;text-decoration:none!important;" href="/nuts/index.php?mod=_page-manager&amp;do=exec&amp;pID={$this->pageID}&amp;popup=1&amp;parent_refresh=0&amp;from=iframe&amp;tab_selected=options">{$page_option_lbl}</a>
 EOF;
 
 		// new page same level
 		$add_lbl = ($_SESSION['Language'] == 'fr') ? 'Ajouter page' : 'Add page';
 		$add_option = <<<EOF
 &nbsp;&nbsp;|&nbsp;&nbsp;
-			<img  alt="" src="/library/js/jquery-simpletree/images/page_add.png" style="width:16px; vertical-align:middle;" /> <a id="nuts_page_link2" style="color:black!important;text-decoration:none!important;" href="/nuts/index.php?mod=_page-manager&amp;do=exec&amp;pID={$this->pageID}&amp;popup=1&amp;parent_refresh=0&amp;from=iframe&amp;from_action=add_page">$add_lbl</a>
+			<img  alt="" src="/library/js/jquery-simpletree/images/page_add.png" style="width:16px; vertical-align:middle;" /> <a data-fancybox-type="iframe"  id="nuts_page_link2" style="color:black!important;text-decoration:none!important;" href="/nuts/index.php?mod=_page-manager&amp;do=exec&amp;pID={$this->pageID}&amp;popup=1&amp;parent_refresh=0&amp;from=iframe&amp;from_action=add_page">$add_lbl</a>
 EOF;
 
 		// new sub page
 		$add_sub_lbl = ($_SESSION['Language'] == 'fr') ? 'Ajouter sous-page' : 'Add sub page';
 		$add_sub_option = <<<EOF
 &nbsp;&nbsp;|&nbsp;&nbsp;
-			<img  alt="" src="/library/js/jquery-simpletree/images/page_add.png" style="width:16px; vertical-align:middle;" /> <a id="nuts_page_link3" style="color:black!important;text-decoration:none!important;" href="/nuts/index.php?mod=_page-manager&amp;do=exec&amp;pID={$this->pageID}&amp;popup=1&amp;parent_refresh=0&amp;from=iframe&amp;from_action=add_sub_page">$add_sub_lbl</a>
+			<img  alt="" src="/library/js/jquery-simpletree/images/page_add.png" style="width:16px; vertical-align:middle;" /> <a data-fancybox-type="iframe"  id="nuts_page_link3" style="color:black!important;text-decoration:none!important;" href="/nuts/index.php?mod=_page-manager&amp;do=exec&amp;pID={$this->pageID}&amp;popup=1&amp;parent_refresh=0&amp;from=iframe&amp;from_action=add_sub_page">$add_sub_lbl</a>
 EOF;
 
 		// show elements
@@ -3500,20 +3500,22 @@ EOF;
 
 		<script type="text/javascript">
 		$('#nuts_elements').attr('checked', false);
+
 		$('#nuts_page_link, #nuts_page_link2, #nuts_page_link3, #nuts_page_link4').fancybox({
-											'width'				: '97%',
-											'height'			: '91%',
-											'autoScale'     	: true,
-											'type'				: 'iframe',
-											'showCloseButton'	: true,
-											'hideOnContentClick': false,
-											'enableEscapeButton': true,
-											'hideOnOverlayClick': false,
-											'centerOnScroll'    : true,
-											'changeFade'		: 0,
-											'margin'			: 5,
-											'margin-top'		: 3
-										});
+									'width'				: '97%',
+									'height'			: '91%',
+									'autoScale'     	: true,
+									'type'				: 'iframe',
+									'showCloseButton'	: true,
+									'hideOnContentClick': false,
+									'enableEscapeButton': true,
+									'hideOnOverlayClick': false,
+									'centerOnScroll'    : true,
+									'changeFade'		: 0,
+									'margin'			: 5,
+									'margin-top'		: 3
+								});
+
 
 		function nutsToggleElements(show)
 		{
