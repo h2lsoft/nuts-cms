@@ -100,7 +100,15 @@ if($_GET['parentID'] > 0)
 	// update parent with children
 	$nuts->dbUpdate('NutsPage', array('_HasChildren' => 'YES'), "ID = {$_GET['parentID']}");
 
-	// copy father properties
+	// copy father properties or brother properties ?
+	Query::factory()->select('ID')->from('NutsPage')->whereEqualTo('NutsPageID', $_GET['parentID'])->whereEqualTo('State', 'PUBLISHED')->order_by('ID DESC')->limit(1)->execute();
+
+	$pageMirrorID = $_GET['parentID'];
+	if($nuts->dbNumRows())
+	{
+		$pageMirrorID = $nuts->dbGetOne();
+	}
+
 	$nuts->doQuery("SELECT
 								HeaderImage,
 								Template,
@@ -125,7 +133,7 @@ if($_GET['parentID'] > 0)
 						FROM
 								NutsPage
 						WHERE
-								ID = {$_GET['parentID']}");
+								ID = $pageMirrorID");
 	$row = $nuts->dbFetch();
 	$nuts->dbUpdate('NutsPage', $row, "ID = $lastID");
 
@@ -135,7 +143,7 @@ if($_GET['parentID'] > 0)
 	{
 		$rx = Query::factory()->select('*')
 			->from('NutsPageContentViewFieldData')
-			->where('NutsPageID', '=', $_GET['parentID'])
+			->where('NutsPageID', '=', $pageMirrorID)
 			->where('NutsPageContentViewID', '=', $row['NutsPageContentViewID'])
 			->executeAndGetAll();
 		foreach($rx as $tmp_rec)
@@ -149,7 +157,7 @@ if($_GET['parentID'] > 0)
 	// copy page access
 	if($row['AccessRestricted'] == 'YES')
 	{
-		$sql = "SELECT NutsGroupID FROM NutsPageAccess WHERE NutsPageID = {$_GET['parentID']}";
+		$sql = "SELECT NutsGroupID FROM NutsPageAccess WHERE NutsPageID = $pageMirrorID";
 		$nuts->doQuery($sql);
 		$qID = $nuts->dbGetQueryID();
 		while($r = $nuts->dbFetch())
@@ -160,7 +168,7 @@ if($_GET['parentID'] > 0)
 	}
 
 	// copy page rights from $_GET['parentID']
-	$sql = "SELECT * FROM NutsPageRights WHERE NutsPageID = {$_GET['parentID']}";
+	$sql = "SELECT * FROM NutsPageRights WHERE NutsPageID = $pageMirrorID";
 	$nuts->doQuery($sql);
 	$qID = $nuts->dbGetQueryID();
 	while($r = $nuts->dbFetch())
