@@ -86,11 +86,13 @@ div#page_form div#comments .comment blockquote {border: 1px solid #ccc; border-l
 div#page_form div#comments .comment blockquote span {font-weight: bold;}
 div#page_form div#comments .comment code {border: 1px solid #ccc; border-left-width: 5px; background-color: #e5e5e5;  padding: 5px; margin-left: 0; margin-bottom: 0;}
 
-div#page_form #tpls_preview {width: 82%; height: 153px; overflow: scroll; overflow-y: hidden;}
+div#page_form #tpls_preview {width: 82%; height: 153px; overflow: scroll; overflow-y: hidden; margin-left: 115px!important; margin-top: -5px;}
 div#page_form #tpls_preview div {margin-right: 2px; width: 124px; height: 144px; /*float: left;*/ display:table-cell;  border:1px solid #fff; overflow: hidden;}
 div#page_form #tpls_preview div img {border:2px solid #ccc; cursor: pointer; opacity:0.3;}
 div#page_form #tpls_preview div img:hover {border-color: #000; opacity:1;}
 div#page_form #tpls_preview img.tpl_selected {border-color: #1570B8; opacity:1; border-style: solid;}
+
+div#page_form #tpl_search {width: 250px;}
 
 div#page_form #tpls_preview div span {
 

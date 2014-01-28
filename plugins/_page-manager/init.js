@@ -466,7 +466,46 @@ $('#former #H1').change(function(){
             generateFromH1();
         }
     }
-
 });
+
+$('#tpl_search').keypress(function(e){
+    if(e.which == 13)
+    {
+        e.preventDefault();
+        $("#tpls_preview div:visible").eq(0).find('img').click();
+        return false;
+    }
+});
+
+$('#tpl_search').keyup(function(e){
+
+    // enter
+    if(e.which == 13)
+    {
+        e.preventDefault();
+        return false;
+    }
+
+    // esc
+    if(e.which == 27)
+    {
+        $('#tpls_preview div').show();
+    }
+    else
+    {
+        v = ucfirst($(this).val());
+        if(v == '')
+        {
+            $('#tpls_preview div').show();
+        }
+        else
+        {
+            $('#tpls_preview div').hide();
+            $("#tpls_preview div[title*='"+v+"']").show();
+        }
+    }
+})
+
+
 
 pageManagerInit();

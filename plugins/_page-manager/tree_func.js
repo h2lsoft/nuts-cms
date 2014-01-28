@@ -911,6 +911,11 @@ function cancelPage()
 
     $('#page_form').hide();
 	$('#page_options_bottom').hide();
+
+    $('#tpl_search').val('');
+    $('#tpls_preview div').show();
+
+
 }
 
 function previewPage(node)
