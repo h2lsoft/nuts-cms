@@ -314,5 +314,3 @@ if(count($matches) == 2)
 $nuts->dbClose();
 die($out);
 
-
-?>
