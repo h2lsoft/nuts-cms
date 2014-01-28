@@ -19,5 +19,3 @@ if(!@empty($_GET['_action']))
 }
 
 
-
-?>

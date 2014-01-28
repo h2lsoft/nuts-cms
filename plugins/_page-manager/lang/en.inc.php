@@ -175,6 +175,4 @@ $lang_msg[128] = "Lock";
 $lang_msg[129] = "H2";
 
 
-
-
-?>
+$lang_msg[130] = "Please enter the page title ?";

@@ -170,4 +170,4 @@ $lang_msg[128] = "Verrouiller";
 $lang_msg[129] = "H2";
 
 
-?>
+$lang_msg[130] = "Merci de resigner le title de la page ?";

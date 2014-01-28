@@ -221,8 +221,11 @@ function addPage(parentID)
 	if(parentID == -1)
 		parentID = simpleTreeCollection.get(0).getSelected().attr('id');
 
+    page_title = prompt(lang_msg_130, "");
+
+
 	//simpleTreeCollection.get(0).addNode(12, 'untitled');
-	url = tree_static_url+'&_action=add_page&language='+$('#Language').val()+'&zoneID='+$('#ZoneID').val()+'&parentID='+parentID;
+	url = tree_static_url+'&_action=add_page&language='+$('#Language').val()+'&zoneID='+$('#ZoneID').val()+'&parentID='+parentID+"&page_title="+urlencode(page_title);
 	$.getJSON(url, {},
 		function(data){
 
@@ -231,7 +234,6 @@ function addPage(parentID)
                 nutsAlert(data.error_message);
                 return
             }
-
 
 			if(parentID == 0)
 			{
@@ -268,7 +270,10 @@ function duplicatePage()
         }
     }
 
-	url = tree_static_url+'&_action=duplicate_page&language='+$('#Language').val()+'&zoneID='+$('#ZoneID').val()+'&parentID='+parentID;
+
+    page_title = prompt(lang_msg_130, "");
+
+	url = tree_static_url+'&_action=duplicate_page&language='+$('#Language').val()+'&zoneID='+$('#ZoneID').val()+'&parentID='+parentID+"&page_title="+urlencode(page_title);
     url += '&duplicate_sub='+duplicate_sub;
 
 	$.getJSON(url, {},

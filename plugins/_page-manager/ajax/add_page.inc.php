@@ -74,6 +74,8 @@ $max_position++;
 
 
 // create a new page and return ID
+$page_title = (@empty($_GET['page_title'])) ? $lang_msg[1] : urldecode($_GET['page_title']);
+$page_title = ucfirst(trim($page_title));
 $nuts->dbInsert('NutsPage', array(
 
 	'CacheTime' => 0,
@@ -82,8 +84,8 @@ $nuts->dbInsert('NutsPage', array(
 	'ContentType' => 'TEXT',
 	'Language' => $_GET['language'],
 	'ZoneID' => (int)$_GET['zoneID'],
-	'H1' => $lang_msg[1],
-	'MenuName' => $lang_msg[1],
+	'H1' => $page_title,
+	'MenuName' => $page_title,
 	'State' => 'DRAFT',
 	'Position' => $max_position,
 	'DateCreation' => nutsGetGMTDate(),
@@ -182,7 +184,7 @@ if(@$_GET['from'] == 'iframe' && @in_array($_GET['from_action'], array('add_page
 	$nuts->redirect($uri);
 }
 
-$data = array('ID' => $lastID, 'Title' => $lang_msg[1]);
+$data = array('ID' => $lastID, 'Title' => $page_title);
 $data['error'] = false;
 
 echo $nuts->array2json($data);
@@ -192,7 +194,3 @@ exit(1);
 
 
 
-
-
-
-?>

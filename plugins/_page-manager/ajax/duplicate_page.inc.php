@@ -16,8 +16,6 @@ if(!nutsPageManagerUserHasRight(0, 'duplicate', 0, $_GET['parentID']))
 }
 
 
-
-
 // get max position from $_GET['parentID']
 $sql = "SELECT NutsPageID FROM NutsPage WHERE ID = {$_GET['parentID']}";
 $nuts->doQuery($sql);
@@ -35,7 +33,9 @@ $nuts->doQuery($sql);
 $rec = $nuts->dbFetch();
 
 // special info
-$new_title = 'Copy '.$rec['MenuName'];
+$new_title = (@empty($_GET['page_title'])) ? 'Copy '.$rec['MenuName'] : urldecode($_GET['page_title']);
+$new_title = ucfirst(trim($new_title));
+
 
 $rec['ID'] = '';
 $rec['NutsUserID'] = $_SESSION['NutsUserID'];
@@ -43,6 +43,7 @@ $rec['DateCreation'] = 'NOW()';
 $rec['DateUpdate'] = 'NOW()';
 $rec['VirtualPagename'] = '';
 $rec['MenuName'] = $new_title;
+$rec['H1'] = $new_title;
 $rec['Position'] = $max_position;
 $rec['_HasChildren'] = (@$_GET['duplicate_sub'] == 1) ? 'YES' : 'NO';
 $rec['State'] = 'DRAFT';
@@ -115,7 +116,3 @@ nutsTrigger('page-manager::duplicate_page', true, "action on duplicate page");
 echo $nuts->array2json($data);
 exit(1);
 
-
-
-
-?>
