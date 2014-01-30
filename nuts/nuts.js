@@ -786,7 +786,7 @@ function initTopSearch()
 {
     $("#top_search_input").autocomplete(plugin_list_ac, {
         width: 310,
-        max: 10,
+        max: 30,
         highlight: false,
         autoFill: false,
         minChars: 1,
