@@ -1,4 +1,4 @@
-.WYSIWYG_toolbar {position:relative; top:4px;}
+.WYSIWYG_toolbar {position:relative; top:4px; color: #ccc;}
 .WYSIWYG_toolbar input[type=checkbox] {position: relative; top:8px!important;}
 .WYSIWYG_toolbar .rte_button {cursor: pointer;  filter: grayscale(100%);  -webkit-filter: grayscale(100%); opacity: 0.5; }
 .WYSIWYG_toolbar .rte_button:hover {opacity: 1; -moz-opacity: 1; -webkit-opacity: 1;}
