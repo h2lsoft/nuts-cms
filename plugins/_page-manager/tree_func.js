@@ -74,6 +74,7 @@ function treeView()
 			$.get(url, {},
 							function(data){
 
+                                simpleTreeCollection.get(0).option.drag = false;
                                 dragPage();
 
                                 if(data != 'ok')
@@ -1187,7 +1188,7 @@ function updateLocked(data)
     }
     else
     {
-        if(NutsUserID != data['LockedNutsUserID'])
+        if(NutsUserID != data['LockedNutsUserID'] && data['NutsUserGroupID'] != 1)
         {
             pageIsLocked = true;
             $('#btn_submit').attr("disabled", true).val(lang_msg_105);

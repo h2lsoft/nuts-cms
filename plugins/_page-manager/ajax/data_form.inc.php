@@ -1,6 +1,15 @@
 <?php
 
-$nuts->doQuery("SELECT *, ZoneID AS PageZoneID, (SELECT CONCAT(FirstName,' ',LastName, ' (',Login,')') FROM NutsUser WHERE ID = LockedNutsUserID) AS LockedUsername FROM NutsPage WHERE ID = ".(int)$_GET['ID']);
+$nuts->doQuery("SELECT
+						*,
+						ZoneID AS PageZoneID,
+						(SELECT CONCAT(FirstName,' ',LastName, ' (',Login,')') FROM NutsUser WHERE ID = LockedNutsUserID) AS LockedUsername,
+						{$_SESSION['NutsGroupID']} AS NutsUserGroupID
+				FROM
+						NutsPage
+				WHERE
+						ID = ".(int)$_GET['ID']);
+
 if($nuts->dbNumRows() != 1)
 	die('Error: data form record not found');
 
@@ -45,19 +54,19 @@ $row['Tag'] = join(', ', $tags);
 if($row['NutsPageContentViewID'] != 0)
 {
 	$fields = Query::factory()->select("*")
-		->from('NutsPageContentViewField')
-		->where('NutsPageContentViewID', '=', $row['NutsPageContentViewID'])
-		->order_by("Position")
-		->executeAndGetAll();
+							  ->from('NutsPageContentViewField')
+							  ->where('NutsPageContentViewID', '=', $row['NutsPageContentViewID'])
+							  ->order_by("Position")
+							  ->executeAndGetAll();
 
 	foreach($fields as $field)
 	{
 		Query::factory()->select('Value')
-			->from('NutsPageContentViewFieldData')
-			->where('NutsPageContentViewID', '=', $row['NutsPageContentViewID'])
-			->where('NutsPageContentViewFieldID', '=', $field['ID'])
-			->where('NutsPageID', '=', (int)$_GET['ID'])
-			->execute();
+						->from('NutsPageContentViewFieldData')
+						->where('NutsPageContentViewID', '=', $row['NutsPageContentViewID'])
+						->where('NutsPageContentViewFieldID', '=', $field['ID'])
+						->where('NutsPageID', '=', (int)$_GET['ID'])
+						->execute();
 
 		$val = $nuts->dbGetOne();
 
@@ -226,7 +235,3 @@ echo $nuts->array2json($row);
 exit();
 
 
-
-
-
-?>
