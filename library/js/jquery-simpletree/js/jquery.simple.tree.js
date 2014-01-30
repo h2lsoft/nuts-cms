@@ -131,7 +131,7 @@ $.fn.simpleTree = function(opt){
 						}
 					});
 				}
-				
+
 			}
 		};
 		TREE.setTreeNodes = function(obj, useParent){
@@ -151,7 +151,7 @@ $.fn.simpleTree = function(opt){
 				}
 				return false;
 			}).dblclick(function(){
-				
+
 				// this.className='active';
 				mousePressed = false;
 				//TREE.nodeToggle($(this).parent().get(0));
@@ -266,7 +266,7 @@ $.fn.simpleTree = function(opt){
 						dragDropTimer = setTimeout(function(){
 							parent.className = parent.className.replace('close','open');
 							$('>ul',parent).show();
-						}, 700);
+						}, 1200);
 					}else if(parent.className.indexOf('folder')>=0 && ajaxChildSize==0){
 						if(isrc.indexOf('minus')!=-1)$("#tree_plus").attr('src','/library/js/jquery-simpletree/images/plus.gif');
 						$("#tree_plus").css({"left": screenScroll.x, "top": screenScroll.y}).show();
@@ -376,7 +376,7 @@ $.fn.simpleTree = function(opt){
 			node[0].className = node[0].className.replace(/folder-(open|close)/gi , 'doc');
 		};
 		TREE.moveNodeToFolder = function(node)
-		{			
+		{
 			if(!TREE.option.docToFolderConvert && node[0].className.indexOf('doc')!=-1)
 			{
 				return true;
@@ -443,13 +443,12 @@ $.fn.simpleTree = function(opt){
 			TREE.moveNodeToFolder(dragNode_destination);
 			temp_node.remove();
 
-
 			if(typeof(callback) == 'function')
 			{
 				callback(dragNode_destination, dragNode_source);
 			}
 		};
-		
+
 		TREE.delNode = function(callback)
 		{
 			dragNode_source = TREE.getSelected();

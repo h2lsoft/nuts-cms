@@ -65,7 +65,7 @@ $lang_msg[55] = "Copier l'url directe de la page";
 $lang_msg[56] = "Voulez-vous réellement annuler cette page ? (vos changements seront annulés)";
 $lang_msg[57] = "Fermer après sauvegarde";
 
-$lang_msg[58] = "Ajouter";
+$lang_msg[58] = "Ajouter sous-page en dernier";
 $lang_msg[59] = "Copier la commande menu";
 $lang_msg[60] = "Merci de copier cette ligne dans votre presse papier (Ctrl+C / Pomme+C) ou bien cliquer sur Ok pour ajouter le code au contenu :";
 $lang_msg[61] = "Copier la commande zone";
@@ -171,3 +171,4 @@ $lang_msg[129] = "H2";
 
 
 $lang_msg[130] = "Merci de renseigner le titre de la page ?";
+$lang_msg[131] = "Ajouter sous-page en premier";

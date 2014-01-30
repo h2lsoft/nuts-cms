@@ -6,5 +6,3 @@ echo $data;
 exit(1);
 
 
-
-?>

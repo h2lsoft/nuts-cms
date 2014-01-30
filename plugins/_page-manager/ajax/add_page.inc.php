@@ -59,7 +59,25 @@ if(
 }
 
 // get max position
-$nuts->dbSelect("SELECT
+if(@$_GET['children_position'] == 'top')
+{
+	$max_position = 1;
+
+	$sql = "UPDATE
+					NutsPage
+			SET
+					Position = Position + 1
+			WHERE
+					Deleted = 'NO' AND
+					Language = '{$_GET['language']}' AND
+					ZoneID = {$_GET['zoneID']} AND
+					NutsPageID = {$_GET['parentID']}";
+	$nuts->doQuery($sql);
+
+}
+else
+{
+	$nuts->dbSelect("SELECT
 							MAX(Position)
 					 FROM
 							NutsPage
@@ -68,9 +86,11 @@ $nuts->dbSelect("SELECT
 							ZoneID = %d AND
 							NutsPageID = %d AND
 							Deleted = 'NO'", array($_GET['language'], $_GET['zoneID'],  $_GET['parentID'])
-);
-$max_position = (int)$nuts->getOne();
-$max_position++;
+	);
+	$max_position = (int)$nuts->dbGetOne();
+	$max_position++;
+}
+
 
 
 // create a new page and return ID

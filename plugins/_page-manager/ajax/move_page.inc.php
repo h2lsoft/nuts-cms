@@ -94,9 +94,3 @@ $plugin->trace('move', (int)$_GET['ID']);
 
 die('ok');
 
-
-
-
-
-
-?>

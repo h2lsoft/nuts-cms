@@ -65,7 +65,7 @@ $lang_msg[55] = "Copy page direct url";
 $lang_msg[56] = "Would you really want to cancel ? (you will lost your changes)";
 $lang_msg[57] = "Close after saving";
 
-$lang_msg[58] = "Add page";
+$lang_msg[58] = "Add sub page at end";
 $lang_msg[59] = "Copy menu command";
 $lang_msg[60] = "Please copy this line to your clipboard  (Ctrl+C / Apple+C) or press ok to add in your content:";
 $lang_msg[61] = "Copy menu zone";
@@ -176,3 +176,4 @@ $lang_msg[129] = "H2";
 
 
 $lang_msg[130] = "Please enter the page title ?";
+$lang_msg[131] = "Add sub page at top";

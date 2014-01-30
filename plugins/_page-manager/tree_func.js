@@ -4,10 +4,22 @@ var forbidden = array('ID', 'Language', 'NutsPageID','NutsUserID', 'CustomVars',
 					  'NavigationBar', 'LockedUsername');
 var lastPageData;
 
+var tree_event_add_page = false;
+var tree_event_add_page_id = 0;
+var tree_event_add_page_children_position = 'end';
+
+
+function tree_event_add_page_reset(){
+    tree_event_add_page = false;
+    tree_event_add_page_id = 0;
+    tree_event_add_page_children_position = 'end';
+}
+
+
 function treeView()
 {
 	simpleTreeCollection = $('.simpleTree').simpleTree({
-		autoclose: false,
+		autoclose: true,
 		drag: false,
 
 		afterClick:function(node){
@@ -34,7 +46,25 @@ function treeView()
 				arrIDs += $(this).attr('id');
 			});
 
-            //alert("destination-"+destination.attr('id')+" source-"+source.attr('id')+" pos-"+pos);
+            if(tree_event_add_page && tree_event_add_page_children_position == 'top' && arrIDs.length > 1)
+            {
+                tmp = explode(';', arrIDs);
+
+                arrIDs = tree_event_add_page_id;
+                for(i=0; i < tmp.length; i++)
+                {
+                    if(tmp[i] != tree_event_add_page_id)
+                    {
+                        if(arrIDs != '')arrIDs += ';';
+                        arrIDs += tmp[i];
+                    }
+                }
+            }
+
+            tree_event_add_page_reset();
+
+
+            // alert("destination-"+destination.attr('id')+" source-"+source.attr('id')+" pos-"+pos);
 			url = tree_static_url+'&_action=move_page&language='+$('#Language').val()+'&zoneID='+$('#ZoneID').val();
 			url += '&ID='+source.attr('id');
 			url += '&nutsPageID='+destination.attr('id');
@@ -44,12 +74,16 @@ function treeView()
 			$.get(url, {},
 							function(data){
 
+                                dragPage();
+
                                 if(data != 'ok')
                                 {
                                     nutsAlert(data);
                                     reloadPage();
                                     return;
                                 }
+
+
 
   							}
 			);
@@ -218,14 +252,18 @@ function addPage(parentID)
 	hideContext();
 	cancelPage();
 
-	if(parentID == -1)
+    // -1: add sub page at end
+    // -2: add sub page at top
+    children_position = (parentID == -1) ? 'end' : 'top';
+
+	if(parentID == -1 || parentID == -2)
 		parentID = simpleTreeCollection.get(0).getSelected().attr('id');
 
     page_title = prompt(lang_msg_130, "");
-
+    if(empty(page_title))return;
 
 	//simpleTreeCollection.get(0).addNode(12, 'untitled');
-	url = tree_static_url+'&_action=add_page&language='+$('#Language').val()+'&zoneID='+$('#ZoneID').val()+'&parentID='+parentID+"&page_title="+urlencode(page_title);
+	url = tree_static_url+'&_action=add_page&language='+$('#Language').val()+'&zoneID='+$('#ZoneID').val()+'&parentID='+parentID+"&page_title="+urlencode(page_title)+"&children_position="+children_position;
 	$.getJSON(url, {},
 		function(data){
 
@@ -235,6 +273,7 @@ function addPage(parentID)
                 return
             }
 
+            // root page
 			if(parentID == 0)
 			{
 				reloadPage(data['ID']);
@@ -242,9 +281,32 @@ function addPage(parentID)
 			}
 			else
 			{
-				simpleTreeCollection.get(0).addNode(data['ID'], data['Title']);
+                tree_event_add_page = true;
+                tree_event_add_page_children_position = children_position;
+                tree_event_add_page_id = data['ID'];
+
+
+                simpleTreeCollection.get(0).addNode(data['ID'], data['Title']);
                 updateStateIcon();
-                editPage(0, 0);
+
+                if(children_position == 'end')
+                {
+                    editPage(0, 0);
+                }
+                else
+                {
+                    $('.simpleTree li span.active').removeClass('active');
+                    $('.simpleTree #'+parentID+' span').addClass('active');
+
+                    refreshFolderNode();
+
+                    setTimeout(function(){
+                        $('.simpleTree li span.active').removeClass('active');
+                        $('.simpleTree #'+data['ID']+' span').addClass('active');
+                        editPage(0, 0);
+
+                    }, 350);
+                }
 			}
 
             counterPage();
@@ -272,6 +334,8 @@ function duplicatePage()
 
 
     page_title = prompt(lang_msg_130, "");
+    if(empty(page_title))return;
+
 
 	url = tree_static_url+'&_action=duplicate_page&language='+$('#Language').val()+'&zoneID='+$('#ZoneID').val()+'&parentID='+parentID+"&page_title="+urlencode(page_title);
     url += '&duplicate_sub='+duplicate_sub;
@@ -1034,7 +1098,6 @@ function setTreeEdit(nodeID){
     }
 
 
-
     $('.simpleTree span.active').removeClass('active').addClass('text');
     $('.simpleTree #'+nodeID+' > span').eq(0).removeClass('text').addClass('active');
     editPage(0);
@@ -1044,11 +1107,12 @@ function setTreeEdit(nodeID){
 
 function getTreeNodeText()
 {
-	nodeText = simpleTreeCollection.get(0).getSelected().text();
+	/*nodeText = simpleTreeCollection.get(0).getSelected().text();
 	nodesText = explode('\t', nodeText);
-	nodeText = trim(nodesText[0]);
-	nodeText = str_replace("'", "`", nodeText);
+	nodeText = trim(nodesText[0]);*/
 
+    nodeText = $('.simpleTree span.active').text();
+	nodeText = str_replace("'", "`", nodeText);
 
 	return nodeText;
 
