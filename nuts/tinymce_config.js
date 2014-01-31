@@ -62,6 +62,10 @@ function initWYSIWYGOption()
         str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertUnorderedList\');" src="img/rte/UL.png" align="absmiddle" /> ';
         str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertOrderedList\');" src="img/rte/OL.png" align="absmiddle" /> ';
 
+        str += sep;
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'outdent\');" src="img/rte/UNINDENT.png" align="absmiddle" /> ';
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'indent\');" src="img/rte/INDENT.png" align="absmiddle" /> ';
+
 
         if(mode_simple == false)
         {
@@ -72,6 +76,7 @@ function initWYSIWYGOption()
             select += ' <option value="H1">H1</option>';
             select += ' <option value="H2">H2</option>';
             select += ' <option value="H3">H3</option>';
+            select += ' <option value="H4">H4</option>';
             select += ' <option value="P">P</option>';
             // select += ' <option value="CITE">Citation</option>';
             select += ' <option value="PRE">Pre</option>';
@@ -163,7 +168,9 @@ function initWYSIWYGOption()
             msg += 'Ctrl + 1: H1\\n';
             msg += 'Ctrl + 2: H2\\n';
             msg += 'Ctrl + 3: H3\\n';
-            msg += 'Ctrl + 4: Paragraph\\n';
+            msg += 'Ctrl + 4: H4\\n';
+            msg += menu_sep;
+            msg += 'Ctrl + 0: Paragraph\\n';
             msg += menu_sep;
             msg += 'Ctrl + L: List\\n';
             msg += 'Ctrl + M: Ordered List\\n';
@@ -349,10 +356,13 @@ function initWYSIWYGIFrame(id) {
                 shortcut.add('Ctrl+L', function(){cmdWYSIWYG(id, 'insertUnorderedList', '');}, {'target':cur_target});
                 shortcut.add('Ctrl+M', function(){cmdWYSIWYG(id, 'insertOrderedList', '');}, {'target':cur_target});
                 shortcut.add('Ctrl+Q', function(){cmdWYSIWYG(id, 'formatBlock', 'BLOCKQUOTE');}, {'target':cur_target});
+
                 shortcut.add('Ctrl+0', function(){cmdWYSIWYG(id, 'removeFormat', ''); cmdWYSIWYG(id, 'formatBlock', 'P');}, {'target':cur_target});
+
                 shortcut.add('Ctrl+1', function(){cmdWYSIWYG(id, 'formatBlock', 'H1');}, {'target':cur_target});
                 shortcut.add('Ctrl+2', function(){cmdWYSIWYG(id, 'formatBlock', 'H2');}, {'target':cur_target});
                 shortcut.add('Ctrl+3', function(){cmdWYSIWYG(id, 'formatBlock', 'H3');}, {'target':cur_target});
+                shortcut.add('Ctrl+4', function(){cmdWYSIWYG(id, 'formatBlock', 'H4');}, {'target':cur_target});
 
 
                 shortcut.add('Ctrl+Z', function(){getIFrameDocument('iframe_'+id).execCommand('undo', false, null);}, {'target':cur_target});
@@ -632,6 +642,7 @@ function WYSIWYGFormat(id){
     if(v == 'H1')cmdWYSIWYG(id, 'formatBlock', 'H1');
     else if(v == 'H2')cmdWYSIWYG(id, 'formatBlock', 'H2');
     else if(v == 'H3')cmdWYSIWYG(id, 'formatBlock', 'H3');
+    else if(v == 'H4')cmdWYSIWYG(id, 'formatBlock', 'H4');
     else if(v == 'P')cmdWYSIWYG(id, 'formatBlock', 'P');
     else if(v == 'P-LEFT')cmdWYSIWYG(id, 'justifyLeft');
     else if(v == 'P-CENTER')cmdWYSIWYG(id, 'justifyCenter');
