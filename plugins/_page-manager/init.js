@@ -29,8 +29,6 @@ $('.ui-tabs-nav-item a, #preview a').each(function(){
     else
         txt = str_replace(access_key, '<u>'+access_key+'</u>', txt, 1);
 
-
-
     $(this).html(txt);
 
 });
@@ -526,7 +524,17 @@ $('#tpl_search').keyup(function(e){
             $("#tpls_preview div[title*='"+v+"']").show();
         }
     }
-})
+});
+
+
+$('#page_tree').scroll(function(){
+
+    $('#page_tree .ui-resizable-handle').css('top', $('#page_tree').scrollTop());
+    // $('#page_tree .ui-resizable-handle').css('left', $('#page_tree').width());
+
+
+
+});
 
 
 

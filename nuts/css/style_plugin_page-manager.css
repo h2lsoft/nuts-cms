@@ -1,5 +1,7 @@
-div#page_tree {width:210px; /*min-height:350px;*/ padding:5px; float:left;  /*margin-right:5px;*/ border:1px solid #cccccc; /*border-right:5px;*/ overflow:auto;}
+div#page_tree {width:210px; /*min-height:350px;*/ padding:5px; float:left;  /*margin-right:5px;*/ border:1px solid #cccccc; /*border-right:5px;*/ overflow:auto; overflow-x: hidden;}
 div#page_form {display:none; float:left; min-width:700px;  /*min-height:500px;*/ padding:5px; padding-top:0; overflow:hidden; margin-top:-32px;}
+
+div#page_tree .simpleTree {}
 
 div#page_options { margin-bottom:3px;}
 div#page_options a {color: #333;}
@@ -47,7 +49,7 @@ div#page_form legend {margin-left:10px; padding-left:5px; padding-right:5px; col
 #page_tree .simpleTree li.root>span {display: block; margin-left: -18px; text-transform: uppercase; letter-spacing: 1px;}
 
 
-#page_tree .ui-resizable-e {background-color: #e5e5e5; width: 10px; background-image: url(draggable.gif); background-position: center; background-repeat: no-repeat; z-index: 3;}
+#page_tree .ui-resizable-e {background-color: transparent; width: 10px; background-image: url(draggable.gif); background-position: center; background-repeat: no-repeat; z-index: 3;}
 #page_tree .ui-resizable-e:hover {background-color: #ddd; }
 
 div#page_tree_context {position:absolute; z-index:999999; background-color:#fff; border:1px solid #ccc; display:none; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);}
