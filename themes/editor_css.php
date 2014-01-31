@@ -37,10 +37,12 @@ if(count($matches) == 2)
 
 	// add embed code preview
 	$out .= "\n\nobject {border:1px dashed #ffcc00; width:150px; height:100px; display: block; background-image: url(/nuts/img/no-preview-flash.png); background-repeat: no-repeat; background-align: center center;}\n\n";
-	$out .= "img.nuts_tags:hover {cursor:help!important;}\n";
+	$out .= "img.nuts_tags:hover {}\n";
 	$out .= "td, th {border:1px dashed #ccc;}\n";
 
-	$out .= ".nuts_tags {border:3px solid #999; border-radius:5px; box-shadow:0px 0px 10px #ccc; margin:10px 5px; }\n";
+	$out .= ".nuts_tags {border:3px solid #999; border-radius:3px; margin:10px 5px; }\n";
+	$out .= ".nuts_tags:hover, .nuts_tags:active {border:3px solid #1570B8; cursor:move!important;}\n";
+	$out .= ".nuts_tags:hover {opacity:0.8;}\n";
 
 	echo trim($out);
 
