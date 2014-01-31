@@ -98,21 +98,21 @@
 
 
 	<ul class="ui-tabs-nav">
-		<li class="ui-tabs-nav-item ui-tabs-selected"><a href="#tab0">{$lang_msg[10]}</a></li>
-		<li class="ui-tabs-nav-item"><a href="#tab1">{$lang_msg[11]}</a></li>
-		<li class="ui-tabs-nav-item"><a href="#tab2">{$lang_msg[12]}</a></li>
+		<li class="ui-tabs-nav-item ui-tabs-selected"><a href="#tab0" accesskey="i">{$lang_msg[10]}</a></li>
+		<li class="ui-tabs-nav-item"><a href="#tab1" accesskey="m">{$lang_msg[11]}</a></li>
+		<li class="ui-tabs-nav-item"><a href="#tab2"  accesskey="c">{$lang_msg[12]}</a></li>
 
-		<li class="ui-tabs-nav-item"><a href="#tab3" id="tab_blocks">{$lang_msg[62]}</a></li>
+		<li class="ui-tabs-nav-item"><a href="#tab3" id="tab_blocks" date-name="{$lang_msg[62]}" accesskey="b">{$lang_msg[62]}</a></li>
 
-		<li class="ui-tabs-nav-item"><a href="#tab4" id="tab_variables">{$lang_msg[45]}</a></li>
-		<li class="ui-tabs-nav-item"><a href="#tab6" id="tab_options">Options</a></li>
-		<li class="ui-tabs-nav-item"><a href="#tab5" id="tab_comments">{$lang_msg[13]}</a></li>
+		<li class="ui-tabs-nav-item"><a href="#tab4" id="tab_variables" accesskey="v">{$lang_msg[45]}</a></li>
+		<li class="ui-tabs-nav-item"><a href="#tab6" id="tab_options" accesskey="o">Options</a></li>
+		<li class="ui-tabs-nav-item"><a href="#tab5" id="tab_comments" accesskey="t">{$lang_msg[13]}</a></li>
 
 
-        <li class="ui-tabs-nav-item"><a href="#tab7" id="tab_rights">{$lang_msg[119]}</a></li>
+        <li class="ui-tabs-nav-item"><a href="#tab7" id="tab_rights" accesskey="r">{$lang_msg[119]}</a></li>
 
 	</ul>
-    <div id="preview"> <a href="javascript:;" onclick="previewPage(0);">{$lang_msg[14]} <i class="icon-new-tab"></i></a></div>
+    <div id="preview"> <a href="javascript:;" onclick="previewPage(0);"  accesskey="v">{$lang_msg[14]} <i class="icon-new-tab"></i></a></div>
 
 
 	<!-- information -->
@@ -130,12 +130,17 @@
 			<!-- tpls -->
 			<div id="tpls_preview">
 
+                <!-- ajax::tpls -->
+
 				<bloc::tpls_preview>
 					<div title="{tpl_nameX}">
 						<img  title="{tpl_nameX}" src="/themes/{theme}/_preview/{tpl_preview}" val="{tpl_name_file}" onclick="$('#former #Template').val('{tpl_name_file}');$('#tpls_preview img').removeClass();$(this).addClass('tpl_selected')" />
 						<span>{tpl_nameX}</span>
 					</div>
 				</bloc::tpls_preview>
+
+                <!-- /ajax::tpls -->
+
 
 			</div>
 			<!-- /tpls -->
@@ -222,9 +227,9 @@
 
 
 	</div>
-	<!-- information -->
+	<!-- /information -->
 
-	<!-- media -->
+	<!-- meta -->
 	<div id="tab1" class="ui-tabs-panel ui-tabs-hide">
 
 
@@ -262,7 +267,7 @@
 
 
 	</div>
-	<!-- media -->
+	<!-- /meta -->
 
 	<!-- content -->
 	<div id="tab2" class="ui-tabs-panel ui-tabs-hide">
@@ -300,11 +305,16 @@
         </div>
 
 
+        <div id="content_view_wrapper_all">
+        <!-- ajax::content_views -->
         {nuts_views_form}
+        <!-- /ajax::content_views -->
+
+        </div>
 
 		<p>&nbsp;</p>
 	</div>
-	<!-- content -->
+	<!-- /content -->
 
 	<!-- blocks -->
 	<div id="tab3" class="ui-tabs-panel ui-tabs-hide">
@@ -329,7 +339,7 @@
 
 
 	</div>
-	<!-- blocks -->
+	<!-- /blocks -->
 
 	<!-- variables -->
 	<div id="tab4" class="ui-tabs-panel ui-tabs-hide"></div>
@@ -647,7 +657,7 @@
 
 
     <!-- rights -->
-    <div id="tab7" class="ui-tabs-panel ui-tabs-hide">
+    <div id="tab7" class="ui-tabs-panel ui-tabs-hide"  >
 
         <table class="table" id="rights_matrix" cellpadding="5" cellspacing="0">
         <tr>
@@ -781,6 +791,10 @@ $('body').click(function(){
 reloadPage();
 helperInit('#page_form');
 loadRichEditor(currentTheme);
+
+
+
+
 </script>
 
 <!-- for block image preview -->

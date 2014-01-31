@@ -554,9 +554,9 @@ function editPage(nodeID, selectTabs)
 
             // no block no view
             if(data["BlocksNb"] == 0)
-                $('#tab_blocks').html("Blocks");
+                $('#tab_blocks').html("<u>B</u>locks");
 		    else
-				 $('#tab_blocks').html("Blocks ("+data["BlocksNb"]+")");
+				 $('#tab_blocks').html("<u>B</u>locks ("+data["BlocksNb"]+")");
 
 		    // reset all blocks
 			block_names = array();

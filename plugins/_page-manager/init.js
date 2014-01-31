@@ -17,6 +17,26 @@ $('.ui-tabs-panel').css('height', tab_height);
 
 $('#tab0, #tab2, #tab3, #tab4, #tab5, #tab6').css('overflow', 'auto').css('overflow-x', 'hidden').scrollTop(0);
 
+// set access key highlight
+$('.ui-tabs-nav-item a').each(function(){
+
+    access_key = $(this).attr('accesskey');
+    txt = trim($(this).text());
+
+    s1 = strtoupper(access_key);
+    if(txt.indexOf(s1) == 0)
+        txt = str_replace(s1, '<u>'+access_key+'</u>', txt, 1);
+    else
+        txt = str_replace(access_key, '<u>'+access_key+'</u>', txt, 1);
+
+
+
+    $(this).html(txt);
+
+});
+
+
+
 $('.ui-tabs-nav').bind('tabsshow', function(event, ui) {
     //ui.instance // internal widget instance
     //ui.options // options used to intialize this widget
@@ -95,6 +115,8 @@ $(window).resize(function(){
     $('#ContentResume').width($('#page_form').width()-180);
 
 });
+
+
 
 
 
