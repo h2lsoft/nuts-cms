@@ -493,6 +493,28 @@ function editPage(nodeID, selectTabs)
 	// load data in the form
 	url = tree_static_url+'&_action=data_form&ID='+nodeID;
 
+
+    // reinit from iframe
+    if(from_mode == 'iframe')
+    {
+        $('#top_return').remove();
+        $('#page_form').width($('#content').width());
+        $('#page_options_bottom').width($('#content').width()-15);
+        $('#page_options_bottom').css('border-top', '1px solid #ccc').css('border-left', 0).css('border-right', 0).css('border-bottom', 0);
+
+        $('.nuts_editor').each(function(){
+
+            if($(this).width() < 750)
+                $(this).width(900);
+            else
+                $(this).width('80%');
+        })
+
+    }
+
+
+
+
 	$.getJSON(url, {},
 		function(data){
 
@@ -984,7 +1006,6 @@ function cancelPage()
 
     $('#tpl_search').val('');
     $('#tpls_preview div').show();
-
 
 }
 

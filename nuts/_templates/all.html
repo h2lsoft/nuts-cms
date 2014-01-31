@@ -372,8 +372,16 @@ if("{$_GET['popup']}" == 1)
     $(document).keydown(function(e){
         code = e.keyCode ? e.keyCode : e.which;
         if(code == 27)
+        {
             if((c=confirm("{$nuts_lang_msg[62]}")))
-                window.close();
+            {
+                if(typeof from_mode != undefined || from_mode != 'iframe')
+                    window.close();
+                else
+                    parent.$.fancybox.close();
+            }
+        }
+
     });
 
 }
