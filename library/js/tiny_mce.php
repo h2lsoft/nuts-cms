@@ -3,9 +3,7 @@
 include('../../nuts/config.inc.php');
 include('../../nuts/headers.inc.php');
 
-$nuts = new NutsCore();
-
-
+$nuts = new NutsCore(false);
 
 $nuts->DbConnect();
 include('../../nuts/_inc/session.inc.php');
@@ -489,7 +487,9 @@ function menu_zone()
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Nuts Rich Editor</title>
 		<style type="text/css">
+		html, body {height: 100%;}
 		tr.mceLast {height:25px !important;}
+		.o2k7Skin .mceStatusbar {border-bottom: 0!important;}
 		</style>
 
         <script type="text/javascript" src="jquery.js"></script>
@@ -498,8 +498,12 @@ function menu_zone()
 		<script type="text/javascript">var lang = "<?php echo $_SESSION['Language'] ?>";</script>
 
 		<script type="text/javascript" src="tiny_mce/tiny_mce.js"></script>
-		<!-- <script type="text/javascript" src="<?php echo NUTS_JS_URL; ?>/tiny_mce/plugins/tinybrowser/tb_tinymce.js.php"></script> -->
 		<script type="text/javascript">
+		function resizeEditor(){
+			tinyMCE.get('RichEditor').theme.resizeTo($(window).width(), $(window).height()-110);
+
+		}
+
 		function filebrowser(field_name, url, type, win)
 		{
 			fileBrowserURL = "<?php echo WEBSITE_URL; ?>/app/file_browser/index.php?editor=tinymce&filter="+type;
@@ -563,13 +567,30 @@ function menu_zone()
 		tinymce.PluginManager.add('NutsPlugins', tinymce.plugins.NutsPlugins);
 
 		tinyMCE.init({
+
+				onpageload : function(){
+
+					// resize window
+					window.moveTo(0,0);
+					window.resizeTo(screen.availWidth, screen.availHeight);
+					loadParent();
+
+				},
+
+				oninit : function(){
+					resizeEditor();
+				},
+
+
 				language : "<?php echo $_SESSION['Language']; ?>",
 				mode : "exact",
 				elements : "RichEditor",
 
+				dialog_type : 'modal',
+
 				theme : "advanced",
 				skin : "o2k7",
-//				skin_variant : "silver",
+				skin_variant : "silver",
 				editor_selector : "mceEditor",
 				paste_text_use_dialog: true,
 
@@ -577,7 +598,7 @@ function menu_zone()
 				theme_advanced_toolbar_location : "top",
 				theme_advanced_toolbar_align : "left",
 				theme_advanced_statusbar_location : "bottom",
-				theme_advanced_resizing : true,
+				theme_advanced_resizing : false,
 				content_css : "/themes/editor_css.php?t=<?php echo $_GET['theme']; ?>&tstmp=<?php echo @$_GET['t']; ?>",
 				document_base_url : "<?php echo WEBSITE_URL; ?>/",
 
@@ -704,23 +725,15 @@ echo $nuts->dbGetOne();
 		</style>
 
     </head>
-    <body style="margin:0; padding:0; background-color:#EEEEEE; overflow: hidden;">
+    <body style="margin:0; padding:0; background-color:#EEEEEE; overflow: hidden;" onresize="resizeEditor()">
 
 		<form name="form" target="" onsubmit="return false;">
-			<textarea name="RichEditor" id="RichEditor" style="width:100%; height:99%;" class="mceEditor" onclick="reloadIt()" onkeydown="reloadIt()"></textarea>
+			<textarea name="RichEditor" id="RichEditor" style="width:100%;" class="mceEditor" onclick="reloadIt()" onkeydown="reloadIt()"></textarea>
 		</form>
 <?php
 
 $nuts->DbClose();
 
 ?>
-		<script type="text/javascript">
-		loadParent();
-
-		// resize window
-		window.moveTo(0,0);
-		window.resizeTo(screen.availWidth,screen.availHeight);
-
-		</script>
     </body>
 </html>
