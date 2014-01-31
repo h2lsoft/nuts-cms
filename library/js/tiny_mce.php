@@ -648,7 +648,11 @@ echo $nuts->dbGetOne();
                         onclick : function() {
                             my_exit();
                         }
-                    })
+                    }),
+
+					ed.onKeyUp.add(function(ed, e) {
+						if(e.which == 27)my_close();
+					});
                 }
 		});
 
