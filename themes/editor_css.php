@@ -22,7 +22,7 @@ if(count($matches) == 2)
 	$out = $matches[1];
 	$s = preg_quote("/*** rte start remove ***/");
 	$e = preg_quote("/*** rte end remove ***/");
-	
+
 	$out = preg_replace("#$s(.*)$e#msU", '', $out);
 
 	// protect url and absolute link
@@ -40,12 +40,10 @@ if(count($matches) == 2)
 	$out .= "img.nuts_tags:hover {cursor:help!important;}\n";
 	$out .= "td, th {border:1px dashed #ccc;}\n";
 
-	$out .= ".nuts_tags {border:1px solid #8d117a;}\n";
+	$out .= ".nuts_tags {border:3px solid #999; border-radius:5px; box-shadow:0px 0px 10px #ccc; margin:10px 5px; }\n";
 
 	echo trim($out);
-	
+
 }
 
 
-
-?>
