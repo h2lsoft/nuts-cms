@@ -73,17 +73,16 @@ if(@$_GET['download'] == 'false')
 else
 {
     header("Content-Type: application/force-download; name=\"".$file_name."\"");
+	if($file_extension == 'zip')header('Content-Type: application/zip'); // ZIP file
     header("Content-Transfer-Encoding: binary");
     header("Content-Disposition: attachment; filename=\"".$file_name."\"");
     header("Expires: 0");
     header("Cache-Control: no-cache, must-revalidate");
     header("Pragma: no-cache");
+
+	header("Content-length: ".$size);
 }
 
-die(readfile(WEBSITE_PATH.$file));
-
-
-
-
-
-?>
+ob_end_flush();
+readfile(WEBSITE_PATH.$file);
+exit();
