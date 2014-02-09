@@ -20,10 +20,3 @@ $plugin->formAddFieldText('Extension', "", true, 'upper', 'width:50px; text-alig
 $plugin->formAddFieldTextArea('Mimes', "", true, '', 'height:250px', "", $lang_msg[2]);
 $plugin->formAddFieldBoolean('FileExplorer', "File explorer", true, $lang_msg[3]);
 $plugin->formAddFieldBoolean('EDM', "", true, $lang_msg[4]);
-
-
-
-
-
-
-?>

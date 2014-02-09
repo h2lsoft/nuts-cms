@@ -6,11 +6,13 @@
     margin-bottom:5px;
 }
 
-.datagrid caption {text-align:left; color:#666666;}
+.datagrid caption {text-align:left; color:#666;}
 .datagrid th {white-space:nowrap;}
 .datagrid th:hover {color: #000;}
 
 .datagrid td {background-color:#fff; padding:5px;}
+
+.datagrid tbody tr:first-child {display: none;}
 
 .datagrid tbody tr:nth-child(even) td {background-color: #eee;}
 .datagrid tbody tr:nth-child(odd) td {background-color: #fff;}
@@ -18,22 +20,38 @@
 .datagrid tbody tr:hover td {background-color: #FFFFCB;}
 .datagrid tbody tr.tr_selected> td {background-color: #DFE8F6;}
 
+.datagrid tbody input[type=text] {width:97%!important;}
+.datagrid tbody input.date {width:80px!important;}
+.datagrid tbody input.number {width:80px!important; text-align: center;}
+.datagrid tbody textarea {width:97%!important; /*height:30px!important;*/ resize:vertical!important;}
+
 .datagrid th> a.datagrid_btn_add {text-align: center; width: 18px;}
 .datagrid td> a.datagrid_btn_delete {text-align: center; width: 18px;}
+.datagrid td> a.datagrid_btn_drag {text-align: center; width: 18px;}
 
 .datagrid a.datagrid_btn_add {display:block; width:16; height: 16px; background-image: url(/nuts/img/icon-add.png); background-repeat: no-repeat; }
 .datagrid a.datagrid_btn_add:hover {opacity: 0.3; text-decoration: none!important;
 
 }
 
-.datagrid a.datagrid_btn_delete {display:block; width:16; height: 16px; background-image: url(/nuts/img/icon-delete.png); background-repeat: no-repeat; -moz-background-origin
+.datagrid a.datagrid_btn_delete {display:block; width:16; height: 16px; background-image: url(/nuts/img/icon-delete.png); background-repeat: no-repeat;
     filter:grayscale(100%); -moz-filter:grayscale(100%); -webkit-filter:grayscale(100%);
 }
 .datagrid a.datagrid_btn_delete:hover {text-decoration: none!important;
     filter:grayscale(0%); -moz-filter:grayscale(0%); -webkit-filter:grayscale(0%);
 }
 
+.datagrid a.datagrid_btn_drag {display:block; width:16; height: 16px; background-image: url(draggable.gif); background-repeat: no-repeat;
+    filter:grayscale(100%); -moz-filter:grayscale(100%); -webkit-filter:grayscale(100%);
+    cursor:move;
+}
+
+
+
 .datagrid tfoot td {
-    font-weight:bold; text-align:center; background-image:url(th_bkg.png); background-color:#ccc; background-position: bottom;
-    padding-top: 3px;
+    background-color:#E5E5E5; background-position: bottom;
+    padding: 5px;
+    color: #666;
+    padding-top: 10px;
+    text-align: right;
 }
