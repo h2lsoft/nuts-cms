@@ -227,7 +227,6 @@ if($for == 'MAIN')
 
 	$help_menu = <<<EOF
 
-   <!-- <li onmouseout="this.style.backgroundColor='';" onmouseover="this.style.backgroundColor='#DC57B1';" style=""><a>?</a> -->
         <li class="parent" style=""><a>?</a>
 
 		<!-- child -->
@@ -260,5 +259,3 @@ EOF;
 
 $mods_group = $mods_group_original;
 
-
-?>
