@@ -11,7 +11,11 @@ function nutsDatagrid(id)
     this.values = [];
     this.footer = "";
 
-    this.callback = "";
+    this.ajaxerUrl = "";
+
+    this.onUpdateCallback = "";
+    this.onAddCallback = "";
+    this.onDeleteCallback = "";
 }
 
 function nutsDatagridUpdate(datagrid_id)
@@ -61,13 +65,14 @@ function nutsDatagridUpdate(datagrid_id)
 
 
     callback = $('#datagrid_'+datagrid_id).attr('callback');
-    if(!empty(callback))
-    {
-        eval(callback+'()');
-    }
+    if(!empty(callback))eval(callback+'()');
 
 }
 
+
+nutsDatagrid.prototype.setAjaxerUrl = function(uri) {
+    this.ajaxerUrl = uri;
+}
 
 
 nutsDatagrid.prototype.setFooter = function(footer) {
@@ -98,8 +103,11 @@ nutsDatagrid.prototype.setDragAndDrop = function(dragNdrop) {
     this.dragNdrop = dragNdrop;
 }
 
-nutsDatagrid.prototype.addColumn = function(classname, label, input_type, col_style,  input_style, input_placeholder, input_options) {
-    this.columns[this.columns.length] = {label: label, input_type: input_type, input_style: input_style, input_placeholder:input_placeholder, input_options:input_options, class: classname, style: col_style};
+nutsDatagrid.prototype.addColumn = function(classname, label, input_type, col_style, input_style, input_placeholder, input_class, input_options) {
+
+    if(empty(label))label = classname;
+
+    this.columns[this.columns.length] = {label: label, input_type: input_type, input_style: input_style, input_placeholder:input_placeholder, input_class:input_class, input_options:input_options, class: classname, style: col_style};
 }
 
 nutsDatagrid.prototype.setValues = function(values) {
@@ -109,9 +117,9 @@ nutsDatagrid.prototype.setValues = function(values) {
 nutsDatagrid.prototype.render = function(){
 
     str = '';
-    str += '<table callback="'+this.callback+'" class="datagrid" id="datagrid_'+this.id+'" style="width:'+this.width+'; '+this.style+'">\n';
+    str += '<table caption="'+this.caption+'" callback="'+this.onUpdateCallback+'" onadd="'+this.onAddCallback+'" ondelete="'+this.onDeleteCallback+'" class="datagrid" id="datagrid_'+this.id+'" style="width:'+this.width+'; '+this.style+'">\n';
 
-    if(this.caption != '')
+    if(this.caption != '' || !empty(this.ajaxerUrl))
     {
         str += '<caption>'+this.caption+'</caption>\n';
     }
@@ -122,7 +130,6 @@ nutsDatagrid.prototype.render = function(){
 
     // drag and drop
     str += '\t<th style="width:18px;">&nbsp;</th>';
-
 
     for(i=0; i <  this.columns.length; i++)
     {
@@ -139,13 +146,10 @@ nutsDatagrid.prototype.render = function(){
 
     str += '\t<th style="width:18px;"><a href="javascript:;" class="datagrid_btn_add"></a></th>\n';
 
-
     str += '\t</tr>\n';
     str += '</thead>\n';
 
-
     str += '<tbody>\n';
-
 
     // first init
     str += '<tr>\n';
@@ -161,32 +165,44 @@ nutsDatagrid.prototype.render = function(){
         str += ' style="'+this.columns[i].style+'" ';
         str += '>\n';
 
+        o_class = this.columns[i].class;
+        if(!empty(this.columns[i].input_class))
+            o_class = this.columns[i].class+' '+this.columns[i].input_class;
+
+
         // type : text, textaera, date, number, select ?
         if(this.columns[i].input_type == 'text' || this.columns[i].input_type == 'date' || this.columns[i].input_type == 'number' || this.columns[i].input_type == 'money'  || this.columns[i].input_type == 'checkbox')
         {
-            o_class = this.columns[i].class;
-            if(this.columns[i].input_type == 'date') o_class = this.columns[i].class+' date';
-            if(this.columns[i].input_type == 'number') o_class = this.columns[i].class+' number';
-            if(this.columns[i].input_type == 'money') o_class = this.columns[i].class+' money';
+            if(this.columns[i].input_type == 'date') o_class = o_class+' date';
+            if(this.columns[i].input_type == 'number') o_class = o_class+' number';
+            if(this.columns[i].input_type == 'money') o_class = o_class+' money';
 
             input_type = 'text';
             if(this.columns[i].input_type == 'checkbox')input_type = 'checkbox';
 
             str += '\t\t<input type="'+input_type+'" ';
             str += ' id="datagrid_'+this.id+'_obj_'+this.columns[i].class+'_[UID]" ';
+            str += ' data-name="'+this.columns[i].class+'" ';
             str += ' class="'+o_class+'" ';
             str += ' style="'+this.columns[i].input_style+'" ';
 
             if(this.columns[i].input_type == 'checkbox')
                 str += ' value="'+this.columns[i].input_placeholder+'" ';
             else
+            {
                 str += ' placeholder="'+this.columns[i].input_placeholder+'" ';
+                if(!empty(this.columns[i].input_options))
+                    str += ' value="'+this.columns[i].input_options+'" ';
+            }
+
             str += '>\n';
+
         }
         else if(this.columns[i].input_type == 'select')
         {
             str += '\t\t<select ';
             str += ' type="select" ';
+            str += ' data-name="'+this.columns[i].class+'" ';
             str += ' id="datagrid_'+this.id+'_obj_'+this.columns[i].class+'_[UID]" ';
             str += ' class="'+o_class+'" ';
             str += ' style="'+this.columns[i].input_style+'" ';
@@ -215,6 +231,7 @@ nutsDatagrid.prototype.render = function(){
         else if(this.columns[i].input_type == 'textarea')
         {
             str += '\t\t<textarea ';
+            str += ' data-name="'+this.columns[i].class+'" ';
             str += ' type="textarea" ';
             str += ' id="datagrid_'+this.id+'_obj_'+this.columns[i].class+'_[UID]" ';
             str += ' class="'+o_class+'" ';
@@ -226,11 +243,8 @@ nutsDatagrid.prototype.render = function(){
     }
 
     str += '\t<td style="width:18px;"><a href="javascript:;" class="datagrid_btn_delete"></a></td>\n';
-
     str += '</tr>\n';
-
     str += '</tbody>\n';
-
 
     // footer
     if(this.footer != '')
@@ -289,15 +303,20 @@ nutsDatagrid.prototype.renderInFieldset = function(fieldset_id)
                 return $helper;
             },
 
-
             items: 'tr.row',
 
-            update: function(event, ui) {
+            start: function(event, ui) {
+                $('#datagrid_'+datagrid_id+' tfoot tr td span[id!=""]').text('-');
+            },
+
+            stop: function(event, ui) {
                 nutsDatagridUpdate(datagrid_id);
             }
+
+
+
         })
     }
-
 
     // attach event add && delete
     delete_message = this.deleteMessage;
@@ -314,10 +333,26 @@ nutsDatagrid.prototype.renderInFieldset = function(fieldset_id)
         });
         nutsDatagridUpdate(datagrid_id);
 
+        // attach class
+        $('#datagrid_'+datagrid_id+' tr.row input, #datagrid_'+datagrid_id+' tr.row textarea').change(function(){
+
+            v = $(this).val();
+            if($(this).hasClass('ucfirst'))v = ucfirst(v);
+            if($(this).hasClass('lower'))v = strtolower(v);
+            if($(this).hasClass('upper'))v = strtoupper(v);
+
+            if(v != $(this).val())
+                $(this).val(v);
+
+        });
+
+
         // atach on change on input
         $('#datagrid_'+datagrid_id+' tr.row input, #datagrid_'+datagrid_id+' tr.row select, #datagrid_'+datagrid_id+' tr.row textarea').bind('click keyup blur', function(){
             nutsDatagridUpdate(datagrid_id);
         });
+
+
 
         // attach delete event
         $('#datagrid_'+datagrid_id+' tbody tr:last .datagrid_btn_delete').click(function(event){
@@ -326,11 +361,62 @@ nutsDatagrid.prototype.renderInFieldset = function(fieldset_id)
             {
                 $(this).parents('tr').remove();
                 nutsDatagridUpdate(datagrid_id);
+
+                // on delete callback
+                callback = $('#datagrid_'+datagrid_id).attr('ondelete');
+                if(!empty(callback))eval(callback+'()');
             }
         });
+
+        // on add callback
+        callback = $('#datagrid_'+datagrid_id).attr('onadd');
+        if(!empty(callback))eval(callback+'()');
+
     });
 
+    // load data ?
+    if(!empty(this.ajaxerUrl))
+    {
+        old_caption = this.caption;
+
+        msg = (nutsUserLang == 'fr') ? "chargement des données..." : "loading data...";
+        $('#datagrid_'+datagrid_id+' caption').text(msg);
+
+        $.getJSON(this.ajaxerUrl, function(rows){
+
+            for(i=0; i < rows.length; i++)
+            {
+                $('#datagrid_'+datagrid_id+' .datagrid_btn_add').click();
+                row = rows[i];
+
+                // for(j=0; j < this.columns.length; j++)
+                for(var key in row)
+                {
+                    v = row[key];
+
+                    if($('#datagrid_'+datagrid_id+' tr.row:last .'+key).attr('type') == 'checkbox')
+                    {
+                        v = strtoupper(v);
+                        if(in_array(v, array('YES', 'OUI', 'TRUE', '1')))
+                            $('#datagrid_'+datagrid_id+' tr.row:last .'+key).attr('checked', true);
+                    }
+                    else
+                    {
+                        $('#datagrid_'+datagrid_id+' tr.row:last .'+key).val(v);
+                    }
+
+                }
+            }
+
+            $('#datagrid_'+datagrid_id+' caption').text(old_caption);
+            nutsDatagridUpdate(datagrid_id);
+
+        });
+    }
 }
+
+
+
 
 
 
