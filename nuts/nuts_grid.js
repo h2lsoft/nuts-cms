@@ -408,6 +408,7 @@ nutsDatagrid.prototype.renderInFieldset = function(fieldset_id)
                 }
             }
 
+
             $('#datagrid_'+datagrid_id+' caption').text(old_caption);
             nutsDatagridUpdate(datagrid_id);
 
