@@ -70,5 +70,3 @@ if(!defined('CR'))define("CR", "\n");
 if(!defined('TAB'))define("TAB", "\t");
 
 
-
-?>
