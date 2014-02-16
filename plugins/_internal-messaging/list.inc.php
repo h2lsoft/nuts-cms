@@ -7,6 +7,7 @@
 // ajax ****************************************************************************************************************
 if(ajaxerRequested())
 {
+
 	// read && unread
 	if(ajaxerAction('read') || ajaxerAction('unread'))
 	{

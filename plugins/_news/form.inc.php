@@ -73,7 +73,9 @@ $plugin->formAddFieldText('Title', $lang_msg[4], true, 'ucfirst');
 if(!in_array('Resume', $hidden_fields_arr))$plugin->formAddFieldHtmlArea('Resume', $lang_msg[5], false, 'height:90px', $lang_msg[13]);
 if(!in_array('Text', $hidden_fields_arr))$plugin->formAddFieldHtmlArea('Text', $lang_msg[6], false, "height:400px");
 
-$plugin->formAddFieldTextArea('Tags', $lang_msg[7], false, '', '', '', $lang_msg[14]);
+$plugin->formAddFieldTextArea('Tags', $lang_msg[7], false, '', 'height:30px;', '', $lang_msg[14]);
+
+
 $plugin->formAddFieldBoolean('Event', $lang_msg[8], true);
 $plugin->formAddFieldBoolean('Comment', $lang_msg[17], true);
 $plugin->formAddFieldBoolean('Active', $lang_msg[9], true, $lang_msg[15]);
@@ -170,9 +172,18 @@ if($_POST)
 
         }
     }
+
+	// tags
+	if(!@empty($_POST['Tags']))
+	{
+		$_POST['Tags'] = trim($_POST['Tags']);
+		if($_POST['Tags'][strlen($_POST['Tags'])-1] == ',')
+		{
+			$_POST['Tags'][strlen($_POST['Tags'])-1] = '';
+			$_POST['Tags'] = trim($_POST['Tags']);
+		}
+	}
+
 }
 
 
-
-
-?>

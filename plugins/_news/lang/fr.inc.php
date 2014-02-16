@@ -14,7 +14,7 @@ $lang_msg[10] = "Filtres";
 $lang_msg[11] = "Date à laquelle la news apparait";
 $lang_msg[12] = "Date d'expiration de la news";
 $lang_msg[13] = "Résumé est un petit text de présentation de la news (si le template le support)";
-$lang_msg[14] = "Un tag une par ligne";
+$lang_msg[14] = "Un tag séparé par des virgules";
 $lang_msg[15] = "Rendre la news visible ou non";
 $lang_msg[16] = "Auteur";
 $lang_msg[17] = "Commentaire";
@@ -40,4 +40,3 @@ $lang_msg[29] = "Permet d'utiliser une image modèle";
 
 $lang_msg[30] = "Contenu dupliqué, merci de modifier votre titre";
 
-?>

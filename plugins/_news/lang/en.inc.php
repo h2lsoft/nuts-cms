@@ -14,7 +14,7 @@ $lang_msg[10] = "Custom Filter";
 $lang_msg[11] = "Date when the news appear";
 $lang_msg[12] = "Date expiration of the news";
 $lang_msg[13] = "Resume is a little text of the news (if template support it)";
-$lang_msg[14] = "Tags must be one tag by line";
+$lang_msg[14] = "Tags must be sperated by comma";
 $lang_msg[15] = "Make news visible or not";
 $lang_msg[16] = "Author";
 $lang_msg[17] = "Comment";
@@ -40,4 +40,4 @@ $lang_msg[29] = "Allow you to use a model image";
 
 $lang_msg[30] = "Duplicate content, please change your title";
 
-?>
+

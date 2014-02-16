@@ -164,8 +164,10 @@ ul.drop-down-menu li a i {margin-right: 5px; font-size: 13px;}
 span.tag,
 span.tag_warning,
 span.tag_error,
-span.tag_ok
-{padding: 2px 5px; background-color: #ccc; border-radius: 3px; border: 1px; color:black;}
+span.tag_ok,
+span.tag_success
+    {padding: 2px 5px; background-color: #e5e5e5; border-radius: 3px; border: 1px; color:black;}
+span.tag_mini {padding: 0px 5px;}
 
 span.tag:hover {background-color: #ddd}
 
@@ -175,14 +177,14 @@ span.tag_warning:hover {background-color:#fafad2;}
 span.tag_error {background-color:red; color:white;}
 span.tag_error:hover {background-color:#f08080;}
 
-span.tag_ok {background-color:green; color:white;}
-span.tag_ok:hover {background-color:#90ee90;}
+span.tag_ok, span.tag_success {background-color:green; color:white;}
+span.tag_ok:hover, span.tag_success:hover {background-color:#90ee90;}
 
-span.tag_red {background-color:red; color:black;}
-span.tag_error:hover {background-color:#f08080;}
+span.tag_error, span.tag_red {background-color:red; color:black;}
+span.tag_error:hover, span.tag_red:hover {background-color:#f08080;}
 
-span.tag_green {background-color:green; color:black;}
-span.tag_ok:hover {background-color:#90ee90;}
+span.tag_ok, span.tag_success, span.tag_green {background-color:green; color:black;}
+span.tag_ok:hover, span.tag_success:hover, span.tag_green:hover {background-color:#90ee90;}
 
 span.tag_blue {background-color:#87cefa; color:black;}
 span.tag_blue:hover {background-color:#aaa8e6;}

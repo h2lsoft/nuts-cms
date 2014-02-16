@@ -9,7 +9,7 @@ $cf = array();
 
 
 /** update 0.7 */
-$hidden_fields = "Tags, Event, Comment, DateGMTExpiration"; # comma separated
+$hidden_fields = "Event, Comment, DateGMTExpiration"; # comma separated
 
 /** update 0.87 **/
 $sql_front_added = ""; // added special sql code in news like DateGMT formater
@@ -37,5 +37,3 @@ $news_new_system = true; // use new system version with VirtualPagename permalin
 $news_new_system_prefix = "/{Language}/news/"; // use new system prefix use {Language} to auto assign language
 $news_new_system_suffix = ".html"; // use new system suffix
 
-
-?>

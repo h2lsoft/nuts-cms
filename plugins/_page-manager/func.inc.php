@@ -112,13 +112,3 @@ function pageIsLocked($ID)
 
 
 
-
-
-
-
-
-
-
-
-
-?>

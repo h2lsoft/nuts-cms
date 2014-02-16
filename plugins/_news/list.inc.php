@@ -5,8 +5,56 @@
 
 include(PLUGIN_PATH.'/config.inc.php');
 
+// get nuts users for ac
+if(ajaxerRequested())
+{
+	if(ajaxerAction('get_tag'))
+	{
+		$_GET['q'] = strip_tags($_GET['q']);
+		$_GET['q'] = trim($_GET['q']);
+		$original_q = $_GET['q'];
+
+		$q = addslashes($_GET['q']);
+		$q = str_replace(array('%', '_'), array('%%', '\\_'), $q);
+		$q = explode(',', $q);
+		$q = end($q);
+		$q = trim($q);
+
+		Query::factory()->select('Tags')
+						->from('NutsNews')
+						->whereNotEqualTo('Tags', '')
+						->whereLike('Tags', "%$q%")
+						->execute();
+
+		$str = "";
+		$tags_done = array();
+		while($row = $nuts->dbFetch())
+		{
+			$tags = explode(',', $row['Tags']);
+			$tags = array_map('trim', $tags);
+
+			foreach($tags as $tag)
+			{
+				if(preg_match("/^$original_q/i", $tag) && !in_array($tag, $tags_done))
+				{
+					$tags_done[] = $tag;
+					$str .= "{$tag}\n";
+				}
+			}
+		}
+
+		$str = trim($str);
+		die($str);
+
+	}
+}
+
+
+
+
 //events
 $hidden_fields_arr = explode(',', str_replace(' ', '', $hidden_fields));
+
 
 
 // assign table to db
@@ -32,7 +80,7 @@ if(!in_array('DateGMTExpiration', $hidden_fields_arr))$plugin->listSearchAddFiel
 $plugin->listSearchAddFieldSelectSql('NutsUserID', $lang_msg[16], "CONCAT(FirstName,' ',LastName)");
 $plugin->listSearchAddFieldSelect('Language', $lang_msg[1], nutsGetOptionsLanguages());
 $plugin->listSearchAddField('Title', $lang_msg[4], 'text');
-if(!in_array('Tags', $hidden_fields_arr))$plugin->listSearchAddFieldText('Tags', $lang_msg[7]);
+if(!in_array('Tags', $hidden_fields_arr))$plugin->listSearchAddFieldText('Tags', $lang_msg[7], '', '', '~=');
 if(!in_array('Event', $hidden_fields_arr))$plugin->listSearchAddFieldBoolean('Event', $lang_msg[8]);
 $plugin->listSearchAddFieldBoolean('Active', $lang_msg[9]);
 if(!in_array('VirtualPageName', $hidden_fields_arr))$plugin->listSearchAddFieldText('VirtualPageName', $lang_msg[18]);
@@ -204,6 +252,25 @@ EOF;
 
 	$uri = "https://www.google.com/calendar/render?action=TEMPLATE&text=$titleX&dates=$datesX/$datesX&details=$uriX&location&trp=false&sprop&sprop=name:&sf=true&output=xml";
 	$row['Social'] .= '<a title="Google agenda" href="javascript:popupModal(\''.$uri.'\');"><img src="/plugins/_social-share/img/google_calendar.png" style="width:16px;" /></a> ';
+
+
+	// Tags
+	$row['Tags'] = trim($row['Tags']);
+	$tags = explode(',', $row['Tags']);
+	$tags = array_map('trim', $tags);
+	$tmp = '';
+	foreach($tags as $tag)
+	{
+		if(!empty($tag))
+		{
+			if(!empty($tmp)) $tmp .= ', ';
+			$tmp .= '<span class="tag tag_mini">'.$tag.'</span>';
+		}
+	}
+
+	if(!empty($tmp))
+		$row['Title'] .= '<br>'.$tmp;
+
 
 
 	return $row;
