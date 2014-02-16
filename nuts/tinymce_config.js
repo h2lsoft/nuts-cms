@@ -47,10 +47,10 @@ function initWYSIWYGOption()
         str += sep;
 
         // simple rte
-		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'bold\');" src="img/rte/B.png" align="absmiddle" /> ';
-		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'italic\');" src="img/rte/I.png" align="absmiddle" /> ';
-		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'underline\');" src="img/rte/U.png" align="absmiddle" /> ';
-		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'strikeThrough\');" src="img/rte/S.png" align="absmiddle" /> ';
+		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'bold\');" src="img/rte/B.png" align="absmiddle" title="Ctrl + B" /> ';
+		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'italic\');" src="img/rte/I.png" align="absmiddle" title="Ctrl + I" /> ';
+		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'underline\');" src="img/rte/U.png" align="absmiddle" title="Ctrl + U" /> ';
+		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'strikeThrough\');" src="img/rte/S.png" align="absmiddle" title="Ctrl + S" /> ';
 
         str += sep;
         str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'justifyLeft\');" src="img/rte/align-left.png" align="absmiddle" /> ';
@@ -59,8 +59,8 @@ function initWYSIWYGOption()
         str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'justifyFull\');" src="img/rte/align-justify.png" align="absmiddle" /> ';
 
         str += sep;
-        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertUnorderedList\');" src="img/rte/UL.png" align="absmiddle" /> ';
-        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertOrderedList\');" src="img/rte/OL.png" align="absmiddle" /> ';
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertUnorderedList\');" src="img/rte/UL.png" align="absmiddle" title="Ctrl + L" /> ';
+        str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'insertOrderedList\');" src="img/rte/OL.png" align="absmiddle" title="Ctrl + M" /> ';
 
         str += sep;
         str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'outdent\');" src="img/rte/UNINDENT.png" align="absmiddle" /> ';
@@ -73,14 +73,14 @@ function initWYSIWYGOption()
 
             select = '<select onchange="WYSIWYGFormat(\''+id+'\');">';
             select += ' <option class="title">Format</option>';
-            select += ' <option value="H1">H1</option>';
-            select += ' <option value="H2">H2</option>';
-            select += ' <option value="H3">H3</option>';
-            select += ' <option value="H4">H4</option>';
-            select += ' <option value="P">P</option>';
+            select += ' <option value="H1">H1 (Ctrl + 1)</option>';
+            select += ' <option value="H2">H2 (Ctrl + 2)</option>';
+            select += ' <option value="H3">H3 (Ctrl + 3)</option>';
+            select += ' <option value="H4">H4 (Ctrl + 4)</option>';
+            select += ' <option value="P">P (Ctrl + 0)</option>';
             // select += ' <option value="CITE">Citation</option>';
-            select += ' <option value="PRE">Pre</option>';
-            select += ' <option value="BLOCKQUOTE">Blockquote</option>';
+            select += ' <option value="PRE">Pre (Ctrl + K)</option>';
+            select += ' <option value="BLOCKQUOTE">Blockquote (Ctrl + Q)</option>';
             select += '</select>';
 
             str += select;
@@ -90,19 +90,11 @@ function initWYSIWYGOption()
             str += ' <img class="rte_button" id="'+id+'_WYSIWYG_submenu_url_parent" onclick="javascript:WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');" src="img/rte/A.png" align="absmiddle" /> ';
 
             // add sub menu
-            lbl_library = 'from library';
-            lbl_file = 'File';
-            lbl_custom = 'Custom...';
-            lbl_preview = 'Preview';
-            lbl_browse = 'Browse';
-
-            if(nutsUserLang  == 'fr'){
-                lbl_library = 'de la bibliothèque';
-                lbl_file = 'Fichier';
-                lbl_custom = 'Personnalisée...';
-                lbl_preview = 'Prévisualiser';
-                lbl_browse = 'Parcourir...';
-            }
+            lbl_library = (nutsUserLang  == 'fr') ? 'de la bibliothèque' : 'from library';
+            lbl_file = (nutsUserLang  == 'fr') ? 'Fichier' :'File';
+            lbl_custom = (nutsUserLang  == 'fr') ? 'Personnalisée...' : 'Custom...';
+            lbl_preview = (nutsUserLang  == 'fr')  ? 'Prévisualiser' :'Preview';
+            lbl_browse = (nutsUserLang  == 'fr') ? 'Parcourir...' : 'Browse...';
 
             str += '<div id="'+id+'_WYSIWYG_submenu_url" class="WYSIWYG_submenu">';
             str += '<a tabindex="0" href="javascript:imgBrowser(\''+id+'\', \'\');WYSIWYGSubMenu(\''+id+'_WYSIWYG_submenu_url\');">Image '+lbl_library+'</a><br />';
@@ -144,7 +136,7 @@ function initWYSIWYGOption()
 
             // richeditor
             str += sep;
-            str += '<input type="button" class="button" value="Richeditor" onclick="openWYSIWYG(\''+id+'\');" tabindex="0" />';
+            str += '<input type="button" class="button" value="Richeditor" onclick="openWYSIWYG(\''+id+'\');" tabindex="0" title="Ctrl + Alt + E" />';
 
 
             // rte
@@ -155,7 +147,7 @@ function initWYSIWYGOption()
             str += ' <img  class="rte_button" title="Repaint" onclick="javascript:refreshWYSIWYG(\''+id+'\');" src="img/icon-refresh.png" align="absmiddle" /> ';
 
             // help
-            menu_sep = '--------------------------------\\n';
+            /*menu_sep = '--------------------------------\\n';
             msg = '<b>Help :</b>\\n';
             msg += '==========================\\n';
             msg += 'Ctrl + Alt + E: RichEditor\\n';
@@ -180,8 +172,8 @@ function initWYSIWYGOption()
             msg += 'Ctrl + Z: Undo\\n';
             msg += 'Ctrl + Y: Redo\\n';
             msg = str_replace('\\n', '<br>', msg);
-
-            str += ' <span class="tooltip yellow-tooltip tooltip-middle tooltip-middle-right"><img class="rte_button" src="img/rte/help.png" align="absmiddle" /><dd>'+msg+'</dd></span> ';
+            */
+            // str += ' <span class="tooltip yellow-tooltip tooltip-middle tooltip-middle-right"><img class="rte_button" src="img/rte/help.png" align="absmiddle" /><dd>'+msg+'</dd></span> ';
 
 
             str += sep;
@@ -356,8 +348,10 @@ function initWYSIWYGIFrame(id) {
                 shortcut.add('Ctrl+L', function(){cmdWYSIWYG(id, 'insertUnorderedList', '');}, {'target':cur_target});
                 shortcut.add('Ctrl+M', function(){cmdWYSIWYG(id, 'insertOrderedList', '');}, {'target':cur_target});
                 shortcut.add('Ctrl+Q', function(){cmdWYSIWYG(id, 'formatBlock', 'BLOCKQUOTE');}, {'target':cur_target});
+                shortcut.add('Ctrl+K', function(){cmdWYSIWYG(id, 'formatBlock', 'PRE');}, {'target':cur_target});
 
                 shortcut.add('Ctrl+0', function(){cmdWYSIWYG(id, 'removeFormat', ''); cmdWYSIWYG(id, 'formatBlock', 'P');}, {'target':cur_target});
+
 
                 shortcut.add('Ctrl+1', function(){cmdWYSIWYG(id, 'formatBlock', 'H1');}, {'target':cur_target});
                 shortcut.add('Ctrl+2', function(){cmdWYSIWYG(id, 'formatBlock', 'H2');}, {'target':cur_target});
