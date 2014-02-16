@@ -487,6 +487,7 @@ function codeEditor(objID, syntax, tinyMCE)
 
 function inputDate(objID, type)
 {
+
 	if(type == 'date')
 	{
 		format = "%Y-%m-%d";
@@ -515,7 +516,8 @@ function inputDate(objID, type)
 			singleClick    :    true,
 			daFormat	   :	format,
 			ifFormat	   :	format,
-            firstDay    : 1
+            firstDay       : 1,
+            align          :  "Br/ / /T/l"
 		});
    }
    else
@@ -524,9 +526,11 @@ function inputDate(objID, type)
 			inputField     :    objID,     // id of the input field
 			singleClick    :    true,
 			showsTime	   :	true,
-			daFormat	   :	format,
+            minuteStep     :    15,
+            daFormat	   :	format,
 			ifFormat	   :	format,
-            firstDay    : 1
+            firstDay       : 1,
+            align          :  "Br/ / /T/l"
 		});
 
 		$('#'+objID).width(130);
