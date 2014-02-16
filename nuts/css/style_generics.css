@@ -167,7 +167,7 @@ span.tag_error,
 span.tag_ok,
 span.tag_success
     {padding: 2px 5px; background-color: #e5e5e5; border-radius: 3px; border: 1px; color:black;}
-span.tag_mini {padding: 0px 5px;}
+span.tag_mini {padding: 0px 5px; font-size: 9px;}
 
 span.tag:hover {background-color: #ddd}
 

@@ -263,7 +263,7 @@ EOF;
 	{
 		if(!empty($tag))
 		{
-			if(!empty($tmp)) $tmp .= ', ';
+			if(!empty($tmp)) $tmp .= ' ';
 			$tmp .= '<span class="tag tag_mini">'.$tag.'</span>';
 		}
 	}
