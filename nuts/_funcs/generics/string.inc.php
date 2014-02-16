@@ -212,6 +212,19 @@ function str_replace_latin_accents($str)
 }
 
 /**
+ * Erase caracters from string
+ *
+ * @param string|array $patterns
+ * @param $str
+ *
+ * @return mixed
+ */
+function str_erase($patterns, $str)
+{
+	return str_replace($patterns, '', $str);
+}
+
+/**
  * Protect sql paramater against Xss attacks
  *
  * @param $str
