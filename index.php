@@ -1,8 +1,5 @@
 <?php
 
-ini_set('display_errors', 1);
-
-
 // includes ******************************************************************************
 include('nuts/config.inc.php');
 include(WEBSITE_PATH.'/nuts/config_auto.inc.php');
@@ -24,7 +21,6 @@ include(NUTS_PHP_PATH.'/TPLN/TPLN.php');
 include(NUTS_PHP_PATH.'/FirePHPCore/fb.php');
 include('nuts/_inc/NutsCore.class.php');
 include('nuts/_inc/Page.class.php');
-
 
 FB::setEnabled(FirePHP_enabled);
 
@@ -48,7 +44,6 @@ if(is_array($scripts)){
 	foreach($scripts as $scr)
 		include_once($scr);
 }
-
 
 
 // templates *****************************************************************************
