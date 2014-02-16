@@ -86,7 +86,8 @@ EOF;
 	// export
 	if($row['Export'] > 0)
 	{
-		$row['Export'] = '<span id="form_'.$row['ID'].'"><a class="tt" title="'.$lang_msg[27].'" href="/nuts/?mod=_form-builder&do=list&ajaxer=1&_action=export&ID='.$row['ID'].'"><img src="img/icon-excel.png" align="absbottom" /> '.$row['Export'].'</a>';
+		$uri = ajaxerUrlConstruct('export', PLUGIN_NAME, 'list', "&ID={$row['ID']}");
+		$row['Export'] = '<span id="form_'.$row['ID'].'"><a class="tt" title="'.$lang_msg[27].'" href="'.$uri.'"><img src="img/icon-excel.png" align="absbottom" /> '.$row['Export'].'</a>';
 		$row['Export'] .= ' <a class="tt" title="'.$lang_msg[33].'" href="javascript:cleanForm('.$row['ID'].');"><img style="width:12px;" src="img/list_delete.png" align="absmiddle" /></a></span>';
 	}
 
