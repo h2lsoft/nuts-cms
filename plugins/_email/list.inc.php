@@ -33,12 +33,10 @@ function hookData($row)
 	$row['GroupName'] = ucfirst(strtolower($row['GroupName']));
 	if(empty($row['Expeditor']))$row['Expeditor'] = NUTS_EMAIL_NO_REPLY;
 
+	$row['Description'] = nl2br($row['Description']);
 	$row['Subject'] = "<b>{$row['Subject']}</b><br>{$row['Description']}";
 
 
 	return $row;
 }
 
-
-
-?>
