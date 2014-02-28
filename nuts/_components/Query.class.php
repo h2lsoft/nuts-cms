@@ -14,6 +14,9 @@ class Query
 	private $_q = array();
 	private $_last_query;
 
+	private $_special_keywords = array('NOW()', 'CURDATE()', 'CURTIME()'); // special keywords so no string protection
+
+
 	/**
 	 * Constructor
 	 */
@@ -59,8 +62,9 @@ class Query
 	 * @param string $conditions
      * @param string $operator (default empty no operator take full confition)
      * @param string $str (default empty)
+     * @param boolean $add_quotes (default true) add quotes to string
 	 */
-	public function where($conditions, $operator="", $str='')
+	public function where($conditions, $operator="", $str='', $add_quotes=true)
 	{
 
         if(in_array($operator, array('IN', 'NOT IN')))
@@ -84,8 +88,16 @@ class Query
         }
         elseif(!empty($operator))
         {
-            $strX = sqlX($str);
-            $conditions = $conditions.' '.$operator." '".$strX."' ";
+	        // special keywords like NOW()
+	        if(in_array($str, $this->_special_keywords) || !$add_quotes)
+	        {
+		        $conditions = $conditions.' '.$operator." $str ";
+	        }
+	        else
+	        {
+		        $strX = sqlX($str);
+		        $conditions = $conditions.' '.$operator." '".$strX."' ";
+	        }
         }
 
 		$this->_q['where'][] = $conditions;
@@ -253,7 +265,9 @@ class Query
 		if(count($this->_q['where']))
 		{
 			foreach($this->_q['where'] as $w)
-			$sql .= "		$w AND"."\n";
+			{
+				$sql .= "		$w AND"."\n";
+			}
 		}
 
 		if(empty($this->_q['from']))
@@ -316,7 +330,17 @@ class Query
 	 */
 	function execute($fb_debug=false){
 		$sql = $this->get();
-        if($fb_debug)FB::info($sql);
+        if($fb_debug)
+        {
+	        if(FirePHP_enabled == true)
+	        {
+		        FB::info($sql);
+	        }
+	        else
+	        {
+		        echo '<pre>'.$sql.'<pre>';
+	        }
+        }
 
 		$this->_DBLink->doQuery($sql);
 	}
