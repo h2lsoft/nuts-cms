@@ -162,6 +162,7 @@ function array2table($rows, $headers_labels=array(), $headers_style=array(), $ta
 		{
 			$headers = array_keys($row);
 
+			$str .= '<thead>';
 			$str .= '<tr>';
 			foreach($headers as $header)
 			{
@@ -173,6 +174,8 @@ function array2table($rows, $headers_labels=array(), $headers_style=array(), $ta
 			}
 
 			$str .= '</tr>';
+			$str .= '</thead>';
+			$str .= '<tbody>';
 
 			$init = true;
 		}
@@ -191,6 +194,7 @@ function array2table($rows, $headers_labels=array(), $headers_style=array(), $ta
 		$i++;
 	}
 
+	$str .= '</tbody>';
 	$str .= "</table>";
 
 

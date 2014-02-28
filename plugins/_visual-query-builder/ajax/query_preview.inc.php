@@ -57,8 +57,3 @@ catch (PDOException $e)
 	die($html);
 }
 
-
-
-
-
-?>
