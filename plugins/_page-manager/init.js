@@ -90,7 +90,7 @@ setTimeout(function(){
         block_options = ' <a href="javascript:popupModal(\'index.php?mod=_block_builder&do=list&parent_refresh=0\', \'block builder\');"><img src="/nuts/img/icon-folder.png" align="absmiddle"></a>';
 
     if(block_options != '')
-        $('#asmSelect0').after(block_options);
+        $('.asmSelect').after(block_options);
 
 }, 500);
 
