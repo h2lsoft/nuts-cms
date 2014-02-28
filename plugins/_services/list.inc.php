@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin services - action List
- * 
+ *
  * @version 1.0
  * @date 19/11/2012
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -34,14 +34,14 @@ function hookData($row)
 {
 	global $nuts, $plugin;
 
+	$row['Description'] = nl2br($row['Description']);
+
     $url = WEBSITE_URL.'/plugins/_services/?name='.strtouri($row['Name']).'&ID='.$row['ID'].'&output='.strtolower($row['Output']).'&token='.$row['Token'];
     $row['Url'] = '<a href="'.$url.'" target="_blank"><img src="/nuts/img/icon-web.gif" /></a>';
 
 
-	
+
 	return $row;
 }
 
 
-
-?>
