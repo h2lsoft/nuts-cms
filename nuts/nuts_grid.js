@@ -318,6 +318,11 @@ nutsDatagrid.prototype.renderInFieldset = function(fieldset_id)
         })
     }
 
+    // hide the first row
+    // $('.datagrid tbody tr:first-child {display: none;}'
+    $('#datagrid_'+datagrid_id+' tbody tr:first-child').hide();
+
+
     // attach event add && delete
     delete_message = this.deleteMessage;
     $('#datagrid_'+datagrid_id+' .datagrid_btn_add').click(function(){

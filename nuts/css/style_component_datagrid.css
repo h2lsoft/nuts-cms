@@ -12,8 +12,6 @@
 
 .datagrid td {background-color:#fff; padding:5px;}
 
-.datagrid tbody tr:first-child {display: none;}
-
 .datagrid tbody tr:nth-child(even) td {background-color: #eee;}
 .datagrid tbody tr:nth-child(odd) td {background-color: #fff;}
 .datagrid tbody td[noclick='1'] {background-color: #e5e5e5!important;}
