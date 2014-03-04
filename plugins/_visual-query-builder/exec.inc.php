@@ -10,6 +10,9 @@
 /* @var $plugin Plugin */
 /* @var $nuts NutsCore */
 
+include(PLUGIN_PATH.'/config.inc.php');
+
+
 // ajax ****************************************************************************************************************
 if(ajaxerRequested())
 {

@@ -10,13 +10,15 @@ if(substr($query, 0, strlen("SELECT\n")) != "SELECT\n")
 
 // check LIMIT clause and replace it
 if(!$limit || $limit > 500)$limit = 100;
-$conn_str = "mysql:host=".NUTS_DB_HOST.";dbname=".NUTS_DB_BASE.";port=".NUTS_DB_PORT;
-$conn = new PDO($conn_str, NUTS_DB_USER, NUTS_DB_PASSWORD);
+
+
+$conn_str = "mysql:host=".$vqb_db_host.";dbname=".$vqb_db_schema.";port=".$vqb_db_port;
+$conn = new PDO($conn_str, $vqb_db_user, $vqb_db_password);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try
 {
-	$results = $conn->query($query);
+	// $results = $conn->query($query);
 
 	$results = $conn->prepare($query);
 	$results->setFetchMode(PDO::FETCH_ASSOC);
