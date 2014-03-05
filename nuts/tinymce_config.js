@@ -50,7 +50,7 @@ function initWYSIWYGOption()
 		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'bold\');" src="img/rte/B.png" align="absmiddle" title="Ctrl + B" /> ';
 		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'italic\');" src="img/rte/I.png" align="absmiddle" title="Ctrl + I" /> ';
 		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'underline\');" src="img/rte/U.png" align="absmiddle" title="Ctrl + U" /> ';
-		str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'strikeThrough\');" src="img/rte/S.png" align="absmiddle" title="Ctrl + S" /> ';
+		// str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'strikeThrough\');" src="img/rte/S.png" align="absmiddle" title="Ctrl + S" /> ';
 
         str += sep;
         str += '<img class="rte_button" onclick="javascript:cmdWYSIWYG(\''+id+'\', \'justifyLeft\');" src="img/rte/align-left.png" align="absmiddle" /> ';
