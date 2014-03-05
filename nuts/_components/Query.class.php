@@ -4,7 +4,7 @@
  *
  * @package Nuts-Component
  * @version 1.0
- * @date 30/11/2011
+ * @date 30/11/2014
  */
 
 class Query
