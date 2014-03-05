@@ -283,6 +283,7 @@ $files[] = WEBSITE_PATH.'/.htaccess';
 // $files[] = WEBSITE_PATH.'/nuts_auto_compress.js';
 // $files[] = WEBSITE_PATH.'/nuts_auto_compress.css';
 $files[] = WEBSITE_PATH.'/cache';
+$files[] = WEBSITE_PATH.'/x_includes/orm';
 // $files[] = WEBSITE_PATH.'/_tmp';
 $files[] = WEBSITE_PATH.'/uploads';
 $files[] = WEBSITE_PATH.'/plugins/_gallery/_tmp';
@@ -365,6 +366,3 @@ $plugin->render = $nuts->output();
 
 
 
-
-
-?>
