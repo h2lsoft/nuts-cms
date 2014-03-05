@@ -1,0 +1,5 @@
+# Protection of *.html
+<Files ~ "\.html$">
+    Order allow,deny
+    Deny from all
+</Files>

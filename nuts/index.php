@@ -16,6 +16,9 @@ include('headers.inc.php');
 FB::setEnabled(FirePHP_enabled);
 include('_inc/Plugin.class.php');
 
+// orm autoloader
+include('_inc/orm_autoloader.inc.php');
+
 $nuts = new NutsCore(false);
 $nuts->dbSetProtection(false); # remove data protection
 $nuts->dbConnect();

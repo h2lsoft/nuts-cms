@@ -24,13 +24,16 @@ include('nuts/_inc/Page.class.php');
 
 FB::setEnabled(FirePHP_enabled);
 
-
 // auto include files
 $scripts = glob('x_includes/*.php');
 if(is_array($scripts)){
 	foreach($scripts as $scr)
 		include_once($scr);
 }
+
+// orm autoloader
+include('nuts/_inc/orm_autoloader.inc.php');
+
 
 // auto starts session ?
 if(NUTS_WWW_SESSION_INIT == true)
