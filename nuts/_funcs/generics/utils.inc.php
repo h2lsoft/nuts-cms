@@ -215,7 +215,16 @@ EOF;
 }
 
 
-
+/**
+ * Alias of new dBug();
+ * @param mixed $var
+ * @param boolean $die exit at end
+ */
+function x($var, $die=false)
+{
+	new dBug($var);
+	if($die)die();
+}
 
 
 
