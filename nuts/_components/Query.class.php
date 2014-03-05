@@ -48,6 +48,28 @@ class Query
 	}
 
 	/**
+	 * Add Count
+	 * @param string $fields
+	 */
+	public function count($field='*')
+	{
+		$str = "COUNT($field)";
+		$this->_q['select'] = $str;
+		return $this;
+	}
+
+	/**
+	 * Add Sum
+	 * @param string $fields
+	 */
+	public function sum($field)
+	{
+		$str = "SUM($field)";
+		$this->_q['select'] = $str;
+		return $this;
+	}
+
+	/**
 	 * Add From
 	 * @param string $str
 	 */
@@ -104,13 +126,27 @@ class Query
 		return $this;
 	}
 
+
+	public function join($table='', $table2=''){
+
+		if(empty($table) && empty($table2))
+		{
+			$tables = explode(',', $this->_q['from']);
+			if(count($tables) != 2)die("Error: more than 2 tables found");
+			$table = trim($tables[0]);
+			$table2 = trim($tables[1]);
+		}
+
+		return $this->where("{$table}.{$table2}ID", '=', "{$table2}.ID", false);
+	}
+
+
     /**
      * Add where equal to (=)
      * @param int $value
      * @return Query
      */
     public function whereID($value){return $this->where('ID', '=', (int)$value);}
-
 
     /**
      * Add where equal to (=)
