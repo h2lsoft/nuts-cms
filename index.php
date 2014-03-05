@@ -21,8 +21,11 @@ include(NUTS_PHP_PATH.'/TPLN/TPLN.php');
 include(NUTS_PHP_PATH.'/FirePHPCore/fb.php');
 include('nuts/_inc/NutsCore.class.php');
 include('nuts/_inc/Page.class.php');
-
 FB::setEnabled(FirePHP_enabled);
+
+// orm autoloader
+include(NUTS_PHP_PATH.'/_inc/orm_autoloader.inc.php');
+
 
 // auto include files
 $scripts = glob('x_includes/*.php');
