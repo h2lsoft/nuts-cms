@@ -1,7 +1,7 @@
 <?php
 
-include('nuts/config.inc.php');
-include('nuts/headers.inc.php');
+include('config.inc.php');
+include('headers.inc.php');
 
 ?>
 <!doctype html>
@@ -16,11 +16,7 @@ include('nuts/headers.inc.php');
 </head>
 <body>
 <div id="header">
-	<?php if(BACKOFFICE_LOGO_URL != ''){ ?>
-		<a href="/"><img src="<? echo BACKOFFICE_LOGO_URL; ?>" align="middle" alt="nuts logo" /></a>
-	<?php } else { ?>
-		<a href="/"><img src="/nuts/img/logo.png" align="middle" alt="nuts logo" /></a>
-	<?php } ?>
+	<a href="/"><img src="/nuts/img/logo.png" align="middle" alt="nuts logo" /></a>
 </div>
 
 <div id="menu" style="height:20px;"></div>
