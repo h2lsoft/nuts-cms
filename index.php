@@ -24,7 +24,7 @@ include('nuts/_inc/Page.class.php');
 FB::setEnabled(FirePHP_enabled);
 
 // orm autoloader
-include(NUTS_PHP_PATH.'/_inc/orm_autoloader.inc.php');
+include(NUTS_PATH.'/_inc/orm_autoloader.inc.php');
 
 
 // auto include files
