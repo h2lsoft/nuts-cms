@@ -1745,7 +1745,6 @@ EOF;
                 if(!in_array($tmp_o, $orders))
                     $orders[] = $tmp_o;
             }
-
 		}
 
 		if(count($orders) > 0)
@@ -1784,7 +1783,7 @@ EOF;
 		{
 			if(
 				isset($_GET[$s['name']]) &&
-			    strlen(trim($_GET[$s['name']])) &&
+			    // strlen(trim($_GET[$s['name']])) &&
 			    isset($_GET[$s['name'].'_operator']) &&
 				in_array($_GET[$s['name'].'_operator'], array('_equal_', '_not_equal_', '_gt_', '_gtequal_', '_lt_', '_ltequal_', '_begin_', '_not_begin_', '_countains_', '_not_countains_', '_in_', '_not_in_'))
 			  )
@@ -1904,8 +1903,6 @@ EOF;
 						$search .= ":00";
 					}
 
-
-
 					if($val == '_begin_')$x_sql .= "'".$search."%'";
 					elseif($val == '_not_begin_')$x_sql .= "'".$search."%'";
 					elseif($val == '_countains_')$x_sql .= "'%".$search."%'";
@@ -1921,7 +1918,6 @@ EOF;
 		{
 			$sql .= $this->sql_after_where_added;
 		}
-
 
 		// excel export
 		if($this->listAllowExcelExport && isset($_GET['nuts_export']) && $_GET['nuts_export'] == 'excel')
