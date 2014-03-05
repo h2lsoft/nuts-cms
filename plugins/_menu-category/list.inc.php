@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin menu-category - action List
- * 
+ *
  * @version 1.0
  * @date 19/11/2012
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -12,19 +12,15 @@
 
 
 // initialization if count = 0 *****************************************************************************************
-$num = Query::factory()->select('COUNT(*)')
-                ->from('NutsMenuCategory')
-                ->executeAndGetOne();
+$num = Query::factory()->count()->from('NutsMenuCategory')->executeAndGetOne();
 
 if(!$num)
 {
     // include main view
     include(NUTS_PATH.'/lang/en.inc.php');
-    include(NUTS_PATH.'/_custom_menu.inc.php');
     $en_mods = $mods_group;
 
     include(NUTS_PATH.'/lang/fr.inc.php');
-    include(NUTS_PATH.'/_custom_menu.inc.php');
     $fr_mods = $mods_group;
 
     $position = 0;

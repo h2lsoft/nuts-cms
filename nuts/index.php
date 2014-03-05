@@ -16,9 +16,6 @@ include('headers.inc.php');
 FB::setEnabled(FirePHP_enabled);
 include('_inc/Plugin.class.php');
 
-// orm autoloader
-include('_inc/orm_autoloader.inc.php');
-
 $nuts = new NutsCore(false);
 $nuts->dbSetProtection(false); # remove data protection
 $nuts->dbConnect();
@@ -204,8 +201,6 @@ if(!file_exists('lang/'.$NutsUserLang.'.inc.php'))
 else
 	include('lang/'.$NutsUserLang.'.inc.php');
 
-// include custom menu ***********************
-include('_custom_menu.inc.php');
 
 // reload menu with new version !
 $menu_count = Query::factory()->select("COUNT(*)")->from('NutsMenuCategory')->executeAndGetOne();
@@ -521,5 +516,3 @@ else
     echo $out;
 }
 
-
-?>

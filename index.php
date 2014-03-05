@@ -31,9 +31,6 @@ if(is_array($scripts)){
 		include_once($scr);
 }
 
-// orm autoloader
-include('nuts/_inc/orm_autoloader.inc.php');
-
 
 // auto starts session ?
 if(NUTS_WWW_SESSION_INIT == true)

@@ -96,7 +96,6 @@ div#form .qq-upload-success {background-color: #DAF4D9!important; color: #009900
 div#form .qq-upload-failed {background-color: #FFE1FF!important; color: #FF0000!important; list-style: none; padding-left: 18px!important; background-image: url(../img/icon-error.gif); background-repeat: no-repeat; background-position: center left;}
 div#form .qq-upload-size {font-size:10px; }
 
-
 /** console **/
 div#console {padding:5px; background-color:#000; border:1px solid #000; font-family:"Courier New", Courier, monospace; font-size:11px; color:white;}
 div#console a {color: #00AAFF; color: #00AAFF;}
