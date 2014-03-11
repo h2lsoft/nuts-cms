@@ -15,7 +15,8 @@ class Mail extends Rss
 	protected $body = '';
 	protected $format = '';
 	public $files = array();
-	protected $charset = 'iso-8859-1';
+	// protected $charset = 'iso-8859-1';
+	protected $charset = 'utf-8';
 	protected $urgent = false;
 	protected $confirm  = false;
 	public $mailErr = '';
@@ -293,4 +294,3 @@ class Mail extends Rss
 
 }
 
-?>
