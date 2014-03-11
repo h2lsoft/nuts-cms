@@ -1102,7 +1102,7 @@ function translator(objID1, objID2, lang1, lang2)
  */
 function parse_nuts_tags(text)
 {
-	text = str_replace('    ', "\t", text);
+    text = str_replace('    ', "\t", text);
     text2 = text;
 
 	next_position = 0;
@@ -1218,6 +1218,7 @@ function parse_nuts_tags(text)
 
 function remove_nuts_tags(text)
 {
+
 	text = str_replace('    ', "\t", text);
 	text2 = text;
 
@@ -1227,7 +1228,6 @@ function remove_nuts_tags(text)
 		cur_tags = extract_str('<img class="nuts_tags"', '>', text2, 0, true);
 		//next_position = text.indexOf(cur_tags, next_position);
 		//next_position += strlen(cur_tags)-1;
-
 		if(!empty(cur_tags))
 		{
 			// prevent bug
