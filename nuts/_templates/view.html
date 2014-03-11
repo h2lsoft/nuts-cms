@@ -3,36 +3,35 @@
 
 	<div id="form_content">
 
-	<bloc::f>
+        <bloc::f>
 
-        <bloc::fieldset_start>
-            <!-- fieldset::{name} -->
-            <fieldset id="fieldset_{name}">
-                <legend>{legend}</legend>
-        </bloc::fieldset_start>
+            <bloc::fieldset_start>
+                <!-- fieldset::{name} -->
+                <fieldset id="fieldset_{name}">
+                    <legend>{legend}</legend>
+            </bloc::fieldset_start>
 
-        <bloc::p>
-        <p id="col{name}">
-		    <label>{label}</label>
-            <span>{ {name} }</span>
-	    </p>
-	    </bloc::p>
+            <bloc::p>
+            <p id="col{name}">
+                <label>{label}</label>
+                <span>{ {name} }</span>
+            </p>
+            </bloc::p>
 
-	    <bloc::fieldset_end>
-	    </fieldset>
-        <!-- /fieldset::{name} -->
-	    </bloc::fieldset_end>
+            <bloc::fieldset_end>
+            </fieldset>
+            <!-- /fieldset::{name} -->
+            </bloc::fieldset_end>
 
-    </bloc::f>
-
-
-	<p class="bottom">
-		<input type="button" name="btn_print" id="btn_print" value="{$nuts_lang_msg[52]}" title="ALT + P" onclick="printDialog();" accesskey="p" />
-		<input type="button" name="btn_cancel" id="btn_cancel" value="{$nuts_lang_msg[26]}" onclick="$('#form_window').dialog('close');" />
-	</p>
-
+        </bloc::f>
 
 	</div>
+
+
+    <p class="bottom">
+        <input type="button" name="btn_print" id="btn_print" value="{$nuts_lang_msg[52]}" title="ALT + P" onclick="printDialog();" accesskey="p" />
+        <input type="button" name="btn_cancel" id="btn_cancel" value="{$nuts_lang_msg[26]}" onclick="$('#form_window').dialog('close');" />
+    </p>
 
 
 
@@ -44,8 +43,7 @@
 <script type="text/javascript">
 function updateFormContentHeight(err)
 {
-	// h = $(window).height()-125;
-	h = $(window).height();
+	h = $(window).height() - 125;
 	$('#form_content').height(h);
 }
 updateFormContentHeight(false);
