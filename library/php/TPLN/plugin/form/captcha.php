@@ -54,22 +54,16 @@ imagefill($image, 0, 0, $white);
 imagecopy($image, $bkg, 0, 0, 0, 0, $width, $height);
 imagedestroy($bkg);
 
-
-
-
-
-
-$text_color = $white;
-
-
-
-
 $captcha_len = strlen($session_tpln_captcha);
 $angle = 1;
 for($i=0; $i <  $captcha_len; $i++)
 {
 	$rnd = rand(0, count($fonts)-1);
 	$police = $fonts[$rnd];
+
+	$rnd = rand(0, 1);
+	$text_color = ($rnd == 0) ? $white : $grey;
+
 	@imagettftext($image, 14, 12*$angle, $i*($width/$captcha_len)+5, ($height/2)+5, $text_color, $police, $session_tpln_captcha[$i]);
 
 	($angle == 1) ? $angle = -1 : $angle = 1;
