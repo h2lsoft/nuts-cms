@@ -81,7 +81,3 @@ for($i=0; $i <  $captcha_len; $i++)
 header("Content-type: image/jpeg");
 imagejpeg($image);
 imagedestroy($image);
-
-
-
-?>
