@@ -40,8 +40,8 @@ if(count($matches) == 2)
 	$out .= "img.nuts_tags:hover {}\n";
 	$out .= "td, th {border:1px dashed #ccc;}\n";
 
-	$out .= ".nuts_tags {border:2px solid #ccc; border-radius:3px; margin:10px 5px; }\n";
-	$out .= ".nuts_tags:hover, .nuts_tags:active {border:2px solid #1570B8; cursor:move!important;}\n";
+	$out .= ".nuts_tags {border:2px solid #1570B8; border-radius:3px; margin:10px 5px; }\n";
+	$out .= ".nuts_tags:hover, .nuts_tags:active {border:2px solid #666; cursor:move!important;}\n";
 	$out .= ".nuts_tags:hover {opacity:0.8;}\n";
 
 	echo trim($out);
