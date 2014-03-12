@@ -16,13 +16,14 @@ $job = new NutsCore();
 $job->dbConnect();
 
 $debug_sql = true;
+
 $logs = Query::factory()->select("FirstName, Action, Resume")
 						->from('NutsLog, NutsUser')
-						->join()
+						->whereJoin() # auto join
 						->order_by("NutsLog.ID DESC")
 						->limit(5)
+						->debugHtmlMode(1)
 						->executeAndGetAll($debug_sql);
-
 x($logs);
 
 $job->dbClose();

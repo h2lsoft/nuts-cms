@@ -16,6 +16,21 @@ class Query
 
 	private $_special_keywords = array('NOW()', 'CURDATE()', 'CURTIME()'); // special keywords so no string protection
 
+	public $debug_html_mode = true;
+
+
+	/**
+	 * Turn off html mode for debug
+	 *
+	 * @param $bool
+	 */
+	public function debugHtmlMode($bool)
+	{
+		$this->debug_html_mode = $bool;
+		return $this;
+	}
+
+
 
 	/**
 	 * Constructor
@@ -80,6 +95,22 @@ class Query
 	}
 
 	/**
+	 * Add a custom condition
+	 * @param string $condition (use %s for string, if you want percent character use %%)
+	 * @param array $parameters (will be escaped automatically)
+	 */
+	public function whereCondition($condition, $parameters=array())
+	{
+		$parameters = array_map('sqlX', $parameters);
+		$condition = vsprintf($condition, $parameters);
+
+		$this->where($condition, '', '', false);
+
+		return $this;
+	}
+
+
+	/**
 	 * Add Where
 	 * @param string $conditions
      * @param string $operator (default empty no operator take full confition)
@@ -126,18 +157,25 @@ class Query
 		return $this;
 	}
 
+	/**
+	 * Add join
+	 *
+	 * @param string $table1
+	 * @param string $table2
+	 *
+	 * @return $this
+	 */
+	public function whereJoin($table1='', $table2=''){
 
-	public function join($table='', $table2=''){
-
-		if(empty($table) && empty($table2))
+		if(empty($table1) && empty($table2))
 		{
 			$tables = explode(',', $this->_q['from']);
-			if(count($tables) != 2)die("Error: more than 2 tables found");
-			$table = trim($tables[0]);
+			if(count($tables) != 2)die("Error: auto join more than 2 tables found");
+			$table1 = trim($tables[0]);
 			$table2 = trim($tables[1]);
 		}
 
-		return $this->where("{$table}.{$table2}ID", '=', "{$table2}.ID", false);
+		return $this->where("{$table1}.{$table2}ID", '=', "{$table2}.ID", false);
 	}
 
 
@@ -320,7 +358,7 @@ class Query
 			{
 				$from = @end(explode(' ', $from));
 
-				if($i > 0)$sql .= " AND ";
+				if($i > 0)$sql = rtrim($sql)." AND\n";
 				$sql .= "		$from.Deleted = 'NO'"."\n";
 				$i++;
 			}
@@ -364,8 +402,11 @@ class Query
      *
      * @param boolean $fb_debug Firebug debug (default = false)
 	 */
-	function execute($fb_debug=false){
+	function execute($fb_debug=false)
+	{
 		$sql = $this->get();
+		$sql_original = $sql;
+
         if($fb_debug)
         {
 	        if(FirePHP_enabled == true)
@@ -374,11 +415,21 @@ class Query
 	        }
 	        else
 	        {
+		        if($this->debug_html_mode)
+		        {
+			        $reserved_sql = array('SELECT', 'FROM', 'WHERE', 'ORDER BY', 'GROUP BY', 'LIMIT', 'HAVING');
+			        foreach($reserved_sql as $key)
+			        {
+				        $sql = str_replace("{$key}\n", "<b style='color:blue'>{$key}</b>\n", $sql);
+				        $sql = str_replace("{$key} ", "<b style='color:blue'>{$key}</b> ", $sql);
+			        }
+		        }
+
 		        echo '<pre>'.$sql.'<pre>';
 	        }
         }
 
-		$this->_DBLink->doQuery($sql);
+		$this->_DBLink->doQuery($sql_original);
 	}
 
 	/**
