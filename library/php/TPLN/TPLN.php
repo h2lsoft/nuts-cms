@@ -200,7 +200,7 @@ class TPLN extends DB
      */
     public function getBrowserInfo($u_agent="")
     {
-        if(empty($u_agent))$u_agent = $_SERVER['HTTP_USER_AGENT'];
+        if(empty($u_agent))$u_agent = @$_SERVER['HTTP_USER_AGENT'];
 
         $bname = 'Unknown';
         $platform = 'Unknown';
@@ -268,7 +268,7 @@ class TPLN extends DB
 
         // see how many we have
         $i = count($matches['browser']);
-        if ($i != 1) {
+        if ($i > 1) {
             //we will have two since we are not using 'other' argument yet
             //see if version is before or after the name
             if (strripos($u_agent,"Version") < strripos($u_agent,$ub)){
