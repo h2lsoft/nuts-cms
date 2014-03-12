@@ -70,14 +70,11 @@ function updateFormContentHeight(err)
 	$('#form_content').height(h);
 }
 
-
 loadRichEditor(currentTheme);
 updateFormContentHeight(false);
 helperInit('#form_content');
 transformSelectToSwitch('#former', false, true);
 // $('textarea.resizable:not(.processed)').TextAreaResizer();
-
-
 
 // transfrorm multiple select to checklist
 $('#former select[type=select-multiple].checkbox-list').each(function(){
@@ -87,10 +84,7 @@ $('#former select[type=select-multiple].checkbox-list').each(function(){
     $(this).attr('id', id);
 
 	tmp_str = '<div class="checkbox_list" id="checkbox_list_'+id+'">';
-
-    label = 'Select All';
-    if(nutsUserLang == 'fr')
-        label = 'Sélectionner Tous';
+    label = (nutsUserLang == 'fr') ? 'Sélectionner Tous' : 'Select All';
 
     tmp_str += '<a href="javascript:;" onclick="checkboxSelectAll(\''+id+'\')">'+label+'</a>';
 
@@ -105,13 +99,11 @@ $('#former select[type=select-multiple].checkbox-list').each(function(){
 		tmp_str += '<input type="checkbox" '+checked+' name="'+id+'[]" value="'+$(this).val()+'" />';
 		tmp_str += $(this).text();
 		tmp_str += '</label>';
-
-
 	});
+
 	tmp_str += '</div>';
 
 	$('#former #'+id).replaceWith(tmp_str);
-
 
 });
 
