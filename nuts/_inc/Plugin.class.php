@@ -2814,7 +2814,7 @@ EOF;
 	{
 		$options = array();
 
-		$attributes .= ' multiple="" size="5" ';
+		$attributes .= ' multiple size="2" ';
 
 		if($convert_checkbox_list)$options['class'] = 'checkbox-list';
 
