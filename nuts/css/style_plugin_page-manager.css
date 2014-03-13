@@ -1,6 +1,9 @@
 div#page_tree {width:210px; /*min-height:350px;*/ padding:5px; float:left;  /*margin-right:5px;*/ border:1px solid #cccccc; /*border-right:5px;*/ overflow:auto; overflow-x: hidden;}
 div#page_form {display:none; float:left; min-width:700px;  /*min-height:500px;*/ padding:5px; padding-top:0; overflow:hidden; margin-top:-32px;}
 
+
+div#page_form select {margin:0!important;}
+
 div#page_tree .simpleTree {}
 
 div#page_options { margin-bottom:3px;}
