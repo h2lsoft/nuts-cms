@@ -33,7 +33,6 @@ while($row = $nuts->dbfetch())
 	$str_file .= '$uri_replaces[] = "'.str_replace('§', '$', $row['Replacement']).'";'.CR.CR;
 }
 
-$str_file .= CR.'?>';
 
 file_put_contents(NUTS_PATH.'/url_rewriting_rules.inc.php', $str_file);
 
