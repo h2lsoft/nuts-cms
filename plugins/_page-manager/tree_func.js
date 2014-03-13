@@ -1256,6 +1256,45 @@ function updateRightsTab(ID)
 
 
     });
+}
+
+
+function urlRewritingCustom()
+{
+    msg = (nutsUserLang == 'fr') ? "Merci de renseigner l'url" : "Please, enter your url";
+    prefix = "/"+$('#Language').val()+"/";
+
+    user_uri = prompt(msg, prefix);
+    if(empty(user_uri))return;
+
+    // check url
+    if(user_uri.indexOf(prefix) != 0)
+    {
+        msg = (nutsUserLang == 'fr') ? "Erreur: votre url doit commencer par `"+prefix+"`" : "Error: your url must be prefixed by `"+prefix+"`";
+        alert(msg);
+        return;
+    }
+
+    // send post
+    ID = lastPageData.ID;
+    uri = "index.php?mod=_page-manager&do=exec&_action=url_rewriting&ID="+ID+"&uri="+user_uri;
+    uri += '&language='+$('#page_options #Language').val();
+
+    $.get(uri, function(resp){
+
+        if(resp != 'ok')
+        {
+            alert(resp);
+            return;
+        }
+        else
+        {
+            $('#VirtualPagename').val(user_uri);
+        }
+
+    });
+
+
 
 
 }
