@@ -45,11 +45,14 @@ function hookData($row)
 
 	// $row['Position'] = $plugin->listGetPositionContents($row['ID']);
     if(!empty($row['Tag']))
-        $row['Tag'] = "<span class='tag'>{$row['Tag']}</span>";
+    {
+	    $tag_add = '';
+	    if($row['Tag'] == 'auto')$tag_add = 'tag_green';
+	    $row['Tag'] = "<span class='tag $tag_add'>{$row['Tag']}</span>";
+    }
 
 	return $row;
 }
 
 
 
-?>
