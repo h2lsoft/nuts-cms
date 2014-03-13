@@ -10,12 +10,12 @@ $nuts->doQuery($sql);
 $str_file = '<?php'.CR.CR;
 
 $str_file .= '// simples replacements *************************'.CR;
-$str_file .= '$uri_str_patterns = array();'.CR;
-$str_file .= '$uri_str_replaces = array();'.CR.CR;
+$str_file .= '$uri_str_patterns = array(); ';
+$str_file .= '$uri_str_replaces = array();'.CR;
 while($row = $nuts->dbfetch())
 {
-	$str_file .= '$uri_str_patterns[] = "'.$row['Pattern'].'";'.CR;
-	$str_file .= '$uri_str_replaces[] = "'.$row['Replacement'].'";'.CR.CR;
+	$str_file .= '$uri_str_patterns[] = "'.$row['Pattern'].'"; ';
+	$str_file .= '$uri_str_replaces[] = "'.$row['Replacement'].'";'.CR;
 }
 
 
@@ -25,12 +25,12 @@ $nuts->doQuery($sql);
 
 $str_file .= CR.CR;
 $str_file .= '// regex replacements *************************'.CR;
-$str_file .= '$uri_patterns = array();'.CR;
-$str_file .= '$uri_replaces = array();'.CR.CR;
+$str_file .= '$uri_patterns = array(); ';
+$str_file .= '$uri_replaces = array();'.CR;
 while($row = $nuts->dbfetch())
 {
-	$str_file .= '$uri_patterns[] = "'.str_replace('§', '$', $row['Pattern']).'";'.CR;
-	$str_file .= '$uri_replaces[] = "'.str_replace('§', '$', $row['Replacement']).'";'.CR.CR;
+	$str_file .= '$uri_patterns[] = "'.str_replace('§', '$', $row['Pattern']).'"; ';
+	$str_file .= '$uri_replaces[] = "'.str_replace('§', '$', $row['Replacement']).'";'.CR;
 }
 
 
