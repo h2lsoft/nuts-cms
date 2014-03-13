@@ -37,6 +37,3 @@ $str_file .= CR.'?>';
 
 file_put_contents(NUTS_PATH.'/url_rewriting_rules.inc.php', $str_file);
 
-
-
-?>
