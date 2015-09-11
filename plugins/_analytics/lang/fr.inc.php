@@ -14,4 +14,3 @@ $lang_msg[6] = "Pages vues";
 $lang_msg[7] = "provenances";
 $lang_msg[8] = "recherches";
 $lang_msg[9] = "pays";
-
