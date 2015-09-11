@@ -380,12 +380,14 @@ class Page extends NutsCore
 		$url_tmp = @parse_url($_SERVER['REQUEST_URI']);
         if(!$url_tmp)$this->error404();
 
-		if(isset($url_tmp['query']))
-			parse_str($url_tmp['query'], $_GET);
+		// if(isset($url_tmp['query']))
+			// parse_str($url_tmp['query'], $_GET);
 
         // get information page
         $port = ($_SERVER['SERVER_PORT'] == 80) ? '' : ':'.$_SERVER['SERVER_PORT'];
 		$url = 'http'.((!empty($_SERVER['HTTPS'])) ? 's' : '').'://'.$_SERVER['SERVER_NAME'].$port.$_SERVER['REQUEST_URI'];
+		$url = str_replace(':443', '', $url);
+
 
 		// no query string for control
 		$url = explode('?', $url);
@@ -393,7 +395,6 @@ class Page extends NutsCore
 
         $curl = str_replace(WEBSITE_URL.'/', '', $url);
 		$curl = explode('/', $curl);
-
 
 
 		// homepage ?

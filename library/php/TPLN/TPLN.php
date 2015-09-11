@@ -53,9 +53,8 @@ function tpln_auto_security($value, $urldecode_before=false, $sanitize=true, $st
 
 
 	// naughty scripting
-	$value = preg_replace('#(alert|cmd|passthru|eval|shell_exec|exec|expression|system|fopen|fsockopen|file|file_get_contents|readfile|unlink)(\s*)\((.*?)\)#si',
-					'\\1\\2&#40;\\3&#41;',
-					$value);
+	$value = preg_replace('#(alert|cmd|passthru|eval|shell_exec|exec|expression|system|fopen|fsockopen|file|file_get_contents|readfile|unlink)(\s*)\((.*?)\)#i',
+					'[XSS-PROTECT:\\1] &#40;\\3&#41;', $value);
 
 	// never allowed
 	$_never_allowed_str =	array('document.cookie', 'document.write', '.parentNode', '.innerHTML', 'window.location', '-moz-binding');
