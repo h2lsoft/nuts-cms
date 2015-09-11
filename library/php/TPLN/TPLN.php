@@ -1143,11 +1143,19 @@ class TPLN extends DB
 		foreach($this->f[$this->f_no]['php_items'] as $item)
 		{
 			$replace = '$'.$item;
-			//if(!eregi("\(", $replace)) // protection security of methods and functions !
-			if(strpos($replace, "(") === false) // protection security of methods and functions !
+			$tmp = '';
+			if(strpos($replace, "(") !== true) // protection security of methods and functions !
 			{
-                $tmp = '';
-				@eval("\$tmp = $replace;");
+				// patch security: 26/08/2015 !
+				@eval("
+						\$tmp = str_replace('<?', '', $replace);
+						\$tmp = str_replace('?>', '', \$tmp);
+						\$tmp = str_replace('<%', '', \$tmp);
+				");
+
+				if(strpos($replace, '$_GET') !== false || strpos($replace, '$_POST') !== false || strpos($replace, '$_COOKIE') !== false || strpos($replace, '$_SESSION') !== false)
+					$tmp = $this->xssProtect($tmp);
+
 				$item = '$'.$item;
 				$item = str_replace('$', '\$', $item);
 				$item = str_replace('[', '\[', $item);
@@ -2924,5 +2932,3 @@ class TPLN extends DB
 	}
 }
 
-
-?>
