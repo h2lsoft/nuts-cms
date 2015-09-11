@@ -15,10 +15,10 @@ if(@$_POST['redirect_index'] == 1)
     $r = 'index.php';
     if(isset($_POST['r']) && strpos($_POST['r'], '/nuts/') !== false)
     {
-        $r = str_replace('/nuts/index.php', 'index.php', $_POST['r']);
+        // $r = str_replace('/nuts/index.php', 'index.php', $_POST['r']);
     }
 
-	$nuts->redirect($r);
+	// $nuts->redirect($r);
 }
 
 $_SESSION = array();
