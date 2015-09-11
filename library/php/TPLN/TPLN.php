@@ -15,6 +15,103 @@ if(TPLN_DBUG_CLASS)include_once('dBug.php');
 include_once('lang/error_'.TPLN_LANG.'.inc.php'); // language file
 include_once('plugin/form/lang.inc.php'); // form language file
 
+/******************* AUTO SECURITY *******************************************/
+function tpln_auto_security($value, $urldecode_before=false, $sanitize=true, $strip_tags_allowed='')
+{
+	if(is_array($value))
+	{
+		foreach($value as $key => $val)
+			$value[$key] = tpln_auto_security($val, $urldecode_before, $sanitize, $strip_tags_allowed);
+		return $value;
+	}
+
+	if($urldecode_before) $value = urldecode($value);
+
+    // no comment
+    $value = str_ireplace(array('<!--', '-->'), '', $value);
+
+
+
+    // tpln code
+    $value = str_ireplace('{#', '{ #', $value);
+    $value = str_ireplace('{_', '{ _', $value);
+    $value = str_ireplace('{$', '{ $', $value);
+
+	// remove invisble characters
+	$non_displayables = array();
+	if($urldecode_before)
+	{
+		$non_displayables[] = '/%0[0-8bcef]/';	// url encoded 00-08, 11, 12, 14, 15
+		$non_displayables[] = '/%1[0-9a-f]/';	// url encoded 16-31
+	}
+	$non_displayables[] = '/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]+/S';	// 00-08, 11, 12, 14-31, 127
+
+	do{
+			$value = preg_replace($non_displayables, '', $value, -1, $count);
+	}
+	while($count);
+
+
+	// naughty scripting
+	$value = preg_replace('#(alert|cmd|passthru|eval|shell_exec|exec|expression|system|fopen|fsockopen|file|file_get_contents|readfile|unlink)(\s*)\((.*?)\)#si',
+					'\\1\\2&#40;\\3&#41;',
+					$value);
+
+	// never allowed
+	$_never_allowed_str =	array('document.cookie', 'document.write', '.parentNode', '.innerHTML', 'window.location', '-moz-binding');
+	$value = str_replace($_never_allowed_str, '[REMOVED]', $value);
+
+	$_never_allowed_regex = array('javascript\s*:', 'expression\s*(\(|&\#40;)', 'vbscript\s*:', 'Redirect\s+302', "([\"'])?data\s*:[^\\1]*?base64[^\\1]*?,[^\\1]*?\\1?");
+	foreach($_never_allowed_regex as $reg)
+		$value = preg_replace('#'.$reg.'#is', '[removed]', $value);
+
+	// JSON
+	if(!$urldecode_before && strlen($value) >= 2 && $value[0] == '[' && $value[strlen($value)-1] == ']')
+	{
+		$sanitize = false;
+		$strip_tags_allowed = '';
+	}
+
+	if($sanitize)$value = trim(filter_var($value, FILTER_SANITIZE_STRING));
+	$value = strip_tags($value, $strip_tags_allowed);
+
+
+	// remove php code
+	$value = preg_replace('/(<\?{1}[p\s]{1}.+\?>)/i', '', $value);
+	$value = str_ireplace(array('<?php', '<%', '<?=', '<?', '?>'), '', $value);
+
+	// remove xss
+	$value = str_ireplace(array("&lt;", "&gt;"), array("&amp;lt;", "&amp;gt;"), $value);
+	$value = preg_replace('#(&\#*\w+)[\s\r\n]+;#U', "$1;", $value);
+	$value = preg_replace('#(<[^>]+[\s\r\n\"\'])(on|xmlns)[^>]*>#iU', "$1>", $value);
+	$value = preg_replace('#(<[^>]+[\s\r\n\"\'])(on|xmlns)[^>]*>#iU', "$1>", $value);
+	$value = preg_replace('#([a-z]*)[\s\r\n]*=[\s\n\r]*([\`\'\"]*)[\\s\n\r]*j[\s\n\r]*a[\s\n\r]*v[\s\n\r]*a[\s\n\r]*s[\s\n\r]*c[\s\n\r]*r[\s\n\r]*i[\s\n\r]*p[\s\n\r]*t[\s\n\r]*:#iU', '$1=$2nojavascript...', $value);
+	$value = preg_replace('#([a-z]*)[\s\r\n]*=([\'\"]*)[\s\n\r]*v[\s\n\r]*b[\s\n\r]*s[\s\n\r]*c[\s\n\r]*r[\s\n\r]*i[\s\n\r]*p[\s\n\r]*t[\s\n\r]*:#iU', '$1=$2novbscript...', $value);
+	$value = preg_replace('#(<[^>]+)style[\s\r\n]*=[\s\r\n]*([\`\'\"]*).*expression[\s\r\n]*\([^>]*>#iU', "$1>", $value);
+	$value = preg_replace('#(<[^>]+)style[\s\r\n]*=[\s\r\n]*([\`\'\"]*).*s[\s\n\r]*c[\s\n\r]*r[\s\n\r]*i[\s\n\r]*p[\s\n\r]*t[\s\n\r]*:*[^>]*>#iU', "$1>", $value);
+	$value = preg_replace('#</*\w+:\w[^>]*>#i', "", $value);
+	do
+	{
+		$oldstring = $value;
+		$value = preg_replace('#</*(style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base)[^>]*>#i', "", $value);
+	}
+	while ($oldstring != $value);
+
+	$value = trim($value);
+	return $value;
+}
+
+
+if(!defined('TPLN_AUTO_SECURITY_GET') || TPLN_AUTO_SECURITY_GET == 1)$_GET = tpln_auto_security($_GET, true, true);
+if(!defined('TPLN_AUTO_SECURITY_POST') || TPLN_AUTO_SECURITY_POST == 1)$_POST = tpln_auto_security($_POST, false, false, '<h1><h2><h3><h4><h5><h6><a><img><img/><ul><ol><li><caption><p><br><br /><div><span><table><th><tr><td><thead><tfoot><cite><blockquote><pre><abbr><address><hr><audio><video><fieldset><label><map><area><article><code><col><colgroup><dd><dl><dt><kbd><var><strong><b><em><i><samp><pre><source><sub><article><section><small><mark><figcaption><figure><track><source><span><summary>');
+if(!defined('TPLN_AUTO_SECURITY_COOKIE') || TPLN_AUTO_SECURITY_COOKIE == 1)$_COOKIE = tpln_auto_security($_COOKIE, true, true);
+
+/******************* /AUTO SECURITY *******************************************/
+
+
+
+
+
 /******************* Plugins structure *******************************************
 - TPLN
 |- DB
@@ -1132,6 +1229,7 @@ class TPLN extends DB
 	 * @author H2LSOFT */
 	public function parseGlobals()
 	{
+
 		$this->f[$this->f_no]['php_items'] = $this->captureItems('', 'PHP');
 
 		if(count($this->f[$this->f_no]['php_items']) == 0)
@@ -1139,22 +1237,65 @@ class TPLN extends DB
 			return;
 		}
 
-		@extract($GLOBALS, EXTR_SKIP || EXTR_REFS);
+		// @extract($GLOBALS, EXTR_SKIP || EXTR_REFS);
 		foreach($this->f[$this->f_no]['php_items'] as $item)
 		{
 			$replace = '$'.$item;
 			$tmp = '';
 			if(strpos($replace, "(") !== true) // protection security of methods and functions !
 			{
+
 				// patch security: 26/08/2015 !
+				preg_match_all("/\[([^\]]*)\]/s", $replace, $brakets);
+				if(count($brakets[1]) == 0)
+				{
+					// object detected $obj->attr
+					if(strpos($item, '->') !== false)
+					{
+						$v = explode('->', $item);
+						if(count($v) == 2 && isset($GLOBALS[$v[0]]))
+						{
+							$tmp = $GLOBALS[$v[0]]->{$v[1]};
+						}
+					}
+					else
+					{
+						if(isset($GLOBALS[$item]))
+							$tmp = $GLOBALS[$item];
+
+					}
+
+				}
+				elseif(count($brakets[1]) == 1)
+				{
+					$brakets[1][0] = str_replace(array('"', "'"), '', $brakets[1][0]);
+					$brakets[1][0] = trim($brakets[1][0]);
+
+					list($arr_name, ) = explode('[', $item);
+					if(isset($GLOBALS[$arr_name][$brakets[1][0]]))
+							$tmp = $GLOBALS[$arr_name][$brakets[1][0]];
+				}
+				elseif(count($brakets[1]) == 2)
+				{
+					$brakets[1][0] = trim(str_replace(array('"', "'"), '', $brakets[1][0]));
+					$brakets[1][1] = trim(str_replace(array('"', "'"), '', $brakets[1][1]));
+
+					list($arr_name, ) = explode('[', $item);
+					if(isset($GLOBALS[$arr_name][$brakets[1][0]][$brakets[1][1]]))
+							$tmp = $GLOBALS[$arr_name][$brakets[1][0]][$brakets[1][1]];
+				}
+
+				/*
 				@eval("
-						\$tmp = str_replace('<?', '', $replace);
-						\$tmp = str_replace('?>', '', \$tmp);
-						\$tmp = str_replace('<%', '', \$tmp);
+						\$tmp = str_ireplace(array('<?php','<?','?>', '<%'), '', $replace);
 				");
 
 				if(strpos($replace, '$_GET') !== false || strpos($replace, '$_POST') !== false || strpos($replace, '$_COOKIE') !== false || strpos($replace, '$_SESSION') !== false)
+				{
 					$tmp = $this->xssProtect($tmp);
+				}
+				*/
+
 
 				$item = '$'.$item;
 				$item = str_replace('$', '\$', $item);
@@ -2253,11 +2394,12 @@ class TPLN extends DB
 			{
 				$m2 = $m;
 				preg_match_all('#\$([[:alnum:]|\_]*)#', $m, $ms);
+
 				if(count($ms) == 2)
 				{
 					foreach($ms[0] as $tm)
 					{
-						if(!empty($tm) && !in_array($tm, array('$_GET', '$_POST', '$_COOKIE', '$_SERVER', '$_SESSION', '$_REQUEST')))
+						if(!empty($tm) && !in_array($tm, array('$_GET', '$_POST', '$_COOKIE', '$_SERVER', '$_SESSION')))
 							$m2 = str_replace($tm, '$GLOBALS["'.str_replace('$','',$tm).'"]', $m);
 					}
 				}
@@ -2513,7 +2655,8 @@ class TPLN extends DB
 
 		if(get_magic_quotes_gpc())$string = stripslashes($string);
 
-		$string = str_replace(array("&lt;", "&gt;"), array("&amp;lt;", "&amp;gt;",), $string);
+		$string = str_ireplace(array("&lt;", "&gt;"), array("&amp;lt;", "&amp;gt;"), $string);
+		$string = str_ireplace(array("<?php", "<?", "<%", "?>"), '', $string);
 
 		// fix &entitiy\n;
 		$string = preg_replace('#(&\#*\w+)[\s\r\n]+;#U', "$1;", $string);
@@ -2567,7 +2710,6 @@ class TPLN extends DB
 	protected function parseLogo()
 	{
 		if($this->itemExists('_Logo')) // place the logo
-
 		{
 			$this->parse('_Logo', '<a href="http://tpln.sourceforge.net" title="Powered by TPLN template !"><img src="http://tpln.sourceforge.net/logo.gif" alt="made with TPLN Template!" border="0" target="_blank"  /></a>');
 		}
