@@ -380,8 +380,11 @@ class Page extends NutsCore
 		$url_tmp = @parse_url($_SERVER['REQUEST_URI']);
         if(!$url_tmp)$this->error404();
 
-		// if(isset($url_tmp['query']))
-			// parse_str($url_tmp['query'], $_GET);
+		if(isset($url_tmp['query']))
+		{
+			parse_str($url_tmp['query'], $_GET);
+			$_GET = tpln_auto_security($_GET, true, true);
+		}
 
         // get information page
         $port = ($_SERVER['SERVER_PORT'] == 80) ? '' : ':'.$_SERVER['SERVER_PORT'];
