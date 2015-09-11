@@ -20,7 +20,7 @@ if($_POST)
 	$_POST['Configuration'] = str_replace("\\", "\\\\", $_POST['Configuration']);
 
 	// is php file extension ?
-	$fext = strtolower(end(explode('.', $_POST['f'])));
+	$fext = @strtolower(end(explode('.', $_POST['f'])));
 	if($fext == 'php')
 	{
 		$_POST['Configuration'] = "<?php\n\n".trim($_POST['Configuration'])."\n\n";

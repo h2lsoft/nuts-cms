@@ -17,12 +17,15 @@
 <br />
 
 <script>
+
+setTimeout(function(){
 v = "{$_GET['f']}";
 if(v != "")
 {
 	v = base64_decode(v);
 	$('#f').val(v);
 }
+}, 300);
 </script>
 
 <script>
