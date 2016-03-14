@@ -77,12 +77,17 @@
 	</form>
 
 	<script type="text/javascript">
-	if($('div#form_error p').length == 0)$('div#form_error').remove();
-	if("{$_GET['lost_password']}" == 1)
-	{
-		$('div#layout_form_form').remove();
-		$('div#nuts_login_lost_password').show();
+	window.onload = function(){
+
+		if($('div#form_error p').length == 0)$('div#form_error').remove();
+
+		if("{$_GET['lost_password']}" == 1)
+		{
+			$('div#layout_form_form').remove();
+			$('div#nuts_login_lost_password').show();
+		}
 	}
+
 
 
 	function lostPassword(){
