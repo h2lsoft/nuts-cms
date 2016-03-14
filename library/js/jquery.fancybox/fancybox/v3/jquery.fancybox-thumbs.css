@@ -1,9 +1,11 @@
 #fancybox-thumbs {
+
 	position: fixed;
 	left: 0;
 	width: 100%;
 	z-index: 8080;
 	background: rgba(0, 0, 0, 0.3);
+
 }
 
 #fancybox-thumbs.bottom {

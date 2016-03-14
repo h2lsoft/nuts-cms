@@ -9,8 +9,8 @@
  * Copyright 2013 Janis Skarnelis - janis@fancyapps.com
  *
  */
-
 (function (window, document, $, undefined) {
+
 	"use strict";
 
 	var W  = $(window),
