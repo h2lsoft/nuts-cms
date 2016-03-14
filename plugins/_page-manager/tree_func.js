@@ -81,6 +81,10 @@ function treeView()
                                 {
                                     nutsAlert(data);
                                     reloadPage();
+
+
+
+
                                     return;
                                 }
 
@@ -208,8 +212,8 @@ function reloadPage(pageID)
 				treeView();
 
 				// update drag icon
-				simpleTreeCollection.get(0).option.drag = false;
-				// dragPage();
+				simpleTreeCollection.get(0).option.drag = true;
+				dragPage();
 
 				if(!isNaN(pageID))
 				{

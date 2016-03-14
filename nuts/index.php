@@ -346,7 +346,9 @@ if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']) && !isset($_GET['target']) &
 
         // get plugin label
         if(file_exists(WEBSITE_PATH.'/plugins/'.$row['Name'].'/lang/'.$_SESSION['Language'].'.inc.php'))
-            include(WEBSITE_PATH.'/plugins/'.$plugin_name.'/lang/'.$_SESSION['Language'].'.inc.php');
+        {
+	        include(WEBSITE_PATH.'/plugins/'.$plugin_name.'/lang/'.$_SESSION['Language'].'.inc.php');
+        }
         else
         {
             $default_lang = array_map('trim', explode(',',$plugin_info['langs']));
