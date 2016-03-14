@@ -22,14 +22,14 @@ function nutsDatagridUpdate(datagrid_id)
 {
     vals = '';
     cur_line = 0;
-    $('#datagrid_'+datagrid_id+' tbody tr.row').each(function(){
-
+    $('#datagrid_'+datagrid_id+' tr.row').each(function(){
 
         tmp_arr = '';
         $(this).find('input, select, textarea').each(function(){
 
             obj_id = $(this).attr('id');
             obj_idX = str_replace('datagrid_'+datagrid_id+'_obj_', '', obj_id);
+
             if(!empty(obj_idX))
             {
                 tmp = explode('_', obj_idX);
@@ -42,9 +42,11 @@ function nutsDatagridUpdate(datagrid_id)
                 else
                 {
                     val = $('#'+obj_id).val();
-                    val = str_replace('\n', '\\\\n', val);
-                    val = str_replace('\t', '\\\\t', val);
-                    val = str_replace('"', '\\"', val);
+                    val = str_replace('\r', '', val);
+					val = str_replace('\n', '\\n', val);
+                    val = str_replace('\t', '\\t', val);
+                    val = str_replace('"', '\"', val);
+					val = trim(val);
                 }
 
                 // tmp_arr[obj_idX] = val;
@@ -63,9 +65,9 @@ function nutsDatagridUpdate(datagrid_id)
     vals = "[\n"+vals+"\n]";
     $('#'+datagrid_id).val(vals);
 
-
     callback = $('#datagrid_'+datagrid_id).attr('callback');
     if(!empty(callback))eval(callback+'()');
+
 
 }
 
@@ -313,10 +315,9 @@ nutsDatagrid.prototype.renderInFieldset = function(fieldset_id)
                 nutsDatagridUpdate(datagrid_id);
             }
 
-
-
         })
     }
+
 
     // hide the first row
     // $('.datagrid tbody tr:first-child {display: none;}'
@@ -328,7 +329,10 @@ nutsDatagrid.prototype.renderInFieldset = function(fieldset_id)
     $('#datagrid_'+datagrid_id+' .datagrid_btn_add').click(function(){
 
         l = $('#datagrid_'+datagrid_id+' tbody tr:eq(0)').html();
-        l = str_replace('[UID]', time(), l);
+
+        UID = time()+'_'+$('#datagrid_'+datagrid_id+' tbody tr').length;
+        l = str_replace('[UID]', UID, l);
+
         $('#datagrid_'+datagrid_id+' tbody tr:last').after('<tr class="row">'+l+'</tr>');
 
         // init calendar
@@ -413,19 +417,9 @@ nutsDatagrid.prototype.renderInFieldset = function(fieldset_id)
                 }
             }
 
-
-            $('#datagrid_'+datagrid_id+' caption').text(old_caption);
             nutsDatagridUpdate(datagrid_id);
+            $('#datagrid_'+datagrid_id+' caption').text(old_caption);
 
         });
     }
 }
-
-
-
-
-
-
-
-
-
