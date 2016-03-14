@@ -12,7 +12,7 @@
 include(Plugin::getIncludeUserLanguagePath('_analytics'));
 include(NUTS_PLUGINS_PATH.'/_analytics/config.inc.php');
 
-if(empty($google_analytics_account_email) || empty($google_analytics_account_password) || empty($google_analytics_profil_id))
+if(empty($google_analytics_profil_id))
 {
     Plugin::dashboardAddNotification('info', $lang_msg[1]);
 }
@@ -38,14 +38,14 @@ else
 
 			try
 			{
-				$ga = new gapi($google_analytics_account_email, $google_analytics_account_password);
+				$ga = new gapi('account-1@glassy-keyword-113314.iam.gserviceaccount.com', __DIR__.'/NutsGoogleAPI.p12');
 				$ga->requestReportData($google_analytics_profil_id, array('date'), array('visitors', 'visits', 'pageviews'), '', '', $date_start, $date_end);
 
 				$reporting = array();
 				$total_pageviews = $total_visitors = $total_visits = 0;
 				foreach($ga->getResults() as $result)
 				{
-					$date = $result->getDimesions();
+					$date = $result->getDimensions();
 					$date = substr($date['date'], 0, 4).'-'.substr($date['date'], 4, 2).'-'.substr($date['date'], 6, 2);
 					$reporting[$date] = $result->getMetrics();
 
@@ -204,7 +204,7 @@ else
 
 				nutsSetCache('widget-ga', $contents, '+1 day');
 			} catch (Exception $e){
-                // echo 'Exception reçue : ',  $e->getMessage(), "\n";
+                // echo 'Exception re?ue : ',  $e->getMessage(), "\n";
 				$contents = $e->getMessage();
 			}
 		}
@@ -213,4 +213,5 @@ else
 
 	}
 }
+
 
