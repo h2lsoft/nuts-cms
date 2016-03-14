@@ -95,7 +95,7 @@
 		$("#nuts_login_lost_password .submit").hide();
 
 		uri = "/{@PAGE_LANGUAGE}/{@PAGE_ID}.html";
-		$.get(uri, {action:'lost_password', Email:$('#uEmail').val()}, function(data){
+		$.get(uri, {action:'lost_password', Email:$('.nuts_form #uEmail').val()}, function(data){
 
 				data = explode('@@@', data);
 				resp = data[0];
