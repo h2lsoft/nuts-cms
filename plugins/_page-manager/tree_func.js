@@ -74,7 +74,7 @@ function treeView()
 			$.get(url, {},
 							function(data){
 
-                                simpleTreeCollection.get(0).option.drag = false;
+                                simpleTreeCollection.get(0).option.drag = true;
                                 dragPage();
 
                                 if(data != 'ok')
@@ -209,7 +209,7 @@ function reloadPage(pageID)
 
 				// update drag icon
 				simpleTreeCollection.get(0).option.drag = false;
-				dragPage();
+				// dragPage();
 
 				if(!isNaN(pageID))
 				{
@@ -1058,7 +1058,6 @@ function dragPage()
 	{
 		$('#img_tree_drag').attr('src', 'img/icon-drag_on.png');
 		$('#a_tree_drag').text('drag on');
-
 		simpleTreeCollection.get(0).option.drag = true;
 	}
 	else
