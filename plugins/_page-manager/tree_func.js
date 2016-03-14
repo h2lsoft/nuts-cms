@@ -208,7 +208,7 @@ function reloadPage(pageID)
 				treeView();
 
 				// update drag icon
-				simpleTreeCollection.get(0).option.drag = true;
+				simpleTreeCollection.get(0).option.drag = false;
 				dragPage();
 
 				if(!isNaN(pageID))
