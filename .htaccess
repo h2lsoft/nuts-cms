@@ -1,16 +1,17 @@
 ################################################
 ##			Php configuration				 ###
 ################################################
-php_flag register_globals Off
-#php_flag magic_quotes_gpc Off
-#php_flag allow_url_fopen On
+
+
 php_value default_charset Utf-8
+
 # developpement version ######################
 php_flag display_startup_errors on
 php_flag display_errors on
 php_flag html_errors on
 php_value error_reporting -1
 ## end of developpement version ###############
+
 
 ################################################
 ##				Rewriting					 ###
