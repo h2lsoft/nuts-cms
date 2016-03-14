@@ -887,9 +887,11 @@ class Page extends NutsCore
 					{
 						$rep .= "\n";
 						$rep .= '<script type="text/javascript">'."\n";
-						$rep .= '$(document).ready(function() {'."\n";
+						// $rep .= '$(document).ready(function() {'."\n";
+						$rep .= 'window.onload = function () {'."\n";
 						$rep .= '	$(\'a.nuts_gallery_'.$nuts_gallery_id.'\').fancybox({\'centerOnScroll\':true});'."\n";
-						$rep .= '});'."\n";
+						//$rep .= '});'."\n";
+						$rep .= '};'."\n";
 						$rep .= '</script>'."\n";
 					}
 
