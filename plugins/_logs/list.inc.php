@@ -8,8 +8,13 @@ include(PLUGIN_PATH.'/config.inc.php');
 // reajuts DateGMT
 if($plugin->listUserIsSearching())
 {
-	if(!@empty($_GET['DateGMT']))$_GET['DateGMT'] = nutsConvertUserDateToGMT($_GET['DateGMT']);
-	if(!@empty($_GET['DateGMT2']))$_GET['DateGMT2'] = nutsConvertUserDateToGMT($_GET['DateGMT2']);
+	// if(!@empty($_GET['DateGMT']))$_GET['DateGMT'] = nutsConvertUserDateToGMT($_GET['DateGMT']);
+	// if(!@empty($_GET['DateGMT2']))$_GET['DateGMT2'] = nutsConvertUserDateToGMT($_GET['DateGMT2']);
+	if(!@empty($_GET['IP']))
+	{
+		$_GET['IP_operator'] = '_equal_';
+		$_GET['IP'] = ip2long($_GET['IP']);
+	}
 }
 
 
@@ -25,6 +30,7 @@ $plugin->listSearchAddFieldDatetime('DateGMT', $lang_msg[2], '', '', '>=');
 $plugin->listSearchAddFieldDatetime('DateGMT2', $lang_msg[2], 'DateGMT', '', '<=');
 $plugin->listSearchAddFieldSelectSql('NutsGroupID', $lang_msg[1]);
 // $plugin->listSearchAddFieldSelectSql('NutsUserID', 'User', "CONCAT(FirstName,' ',LastName)");
+$plugin->listSearchAddFieldText('IP');
 $plugin->listSearchAddFieldTextAjaxAutoComplete('NutsUserID', 'Login', 'begins', "Login" , 'ID', 'NutsUser');
 $plugin->listSearchAddFieldSelectSql('Application');
 $plugin->listSearchAddFieldSelectSql('Action');
