@@ -92,7 +92,7 @@ function tpln_auto_security($value, $urldecode_before=false, $sanitize=true, $st
 	do
 	{
 		$oldstring = $value;
-		$value = preg_replace('#</*(style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base)[^>]*>#i', "", $value);
+		$value = preg_replace('#</*(script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base)[^>]*>#i', "", $value);
 	}
 	while ($oldstring != $value);
 
