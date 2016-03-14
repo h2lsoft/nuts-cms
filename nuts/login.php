@@ -37,22 +37,18 @@ $IP_long = (int)ip2long($IP);
 
 
 $sql = "SELECT
-				Application,
-				Action
+				COUNT(*)
 		FROM
 				NutsLog
 		WHERE
-				IP = %s
-		ORDER BY
-				DateGMT DESC
-		LIMIT 5";
-$nuts->dbSelect($sql, array($IP_long));
-$login_error_count = 0;
-while($row = $nuts->dbFetch())
-{
-	if($row['Application'] == '_system' && $row['Action'] == 'login')
-		$login_error_count++;
-}
+				IP = $IP_long AND
+				DATE_ADD(DateGMT, INTERVAL 10 MINUTE) >= NOW() AND
+				Application = '_system' AND
+				Action = 'login'";
+$nuts->doQuery($sql);
+$login_error_count = $nuts->dbGetOne();
+
+
 
 if($_POST)
 {

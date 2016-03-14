@@ -13,7 +13,7 @@ function nutsTrace($app, $action, $resume='', $recordID=0)
 	$arr = array();
 	$arr['NutsGroupID'] = (int)@$_SESSION['NutsGroupID'];
 	$arr['NutsUserID'] = (int)@$_SESSION['ID'];
-	$arr['DateGMT'] = nutsGetGMTDate();
+	$arr['DateGMT'] = 'NOW()';
 	$arr['Application'] = $app;
 	$arr['Action'] = $action;
 	$arr['Resume'] = $resume;
