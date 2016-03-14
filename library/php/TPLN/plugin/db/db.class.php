@@ -1812,7 +1812,22 @@ class Db extends Form
             }
 
 			$this->doQuery($sql_tmp);
-			$this->Count = $this->dbGetOne();
+
+
+			// 23/12/2015> patch multiple return !
+			if($this->dbNumRows() == 1)
+			{
+				$this->Count = $this->dbGetOne();
+			}
+			else
+			{
+				$alls = $this->dbGetOneData();
+
+				$this->Count = 0;
+				foreach($alls as $all)
+					$this->Count += $all;
+			}
+
 
 			// end of patch query by laurent hayoun ***********************
 
