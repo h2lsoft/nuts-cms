@@ -72,7 +72,10 @@ function tpln_auto_security($value, $urldecode_before=false, $sanitize=true, $st
 	}
 
 	if($sanitize)$value = trim(filter_var($value, FILTER_SANITIZE_STRING));
+
+	$value = str_replace('<=', '^@=', $value);
 	$value = strip_tags($value, $strip_tags_allowed);
+	$value = str_replace('^@=', '<=', $value);
 
 
 	// remove php code
@@ -99,10 +102,8 @@ function tpln_auto_security($value, $urldecode_before=false, $sanitize=true, $st
 	$value = trim($value);
 	return $value;
 }
-
-
 if(!defined('TPLN_AUTO_SECURITY_GET') || TPLN_AUTO_SECURITY_GET == 1)$_GET = tpln_auto_security($_GET, true, true);
-if(!defined('TPLN_AUTO_SECURITY_POST') || TPLN_AUTO_SECURITY_POST == 1)$_POST = tpln_auto_security($_POST, false, false, '<h1><h2><h3><h4><h5><h6><a><img><img/><ul><ol><li><caption><p><br><br /><div><span><table><th><tr><td><thead><tfoot><cite><blockquote><pre><abbr><address><hr><audio><video><fieldset><label><map><area><article><code><col><colgroup><dd><dl><dt><kbd><var><strong><b><em><i><samp><pre><source><sub><article><section><small><mark><figcaption><figure><track><source><span><summary><=');
+if(!defined('TPLN_AUTO_SECURITY_POST') || TPLN_AUTO_SECURITY_POST == 1)$_POST = tpln_auto_security($_POST, false, false, '<h1><h2><h3><h4><h5><h6><a><img><img/><ul><ol><li><caption><p><br><br /><div><span><table><th><tr><td><thead><tfoot><cite><blockquote><pre><abbr><address><hr><audio><video><fieldset><label><map><area><article><code><col><colgroup><dd><dl><dt><kbd><var><strong><b><em><i><samp><pre><source><sub><article><section><small><mark><figcaption><figure><track><source><span><summary>');
 if(!defined('TPLN_AUTO_SECURITY_COOKIE') || TPLN_AUTO_SECURITY_COOKIE == 1)$_COOKIE = tpln_auto_security($_COOKIE, true, true);
 
 /******************* /AUTO SECURITY *******************************************/
