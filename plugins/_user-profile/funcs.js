@@ -48,7 +48,7 @@ $('#AvatarImage').click(function(){
 
 
 
-
+/*
 $('#AvatarFacebook').click(function(){
 
     msg = (nutsUserLang == 'fr') ? "Merci de rentrer votre pseudo Facebook" : "Please enter your Facebook login";
@@ -69,7 +69,7 @@ $('#AvatarTwitter').click(function(){
         $('#form_window #avatar_image').attr('src', uri);
     }
 });
-
+*/
 $('#AvatarGravatar').click(function(){
 
     msg = (nutsUserLang == 'fr') ? "Merci de rentrer votre email" : "Please enter your email";
@@ -111,7 +111,7 @@ $(function(){
 
     $('#fieldset_AvatarImageTmp').hide();
 
-    $('#label_close_after').css('visibility', 'hidden');
+    // $('#label_close_after').css('visibility', 'hidden');
 
     if($('#form_window #Password').is(':enabled'))
         $('#form_window #Password').after('  <a href="javascript:generatePassword()">'+lang_msg_11+'</a>');
@@ -129,9 +129,5 @@ $(function(){
     $('#form_window #Avatar').click(function(){
         $(this).select();
     });
-
-
-
-
 
 });
