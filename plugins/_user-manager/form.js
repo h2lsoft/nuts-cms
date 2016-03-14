@@ -47,6 +47,7 @@ $('#AvatarImage').click(function(){
 });
 
 
+/*
 $('#AvatarFacebook').click(function(){
 
     msg = (nutsUserLang == 'fr') ? "Merci de rentrer votre pseudo Facebook" : "Please enter your Facebook login";
@@ -67,6 +68,8 @@ $('#AvatarTwitter').click(function(){
         $('#form_window #avatar_image').attr('src', uri);
     }
 });
+*/
+
 
 $('#AvatarGravatar').click(function(){
 
