@@ -308,6 +308,7 @@ function initWYSIWYGIFrame(id) {
 
 		iframe = '<iframe code_source="'+code_source_mode+'" style="width:'+width+'; height:'+height+';" name="iframe_'+id+'" class="nuts_editor" id="iframe_'+id+'" frameborder="0"></iframe>';
 		$('textarea#'+id).before(iframe);
+		getIFrameDocument('iframe_'+id).body.innerHTML = '<span style="font-family: verdana; font-size:11px;">Loading...</span>';
 		$('textarea#'+id).hide();
 	//}
 
@@ -439,7 +440,7 @@ function initWYSIWYGIFrame(id) {
 		}
 
 
-	}, 500);
+	}, 3000);
 
 	// $('#iframe_'+objID).show();
 }
