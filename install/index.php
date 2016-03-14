@@ -126,7 +126,7 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 		$files[] = WEBSITE_PATH.'/library/media/images/avatar';
 		$files[] = WEBSITE_PATH.'/library/media/images/gallery';
 		$files[] = WEBSITE_PATH.'/library/media/images/gallery_images';
-		$files[] = WEBSITE_PATH.'/library/media/images/gallery_images_hd';
+		// $files[] = WEBSITE_PATH.'/library/media/images/gallery_images_hd';
 		$files[] = WEBSITE_PATH.'/library/media/images/news';
 		$files[] = WEBSITE_PATH.'/library/media/images/page';
 		$files[] = WEBSITE_PATH.'/library/media/multimedia';
@@ -287,7 +287,7 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 		<meta name="robots" content="noindex" />
 		<title>NUTS CMS - Installer</title>
 
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
 		<script type="text/javascript" src="jquery.blockUI.js"></script>
 		<script language="javascript" src="../library/js/php.js"></script>
 		<script language="javascript" src="func.js"></script>
