@@ -833,4 +833,3 @@ class gapiReportEntry
     throw new Exception('No valid metric or dimension called "' . $name . '"');
   }
 }
-
