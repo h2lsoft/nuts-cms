@@ -2124,5 +2124,3 @@ class Form extends Mail
 }
 
 
-
-?>
