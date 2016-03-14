@@ -4,8 +4,8 @@
 	<title>{#gtranslate_dlg.title}</title>
 	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
 	<script type="text/javascript" src="js/dialog.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 		<select id="from" name="from">
 			<option value="">{#gtranslate_dlg.automatic}</option>
 			<option value="en">English</option>
-			<option value="fr">Français</option>			
+			<option value="fr">Français</option>
 			<option value="es">Spanish</option>
 			<option value="it">Italiano</option>
 			<option value="ru">Russian</option>
@@ -41,7 +41,7 @@
 	<p>{#gtranslate_dlg.text} :<br />
 		<textarea style="width: 100%; height: 300px" id="source" name="source"></textarea>
 	</p>
-	
+
 	<p>{#gtranslate_dlg.translateUcfirst} :<br />
 		<textarea style="width: 100%; height: 300px" id="translate" name="translate"></textarea>
 	</p>
@@ -62,17 +62,17 @@ function gTranslateX()
 	lang2 = $('#to').val();
 
 	$('#translate').val("Loading...");
-	
+
 	/*google.language.translate(msg, lang1, lang2, function(result) {
 		if(result.error)
 			$('#translate').val(msg);
 		else
 			$('#translate').val(result.translation);
 	});*/
-		
-	uri = "/nuts/translator.php";	
-	$.post(uri, {lngIn:lang1, lngOut:lang2, txt:msg}, function(data){		
-		
+
+	uri = "/nuts/translator.php";
+	$.post(uri, {lngIn:lang1, lngOut:lang2, txt:msg}, function(data){
+
 		if(data.indexOf('Error') != -1)
 			alert(data);
 		else
