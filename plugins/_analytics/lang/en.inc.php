@@ -3,7 +3,7 @@
 $lang_msg[0] = "Google Analytics"; // plugin name
 
 $f = base64_encode(WEBSITE_PATH.'/plugins/_analytics/config.inc.php');
-$lang_msg[1] = "Please configure your plugin <a href=\"?mod=_configuration&do=edit&_action2=get&f=\">Google Analytics</a>";
+$lang_msg[1] = "Please configure your plugin <a href=\"?mod=_configuration&do=edit&_action2=get&f=$f\">Google Analytics</a>";
 $lang_msg[2] = "Authentification problem please check your plugin <a href=\"?mod=_configuration&do=edit&_action2=get&f=\">configuration</a>";
 $lang_msg[3] = "Statistics 30 last days";
 
