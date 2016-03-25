@@ -636,6 +636,9 @@ function popupModal(url, name, windowWidth, windowHeight, opts) {
     myleft = (screen.width - windowWidth) / 2;
     mytop = (screen.height - windowHeight) / 2;
 
+	myleft += window.screenX;
+	mytop += window.screenY;
+
     // myleft = window.screenLeft ? window.screenLeft : window.screenX;
     // mytop = window.screenTop ? window.screenTop : window.screenY;
 
@@ -683,6 +686,9 @@ function popupModalV2(url, name, windowWidth, windowHeight, wtop, wleft, wstatus
     if(wresizable == undefined)wresizable = 1;
     if(wscrollbars == undefined)wscrollbars = 1;
     if(other == undefined)other = '';
+
+	wleft += window.screenX;
+	wtop += window.screenY;
 
     properties = "";
     properties += "width="+windowWidth;
