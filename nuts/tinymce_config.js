@@ -295,6 +295,9 @@ function refreshWYSIWYG(id)
 
 function initWYSIWYGIFrame(id) {
 
+	$('#btn_submit').attr('disabled', true);
+
+
 	// initialize preview frame
 	code_source_mode = false;
 	if($('#former #iframe_radio_'+id).is(':checked'))
@@ -308,8 +311,15 @@ function initWYSIWYGIFrame(id) {
 
 		iframe = '<iframe code_source="'+code_source_mode+'" style="width:'+width+'; height:'+height+';" name="iframe_'+id+'" class="nuts_editor" id="iframe_'+id+'" frameborder="0"></iframe>';
 		$('textarea#'+id).before(iframe);
-		getIFrameDocument('iframe_'+id).body.innerHTML = '<span style="font-family: verdana; font-size:11px;">Loading...</span>';
 		$('textarea#'+id).hide();
+
+		getIFrameDocument('iframe_'+id).designMode = 'on';
+
+		setTimeout(function() {
+			getIFrameDocument('iframe_' + id).body.innerHTML = '<body><div style="font-family: verdana; font-size:11px;">Loading...</div></body>';
+		}, 100);
+
+
 	//}
 
 	   setTimeout( function() {
@@ -369,7 +379,6 @@ function initWYSIWYGIFrame(id) {
             }, 500);
 
         // parse nuts tags
-		getIFrameDocument('iframe_'+id).designMode = 'on';
 		getIFrameDocument('iframe_'+id).body.innerHTML = $('textarea#'+id).val();
         getIFrameDocument('iframe_'+id).body.spellcheck = false;
         getIFrameDocument('iframe_'+id).execCommand('defaultParagraphSeparator', 0,  'p');// for chrome
@@ -438,6 +447,9 @@ function initWYSIWYGIFrame(id) {
 			$('#former  #iframe_radio_'+id).attr('checked', true);
 			WYSIWYGToggleIt(id);
 		}
+
+
+		$('#btn_submit').attr('disabled', false);
 
 
 	}, 3000);
