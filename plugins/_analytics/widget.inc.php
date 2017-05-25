@@ -14,7 +14,7 @@ include(NUTS_PLUGINS_PATH.'/_analytics/config.inc.php');
 
 if(empty($google_analytics_profil_id))
 {
-    Plugin::dashboardAddNotification('info', $lang_msg[1]);
+    // Plugin::dashboardAddNotification('info', $lang_msg[1]);
 }
 else
 {
