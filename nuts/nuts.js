@@ -631,7 +631,8 @@ function popupModal(url, name, windowWidth, windowHeight, opts) {
     if(opts == undefined)opts = '';
 
     if(!windowWidth)windowWidth = 1100;
-    if(!windowHeight)windowHeight = 850;
+    // if(!windowHeight)windowHeight = 850;
+	if(!windowHeight)windowHeight = screen.height - 150;
 
     myleft = (screen.width - windowWidth) / 2;
     mytop = (screen.height - windowHeight) / 2;
@@ -679,7 +680,9 @@ function popupModalV2(url, name, windowWidth, windowHeight, wtop, wleft, wstatus
 {
     if(name == undefined)name = 'nWindow2';
     if(!windowWidth)windowWidth = 1100;
-    if(!windowHeight)windowHeight = 850;
+    // if(!windowHeight)windowHeight = 850;
+	if(!windowHeight)windowHeight = screen.height - 150;
+
     if(!wtop)wtop = (screen.height - windowHeight) / 2;
     if(!wleft)wleft = (screen.width - windowWidth) / 2;
     if(wstatus == undefined)wstatus = 1;
