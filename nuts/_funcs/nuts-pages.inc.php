@@ -29,9 +29,6 @@ function nutsPageGetChildrens($pageID, $init=false)
 	}
 
 	return $IDs;
-
-
-
 }
 
 /**
@@ -318,3 +315,51 @@ function nutsGetPageUrl($ID, $Language, $virtualPagename, $TagVersion=true)
 	return $url;
 }
 
+/**
+ * Get all zone menu in ul
+ */
+function nutsGetAllZonesMenu($Language)
+{
+	global $nuts, $nuts_lang_msg;
+	
+	
+	$zones = Query::factory()->factory()->select('ID, Name')->from('NutsZone')->order_by('ID')->executeAndGetAll();
+	$tmp = array();
+	$tmp[] = array('ID' => 0, 'Name' => $nuts_lang_msg[41]);
+	
+	for($i=0; $i < count($zones); $i++)
+		$tmp[] = $zones[$i];
+	
+	
+	$ul = '<ul>';
+	foreach($tmp as $zone)
+	{
+		$ul .= "<li id='zone_{$zone['ID']}' data-jstree='{\"icon\":\"icon-newspaper\"}'>{$zone['Name']}\n";
+		// list childrens level 0
+		$ul .= "<ul>\n";
+		$pages = Query::factory()->select('ID, MenuName, State, _HasChildren')
+								 ->from('NutsPage')
+								 ->whereEqualTo('Language', $Language)
+								 ->whereEqualTo('ZoneID', $zone['ID'])
+								 ->whereEqualTo('NutsPageID', 0)
+								 ->order_by('Position')
+								 ->executeAndGetAll();
+		foreach($pages as $page)
+		{
+			$icon = ($page['_HasChildren'] == 'YES') ? 'icon-folder' : 'icon-file';
+			$ul .= "<li id='node_{$page['ID']}'  data-jstree='{\"icon\":\"{$icon}\"}'>\n";
+			$ul .= "<a href='#'>{$page['MenuName']}</a>\n";
+			if($page['_HasChildren'] == 'YES')
+			{
+				$ul .= "<ul></ul>";
+			}
+			$ul .= "</li>\n";
+		}
+		$ul .= "</ul>\n";
+		$ul .= "</li>\n";
+	}
+	
+	$ul .= '</ul>';
+	
+	return $ul;
+}
