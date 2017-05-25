@@ -3873,6 +3873,7 @@ EOF;
 		$LogActionNutsUserID = false;
 		$LogActionNutsGroupID = false;
 		$LogActionDateGMT = false;
+		$LogActionDate = false;
 
 		while($r = $this->nuts->dbFetch())
 		{
@@ -3887,12 +3888,17 @@ EOF;
 			// LogActionCreateDateGMT
 			if($r['Field'] == 'LogAction'.$name.'DateGMT')
 				$LogActionDateGMT = true;
+			
+			// LogActionCreateDate
+			if($r['Field'] == 'LogAction'.$name.'Date')
+				$LogActionDate = true;
 		}
 
 		// log action
 		if(!$LogActionNutsUserID)$this->formLogGeneratorAddDbColumn('LogAction'.$name.'NutsUserID');
 		if(!$LogActionNutsGroupID)$this->formLogGeneratorAddDbColumn('LogAction'.$name.'NutsGroupID');
 		if(!$LogActionDateGMT)$this->formLogGeneratorAddDbColumn('LogAction'.$name.'DateGMT');
+		if(!$LogActionDate)$this->formLogGeneratorAddDbColumn('LogAction'.$name.'Date');
 
 		// log in database
 		$this->nuts->dbUpdate($this->formDBTable[0], array(
