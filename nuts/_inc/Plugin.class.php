@@ -3677,9 +3677,9 @@ EOF;
 				$user_name = $r['FirstName'].' '.$r['LastName'];
 				$this->nuts->addError('', sprintf($nuts_lang_msg[54], $user_name));
 			}*/
+			
 		}
-
-
+		
 		// special errors
 		if(count($this->formErrors) > 0)
 		{

@@ -83,8 +83,8 @@ function tpln_auto_security($value, $urldecode_before=false, $sanitize=true, $st
 	$value = str_ireplace(array('<?php', '<%', '<?=', '<?', '?>'), '', $value);
 
 	// remove xss
-	$value = str_ireplace(array("&lt;", "&gt;"), array("&amp;lt;", "&amp;gt;"), $value);
-	$value = preg_replace('#(&\#*\w+)[\s\r\n]+;#U', "$1;", $value);
+	// $value = str_ireplace(array("&lt;", "&gt;"), array("&amp;lt;", "&amp;gt;"), $value);
+	// $value = preg_replace('#(&\#*\w+)[\s\r\n]+;#U', "$1;", $value);
 	// $value = preg_replace('#(<[^>]+[\s\r\n\"\'])(on|xmlns)[^>]*>#iU', "$1>", $value);
 	// $value = preg_replace('#(<[^>]+[\s\r\n\"\'])(on|xmlns)[^>]*>#iU', "$1>", $value);
 	$value = preg_replace('#([a-z]*)[\s\r\n]*=[\s\n\r]*([\`\'\"]*)[\\s\n\r]*j[\s\n\r]*a[\s\n\r]*v[\s\n\r]*a[\s\n\r]*s[\s\n\r]*c[\s\n\r]*r[\s\n\r]*i[\s\n\r]*p[\s\n\r]*t[\s\n\r]*:#iU', '$1=$2nojavascript...', $value);
@@ -92,6 +92,7 @@ function tpln_auto_security($value, $urldecode_before=false, $sanitize=true, $st
 	// $value = preg_replace('#(<[^>]+)style[\s\r\n]*=[\s\r\n]*([\`\'\"]*).*expression[\s\r\n]*\([^>]*>#iU', "$1>", $value);
 	// $value = preg_replace('#(<[^>]+)style[\s\r\n]*=[\s\r\n]*([\`\'\"]*).*s[\s\n\r]*c[\s\n\r]*r[\s\n\r]*i[\s\n\r]*p[\s\n\r]*t[\s\n\r]*:*[^>]*>#iU', "$1>", $value);
 	// $value = preg_replace('#</*\w+:\w[^>]*>#i', "", $value);
+	
 	do
 	{
 		$oldstring = $value;
