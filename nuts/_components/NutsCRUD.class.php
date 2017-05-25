@@ -750,6 +750,7 @@ EOF;
 			$this->deleteAddSql('LogActionDeleteNutsUserID', $_SESSION['NutsUserID']);
 			$this->deleteAddSql('LogActionDeleteNutsGroupID', $_SESSION['NutsGroupID']);
 			$this->deleteAddSql('LogActionDeleteDateGMT', nutsGetGMTDate());
+			$this->deleteAddSql('LogActionDeleteDate', date('Y-m-d H:i:s'));
 		}
 
 
