@@ -13,10 +13,7 @@
 
 
 #nav_menu li a:hover {text-decoration: none; color: #000;}
-
-
-
-#nav_menu li.selected {border:1px solid #ccc; padding:4px; background: white; border-bottom-color:white;  padding-left: 6px; padding-right: 6px; }
+#nav_menu li.selected {border:1px solid #ccc; padding:4px; background: white; border-bottom-color:white;  padding-left: 6px; padding-right: 6px; text-align: left;}
 #nav_menu li.selected> a {color: white; background: transparent;}
 #nav_menu > li {background: none; color: #666;}
 
@@ -34,7 +31,6 @@
 #nav_menu li ul li a:active {color: white; background-color: #1570B8;}
 
 #nav_menu li ul li.breaker {display: none;}
-
 
 
 #nav_menu li.parent:hover {cursor:pointer; border:1px solid #ccc; padding:4px; background: white; padding-left: 6px; padding-right: 6px; }
