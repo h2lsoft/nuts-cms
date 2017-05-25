@@ -1207,7 +1207,41 @@ ALTER TABLE `NutsPage` ADD COLUMN `H2` VARCHAR(255) NOT NULL AFTER `H1`;
 ALTER TABLE `NutsPageVersion` ADD COLUMN `H2` VARCHAR(255) NULL AFTER `H1`;
 ALTER TABLE `NutsPageVersion` ADD COLUMN `NutsPageContentViewID` INT UNSIGNED NOT NULL AFTER `ContentResume`;
 
-
-
 /* update v.4.9 */
 ALTER TABLE `NutsNews` ADD COLUMN `Filter4` VARCHAR(255) NULL DEFAULT 'NO' AFTER `Filter3`, ADD INDEX `Filter4` (`Filter4`), ADD COLUMN `Filter5` VARCHAR(255) NULL DEFAULT 'NO' AFTER `Filter4`, ADD INDEX `Filter5` (`Filter5`);
+
+/* update v.5.0 */
+ALTER TABLE `NutsNews` ADD COLUMN `Date` DATE NOT NULL AFTER `DateGMT`, ADD INDEX `DateCreate` (`Date`);
+UPDATE NutsNews SET Date = DateGMT;
+
+ALTER TABLE `NutsLog` ADD COLUMN `Date` DATETIME NOT NULL AFTER `DateGMT`, ADD INDEX `DateCreate` (`Date`);
+UPDATE NutsLog SET Date = DateGMT;
+
+ALTER TABLE `NutsNewsletter` ADD COLUMN `DateCreate` DATETIME NOT NULL AFTER `ID`, ADD INDEX `DateCreate` (`DateCreate`);
+ALTER TABLE `NutsNewsletter` ADD COLUMN `Category` VARCHAR(255) NULL AFTER `DateCreate`, ADD INDEX `Category` (`Category`);
+ALTER TABLE `NutsNewsletter` ADD COLUMN `uFromLabel` VARCHAR(255) NULL AFTER `uFrom`;
+ALTER TABLE `NutsNewsletter` ADD COLUMN `TemplateMode` ENUM('YES', 'NO') NOT NULL DEFAULT 'NO' AFTER `Body`;
+ALTER TABLE `NutsNewsletter` ADD COLUMN `TemplateFile` VARCHAR(255) NULL AFTER `TemplateMode`;
+ALTER TABLE `NutsNewsletter` ADD COLUMN `MailinglistIDs` TEXT NULL AFTER `TemplateFile`;
+
+ALTER TABLE `NutsNewsletter` ADD COLUMN `TotalError` BIGINT(20) UNSIGNED NOT NULL AFTER `TotalSend`;
+ALTER TABLE `NutsNewsletter` ADD COLUMN `TotalErrorEmail` LONGTEXT NOT NULL AFTER `TotalError`;
+ALTER TABLE `NutsNewsletter` ADD COLUMN `Draft` ENUM('YES','NO') NOT NULL DEFAULT 'YES' AFTER `TotalErrorEmail`;
+ALTER TABLE `NutsNewsletter` ADD COLUMN `SchedulerDate` DATETIME NOT NULL AFTER `Draft`;
+ALTER TABLE `NutsNewsletter` ADD COLUMN `SchedulerFinishEmail` VARCHAR(255) NOT NULL AFTER `SchedulerDate`;
+ALTER TABLE `NutsNewsletter` ADD COLUMN `SchedulerStart` ENUM('YES','NO') NOT NULL DEFAULT 'NO' AFTER `SchedulerFinishEmail`;
+ALTER TABLE `NutsNewsletter` ADD COLUMN `SchedulerDateStart` DATETIME NOT NULL AFTER `SchedulerStart`;
+ALTER TABLE `NutsNewsletter` ADD COLUMN `SchedulerFinished` ENUM('YES','NO') NOT NULL DEFAULT 'NO' AFTER `SchedulerDateStart`;
+ALTER TABLE `NutsNewsletter` ADD COLUMN `SchedulerDateEnd` DATETIME NOT NULL AFTER `SchedulerFinished`;
+ALTER TABLE `NutsNewsletter` ADD INDEX `Draft` (`Draft`);
+ALTER TABLE `NutsNewsletter` ADD INDEX `SchedulerDate` (`SchedulerDate`);
+ALTER TABLE `NutsNewsletter` ADD INDEX `SchedulerStart` (`SchedulerStart`);
+ALTER TABLE `NutsNewsletter` ADD INDEX `SchedulerFinished` (`SchedulerFinished`);
+
+
+
+
+
+
+
+

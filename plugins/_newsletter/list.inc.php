@@ -48,20 +48,13 @@ $plugin->listSearchAddFieldSelectSql('Category', $lang_msg[19]);
 $plugin->listSearchAddFieldText('Subject', $lang_msg[1]);
 $plugin->listSearchAddFieldBoolean('Draft', $lang_msg[14]);
 
-
-
-
 // create fields
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
 $plugin->listAddCol('Category', $lang_msg[19], '; width:10px; white-space: nowrap;', true);
 $plugin->listAddCol('Date', '', '; width:30px; white-space: nowrap;', false);
 $plugin->listAddCol('uFrom', $lang_msg[2], '; width:30px; white-space: nowrap;', true);
 $plugin->listAddCol('Subject', $lang_msg[1], '', true);
-
-
 $plugin->listAddCol('Status', $lang_msg[22], 'center; width:60px; white-space: nowrap;', false);
-
-
 $plugin->listAddCol('TotalSend', $lang_msg[3], 'center; width:60px; white-space: nowrap;', true);
 $plugin->listAddCol('TotalError', $lang_msg[27], 'center; width:60px; white-space: nowrap;', true);
 $plugin->listAddCol('TotalViews', $lang_msg[4], 'center; width:10px; white-space: nowrap;', true);
