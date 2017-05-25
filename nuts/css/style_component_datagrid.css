@@ -10,7 +10,7 @@
 .datagrid th {white-space:nowrap;}
 .datagrid th:hover {color: #000;}
 
-.datagrid td {background-color:#fff; padding:5px;}
+.datagrid td {background-color:#fff; padding:5px; vertical-align: top;}
 
 .datagrid tbody tr:nth-child(even) td {background-color: #eee;}
 .datagrid tbody tr:nth-child(odd) td {background-color: #fff;}
@@ -27,12 +27,12 @@
 .datagrid td> a.datagrid_btn_delete {text-align: center; width: 18px;}
 .datagrid td> a.datagrid_btn_drag {text-align: center; width: 18px;}
 
-.datagrid a.datagrid_btn_add {display:block; width:16; height: 16px; background-image: url(/nuts/img/icon-add.png); background-repeat: no-repeat; }
+.datagrid a.datagrid_btn_add {display:block; width:16px; height: 16px; background-image: url(/nuts/img/icon-add.png); background-repeat: no-repeat; }
 .datagrid a.datagrid_btn_add:hover {opacity: 0.3; text-decoration: none!important;
 
 }
 
-.datagrid a.datagrid_btn_delete {display:block; width:16; height: 16px; background-image: url(/nuts/img/icon-delete.png); background-repeat: no-repeat;
+.datagrid a.datagrid_btn_delete {display:block; width:16px; height: 16px; background-image: url(/nuts/img/icon-delete.png); background-repeat: no-repeat;
     filter:grayscale(100%); -moz-filter:grayscale(100%); -webkit-filter:grayscale(100%);
 }
 .datagrid a.datagrid_btn_delete:hover {text-decoration: none!important;
