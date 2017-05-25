@@ -8,12 +8,13 @@ include(WEBSITE_PATH.'/nuts/_inc/trt_menu.inc.php');
 
 // maintenance *********************************************************************************************************
 include(WEBSITE_PATH."/plugins/_logs/config.inc.php");
-if($cf_purge_days > 0)
+/*if($cf_purge_days > 0)
 {
     $gmtdate = nutsGetGMTDate();
-    $sql = "DELETE FROM NutsLog WHERE DATE_ADD(DateGMT, INTERVAL $cf_purge_days DAY) <= '$gmtdate' ";
+    $sql = "DELETE FROM NutsLog WHERE DATE_ADD(Date, INTERVAL $cf_purge_days DAY) <= '$gmtdate' ";
     $nuts->doQuery($sql);
 }
+*/
 
 // website maintenance *************************************************************************************************
 if(WEBSITE_MAINTENANCE && nutsUserHasRight('', '_control-center', 'exec'))

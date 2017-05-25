@@ -407,7 +407,11 @@ EOF;
 			$action = ($_GET['do'] == 'add') ? 'LogActionCreate' : 'LogActionUpdate';
 			$this->formAddSql($action.'NutsUserID', $_SESSION['NutsUserID']);
 			$this->formAddSql($action.'NutsGroupID', $_SESSION['NutsGroupID']);
+			
+			// update systeme date
 			$this->formAddSql($action.'DateGMT', nutsGetGMTDate());
+			$this->formAddSql($action.'Date', date('Y-m-d H:i:s'));
+			
 		}
 		
 		$nuts->formSetName('nuts_crud_form');

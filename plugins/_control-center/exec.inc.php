@@ -105,7 +105,9 @@ elseif(@$_GET['_action'] == 'unblock')
 					Application = '_system' AND
 					Action = 'login' AND
 					IP = INET_ATON('$ip') AND
-					DateGMT LIKE '$date %'";
+					-- DateGMT LIKE '$date %'
+					Date LIKE '$date %'
+					";
 
 	$nuts->doQuery($sql);
 
@@ -208,7 +210,8 @@ $nuts->parse('nb_cache', $nb_cache);
 $sql = "SELECT
 				ID AS WebErrorID,
 				INET_NTOA(IP) AS WIp,
-				DateGMT AS error_date,
+				-- DateGMT AS error_date,
+				Date AS error_date,
 				Action AS error_type,
 				Resume AS error_url,
 				'' AS error_url_real
@@ -218,7 +221,7 @@ $sql = "SELECT
 				Application = '_fo-error' AND
 				Deleted = 'NO'
 		ORDER BY
-				DateGMT DESC";
+				Date DESC";
 $nuts->doQuery($sql);
 $recs = $nuts->dbGetData();
 if(!count($recs))
@@ -247,9 +250,9 @@ else
 
 // ip blocked
 $sql = "SELECT
-				CONCAT(IP,'_',DATE_FORMAT(DateGMT, '%Y%m%d')) as IpID,
+				CONCAT(IP,'_',DATE_FORMAT(Date, '%Y%m%d')) as IpID,
 				INET_NTOA(IP) AS IpOk,
-				DATE_FORMAT(DateGMT, '%Y-%m-%d') AS Date
+				DATE_FORMAT(Date, '%Y-%m-%d') AS Date
 		FROM
 				NutsLog
 		WHERE
@@ -260,7 +263,7 @@ $sql = "SELECT
 				IP, Date HAVING COUNT(*) >= 5
 		ORDER BY
 				Ip,
-				DateGMT DESC";
+				Date DESC";
 $nuts->doQuery($sql);
 $nuts->parse("ip_blocked", $nuts->dbNumRows());
 $nuts->parseDbRow("ips_blocked", "<p>No ip blocked</p>");

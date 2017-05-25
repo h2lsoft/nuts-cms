@@ -11,8 +11,8 @@ $calendar_widget_filters_sql = "SELECT DISTINCT Type FROM NutsNews WHERE Deleted
 
 // cur_year, cur_month_label, sql_added
 $calendar_widget_sql_news = "SELECT
-                                    DateGMT,
-                                    DATE_FORMAT(DateGMT, '%d/%m/%Y') AS Date,
+                                    Date,
+                                    DATE_FORMAT(Date, '%d/%m/%Y') AS DateX,
                                     Title,
                                     VirtualPageName,
                                     Type
@@ -21,7 +21,7 @@ $calendar_widget_sql_news = "SELECT
                             WHERE
                                     Deleted = 'NO' AND
                                     Active = 'YES' AND
-                                    DateGMT LIKE '[cur_year]-[cur_month]-%'
+                                    Date LIKE '[cur_year]-[cur_month]-%'
                                     [sql_added]
                             ORDER BY
                                     ID";

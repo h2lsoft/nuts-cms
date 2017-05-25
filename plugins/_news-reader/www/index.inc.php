@@ -50,12 +50,12 @@ $plugin->vars['H1'] = $row['Title']; # change H1 dynamically
 $Published_label = 'Published';
 if($plugin->language == 'fr')
 {
-    $row['DateGMT'] = $plugin->db2date($row['DateGMT']);
-    $Published_label = 'Publié le';
+    $row['Date'] = $plugin->db2date($row['Date']);
+    $Published_label = '<i18n>Publié le</i18n>';
 }
 
 $plugin->parse('Published_label', $Published_label);
-$plugin->parse('Date', $row['DateGMT']);
+$plugin->parse('Date', $row['Date']);
 
 if(empty($row['Resume']))
     $plugin->eraseBloc('resume_p');

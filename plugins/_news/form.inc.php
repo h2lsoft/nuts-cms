@@ -62,12 +62,13 @@ $plugin->formAddFieldsetEnd();
 $plugin->formAddFieldSelect('Language', $lang_msg[1], true, $langs, "", "", "", "", true);
 $plugin->formAddFieldTextAjaxAutoComplete('Type', '', false);
 
-$plugin->formAddFieldDate('DateGMT', $lang_msg[2], true, $lang_msg[11]);
-
+$plugin->formAddFieldDate('Date', $lang_msg[2], true, $lang_msg[11]);
+/*
 if(!in_array('DateGMTExpiration', $hidden_fields_arr))
 {
 	$plugin->formAddField('DateGMTExpiration', $lang_msg[3], 'date', false, array('help' => $lang_msg[12]));
 }
+*/
 
 $plugin->formAddFieldText('Title', $lang_msg[4], true, 'ucfirst');
 if(!in_array('Resume', $hidden_fields_arr))$plugin->formAddFieldHtmlArea('Resume', $lang_msg[5], false, 'height:90px', $lang_msg[13]);

@@ -11,8 +11,8 @@ $plugin->viewAddVar('NewsImage', 'Image');
 
 $plugin->viewAddVar('NutsUser', $lang_msg[16]);
 $plugin->viewAddVar('Language', $lang_msg[1]);
-$plugin->viewAddVar('DateGMT', $lang_msg[2]);
-if(!in_array('DateGMTExpiration', $hidden_fields_arr))$plugin->viewAddVar('DateGMTExpiration', $lang_msg[3]);
+$plugin->viewAddVar('Date', $lang_msg[2]);
+// if(!in_array('DateGMTExpiration', $hidden_fields_arr))$plugin->viewAddVar('DateGMTExpiration', $lang_msg[3]);
 
 $plugin->viewAddVar('Title', $lang_msg[4]);
 if(!in_array('Resume', $hidden_fields_arr))$plugin->viewAddVar('Resume', $lang_msg[5]);

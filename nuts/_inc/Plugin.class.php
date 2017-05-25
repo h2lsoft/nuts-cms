@@ -3898,7 +3898,8 @@ EOF;
 		$this->nuts->dbUpdate($this->formDBTable[0], array(
 															'LogAction'.$name.'NutsUserID' => $_SESSION['NutsUserID'],
 															'LogAction'.$name.'NutsGroupID' => $_SESSION['NutsGroupID'],
-															'LogAction'.$name.'DateGMT' => gmdate('Y-m-d H:i:s')
+															'LogAction'.$name.'DateGMT' => gmdate('Y-m-d H:i:s'),
+															'LogAction'.$name.'Date' => date('Y-m-d H:i:s'),
 														   ), "ID = $ID");
 	}
 
@@ -3909,11 +3910,15 @@ EOF;
 	{
 		// ID
 		if(preg_match('/ID$/', $name))
+		{
 			$sql = "ALTER TABLE `{$this->formDBTable[0]}` ADD $name INT NOT NULL";
-
-		// DateGMT
+		}
+		// Date
 		else
+		{
 			$sql = "ALTER TABLE `{$this->formDBTable[0]}` ADD $name DATETIME NOT NULL";
+		}
+		
 		$this->nuts->doQuery($sql);
 
 		// generate index
@@ -4375,7 +4380,10 @@ EOF;
 					// date french
 					if(preg_match('/^Date/', $c['name']) && $_SESSION['Language'] == "fr")
 					{
-						$row[$c['name']] = $this->nuts->db2date($row[$c['name']]);
+						if($row[$c['name']] == '0000-00-00 00:00:00')
+							$row[$c['name']] = '';
+						else
+							$row[$c['name']] = $this->nuts->db2date($row[$c['name']]);
 					}
 
 					if($c['name'] == 'Language')

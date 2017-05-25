@@ -13,7 +13,8 @@ function nutsTrace($app, $action, $resume='', $recordID=0)
 	$arr = array();
 	$arr['NutsGroupID'] = (int)@$_SESSION['NutsGroupID'];
 	$arr['NutsUserID'] = (int)@$_SESSION['ID'];
-	$arr['DateGMT'] = 'NOW()';
+	$arr['Date'] = 'NOW()';
+	// $arr['DateGMT'] = 'NOW()';
 	$arr['Application'] = $app;
 	$arr['Action'] = $action;
 	$arr['Resume'] = $resume;
@@ -39,7 +40,8 @@ function xTrace($action, $message, $recordID=0, $app_name='job')
 	$qID = $nuts->dbGetQueryID();
 
 	$f = array();
-	$f['DateGMT'] = 'NOW()';
+	// $f['DateGMT'] = 'NOW()';
+	$f['Date'] = 'NOW()';
 	$f['Application'] = $app_name;
 	$f['Action'] = $action;
 	$f['Resume'] = $message;

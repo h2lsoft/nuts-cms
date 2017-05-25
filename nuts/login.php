@@ -41,7 +41,7 @@ $sql = "SELECT
 				NutsLog
 		WHERE
 				IP = $IP_long AND
-				DATE_ADD(DateGMT, INTERVAL 10 MINUTE) >= NOW() AND
+				DATE_ADD(Date, INTERVAL 10 MINUTE) >= NOW() AND
 				Application = '_system' AND
 				Action = 'login'";
 $nuts->doQuery($sql);

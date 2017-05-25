@@ -19,16 +19,16 @@ $plugin->formAddFieldTextArea('PhpCode', 'Php code', false, 'php', '', '', $lang
 $val = "SELECT
 \tTitle AS title,
 \tResume AS description,
-\tDATE_FORMAT(DateGMT, '%m-%d-%Y %h:%i') AS pubDate,
+\tDATE_FORMAT(Date, '%m-%d-%Y %h:%i') AS pubDate,
 \tVirtualPagename AS link
 FROM
 \tNutsNews
 WHERE
 \tDeleted = 'NO' AND
 \tActive = 'YES' AND
-\tDateGMT <= NOW()
+\tDate <= NOW()
 ORDER BY
-\tDateGMT DESC";
+\tDate DESC";
 
 $plugin->formAddFieldTextArea('Query', '', true, 'sql', 'height:220px', '', $lang_msg[9], $val);
 $plugin->formAddFieldTextArea('HookFunction', 'Hook function', false, 'php', '', '', $lang_msg[10]);

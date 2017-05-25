@@ -265,7 +265,7 @@ class Page extends NutsCore
 			{
                 $script_uri = (isset($_SERVER['SCRIPT_URI'])) ? $_SERVER['SCRIPT_URI'] : $_SERVER['REQUEST_URI'];
 				$this->dbInsert('NutsLog', array(
-                                                    'DateGMT' => 'NOW()',
+                                                    // 'DateGMT' => 'NOW()',
                                                     'Date' => 'NOW()',
 											        'Application' => '_fo-error',
 											        'Action' => 'Error 404',
@@ -2451,7 +2451,7 @@ class Page extends NutsCore
 					if($this->dbNumRows() == 0)
 					{
 						$this->dbInsert('NutsLog', array(
-														'DateGMT' => 'NOW()',
+														'Date' => 'NOW()',
 														'Application' => '_fo-error',
 														'Action' => $rep,
 														'Resume' => $_SERVER['REQUEST_URI'],

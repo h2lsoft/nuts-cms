@@ -68,8 +68,8 @@ $dates = array();
 $all_dates = array();
 while($row = $nuts->dbFetch())
 {
-    $all_dates[] = $row['DateGMT'];
-    $dates[$row['DateGMT']][] = $row;
+    $all_dates[] = $row['Date'];
+    $dates[$row['Date']][] = $row;
 }
 $plugin->parse('Month', $months_label[(int)$cur_month]);
 $plugin->parse('Year', $cur_year);

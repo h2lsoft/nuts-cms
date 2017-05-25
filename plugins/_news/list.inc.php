@@ -75,8 +75,12 @@ $plugin->listSetDbTable('NutsNews', "-- DATE_ADD(DateGMT, INTERVAL {$_SESSION['T
 // search engine
 $plugin->listSearchAddFieldText('ID');
 if(!in_array('Type', $hidden_fields_arr))$plugin->listSearchAddFieldTextAjaxAutoComplete('Type');
-$plugin->listSearchAddFieldDate('DateGMT', $lang_msg[2]);
-if(!in_array('DateGMTExpiration', $hidden_fields_arr))$plugin->listSearchAddFieldDate('DateGMT2', $lang_msg[3], 'DateGMT');
+//$plugin->listSearchAddFieldDate('DateGMT', $lang_msg[2]);
+$plugin->listSearchAddFieldDate('Date', $lang_msg[2]);
+
+
+// if(!in_array('DateGMTExpiration', $hidden_fields_arr))$plugin->listSearchAddFieldDate('DateGMT2', $lang_msg[3], 'DateGMT');
+
 $plugin->listSearchAddFieldSelectSql('NutsUserID', $lang_msg[16], "CONCAT(FirstName,' ',LastName)");
 $plugin->listSearchAddFieldSelect('Language', $lang_msg[1], nutsGetOptionsLanguages());
 $plugin->listSearchAddField('Title', $lang_msg[4], 'text');
@@ -125,7 +129,7 @@ if($news_thumb_list_view)
 if(!in_array('Type', $hidden_fields_arr))
     $plugin->listAddCol('Type', '', 'center; width:5px', true);
 
-$plugin->listAddCol('DateGMT', $lang_msg[2], 'center; width:40px; white-space:nowrap;', true);
+$plugin->listAddCol('Date', $lang_msg[2], 'center; width:40px; white-space:nowrap;', true);
 if(!in_array('DateGMTExpiration', $hidden_fields_arr))$plugin->listAddCol('DateGMTExpiration', $lang_msg[3], 'center; width:40px; white-space:nowrap;', true);
 $plugin->listAddColImg('Language', "&nbsp;", '', false, NUTS_IMAGES_URL.'/flag/{Language}.gif');
 $plugin->listAddCol('Title', $lang_msg[4], '', true);
@@ -156,7 +160,7 @@ $plugin->listAddCol('Social', "", 'center; width:40px; white-space:nowrap;', fal
 
 
 
-$plugin->listSetFirstOrderBy('DateGMT');
+$plugin->listSetFirstOrderBy('Date');
 
 
 // render list
@@ -169,12 +173,12 @@ function hookData($row){
 	global $cf, $nuts, $news_new_system, $plugin;
 
 
-    $original_date = $row['DateGMT'];
+    $original_date = $row['Date'];
 
 	if($_SESSION['Language'] == 'fr')
 	{
-		$row['DateGMT'] = $nuts->db2date($row['DateGMT']);
-		$row['DateGMTExpiration'] = $nuts->db2date($row['DateGMTExpiration']);
+		$row['Date'] = $nuts->db2date($row['Date']);
+		// $row['DateGMTExpiration'] = $nuts->db2date($row['DateGMTExpiration']);
 	}
 
 	if(!empty($row['NewsImage']))

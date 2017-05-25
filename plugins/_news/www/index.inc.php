@@ -18,9 +18,9 @@ if($this->dbNumRows() == 0)$this->error404();
 $this->vars = $this->dbFetch();
 
 // create date array
-$tmp = explode(' ', trim($this->vars['DateGMT']));
+// $tmp = explode(' ', trim($this->vars['DateGMT']));
+// $this->vars['Date'] = $tmp[0];
 
-$this->vars['Date'] = $tmp[0];
 list($this->vars['Date-Y'], $this->vars['Date-M'], $this->vars['Date-D']) = explode('-', $this->vars['Date']);
 $this->vars['Date-y'] = substr($this->vars['Date-Y'], 2, 2);
 

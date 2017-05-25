@@ -22,20 +22,19 @@ if(@$_GET['_action'] == 'users_online')
 	// get user online last 2 minutes
 	$sql = "SELECT
 					NutsUserID,
-					(SELECT Application FROM NutsUser WHERE ID = NutsUserID ORDER BY DateGMT DESC LIMIT 1) AS Application,
+					(SELECT Application FROM NutsUser WHERE ID = NutsUserID ORDER BY Date DESC LIMIT 1) AS Application,
 					(SELECT Avatar FROM NutsUser WHERE ID = NutsUserID) AS Avatar,
 					(SELECT Login FROM NutsUser WHERE ID = NutsUserID) AS Name
-
 			FROM
 					NutsLog
 			WHERE
 					NutsUserID != 0 AND
-					TIMESTAMPDIFF(MINUTE, DateGMT, UTC_TIMESTAMP()) <= 2 AND
+					TIMESTAMPDIFF(MINUTE, Date, NOW()) <= 5 AND
 					Application != 'front-office'
 			GROUP BY
 					NutsUserID
 			ORDER BY
-					DateGMT DESC";
+					Date DESC";
 	$nuts->doQuery($sql);
 	while($row = $nuts->dbFetch())
 	{
