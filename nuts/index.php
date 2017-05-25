@@ -1,14 +1,7 @@
 <?php
 
 header("content-type:text/html; charset=utf-8");
-
-// no cache
-//header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-//header("Cache-Control: no-cache");
-//header("Pragma: no-cache");
-
 $timer = time();
-
 
 // includes ******************************************************************
 include('config.inc.php');
@@ -64,7 +57,6 @@ if(@$_GET['_action'] == 'users_online')
 
 	die(json_encode($users_online));
 }
-
 
 // ajax:list_search_users **********************************************************************************************
 if(@$_GET['_action'] == 'list_search_users')
@@ -244,14 +236,12 @@ if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']))
     }
 }
 
-
 // if(!@in_array($_GET['mod'], array('_internal-messaging', '_internal-memo', '_user-profile'))  && (!plugin::validator() || !plugin::actValidator()))
 if(!plugin::validator() || !plugin::actValidator())
 {
 	$_GET['mod'] = '_error';
 	$_GET['do'] = 'exec';
 }
-
 
 // const plugin
 define('PLUGIN_NAME', $_GET['mod']);
@@ -267,10 +257,9 @@ else
 	$yaml = Spyc::YAMLLoad(PLUGIN_PATH.'/info.yml');
 	$default_lang = array_map('trim', explode(',',$yaml['langs']));
 	$default_lang = $default_lang[0];
-
+	
 	include(PLUGIN_PATH.'/lang/'.$default_lang.'.inc.php');
 }
-
 
 $plugin = new Plugin();
 include(PLUGIN_PATH.'/'.$_GET['do'].'.inc.php');
@@ -322,7 +311,6 @@ if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']) && !isset($_GET['target']) &
 	if(!nutsUserHasRight($_SESSION['NutsGroupID'], '_page-manager', 'exec'))$nuts->eraseBloc('writing_page');
 	if(!nutsUserHasRight($_SESSION['NutsGroupID'], '_news', 'list'))$nuts->eraseBloc('writing_news');
 
-
     // update plugin_list_ac get all plugin list allowed for this group
     $sql = "SELECT
 					DISTINCT NutsMenu.Name,
@@ -355,10 +343,9 @@ if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']) && !isset($_GET['target']) &
             $default_lang = $default_lang[0];
 
             include(WEBSITE_PATH.'/plugins/'.$plugin_name.'/lang/'.$default_lang.'.inc.php');
-
         }
 
-        $plugin_label = $lang_msg[0];
+        $plugin_label = str_replace_latin_accents($lang_msg[0]);
         $plugin_url = $row['ExternalUrl'];
 
         $plugin_default_action = $plugin_info['default_action'];
@@ -442,8 +429,6 @@ else
 {
 	$nuts->erasebloc('shorcuts');
 }
-
-
 
 
 
