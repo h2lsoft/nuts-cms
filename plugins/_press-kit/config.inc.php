@@ -27,5 +27,3 @@ $include_plugin_css = true; // include bundle css dynamically
 
 
 
-
-?>

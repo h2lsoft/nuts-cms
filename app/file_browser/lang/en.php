@@ -2,7 +2,7 @@
 /*
 Language: English
 File: lang/en.php
-*/ 
+*/
 
 
 $lang = array(
@@ -63,7 +63,7 @@ $lang = array(
     "The folder path was tampered with!"                         => "The folder path was tampered with!",
     "Creating new folder failed!"                                => "Creating new folder failed!<br />The following characters are not allowed: ^ \\ / ? * \" ' &lt; &gt; : |",
     "A new folder was created!"                                  => "A new folder was created!",
-    "Creating the new folder failed!"                            => "Creating the new folder failed!",  
+    "Creating the new folder failed!"                            => "Creating the new folder failed!",
     "The files where successfully copied!"                       => "The files where successfully copied!",
     "The file or folder path was tampered with!"                 => "The file or folder path was tampered with!",
     "Deleting file failed!"                                      => "Deleting file failed!",
@@ -106,4 +106,3 @@ $lang = array(
     "EOF" => TRUE
 );
 
-?>

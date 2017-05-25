@@ -8,5 +8,3 @@ if($plugin->formValid())
     include_once(PLUGIN_PATH.'/trt_save_users.inc.php');
 }
 
-
-?>

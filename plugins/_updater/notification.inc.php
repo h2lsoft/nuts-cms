@@ -16,9 +16,5 @@ if($last_version)
 
         Plugin::dashboardAddNotification('info', $msg);
     }
-
 }
 
-
-
-?>

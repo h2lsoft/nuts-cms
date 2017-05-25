@@ -82,7 +82,7 @@ if($_POST)
 		$i = 1;
 		$found = false;
 		do
-		{			
+		{
 			$new_filename = str_replace("{$_GET['ID']}.", "{$_GET['ID']}.v{$i}.", $old_filename);
 			$arr = (array)glob(PLUGIN_PATH.'/_files/'."{$_GET['ID']}.v{$i}.*");
 			if(count($arr) == 0)
@@ -98,8 +98,3 @@ if($_POST)
 	}
 }
 
-
-
-
-
-?>

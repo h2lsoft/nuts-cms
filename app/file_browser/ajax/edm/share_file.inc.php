@@ -246,4 +246,3 @@ $resp['message'] = ($_SESSION['Language'] == 'fr') ? "Votre fichier a bien été
 edmLog('SHARE', 'SUCCESS', $folder, $resp['message'], join("\n", $correct_files));
 
 
-?>

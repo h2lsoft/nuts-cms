@@ -14,4 +14,3 @@ if($multiLanguage)
 $plugin->formAddFieldBooleanX('ViewResult', $lang_msg[5], true, $lang_msg[6]);
 
 
-?>

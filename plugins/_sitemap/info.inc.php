@@ -14,9 +14,3 @@ $plugin->directRender(PLUGIN_PATH.'/info.html');
 
 
 
-
-
-
-
-
-?>

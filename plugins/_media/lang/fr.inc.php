@@ -26,6 +26,3 @@ $lang_msg[15] = "Insérer le code";
 
 $lang_msg[16] = "Prévisualiser";
 
-
-
-?>

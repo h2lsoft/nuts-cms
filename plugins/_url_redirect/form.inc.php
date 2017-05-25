@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin url_redirect - Form layout
- * 
+ *
  * @version 1.0
  * @date 12/11/2012
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -38,5 +38,3 @@ if($_POST)
         $_POST['Position'] = $plugin->formGetMaxPosition('Position')+1;
 }
 
-
-?>

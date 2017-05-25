@@ -68,4 +68,4 @@ EOF;
 $resp['result'] = 'ok';
 $resp['html'] = $html;
 
-?>
+

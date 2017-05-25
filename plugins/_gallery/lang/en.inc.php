@@ -26,5 +26,3 @@ $lang_msg[19] = "Constraint thumbnails size according to defined width and heigh
 $lang_msg[20] = "Thumbnails background";
 $lang_msg[21] = "Background color in RGB format if constraint is defined at YES, ex: white => `255, 255, 255`, black => `0, 0, 0`";
 
-
-?>

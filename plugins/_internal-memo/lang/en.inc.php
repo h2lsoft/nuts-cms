@@ -13,7 +13,3 @@ $lang_msg[6] = "Rename note";
 
 $lang_msg[7] = "Please enter the new title";
 
-
-
-
-?>

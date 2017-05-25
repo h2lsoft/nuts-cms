@@ -1,7 +1,7 @@
 <?php
 /**
  * Simple NUTS CRUD for Front Office plugin
- * 
+ *
  * @package Nuts-Component
  * @version 1.0
  */
@@ -108,7 +108,7 @@ class NutsCRUD
 	/**
 	 * remove field to select
 	 * @param string $field
-	 */	
+	 */
 	public function listAddSelectFieldException($field)
 	{
 		$this->listSelectExeption[] = $field;
@@ -138,7 +138,7 @@ class NutsCRUD
 		global $nuts;
 	
 		$sql = "SELECT\n";
-				
+		
 		foreach($this->listCols as $col)
 		{
 			if(!in_array($col['fieldName'], $this->listSelectExeption))
@@ -206,7 +206,7 @@ EOF;
 		$template_table .= "<bloc::loop>\n";
 		$template_table .= "<tr>\n";
 		foreach($this->listCols as $col)
-		{			
+		{
 			$template_table .= "	<td style=\"{$col['style']}\">{{$col['fieldName']}}</td>\n";
 		}
 
@@ -307,14 +307,14 @@ EOF;
 	
 	/**
 	 * Add form field
-	 * 
+	 *
 	 * @param string $name
 	 * @param string $label if empty label = name
 	 * @param string $type (text, date, email, textarea, nuts_login, nuts_password, select-sql, select, image, file)
 	 * @param boolean $required
 	 * @param string $attributes field attributes
 	 * @param array $options option (field for select-sql)
-	 */	
+	 */
 	public function formAddField($name, $label, $type, $required, $attributes='', $option=array())
 	{
 		global $nuts;
@@ -353,10 +353,10 @@ EOF;
 
 	/**
 	 * Add sql in insert/update where clause
-	 * 
+	 *
 	 * @param string $fieldName
 	 * @param string $value
-	 */	
+	 */
 	public function formAddSql($fieldName, $value)
 	{
 		$this->formSqlAdded[$fieldName] = $value;
@@ -485,8 +485,8 @@ EOF;
 			}
 			// select-sql
 			elseif($field['type'] == 'select-sql')
-			{				
-				$field_option = $field['option']['field'];				
+			{
+				$field_option = $field['option']['field'];
 				$table = str_replace('ID', '', $field['name']);
 				$sql = "SELECT ID, $field_option FROM $table WHERE Deleted = 'NO' ORDER BY $field_option";
 				$nuts->doQuery($sql);
@@ -498,7 +498,7 @@ EOF;
 					$input .= '<option value="'.$row['ID'].'">'.$row[$field_option].'</option>'."\n";
 				}
 				
-				$input .= '</select>';				
+				$input .= '</select>';
 			}
 			// select
 			elseif($field['type'] == 'select')
@@ -518,7 +518,7 @@ EOF;
 
 				$input = '<select id="'.$field['name'].'" name="'.$field['name'].'" '.$field['attributes'].'>'."\n";
 				$input .= $tmp_options;
-				$input .= '</select>';	
+				$input .= '</select>';
 			}
 			// file, image
 			elseif($field['type'] == 'file' || $field['type'] == 'image')
@@ -532,7 +532,7 @@ EOF;
 				{
 					// mode edit
 					$sql = "SELECT {$field['name']}Image FROM {$this->db_table} WHERE ID = {$_GET['ID']}";
-					$nuts->doQuery($sql);					
+					$nuts->doQuery($sql);
 					if($nuts->dbNumRows() == 1)
 					{
 						$img = $nuts->dbGetOne();
@@ -603,7 +603,7 @@ EOF;
 		if($_GET['do'] == 'add')
 			$label_caption = ($this->page_language == 'fr') ? 'Ajouter un enregistrement' : 'Add new record';
 		else
-			$label_caption = ($this->page_language == 'fr') ? 'Editer un enregistrement' : 'Edit record';		
+			$label_caption = ($this->page_language == 'fr') ? 'Editer un enregistrement' : 'Edit record';
 		$caption = "<div class=\"caption\">{$label_caption}</div>\n";
 
 		// form valid code
@@ -669,7 +669,7 @@ EOF;
 				if($field['type'] == 'nuts_password')
 				{
 					$_POST[$field['name']] = nutsCrypt($_POST[$field['name']], true);
-				}	
+				}
 			}
 
 			// save record
@@ -710,7 +710,7 @@ EOF;
 					$nuts->dbUpdate($this->db_table, array("{$field['name']}Image" => $img_name_full), "ID=$CUR_ID");
 				}
 			}
-		}		
+		}
 
 		
 		$out = $nuts->output();
@@ -727,7 +727,7 @@ EOF;
 	 *
 	 * @param string $fieldName
 	 * @param string $value
-	 */	
+	 */
 	public function deleteAddSql($fieldName, $value)
 	{
 		$this->deleteSqlAdded[$fieldName] = $value;
@@ -749,7 +749,7 @@ EOF;
 		}
 
 
-		$sql = "UPDATE 
+		$sql = "UPDATE
 						{$this->db_table}
 				SET
 						Deleted = 'YES' ";
@@ -823,7 +823,3 @@ EOF;
 }
 
 
-
-
-
-?>

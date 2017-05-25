@@ -115,9 +115,5 @@ if($_GET['type'] == 'unlock')
 
 }
 
-
-
 die('ok');
 
-
-?>

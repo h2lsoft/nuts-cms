@@ -31,9 +31,3 @@ if(@$_GET['ajax'] && @in_array($_GET['_action'], array('user_init')))
 }
 
 
-
-
-
-
-
-?>

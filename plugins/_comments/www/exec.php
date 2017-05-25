@@ -159,32 +159,5 @@ elseif($_GET['do'] == 'unsuscribe')
 	}
 }
 
-
-
-
 $nuts->dbClose();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>

@@ -11,6 +11,3 @@ $plugin->formAddFieldText('Name', $lang_msg[1], true, 'ucfirst');
 $plugin->formAddFieldText('Description', $lang_msg[2], false, 'ucfirst');
 
 
-
-
-?>

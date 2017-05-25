@@ -5,6 +5,3 @@
 $plugin->deleteDbTable(array('NutsForm')); # put table here
 $plugin->deleteRender();
 
-
-
-?>

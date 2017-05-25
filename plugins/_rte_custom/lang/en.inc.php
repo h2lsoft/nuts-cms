@@ -6,4 +6,3 @@ $lang_msg[1] = "Content";
 
 
 
-?>

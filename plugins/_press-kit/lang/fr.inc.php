@@ -9,4 +9,3 @@ $lang_msg[4] = "Fichier";
 $lang_msg[5] = "Catégorie";
 
 
-?>

@@ -5,6 +5,3 @@
 $plugin->deleteDbTable(array('NutsSurveyOption')); # put table here
 $plugin->deleteRender();
 
-
-
-?>

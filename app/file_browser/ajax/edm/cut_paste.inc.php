@@ -178,6 +178,3 @@ foreach($files as $file)
 }
 
 
-
-
-?>

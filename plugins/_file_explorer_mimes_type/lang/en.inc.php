@@ -16,5 +16,3 @@ $lang_msg[4] = "Available for `EDM` uploads";
 
 
 
-
-?>

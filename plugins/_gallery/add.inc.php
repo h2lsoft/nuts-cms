@@ -39,5 +39,3 @@ if($plugin->formValid())
 
 }
 
-
-?>

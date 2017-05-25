@@ -226,6 +226,3 @@ $sql = str_replace("-- AND\n\t", "\n\t-- AND ", $sql);
 die($sql);
 
 
-
-
-?>

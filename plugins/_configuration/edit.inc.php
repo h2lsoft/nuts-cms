@@ -56,19 +56,15 @@ foreach($cfs as $cf)
 }
 
 
-
 $lng = strtolower($_SESSION['Language']);
 $cfg = file_get_contents($cfg_file);
 $cfg = str_replace('<?php', '', $cfg);
 $cfg = str_replace('?>', '', $cfg);
 $cfg = trim($cfg);
 
-
 $GLOBALS['Syntax'] = 'php';
 if(preg_match('/\.css$/i', $cfg_file))
 	$GLOBALS['Syntax'] = 'css';
-
-
 
 $nuts->open(PLUGIN_PATH.'/form.html');
 $nuts->parse('cfg', $cfg);

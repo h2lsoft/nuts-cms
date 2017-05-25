@@ -6,8 +6,3 @@ $lang_msg[1] = "Please use plugin configuration";
 
 
 
-
-
-
-
-?>

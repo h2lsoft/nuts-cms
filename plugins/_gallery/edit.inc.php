@@ -7,8 +7,5 @@ if($plugin->formValid())
 {
 	$CID = $plugin->formUpdate();
 	include(PLUGIN_PATH.'/trt_mupload.inc.php');
-
 }
 
-
-?>

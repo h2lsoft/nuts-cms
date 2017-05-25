@@ -10,5 +10,3 @@ $lang_msg[3] = "Email existe déjà dans cette liste";
 $lang_msg[4] = "Nom";
 $lang_msg[5] = "Prénom";
 
-
-?>

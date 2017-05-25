@@ -33,7 +33,7 @@ else
 	$rec['HookFunction'] = trim($rec['HookFunction']);
 
 	// rss flux
-	header('Content-Type: application/rss+xml');	
+	header('Content-Type: application/rss+xml');
 
 	$rss_desc = array();
 	$rss_desc['title'] = $rec['RssTitle'];
@@ -56,7 +56,7 @@ else
 
 	$rss_items = array();
 	while($row = $plugin->dbFetch())
-	{		
+	{
 		if(!empty($rec['HookFunction']))
 			eval($rec['HookFunction']);
 
@@ -74,13 +74,6 @@ else
 }
 
 
-
-
 $plugin->dbClose();
 
 
-
-
-
-
-?>

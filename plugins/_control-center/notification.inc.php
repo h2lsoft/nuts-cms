@@ -19,9 +19,3 @@ if($c > 0)
     Plugin::dashboardAddNotification('error', "$c $msg");
 }
 
-
-
-
-
-
-?>

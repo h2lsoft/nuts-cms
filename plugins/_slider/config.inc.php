@@ -14,5 +14,3 @@ $include_plugin_css = true; // inlude bundle css dynamically
 $include_plugin_js = true; // inlude bundle js dynamically
 
 
-
-?>

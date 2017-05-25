@@ -23,6 +23,6 @@ a:hover {color:red;}
 
 
 /** update 0.87 **/
- $email_group = array(''); // email group
+$email_group = array(''); // email group
 
-?>
+

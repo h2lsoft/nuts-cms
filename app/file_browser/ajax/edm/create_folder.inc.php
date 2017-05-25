@@ -123,6 +123,3 @@ nutsTrigger('edm::create-folder_success', true, "edm user action create folder")
 
 
 
-
-
-?>

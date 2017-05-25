@@ -11,4 +11,3 @@ $plugin->viewAddVar('Navbar', $lang_msg[7]);
 $plugin->viewRender();
 
 
-?>

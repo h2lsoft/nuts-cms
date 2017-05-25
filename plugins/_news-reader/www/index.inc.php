@@ -85,5 +85,3 @@ $plugin->setNutsContent();
 
 
 
-
-?>

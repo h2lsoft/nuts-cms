@@ -28,4 +28,3 @@ $calendar_widget_sql_news = "SELECT
 
 $calendar_widget_sql_news_filter_column = 'Type';
 
-?>

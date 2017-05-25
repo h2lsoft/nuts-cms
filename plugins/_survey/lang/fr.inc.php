@@ -11,4 +11,3 @@ $lang_msg[5] = "Voir les résultats";
 $lang_msg[6] = "Voir les résultats sans voter";
 
 
-?>

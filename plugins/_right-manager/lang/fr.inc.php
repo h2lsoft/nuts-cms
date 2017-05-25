@@ -10,6 +10,3 @@ $lang_msg[5] = "Public";
 
 
 
-
-
-?>

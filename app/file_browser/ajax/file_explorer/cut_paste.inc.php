@@ -55,5 +55,3 @@ foreach($files as $file)
 // trigger
 nutsTrigger('file-explorer::cut-paste_success', true, "file-explorer user action cut and paste");
 
-
-?>

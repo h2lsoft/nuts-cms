@@ -74,6 +74,3 @@ edmLog('UPLOAD_LIVE', 'FILE', str_replace(WEBSITE_PATH, '', $file_path));
 die('ok');
 
 
-
-
-?>

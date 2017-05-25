@@ -49,5 +49,3 @@ $share_file_msg['fr'] = array(
 
 
 
-
-?>

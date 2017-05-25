@@ -47,7 +47,3 @@ $plugin->viewAddVar('Name', '');
 $plugin->viewAddVar('Text', '&nbsp;');
 $plugin->viewRender();
 
-
-
-
-?>

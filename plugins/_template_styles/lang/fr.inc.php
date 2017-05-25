@@ -7,6 +7,3 @@ $lang_msg[2] = "Fichier de configuration est correctement sauvegardé";
 $lang_msg[3] = "Sélectionner";
 $lang_msg[4] = "Fichier";
 
-
-
-?>

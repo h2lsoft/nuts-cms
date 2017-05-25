@@ -15,10 +15,3 @@ $customFilters = array(
 );
 
 
-
-
-
-
-
-
-?>

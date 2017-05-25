@@ -14,10 +14,5 @@ $plugin->viewAddVar('AllowEdit', $lang_msg[17]);
 $plugin->viewAddVar('AllowDelete', $lang_msg[18]);
 $plugin->viewAddVar('AllowFolders', $lang_msg[19]);
 
-
-
 $plugin->viewRender();
 
-
-
-?>

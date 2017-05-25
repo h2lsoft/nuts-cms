@@ -10,6 +10,3 @@
 
 $include_plugin_css = true; // inlude bundle css dynamically
 
-
-
-?>

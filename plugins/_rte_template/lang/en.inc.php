@@ -6,5 +6,3 @@ $lang_msg[1] = "Name";
 $lang_msg[2] = "Content";
 $lang_msg[3] = "Insert code";
 
-
-?>

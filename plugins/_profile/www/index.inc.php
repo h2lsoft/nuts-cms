@@ -196,6 +196,3 @@ if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_register/style.c
 $plugin->setNutsContent();
 
 
-
-
-?>

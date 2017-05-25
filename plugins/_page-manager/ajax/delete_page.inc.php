@@ -72,10 +72,3 @@ $plugin->trace('delete', (int)$_GET['ID']);
 
 exit("$parentNodeID|$c");
 
-
-
-
-
-
-
-?>

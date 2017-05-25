@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin social-share - Front office
- * 
+ *
  * @version 1.0
  * @date 30/12/2012
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -31,5 +31,3 @@ $plugin->parse('titleX', urlencode($title));
 $plugin->setNutsContent();
 
 
-
-?>

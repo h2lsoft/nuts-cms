@@ -49,5 +49,3 @@ $lang_msg[32] = "Stocker toutes les entrées utilisateurs des formulaires";
 
 $lang_msg[33] = "Vider les enregistrements de ce formulaire";
 
-
-?>

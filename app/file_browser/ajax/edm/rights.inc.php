@@ -149,8 +149,3 @@ if($recursive == 1)
 $resp['result'] = 'ok';
 $resp['message'] = translate("Folder rights has been saved");
 
-
-
-
-
-?>

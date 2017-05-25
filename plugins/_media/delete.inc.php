@@ -3,4 +3,3 @@
 $plugin->deleteDbTable(array('NutsMedia'));
 $plugin->deleteRender();
 
-?>

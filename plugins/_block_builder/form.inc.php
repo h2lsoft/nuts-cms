@@ -28,8 +28,3 @@ $plugin->formAddFieldHtmlArea('Text', $lang_msg[3], false, 'height:500px;');
 $plugin->formAddFieldImageBrowser('Preview', $lang_msg[8], false, 'nuts_block_preview', $lang_msg[9]);
 $plugin->formAddFieldBoolean('Visible', $lang_msg[4], true);
 
-
-
-
-
-?>

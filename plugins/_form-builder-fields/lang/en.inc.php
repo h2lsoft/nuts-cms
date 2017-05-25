@@ -29,7 +29,3 @@ $lang_msg[21] = "Text after";
 $lang_msg[22] = "Text to add after input";
 $lang_msg[23] = "Enter your own html code";
 
-
-
-
-?>

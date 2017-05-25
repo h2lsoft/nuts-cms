@@ -155,5 +155,3 @@ foreach($files as $file)
 nutsTrigger('edm::delete_success', true, "edm user action delete");
 $resp['result'] = 'ok';
 
-
-?>

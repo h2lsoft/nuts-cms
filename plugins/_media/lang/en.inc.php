@@ -31,4 +31,3 @@ $lang_msg[15] = "Insert code";
 
 $lang_msg[16] = "Preview";
 
-?>

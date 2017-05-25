@@ -22,4 +22,3 @@ if($plugin->formValid())
 }
 
 
-?>

@@ -126,6 +126,3 @@ nutsTrigger('file-explorer::upload_success', true, "file-explorer user upload fi
 
 die('ok');
 
-
-
-?>

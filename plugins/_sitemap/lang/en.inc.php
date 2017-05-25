@@ -8,7 +8,3 @@ $lang_msg[3] = "Configure your scheduler with <pre style=\"border:1px solid #ccc
 $lang_msg[4] = "Add this line in your robots.txt file, <a href=\"[CONTROL_CENTER_URL]\" target=\"blank\">here</a> <pre style=\"border:1px solid #ccc; background-color:#e5e5e5; padding:5px;\">Sitemap: [SITEMAP_COMPLETE_URL]</pre>";
 
 
-
-
-
-?>

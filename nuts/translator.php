@@ -1,6 +1,6 @@
 <?php
 /**
- * Translator bridge 
+ * Translator bridge
  * your website must be registered to allow translation
  */
 
@@ -31,6 +31,3 @@ else
 }
 
 
-
-
-?>

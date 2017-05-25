@@ -104,5 +104,3 @@ if($rec['AR'] == 'YES')
 $nuts->dbClose();
 
 
-
-?>

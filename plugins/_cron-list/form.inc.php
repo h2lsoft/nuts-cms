@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin _cron-list - Form layout
- * 
+ *
  * @version 1.0
  * @date 16/04/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -28,5 +28,3 @@ if($_POST)
 
 }
 
-
-?>

@@ -11,6 +11,3 @@ if($_POST)
 	include_once(PLUGIN_PATH.'/trt_url_rewriting.inc.php');
 }
 
-
-
-?>

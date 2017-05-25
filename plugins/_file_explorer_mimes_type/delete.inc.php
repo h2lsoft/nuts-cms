@@ -18,7 +18,3 @@ $plugin->deleteDbTable(array('NutsFileExplorerMimesType'));
 
 
 $plugin->deleteRender();
-
-
-
-?>

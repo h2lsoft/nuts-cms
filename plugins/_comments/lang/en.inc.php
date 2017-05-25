@@ -15,5 +15,3 @@ $lang_msg[2] = "Set comments visible";
 $lang_msg[3] = "Set comments hidden";
 $lang_msg[4] = "Delete comments";
 
-
-?>

@@ -14,6 +14,3 @@ $lang_msg[7] = "Group";
 $lang_msg[8] = "Description";
 
 
-
-
-?>

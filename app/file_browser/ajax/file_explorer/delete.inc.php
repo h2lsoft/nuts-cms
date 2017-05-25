@@ -155,6 +155,3 @@ nutsTrigger('file-explorer::delete_success', true, "file-explorer user action de
 
 $resp['result'] = 'ok';
 
-
-
-?>

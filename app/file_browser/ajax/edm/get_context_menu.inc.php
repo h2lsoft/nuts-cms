@@ -238,12 +238,7 @@ $output .= "imagecmenu = [{$context['imagecmenu']}];\n\n";
 
 $output .= "allowed_actions = ".json_encode($allowed_actions);
 
-
-
-    die($output);
-
-?>
-
+die($output);
 
 
 

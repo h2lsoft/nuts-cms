@@ -30,5 +30,3 @@ $tags = trim($tags);
 die($tags);
 
 
-
-?>

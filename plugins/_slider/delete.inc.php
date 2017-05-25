@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin slider - action Delete
- * 
+ *
  * @version 1.0
  * @date 01/01/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -21,4 +21,4 @@ $plugin->deleteRender();
 
 
 
-?>
+

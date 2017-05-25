@@ -8,4 +8,3 @@ $plugin->deleteRender();
 
 
 
-?>

@@ -43,6 +43,3 @@ EOF;
 	return $row;
 }
 
-
-
-?>

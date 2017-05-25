@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin useful_links - action Delete
- * 
+ *
  * @version 1.0
  * @date 29/01/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -20,5 +20,3 @@ $plugin->deleteDbTable(array('NutsUsefulLinks'));
 $plugin->deleteRender();
 
 
-
-?>

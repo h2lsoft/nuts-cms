@@ -122,9 +122,5 @@ else
 }
 
 
-
 $plugin->render = $nuts->output();
 
-
-
-?>

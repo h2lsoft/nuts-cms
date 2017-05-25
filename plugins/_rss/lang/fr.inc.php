@@ -18,4 +18,3 @@ $lang_msg[11] = "Rss limit";
 
 
 
-?>

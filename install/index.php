@@ -282,7 +282,6 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 <!doctype html>
 <html>
 	<head>
-		<meta http-equiv="X-UA-Compatible" content="chrome=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="robots" content="noindex" />
 		<title>NUTS CMS - Installer</title>

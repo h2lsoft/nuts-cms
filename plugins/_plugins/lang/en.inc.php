@@ -10,5 +10,3 @@ $lang_msg[5] = "Please select a category";
 $lang_msg[6] = "External url";
 
 
-
-?>

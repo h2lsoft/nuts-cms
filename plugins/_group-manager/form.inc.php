@@ -33,6 +33,3 @@ $plugin->formAddFieldsetEnd();
 
 $plugin->formAddFieldText('Priority', $lang_msg[5], 'notEmpty|onlyDigit', '', "width:50px; text-align:center");
 
-
-
-?>

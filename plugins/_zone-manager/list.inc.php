@@ -38,5 +38,3 @@ $plugin->listSetFirstOrderBySort('ASC');
 $plugin->listRender(20);
 
 
-
-?>

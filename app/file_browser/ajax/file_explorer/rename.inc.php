@@ -72,9 +72,3 @@ elseif($type == 'folder')
 
 }
 
-
-
-
-
-
-?>

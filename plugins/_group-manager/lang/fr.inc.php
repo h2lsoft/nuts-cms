@@ -39,4 +39,3 @@ $lang_msg[24] = "Autoriser l'accès au back-office pour les utilisateurs du grou
 $lang_msg[25] = "Autoriser l'accès au front-office pour les utilisateurs du groupe";
 
 
-?>

@@ -20,9 +20,3 @@ $plugin->trace('rename_page', (int)$_GET['ID']);
 
 die('ok');
 
-
-
-
-
-
-?>

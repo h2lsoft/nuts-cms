@@ -8,5 +8,3 @@ $lang_msg[3] = "Select";
 $lang_msg[4] = "File";
 
 
-
-?>

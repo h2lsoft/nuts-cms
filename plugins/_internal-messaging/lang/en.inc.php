@@ -38,4 +38,3 @@ $lang_msg[24] = "Mark message(s) as unread";
 
 
 
-?>

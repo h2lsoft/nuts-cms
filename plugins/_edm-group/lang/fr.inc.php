@@ -6,4 +6,3 @@ $lang_msg[1] = "Nom";
 $lang_msg[2] = "Utilisateurs";
 $lang_msg[3] = "Vous devez sélectionner au moins un utilisateur";
 
-?>

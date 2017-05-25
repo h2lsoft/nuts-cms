@@ -16,7 +16,3 @@ $lang_msg[9] = "Rights";
 $lang_msg[10] = "Main pages creation";
 
 
-
-
-
-?>

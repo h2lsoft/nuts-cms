@@ -11,4 +11,3 @@ $lang_msg[6] = "Hi-res";
 $lang_msg[7] = "Image";
 
 
-?>

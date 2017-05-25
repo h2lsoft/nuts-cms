@@ -37,7 +37,3 @@ $_err['DB']['5'] 		= 'Showrecords() must have an integer in second parameter';
 $_err['DB']['5.1'] 	= 'Showrecords() must have integer greater than zero in second parameter';
 
 
-
-
-
-?>

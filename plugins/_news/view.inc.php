@@ -44,5 +44,3 @@ function hookData($row){
 
 $plugin->viewRender('hookData');
 
-
-?>

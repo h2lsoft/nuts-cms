@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin news_calendar - Front office
- * 
+ *
  * @version 1.0
  * @date 11/12/2012
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -194,5 +194,3 @@ if($_POST && @$_GET['ajaxer'] == 1 && @$_GET['action'] == 'news-calendar-widget'
 
 $plugin->setNutsContent();
 
-
-?>

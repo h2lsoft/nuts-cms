@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin url_redirect - action Delete
- * 
+ *
  * @version 1.0
  * @date 12/11/2012
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -19,6 +19,3 @@ $plugin->deleteDbTable(array('NutsUrlRedirect'));
 
 $plugin->deleteRender();
 
-
-
-?>

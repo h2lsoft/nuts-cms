@@ -14,5 +14,3 @@ $lang_msg[1] = "Nom";
 $lang_msg[2] = "Couleur";
 
 
-
-?>

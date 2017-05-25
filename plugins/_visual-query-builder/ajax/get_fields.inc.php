@@ -15,5 +15,3 @@ $resp = array_merge($resp_joker, $resp);
 die(json_encode($resp));
 
 
-
-?>

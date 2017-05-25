@@ -22,6 +22,3 @@ $lang_msg[11] = "Locked file by you, only you can unlock file and allow other us
 $lang_msg[12] = "The file is locked by user `%s`";
 
 
-
-
-?>

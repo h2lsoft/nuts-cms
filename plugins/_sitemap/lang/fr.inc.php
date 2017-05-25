@@ -8,4 +8,3 @@ $lang_msg[3] = "Configurer votre tâche planifiée <pre style=\"border:1px solid
 $lang_msg[4] = "Ajouter cette ligne dans votre fichier robots.txt, <a href=\"[CONTROL_CENTER_URL]\" target=\"blank\">ici</a> <pre style=\"border:1px solid #ccc; background-color:#e5e5e5; padding:5px;\">Sitemap: [SITEMAP_COMPLETE_URL]</pre>";
 
 
-?>

@@ -85,7 +85,7 @@ $plugin->listSearchAddFieldTextAjaxAutoComplete('Name', $lang_msg[1], 'countains
 $plugin->listAddCol('ID', '', 'center; width:10px; white-space:nowrap;', true); // with order by
 $plugin->listAddCol('Category', $lang_msg[9], '; width:30px; white-space:nowrap;', true); // with order by
 $plugin->listAddCol('State', '&nbsp;', 'center; width:10px;', false);
-$plugin->listAddCol('Name', $lang_msg[1], '; width:30px; white-space:nowrap;', true); 
+$plugin->listAddCol('Name', $lang_msg[1], '; width:30px; white-space:nowrap;', true);
 $plugin->listAddCol('Download', ' ', 'center; width:30px;', false);
 $plugin->listAddCol('Description', $lang_msg[2], '', false);
 
@@ -130,12 +130,6 @@ function hookData($row)
 		$nuts->dbSetQueryID($qID);
 	}
 
-
-
-
 	return $row;
 }
 
-
-
-?>

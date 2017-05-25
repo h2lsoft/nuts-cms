@@ -20,6 +20,3 @@ $lang_msg[10] = "Verrouillé";
 $lang_msg[11] = "Verrouiller le fichier, bloque les autres utilisateurs à modifier le fichier";
 $lang_msg[12] = "Le fichier est verrouillé par l'utilisateur `%s`";
 
-
-
-?>

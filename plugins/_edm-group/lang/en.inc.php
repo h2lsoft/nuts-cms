@@ -7,6 +7,3 @@ $lang_msg[2] = "Users";
 $lang_msg[3] = "You must select one user";
 
 
-
-
-?>

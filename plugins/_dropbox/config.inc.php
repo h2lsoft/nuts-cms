@@ -29,12 +29,7 @@ $dropbox_images_view_allowed = array('jpg', 'png', 'gif');
 
 
 // files allowed for view
-$dropbox_files_view_allowed = array('pdf', 'flv', 'swf'); 
-
- 
+$dropbox_files_view_allowed = array('pdf', 'flv', 'swf');
 
 
 
-
-
-?>

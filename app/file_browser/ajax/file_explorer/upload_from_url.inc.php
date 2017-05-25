@@ -38,13 +38,6 @@ $_POST['name'] = basename($_POST['file_url']);
 
 define('UPLOAD_FROM_URL', 1);
 
-
-
 include('upload.inc.php');
 
 
-
-
-
-
-?>

@@ -93,6 +93,3 @@ EOF;
 	return $row;
 }
 
-
-
-?>

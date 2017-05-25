@@ -7,7 +7,3 @@ $lang_msg[2] = "Name";
 $lang_msg[3] = "Description";
 
 
-
-
-
-?>

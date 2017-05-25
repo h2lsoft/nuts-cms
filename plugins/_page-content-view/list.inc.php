@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin page-content-view - action List
- * 
+ *
  * @version 1.0
  * @date 20/11/2012
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -45,5 +45,3 @@ EOF;
 }
 
 
-
-?>

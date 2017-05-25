@@ -30,4 +30,4 @@ $spider_special_page_exclusion[] = '?tpg=';
 $spider_nopattern_start = "<!-- nocontent -->"; // pattern start for no capturing content
 $spider_nopattern_end = "<!-- /nocontent -->"; // pattern end for no capturing content
 
-?>
+

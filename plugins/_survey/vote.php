@@ -78,13 +78,3 @@ $nuts->dbClose();
 
 die("ok@@@$content");
 
-
-
-
-
-
-
-
-
-
-?>

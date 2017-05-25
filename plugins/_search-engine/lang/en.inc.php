@@ -9,5 +9,3 @@ $lang_msg[3] = "Configure your scheduler with <pre style=\"border:1px solid #ccc
 
 
 
-
-?>

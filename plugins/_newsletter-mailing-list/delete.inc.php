@@ -6,5 +6,3 @@ $plugin->deleteDbTable(array('NutsNewsletterMailingList')); # put table here
 $plugin->deleteRender();
 
 
-
-?>

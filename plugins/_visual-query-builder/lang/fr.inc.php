@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Visual query builder - Language file
- * 
+ *
  * @version 1.0
  * @date 02/12/2012
  * @author H2Lsoft (contact@h2lsoft.com) - www.h2lsoft.com
@@ -38,4 +38,3 @@ $lang_msg[21] = "Merci de renseigner vos valeurs séparées par des virgules";
 
 
 
-?>

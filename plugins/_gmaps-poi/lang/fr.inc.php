@@ -35,4 +35,3 @@ $colors_opts[] = array('label' => 'Jaune', 'value' => 'yellow');
 
 
 
-?>

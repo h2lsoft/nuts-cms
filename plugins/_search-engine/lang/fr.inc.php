@@ -7,4 +7,3 @@ $lang_msg[2] = "Lancer le script de recherche, <a href=\"[SITEMAP_COMPLETE_URL]\
 $lang_msg[3] = "Configurer votre tâche planifiée <pre style=\"border:1px solid #ccc; background-color:#e5e5e5; padding:5px;\">Linux: `wget  --delete-after [SITEMAP_COMPLETE_URL]` </pre>";
 
 
-?>

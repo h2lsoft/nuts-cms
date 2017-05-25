@@ -3,7 +3,7 @@
 include(PLUGIN_PATH.'/form.inc.php');
 
 if($plugin->formValid())
-{	
+{
 	$CUR_ID = $plugin->formInsert();
 
     // add rights for superadmin
@@ -28,4 +28,3 @@ if($plugin->formValid())
 }
 
 
-?>

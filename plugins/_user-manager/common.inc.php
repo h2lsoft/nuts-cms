@@ -14,4 +14,3 @@ while($r = $nuts->dbFetch())
 }
 
 
-?>

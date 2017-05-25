@@ -77,6 +77,3 @@ $nuts->open(PLUGIN_PATH.'/form.html');
 $nuts->parse('cfg', $cfg);
 $plugin->render = $nuts->output();
 
-
-
-?>

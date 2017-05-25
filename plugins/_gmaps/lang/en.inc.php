@@ -24,6 +24,3 @@ $lang_msg[6] = "Insert code";
 
 
 
-
-
-?>

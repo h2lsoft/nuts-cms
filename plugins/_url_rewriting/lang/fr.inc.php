@@ -7,7 +7,3 @@ $lang_msg[2] = "mettre -1 pour ajouter à la fin";
 $lang_msg[3] = "Générer les règles";
 
 
-
-
-
-?>

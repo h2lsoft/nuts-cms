@@ -17,5 +17,3 @@ $plugin->formAddFieldTextArea('Description', $lang_msg[8], false);
 $plugin->formAddFieldText('Subject', $lang_msg[2], true, 'ucfirst');
 $plugin->formAddFieldHtmlArea('Body', $lang_msg[3], true, 'height:300px;', $lang_msg[5]);
 
-
-?>

@@ -15,4 +15,3 @@ $lang_msg[3] = "Valable pour les uploads de `L'explorateur de fichiers`";
 $lang_msg[4] = "Valable pour les uploads du `Gestionnaire Electronique de Documents`";
 
 
-?>

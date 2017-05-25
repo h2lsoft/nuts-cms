@@ -4,7 +4,7 @@ $pageID = $this->pageID;
 
 // get page information
 if($pageID == 0)$this->error404();
-$this->doQuery("SELECT 
+$this->doQuery("SELECT
 						NutsPage.*,
 		
 						UNIX_TIMESTAMP(NutsPage.DateCreation) AS DateCreationStamp,
@@ -50,5 +50,3 @@ $this->vars = array_merge($this->vars, $v2);
 $this->openPluginTemplate();
 $GLOBALS['NUTS_CONTENT'] = $this->output();
 
-
-?>

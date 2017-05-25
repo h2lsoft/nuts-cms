@@ -17,5 +17,3 @@ $lang_msg[10] = "Hook function to replace current result for each row \$row";
 $lang_msg[11] = "Rss limit";
 
 
-
-?>

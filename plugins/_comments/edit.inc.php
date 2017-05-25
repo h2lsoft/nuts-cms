@@ -18,4 +18,3 @@ if($plugin->formValid())
 }
 
 
-?>

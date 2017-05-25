@@ -9,4 +9,3 @@ $lang_msg[4] = "Nom";
 $lang_msg[5] = "Merci de choisir votre catégorie";
 $lang_msg[6] = "Lien externe";
 
-?>

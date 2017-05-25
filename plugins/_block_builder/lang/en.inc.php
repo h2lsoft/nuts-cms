@@ -17,6 +17,3 @@ $lang_msg[9] = "Choose an image to preview";
 $lang_msg[10] = "Sub group";
 $lang_msg[11] = "Allows you to split display inside the same group";
 
-
-
-?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * User Profile configuration
  */
@@ -169,5 +169,3 @@ $pluginRegister['form_fields'][] = array(
 
 
 
-
-?>

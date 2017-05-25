@@ -9,16 +9,3 @@ $data[] = nutsGetCountPages($_GET['language'], $_GET['zoneID'], 'WAITING MODERAT
 echo $nuts->array2json($data);
 exit(1);
 
-
-
-
-
-
-
-
-
-
-
-
-
-?>

@@ -219,6 +219,3 @@ EOF;
 	return $row;
 }
 
-
-
-?>

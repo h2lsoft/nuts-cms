@@ -80,8 +80,3 @@ $p_lng['SuscriberMailMessage'] = <<<EOF
 EOF;
 
 
-
-
-
-
-?>

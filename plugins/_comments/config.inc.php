@@ -20,4 +20,3 @@ $comments_avatar_size = 50;
 /** update 2.5 **/
 $comments_forbidden_words = "sex, sexe, fuck, viagra"; // comma separated
 
-?>

@@ -87,10 +87,3 @@ else
 	$plugin->setNutsContent();
 }
 
-
-
-
-
-
-
-?>

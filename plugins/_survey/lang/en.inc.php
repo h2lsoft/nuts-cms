@@ -10,7 +10,3 @@ $lang_msg[4] = "View reporting";
 $lang_msg[5] = "View results";
 $lang_msg[6] = "View results without vote";
 
-
-
-
-?>

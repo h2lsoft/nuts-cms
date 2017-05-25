@@ -133,9 +133,3 @@ elseif($type == 'folder')
     nutsTrigger('edm::rename-folder_success', true, "edm user action rename folder");
 }
 
-
-
-
-
-
-?>

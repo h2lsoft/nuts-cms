@@ -393,23 +393,10 @@ EOF;
     {
         $htmlFiles = '<ul id="'.$_GET['view'].'" class="files clear">'.$htmlFolders.$htmlFiles.'</ul>';
     }
-
-
+	
 
     $resp['result'] = 'ok';
     $resp['html'] = $htmlFiles;
-
-
+	
 }
 
-
-
-
-
-
-
-
-
-
-
-?>

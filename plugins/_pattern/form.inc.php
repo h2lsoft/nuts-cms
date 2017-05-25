@@ -17,5 +17,3 @@ $plugin->formAddFieldTextArea('Code', '', true, 'tabby', '', '', "Php> use `\$re
 $plugin->formAddFieldText('BlocStart', 'Bloc start', false, '', '', '', '', 'pattern inside bloc');
 $plugin->formAddFieldText('BlocEnd', 'Bloc end', false, '', '', '', '', 'pattern inside bloc');
 
-
-?>

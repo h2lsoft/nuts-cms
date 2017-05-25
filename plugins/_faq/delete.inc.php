@@ -15,10 +15,5 @@ $plugin->deleteDbTable(array('NutsFAQ'));
 
 // hacks delete action
 
-
-
 $plugin->deleteRender();
 
-
-
-?>

@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin gmaps-poi - action List
- * 
+ *
  * @version 1.0
  * @date 09/07/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -43,5 +43,3 @@ function hookData($row)
 	return $row;
 }
 
-
-?>

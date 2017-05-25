@@ -21,10 +21,3 @@ nutsTrigger('page-manager::comment_delete', true, "action delete on comment");
 // launch exec for all suscribers
 die('ok');
 
-
-
-
-
-
-
-?>

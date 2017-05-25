@@ -78,8 +78,3 @@ foreach($tmp_files as $tmp_file)
 }
 
 
-
-
-
-
-?>

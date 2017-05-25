@@ -10,6 +10,3 @@
 $lang_msg[0] = "EDM Share"; // plugin name
 
 
-
-
-?>

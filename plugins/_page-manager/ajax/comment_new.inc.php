@@ -26,7 +26,3 @@ $action= base64_encode("do=show&email_admin={$_SESSION['Email']}&show&ID=$CID&la
 $fp = file_get_contents($uri.strrev($action));
 exit(1);
 
-
-
-
-?>

@@ -271,13 +271,6 @@ $nuts->loop('menu');
 
 $nuts->write();
 
-
-
 $nuts->dbClose();
 
 
-
-
-
-
-?>

@@ -101,4 +101,3 @@ else
 $nuts->dbClose();
 
 
-?>

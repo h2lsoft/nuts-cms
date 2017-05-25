@@ -2,7 +2,7 @@
 
 /**
  * TPLN Image Plugin
- * @package Template Engine 
+ * @package Template Engine
  */
 class Image
 {
@@ -151,4 +151,3 @@ class Image
 
 }
 
-?>

@@ -8,5 +8,3 @@ if($plugin->formValid())
 	$CUR_ID = $plugin->formInsert();
 }
 
-
-?>

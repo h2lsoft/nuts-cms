@@ -7,7 +7,7 @@ if($_GET['NutsGroupID'] != 0 && !$plugin->isRecordExists('NutsGroup', 'NutsGroup
 
 // save data ********************************************************************************************
 if($_POST && $_GET['NutsGroupID'] != 0)
-{		
+{
 	$nuts->doQuery("DELETE FROM NutsMenuRight WHERE NutsGroupID = {$_GET['NutsGroupID']}");
 	
 	if(!isset($_POST['right']) || !is_array($_POST['right']))$_POST['right'] = array();
@@ -28,16 +28,16 @@ if($_POST && $_GET['NutsGroupID'] != 0)
 	
 		foreach($vals as $val)
 		{
-			$sql = "INSERT INTO NutsMenuRight 
+			$sql = "INSERT INTO NutsMenuRight
 						(
-							NutsMenuID, 
-							NutsGroupID, 
+							NutsMenuID,
+							NutsGroupID,
 							Name
-						) 
-					VALUES 
+						)
+					VALUES
 						(
-							(SELECT ID FROM NutsMenu WHERE Name = '$key' LIMIT 1), 
-							{$_GET['NutsGroupID']}, 
+							(SELECT ID FROM NutsMenu WHERE Name = '$key' LIMIT 1),
+							{$_GET['NutsGroupID']},
 							'$val'
 						)";
 			$nuts->doQuery($sql);
@@ -46,7 +46,7 @@ if($_POST && $_GET['NutsGroupID'] != 0)
 	
 	// force hide my notes
 	$sql = "UPDATE NutsMenu SET Visible = 'NO' WHERE Name = '_internal-memo'";
-	$nuts->doQuery($sql);	
+	$nuts->doQuery($sql);
 	
 	$plugin->trace("`{$_POST['NutsGroupName']}` modified", $_GET['NutsGroupID']);
 	die('ok');
@@ -80,14 +80,14 @@ if($_GET['NutsGroupID'] == 0)
 	$nuts->eraseBloc('ctn');
 }
 else
-{	
+{
 	$cats = array();
 	$all_cats = array();
 	foreach($mods_group as $cat)
-	{	
-		$cats[] = $cat['name'];	
+	{
+		$cats[] = $cat['name'];
 		$all_cats[$cat['name']] = array();
-	}	
+	}
 	
 	// plugins listing with rights
 	$dirs = glob(NUTS_PLUGINS_PATH."/*", GLOB_ONLYDIR);
@@ -96,11 +96,11 @@ else
 		$dir_origin = $dir;
 		$dir = str_replace(NUTS_PLUGINS_PATH."/", '', $dir);
 		$r_name = $dir;
-		$name = str_replace(array('_', '-'), ' ', $dir);		
+		$name = str_replace(array('_', '-'), ' ', $dir);
 		
 		// listing rights
 		if(file_exists("$dir_origin/info.yml") && !in_array($dir, array('_error', '_home', '_user-profile')))
-		{			
+		{
 			// get plugin category
 			$sql = "SELECT Category FROM NutsMenu WHERE Name = '$r_name' LIMIT 1";
 			$nuts->doQuery($sql);
@@ -117,9 +117,9 @@ else
 			$acts_tab = array_map('trim', $acts_tab);
 			
 			// selected rights
-			$nuts->doQuery("SELECT 
+			$nuts->doQuery("SELECT
 										NutsMenuRight.Name
-							FROM 
+							FROM
 										NutsMenuRight,
 										NutsMenu
 							WHERE
@@ -137,11 +137,11 @@ else
 			$all_cats[$cats[$catID]][$r_name]['label'] = $name;
 			$all_cats[$cats[$catID]][$r_name]['type'] = $type;
 			$all_cats[$cats[$catID]][$r_name]['actions'] = $acts_tab;
-			$all_cats[$cats[$catID]][$r_name]['actions_selected'] = $act_selected;			
+			$all_cats[$cats[$catID]][$r_name]['actions_selected'] = $act_selected;
 		}
 	}
 	
-	// parsing		
+	// parsing
 	foreach($cats as $cat)
 	{
 		$nuts->parse('category.Category', $cat);
@@ -150,8 +150,8 @@ else
 		// parsing rights
 		if(!count($all_cats[$cat]))
 		{
-			$nuts->eraseBloc('category.rights');	
-			$nuts->loop('category.rights');		
+			$nuts->eraseBloc('category.rights');
+			$nuts->loop('category.rights');
 		}
 		else
 		{
@@ -159,7 +159,7 @@ else
 			foreach($plugins as $xplugin)
 			{
 				$nuts->parse('category.rights.type', $all_cats[$cat][$xplugin]['type']);
-				$nuts->parse('category.rights.p_name', $all_cats[$cat][$xplugin]['name']);	
+				$nuts->parse('category.rights.p_name', $all_cats[$cat][$xplugin]['name']);
 				$nuts->parse('category.rights.name', $all_cats[$cat][$xplugin]['label'], '|trim|ucfirst');
                 $nuts->parse('category.rights.category', $cat);
 				
@@ -198,7 +198,7 @@ else
 		}
 		
 		
-		$nuts->loop('category');		
+		$nuts->loop('category');
 	}
 	
 	
@@ -207,10 +207,7 @@ else
 	
 }
 
-
-
 $plugin->render = $nuts->output();
 
 
 
-?>

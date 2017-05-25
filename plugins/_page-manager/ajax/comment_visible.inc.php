@@ -27,16 +27,3 @@ nutsTrigger('page-manager::comment_visible', true, "action visible on comment");
 echo $visible;
 exit(1);
 
-
-
-
-
-
-
-
-
-
-
-
-
-?>

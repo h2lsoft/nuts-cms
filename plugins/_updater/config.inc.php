@@ -13,6 +13,3 @@ $system_correct_user = ""; // put your correct login to change user owner (empty
 $chmod_default = 0; // chmod for mkdir put 0 for no chmod or 0770 (use this for acl) ?
 $debug_mode = true; // just checking no db execute and no file copied
 
-
-
-?>

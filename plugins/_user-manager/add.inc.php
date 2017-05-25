@@ -4,7 +4,7 @@ include(PLUGIN_PATH.'/form.inc.php');
 
 if($plugin->formValid())
 {
-	$CUR_ID = $plugin->formInsert();	
+	$CUR_ID = $plugin->formInsert();
 	nutsUserSetPassword($CUR_ID, $_POST['Password']);
 	
 	
@@ -13,4 +13,3 @@ if($plugin->formValid())
 }
 
 
-?>

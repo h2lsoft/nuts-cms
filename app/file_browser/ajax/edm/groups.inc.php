@@ -58,7 +58,3 @@ foreach($groups_arr as $groupID)
 edmLog('RIGHTS', 'FOLDER', $folder, $groups);
 $resp['result'] = 'ok';
 
-
-
-
-?>

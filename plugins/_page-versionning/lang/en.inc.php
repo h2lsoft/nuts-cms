@@ -9,4 +9,3 @@ $lang_msg[3] = "Content Preview";
 $lang_msg[4] = "Replace";
 
 
-?>

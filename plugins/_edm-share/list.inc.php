@@ -59,6 +59,3 @@ function hookData($row)
     return $row;
 }
 
-
-
-?>

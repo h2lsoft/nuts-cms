@@ -26,6 +26,3 @@ $lang_msg[19] = "Contraint la taille des vignettes à la largeur et hauteur déf
 $lang_msg[20] = "Vignette fond";
 $lang_msg[21] = "Couleur de fond au format RGB des vignettes si contrainte est définie à OUI, ex: blanc => `255, 255, 255`, noir => `0, 0, 0`";
 
-
-
-?>

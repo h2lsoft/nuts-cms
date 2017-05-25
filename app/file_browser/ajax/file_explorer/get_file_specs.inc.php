@@ -63,6 +63,3 @@ elseif($type == 'image')
 
 $resp['html'] = $html;
 
-
-
-?>

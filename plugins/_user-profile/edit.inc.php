@@ -27,5 +27,3 @@ if($plugin->formValid())
     nutsTrigger('_user-profile', true, "User change its profile");
 }
 
-
-?>

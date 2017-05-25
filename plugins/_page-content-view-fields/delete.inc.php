@@ -20,5 +20,3 @@ $plugin->deleteDbTable(array('NutsPageContentViewField'));
 $plugin->deleteRender();
 
 
-
-?>

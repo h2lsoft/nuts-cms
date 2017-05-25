@@ -11,4 +11,3 @@ $group_blocks[] = array("RIGHT", 'Right');
 // help message
 $group_blocks_help = "RIGHT Blocks";
 
-?>

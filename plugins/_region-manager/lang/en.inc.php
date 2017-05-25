@@ -36,5 +36,3 @@ $lang_msg[26] =  "Category";
 $lang_msg[27] =  "Add {@PAGE_ID} to replace with current page ID<br>{@PARAMETER_X} : parameter of region to replace (where X is integer)";
 
 
-
-?>

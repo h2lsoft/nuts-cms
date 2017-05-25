@@ -129,10 +129,3 @@ if($_POST && $nuts->formGetTotalError() == 0)
 	}
 }
 
-
-
-
-
-
-
-?>

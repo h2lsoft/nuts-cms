@@ -636,4 +636,5 @@ class SqlFormatter
     }
 }
 
-?>
+
+

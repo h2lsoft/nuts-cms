@@ -2,7 +2,7 @@
 /*
 Language: French
 File: lang/fr.php
-*/ 
+*/
 
 
 $lang = array(
@@ -210,4 +210,3 @@ $lang = array(
     "EOF" => TRUE
 );
 
-?>

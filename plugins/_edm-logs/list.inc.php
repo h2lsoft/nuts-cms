@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin edm-logs - action List
- * 
+ *
  * @version 1.0
  * @date 08/07/2012
  * @author H2Lsoft (contact@h2lsoft.com) - www.h2lsoft.com
@@ -44,7 +44,3 @@ function hookData($row)
 	
 	return $row;
 }
-
-
-
-?>

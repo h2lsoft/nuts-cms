@@ -74,5 +74,3 @@ sleep(PLUGIN_NEWSLETTER_SLEEPTIME);
 die(json_encode($vals));
 
 
-
-?>

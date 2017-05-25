@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin gmaps-poi - Language file
- * 
+ *
  * @version 1.0
  * @date 09/07/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -35,5 +35,3 @@ $colors_opts[] = array('label' => 'Orange', 'value' => 'orange');
 $colors_opts[] = array('label' => 'Yellow', 'value' => 'yellow');
 
 
-
-?>

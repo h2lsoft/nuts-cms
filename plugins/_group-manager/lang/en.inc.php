@@ -37,4 +37,3 @@ $lang_msg[23] = 'Front-office access';
 $lang_msg[24] = "Allow back-office access for users in this group";
 $lang_msg[25] = "Allow front-office access for users in this group";
 
-?>

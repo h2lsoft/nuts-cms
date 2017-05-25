@@ -20,6 +20,3 @@ $lang_msg[8] = "Aucune question fréquente trouvée";
 $lang_msg[9] = "Si le premier caractère est '-', celui-ci sera effacé: exemple: -General";
 
 
-
-
-?>

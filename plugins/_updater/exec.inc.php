@@ -843,4 +843,3 @@ else
 $plugin->directRender(PLUGIN_PATH.'/exec.html');
 
 
-?>

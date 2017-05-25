@@ -9,10 +9,3 @@ $lang_msg[3] = str_replace('[SITEMAP_COMPLETE_URL]', PLUGIN_URL.'/exec.php?key='
 $plugin->directRender(PLUGIN_PATH.'/info.html');
 
 
-
-
-
-
-
-
-?>

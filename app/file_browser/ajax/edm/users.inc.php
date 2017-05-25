@@ -56,7 +56,3 @@ foreach($users_arr as $userID)
 edmLog('RIGHTS', 'FOLDER', $folder, $users);
 $resp['result'] = 'ok';
 
-
-
-
-?>

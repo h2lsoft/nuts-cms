@@ -353,4 +353,3 @@ function protectFolderName($folder_name)
 
 
 
-?>

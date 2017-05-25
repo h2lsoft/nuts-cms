@@ -19,9 +19,7 @@ $plugin->openPluginTemplate();
 $plugin->parse("message", $message);
 
 
-
 $plugin->setNutsContent();
 
 
 
-?>

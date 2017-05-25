@@ -33,4 +33,3 @@ $lang_msg[22] = "Texte à ajouter après les input";
 $lang_msg[23] = "Saisissez votre code html";
 
 
-?>

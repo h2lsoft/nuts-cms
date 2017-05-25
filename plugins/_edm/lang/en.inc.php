@@ -9,7 +9,3 @@
 
 $lang_msg[0] = "Document Manager"; // plugin name
 
-
-
-
-?>

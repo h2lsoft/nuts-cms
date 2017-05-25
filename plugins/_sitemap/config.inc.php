@@ -19,13 +19,13 @@ $sitemap_key = "adse861d2M1df3sdf"; // special get to prevent hacking by url
  * Special pages to add dynamically
  *
  * Parameters:
- * 
+ *
  *  - url_parent: complete url for the crawler (characters / and ? are automatically backslashed)
  *  - priority: number 0.1 to 1.0 (0.5 by default)
  *  - changefreq: hourly, daily, weekly, monthly, always, never
  *
  * $sitemap_special_page[] = array('url_parent' => WEBSITE_URL."/my_url", 'url_regex' => "my regex", 'url_regex2' => 'my second regex (optionnal)', 'priority' => 0.5, 'changefreq' => 'weekly');
- * 
+ *
  ***********************************************************************************************/
 
 $sitemap_special_page = array();
@@ -35,4 +35,3 @@ $sitemap_special_page = array();
  * To force some url please edit plugin file `custom.inc.php`
  ********************************************************************************************/
 
-?>

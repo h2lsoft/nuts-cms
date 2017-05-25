@@ -76,5 +76,3 @@ class Rss extends Image
 
 }
 
-
-?>

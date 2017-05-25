@@ -22,5 +22,3 @@ $lang_msg[5] = "Description";
 $lang_msg[6] = "Insérer le code";
 
 
-
-?>

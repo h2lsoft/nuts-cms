@@ -7,11 +7,11 @@
  *
  * AUTHOR
  * =============
- * Kwaku Otchere 
+ * Kwaku Otchere
  * ospinto@hotmail.com
- * 
+ *
  * Thanks to Andrew Hewitt (rudebwoy@hotmail.com) for the idea and suggestion
- * 
+ *
  * All the credit goes to ColdFusion's brilliant cfdump tag
  * Hope the next version of PHP can implement this or have something similar
  * I love PHP, but var_dump BLOWS!!!
@@ -32,18 +32,18 @@
  * example:
  * new dBug ( $myVariable );
  *
- * 
- * if the optional "forceType" string is given, the variable supplied to the 
- * function is forced to have that forceType type. 
+ *
+ * if the optional "forceType" string is given, the variable supplied to the
+ * function is forced to have that forceType type.
  * example: new dBug( $myVariable , "array" );
- * will force $myVariable to be treated and dumped as an array type, 
+ * will force $myVariable to be treated and dumped as an array type,
  * even though it might originally have been a string type, etc.
  *
  * NOTE!
  * ==============
  * forceType is REQUIRED for dumping an xml string or xml file
  * new dBug ( $strXml, "xml" );
- * 
+ *
 \*********************************************************************************************************************/
 
 class dBug {
@@ -85,7 +85,7 @@ class dBug {
 		//check for any included/required files. if found, get array of the last included file (they contain the right line numbers)
 		for($i=count($arrBacktrace)-1; $i>=0; $i--) {
 			$arrCurrent = $arrBacktrace[$i];
-			if(array_key_exists("function", $arrCurrent) && 
+			if(array_key_exists("function", $arrCurrent) &&
 				(in_array($arrCurrent["function"], $arrInclude) || (0 != strcasecmp($arrCurrent["function"], "dbug"))))
 				continue;
 
@@ -112,7 +112,7 @@ class dBug {
 			$header = $this->getVariableName() . " (" . $header . ")";
 			$this->bInitialized = true;
 		}
-		$str_i = ($this->bCollapsed) ? "style=\"font-style:italic\" " : ""; 
+		$str_i = ($this->bCollapsed) ? "style=\"font-style:italic\" " : "";
 		
 		echo "<table cellspacing=2 cellpadding=3 class=\"dBug_".$type."\">
 				<tr>
@@ -177,7 +177,7 @@ class dBug {
 		$var=($var==1) ? "TRUE" : "FALSE";
 		echo $var;
 	}
-			
+	
 	//if variable is an array type
 	function varIsArray($var) {
 		$var_ser = serialize($var);
@@ -280,7 +280,7 @@ class dBug {
 			$db = "pg";
 		if($db == "sybase-db" || $db == "sybase-ct")
 			$db = "sybase";
-		$arrFields = array("name","type","flags");	
+		$arrFields = array("name","type","flags");
 		$numrows=call_user_func($db."_num_rows",$var);
 		$numfields=call_user_func($db."_num_fields",$var);
 		$this->makeTableHeader("resource",$db." result",$numfields+1);
@@ -304,7 +304,7 @@ class dBug {
 		for($i=0;$i<$numrows;$i++) {
 			$row=call_user_func($db."_fetch_array",$var,constant(strtoupper($db)."_ASSOC"));
 			echo "<tr>\n";
-			echo "<td class=\"dBug_resourceKey\">".($i+1)."</td>"; 
+			echo "<td class=\"dBug_resourceKey\">".($i+1)."</td>";
 			for($k=0;$k<$numfields;$k++) {
 				$tempField=$field[$k]->name;
 				$fieldrow=$row[($field[$k]->name)];
@@ -338,10 +338,10 @@ class dBug {
 	//if variable is an xml resource type
 	function varIsXmlResource($var) {
 		$xml_parser=xml_parser_create();
-		xml_parser_set_option($xml_parser,XML_OPTION_CASE_FOLDING,0); 
-		xml_set_element_handler($xml_parser,array(&$this,"xmlStartElement"),array(&$this,"xmlEndElement")); 
+		xml_parser_set_option($xml_parser,XML_OPTION_CASE_FOLDING,0);
+		xml_set_element_handler($xml_parser,array(&$this,"xmlStartElement"),array(&$this,"xmlEndElement"));
 		xml_set_character_data_handler($xml_parser,array(&$this,"xmlCharacterData"));
-		xml_set_default_handler($xml_parser,array(&$this,"xmlDefaultHandler")); 
+		xml_set_default_handler($xml_parser,array(&$this,"xmlDefaultHandler"));
 		
 		$this->makeTableHeader("xml","xml document",2);
 		$this->makeTDHeader("xml","xmlRoot");
@@ -370,9 +370,9 @@ class dBug {
 	
 	//parse xml
 	function xmlParse($xml_parser,$data,$bFinal) {
-		if (!xml_parse($xml_parser,$data,$bFinal)) { 
-				   die(sprintf("XML error: %s at line %d\n", 
-							   xml_error_string(xml_get_error_code($xml_parser)), 
+		if (!xml_parse($xml_parser,$data,$bFinal)) {
+				   die(sprintf("XML error: %s at line %d\n",
+							   xml_error_string(xml_get_error_code($xml_parser)),
 							   xml_get_current_line_number($xml_parser)));
 		}
 	}
@@ -391,7 +391,7 @@ class dBug {
 			$this->xmlSData[$this->xmlCount].='echo "&nbsp;";';
 		$this->xmlSData[$this->xmlCount].='echo $this->closeTDRow();';
 		$this->xmlCount++;
-	} 
+	}
 	
 	//xml: initiated when an end tag is encountered
 	function xmlEndElement($parser,$name) {
@@ -409,7 +409,7 @@ class dBug {
 		echo $this->closeTDRow();
 		echo "</table>";
 		$this->xmlCount=0;
-	} 
+	}
 	
 	//xml: initiated when text between tags is encountered
 	function xmlCharacterData($parser,$data) {
@@ -418,7 +418,7 @@ class dBug {
 			$this->xmlCData[$count].=$data;
 		else
 			$this->xmlCData[$count]=$data;
-	} 
+	}
 	
 	//xml: initiated when a comment or other miscellaneous texts is encountered
 	function xmlDefaultHandler($parser,$data) {
@@ -486,12 +486,12 @@ class dBug {
 				.dBug_objectHeader,
 				.dBug_resourceHeader,
 				.dBug_resourceCHeader,
-				.dBug_xmlHeader 
+				.dBug_xmlHeader
 					{ font-weight:bold; color:#FFFFFF; cursor:pointer; }
 				
 				.dBug_arrayKey,
 				.dBug_objectKey,
-				.dBug_xmlKey 
+				.dBug_xmlKey
 					{ cursor:pointer; }
 					
 				/* array */
@@ -528,4 +528,3 @@ SCRIPTS;
 	}
 
 }
-?>

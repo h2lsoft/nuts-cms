@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin page-content-view-fields - Language file
- * 
+ *
  * @version 1.0
  * @date 23/06/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -27,5 +27,3 @@ $lang_msg[6] = "Text après";
 $lang_msg[7] = "Option spéciale";
 
 
-
-?>

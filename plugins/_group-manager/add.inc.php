@@ -7,5 +7,3 @@ if($plugin->formValid())
 	$plugin->formInsert();
 }
 
-
-?>

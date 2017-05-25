@@ -7,4 +7,3 @@ $plugin->deleteRender();
 
 
 
-?>

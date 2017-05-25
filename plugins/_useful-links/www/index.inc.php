@@ -26,6 +26,3 @@ $nuts->loadArrayInBloc('link', $datas, "<tr><td class='no_record'>{$lang_msg[5]}
 $plugin->setNutsContent();
 
 
-
-
-?>

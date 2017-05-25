@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin gmaps - Form layout
- * 
+ *
  * @version 1.0
  * @date 08/07/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -33,5 +33,3 @@ $plugin->formAddFieldText('Latitude', "", true, 'number', 'width:120px', $btn);
 $plugin->formAddFieldText('Longitude', "", true, 'number', 'width:120px');
 
 
-
-?>

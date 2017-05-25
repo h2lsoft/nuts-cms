@@ -9,5 +9,3 @@ if($plugin->deleteUserHasConfirmed())
 }
 $plugin->deleteRender();
 
-
-?>

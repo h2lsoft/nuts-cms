@@ -40,8 +40,3 @@ nutsTrigger('file-explorer::create-folder_success', true, "file-explorer user ac
 
 $resp['result'] = 'ok';
 
-
-
-
-
-?>

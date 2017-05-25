@@ -5,13 +5,3 @@ echo "<option></option>";
 die(nutsGetOptionsHeaderImage());
 
 
-
-
-
-
-
-
-
-
-
-?>

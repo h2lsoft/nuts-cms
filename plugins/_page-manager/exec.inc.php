@@ -342,5 +342,3 @@ $nuts->parse('userAllowedPluginBlockManager', $userAllowedPluginBlockManager);
 
 $plugin->render = $nuts->output();
 
-
-?>

@@ -39,18 +39,12 @@ $plugin->formAddFieldText('FormValidMailerTo', $lang_msg[16], false, "", "", "",
 $plugin->formAddFieldText('FormValidMailerSubject', $lang_msg[17], false);
 $plugin->formAddFieldsetEnd();
 
-
 $plugin->formAddFieldsetEnd();
-
-
-
 
 $nuts->alphaNumeric('Name','_');
 
-
 if($_POST)
 {
-
 	if($_POST['FormValidMailer'] == 'YES')
 	{
 		$nuts->notEmpty('FormValidMailerFrom');
@@ -59,9 +53,8 @@ if($_POST)
         // $nuts->email('FormValidMailerTo');
 		$nuts->notEmpty('FormValidMailerSubject');
 	}
-
+	
+	
 }
 
 
-
-?>

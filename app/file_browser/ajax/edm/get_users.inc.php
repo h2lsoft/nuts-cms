@@ -105,5 +105,3 @@ $resp['html'] = $html;
 
 die($html);
 
-
-?>

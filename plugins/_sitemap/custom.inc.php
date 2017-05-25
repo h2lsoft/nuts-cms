@@ -14,6 +14,3 @@ $sitemap_custom = array();
 
 
 
-
-
-?>

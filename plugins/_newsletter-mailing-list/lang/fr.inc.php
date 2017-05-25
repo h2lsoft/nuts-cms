@@ -8,8 +8,3 @@ $lang_msg[2] = "Description";
 $lang_msg[3] = "Total Email";
 
 
-
-
-
-
-?>

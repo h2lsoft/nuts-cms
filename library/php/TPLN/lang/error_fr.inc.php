@@ -36,6 +36,3 @@ $_err['DB']['4'] = 'FROM non trouvé dans votre requête';
 $_err['DB']['5'] = 'Showrecords() doit avoir un entier en second paramètre';
 $_err['DB']['5.1'] = 'Showrecords() doit avoir un entier supérieur à zéro en second paramètre';
 
-
-
-?>

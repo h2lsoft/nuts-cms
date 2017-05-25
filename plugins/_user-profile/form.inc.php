@@ -106,7 +106,3 @@ else
         $nuts->alphaNumeric('Password', '_-');
 }
 
-
-
-
-?>

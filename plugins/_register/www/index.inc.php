@@ -199,5 +199,3 @@ $plugin->setNutsContent();
 
 
 
-
-?>

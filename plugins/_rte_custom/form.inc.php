@@ -8,6 +8,3 @@ $plugin->formDBTable(array('NutsRichEditor'));
 $plugin->formAddFieldTextArea('Content', $lang_msg[1], true, '', "height:400px;");
 
 
-
-
-?>

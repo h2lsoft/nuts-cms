@@ -128,7 +128,3 @@ edmLog('UPLOAD', 'FILE', $_POST['path'].$_FILES['file']['name']);
 nutsTrigger('edm::upload_success', true, "edm user upload file");
 
 die('ok');
-
-
-
-?>

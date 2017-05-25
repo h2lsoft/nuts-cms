@@ -6,5 +6,3 @@ $plugin->deleteDbTable(array('NutsIM')); # put table here
 $plugin->deleteRender();
 
 
-
-?>

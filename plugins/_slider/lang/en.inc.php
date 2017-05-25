@@ -13,7 +13,3 @@ $lang_msg[1] = "Name";
 $lang_msg[2] = "Generate slider javascript";
 
 
-
-
-
-?>

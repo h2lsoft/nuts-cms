@@ -40,5 +40,3 @@ if($_POST)
 	$_POST['Category'] = ucfirst($_POST['Category']);
 }
 
-
-?>

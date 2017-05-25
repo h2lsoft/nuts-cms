@@ -28,6 +28,3 @@ $opts = array('JSON', 'ARRAY', 'XML');
 $plugin->formAddFieldSelect('Output', "", true, $opts);
 
 
-
-
-?>

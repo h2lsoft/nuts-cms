@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin page-content-view - Form layout
- * 
+ *
  * @version 1.0
  * @date 20/11/2012
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -20,5 +20,3 @@ $plugin->formAddFieldTextarea('Description', "", false, "ucfirst", "height:65px;
 $plugin->formAddFieldTextarea('Html', "", true, 'html', "height:200px;", "", $lang_msg[3]);
 $plugin->formAddFieldTextarea('HookData', "", false, 'php', "height:200px;", "", $lang_msg[4]);
 
-
-?>

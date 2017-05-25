@@ -12,4 +12,3 @@ $lang_msg[6] = "Renommer note";
 
 $lang_msg[7] = "Merci de renseigner le nouveau titre";
 
-?>

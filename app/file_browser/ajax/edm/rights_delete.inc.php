@@ -43,7 +43,3 @@ $nuts->dbDelete('NutsEDMFolderRights', "Folder LIKE '$folder%' AND
 $resp['result'] = 'ok';
 
 
-
-
-
-?>

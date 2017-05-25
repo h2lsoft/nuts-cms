@@ -19,6 +19,3 @@ $plugin->deleteDbTable(array('NutsPageComment'));
 
 $plugin->deleteRender();
 
-
-
-?>

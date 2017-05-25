@@ -137,9 +137,9 @@ foreach($sitemap->url as $url)
 												'Url' => $url));
 		
 		// sortie
-		echo " + title: $meta_title<br>";			
-		$url_done[] = $url;	
-	}	
+		echo " + title: $meta_title<br>";
+		$url_done[] = $url;
+	}
 }
 
 
@@ -147,6 +147,3 @@ echo "<h3>Total pages : ".count($url_done)."</h3>";
 
 
 
-
-
-?>

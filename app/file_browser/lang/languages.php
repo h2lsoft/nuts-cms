@@ -1,10 +1,11 @@
 <?php
+
 $languages = array(
     "Català" => "ca",
 	"Česky" => "cs",
 	"Dansk" => "da",
 	"Deutsch" => "de",
-    "Ελληνικά" => "el",	
+    "Ελληνικά" => "el",
 	"English" => "en",
 	"Español" => "es",
 	"Français" => "fr",
@@ -14,4 +15,4 @@ $languages = array(
 	"Српски / Srpski" => "rs",
 	"Svenska" => "se"
 );
-?>
+

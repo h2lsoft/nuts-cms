@@ -11,4 +11,3 @@ $lang_msg[4] = "Lastname";
 $lang_msg[5] = "Firstname";
 
 
-?>

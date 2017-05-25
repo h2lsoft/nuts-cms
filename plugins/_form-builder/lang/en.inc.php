@@ -52,5 +52,3 @@ $lang_msg[32] = "Stock all form user inputs";
 $lang_msg[33] = "Clean all records of this form";
 
 
-
-?>

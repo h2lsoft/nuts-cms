@@ -101,10 +101,6 @@ EOF;
     }
 }
 
-
 $resp['result'] = 'ok';
 $resp['html'] = $str;
 
-
-
-?>

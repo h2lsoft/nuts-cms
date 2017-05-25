@@ -21,7 +21,3 @@ $lang_msg[8] = "No frequently asked question found";
 $lang_msg[9] = "If first character '-', it will erased example: -General";
 
 
-
-
-
-?>

@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin edm-locks - action List
- * 
+ *
  * @version 1.0
  * @date 01/08/2012
  * @author H2Lsoft (contact@h2lsoft.com) - www.h2lsoft.com
@@ -42,6 +42,3 @@ function hookData($row)
 	return $row;
 }
 
-
-
-?>

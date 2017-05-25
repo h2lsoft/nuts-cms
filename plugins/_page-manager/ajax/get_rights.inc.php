@@ -33,5 +33,3 @@ if(!nutsPageManagerUserHasRight(0, 'edit', 0, $_GET['ID']))
 
 die(json_encode($data));
 
-
-?>

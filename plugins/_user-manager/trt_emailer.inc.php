@@ -17,5 +17,3 @@ if($_POST['IdentificationEmail'] == 'YES')
 
 
 
-
-?>

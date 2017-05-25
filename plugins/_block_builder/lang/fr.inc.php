@@ -17,5 +17,3 @@ $lang_msg[9] = "Choisissez une image pour la prévisualisation";
 $lang_msg[10] = "Sous groupe";
 $lang_msg[11] = "Vous permez de définir une séparation dans un même groupe de block";
 
-
-?>

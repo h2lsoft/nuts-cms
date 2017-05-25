@@ -9,5 +9,3 @@ $lang_msg[4] = "WARNING ! Are you sure to purge all logs ?";
 
 
 
-
-?>

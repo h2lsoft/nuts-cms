@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin gmaps - action Delete
- * 
+ *
  * @version 1.0
  * @date 08/07/2013
  * @author H2lsoft (contact@h2lsoft.com) - http://www.h2lsoft.com
@@ -20,5 +20,3 @@ $plugin->deleteDbTable(array('NutsGMaps'));
 $plugin->deleteRender();
 
 
-
-?>

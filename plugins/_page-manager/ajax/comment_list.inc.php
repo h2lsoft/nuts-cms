@@ -25,10 +25,3 @@ echo $datas_json;
 
 exit(1);
 
-
-
-
-
-
-
-?>

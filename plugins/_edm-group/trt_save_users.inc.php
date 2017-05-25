@@ -24,9 +24,3 @@ foreach($_POST['users'] as $user)
     }
 }
 
-
-
-
-
-
-?>

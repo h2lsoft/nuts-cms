@@ -9,7 +9,3 @@
 
 $lang_msg[0] = "EDM Locks"; // plugin name
 
-
-
-
-?>

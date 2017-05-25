@@ -72,6 +72,3 @@ if($include_plugin_css)$plugin->addHeaderFile('css', '/plugins/_press-kit/style.
 $plugin->setNutsContent($output);
 
 
-
-
-?>
