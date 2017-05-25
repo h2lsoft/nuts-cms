@@ -3,6 +3,36 @@
 /* @var $plugin Plugin */
 /* @var $nuts NutsCore */
 
+// ajax **************************************************************************************************
+if(ajaxerRequested())
+{
+	if(ajaxerAction('get-error'))
+	{
+		$ID = @(int)$_GET['ID'];
+		$errors = Query::factory()->select('TotalErrorEmail')->from('NutsNewsletter')->whereID($ID)->executeAndGetOne();
+		if(!$errors || empty($errors))
+		{
+			die("No errors found");
+		}
+		
+		// header txt
+		$filecontent = str_replace('\n', "\n", $errors);
+		$downloadfile = "newsletter $ID - error report.txt";
+		
+		header("Content-Type: plain/text");
+		header("Content-disposition: attachment; filename='$downloadfile'");
+		header("Content-Transfer-Encoding: binary");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		die($filecontent);
+		
+	}
+	
+	
+	die();
+}
+
+
 // assign table to db
 $plugin->listSetDbTable('NutsNewsletter',
 											"
@@ -12,53 +42,115 @@ $plugin->listSetDbTable('NutsNewsletter',
 
 // search engine
 $plugin->listSearchAddFieldText('ID');
+$plugin->listSearchAddFieldDate('Date', '', '', '', '>=');
+$plugin->listSearchAddFieldDate('Date2', 'Date', 'Date', '', '<=');
+$plugin->listSearchAddFieldSelectSql('Category', $lang_msg[19]);
 $plugin->listSearchAddFieldText('Subject', $lang_msg[1]);
+$plugin->listSearchAddFieldBoolean('Draft', $lang_msg[14]);
+
+
 
 
 // create fields
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
+$plugin->listAddCol('Category', $lang_msg[19], '; width:10px; white-space: nowrap;', true);
 $plugin->listAddCol('Date', '', '; width:30px; white-space: nowrap;', false);
 $plugin->listAddCol('uFrom', $lang_msg[2], '; width:30px; white-space: nowrap;', true);
 $plugin->listAddCol('Subject', $lang_msg[1], '', true);
+
+
+$plugin->listAddCol('Status', $lang_msg[22], 'center; width:60px; white-space: nowrap;', false);
+
+
 $plugin->listAddCol('TotalSend', $lang_msg[3], 'center; width:60px; white-space: nowrap;', true);
+$plugin->listAddCol('TotalError', $lang_msg[27], 'center; width:60px; white-space: nowrap;', true);
 $plugin->listAddCol('TotalViews', $lang_msg[4], 'center; width:10px; white-space: nowrap;', true);
 $plugin->listAddCol('TotalUnsuscribe', $lang_msg[5], 'center; width:10px; white-space: nowrap;', true);
+$plugin->listAddCol('SchedulerDateStart', $lang_msg[25], 'center; width:10px; white-space: nowrap;', true);
+$plugin->listAddCol('SchedulerDateEnd', $lang_msg[26], 'center; width:10px; white-space: nowrap;', false);
 
 
 // render list
+$plugin->listCopyButton = false;
+
 $plugin->listExportExcelModeApplyHookData = true;
 $plugin->listRender(20, 'hookData');
 
 
 function hookData($row)
 {
-    global $nuts;
+    global $nuts, $plugin, $lang_msg;
 
-	$row['Date'] = nutsGetGMTDateUser($row['LogActionCreateDateGMT']);
-    if($_SESSION['Language'] == 'fr')$row['Date'] = $nuts->db2Date($row['Date']);
+	if($_SESSION['Language'] == 'fr')$row['Date'] = $nuts->db2Date($row['Date']);
 	
-	$total_views = (@($row['TotalViews']/$row['TotalSend']) * 100);
-	$total_views = round($total_views, 2);
-	$total_unsuscribe = (@($row['TotalUnsuscribe']/$row['TotalSend']) * 100);
-	$total_unsuscribe = round($total_unsuscribe, 2);
-
-
-
-
-	// format
-	$row['TotalSend'] = int_formatX($row['TotalSend']);
-	$row['TotalViews'] = int_formatX($row['TotalViews']);
-	$row['TotalUnsuscribe'] = int_formatX($row['TotalUnsuscribe']);
-
-	// pourcentage
-	$row['TotalViews'] .= " (".$total_views." %)";
-	$row['TotalUnsuscribe'] .= " (".$total_unsuscribe." %)";
-
-
+    
+    
+    if($row['Draft'] == 'YES')
+	{
+		$row['TotalSend'] = $row['TotalError'] = $row['TotalViews'] = $row['TotalUnsuscribe'] = $row['TotalViews'] = $row['TotalUnsuscribe'] = '-';
+		$row = $plugin->listRowSetBackgroundColor('warning', $row);
+		
+		$row['Status'] = $lang_msg[14];
+	}
+	elseif($row['SchedulerStart'] == 'NO')
+	{
+		$row['Status'] = $nuts->db2Date($row['SchedulerDate']);
+		$row['TotalSend'] = $row['TotalError'] = $row['TotalViews'] = $row['TotalUnsuscribe'] = $row['TotalViews'] = $row['TotalUnsuscribe'] = '-';
+	}
+	else
+	{
+		$row['Status'] = ($row['SchedulerFinished'] == 'NO') ? $lang_msg[15] : $lang_msg[16];
+		
+		
+		$row = $plugin->listRowSetEditButtonHidden($row);
+		
+		$total_views = (@($row['TotalViews']/$row['TotalSend']) * 100);
+		$total_views = round($total_views, 2);
+		
+		$total_unsuscribe = (@($row['TotalUnsuscribe']/$row['TotalSend']) * 100);
+		$total_unsuscribe = round($total_unsuscribe, 2);
+		
+		$total_error = (@($row['TotalError']/$row['TotalSend']) * 100);
+		$total_error = round($total_error, 2);
+		
+	
+		// format
+		$row['TotalSend'] = int_formatX($row['TotalSend']);
+		$row['TotalViews'] = int_formatX($row['TotalViews']);
+		$row['TotalUnsuscribe'] = int_formatX($row['TotalUnsuscribe']);
+		$row['TotalError'] = int_formatX($row['TotalError']);
+	
+		// pourcentage
+		$row['TotalViews'] .= " (".$total_views." %)";
+		$row['TotalUnsuscribe'] .= " (".$total_unsuscribe." %)";
+		$row['TotalError'] .= " (".$total_error." %)";
+	}
+	
+	
+	
+	
+	$row['SchedulerDateStart'] = $nuts->db2Date($row['SchedulerDateStart']);
+	$row['SchedulerDateEnd'] = $nuts->db2Date($row['SchedulerDateEnd']);
+ 
+	$row['Status'] = strtoupper(str_replace_latin_accents($row['Status']));
+ 
+	
+	if(!empty($row['uFromLabel']))
+	{
+		$row['uFrom'] = $row['uFromLabel'].' &lt;'.$row['uFrom'].'&gt;';
+	}
+	
+	
+	if(!empty($row['TotalErrorEmail']))
+	{
+		$row['TotalError'] .= " <a href='?mod=_newsletter&do=list&ajaxer=1&_action=get-error&ID={$row['ID']}'><img align='middle' style='height:18px' src='/nuts/img/icon_extension/txt.png'></a>";
+	}
+	
+	
 	
 	return $row;
 }
 
 
 
-?>
+

@@ -97,7 +97,7 @@ else
 			$email = $row["Email"];
 			$default = (empty($comments_avatar_default_image_url)) ? WEBSITE_URL.'/plugins/_comments/www/anonymous.gif': $comments_avatar_default_image_url;
 			$size = $comments_avatar_size;
-			$grav_url = "http://www.gravatar.com/avatar/".md5(strtolower(trim($email)))."?d=".urlencode($default)."&s=".$size;
+			$grav_url = "https://www.gravatar.com/avatar/".md5(strtolower(trim($email)))."?d=".urlencode($default)."&s=".$size;
 			$plugin->parse("nuts_comments.Avatar", $grav_url);
 
 			$plugin->loop("nuts_comments");
@@ -228,7 +228,7 @@ else
 			$email = $_POST['Email'];
 			$default = (empty($comments_avatar_default_image_url)) ? WEBSITE_URL.'/plugins/_comments/www/anonymous.gif': $comments_avatar_default_image_url;
 			$size = $comments_avatar_size;
-			$grav_url = "http://www.gravatar.com/avatar/".md5(strtolower(trim($email)))."?d=".urlencode($default)."&s=".$size;
+			$grav_url = "https://www.gravatar.com/avatar/".md5(strtolower(trim($email)))."?d=".urlencode($default)."&s=".$size;
 			$message = str_replace('{Gravatar}', $grav_url, $message);
 
 			$uri = WEBSITE_URL.'/plugins/_comments/www/exec.php?action=';

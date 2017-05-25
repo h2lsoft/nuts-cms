@@ -15,6 +15,3 @@ $plugin->parse('placeholder', $NEWSLETTER_SUSCRIBE_PLACEHOLDER);
 $plugin->setNutsContent();
 
 
-
-
-?>

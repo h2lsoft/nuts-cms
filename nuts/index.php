@@ -42,7 +42,7 @@ if(@$_GET['_action'] == 'users_online')
 		$row['Application'] = str_replace(array('-','_'), ' ', $row['Application']);
 		$row['Application'] = trim($row['Application']);
 
-		// $gravatar_url = 'http://www.gravatar.com/avatar/'.md5($row['Email']).'?s=60&d=http%3A%2F%2Fwww.nuts-cms.com%2Fnuts%2Fimg%2Fgravatar.jpg';
+		// $gravatar_url = 'https://www.gravatar.com/avatar/'.md5($row['Email']).'?s=60&d=http%3A%2F%2Fwww.nuts-cms.com%2Fnuts%2Fimg%2Fgravatar.jpg';
         $gravatar_url = $row['Avatar'];
         if(empty($gravatar_url))$gravatar_url = WEBSITE_URL.'/nuts/img/gravatar.jpg';
 

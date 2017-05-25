@@ -119,7 +119,7 @@ elseif($_GET['do'] == 'show')
 			$email = $rec['Email'];
 			$default = (empty($comments_avatar_default_image_url)) ? WEBSITE_URL.'/plugins/_comments/www/anonymous.gif': $comments_avatar_default_image_url;
 			$size = $comments_avatar_size;
-			$grav_url = "http://www.gravatar.com/avatar/".md5(strtolower(trim($email)))."?d=".urlencode($default)."&s=".$size;
+			$grav_url = "https://www.gravatar.com/avatar/".md5(strtolower(trim($email)))."?d=".urlencode($default)."&s=".$size;
 			$body = str_replace('{Gravatar}', $grav_url, $body);
 
 			$body = str_replace('{Email}', $rec['Email'], $body);

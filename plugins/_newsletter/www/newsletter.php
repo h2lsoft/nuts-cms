@@ -149,9 +149,3 @@ elseif($_GET['action'] == 'suscribe')
 
 
 
-
-
-
-
-
-?>

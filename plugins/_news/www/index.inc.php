@@ -33,5 +33,3 @@ $this->openPluginTemplate();
 $GLOBALS['NUTS_CONTENT'] = $this->output();
 
 
-
-?>

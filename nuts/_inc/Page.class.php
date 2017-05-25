@@ -266,6 +266,7 @@ class Page extends NutsCore
                 $script_uri = (isset($_SERVER['SCRIPT_URI'])) ? $_SERVER['SCRIPT_URI'] : $_SERVER['REQUEST_URI'];
 				$this->dbInsert('NutsLog', array(
                                                     'DateGMT' => 'NOW()',
+                                                    'Date' => 'NOW()',
 											        'Application' => '_fo-error',
 											        'Action' => 'Error 404',
 											        'Resume' => $script_uri.' (referer => `'.@$_SERVER['HTTP_REFERER'].'`)',

@@ -94,7 +94,7 @@ function youtubeGetPlayer($player_id, $youtube_url, $width='', $height='', $attr
 	$player .= " id=\"nuts_youtube_iframe_player_$player_id\" ";
 	$player .= " width=\"$video_width\" ";
 	$player .= " height=\"$video_height\" ";
-	$player .= " src=\"http://www.youtube.com/embed/$youtube_ID?HD=1&modestbranding=1&showinfo=0&rel=0\" ";
+	$player .= " src=\"https://www.youtube.com/embed/$youtube_ID?HD=1&modestbranding=1&showinfo=0&rel=0\" ";
 	$player .= " $attributes ";
 	$player .= "></iframe>";
 

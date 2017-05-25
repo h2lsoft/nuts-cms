@@ -5,17 +5,10 @@ if(@$_GET['iframe'])
 {
 	$sql = "SELECT Body FROM NutsNewsletter WHERE ID = {$_GET['ID']}";
 	$nuts->doQuery($sql);
-	$txt = $nuts->getOne();
-	echo <<<EOF
-
-		
-				$txt
-		
-
-EOF;
-exit();
+	$txt = $nuts->dbGetOne();
+	echo $txt;
+	exit();
 }
-
 
 $plugin->viewDbTable(array('NutsNewsletter'));
 
@@ -30,5 +23,3 @@ $plugin->viewRender();
 
 
 
-
-?>
