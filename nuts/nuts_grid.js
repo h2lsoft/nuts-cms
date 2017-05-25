@@ -226,9 +226,7 @@ nutsDatagrid.prototype.render = function(){
                 }
 
                 str += '<option value="'+val+'">'+label+'</option>\n';
-
             }
-
         }
         else if(this.columns[i].input_type == 'textarea')
         {
@@ -314,15 +312,12 @@ nutsDatagrid.prototype.renderInFieldset = function(fieldset_id)
             stop: function(event, ui) {
                 nutsDatagridUpdate(datagrid_id);
             }
-
         })
     }
-
-
+    
     // hide the first row
     // $('.datagrid tbody tr:first-child {display: none;}'
     $('#datagrid_'+datagrid_id+' tbody tr:first-child').hide();
-
 
     // attach event add && delete
     delete_message = this.deleteMessage;
@@ -352,16 +347,12 @@ nutsDatagrid.prototype.renderInFieldset = function(fieldset_id)
 
             if(v != $(this).val())
                 $(this).val(v);
-
         });
-
-
+	    
         // atach on change on input
-        $('#datagrid_'+datagrid_id+' tr.row input, #datagrid_'+datagrid_id+' tr.row select, #datagrid_'+datagrid_id+' tr.row textarea').bind('click keyup blur', function(){
+        $('#datagrid_'+datagrid_id+' tr.row input, #datagrid_'+datagrid_id+' tr.row select, #datagrid_'+datagrid_id+' tr.row textarea').bind('blur', function(){
             nutsDatagridUpdate(datagrid_id);
         });
-
-
 
         // attach delete event
         $('#datagrid_'+datagrid_id+' tbody tr:last .datagrid_btn_delete').click(function(event){
@@ -413,7 +404,6 @@ nutsDatagrid.prototype.renderInFieldset = function(fieldset_id)
                     {
                         $('#datagrid_'+datagrid_id+' tr.row:last .'+key).val(v);
                     }
-
                 }
             }
 
