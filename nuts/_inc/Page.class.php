@@ -2838,8 +2838,8 @@ class Page extends NutsCore
 
 
 		$form['fields'] .= "\n<div class=\"wrapper form_bottom\">\n";
-		$form['fields'] .= '<input type="reset" class="reset" value="'.$cancel_label.'" />';
-		$form['fields'] .= '<input type="submit" class="submit" value="'.$submit_label.'" />';
+		$form['fields'] .= '<input type="reset" class="reset" value="<i18n>'.$cancel_label.'</i18n>" />';
+		$form['fields'] .= '<input type="submit" class="submit" value="<i18n>'.$submit_label.'</i18n>" />';
 		$form['fields'] .= "\n</div>\n";
 
 		// dynamic validation
@@ -2876,7 +2876,7 @@ class Page extends NutsCore
 		$form['Caption'] = trim($form['Caption']);
 		if(!empty($form['Caption']))
 		{
-			$form['Caption'] = "<div class=\"caption\">{$form['Caption']}</div>\n";
+			$form['Caption'] = "<div class=\"caption\"><i18n>{$form['Caption']}</i18n></div>\n";
 		}
 
 		// information
@@ -2884,7 +2884,7 @@ class Page extends NutsCore
 		$info_text = trim(strip_tags($form['Information']));
 		if(!empty($info_text))
 		{
-			$add_info = '<div class="nuts_form_information">'.$form['Information'].'</div>';
+			$add_info = '<div class="nuts_form_information"><i18n>'.$form['Information'].'</i18n></div>';
 		}
 
 
@@ -2894,7 +2894,7 @@ $template = <<<EOF
 
 	<div id="form_error">
 		<bloc::form_error>
-		<p>{msg}</p>
+		<p><i18n>{msg}<i18n></p>
 		</bloc::form_error>
 	</div>
 
@@ -2926,7 +2926,6 @@ if($('div#form_error p').length == 0)$('div#form_error').remove();
 $add_info
 
 EOF;
-
 
 		$this->createVirtualTemplate($template);
 
@@ -2987,13 +2986,12 @@ EOF;
                 }
 
 
-
 				// add after text
 				foreach($formData as $field)
 				{
 					if($key == $field['FieldName'] && !empty($field['TextAfter']))
 					{
-						$vals .= ' ('.$field['TextAfter'].')';
+						$vals .= ' (<i18n>'.$field['TextAfter'].'</i18n>)';
 						break;
 					}
 				}
@@ -3035,10 +3033,10 @@ EOF;
 				if(empty($form['FormValidMailerTo']))$form['FormValidMailerTo'] = NUTS_ADMIN_EMAIL;
 
 				$this->mailFrom($form['FormValidMailerFrom']);
-                if(!empty($email_response))
+                /*if(!empty($email_response))
                 {
                     $this->mailFrom($email_response);
-                }
+                }*/
 
 				$this->mailSubject($form['FormValidMailerSubject']);
 				$this->mailBody($body, 'HTML');
@@ -3077,10 +3075,11 @@ EOF;
 		}
 
 		$str = $this->output();
-
-
+		
 		return $str;
+		
 	}
+	
 
 
 	/**
