@@ -366,10 +366,14 @@ function menu_pattern()
         $pattern = $row['Pattern'];
 
         $code = sprintf("%s", $pattern);
+	    $code = str_replace("\n", '\n', $code);
+	    $code = str_replace("\t", '\t', $code);
+	    $code = str_replace("\r", '\r', $code);
+	    $code = str_replace('"', '\"', $code);
 
         echo 'sub.add({title : "'.$name.'", onclick : function() {
 				tinyMCE.activeEditor.execCommand("mceInsertContent", false, "'.$code.'");
-			}});';
+		}});';
     }
 }
 
@@ -476,15 +480,14 @@ function menu_zone()
 
 
 // no cache
-// header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
-// header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past
+header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 
 ?>
 <!doctype html>
 <html>
     <head>
-		<meta http-equiv="X-UA-Compatible" content="chrome=1" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta charset="utf-8" />
         <title>Nuts Rich Editor</title>
 		<style type="text/css">
 		html, body {height: 100%;}
@@ -500,7 +503,8 @@ function menu_zone()
 		<script type="text/javascript" src="tiny_mce/tiny_mce.js"></script>
 		<script type="text/javascript">
 		function resizeEditor(){
-			tinyMCE.get('RichEditor').theme.resizeTo($(window).width(), $(window).height()-110);
+
+			tinyMCE.activeEditor.theme.resizeTo($(window).width(), $(window).height()-110);
 
 		}
 
@@ -672,6 +676,9 @@ echo $nuts->dbGetOne();
 
 		function my_save(direct_saving)
         {
+
+             tinyMCE.get('RichEditor').setProgressState(1); // Show progress
+
 			//var parentID = parent.RTE_parent_object;
 			var parentID = "<?php echo $_GET['objID']; ?>";
 
@@ -689,9 +696,13 @@ echo $nuts->dbGetOne();
 
 				window.opener.$('#chk_Close').attr('checked', false);
 				window.opener.$('#close_after').attr('checked', false);
-
 				window.opener.$('#former').submit();
 			}
+
+            setTimeout(function(){
+	            tinyMCE.get('RichEditor').setProgressState(0); // hide progress
+            }, 2500);
+
 
 		}
 
@@ -729,15 +740,22 @@ echo $nuts->dbGetOne();
 		</style>
 
     </head>
-    <body style="margin:0; padding:0; background-color:#EEEEEE; overflow: hidden;" onresize="resizeEditor()">
+    <body style="margin:0; padding:0; background-color:#EEEEEE; overflow: hidden;">
 
 		<form name="form" target="" onsubmit="return false;">
 			<textarea name="RichEditor" id="RichEditor" style="width:100%;" class="mceEditor" onclick="reloadIt()" onkeydown="reloadIt()"></textarea>
 		</form>
-<?php
 
-$nuts->DbClose();
 
-?>
+		<script>
+		/*setTimeout(function(){
+				resizeEditor();
+			}, 2000);*/
+		</script>
+
+
+        <?php $nuts->dbClose(); ?>
+
+
     </body>
 </html>
