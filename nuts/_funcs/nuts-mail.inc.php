@@ -114,6 +114,8 @@ function nutsMailer($to, $nutEmailID, $datas = array(), $xtrace=false, $action="
 
 	// email send
 	if(empty($row['Expeditor']))$row['Expeditor'] = NUTS_EMAIL_NO_REPLY;
+	if(isset($datas['MailForceExpeditor']))$row['Expeditor'] = $datas['MailForceExpeditor'];
+	
 	$nuts->mailFrom($row['Expeditor']);
 	$nuts->mailCharset('utf-8');
 
