@@ -35,7 +35,6 @@ if(strlen($_lang) > 2)$_lang = substr($_lang, 0, 2);
 $IP = $nuts->getIP();
 $IP_long = (int)ip2long($IP);
 
-
 $sql = "SELECT
 				COUNT(*)
 		FROM
@@ -47,8 +46,6 @@ $sql = "SELECT
 				Action = 'login'";
 $nuts->doQuery($sql);
 $login_error_count = $nuts->dbGetOne();
-
-
 
 if($_POST)
 {

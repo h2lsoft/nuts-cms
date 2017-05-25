@@ -3655,7 +3655,7 @@ EOF;
 		if($_POST && $_GET['ID'] != 0)
 		{
 			// 2 minutes lock
-			$sql = "SELECT
+			/*$sql = "SELECT
 							NutsUserID
 					FROM
 							NutsLog
@@ -3676,7 +3676,7 @@ EOF;
 				$r = $this->nuts->dbFetch();
 				$user_name = $r['FirstName'].' '.$r['LastName'];
 				$this->nuts->addError('', sprintf($nuts_lang_msg[54], $user_name));
-			}
+			}*/
 		}
 
 
