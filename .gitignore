@@ -1,5 +1,6 @@
 _tmp/*
 .idea/*
 .DS_Store
-plugins/_plugins-list/*
 de
+nuts/config.inc.php
+
