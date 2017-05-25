@@ -620,7 +620,7 @@
             $('div#message').html(str);
             $('div#message').slideDown();
 
-            timeout = (type != "error") ? 5000 : 3000;
+            timeout = (type == "error") ? 15000 : 10000;
             if(type == 'special')
             {
                 $('div#message').addClass('error');
