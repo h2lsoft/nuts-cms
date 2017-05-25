@@ -29,6 +29,7 @@ if(count($matches) == 2)
 	$out = str_replace('url (', 'url(', $out);
 	$out = str_replace('url(/', 'url (/', $out);
 	$out = str_replace('url(http://', 'url (http://', $out);
+	$out = str_replace('url(https://', 'url (https://', $out);
 	$out = str_replace('url(', 'url('.$_GET['t'].'/', $out);
 
 	// unprotect

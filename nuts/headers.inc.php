@@ -3,6 +3,8 @@
  * Use this script to easily includes headers in your job files (like cron task)
  */
 include(WEBSITE_PATH.'/nuts/config_auto.inc.php');
+include(WEBSITE_PATH.'/vendor/autoload.php');
+
 
 $auto_include_paths = array('_funcs/generics/*.php', '_funcs/*.php', '_components/*.php', );
 foreach($auto_include_paths as $auto_include_path)
