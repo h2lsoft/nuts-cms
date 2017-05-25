@@ -1,4 +1,4 @@
-table {border-spacing: 1px; margin-top: 10px;}
+table {border-spacing: 1px; margin-top: 10px; border-collapse: separate;}
 th {font-size:13px; font-weight: normal; color: #666; background-color: #e5e5e5; padding: 5px; white-space:nowrap; text-align: left;}
 td { padding: 5px; background-color:#fff;}
 

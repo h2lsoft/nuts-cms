@@ -57,6 +57,147 @@ if(@$_GET['_action'] == 'users_online')
 	die(json_encode($users_online));
 }
 
+// ajax:rte_get-templates **********************************************************************************************
+if(@$_GET['_action'] == 'rte_get-templates')
+{
+	$tpl_uri = '?_action=rte_get-template&ID=';
+
+	$tpls = Query::factory()->select("
+										Name AS title,
+										Description AS description,
+										CONCAT('$tpl_uri', ID) AS url
+									")
+						    ->from('NutsRteTemplate')
+							->order_by('Name')
+							->executeAndGetAll();
+
+	die(json_encode($tpls));
+}
+
+// ajax:rte_get-template ***********************************************************************************************
+if(@$_GET['_action'] == 'rte_get-template')
+{
+	$_GET['ID'] = (int)@$_GET['ID'];
+	$tpl = Query::factory()->select("Content")
+				           ->from('NutsRteTemplate')
+				           ->whereID($_GET['ID'])
+				           ->executeAndGetOne();
+	die($tpl);
+
+}
+
+// ajax:rte_get-link_list **********************************************************************************************
+if(@$_GET['_action'] == 'rte_get-link_list')
+{
+	$link_list = array();
+
+	// we charge distinct language actived
+	$languages = array();
+	$languages[] = nutsGetDefaultLanguage();
+
+	$tmps = nutsGetOptionsLanguages('array');
+	foreach($tmps as $tmp)
+	{
+		if(!empty($tmp))
+			$languages[] = strtolower($tmp);
+	}
+
+	// get distinct zoneID for this language
+	$zone_ids = array(0);
+	foreach($languages as $lng)
+	{
+		// homepage
+		$link_list[] = array('title' => "[HOME {$lng}]", 'value' => "/{$lng}/");
+
+		// zone
+		$sql = "SELECT DISTINCT ZoneID, (SELECT Name FROM NutsZone WHERE ID = ZoneID) AS ZoneName FROM NutsPage WHERE Deleted = 'NO' AND State = 'PUBLISHED' AND Language = '$lng' ORDER BY ID";
+		$nuts->doQuery($sql);
+		$zones = $nuts->dbGetData();
+
+		foreach($zones as $zone)
+		{
+			$c_zoneID = $zone['ZoneID'];
+			$c_zone_name = $zone['ZoneName'];
+
+			if(!empty($c_zone_name))
+			{
+				$link_list[] = array('title' => "--", 'value' => "#");
+				$link_list[] = array('title' => "[ZONE $c_zone_name]", 'value' => "#");
+			}
+
+			// pages listings
+			$nuts_page_id = 0;
+			$sql_tpl = "SELECT ID, Language, MenuName, VirtualPagename, _HasChildren FROM NutsPage WHERE NutsPageID = %s AND Language = '$lng' AND ZoneID = $c_zoneID AND Deleted = 'NO' AND State = 'PUBLISHED' ORDER BY Position";
+			$nuts->dbSelect($sql_tpl, array($nuts_page_id));
+			$qID1 = $nuts->dbGetQueryID();
+			while($pg = $nuts->dbFetch())
+			{
+				$name = str_replace("'", "\'", $pg['MenuName']);
+				$name = str_replace('"', '`', $pg['MenuName']);
+
+				$url = nutsGetPageUrl($pg['ID'], $lng, $pg['VirtualPagename']);
+				$link_list[] = array('title' => $name, 'value' => $url);
+
+				// recursivity for children page
+				if($pg['_HasChildren'] == 'YES')
+				{
+					// level 2
+					$nuts->dbSelect($sql_tpl, array($pg['ID']));
+					$qID2 = $nuts->dbGetQueryID();
+					while($pg2 = $nuts->dbFetch())
+					{
+						$name = str_replace("'", "\'", $pg2['MenuName']);
+						$name = str_replace('"', '`', $pg2['MenuName']);
+
+						$url = nutsGetPageUrl($pg2['ID'], $lng, $pg2['VirtualPagename']);
+						$link_list[] = array('title' => ' > '.$name, 'value' => $url);
+
+						// page has children ?
+						if($pg2['_HasChildren'] == 'YES')
+						{
+							// level 3
+							$nuts->dbSelect($sql_tpl, array($pg2['ID']));
+							$qID3 = $nuts->dbGetQueryID();
+							while($pg3 = $nuts->dbFetch())
+							{
+								$name = str_replace("'", "\'", $pg3['MenuName']);
+								$name = str_replace('"', '`', $pg3['MenuName']);
+
+								$url = nutsGetPageUrl($pg3['ID'], $lng, $pg3['VirtualPagename']);
+								$link_list[] = array('title' => ' >>> '.$name, 'value' => $url);
+
+								// level 4
+								if($pg3['_HasChildren'] == 'YES')
+								{
+									$nuts->dbSelect($sql_tpl, array($pg3['ID']));
+									while($pg4 = $nuts->dbFetch())
+									{
+										$name = str_replace("'", "\'", $pg4['MenuName']);
+										$name = str_replace('"', '`', $pg4['MenuName']);
+
+										$url = nutsGetPageUrl($pg4['ID'], $lng, $pg4['VirtualPagename']);
+										$link_list[] = array('title' => ' >>>> '.$name, 'value' => $url);
+									}
+								}
+
+								$nuts->dbSetQueryID($qID3);
+							}
+						}
+
+						$nuts->dbSetQueryID($qID2);
+					}
+				}
+
+				$nuts->dbSetQueryID($qID1);
+			}
+		}
+	}
+
+	die(json_encode($link_list));
+
+}
+
+
 // ajax:list_search_users **********************************************************************************************
 if(@$_GET['_action'] == 'list_search_users')
 {
@@ -206,10 +347,7 @@ if($menu_count > 0)
         if(!empty($rec['NameFr']))$cur_name = $rec['Name'];
         if($NutsUserLang == 'fr')$cur_name = $rec['NameFr'];
 
-        $mods_group[] = array(
-                                'name'  => $cur_name,
-                                'color' => $rec['Color']
-                            );
+        $mods_group[] = array('name'  => $cur_name, 'color' => $rec['Color']);
     }
 }
 
@@ -274,6 +412,7 @@ if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']) && !isset($_GET['target']))
 $current_theme = nutsGetTheme();
 $PHPSESSID = session_id();
 
+$NUTS_HTML_HEADERS = $nuts->directIoOutput('_templates/_header.html');
 $nuts->open('_templates/all.html');
 
 // allow Visual Query Builder
@@ -311,7 +450,7 @@ if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']) && !isset($_GET['target']) &
 	if(!nutsUserHasRight($_SESSION['NutsGroupID'], '_news', 'list'))$nuts->eraseBloc('writing_news');
 
     // update plugin_list_ac get all plugin list allowed for this group
-    $sql = "SELECT
+    /*$sql = "SELECT
 					DISTINCT NutsMenu.Name,
 					NutsMenu.ExternalUrl
 			FROM
@@ -355,17 +494,14 @@ if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']) && !isset($_GET['target']) &
 
     $plugin_list_ac = json_encode($plugin_list_ac);
     @$nuts->parse('plugin_list_ac', $plugin_list_ac);
-
+	*/
 
 	// listing favorite user shortcut
-	$shortcuts = Query::factory()->select("
-											ID,
-											Plugin
-										")
-		->from('NutsUserShortcut')
-		->whereEqualTo('NutsUserID', $_SESSION['NutsUserID'])
-		->order_by('Position')
-		->executeAndGetAll();
+	$shortcuts = Query::factory()->select("ID, Plugin")
+								 ->from('NutsUserShortcut')
+								 ->whereEqualTo('NutsUserID', $_SESSION['NutsUserID'])
+								 ->order_by('Position')
+								 ->executeAndGetAll();
 
 	if(count($shortcuts) == 0)
 	{

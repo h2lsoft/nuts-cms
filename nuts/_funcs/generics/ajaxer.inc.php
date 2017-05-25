@@ -78,8 +78,8 @@ function ajaxerGetIDS()
  */
 function ajaxerUrlConstruct($action, $plugin_name='', $plugin_default_action='list', $params_added='')
 {
-	if(empty($plugin_name))
-		$plugin_name = PLUGIN_NAME;
+	if(empty($plugin_name))$plugin_name = PLUGIN_NAME;
+	if(empty($plugin_default_action))$plugin_default_action = 'list';
 
 	$uri = "index.php?mod={$plugin_name}&do={$plugin_default_action}&ajaxer=1&_action={$action}";
 
@@ -90,11 +90,16 @@ function ajaxerUrlConstruct($action, $plugin_name='', $plugin_default_action='li
 		{
 			$tmp .= "&{$key}=".urlencode($val);
 		}
+		
+		$params_added = $tmp;
 	}
 
-	$uri .= $params_added;
+	if(!empty($params_added))
+		$uri .= '&'.$params_added;
+	
 	$uri .= "&t=".time();
 	$uri = str_replace('&&', '&', $uri);
+	
 	return $uri;
 }
 

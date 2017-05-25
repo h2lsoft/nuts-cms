@@ -34,10 +34,33 @@
 
 		</div>
 		<!-- /w_left_menu -->
-
-
+		
 		<input type="text" id="top_search_input" class="search widget_top_search" />
+		
+        <!-- gallery -->
+        <div class="w_tab">
 
+            <bloc::galleries>
+                <div class="w_item" onclick="addToText($(this));" item="{item}">
+                    <img class="logo" src="{img}" align="absmiddle" /> {name}
+                </div>
+            </bloc::galleries>
+
+        </div>
+        <!-- /gallery -->
+
+        <!-- maps -->
+        <div class="w_tab">
+
+            <bloc::maps>
+                <div class="w_item" onclick="addToText($(this));" item="{item}">
+                    <img class="logo" src="{img}" align="absmiddle" /> {name}<br>
+                    <span class="description">Type : {desc}</span>
+                </div>
+            </bloc::maps>
+
+        </div>
+        <!-- /maps -->
 
 		<!-- plugins -->
 		<div class="w_tab">

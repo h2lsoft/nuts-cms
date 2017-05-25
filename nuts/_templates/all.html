@@ -1,19 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="initial-scale=1" />
-	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
-	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.nuts-cms.com/rss.php" />
-
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="robots" content="noindex, nofollow" />
-	<link rel="icon" href="favicon.ico" />
 
 	<title>{CONST::APP_TITLE} - {CONST::WEBSITE_NAME}</title>
 
-	<script type="text/javascript" src="../library/js/php.js"></script>
-	<script type="text/javascript" src="nuts.js?t={$timer}"></script>
-	<script type="text/javascript" src="nuts_grid.js?t={$timer}"></script>
 
 	<!-- richeditor -->
 	<script type="text/javascript">
@@ -27,6 +17,8 @@
 	var nutsCurrentPageLang = "{$NutsUserLang}";
 	var current_theme = "{$current_theme}";
     var AllowVisualQueryBuilder = "{AllowVisualQueryBuilder}";
+    var popupMode = "{$_GET['popup']}";
+    var parent_refresh = "{$_GET['parent_refresh']}";
 
 	var nuts_lang_msg_61 = "{$nuts_lang_msg[61]}";
 	var nuts_lang_msg_62 = "{$nuts_lang_msg[62]}";
@@ -47,76 +39,8 @@
 
 	if("{$_GET['popup']}" == 1)list_full_length = true;
 	</script>
-
-    <script type="text/javascript" src="../library/js/tiny_mce/tiny_mce.js?t={$timer}"></script>
-	<script type="text/javascript" src="tinymce_config.js?t={$timer}"></script>
-
-	<!-- ui -->
-	<script type="text/javascript" src="../library/js/browser_detect.js"></script>
-	<script type="text/javascript" src="../library/js/jquery.js"></script>
-
-	<script type="text/javascript" src="../library/js/jquery.rightClick.js"></script>
-	<script type="text/javascript" src="../library/js/shortcut.js"></script>
-	<script type="text/javascript" src="../library/js/jquery.textarea.js"></script>
-	<script src="../library/js/jquery.form.js"  type="text/javascript"></script>
-	<script src="../library/js/jquery-ui/jquery-ui-personalized-1.5.1.js" type="text/javascript"></script>
-	<link rel="stylesheet" href="../library/js/jquery-ui/themes/custom/jquery-ui-themeroller.css" />
-
-	<script src="../library/js/jquery-simpletree/js/jquery.simple.tree.js" type="text/javascript"></script>
-	<link rel="stylesheet" href="../library/js/jquery-simpletree/style.css" />
-
-	<script src="../library/js/jscalendar/calendar.js" type="text/javascript"></script>
-	<script src="../library/js/jscalendar/lang/calendar-{$NutsUserLang}.js" type="text/javascript"></script>
-	<script src="../library/js/jscalendar/calendar-setup.js" type="text/javascript"></script>
-
-	<script src="../library/js/asmselect/jquery.asmselect.js?t={$timer}" type="text/javascript"></script>
-	<link rel="stylesheet" href="../library/js/asmselect/jquery.asmselect.css?t={$timer}" />
-
-	<script type="text/javascript" src="../library/js/jquery-autocomplete/jquery.autocomplete.js"></script>
-	<link rel="stylesheet" href="../library/js/jquery-autocomplete/jquery.autocomplete.css" />
-	<link rel="stylesheet" href="../library/js/jquery-autocomplete/jquery.autocomplete_nuts.css" />
-
-	<script src="../library/js/jquery.cookie.js"  type="text/javascript"></script>
-
-	<!-- color picker -->
-	<script type="text/javascript" src="/library/js/jquery-colorpicker/js/colorpicker.js"></script>
-	<link rel="stylesheet" href="/library/js/jquery-colorpicker/css/colorpicker.css" />
-	<link rel="stylesheet" href="/library/js/jquery-colorpicker/css/custom.css" />
-	<!-- /color picker -->
-
-	<!-- ui -->
-
-	<!-- tooltip -->
-	<link rel="stylesheet" href="../library/js/jquery-tooltip/jquery.tooltip.css" />
-	<script src="../library/js/jquery-tooltip/lib/jquery.bgiframe.js" type="text/javascript"></script>
-	<script src="../library/js/jquery-tooltip/jquery.tooltip.js" type="text/javascript"></script>
-	<!-- tooltip -->
-
-	<!-- mask -->
-	<script src="../library/js/jquery.maskedinput.pack.js" type="text/javascript"></script>
-	<!-- mask -->
-
-	<!-- m_uploader -->
-	<link rel="stylesheet"  href="../library/js/m_uploader/fileuploader.css"/>
-	<script src="../library/js/m_uploader/fileuploader.js" type="text/javascript"></script>
-	<!-- /m_uploader -->
-
-	<!-- codemirror -->
-	<link rel="stylesheet"  href="../library/js/codemirror/lib/codemirror.css">
-	<script type="text/javascript" src="../library/js/codemirror/lib/codemirror.js"></script>
-	<script type="text/javascript" src="../library/js/codemirror/mode/clike/clike.js"></script>
-	<script type="text/javascript" src="../library/js/codemirror/mode/xml/xml.js"></script>
-	<script type="text/javascript" src="../library/js/codemirror/mode/javascript/javascript.js"></script>
-	<script type="text/javascript" src="../library/js/codemirror/mode/css/css.js"></script>
-	<script type="text/javascript" src="../library/js/codemirror/mode/sql/sql.js"></script>
-	<script type="text/javascript" src="../library/js/codemirror/mode/php/php.js"></script>
-	<!-- /codemirror -->
-
-    <link rel="stylesheet" type="text/css" href="css/style.css?t={$timer}" media="all" />
-    <link rel="stylesheet" type="text/css" href="css/print.css?t={$timer}" media="print" />
-
-	<link rel="stylesheet" type="text/css" href="css/custom.css" media="screen" />
-	{#include("_inc/custom.html");}
+	
+	{$NUTS_HTML_HEADERS}
 
 </head>
 
@@ -126,18 +50,22 @@
 <div id="notify_it"></div>
 <!-- /notify_it -->
 
+
 <!-- ajax loader -->
-<div id="ajax_loader">
-	<img src="img/ajax-loader.gif" align="absmiddle" /> Loading...
-</div>
+<div id="ajax_loader"><img src="img/ajax-loader.gif" align="absmiddle" /> Loading...</div>
 <!-- /ajax loader -->
 
-
+<div id="menu_overlay" onclick="mainMenuClose()"></div>
 
 
 <!-- header -->
 <div id="header" style="{popup_display}">
 
+	<!-- bo_menu -->
+    <div id="bo_menu_switch">
+        <a href="javascript:;" onclick="mainMenuOpen();" title="Ctrl + Alt"></a>
+    </div>
+	
     <!-- bo_logo -->
     <div id="bo_logo">
         <a href="index.php"><img src="{$nutsBackLogo}" alt="Nuts Cms" align="left" class="bo_logo" /></a>
@@ -202,7 +130,7 @@
 
             <bloc::gravatar>
                 <a class="avatar has-drop-down-menu" href="javascript:;" data-drop-down-menu="user-badge-drop-down-menu">
-                    <img src="{avatar_image}" /> {$_SESSION['FirstName']} {$_SESSION['LastName']} (#{$_SESSION['NutsUserID']})
+                    <img src="{avatar_image}" class="img-rounded" /> <span class="user_login">{$_SESSION['FirstName']} {$_SESSION['LastName']} (#{$_SESSION['NutsUserID']})</span>
                     <b class="drop-down-arrow drop-down-arrow-right"></b>
                 </a>
             </bloc::gravatar>
@@ -246,22 +174,20 @@
 
 
 {#if(@!isset($_GET['popup']) || @$_GET['popup'] == '' || @$_GET['popup'] == 0)}
+
 <!-- menu -->
 <div id="menu" style="{popup_display}">
+
+    <!-- top_search -->
+    <div id="top_search" style="{popup_display}">
+        <input autocomplete="false" spellcheck="false" type="search" name="top_search" id="top_search_input">
+    </div>
+    <!-- /top_search -->
+
     {$menu}
+
 </div>
 <!-- menu -->
-
-<!-- top_search -->
-<div id="top_search" style="{popup_display}">
-    <input autocomplete="false" spellcheck="false" type="text" name="top_search" id="top_search_input" accesskey="t" onblur="this.value='';" />
-</div>
-
-<script>
-var plugin_list_ac = {plugin_list_ac};
-</script>
-<!-- /top_search -->
-
 
 {#endif}
 
@@ -293,12 +219,12 @@ var plugin_list_ac = {plugin_list_ac};
 				</td>
 				<td class="col_title">
 
-					<a href="javascript:system_goto('?mod={$plugin->name}&do={$_GET['do']}&popup={$_GET['popup']}&parentID={$_GET['parentID']}{$plugin->url_tracked}', 'content');">{$plugin->real_name}</a>
+					<a href="javascript:;" onclick="system_goto('?mod={$plugin->name}&do={$_GET['do']}&popup={$_GET['popup']}&parentID={$_GET['parentID']}{$plugin->url_tracked}', 'content');">{$plugin->real_name}</a>
 					<span>{$plugin->description}</span>
 				</td>
 				<td class="col_configuration">
 					<bloc::admin_configuration_image>
-						<a href="javascript:popupModal('{config_url}&popup=1', 'Configuration', 1024, 768, '');" title="Configuration"><i class="icon-equalizer"></i></a>
+						<a href="javascript:popupModalV2('{config_url}&popup=1');" title="Configuration"><i class="icon-equalizer"></i></a>
 					</bloc::admin_configuration_image>
 				</td>
 			</tr>
@@ -343,53 +269,8 @@ var plugin_list_ac = {plugin_list_ac};
 <div id="nuts_canvas_content" onclick="imageBoxClose()"></div>
 <!-- canvas -->
 
+<script type="text/javascript" src="nuts_init.js"></script>
 
-<script type="text/javascript">
-if("{$_GET['popup']}" != 1)
-{
-    // initTime();
-    initMainMenu();
-    initTopSearch();
-}
-
-setPluginTitle();
-ajaxHistoricCheckChanges();
-
-// escape to close
-if("{$_GET['popup']}" == 1)
-{
-	$('body').css('background-image', 'none');
-	$('#add').css('margin-top', '-10px');
-
-    parent_refresh = "{$_GET['parent_refresh']}";
-	if(parent_refresh != "0" &&  strtoupper(parent_refresh) != "NO" && window.opener != null && window.opener != undefined && typeof window.opener.system_refresh == 'function'){
-        window.onbeforeunload = function() {
-            window.opener.force_ajax_async = false;
-            window.opener.system_refresh();
-        };
-	}
-
-    $(document).keydown(function(e){
-        code = e.keyCode ? e.keyCode : e.which;
-        if(code == 27)
-        {
-            if((c=confirm("{$nuts_lang_msg[62]}")))
-            {
-                if(typeof from_mode != undefined || from_mode != 'iframe')
-                    window.close();
-                else
-                    parent.$.fancybox.close();
-            }
-        }
-
-    });
-
-}
-else
-{
-	privateBoxRefresh();
-}
-</script>
 
 </body>
 </html>

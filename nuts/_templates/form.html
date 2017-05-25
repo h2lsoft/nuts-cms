@@ -9,72 +9,75 @@
 </div>
 <!-- hide form error -->
 
-<form id="former" name="former" method="post" action="?mod={$plugin->name}&do={$plugin->action}&ID={$_GET['ID']}&ajax=1&target=form&popup={$_GET['popup']}&{formParameters}"  onsubmit="WYSIWYGhackSubmit()">
+<form id="former" name="former" method="post" action="?mod={$plugin->name}&do={$plugin->action}&ID={$_GET['ID']}&cID={$_GET['cID']}&ajax=1&target=form&popup={$_GET['popup']}&{formParameters}"  onsubmit="WYSIWYGhackSubmit()">
 <div id="form_content">
 	<bloc::f>
 
 	<bloc::fieldset_start>
 	<!-- fieldset -->
-	<fieldset id="fieldset_{name}">
+	<fieldset id="fieldset_{name}" style="{style}" {attributes}>
 		<legend title="{help}">{label}</legend>
 		{html}
 	</bloc::fieldset_start>
 
 	<!-- widget -->
 	<bloc::widgets>
-	<p id="p_{name}">
+	<p id="p_{nameX}" data-wrapper-id="p_{name}">
+		
 		<label title="{help}">{label}
-						<bloc::required>
-						<span class="required">*</span>
-						</bloc::required>
+			<bloc::required>
+			<span class="required">*</span>
+			</bloc::required>
 		</label>
-
+		
 		<bloc::text>
 		<!-- text -->
 			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" {attributes} />
-			{after}
+            <span id="wrapper_after_{name}" class="wrapper_after">{after}</span>
 		<!-- /text -->
 		</bloc::text>
 
 		<bloc::filemanager_media>
 		<!-- filemanager_media -->
 			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" {attributes} />
-			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="mediaBrowser('{name}','{folder}');"><img class="icon" align="absmiddle" src="img/icon-folder.png"/></a>
-			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><img class="icon" align="absmiddle" src="img/icon-media.png"/></a>
-			{after}
+			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="mediaBrowser('{name}','{folder}');"><i class="icon-folder"></i></a>
+			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><i class="icon-eye"></i></a>
+            <span id="wrapper_after_{name}" class="wrapper_after">{after}</span>
 		<!-- /filemanager_media -->
 		</bloc::filemanager_media>
 
 		<bloc::filemanager>
 		<!-- filemanager -->
 			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" {attributes} />
-			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="allBrowser('{name}','{folder}');"><img class="icon" align="absmiddle" src="img/icon-folder.png"/></a>
-			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><img class="icon" align="absmiddle" src="img/icon-file.png"/></a>
-			{after}
+			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="allBrowser('{name}','{folder}');"><i class="icon-folder"></i></a>
+			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><i class="icon-file"></i></a>
+            <span id="wrapper_after_{name}" class="wrapper_after">{after}</span>
 		<!-- /filemanager -->
 		</bloc::filemanager>
+
 
 		<bloc::filemanager_image>
 		<!-- filemanager_image -->
 			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" {attributes} />
-			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="imgBrowser('{name}','{folder}');"><img class="icon" align="absmiddle" src="img/icon-folder.png"/></a>
-			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><img class="icon" align="absmiddle" src="img/icon-preview-mini.gif"/></a>
-			{after}
+			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[87]}" onclick="imgBrowser('{name}','{folder}');"><i class="icon-folder"></i></a>
+			<a href="javascript:;" tabindex="-1" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('{name}');"><i class="icon-eye"></i></a>
+            <span id="wrapper_after_{name}" class="wrapper_after">{after}</span>
 		<!-- /filemanager_image -->
 		</bloc::filemanager_image>
-
+		
 		<bloc::hidden>
 		<!-- hidden -->
 			<input type="hidden" id="{name}" name="{name}" value="{value}" style="{style}" class="{class}" {attributes} />
-			{after}
+            <span id="wrapper_after_{name}" class="wrapper_after">{after}</span>
 		<!-- /hidden -->
 		</bloc::hidden>
-
+		
+		
 		<bloc::date>
 		<!-- date -->
 			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}"  class="{class}" {attributes} />
 			<script>inputDate('{name}', 'date')</script>
-			{after}
+			<span id="wrapper_after_{name}" class="wrapper_after">{after}</span>
 		<!-- /date -->
 		</bloc::date>
 
@@ -82,7 +85,7 @@
 		<!-- datetime -->
 			<input autocomplete="off" type="text" id="{name}" name="{name}" value="{value}" style="{style}"  class="{class}" {attributes} />
 			<script>inputDate('{name}', 'datetime')</script>
-			{after}
+			<span id="wrapper_after_{name}" class="wrapper_after">{after}</span>
 		<!-- /datetime -->
 		</bloc::datetime>
 
@@ -99,6 +102,7 @@
 
 			<input type="file" id="{name}" name="{name}" style="{style}" class="{class}" {attributes} onchange="$('#a_{name}').fadeIn('normal');" size="62" />
 			<a id="a_{name}" style="display:none;" href="javascript:;" onclick="$('#{name}').val(''); $('#a_{name}').fadeOut('normal');">{$nuts_lang_msg[22]}</a>
+			<span id="wrapper_after_{name}" class="wrapper_after">{after}</span>
 
 			<script>
 			$(document).ready(function(){
@@ -107,10 +111,6 @@
 				}
 			});
 			</script>
-
-
-			{after}
-
 
 			<div style="clear:left"></div>
 
@@ -127,7 +127,7 @@
 
 			<input type="file" id="{name}" name="{name}" style="{style}"  class="{class}" {attributes} size="62" onchange="$('#a_{name}').fadeIn('normal');" />
 			<a id="a_{name}" style="display:none;" href="javascript:;" onclick="$('#{name}').val(''); $('#a_{name}').fadeOut('normal');">{$nuts_lang_msg[22]}</a>
-			{after}
+			<span id="wrapper_after_{name}" class="wrapper_after">{after}</span>
 
 			<script>
 			$(document).ready(function(){
@@ -146,7 +146,7 @@
 		<bloc::textarea>
 		<!-- textarea -->
 			<textarea wrap="off" style="{style}" id="{name}" name="{name}" class="{class}" {attributes}>{value}</textarea>
-			{after}
+			<span id="wrapper_after_{name}" class="wrapper_after">{after}</span>
 		<!-- /textarea -->
 		</bloc::textarea>
 
@@ -157,20 +157,17 @@
 			<option value="{value}">{label}</option>
 			</bloc::options>
 		</select>
-		{after}
+		<span id="wrapper_after_{name}" class="wrapper_after">{after}</span>
 		<!-- select -->
 		</bloc::select>
-
+		
 		<bloc::colorpicker>
 		<!-- colorpicker -->
-		<div id="{name}_colorpicker_preview" class="widget_colorpicker_preview">&nbsp;</div>
-        <input type="text" id="{name}" name="{name}" value="{value}" style="width:50px; {style}" maxlength="7" class="widget_colorpicker {class}" {attributes} />
-
-
-            {after}
+        <input type="color" id="{name}" name="{name}" value="{value}" style="{style}" class="widget_colorpicker {class}" {attributes} />
+        <span id="wrapper_after_{name}" class="wrapper_after">{after}</span>
 		<!-- /colorpicker -->
 		</bloc::colorpicker>
-
+		
 	</p>
 	</bloc::widgets>
 	<!-- /widget -->

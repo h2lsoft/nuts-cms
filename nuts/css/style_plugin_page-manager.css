@@ -35,7 +35,13 @@ div#page_form #Note {height: 60px;}
 
 
 
-div#page_options_bottom {display:none; padding:5px; padding-right:10px; text-align:center; float:left; background-color:#fff; margin-left:5px; margin-right:5px; border:1px solid #ccc; border-top:0; margin-top: -2px;}
+div#page_options_bottom {display:none; padding:5px; padding-right:10px; text-align:center; float:left; background-color:#fff; margin-left:5px; margin-right:5px; border:1px solid #ccc; border-top:0; margin-top: -2px; background-color: #e5e5e5;}
+
+div#page_options_bottom input[type=submit] {background-color: #3399FE; border-color: #e5e5e5; color: white;}
+div#page_options_bottom input[type=button] {background-color: white;  }
+
+div#page_options_bottom input[type=submit]:hover, div#page_options_bottom input[type=button]:hover {opacity: 0.6;}
+
 
 div#page_form p {margin:0; padding:0; margin-bottom:8px;}
 div#page_form label {width:105px; display:block; float:left; text-align:right; padding-right:10px;  white-space: nowrap; padding-top: 2px;}

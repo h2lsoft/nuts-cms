@@ -3,8 +3,8 @@
  * Query simple query constructor
  *
  * @package Nuts-Component
- * @version 1.0
- * @date 30/11/2014
+ * @version 2.0
+ * @date 05/05/2014
  */
 
 class Query
@@ -14,9 +14,12 @@ class Query
 	private $_q = array();
 	private $_last_query;
 
-	private $_special_keywords = array('NOW()', 'CURDATE()', 'CURTIME()'); // special keywords so no string protection
+	private $_special_keywords = array('NOW()', 'CURDATE()', 'CURTIME()'); // special sql keywords so no string protection
 
 	public $debug_html_mode = true;
+	private $debug_reserved_sql = array('SELECT', 'FROM', 'WHERE', 'ORDER BY', 'GROUP BY', 'LIMIT', 'HAVING', 'UPDATE', 'SET', 'DELETE', 'REPLACE', 'INSERT INTO', 'VALUES');
+
+	public $query_type = 'SELECT'; // SELECT, UPDATE, DELETE, DELETE_REAL
 
 
 	/**
@@ -101,7 +104,10 @@ class Query
 	 */
 	public function whereCondition($condition, $parameters=array())
 	{
-		$parameters = array_map('sqlX', $parameters);
+		for($i=0; $i < count($parameters); $i++){
+			$parameters[$i] = $this->sqlX($parameters[$i]);
+		}
+
 		$condition = vsprintf($condition, $parameters);
 
 		$this->where($condition, '', '', false);
@@ -128,7 +134,7 @@ class Query
 		        foreach($str as $val)
 		        {
 			        if(!empty($tmp))$tmp .= ', ';
-			        $tmp .= "'".sqlX($val)."'";
+			        $tmp .= "'".$this->sqlX($val)."'";
 		        }
 
 		        $conditions = $conditions.' '.$operator."(".$tmp.")";
@@ -148,7 +154,7 @@ class Query
 	        }
 	        else
 	        {
-		        $strX = sqlX($str);
+		        $strX = $this->sqlX($str);
 		        $conditions = $conditions.' '.$operator." '".$strX."' ";
 	        }
         }
@@ -326,67 +332,131 @@ class Query
 		if(!isset($this->_q['order by']))$this->_q['order by'] = "";
 		if(!isset($this->_q['limit']))$this->_q['limit'] = "";
 
-
-		$select = $this->_q['select'];
-
 		$sql = "";
-		$sql .= "SELECT"."\n";
-		$sql .= "		{$select}"."\n";
-		$sql .= "FROM"."\n";
-		$sql .= "		{$this->_q['from']}"."\n";
-		$sql .= "WHERE"."\n";
 
-		if(count($this->_q['where']))
+
+		// SELECT query
+		if($this->query_type == 'SELECT')
 		{
-			foreach($this->_q['where'] as $w)
+			$select = $this->_q['select'];
+
+			$sql .= "SELECT"."\n";
+			$sql .= "		{$select}"."\n";
+			$sql .= "FROM"."\n";
+			$sql .= "		{$this->_q['from']}"."\n";
+			$sql .= "WHERE"."\n";
+
+			if(count($this->_q['where']))
 			{
-				$sql .= "		$w AND"."\n";
+				foreach($this->_q['where'] as $w)
+				{
+					$sql .= "		$w AND"."\n";
+				}
+			}
+
+			if(empty($this->_q['from']))
+			{
+				$sql .= "		Deleted = 'NO'"."\n";
+			}
+			else
+			{
+				$froms = explode(",", $this->_q['from']);
+				$froms = array_map('trim', $froms);
+
+				$i = 0;
+				foreach($froms as $from)
+				{
+					$from = explode(' ', $from);
+					$from = @end($from);
+
+					if($i > 0)$sql = rtrim($sql)." AND\n";
+					$sql .= "		$from.Deleted = 'NO'"."\n";
+					$i++;
+				}
+			}
+
+			if(!empty($this->_q['group by']))
+			{
+				$sql .= "GROUP BY "."\n";
+				$sql .= "		{$this->_q['group by']}"."\n";
+			}
+
+			if(!empty($this->_q['having']))
+			{
+				$sql .= "HAVING "."\n";
+				$sql .= "		{$this->_q['having']}"."\n";
+			}
+
+			if(!empty($this->_q['order by']))
+			{
+				$sql .= "ORDER BY "."\n";
+				$sql .= "		{$this->_q['order by']}"."\n";
+			}
+
+			if(!empty($this->_q['limit']))
+			{
+				$sql .= "LIMIT "."\n";
+				$sql .= "		{$this->_q['limit']}"."\n";
+			}
+		}
+		// INSERT query
+		elseif($this->query_type == 'INSERT')
+		{
+			$sql .= "INSERT INTO {$this->_q['insert']}"."\n";
+			$sql .= "	(\n\t\t".str_replace(",\n", ",\n		", join(",\n", $this->_q['insert_columns']))."\n\t)\n";
+			$sql .= "VALUES"."\n";
+			$sql .= "	(\n\t\t".str_replace(",\n", ",\n		", join(",\n", $this->_q['insert_values']))."\n\t)\n";
+
+		}
+		// UPDATE query
+		elseif($this->query_type == 'UPDATE')
+		{
+			$sql .= "UPDATE"."\n";
+			$sql .= "		{$this->_q['update']}"."\n";
+			$sql .= "SET"."\n";
+			$sql .= "		".str_replace(",\n", ",\n		", join(",\n", $this->_q['set']))."\n";
+			$sql .= "WHERE"."\n";
+
+			if(count($this->_q['where']))
+			{
+				foreach($this->_q['where'] as $w)
+				{
+					$sql .= "		$w AND"."\n";
+				}
+			}
+
+			$sql .= "		Deleted='NO'"."\n";
+
+			if(!empty($this->_q['limit']))
+			{
+				$sql .= "LIMIT "."\n";
+				$sql .= "		{$this->_q['limit']}"."\n";
+			}
+		}
+		// DELETE query
+		elseif($this->query_type == 'DELETE')
+		{
+			$sql .= "DELETE FROM"."\n";
+			$sql .= "		{$this->_q['delete']}"."\n";
+			$sql .= "WHERE"."\n";
+
+			if(count($this->_q['where']))
+			{
+				foreach($this->_q['where'] as $w)
+				{
+					$sql .= "		$w AND"."\n";
+				}
+			}
+
+			$sql .= "		Deleted='NO'"."\n";
+
+			if(!empty($this->_q['limit']))
+			{
+				$sql .= "LIMIT "."\n";
+				$sql .= "		{$this->_q['limit']}"."\n";
 			}
 		}
 
-		if(empty($this->_q['from']))
-		{
-			$sql .= "		Deleted = 'NO'"."\n";
-		}
-		else
-		{
-			$froms = explode(",", $this->_q['from']);
-			$froms = array_map('trim', $froms);
-
-			$i = 0;
-			foreach($froms as $from)
-			{
-				$from = @end(explode(' ', $from));
-
-				if($i > 0)$sql = rtrim($sql)." AND\n";
-				$sql .= "		$from.Deleted = 'NO'"."\n";
-				$i++;
-			}
-		}
-
-		if(!empty($this->_q['group by']))
-		{
-			$sql .= "GROUP BY "."\n";
-			$sql .= "		{$this->_q['group by']}"."\n";
-		}
-
-		if(!empty($this->_q['having']))
-		{
-			$sql .= "HAVING "."\n";
-			$sql .= "		{$this->_q['having']}"."\n";
-		}
-
-		if(!empty($this->_q['order by']))
-		{
-			$sql .= "ORDER BY "."\n";
-			$sql .= "		{$this->_q['order by']}"."\n";
-		}
-
-		if(!empty($this->_q['limit']))
-		{
-			$sql .= "LIMIT "."\n";
-			$sql .= "		{$this->_q['limit']}"."\n";
-		}
 
 		$this->_q = array();
 
@@ -402,7 +472,7 @@ class Query
      *
      * @param boolean $fb_debug Firebug debug (default = false)
 	 */
-	function execute($fb_debug=false)
+	function execute($fb_debug=false, $exit=false)
 	{
 		$sql = $this->get();
 		$sql_original = $sql;
@@ -417,17 +487,21 @@ class Query
 	        {
 		        if($this->debug_html_mode)
 		        {
-			        $reserved_sql = array('SELECT', 'FROM', 'WHERE', 'ORDER BY', 'GROUP BY', 'LIMIT', 'HAVING');
-			        foreach($reserved_sql as $key)
+			        foreach($this->debug_reserved_sql as $key)
 			        {
 				        $sql = str_replace("{$key}\n", "<b style='color:blue'>{$key}</b>\n", $sql);
 				        $sql = str_replace("{$key} ", "<b style='color:blue'>{$key}</b> ", $sql);
 			        }
 		        }
 
-		        echo '<pre>'.$sql.'<pre>';
+		        echo '<hr><pre style="border:1px solid #ccc; padding:5px;">'.$sql.'</pre>';
 	        }
+
+	        if($exit)die();
+
         }
+
+
 
 		$this->_DBLink->doQuery($sql_original);
 	}
@@ -478,6 +552,103 @@ class Query
         $this->execute($fb_debug);
         return $this->_DBLink->dbGetOneData();
 	}
+
+
+	/**
+	 * Turn to update query
+	 *
+	 * @param $table
+	 */
+	function update($table){
+		$this->query_type = 'UPDATE';
+		$this->_q['update'] = $table;
+
+		return $this;
+	}
+
+	/**
+	 * @param      $column
+	 * @param      $value
+	 * @param bool $add_quotes
+	 */
+	function set($column, $value, $add_quotes=true){
+
+		$value = $this->sqlX($value);
+		$value = ($add_quotes) ? "'{$value}'" : $value;
+		$set = "$column = $value";
+
+		$this->_q['set'][] = $set;
+		return $this;
+	}
+
+
+	/**
+	 * Turn to delete query (mode update)
+	 *
+	 * @param $table
+	 */
+	function delete($table){
+		$this->update($table)->set('Deleted', 'YES');
+		return $this;
+	}
+
+	/**
+	 * Turn to Delete REAL MODE query !
+	 *
+	 * @param $table
+	 */
+	function deleteX($table){
+
+		$this->query_type = 'DELETE';
+		$this->_q['delete'] = $table;
+
+		return $this;
+	}
+
+	/**
+	 * Turn Insert query
+	 *
+	 * @param $table
+	 */
+	function insert($table)
+	{
+		$this->query_type = 'INSERT';
+		$this->_q['insert'] = $table;
+		return $this;
+	}
+
+
+	/**
+	 * insert value
+	 *
+	 * @param string $column
+	 * @param string $value
+	 * @param bool $add_quotes
+	 */
+	function values($column, $value, $add_quotes=true){
+
+		$value = $this->sqlX($value);
+		$value = ($add_quotes) ? "'{$value}'" : $value;
+
+		$this->_q['insert_columns'][] = $column;
+		$this->_q['insert_values'][] = $value;
+
+		return $this;
+	}
+
+
+	/**
+	 * Protect XSS injection
+	 *
+	 * @param $str
+	 *
+	 * @return string
+	 */
+	function sqlX($str)
+	{
+		return strtr($str, array("\x00" => '\x00', "\n" => '\n', "\r" => '\r', '\\' => '\\\\', "'" => "\'", '"' => '\"', "\x1a" => '\x1a'));
+	}
+
 
 
 }

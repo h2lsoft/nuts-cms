@@ -1,6 +1,10 @@
-input[type=button] {padding: 2px 8px; margin-left: 5px; border: 1px solid #ccc; background: url(/nuts/css/button_bkg.png); /*border-radius: 3px;*/ }
-input[type=button]:hover {border-color:#4C607A; color:#666; background: none; cursor: pointer;  }
+input[type=button] {padding: 4px 8px; margin-left: 5px; border: 1px solid #ccc; background: #fff; /*background: url(/nuts/css/button_bkg.png);*/  /*border-radius: 3px;*/ }
+input[type=button]:hover {border-color:#ccc; color:#000; background-color: #eee; cursor: pointer;  }
 input[type=checkbox] {cursor: pointer;}
+
+
+div#main {background: none;}
+
 
 .plupload_scroll .plupload_filelist {height: 320px;}
 li.plupload_droptext {line-height: 280px;}
@@ -82,7 +86,9 @@ form#fileform {display: none;}
     display: none;
 }
 
-.n_window .n_titlebar {background: transparent url(../img/navbar.png) 0 0 repeat-x; height: 31px; padding:0 3px; padding-left: 10px; line-height: 31px; cursor: move;}
+.n_window .n_titlebar {/*background: transparent url(../img/navbar.png) 0 0 repeat-x;*/
+                        background: #DCE6F4;
+                        height: 31px; padding:0 3px; padding-left: 10px; line-height: 31px; cursor: move;}
 .n_window .n_title {float:left;}
 .n_window .n_close {float: right; margin-right: 3px; margin-top: 7px;}
 .n_window .n_close a {background-image: url(../img/cancel.png); background-repeat: no-repeat; display: block; width: 16px; height: 16px;}
@@ -155,7 +161,7 @@ div#file-specs #info div.fileupload input {
 .n_bottom_buttons label {cursor: pointer;}
 
 .n_table { padding:0; border:0; margin:0; margin-bottom:10px; border-collapse:collapse;}
-.n_table thead th { height: 24px; line-height: 24px; text-align: left; font-weight: normal; color: #4C607A; padding: 0 5px; border: 1px solid #ccc; background: url(../img/navbar.png) center top repeat-x;  }
+.n_table thead th { height: 24px; line-height: 24px; text-align: left; font-weight: normal; color: #4C607A; padding: 0 5px; border: 1px solid #ccc; /*background: url(../img/navbar.png) center top repeat-x;*/ background-color: #eee;  }
 .n_table tbody td { color: #777; height: 24px; line-height: 24px; margin:0; padding: 0 5px; border: 1px solid #ccc;}
 .n_table .center {text-align: center;}
 .n_table .min30 {white-space: nowrap; width: 30px;}
@@ -173,7 +179,7 @@ div#file-specs #info div.fileupload input {
 #groups_window {width: 850px; height: 500px; }
 .n_window .tag {
     background-color: #e5e5e5;
-    border-radius: 3px;
+    /*border-radius: 3px;*/
     padding: 0px 4px;
 }
 
@@ -204,6 +210,54 @@ tr.file_lock td {color:red!important;}
 {
     opacity: 0.5;
     filter:grayscale(100%);
-
 }
+
+
+/** upodates more windows 8 like **/
+div.nb
+{
+    background:#e5e5e5;
+}
+
+div.nb ul li a:hover, div.nb ul li a.selected
+{
+    background:#fff;
+}
+
+div.nb ul li a:hover span, div.nb ul li a.selected span
+{
+    background: none;
+}
+
+div.nb ul li a span.options
+{
+    background:url('data:image/gif;base64,R0lGODlhEAAQAKIAAAAAAH9/f2BgYMzMzJCQkP///wAAAAAAACH5BAUUAAUALAAAAAAQABAAAAMgWLrc/jDKSau9OI7Aex+OAIwkIEBieUapSYkrRYCZkwAAOw==') no-repeat;
+}
+
+div.nb ul li a:hover span.options, div.nb ul li a.selected span.options
+{
+    background:url('data:image/gif;base64,R0lGODlhEAAQAKIAAAAAAH9/f2BgYMzMzJCQkP///wAAAAAAACH5BAUUAAUALAAAAAAQABAAAAMgWLrc/jDKSau9OI7Aex+OAIwkIEBieUapSYkrRYCZkwAAOw==') no-repeat;
+}
+
+
+
+div.ab ol, div.ab ol li.root span, div.ab, div.ab ol li.root {background-image: none;}
+#addressbar .root span {display: none;}
+div.ab ol li a {border-color: White;}
+div.ab ol li a:hover {background-image: none; text-decoration: underline; border-color: transparent!important;}
+div#searchbar input {background-color: white;}
+#addressbar {border-bottom: 1px solid #CCD9EA; background: #f5f5f5;}
+div#main hr {background-color: #e5e5e5;}
+#tree {background-color: white;}
+div.nb ul ul {background-image: none; background: white; border:1px solid #979797;}
+
+div.nb {background: #F1F5FB; border-bottom: 1px solid #CCD9EA;}
+
+div#file-specs {background-image: none; background-color: #F1F5FB; border-top:1px solid #CCD9EA;}
+
+.context-menu-theme-mb { background:white; border:1px solid #979797; padding:1px;}
+.context-menu-theme-mb .context-menu-separator {margin-top: 0; border:0;}
+
+
+
 

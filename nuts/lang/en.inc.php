@@ -28,10 +28,10 @@ $nuts_lang_msg[8] = "View this record";
 $nuts_lang_msg[9] = "Edit this record";
 $nuts_lang_msg[10] = "Delete this record";
 $nuts_lang_msg[11] = "Search";
-$nuts_lang_msg[12] = "begins with";
-$nuts_lang_msg[13] = "not begins with";
-$nuts_lang_msg[14] = "countains";
-$nuts_lang_msg[15] = "not countains";
+$nuts_lang_msg[12] = "begins with (separator ,)";
+$nuts_lang_msg[13] = "not begins  with (separator ,)";
+$nuts_lang_msg[14] = "contains (separator ,)";
+$nuts_lang_msg[15] = "not contains (separator ,)";
 $nuts_lang_msg[16] = "Search";
 $nuts_lang_msg[17] = "Cancel";
 $nuts_lang_msg[18] = "Previous";
@@ -105,7 +105,7 @@ $nuts_lang_msg[52] = "Print";
 $nuts_lang_msg[53] = "Toggle list";
 
 $nuts_lang_msg[54] = "User `%s` has just edited this record, please try to save in 2 minutes";
-$nuts_lang_msg[55] = "Your access is blocked (5 times login failed),<br />please retry in 10 minutes";
+$nuts_lang_msg[55] = "Your access is blocked (5 times login failed),<br />your access will be automatically reactived in 30 minutes";
 $nuts_lang_msg[56] = "Send";
 $nuts_lang_msg[57] = "Records/page";
 
@@ -147,14 +147,21 @@ $nuts_lang_msg[82] = "Create a page";
 $nuts_lang_msg[83] = "Create a news";
 
 
-$nuts_lang_msg[84]['subject'] = "IP blocked";
+$nuts_lang_msg[84]['subject'] = APP_TITLE."> IP blocked";
 $nuts_lang_msg[84]['body'] = "
 Hi,
 
-IP `{IP}` is blocked by system after 5 times error login (automatically unblocked after 15 minutes)
+IP `{IP}` is blocked by system after 5 times error login,
+it will be automatically reactivate after 30 minutes.
+
+To unblock this IP: {WEBSITE_URL}/nuts/?mod=_control-center&do=exec
 
 
-To unblock this IP: {WEBSITE_URL}/nuts/?mod=_control-center&do=exec";
+Whois information :
+===================
+{WhoisInformation}
+
+";
 
 
 $nuts_lang_msg[85] = "View";
@@ -194,8 +201,9 @@ $nuts_lang_msg[101] = "Execute";
 $nuts_lang_msg[102] = "columns";
 
 $nuts_lang_msg[103] = "Please copy this line to your clipboard  (Ctrl+C / Apple+C) :";
+$nuts_lang_msg[104] = "visitor(s) online";
 
-
+$nuts_lang_msg[105] = "regular expression";
 
 
 // main menu ***********************************************************************

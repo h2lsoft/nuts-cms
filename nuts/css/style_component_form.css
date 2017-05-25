@@ -1,11 +1,22 @@
 /** window **/
-.ui-dialog {background: white;}
-.ui-dialog-content {background: white; color: #000;}
+.ui-widget-overlay {background-image: none!important;}
+.ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {font-family: inherit!important; font-size: inherit!important;}
+.ui-state-default .ui-icon {background: none;}
+.ui-dialog-titlebar-close {background: none; border: 0;}
+.ui-widget-header {border:0;}
+
+.ui-dialog {background: white; border:1px solid #999!important; border-radius: 0px!important;}
+.ui-dialog-content {background: white; color: #000; }
+.ui-dialog .ui-dialog-content {overflow: hidden; padding: 0;}
 .ui-dialog-title {text-transform: uppercase!important; letter-spacing: 1px; font-weight: normal; color: #000; color: #1570B8; font-size: 16px;}
+.ui-dialog .ui-dialog-title {background: #fff; width: 100%;}
 .ui-dialog-titlebar { background: #fff!important;  border-bottom:0; text-align: center;}
-.ui-dialog-titlebar-close {background:url(window_close.png) no-repeat!important; width: 16px; height: 16px; }
-.ui-dialog-titlebar-close-hover, .ui-dialog-titlebar-close:hover {background:url(window_close.png) no-repeat!important; opacity: 0.5;}
-.ui-dialog-titlebar-close:active {background:url(window_close.png) no-repeat!important; opacity: 0.5;}
+
+.ui-dialog .ui-dialog-titlebar-close {right: 10px;}
+
+.ui-dialog-titlebar-close {background:url(window_close.png) no-repeat!important; width: 21px; height: 21px; border: 0!important; border-radius: 0px!important; outline: 0; margin-right:5px!important; }
+.ui-dialog-titlebar-close-hover, .ui-dialog-titlebar-close:hover {background:url(window_close.png) no-repeat!important; outline: 0;  opacity: 0.5;}
+.ui-dialog-titlebar-close:active {background:url(window_close.png) no-repeat!important; opacity: 0.8;}
 
 #nuts_form_canvas {display: none; opacity: 0.5; background-color: white; width: 100%; height: 100%; position: absolute; z-index: 9999999; top:0; left:0; cursor: wait;}
 
@@ -16,7 +27,7 @@
 #form_bottom_printer_layout i:hover {color: #000;}
 #form_bottom_printer_layout i:active {color: #007dcf;}
 
-div#form p.bottom {margin:0; clear:both; text-align:center; padding:10px; background:none; /*border-top: 3px solid #ddd;*/ padding-top: 7px;}
+div#form p.bottom {margin:0; clear:both; text-align:center; padding:10px; background:none; /*border-top: 3px solid #ddd;*/ padding-top: 10px; margin-top: -10px; background:white!important;}
 div#form p.bottom #btn_submit, div#form p.bottom #btn_print, #page_options_bottom #btn_submit {}
 div#form p.bottom #btn_cancel, #page_options_bottom #btn_cancel {margin-left: 80px;}
 div#form p.bottom #btn_print {margin-right: 80px;} /* for view */
@@ -67,14 +78,18 @@ div#form .image_preview:hover {background-color: #fafad2; border-color: #999;}
 div#form .image_preview img {margin-bottom: 8px;}
 div#form .image_preview input[type=checkbox] {float:left; top: -4px; margin-left: 0px; margin-right: 5px;}
 
+#form a.tt i {font-size: 16px; margin: 0 3px; color: #666;}
+#form a.tt i:hover {color: #000;}
+
+
 
 /** file_preview **/
 div#form .file_preview {width:80px; text-align:center; float:left; padding:5px; border:1px solid #ccc; background-color:#e5e5e5; margin-right:10px;}
 div#form .file_preview:hover {background-color: #fafad2; border-color: #999;}
 div#form .file_preview img {margin-bottom: 8px;}
 div#form .file_preview input[type=checkbox] {float:left; top: -4px; margin-left: 0px; margin-right: 5px;}
-
 div#form .icon:hover {opacity: 0.5;}
+
 
 
 /** checkbox **/
@@ -98,12 +113,16 @@ div#form .qq-upload-size {font-size:10px; }
 
 /** console **/
 div#console {padding:5px; background-color:#000; border:1px solid #000; font-family:"Courier New", Courier, monospace; font-size:11px; color:white;}
-div#console a {color: #00AAFF; color: #00AAFF;}
+div#console a {color: #00AAFF;}
 
 
 /** view **/
 .form_view label {padding-top: 0!important;}
 
+
+
+#form label i {color: #42657B;}
+#form label:hover i, #form label i:hover  {color: #00AAFF;}
 
 
 /** form treatment progress **/
@@ -134,3 +153,7 @@ div#console a {color: #00AAFF; color: #00AAFF;}
     height: 100%;
     background-color: #ccc;
 }
+
+/** tinymce **/
+#form .mce-tinymce {margin-left: 175px; border-radius: 0px!important;}
+#form .mce-fullscreen {margin-left: 0px!important; }

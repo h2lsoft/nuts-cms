@@ -6,7 +6,7 @@ include('config.inc.php');
 include('headers.inc.php');
 
 $nuts = new NutsCore();
-session_start();
+@session_start();
 
 
 // redirect index prevent error chrome for remember password ***********************************************************
@@ -62,6 +62,7 @@ if($_POST)
 		{
 			$f = array();
 			$f['IP'] = $nuts->getIP();
+			$f['WhoisInformation'] = @shell_exec("whois {$f['IP']}");
 			@nutsSendEmail($nuts_lang_msg[84], $f, NUTS_ADMIN_EMAIL);
 		}
 
@@ -165,6 +166,11 @@ if($_POST)
 }
 
 $nuts->dbClose();
+
+// parsing *************************************************************************************************************
+$NutsUserLang = 'en';
+$NUTS_HTML_HEADERS = $nuts->directIoOutput(NUTS_PATH.'/_templates/_header.html');
+
 $nuts->open('_templates/login.html');
 
 if($login_error_count < 5)

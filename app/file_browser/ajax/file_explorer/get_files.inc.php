@@ -143,7 +143,7 @@ else
                 }
                 else
                 {
-                    $htmlFiles .= sprintf('<li>
+	                /*$htmlFiles .= sprintf('<li>
                                             <a href="%1$s" title="%2$s" class="file">
                                                 <span class="begin"></span>
                                                 <span class="filename">%2$s</span>
@@ -152,7 +152,18 @@ else
                                         </li>'.CR,
                         $pathX,
                         $key,
-                        $ext3);
+                        $ext3);*/
+
+	                // get image preview from google viewer
+	                $file_uri = urlencode(WEBSITE_URL.$pathX);
+	                $uri_preview = "https://docs.google.com/viewer?a=bi&pagenumber=1&w=90&url=".$file_uri;
+	                $htmlFiles .= '<li>
+                                            <a href="'.$pathX.'" title="'.$key.'" class="file">
+                                                <span class="begin"></span>
+                                                <span class="filename">'.$key.'</span>
+                                                <span class="icon" style="background:none;"><img src="'.$uri_preview.'" style="height:86px"></span>
+                                            </a>
+                                        </li>'.CR;
                 }
             }
             // small_images ********************************************************************************************
@@ -184,6 +195,19 @@ else
                         $pathX,
                         $key,
                         $ext3);
+
+	                // get image preview from google viewer
+	                /*$file_uri = urlencode(WEBSITE_URL.$pathX);
+	                $uri_preview = "https://docs.google.com/viewer?a=bi&pagenumber=1&w=90&url=".$file_uri;
+	                $htmlFiles .= '<li>
+                                            <a href="'.$pathX.'" title="'.$key.'" class="file">
+                                                <span class="begin"></span>
+                                                <span class="filename">'.$key.'</span>
+                                                <span class="icon" style="background:none;"><img src="'.$uri_preview.'" style="height:48px"></span>
+                                            </a>
+                                        </li>'.CR;
+	                */
+
                 }
             }
             // list ********************************************************************************************

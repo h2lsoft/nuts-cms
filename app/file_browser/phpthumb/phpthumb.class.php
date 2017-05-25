@@ -1970,6 +1970,7 @@ class phpthumb {
 		$this->thumbnail_width  = $this->w;
 		$this->thumbnail_height = $this->h;
 		$this->is_alpha = true;
+		$aspectratio = 1;
 		if ($this->thumbnail_image_width >= $this->thumbnail_width) {
 
 			if ($this->w) {
@@ -2222,6 +2223,8 @@ exit;
 			}
 			$phpthumbFilters = new phpthumb_filters();
 			$phpthumbFilters->phpThumbObject = &$this;
+			$mask_filename = '';
+
 			foreach ($this->fltr as $filtercommand) {
 				@list($command, $parameter) = explode('|', $filtercommand, 2);
 				$this->DebugMessage('Attempting to process filter command "'.$command.'('.$parameter.')"', __FILE__, __LINE__);
@@ -3802,7 +3805,7 @@ exit;
 							$this->DebugMessage('gif_loadFileToGDimageResource('.$tempfilename.') completed', __FILE__, __LINE__);
 							unlink($tempfilename);
 							return $gdimg_source;
-							break;
+							// break;
 						} else {
 							$ErrorMessage = 'Failed to open tempfile in '.__FILE__.' on line '.__LINE__;
 							$this->DebugMessage($ErrorMessage, __FILE__, __LINE__);
@@ -3882,5 +3885,3 @@ exit;
 	}
 
 }
-
-?>

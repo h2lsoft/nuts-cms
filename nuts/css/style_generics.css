@@ -1,5 +1,5 @@
 /** generics **********************************************************************************************************/
-html, {width:100%; height:100%;}
+html {width:100%; height:100%;}
 
 body {
     overflow-y:scroll;
@@ -31,27 +31,41 @@ pre {padding: 5px; background-color: #e5e5e5;}
 pre.copy {padding-left: 25px; background-image: url(../img/list_duplicate.png); background-repeat: no-repeat; background-position: 3px center; font-size: 11px;}
 pre.copy:hover {background-color: #ccc; cursor: pointer;}
 
-
+/** format **/
 .underline {text-decoration: underline;}
 .bold {font-weight: bold;}
 .italic {font-style: italic;}
 .uppercase {text-transform: uppercase;}
 .mini, .little {font-size: 9px;}
 .clearfix {clear: both; height: 1px; }
-.nw, .nowrap {white-space: nowrap}
+.nw, .nowrap, .wsnw {white-space: nowrap}
 .left {text-align: left;}
 .center {text-align: center;}
 .right {text-align: right;}
-.blue {color:#1570B8;}
-.lightblue {color:#3399FE;}
 
+.float-left {float: left;}
+.float-right {float: right;}
+.float-none {float: none;}
+
+.verticalAlign-baseline {vertical-align:baseline;}
+.verticalAlign-bottom {vertical-align:bottom;}
+.verticalAlign-middle {vertical-align: middle}
+
+.img-rounded, .img-circle  {border-radius: 50%;}
+.img-avatar {border-radius: 50%; border: 1px solid #ccc; width: 35px; height: 35px; vertical-align: middle;}
+
+
+
+/** width **/
 .w_auto {width: auto!important;}
 .w15percent {width: 15%!important;}
 .w25percent {width: 25%!important;}
 .w33percent {width: 33%!important;}
 .w50percent {width: 50%!important;}
+.w75percent {width: 75%!important;}
 .w99percent {width: 99%!important;}
 .w100percent {width: 100%!important;}
+
 .w10px {width: 10px!important;}
 .w20px {width: 20px!important;}
 .w30px {width: 30px!important;}
@@ -68,6 +82,167 @@ pre.copy:hover {background-color: #ccc; cursor: pointer;}
 .w160px {width: 160px!important;}
 .w180px {width: 180px!important;}
 .w200px {width: 200px!important;}
+.w250px {width: 250px!important;}
+
+/** border **/
+.border-0px, .border-none {border:0;}
+.border-1px {border:1px solid transparent;}
+.border-2px {border:2px solid transparent;}
+.border-3px {border:3px solid transparent;}
+.border-4px {border:4px solid transparent;}
+.border-5px {border:5px solid transparent;}
+
+
+/** colors **/
+.transparent {color: transparent;}
+.black {color: #000;}
+.blue {color:#1570B8;}
+.white {color: white;}
+.lime {color: #A4C400;}
+.green {color: #60A917;}
+.emerald {color: #008A00;}
+.teal {color: #00ABA9;}
+.cyan {color: #1BA1E2;}
+.cobalt {color: #0050EF;}
+.indigo {color: #6A00FF;}
+.violet {color: #AA00FF;}
+.pink {color: #DC4FAD;}
+.magenta {color: #D80073;}
+.crimson {color: #A20025;}
+.red {color: #E51400;}
+.orange {color: #FA6800;}
+.amber {color: #F0A30A;}
+.yellow {color: #E3C800;}
+.brown {color: #825A2C;}
+.olive {color: #6D8764;}
+.steel {color: #647687;}
+.mauve {color: #76608A;}
+.taupe {color: #87794E;}
+.gray {color: #555555;}
+.dark {color: #333333;}
+.darker {color: #222222;}
+.darkBrown {color: #63362F;}
+.darkCrimson {color: #640024;}
+.darkMagenta {color: #81003C;}
+.darkIndigo {color: #4B0096;}
+.darkCyan {color: #1B6EAE;}
+.darkCobalt {color: #00356A;}
+.darkTeal {color: #004050;}
+.darkEmerald {color: #003E00;}
+.darkGreen {color: #128023;}
+.darkOrange {color: #BF5A15;}
+.darkRed {color: #E51400;}
+.darkPink {color: #9A165A;}
+.darkViolet {color: #57169A;}
+.darkBlue {color: #16499A;}
+.lightBlue, .lightblue {color:#3399FE;}
+.lightCyan {color:#E8F8FD;}
+.lightTeal {color: #45FFFD;}
+.lightOlive {color: #78AA1C;}
+.lightOrange {color: #C29008;}
+.lightPink {color: #F472D0;}
+.lightRed {color: #FF2D19;}
+.lightGreen {color: #7AD61D;}
+
+.background-transparent {background-color: transparent;}
+.background-black {background-color: #000;}
+.background-blue {background-color:#1570B8;}
+.background-white {background-color: white;}
+.background-lime {background-color: #A4C400;}
+.background-green {background-color: #60A917;}
+.background-emerald {background-color: #008A00;}
+.background-teal {background-color: #00ABA9;}
+.background-cyan {background-color: #1BA1E2;}
+.background-cobalt {background-color: #0050EF;}
+.background-indigo {background-color: #6A00FF;}
+.background-violet {background-color: #AA00FF;}
+.background-pink {background-color: #DC4FAD;}
+.background-magenta {background-color: #D80073;}
+.background-crimson {background-color: #A20025;}
+.background-red {background-color: #E51400;}
+.background-orange {background-color: #FA6800;}
+.background-amber {background-color: #F0A30A;}
+.background-yellow {background-color: #E3C800;}
+.background-brown {background-color: #825A2C;}
+.background-olive {background-color: #6D8764;}
+.background-steel {background-color: #647687;}
+.background-mauve {background-color: #76608A;}
+.background-taupe {background-color: #87794E;}
+.background-gray {background-color: #555555;}
+.background-dark {background-color: #333333;}
+.background-darker {background-color: #222222;}
+.background-darkBrown {background-color: #63362F;}
+.background-darkCrimson {background-color: #640024;}
+.background-darkMagenta {background-color: #81003C;}
+.background-darkIndigo {background-color: #4B0096;}
+.background-darkCyan {background-color: #1B6EAE;}
+.background-darkCobalt {background-color: #00356A;}
+.background-darkTeal {background-color: #004050;}
+.background-darkEmerald {background-color: #003E00;}
+.background-darkGreen {background-color: #128023;}
+.background-darkOrange {background-color: #BF5A15;}
+.background-darkRed {background-color: #E51400;}
+.background-darkPink {background-color: #9A165A;}
+.background-darkViolet {background-color: #57169A;}
+.background-darkBlue {background-color: #16499A;}
+.background-lightBlue, .background-lightblue {background-color:#3399FE;}
+.background-lightCyan {background-color:#E8F8FD;}
+.background-lightTeal {background-color: #45FFFD;}
+.background-lightOlive {background-color: #78AA1C;}
+.background-lightOrange {background-color: #C29008;}
+.background-lightPink {background-color: #F472D0;}
+.background-lightRed {background-color: #FF2D19;}
+.background-lightGreen {background-color: #7AD61D;}
+
+.border-transparent {border-color: transparent;}
+.border-black {border-color: #000;}
+.border-blue {border-color:#1570B8;}
+.border-white {border-color: white;}
+.border-lime {border-color: #A4C400;}
+.border-green {border-color: #60A917;}
+.border-emerald {border-color: #008A00;}
+.border-teal {border-color: #00ABA9;}
+.border-cyan {border-color: #1BA1E2;}
+.border-cobalt {border-color: #0050EF;}
+.border-indigo {border-color: #6A00FF;}
+.border-violet {border-color: #AA00FF;}
+.border-pink {border-color: #DC4FAD;}
+.border-magenta {border-color: #D80073;}
+.border-crimson {border-color: #A20025;}
+.border-red {border-color: #E51400;}
+.border-orange {border-color: #FA6800;}
+.border-amber {border-color: #F0A30A;}
+.border-yellow {border-color: #E3C800;}
+.border-brown {border-color: #825A2C;}
+.border-olive {border-color: #6D8764;}
+.border-steel {border-color: #647687;}
+.border-mauve {border-color: #76608A;}
+.border-taupe {border-color: #87794E;}
+.border-gray {border-color: #555555;}
+.border-dark {border-color: #333333;}
+.border-darker {border-color: #222222;}
+.border-darkBrown {border-color: #63362F;}
+.border-darkCrimson {border-color: #640024;}
+.border-darkMagenta {border-color: #81003C;}
+.border-darkIndigo {border-color: #4B0096;}
+.border-darkCyan {border-color: #1B6EAE;}
+.border-darkCobalt {border-color: #00356A;}
+.border-darkTeal {border-color: #004050;}
+.border-darkEmerald {border-color: #003E00;}
+.border-darkGreen {border-color: #128023;}
+.border-darkOrange {border-color: #BF5A15;}
+.border-darkRed {border-color: #E51400;}
+.border-darkPink {border-color: #9A165A;}
+.border-darkViolet {border-color: #57169A;}
+.border-darkBlue {border-color: #16499A;}
+.border-lightBlue, .border-lightblue {border-color:#3399FE;}
+.border-lightCyan {border-color:#E8F8FD;}
+.border-lightTeal {border-color: #45FFFD;}
+.border-lightOlive {border-color: #78AA1C;}
+.border-lightOrange {border-color: #C29008;}
+.border-lightPink {border-color: #F472D0;}
+.border-lightRed {border-color: #FF2D19;}
+.border-lightGreen {border-color: #7AD61D;}
 
 
 /** misc **************************************************************************************************************/
@@ -157,7 +332,7 @@ ul.drop-down-menu li a:hover {
 
 ul.drop-down-menu li a i {margin-right: 5px; font-size: 13px;}
 
-.mceEditor {display: none;}
+.mceEditor {/*display: none;*/}
 
 
 /** tags **/
@@ -166,7 +341,7 @@ span.tag_warning,
 span.tag_error,
 span.tag_ok,
 span.tag_success
-    {padding: 2px 5px; background-color: #e5e5e5; border-radius: 3px; border: 1px; color:black;}
+    {padding: 2px 5px; background-color: #e5e5e5; border-radius: 0px; border: 1px; color:black;}
 span.tag_mini {padding: 0px 5px; font-size: 9px;}
 
 span.tag:hover {background-color: #ddd}
@@ -183,20 +358,8 @@ span.tag_ok:hover, span.tag_success:hover {background-color:#90ee90;}
 span.tag_error, span.tag_red {background-color:red; color:black;}
 span.tag_error:hover, span.tag_red:hover {background-color:#f08080;}
 
-span.tag_ok, span.tag_success, span.tag_green {background-color:green; color:black;}
+span.tag_ok, span.tag_success, span.tag_green {background-color:green; color:white;}
 span.tag_ok:hover, span.tag_success:hover, span.tag_green:hover {background-color:#90ee90;}
-
-span.tag_blue {background-color:#87cefa; color:black;}
-span.tag_blue:hover {background-color:#aaa8e6;}
-
-span.tag_yellow {background-color:yellow; color:black;}
-span.tag_yellow:hover {background-color:#fafad2;}
-
-span.tag_brown {background-color:#ffa07a; color:black;}
-span.tag_brown:hover {background-color:#ffafaa;}
-
-span.tag_violet {background-color:#ee82ee; color:black;}
-span.tag_violet:hover {background-color:#ffaaff;}
 
 /** thumb **/
 .thumb_preview {

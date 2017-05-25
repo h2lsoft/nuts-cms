@@ -15,6 +15,7 @@ function system_goto(uri, target)
 {
 	$('body').css('cursor', 'wait');
     $('body').scrollTop(0);
+    NProgress.start();
 
 	// ajax loader
 	if(empty(target))target = 'list';
@@ -39,7 +40,7 @@ function system_goto(uri, target)
 	}
 
 	$('#'+target).fadeTo(0, 0.6);
-	$('#ajax_loader').show();
+	// $('#ajax_loader').show();
 
 
 	last_system_uri = uri;
@@ -91,7 +92,7 @@ function system_goto(uri, target)
                                   .fadeTo(0.6, 1);
 
                   $('body').css('cursor', 'default');
-                  $("#ajax_loader").hide();
+                  // $("#ajax_loader").hide();
                   setPluginTitle();
 
                   if(!im_refresh)
@@ -101,7 +102,7 @@ function system_goto(uri, target)
 
                   force_ajax_async = true;
               }
-    });
+    }).done(function(){NProgress.done();});
 
 }
 
@@ -192,6 +193,12 @@ function ajaxHistoricCheckChanges()
 			else
 				return;
 		}
+		else
+		{
+			nuri = str_replace('?', '', nuri);
+            if(nuri == qs)return;
+		}
+		
 		system_goto('index.php?'+nuri, 'content');
 		//document.location.href = nuri;
 	}
@@ -249,6 +256,11 @@ function formIt(title, url)
                 $('body').css('overflow-y', 'hidden');
                 w = $('.ui-dialog-overlay').width();
                 $('.ui-dialog-overlay').width(w+16);
+                
+                setTimeout(function(){
+                       $('#former').find('input[type=text], textarea, select').filter(':visible:first').focus();
+                }, 500);
+                
             },
 
             close: function(event, ui) {
@@ -374,40 +386,31 @@ function initCodeEditor(objID, syntax, popup_version, url_added)
         str += vqb;
 
 		str += '<img src="img/icon-html_code_editor.png" align="absmiddle" /> ';
-		str += '<a href="javascript:;" onclick="codeEditor(\''+objID+'\', \''+syntax+'\', 0);"> Code Editor popup';
+		str += '<a href="javascript:;" onclick="codeEditor(\''+objID+'\', \''+syntax+'\', 0);"> Code Editor';
 		str += '</a>';
 
 		str += '</div>';
-		str += '<label>&nbsp;</label>';
-
-
-        $('#'+objID).attr('spellcheck', false);
-		$('#'+objID).before(''+str+'');
-		$('#form_content #'+objID).tabby();
+		str += '<label style="visibility:hidden;" id="label_'+objID+'">&nbsp;</label>';
+		
+        $('#form_content #'+objID).attr('spellcheck', false).tabOverride();
+        $('#form_content #'+objID).before(str);
 	}
 	else
 	{
-		str += '<div id="code_editor_toolbar" style="padding:5px; margin:0; background-color:#e5e5e5; border:1px solid #ccc;">';
-
+		str += '<div id="'+objID+'_code_editor_toolbar" style="padding:5px; margin:0; background-color:#e5e5e5; border:1px solid #ccc;">';
         str += vqb;
+        str += '</div>';
+        str += '<div id="'+objID+'_code_editor_loader"><img src="img/ajax-loader.gif" align="absmiddle" /> loading ...</div>';
 
-		str += '<img src="img/icon-html_code_editor.png" align="absmiddle" /> ';
-		str += '<a id="code_editor_a" href="javascript:;" onclick="codeEditorInline(\''+objID+'\', \''+syntax+'\');"> Code Editor';
-		str += '</a>';
 
-		str += '</div>';
-		str += '<div id="code_editor_loader"><img src="img/ajax-loader.gif" align="absmiddle" /> loading ...</div>';
-		$('#'+objID).fadeTo(0, 0.4);
-		$('#'+objID).before(''+str+'');
-		$('#form_content #'+objID).tabby();
+        $('#former #'+objID).fadeTo(0, 0.4).tabOverride();
 
-		setTimeout(function(){
+        if(!empty(vqb))$('#former #'+objID).before(str);
 
-			$('#code_editor_a').click();
-			$('#code_editor_loader').remove();
-			$('#code_editor_toolbar').remove();
-
-		}, 1000);
+        setTimeout(function(){
+            codeEditorInline(objID, syntax);
+            $('#'+objID+'_code_editor_loader').remove();
+        }, 1000);
 	}
 
     $('#'+objID).addClass('editor');
@@ -432,6 +435,8 @@ function codeEditorInline(objID, syntax)
         mode: curMode,
         indentUnit: 4,
         indentWithTabs: true,
+		autofocus: true,
+        styleActiveLine: true,
         enterMode: "keep",
         tabMode: "shift",
 
@@ -475,8 +480,8 @@ function codeEditorInline(objID, syntax)
 
 function codeEditor(objID, syntax, tinyMCE)
 {
-    url = "/library/js/codemirror/code_editor.php?";
-    url += 'parentID='+objID;
+    url = "/nuts/code_editor.php?";
+    url += 'parent_target='+objID;
     url += '&syntax='+syntax;
 	url += '&tmstp='+time();
 
@@ -540,14 +545,14 @@ function inputDate(objID, type)
 
 }
 
+
 function helperInit(objID)
 {
 	// label
-	$(objID+' label[title!=""]').append(' <img src="img/icon_help_mini.gif" align="absmiddle" />');
-	// $(objID+' label[title!=""]').css('text-decoration', 'underline');
+    $(objID+' label[title!=""]').append('  <i class="icon-help" style="color:#527BCE"></i>');
 	$(objID+' label[title!=""]').css('cursor', 'help');
-	$(objID+' label').tooltip({
-	    track: true,
+	$(objID+' label[title!=""]').tooltip({
+	    track: false,
 	    delay: 0,
 	    showURL: false,
 	    showBody: " - ",
@@ -555,16 +560,16 @@ function helperInit(objID)
 	});
 
 	// legend
-	$(objID+' legend[title!=""]').append(' <img src="img/icon_help_mini.gif" align="absmiddle" />');
-	// $(objID+' legend[title!=""]').css('text-decoration', 'underline');
+	$(objID+' legend[title!=""]').append('  <i class="icon-help" style="color:#527BCE"></i>');
 	$(objID+' legend[title!=""]').css('cursor', 'help');
-	$(objID+' legend').tooltip({
-	    track: true,
+	$(objID+' legend[title!=""]').tooltip({
+	    track: false,
 	    delay: 0,
 	    showURL: false,
 	    showBody: " - ",
 	    opacity: 0.85
 	});
+
 
 }
 
@@ -657,7 +662,11 @@ function popupModal(url, name, windowWidth, windowHeight, opts) {
 
     // newwindow = window.showModalDialog(url, name, properties);
     newwindow = window.open(url, name, properties);
-
+	if(newwindow.focus){newwindow.focus();}
+	
+	return newwindow;
+	
+    
     // newwindow.resizeTo(windowWidth, windowHeight);
     // newwindow.moveTo(myleft, mytop);
     // newwindow.focus();
@@ -708,9 +717,39 @@ function popupModalV2(url, name, windowWidth, windowHeight, wtop, wleft, wstatus
         url += '&popup=1';
 
     newwindow = window.open(url, name, properties);
+    if(newwindow.focus) {newwindow.focus();}
+    return newwindow;
 }
 
 
+function mainMenuOpen()
+{
+    if($('#menu_overlay').is(':visible'))
+    {
+        mainMenuClose();
+        return;
+    }
+
+    $('body').css('overflow-y', 'hidden');
+    $('#menu_overlay').show();
+    $('#menu').addClass('main_menu_show');
+
+}
+
+
+function mainMenuClose()
+{
+    $('body').css('overflow-y', 'auto');
+    $('#menu_overlay').hide();
+    $('#menu').removeClass('main_menu_show');
+
+    if($("#top_search_input").val() != '')
+    {
+        $("#top_search_input").val('');
+        $("#top_search_input").keyup();
+    }
+
+}
 
 
 function initMainMenu()
@@ -797,59 +836,38 @@ function initMainMenu()
 
 function initTopSearch()
 {
-    $("#top_search_input").autocomplete(plugin_list_ac, {
-        width: 310,
-        max: 30,
-        highlight: false,
-        autoFill: false,
-        minChars: 1,
-        scroll: true,
-        matchContains: true,
-        scrollHeight: 300,
+    /* customize menu autocomplete */
+    $("#top_search_input").keyup(function(){
 
-        formatMatch: function(row, i, max) {
-            return row.label;
-        },
-
-        formatItem: function(row, i, max) {
-
-            plugin_label = row.label;
-            plugin_name = row.name;
-            plugin_url = row.url;
-
-            if(!empty(plugin_name) && !empty(plugin_label))
-                return "<img src=\"/plugins/"+plugin_name+"/icon.png\" style=\"height:24px; vertical-align:middle;\" /> " + plugin_label;
-        },
-
-        formatResult: function(row) {
-
-            return row.label;
-        }
-    });
-
-    $("#top_search_input").result(function(event, row, formatted) {
-
-        plugin_label = row.label;
-        plugin_name = row.name;
-        plugin_url = row.url;
-        plugin_default_action = row.default_action;
-
-        if(!empty(plugin_url))
+        v = $(this).val();
+        v = strtolower(v);
+        v = trim(v);
+        if(v == '')
         {
-            if(plugin_url.indexOf('http') == 0 ||  plugin_url.indexOf('ftp') == 0  ||  plugin_url.indexOf('mailto') == 0)
-                popupModal(plugin_url);
+            $('#nav_menu li ul li').show();
+            $('#nav_menu li ul').hide();
+            return;
+        }
+
+        $('#nav_menu li.parent ul').show();
+        $('#nav_menu li.parent ul li').show();
+
+
+        $('#nav_menu li.parent ul li').each(function(){
+
+            text = $(this).children('a').text();
+            text = strtolower(trim(text));
+
+            if(text.indexOf(v) != -1)
+            {
+                $(this).show();
+            }
             else
-                document.location.href = plugin_url;
-        }
-        else
-        {
-            system_goto('index.php?mod='+plugin_name+'&do='+plugin_default_action, 'content');
-        }
+            {
+                $(this).hide();
+            }
 
-        $("#top_search_input").val("").blur();
-
-        // hide main menu
-        $('#menu li.parent').removeClass('selected').css('background', 'none').css('border-color', '#ccc');
+        });
 
     });
 }
@@ -944,6 +962,7 @@ function copyToClipboard(text)
 
 
      }
+     
      return false;
 
 }
@@ -1788,7 +1807,22 @@ function formGetCurrentID(){
     param = m.queryKey['ID'];
     if(param == undefined)param = '';
 
+    param = parseInt(param);
     return param;
+}
+
+function formGetCurrentCopyID(){
+
+    uri = $('#former').attr('action');
+    m = parseUri(uri);
+
+    param = m.queryKey['cID'];
+    if(param == undefined)param = '';
+
+    param = parseInt(param);
+
+    return param;
+
 }
 
 

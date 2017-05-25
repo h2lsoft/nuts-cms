@@ -51,6 +51,8 @@
 
                 <option value="_in_" {operator_in}>{$nuts_lang_msg[96]}</option>
                 <option value="_not_in_" {operator_not_in}>{$nuts_lang_msg[97]}</option>
+				
+				<option value="_regexp_" {operator_regexp}>{$nuts_lang_msg[105]}</option>
 
 			</select>
 			<script>
@@ -289,18 +291,17 @@ if("{$_GET['popup']}" == 1)
 
 
 		<!-- refresh & excel -->
-		<div style="float:right;">
+		<div style="float:right; padding-top: 4px;">
 
 			<bloc::excel_export>
-			<a class="tt" href="{$_SERVER['PHP_SELF']}?{$_SERVER['QUERY_STRING']}&nuts_export=excel" title="{$nuts_lang_msg[51]}"><i class="icon-file-excel"></i></a>
+			<a class="tt" href="{$_SERVER['PHP_SELF']}?{$_SERVER['QUERY_STRING']}&nuts_export=excel" title="{$nuts_lang_msg[51]}"><i class="icon-file-excel"></i></a> &nbsp;
 			</bloc::excel_export>
 
             <a class="tt" href="javascript:window.print();" title="{$nuts_lang_msg[52]}"><i class="icon-printer"></i></a>
 
-            <span style="position:relative; top:-4px;">&nbsp; | </span>
-			<a class="tt" accesskey="r"  href="javascript:system_refresh();" title="{$nuts_lang_msg[50]}"><i class="icon-loop"></i></a>
+            <span style="position:relative; top:-4px;">&nbsp; | &nbsp;</span>
+			<a class="tt" accesskey="r"  href="javascript:system_refresh();" title="{$nuts_lang_msg[50]}"><i class="icon-loop"></i></a> &nbsp;
             <a class="tooltip yellow-tooltip" href="javascript:;"><i class="icon-help-2"></i><dd>{$nuts_lang_msg[91]}</dd></a>
-
 
 		</div>
 		<!-- refresh & excel -->

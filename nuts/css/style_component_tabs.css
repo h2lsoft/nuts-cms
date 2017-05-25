@@ -6,23 +6,35 @@
 
     border-collapse: collapse;
     border:1px solid #fff;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
+
     margin-right:8px;
 
     color: #666;
     text-transform: uppercase;
     letter-spacing: 1px;
 
+
 }
 
 
 .ntabs li.selected {
-    font-weight: bold;
-    border:1px solid #1570B8;
 
+    /*font-weight: bold; */
+
+    border:1px solid #1570B8;
     color: white!important;
     background-color: #1570B8;
+}
 
+.ntabs li.selected a {
+    color: white!important;
 }
 
 .ntabs li:hover {

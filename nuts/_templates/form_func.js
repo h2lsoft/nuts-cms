@@ -1,12 +1,12 @@
 // add WYSIWYG markup
 $('textarea.mceEditor').each(function (){
-
 	id = this.id;
 	v = $('#former #'+id).val();
 	v = parse_nuts_tags(v);
 	$('#former #'+id).val(v);
-
 });
+
+
 
 // ajax autocompletion
 $('#former input.ajax_autocomplete').each(function(){
@@ -28,12 +28,8 @@ $('#former input.ajax_autocomplete').each(function(){
 
 
 // allow tab in textareas
-$('#form_content textarea.tabby').tabby();
-
-// $('#form_content input:text:first').focus();
-//$('#form_content textarea.code_editor').each(function(){
-  // initCodeEditor(this.id, "php", 0);
-//});
+// $('#form_content textarea.tabby').tabby();
+$('#form_content textarea.tabby').tabOverride();
 
 // upper
 $('#form_content .upper').blur(function(e) {$(this).val(strtoupper($(this).val()));});
@@ -45,11 +41,7 @@ $('#form_content .lower').blur(function(e) {$(this).val(strtolower($(this).val()
 $('#form_content .ucfirst').blur(function(e) {$(this).val(ucfirst($(this).val()));});
 
 
-
-
-// $('textarea.resizable:not(.processed)').TextAreaResizer();
-// margin-left:150px;
-
+// tooltip
 $('a.tt').tooltip({
     track: false,
     delay: 0,
@@ -59,22 +51,25 @@ $('a.tt').tooltip({
 });
 
 
-function updateFormContentHeight(err)
-{
+function updateFormContentHeight(err){
+
 	h = $(window).height()-125;
 	if(err)
 	{
 		h -= $('#form_error').height();
 		h -= 45;
 	}
+
 	$('#form_content').height(h);
+
 }
 
 loadRichEditor(currentTheme);
 updateFormContentHeight(false);
 helperInit('#form_content');
 transformSelectToSwitch('#former', false, true);
-// $('textarea.resizable:not(.processed)').TextAreaResizer();
+
+
 
 // transfrorm multiple select to checklist
 $('#former select[type=select-multiple].checkbox-list').each(function(){
@@ -108,42 +103,8 @@ $('#former select[type=select-multiple].checkbox-list').each(function(){
 });
 
 
-// color picker
-$('#former .widget_colorpicker').each(function(){
 
-    current_id = $(this).attr('id');
-    $('#former #'+current_id+'_colorpicker_preview').css('background-color', $('#former #'+current_id).val());
-
-    $('#former #'+current_id).ColorPicker({
-
-	    onSubmit: function(hsb, hex, rgb, el) {
-            current_id = $(el).attr('id');
-
-		    $(el).val('#'+hex);
-		    $('#former #'+current_id+'_colorpicker_preview').css('background-color', $(el).val());
-		    $(el).ColorPickerHide();
-	    },
-
-        onBeforeShow: function () {
-            v = str_replace('#', '', this.value);
-		    // $(this).ColorPickerSetColor(v);
-            $(this).ColorPickerSetColor(this.value);
-	    }
-
-    })
-    .bind('keypress', function(){
-        current_id = $(el).attr('id');
-        $(this).ColorPickerSetColor(this.value);
-        $('#former #'+current_id+'_colorpicker_preview').css('background-color', $(el).val());
-    });
-
-});
-
-
-
-
-
-
+// jquery.form *********************************************************************************************************
 var options = {
 	target:        '',   // target element(s) to be updated with server response
 	beforeSubmit:  showRequest,  // pre-submit callback

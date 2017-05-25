@@ -29,7 +29,7 @@ if(!count($files))
 foreach($files as $file)
 {
     $file = urldecode($file);
-    $ext = strtolower(end(explode('.', basename($file))));
+    $ext = @strtolower(@end(@explode('.', basename($file))));
 
     $is_dir = ($file[strlen($file)-1] == '/') ? true : false;
 
@@ -50,7 +50,7 @@ foreach($files as $file)
         $k = 2;
         while(file_exists(WEBSITE_PATH.$folder.'/'.$current_file_name))
         {
-            $ext = end(explode('.', $current_file_name));
+            $ext = @end(@explode('.', $current_file_name));
             $current_file_name = str_replace('.'.$ext, '', basename($file)).'_'.$k.'.'.$ext;
             $k++;
         }

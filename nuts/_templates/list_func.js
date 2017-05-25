@@ -50,7 +50,8 @@ listTrColor();
 // drag and drop table
 if($("#list tbody .listDnd").length)
 {
-	$("#list tbody .listDnd < td").css('cursor', 'move');
+	// $("#list tbody .listDnd < td").css('cursor', 'move');
+    $("#list tbody .listDnd").parents('td').css('cursor', 'move');
 
 	$('#list').sortable({
 

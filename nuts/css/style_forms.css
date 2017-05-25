@@ -1,95 +1,115 @@
-fieldset {
-    border-radius:8px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 5px;
+/** reset **/
+input, select, textarea, button {-webkit-appearance: none; -moz-appearance: none; appearance: none; border:1px solid #ccc;  border-radius: 0;}
+input[type=text], input[type=password], input[type=file], input[type=search] select {height: 16px;}
+
+input[type=text], input[type=password], input[type=file], input[type=search], textarea, select {padding-left:2px; transition:all .2s ease-in; -moz-transition:all .2s ease-in; -webkit-transition:all .2s ease-in;}
+input[type=text]:hover, input[type=password]:hover, input[type=file]:hover, input[type=search]:hover, textarea:hover {background-color:#FFFFDD; border-color:#aaa;}
+input[type=text]:focus, input[type=password]:focus, input[type=file]:focus, input[type=search]:focus, textarea:focus, select:focus, input[type=checkbox]:focus, input[type=radio]:focus {
+    background-color:#fff;
+    outline: 0;
+    border-color: rgba(82, 168, 236, 0.8);
 }
 
-
-input, select, textarea, button {
-    border:1px solid #ccc;
-    font-family:Arial;
-    font-size:11px;
-}
-
-input[type=text], input[type=file], input[type=password], textarea
-{
-    padding-top: 2px;
-    padding-bottom: 2px;
-}
+input[disabled], textarea[disabled], select[disabled], button[disabled] {background-color: #ccc!important; cursor: not-allowed!important;}
+input[readonly], textarea[readonly], select[readonly] {border-color: #e5e5e5!important; cursor: help; background-color:white!important;}
 
 
-input[type=button], button, input[type=submit]   {/*font-size:14px;*/ font-weight:bold;
+/** checkbox **/
+input[type=checkbox] {width: 16px!important; height: 16px!important; position: relative; top:6px; background-color: white;}
+input[type=checkbox]:hover {cursor: pointer; border-color: #999;}
+input[type=checkbox]:checked {background: url(checkbox_checked.gif) no-repeat; background-position: center;  background-color: white;}
 
-    background-image:url(button_bkg.png);
+/** radio **/
+input[type=radio] {width: 14px!important; height: 14px!important; background: white; border-radius: 10px; position: relative; top:2px;  }
+input[type=radio]:hover {cursor: pointer; border-color: #999;}
+input[type=radio]:checked {background: url(radio_checked.gif) no-repeat; background-position: -2px -1px; background-color: white;}
+
+
+/** select **/
+select {padding-right: 20px; background: url(select_arrow_down.gif) no-repeat; background-position: 98% center; background-color: white; height: 22px; min-width: 150px;}
+select:hover {background-color:#FFFFDD; border-color:#aaa;}
+select[multiple] {background-image: none; padding-right: 0; height: 100px;}
+
+/** select.switch **/
+
+
+
+/** fieldset **/
+fieldset {border: 1px solid #ccc; width: 97%; padding:5px; margin-top:15px; margin-bottom:10px; margin-left: 10px;  }
+fieldset:hover {border-color:#1570B8; background-color: #fffeee;}
+
+fieldset fieldset {background-color: white; margin-bottom: 20px;}
+
+
+
+/** legend **/
+legend {/*font-weight:bold;*/ color:#1570B8; padding-left:5px; padding-right:5px; padding-top: 0px; padding-bottom: 2px; letter-spacing: 1px; text-transform: uppercase;}
+
+/** inputs **/
+input[type=text], input[type=file], input[type=password], input[type=search] {padding-top: 2px; padding-bottom: 2px;}
+input[type=button], button, input[type=submit]   {
     border:1px solid #ccc;
     height:24px;
     cursor:pointer;
-
-    padding-left:7px;
-    padding-right:7px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-
-    transition:background .2s ease-in;
-    -moz-transition:background .2s ease-in;
-    -webkit-transition:background .2s ease-in;
+    padding-left:7px; padding-right:7px;
+    color: #353535;
+    text-align: center; text-transform: uppercase; letter-spacing: 1px;
+    background-color: #e5e5e5;
 }
 
-button:hover, input[type=button]:hover, input[type=submit]:hover {
+/** button **/
+button:hover, input[type=button]:hover, input[type=submit]:hover {background-color: #ccc;}
+button:active, input[type=button]:active, input[type=submit]:active {background-color: white;}
 
-    color:white;
-    text-shadow: 1px 1px 1px #000;
-    border-color:#bbb;
-
-    background-image:none;
-    background-color: #aaa;
-
-}
-
-input[type=submit]:hover {
-
-    background-color: green;
-
-}
-
-#btn_submit {/* background-color: green; */}
-#btn_cancel {/*background-color: red;*/}
+input[type=submit]:hover {border-color:#3399FE; background-color:#3399FE; color: white;}
+input[type=submit]:active {background-color: white; color: #3399FE; border-color: #3399FE;}
+input[type=submit]:disabled {background-color: white; color: #353535; border-color: #ccc;}
 
 
-input[type=text], input[type=password], input[type=file], textarea, select {padding-left:2px; background-image:url(../img/input_bkg.gif); background-repeat:repeat-x;
+/** textarea **/
+textarea {width:700px;  height:120px; padding-top: 2px; padding-bottom: 2px; -webkit-resize:vertical; -moz-resize:vertical; resize:vertical;}
 
-    transition:all .2s ease-in;
-    -moz-transition:all .2s ease-in;
-    -webkit-transition:all .2s ease-in;
 
-}
-textarea {height:150px;}
-input[type=text]:hover, input[type=password]:hover, input[type=file]:hover, textarea:hover, select:hover {background-color:#FFFFDD; background-image:none; border-color:#aaa;}
-input[type=text]:focus, input[type=password]:focus, input[type=file]:focus, textarea:focus, select:focus {
+/** file **/
+input[type=file] {width: 420px; height: 22px;}
 
-    background-color:#fff;
-    /*background-image:none;*/
-    border-color:#74B9F0;
 
-    outline: 0;
-    border-color: rgba(82, 168, 236, 0.8);
-    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 4px rgba(82, 168, 236, 0.6);
-    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 4px rgba(82, 168, 236, 0.6);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 4px rgba(82, 168, 236, 0.6);
-}
-
-input[disabled], textarea[disabled], select[disabled]
-{
-    background: none;
-    background-color: #e5e5e5!important;
+/** search **/
+input[type=search] {padding-left: 18px;
+                    background-image: url(gray_search.png)!important;
+                    background-repeat: no-repeat;
+                    background-position: 2px center;
 }
 
 
-input[type=file] {width: 420px;}
-.button {padding: 0px!important; height: auto!important; padding-left:3px!important; padding-right:3px!important;}
+/** misc **/
+a.button_link {padding: 3px 5px!important; margin: 0 3px; border: 1px solid #ccc; background-color: #e5e5e5; color: black; cursor: pointer}
+a.button_link:hover {outline: 0; border-color:#74B9F0; border-color: rgba(82, 168, 236, 0.8);}
+
+.button {padding: 2px!important; height: 22px!important; padding-left:3px!important; padding-right:3px!important; text-transform: none;}
+.button:hover {color: black;}
+.button:active {color: #3399FE;}
 
 
+input.date {background-image:url(gray_calendar.png)!important; background-repeat:no-repeat!important; background-position:right!important; width: 80px!important;}
+input.datetime {background-image:url(gray_calendar.png)!important; background-repeat:no-repeat!important; background-position:right!important; width:115px!important; }
+input.ac_input, input.ajax_autocomplete {width: 350px; background-image:url(gray_search.png)!important; background-repeat:no-repeat!important; background-position:right!important;}
+input.search {width: 350px; background-image:url(gray_search.png)!important; background-repeat:no-repeat!important; background-position:left!important; padding-left: 20px!important;}
 
+input.email {width: 220px!important; background-image:url(gray_email.png)!important; background-repeat:no-repeat!important; background-position:3px 0px!important; padding-left:24px;}
+input.phone {width: 150px!important; background-image:url(gray_phone.png)!important; background-repeat:no-repeat!important; background-position:3px 1px!important; padding-left:24px;}
+input.gsm, input.mobile {width: 150px!important; background-image:url(gray_gsm.png)!important; background-repeat:no-repeat!important; background-position:3px 1px!important; padding-left:24px;}
+input.fax {width: 150px!important; background-image:url(gray_fax.png)!important; background-repeat:no-repeat!important; background-position:3px 1px!important; padding-left:24px;}
+input.zip_code, input.zipcode {width: 60px!important; text-align: center;}
+
+input.user, input.login {background-image:url(gray_user.png)!important; background-repeat:no-repeat!important; background-position:3px 3px!important; padding-left:24px;}
+input.password, input.lock {background-image:url(gray_password.png)!important; background-repeat:no-repeat!important; background-position:3px 2px!important; padding-left:24px;}
+
+input.city {width: 200px!important;}
+input.country {width: 200px!important;}
+
+
+input.money, input.number  {width: 90px!important; text-align: center;}
+input.url, input.link {background-image:url(gray_link.png)!important; background-repeat:no-repeat!important; background-position:3px 1px!important; padding-left:24px;}
 
 

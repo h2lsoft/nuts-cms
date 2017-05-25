@@ -561,6 +561,24 @@ class Plugin
 		$this->listAddCol($col, $colLabel, $colStyle, $colOrderBy, $img);
 	}
 
+	
+
+	/**
+	 * Add list a columns type Note
+	 *
+	 * @param string $col
+	 * @param string $colLabel
+	 */
+	public function listAddColNote($col, $colLabel='')
+	{
+		$colStyle = 'center; width:30px';
+		$colImgName = '/nuts/img/icon-help.png';
+
+		$img = '<a class="tt note" title="{'.$col.'}"><img src="'.$colImgName.'" alt="{'.$col.'}" align="absmiddle" /></a>';
+
+		$this->listAddCol($col, $colLabel, $colStyle, false, $img);
+	}
+	
 
     private $listSearchAddUriParameters = '';
 
@@ -891,6 +909,57 @@ class Plugin
 
 		$this->listSearchAddField($name, $label, 'date', $options);
 	}
+	
+	
+/**
+	 * Add field type date in search engine
+	 *
+	 * @param string $name db column
+	 * @param string $label label to display if empty $label = $name
+	 * @param string $help help message
+	 */
+	public function listSearchAddFieldDatePeriod($name, $label='', $help='')
+	{
+		// add Date 1
+		$options = array();
+		if(!empty($help))$options['help'] = $help;
+		$options['operator'] = '>=';
+		$this->listSearchAddField($name, $label, 'date', $options);
+
+		// add Date 2
+		$options = array();
+		if(!empty($help))$options['help'] = $help;
+		$options['operator'] = '<=';
+		$options['alias'] = $name;
+		$this->listSearchAddField($name.'2', $label, 'date', $options);
+	}
+
+	/**
+	 * Add field type datetime period in search engine
+	 *
+	 * @param string $name db column
+	 * @param string $label label to display if empty $label = $name
+	 * @param string $help help message
+	 */
+	public function listSearchAddFieldDatetimePeriod($name, $label='', $help='')
+	{
+		// add Date 1
+		$options = array();
+		if(!empty($help))$options['help'] = $help;
+		$options['operator'] = '>=';
+		$this->listSearchAddField($name, $label, 'datetime', $options);
+
+		// add Date 2
+		$options = array();
+		if(!empty($help))$options['help'] = $help;
+		$options['operator'] = '<=';
+		$options['alias'] = $name;
+		$this->listSearchAddField($name.'2', $label, 'datetime', $options);
+	}
+	
+	
+	
+	
 
 	/**
 	 * Add field type datetime in search engine
@@ -1269,6 +1338,7 @@ EOF;
 		return $row;
 	}
 
+
     /**
      *
      * Display the list view
@@ -1322,8 +1392,8 @@ EOF;
 			if(!$this->listSearchOpenOnload)
 				$this->nuts->eraseBloc('search_display');
 
-            $operators_items = array('operator_equal', 'operator_not_equal', 'operator_gt', 'operator_gt_equal', 'operator_lt', 'operator_lt_equal', 'operator_begin', 'operator_not_begin', 'operator_countains', 'operator_not_countains', 'operator_in', 'operator_not_in');
-            $operators_signs = array('=', '!=', '>', '>=', '<', '<=', '^=', '!^=', '~=', '!~=', 'in', '!in');
+            $operators_items = array('operator_equal', 'operator_not_equal', 'operator_gt', 'operator_gt_equal', 'operator_lt', 'operator_lt_equal', 'operator_begin', 'operator_not_begin', 'operator_countains', 'operator_not_countains', 'operator_in', 'operator_not_in', 'operator_regexp');
+            $operators_signs = array('=', '!=', '>', '>=', '<', '<=', '^=', '!^=', '~=', '!~=', 'in', '!in', 'regexp');
 
 			foreach($this->list_search as $s)
 			{
@@ -1785,133 +1855,163 @@ EOF;
 				isset($_GET[$s['name']]) &&
 			    // strlen(trim($_GET[$s['name']])) &&
 			    isset($_GET[$s['name'].'_operator']) &&
-				in_array($_GET[$s['name'].'_operator'], array('_equal_', '_not_equal_', '_gt_', '_gtequal_', '_lt_', '_ltequal_', '_begin_', '_not_begin_', '_countains_', '_not_countains_', '_in_', '_not_in_'))
+				in_array($_GET[$s['name'].'_operator'], array('_equal_', '_not_equal_', '_gt_', '_gtequal_', '_lt_', '_ltequal_', '_begin_', '_not_begin_', '_countains_', '_not_countains_', '_in_', '_not_in_', '_regexp_'))
 			  )
 			 {
-				if(isset($s['options']['alias']))
+
+				// patch multiple separator
+				if(in_array($_GET[$s['name'].'_operator'], array('_begin_', '_not_begin_', '_countains_', '_not_countains_')) && strpos($_GET[$s['name']], ',') !== false)
 				{
-					$x_sql .= ' AND '.$s['options']['alias'];
+					$tmp_name = (isset($s['options']['alias'])) ? $s['options']['alias'] : $s['name'];
+
+					// checking values
+					$tmps = explode(',', $_GET[$s['name']]);
+					$tmps = array_map('trim', $tmps);
+
+					$vals = array();
+					foreach($tmps as $tmp)
+					{
+						if(!empty($tmp))
+							$vals[] = $tmp;
+					}
+
+					$tmp_sql = "";
+					foreach($vals as $val)
+					{
+						if(!empty($tmp_sql))$tmp_sql .= ' OR ';
+						$tmp_sql .= $tmp_name;
+
+						if(in_array($_GET[$s['name'].'_operator'], array('_not_begin_', '_not_countains_')))
+							$tmp_sql .= ' NOT ';
+
+						$like_start = '';
+						if(in_array($_GET[$s['name'].'_operator'], array('_countains_', '_not_countains_')))
+							$like_start = '%';
+
+						$tmp_sql .= " LIKE  '{$like_start}".sqlX($val)."%'";
+
+					}
+
+					if(!empty($tmp_sql))
+						$x_sql .= " AND ($tmp_sql)\n";
+
 				}
 				else
 				{
-			 		$x_sql .= ' AND '.$s['name'];
-				}
+					// alias ?
+					$x_sql .= (isset($s['options']['alias'])) ? ' AND '.$s['options']['alias'] : ' AND '.$s['name'];
 
-				// hacks special for date with 10 chars 0000-00-00
-				if(preg_match('/Date$/', $s['name']) &&  $_GET[$s['name'].'_operator'] == '_equal_' && strlen($_GET[$s['name']]) == 10)
-				{
-					$_GET[$s['name'].'_operator'] = '_begin_';
-				}
+					// hacks special for date with 10 chars 0000-00-00
+					if(preg_match('/Date$/', $s['name']) &&  $_GET[$s['name'].'_operator'] == '_equal_' && strlen($_GET[$s['name']]) == 10)
+						$_GET[$s['name'].'_operator'] = '_begin_';
 
-				// operator
-				if($_GET[$s['name'].'_operator'] == '_equal_')$x_sql .= ' = ';
-				elseif($_GET[$s['name'].'_operator'] == '_not_equal_')$x_sql .= ' != ';
-				elseif($_GET[$s['name'].'_operator'] == '_gt_')$x_sql .= ' > ';
-				elseif($_GET[$s['name'].'_operator'] == '_gtequal_')$x_sql .= ' >= ';
-				elseif($_GET[$s['name'].'_operator'] == '_lt_')$x_sql .= ' < ';
+					// operator
+					if($_GET[$s['name'].'_operator'] == '_equal_')$x_sql .= ' = ';
+					elseif($_GET[$s['name'].'_operator'] == '_not_equal_')$x_sql .= ' != ';
+					elseif($_GET[$s['name'].'_operator'] == '_gt_')$x_sql .= ' > ';
+					elseif($_GET[$s['name'].'_operator'] == '_gtequal_')$x_sql .= ' >= ';
+					elseif($_GET[$s['name'].'_operator'] == '_lt_')$x_sql .= ' < ';
 
-				elseif($_GET[$s['name'].'_operator'] == '_ltequal_')$x_sql .= ' <= ';
-				elseif(in_array($_GET[$s['name'].'_operator'], array('_begin_', '_countains_')))$x_sql .= ' LIKE ';
-				elseif(in_array($_GET[$s['name'].'_operator'], array('_in_')))$x_sql .= ' IN';
-				elseif(in_array($_GET[$s['name'].'_operator'], array('_not_in_')))$x_sql .= ' NOT IN';
-				else $x_sql .= ' NOT LIKE ';
+					elseif($_GET[$s['name'].'_operator'] == '_ltequal_')$x_sql .= ' <= ';
+					elseif(in_array($_GET[$s['name'].'_operator'], array('_begin_', '_countains_')))$x_sql .= ' LIKE ';
+					elseif(in_array($_GET[$s['name'].'_operator'], array('_in_')))$x_sql .= ' IN';
+					elseif(in_array($_GET[$s['name'].'_operator'], array('_not_in_')))$x_sql .= ' NOT IN';
+					elseif(in_array($_GET[$s['name'].'_operator'], array('_regexp_')))$x_sql .= ' REGEXP ';
+					else $x_sql .= ' NOT LIKE ';
 
-				// values
-				if(in_array($_GET[$s['name'].'_operator'], array('_equal_', '_not_equal_', '_gt_', '_gtequal_', '_lt_', '_ltequal_')))
-				{
-					// automatic conversion for ID and foreign key
-					//if(ereg('ID$', $s['name']))
-					if(preg_match('/ID$/', $s['name']))
+					// values
+					if(in_array($_GET[$s['name'].'_operator'], array('_equal_', '_not_equal_', '_gt_', '_gtequal_', '_lt_', '_ltequal_')))
 					{
-						// special for ajax autocomplete
-						if(strpos($_GET[$s['name']], ' (') !== false)
+						// automatic conversion for ID and foreign key
+						if(preg_match('/ID$/', $s['name']))
 						{
-							$v = explode(' (', $_GET[$s['name']]);
-							$_GET[$s['name']] = end($v);
-						}
+							// special for ajax autocomplete
+							if(strpos($_GET[$s['name']], ' (') !== false)
+							{
+								$v = explode(' (', $_GET[$s['name']]);
+								$_GET[$s['name']] = end($v);
+							}
 
-						$_GET[$s['name']] = (int)$_GET[$s['name']];
-						$x_sql .= sqlX($_GET[$s['name']])."\n";
+							$_GET[$s['name']] = (int)$_GET[$s['name']];
+							$x_sql .= sqlX($_GET[$s['name']])."\n";
+						}
+						elseif(in_array($s['type'], array('date', 'datetime')))
+						{
+							// convert user date to gmt date
+							$v = addslashes($_GET[$s['name']]);
+
+							// hacks special for date with 10 chars 00/00/0000
+							if(preg_match("#([0-9]{2})/([0-9]{2})/([0-9]{4})#i", $_GET[$s['name']]))
+							{
+								list($d, $m, $Y) = explode('/', $_GET[$s['name']]);
+								$v = "$Y-$m-$d";
+							}
+
+							// hacks special for datetime with 16 chars 00/00/0000 00:00
+							if(preg_match("#([0-9]{2})/([0-9]{2})/([0-9]{4}) ([0-9]{2}):([0-9]{2})#i", $_GET[$s['name']]))
+							{
+								list($d, $m, $Y) = explode('/', $_GET[$s['name']]);
+								list($Y, $time) = explode(' ', $Y);
+								$v = "$Y-$m-$d $time";
+							}
+
+							// hacks special for datetime without time XX/XX/XXXX XX:XX
+							if($s['type'] == 'datetime' && strlen($_GET[$s['name']]) == 16)
+								$v .= ":00";
+
+							$x_sql .= "'".$v."'\n";
+						}
+						else
+						{
+							$x_sql .= "'".sqlX($_GET[$s['name']])."'\n";
+						}
 					}
-					elseif(in_array($s['type'], array('date', 'datetime')))
+					elseif(in_array($_GET[$s['name'].'_operator'], array('_in_', '_not_in_')))
 					{
-						// convert user date to gmt date
-						$v = addslashes($_GET[$s['name']]);
+						// protect list
+						$tmp_list = explode(',', $_GET[$s['name']]);
+						$tmp_list = array_map('trim', $tmp_list);
 
-                        //if(ereg('GMT$',$s['name']))
-						// if(preg_match('/GMT$/', $s['name']))
-                            // $v = nutsGetGMTDateUser($v, '', 'gmt');
-
-						// hacks special for date with 10 chars 00/00/0000
-						if(preg_match("#([0-9]{2})/([0-9]{2})/([0-9]{4})#i", $_GET[$s['name']]))
+						$vs = '';
+						foreach($tmp_list as $tmp_l)
 						{
-							list($d, $m, $Y) = explode('/', $_GET[$s['name']]);
-							$v = "$Y-$m-$d";
+							if(!empty($vs))$vs .= ', ';
+							$vs .= "'".sqlX($tmp_l)."'";
 						}
 
-						// hacks special for datetime with 16 chars 00/00/0000 00:00
-						if(preg_match("#([0-9]{2})/([0-9]{2})/([0-9]{4}) ([0-9]{2}):([0-9]{2})#i", $_GET[$s['name']]))
-						{
-							list($d, $m, $Y) = explode('/', $_GET[$s['name']]);
-							list($Y, $time) = explode(' ', $Y);
-							$v = "$Y-$m-$d $time";
-						}
+						$x_sql .= "(".$vs.")\n";
 
-						// hacks special for datetime without time XX/XX/XXXX XX:XX
-						if($s['type'] == 'datetime' && strlen($_GET[$s['name']]) == 16)
-						{
-							$v .= ":00";
-						}
-                        $x_sql .= "'".$v."'\n";
 					}
 					else
 					{
-						$x_sql .= "'".sqlX($_GET[$s['name']])."'\n";
+						$val = $_GET[$s['name'].'_operator'];
+						$search = sqlX($_GET[$s['name']]);
+
+						// hacks special for date with 10 chars 00/00/0000
+						if(preg_match("#([0-9]{2})/([0-9]{2})/([0-9]{4})#i", $search))
+						{
+							list($d, $m, $Y) = explode('/', $search);
+							$search = "$Y-$m-$d";
+						}
+
+						// hacks special for datetime without time XX/XX/XXXX XX:XX
+						if($s['type'] == 'datetime' && strlen($search) == 16)
+						{
+							$search .= ":00";
+						}
+
+						if($val == '_begin_')$x_sql .= "'".$search."%'";
+						elseif($val == '_not_begin_')$x_sql .= "'".$search."%'";
+						elseif($val == '_countains_')$x_sql .= "'%".$search."%'";
+						elseif($val == '_not_countains_')$x_sql .= "'%".$search."%'";
+						elseif($val == '_regexp_')$x_sql .= '"'.$search.'"';
 					}
-				}
-                elseif(in_array($_GET[$s['name'].'_operator'], array('_in_', '_not_in_')))
-                {
-                    // protect list
-                    $tmp_list = explode(',', $_GET[$s['name']]);
-                    $tmp_list = array_map('trim', $tmp_list);
-
-                    $vs = '';
-                    foreach($tmp_list as $tmp_l)
-                    {
-                        if(!empty($vs))$vs .= ', ';
-                        $vs .= "'".sqlX($tmp_l)."'";
-                    }
-
-                    $x_sql .= "(".$vs.")\n";
-
-                }
-				else
-				{
-					$val = $_GET[$s['name'].'_operator'];
-					$search = sqlX($_GET[$s['name']]);
-
-					// hacks special for date with 10 chars 00/00/0000
-					if(preg_match("#([0-9]{2})/([0-9]{2})/([0-9]{4})#i", $search))
-					{
-						list($d, $m, $Y) = explode('/', $search);
-						$search = "$Y-$m-$d";
-					}
-
-					// hacks special for datetime without time XX/XX/XXXX XX:XX
-					if($s['type'] == 'datetime' && strlen($search) == 16)
-					{
-						$search .= ":00";
-					}
-
-					if($val == '_begin_')$x_sql .= "'".$search."%'";
-					elseif($val == '_not_begin_')$x_sql .= "'".$search."%'";
-					elseif($val == '_countains_')$x_sql .= "'%".$search."%'";
-					elseif($val == '_not_countains_')$x_sql .= "'%".$search."%'";
 				}
 			 }
 		}
 
 		$sql .= $x_sql;
+
 
 		// add after where
 		if(!empty($this->sql_after_where_added))
@@ -1983,7 +2083,6 @@ EOF;
 
 
 		// add or remove total_count
-		// $this->listAddSumRow('Total 1', 'DateGMT', '€');
 		if(count($this->listSumRow) == 0 || $this->listWaitingForUserSearching)
 		{
 			$this->nuts->eraseBloc('total_count');
@@ -2034,6 +2133,7 @@ EOF;
 		return $count;
 
 	}
+
 
 
     /**
@@ -2343,7 +2443,7 @@ EOF;
 		$this->formAddField($name, $label, 'textarea', $required, $options);
 	}
 
-	/**
+/**
 	 * Add field type text in form
 	 *
 	 * @param string $name db column name
@@ -2379,8 +2479,7 @@ EOF;
                 }
             }
         }
-
-
+		
 		$options = array();
 		$options['required'] = $required;
 		if(!empty($class))$options['class'] = $class;
@@ -2393,7 +2492,47 @@ EOF;
 		$this->formAddField($name, $label, 'text', $required, $options);
 	}
 
+	/**
+	 * Add field integer in form
+	 *
+	 * @param string $name
+	 * @param string $label
+	 * @param bool   $required
+	 * @param bool   $unsigned
+	 * @param string $style
+	 * @param string $after
+	 * @param string $attributes
+	 * @param string $help
+	 * @param string $value
+	 */
+	public function formAddFieldInteger($name, $label='', $required, $unsigned=true, $style='', $after='', $attributes='', $help='', $value='')
+	{
+		$class = 'integer';
+		if($unsigned)$class .= ' unsigned';
+		$this->formAddFieldText($name, $label, $required, $class, $style, $after, $attributes, $help, $value);
+	}
 
+	/**
+	 * Add field float in form
+	 *
+	 * @param string $name
+	 * @param string $label
+	 * @param bool   $required
+	 * @param bool   $unsigned
+	 * @param string $style
+	 * @param string $after
+	 * @param string $attributes
+	 * @param string $help
+	 * @param string $value
+	 */
+	public function formAddFieldFloat($name, $label='', $required, $unsigned=true, $style='', $after='', $attributes='', $help='', $value='')
+	{
+		$class = 'float';
+		if($unsigned)$class .= ' unsigned';
+		$this->formAddFieldText($name, $label, $required, $class, $style, $after, $attributes, $help, $value);
+	}
+	
+	
 	/**
 	 * Add field type color picker in form
 	 *
@@ -2610,7 +2749,7 @@ EOF;
         $this->formAddField($name, $label, 'htmlarea', $required, $options);
     }
 
-	/**
+/**
 	 * Add field type file browser in form
 	 *
 	 * @param string $name db column name
@@ -2618,13 +2757,15 @@ EOF;
 	 * @param boolean $required field is required
 	 * @param string $folder default folder to open
 	 * @param string $help help message
+	 * @param string $style
 	 */
-	public function formAddFieldFileBrowser($name, $label='', $required, $folder='', $help='')
+	public function formAddFieldFileBrowser($name, $label='', $required, $folder='', $help='', $style="")
 	{
 		$options = array();
 		if(!empty($required))$options['required'] = $required;
 		if(!empty($folder))$options['folder'] = $folder;
 		if(!empty($help))$options['help'] = $help;
+		if(!empty($style))$options['style'] = $style;
 
 		$this->formAddField($name, $label, 'filemanager', $required, $options);
 	}
@@ -2637,13 +2778,15 @@ EOF;
 	 * @param boolean $required field is required
 	 * @param string $folder default folder to open
 	 * @param string $help help message
+	 * @param string $style
 	 */
-	public function formAddFieldImageBrowser($name, $label='', $required, $folder='', $help='')
+	public function formAddFieldImageBrowser($name, $label='', $required, $folder='', $help='', $style="")
 	{
 		$options = array();
 		if(!empty($required))$options['required'] = $required;
 		if(!empty($folder))$options['folder'] = $folder;
 		if(!empty($help))$options['help'] = $help;
+		if(!empty($style))$options['style'] = $style;
 
 		$this->formAddField($name, $label, 'filemanager_image', $required, $options);
 	}
@@ -2657,13 +2800,15 @@ EOF;
 	 * @param boolean $required field is required
 	 * @param string $folder default folder to open
 	 * @param string $help help message
+	 * @param string $style
 	 */
-	public function formAddFieldMediaBrowser($name, $label='', $required, $folder='', $help='')
+	public function formAddFieldMediaBrowser($name, $label='', $required, $folder='', $help='', $style='')
 	{
 		$options = array();
 		if(!empty($required))$options['required'] = $required;
 		if(!empty($folder))$options['folder'] = $folder;
 		if(!empty($help))$options['help'] = $help;
+		if(!empty($style))$options['style'] = $style;
 
 		$this->formAddField($name, $label, 'filemanager_media', $required, $options);
 	}
@@ -2675,12 +2820,14 @@ EOF;
 	 * @param string $label label to display if empty $label = $name
 	 * @param boolean $required field is required
 	 * @param string $help help message
+	 * @param string $after
 	 */
-	public function formAddFieldBoolean($name, $label='', $required, $help='')
+	public function formAddFieldBoolean($name, $label='', $required, $help='', $after='')
 	{
 		$options = array();
 		if(!empty($required))$options['required'] = $required;
 		if(!empty($help))$options['help'] = $help;
+		if(!empty($after))$options['after'] = $after;
 
 		$this->formAddField($name, $label, 'boolean', $required, $options);
 	}
@@ -2692,12 +2839,14 @@ EOF;
 	 * @param string $label label to display if empty $label = $name
 	 * @param boolean $required field is required
 	 * @param string $help help message
+	 * @param string $style
 	 */
-	public function formAddFieldBooleanX($name, $label='', $required, $help='')
+	public function formAddFieldBooleanX($name, $label='', $required, $help='', $after='')
 	{
 		$options = array();
 		if(!empty($required))$options['required'] = $required;
 		if(!empty($help))$options['help'] = $help;
+		if(!empty($after))$options['after'] = $after;
 
 		$this->formAddField($name, $label, 'booleanX', $required, $options);
 	}
@@ -2869,13 +3018,15 @@ EOF;
 	 * @param boolean $required field is required
 	 * @param string $help help message
 	 * @param string $value default value
+	 * @param string $attributes
 	 */
-	public function formAddFieldDate($name, $label='', $required, $help='', $value='')
+	public function formAddFieldDate($name, $label='', $required, $help='', $value='', $attributes='')
 	{
 		$options = array();
 		if(!empty($required))$options['required'] = $required;
 		if(!empty($help))$options['help'] = $help;
         if(strlen($value) > 0)$options['value'] = $value;
+        if(!empty($attributes))$options['attributes'] = $attributes;
 
 		$this->formAddField($name, $label, 'date', $required, $options);
 	}
@@ -2890,12 +3041,13 @@ EOF;
 	 * @param string $help help message
 	 * @param string $value default value
 	 */
-	public function formAddFieldDateTime($name, $label='', $required, $help='', $value='')
+	public function formAddFieldDateTime($name, $label='', $required, $help='', $value='', $attributes='')
 	{
 		$options = array();
 		if(!empty($required))$options['required'] = $required;
 		if(!empty($help))$options['help'] = $help;
         if(strlen($value) > 0)$options['value'] = $value;
+        if(!empty($attributes))$options['attributes'] = $attributes;
 
 		$this->formAddField($name, $label, 'datetime', $required, $options);
 	}
@@ -2918,18 +3070,27 @@ EOF;
 		$this->formErrors[] = array('field' => $field, 'msg' => $msg);
 	}
 
+
     /**
      *
      * Add fieldset separator in field
      *
      * @param string $name
      * @param string $label if empty $label = $name
-     * @param array $options html initialise html content
+     * @param array $options html initialize html content
+     * @param string $style field style
+     * @param string $attributes
+     * @param string $html
      */
-	public function formAddFieldsetStart($name, $label='', $options=array())
+	public function formAddFieldsetStart($name, $label='', $options=array(), $style="", $attributes="", $html="")
 	{
+		if(!isset($options['html']))$options['html'] = $html;
+		if(!isset($options['style']))$options['style'] = $style;
+		if(!isset($options['attributes']))$options['attributes'] = $attributes;
+
 		$this->formAddField($name, $label, 'fieldset_start', false, $options);
 	}
+	
     /**
      * Close a form fieldset
      */
@@ -3113,6 +3274,16 @@ EOF;
 				{
 					$this->nuts->parse('f.fieldset_start.label', $f['label']);
 					$this->nuts->parse('f.fieldset_start.name', $f['name']);
+					
+					
+					// style
+					if(!isset($f['opts']['style']))$f['opts']['style'] = '';
+					$this->nuts->parse('f.fieldset_start.style', $f['opts']['style']);
+
+					// attributes
+					if(!isset($f['opts']['attributes']))$f['opts']['attributes'] = '';
+					$this->nuts->parse('f.fieldset_start.attributes', $f['opts']['attributes']);
+
 
 					// help
 					if(!isset($f['opts']['help']))$f['opts']['help'] = '';
@@ -3154,6 +3325,13 @@ EOF;
 				if(!isset($f['opts']['after']))$f['opts']['after'] = '';
 
 				$this->nuts->parse('f.widgets.name', $f['name']);
+
+				$f['nameX'] = str_erase('[]', $f['name']);
+				$f['nameX'] = str_replace('[', '', $f['nameX']);
+				$f['nameX'] = str_replace(']', '', $f['nameX']);
+				$f['nameX'] = trim($f['nameX']);
+
+				$this->nuts->parse('f.widgets.nameX', $f['nameX']);
 				$this->nuts->parse('f.widgets.label', $f['label']);
 
 
@@ -3380,6 +3558,8 @@ EOF;
 						if(!isset($f['opts']['where']))$f['opts']['where'] = '';
 						if(!empty($f['opts']['where']))$f['opts']['where'] = ' AND '.$f['opts']['where'];
 
+						$tmp_order_by = (isset($f['opts']['order_by'])) ? $f['opts']['order_by'] : $f['opts']['field'];
+						
 						$sql = "SELECT
 										ID AS value,
 										{$f['opts']['field']} AS label
@@ -3389,7 +3569,7 @@ EOF;
 										Deleted = 'NO'
 										{$f['opts']['where']}
 								ORDER BY
-										{$f['opts']['field']}";
+										{$tmp_order_by}";
 
 						$this->nuts->doQuery($sql);
 						$f['opts']['options'] = array();
@@ -3434,7 +3614,7 @@ EOF;
 							foreach($f['opts']['options'] as $zopt)
 							{
 								$opt = array();
-								if(is_string($zopt))
+								if(!is_array($zopt))
 								{
 									$opt['value'] = strtoupper($zopt);
 									$opt['label'] = ucfirst(strtolower($zopt));
@@ -3523,6 +3703,16 @@ EOF;
                 if(preg_match('/upper/', $f['opts']['class']))$_POST[$f['name']] = mb_strtoupper($_POST[$f['name']], 'UTF-8');
                 if(preg_match('/lower/', $f['opts']['class']))$_POST[$f['name']] = mb_strtolower($_POST[$f['name']], 'UTF-8');
                 if(preg_match('/ucfirst/', $f['opts']['class']))$_POST[$f['name']] = @mb_strtoupper(@mb_substr($_POST[$f['name']], 0, 1, 'UTF-8')).@mb_substr($_POST[$f['name']], 1);
+                
+                if(preg_match('/unsigned/', $f['opts']['class']))
+                {
+	                if((int)$_POST[$f['name']] < 0)
+	                {
+		                $msg = ($_SESSION['Language'] == 'fr') ? "Le champ `{$f['name']}` ne peut être inférieur à zéro" : "Field `{$f['name']}` can not be less than zero";
+		                $this->nuts->addError($f['name'], $msg);
+	                }
+                }
+                
             }
 
 			if($f['required'])
@@ -4017,15 +4207,24 @@ EOF;
 	 */
 	public $formFieldsForbidden = array();
 
-    /**
+	/**
      * add a Form field forbidden name put * to enclose generic (example Field*)
      *
-     * @param string $name
+     * @param string|array $name
      */
     public function formAddException($name)
     {
-        $this->formFieldsForbidden[] = $name;
+	    if(is_array($name))
+	    {
+		    foreach($name as $n)
+			    $this->formFieldsForbidden[] = $n;
+	    }
+	    else
+	    {
+		    $this->formFieldsForbidden[] = $name;
+	    }
     }
+
 
 
 	/**
@@ -4113,27 +4312,30 @@ EOF;
 		$this->edit_row = $r;
 	}
 
-    /**
-     * Form initialization for a record ID
+/**
+	 * Form initialization for a record ID
 	 *
-	 * @param string $sql_added
+	 * @param string $column_added (sql columns added)
+	 * @param string $sql_restriction_added (add sql where clause restriction)
+	 * @param string $error_message
+	 *
 	 * @return array edit records
-     */
-	public function formInit($sql_added='')
+	 */
+	public function formInit($sql_fields_added='', $sql_restriction_added='', $error_message="")
 	{
 		if(!isset($_GET['ID']))$_GET['ID'] = 0;
 		$_GET['ID'] = (int)$_GET['ID'];
 
 		// record verification !
-		if(!$this->isRecordExists($this->formDBTable[0]))
+		if(!$this->isRecordExists($this->formDBTable[0], 'ID', $sql_restriction_added))
 		{
-			$msg = "Record {$_GET['ID']} doesn't exist";
+			$msg = (empty($error_message)) ? "Record {$_GET['ID']} doesn't exist" : $error_message;
 			$this->trace($msg, $_GET['ID']);
 			$this->setError($msg);
 		}
 		else
 		{
-			$row = $this->getData("SELECT * $sql_added FROM {$this->formDBTable[0]} WHERE ID = {$_GET['ID']}");
+			$row = $this->getData("SELECT * $sql_fields_added FROM {$this->formDBTable[0]} WHERE ID = {$_GET['ID']}");
 			$this->edit_row = $row[0];
 
 			foreach($this->formInitRes as $key => $val)
@@ -4207,11 +4409,16 @@ EOF;
      *
      * @param string $table
      * @param string $colID default value: ID
+     * @param string $sql_added default value: empty
      * @return boolean
      */
-	public function isRecordExists($table, $colID = 'ID')
+	public function isRecordExists($table, $colID = 'ID', $sql_added='')
 	{
-		$res = $this->getQuery("SELECT COUNT(*) FROM $table WHERE Deleted = 'NO' AND ID = {$_GET[$colID]}");
+		if(!empty($sql_added))$sql_added = " AND $sql_added";
+
+
+		$sql = "SELECT COUNT(*) FROM $table WHERE Deleted = 'NO' AND ID = {$_GET[$colID]} $sql_added";
+		$res = $this->getQuery($sql);
 		$res = (int)$res;
 
 		if($res == 1)return true;
@@ -4283,13 +4490,13 @@ EOF;
      * @param string $hookData function with row as parameter and return
      * @return mixed|boolean
      */
-	public function viewRender($hookData='')
+	public function viewRender($hookData='', $sql_restriction="", $error_message="")
 	{
 		if(!isset($_GET['ID']))$_GET['ID'] = 0;
 		$_GET['ID'] = (int)$_GET['ID'];
-		if(!$this->isRecordExists($this->viewDBTable[0]))
+		if(!$this->isRecordExists($this->viewDBTable[0], 'ID', $sql_restriction))
 		{
-			$msg = "Record {$_GET['ID']} doesn't exist";
+			$msg = (empty($error_message)) ? "Record {$_GET['ID']} doesn't exist" : $error_message;
 			$this->trace($msg, $_GET['ID']);
 			$this->setError($msg);
 			$this->errorRender();

@@ -48,16 +48,16 @@ div#list_container .list_searches_menu a:active {color: #3399FE;}
 div#list_container .list_searches_menu img:hover {opacity: 0.5; cursor: pointer;}
 
 div#list_container fieldset div#list_search_content {display:none; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);}
-div#list_container fieldset label {clear:left; width:120px; display:block; float:left; text-align:right; padding-right:10px; padding-top: 7px; cursor: pointer;}
+div#list_container fieldset label {clear:left; width:120px; display:block; float:left; text-align:right; padding-right:10px; padding-top: 8px; cursor: pointer;}
 div#list_container fieldset label:hover {color:#999;}
 
-div#list_container fieldset input {width:220px; /* padding:1px;*/ }
+div#list_container fieldset input {width:300px; /* padding:1px;*/ }
 div#list_container fieldset div#list_search_content p input[type=checkbox] {position: relative; top:6px; }
 div#list_container fieldset div#list_search_content p input[type=text],
 div#list_container fieldset div#list_search_content p select
     {display: none;}
 
-div#list_container fieldset p {margin:5px; padding:0; height: 18px;}
+div#list_container fieldset p {margin:5px; padding:0; height: 22px;}
 div#list_container fieldset p#search_bottom {margin:1px; padding:0; text-align:right; padding:8px 0;  margin-top: 20px; }
 
 div#list_container fieldset p#search_bottom a {margin-right:15px; color:#507FBC; /*font-weight: bold;*/ }
@@ -69,9 +69,9 @@ div#list_container fieldset select {margin-left:0px;!important; }
 div#list_container fieldset select.operator {width: auto;}
 
 /*
-div#list_container fieldset .date {background-image:url(calendar_gray.png); background-repeat:no-repeat; background-position:right;}
-div#list_container fieldset .datetime {background-image:url(calendar_gray.png); background-repeat:no-repeat; background-position:right;}
-div#list_container fieldset .ajax_autocomplete {width: 350px; background-image:url(search_gray.png); background-repeat:no-repeat; background-position:right;}
+div#list_container fieldset .date {background-image:url(gray_calendar.png); background-repeat:no-repeat; background-position:right;}
+div#list_container fieldset .datetime {background-image:url(gray_calendar.png); background-repeat:no-repeat; background-position:right;}
+div#list_container fieldset .ajax_autocomplete {width: 350px; background-image:url(gray_search.png); background-repeat:no-repeat; background-position:right;}
 */
 
 
@@ -87,7 +87,7 @@ table#list th.ordered {-webkit-touch-callout: none; -webkit-user-select: none; -
 table#list #list_column_toggler {float: right; }
 table#list #list_column_toggler a {color: #666;}
 table#list #list_column_toggler a:hover {color: #000;}
-table#list #list_column_toggler_menu {padding: 10px; background: #fff; border: 1px solid #ccc; width: 250px; overflow: hidden; overflow-y: scroll; min-height: 120px; max-height: 650px; position: absolute; z-index: 3; margin-left: -203px; display: none;}
+table#list #list_column_toggler_menu {padding: 10px; background: #fff; border: 2px solid #000; width: 250px; overflow: hidden; overflow-y: scroll; min-height: 120px; max-height: 650px; position: absolute; z-index: 3; margin-left: -203px; display: none;}
 table#list #list_column_toggler_menu label {width: 99%; display: block; cursor: pointer;}
 table#list #list_column_toggler_menu label:hover {color: #000;}
 
@@ -147,6 +147,9 @@ table#list tbody .listDnd:hover {cursor: move; opacity:1;}
 table#list tbody td.error {background-color: #FFE1FF;}
 table#list tbody td.success {background-color: #DAF4D9;}
 table#list tbody td.warning {background-color: #fafad2;}
+table#list tbody td i {font-size: 16px; margin-right:5px;}
+table#list tbody td i.left {margin-left:5px; margin-right:0px;}
+table#list tbody td i.right {margin-left:0px; margin-right:5px;}
 
 
 table#list tfoot td input {text-align:center; width:35px;}
@@ -207,6 +210,8 @@ table#list a.counter {
 table#list a.counter:hover {background-color: #ccc; color: white;}
 table#list a.counter:active {background-color: #1570B8;}
 
-
 div#list_container #batch_actions {margin-top: 10px;}
+
+
+table#list a.note img[alt=""] {display: none!important;}
 

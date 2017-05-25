@@ -105,7 +105,7 @@ function strtouri($str, $convert_slashes=true, $added_patterns=array(), $added_r
 	$str = str_replace('__', '_', $str);
 	$str = str_replace('..', '.', $str);
 	$str = str_replace('--', '-', $str);
-	$str = str_replace('-.', '.', $str);
+	
 
 	if(count($added_patterns))
 		$str = str_replace($added_patterns, $added_replaces, $str);
@@ -161,55 +161,17 @@ function toPascalCase($str)
  */
 function str_replace_latin_accents($str)
 {
+	$unwanted_array = array(    'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+	                            'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
+	                            'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
+	                            'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
+	                            'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y' );
 
-	$reps = array();
-	$reps[] = array(
-		'pattern' => array('é', 'è', 'ê', 'ë'),
-		'replacement' => 'e'
-	);
-	$reps[] = array(
-		'pattern' => array('à', 'â', 'ä', 'â'),
-		'replacement' => 'a'
-	);
-
-	$reps[] = array(
-		'pattern' => array('ç'),
-		'replacement' => 'c'
-	);
-
-
-	$reps[] = array(
-		'pattern' => array('ÿ'),
-		'replacement' => 'y'
-	);
-
-	$reps[] = array(
-		'pattern' => array('û', 'ü', 'ù'),
-		'replacement' => 'u'
-	);
-
-	$reps[] = array(
-		'pattern' => array('î', 'ï'),
-		'replacement' => 'i'
-	);
-
-	$reps[] = array(
-		'pattern' => array('ö', 'ô'),
-		'replacement' => 'o'
-	);
-
-
-	foreach($reps as $rep)
-	{
-		$str = str_replace($rep['pattern'], $rep['replacement'], $str);
-
-		$rep['pattern'] = array_map('strtoupper', $rep['pattern']);
-		$str = str_replace($rep['pattern'], strtoupper($rep['replacement']), $str);
-	}
-
-
+	$str = strtr($str, $unwanted_array);
+	
 	return $str;
 }
+
 
 /**
  * Erase caracters from string
@@ -243,8 +205,9 @@ function sqlX($str)
  */
 function email($email)
 {
-	// $pattern = '#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,5}$#' ;
-	$pattern = "/^[_a-zA-Z0-9-]+(.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+.)+[a-zA-Z]{2,5}$/";
+	
+	$pattern = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,5})$/i';
+	
 	return preg_match($pattern, $email);
 
 }

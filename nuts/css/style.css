@@ -4,6 +4,7 @@
 @import url("style_icons.css");
 @import url("style_interface.css");
 @import url("style_interface_menu.css");
+@import url("style_interface_menu2.css");
 @import url("style_interface_forms.css");
 @import url("style_interface_login.css");
 @import url("style_interface_scrollbars.css");
@@ -21,6 +22,8 @@
 @import url("style_component_color_picker.css");
 @import url("style_component_calendar.css");
 @import url("style_component_datagrid.css");
+@import url("style_component_tinymce.css");
+@import url("style_component_codemirror.css");
 
 /* plugins */
 @import url("style_plugin_home.css");

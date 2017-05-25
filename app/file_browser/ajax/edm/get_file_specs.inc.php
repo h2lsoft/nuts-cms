@@ -10,7 +10,7 @@ if($type == 'folder')
 {
     $folder_name = WEBSITE_PATH.$cur_path;
     $folder_modified = date($datetimeFormat, filemtime($folder_name));
-    $folder_name = array_pop((explode("/", trim($folder_name,"/"))));
+    $folder_name = @array_pop((@explode("/", trim($folder_name,"/"))));
 
     // no display at root
     if(WEBSITE_PATH.$cur_path == $upload_path)
@@ -31,8 +31,8 @@ elseif($type == 'file')
     $file_type = mime_content_type($filename);
     $file_size = @filesize($filename);
     $file_size = $file_size < 1024  ? $file_size. ' '.translate('bytes') : $file_size < 1048576 ? number_format($file_size / 1024, 2, $dec_seperator, $thousands_separator) . ' '.translate('kB') : number_format($file_size / 1048576, 2, $dec_seperator, $thousands_separator) . ' '.translate('MB');
-    $filename = array_pop((explode("/", $filename)));
-    $fileext = strtolower(array_pop((explode(".", $filename))));
+    $filename = @array_pop((@explode("/", $filename)));
+    $fileext = @strtolower(@array_pop((@explode(".", $filename))));
     $file_locked = edmFileIsLocked($cur_path);
     if(strlen($fileext) == 4)$fileext[3] = '';
     $fileext = trim($fileext);
@@ -58,7 +58,7 @@ elseif($type == 'image')
     $file_modified = date($datetimeFormat, filemtime($filename));
     $file_size = filesize($filename);
     $file_size = $file_size < 1024  ? $file_size. ' '.translate('bytes') : $file_size < 1048576 ? number_format($file_size / 1024, 2, $dec_seperator, $thousands_separator) . ' '.translate('kB') : number_format($file_size / 1048576, 2, $dec_seperator, $thousands_separator) . ' '.translate('MB');
-    $filename = array_pop((explode("/", $filename)));
+    $filename = @array_pop((@explode("/", $filename)));
 
     $file_locked = edmFileIsLocked($cur_path);
 
@@ -79,4 +79,6 @@ elseif($type == 'image')
 }
 
 $resp['html'] = $html;
+
+
 

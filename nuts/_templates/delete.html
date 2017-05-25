@@ -39,9 +39,15 @@ function sendIt()
 
 	{$nuts_lang_msg[34]}<br />
 	<br />
-	<input autofocus="1" type="button" value="{$nuts_lang_msg[26]}" onclick="$('#form_window').dialog('close');RTERefresh();" />
+	<input id="close_btn" type="button" value="{$nuts_lang_msg[26]}" onclick="$('#form_window').dialog('close');RTERefresh();" />
 
 	<script>
+	$(function(){
+        setTimeout(function(){
+            $('#delete #close_btn').focus();
+        }, 200);
+    });
+
 	system_refresh();
 	RTERefresh();
 	setTimeout("$('#form_window').dialog('close')", 1500);

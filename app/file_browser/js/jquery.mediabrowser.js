@@ -116,9 +116,18 @@
             }
 
             src = URL;
-            $('#fancybox img').attr('src', src);
-            $('#fancybox').attr('href', src);
-            $('#fancybox').click();
+//            $('#fancybox img').attr('src', src);
+//            $('#fancybox').attr('href', src);
+//            $('#fancybox').click();
+
+            $.fancybox({
+                            type: 'image',
+                            href: URL,
+                            autoScale: true,
+                            centerOnScroll: true,
+                            hideOnOverlayClick: true
+            });
+
         },
 
 
@@ -320,7 +329,7 @@
                 str = '';
                 str += '<applet codebase="service/editlive_office" id="EditLive_Applet" name="EditLive_Applet" code="GWDAEditLive_Applet.class" archive="EditLive_Applet.jar" width="300" height="64" align="center">';
                 str += '<param name="type" value="application/x-java-applet;version=1.4.2" />';
-                str += '<param name="separate_jvm" value="true" />';
+                str += '<param name="separate_jvm" value="false" />';
                 str += '<param name="classloader_cache" value="false" />';
                 str += '<param name="scriptable" value="true" />';
                 str += '<param name="paramWEBSITE_URL" value="'+WEBSITE_URL+'" />';
@@ -331,11 +340,36 @@
                 str += '</applet>';
 
                 $('#EditLive_Applet').remove();
+
+                setTimeout(function(){
                 $('#EditLive_AppletContainer').html(str);
+                }, 800);
+
             }
             else
             {
-                document.location.href = URL;
+
+                file_extension = "";
+                tmp = explode('.', URL);
+                if(count(tmp) >= 2)
+                {
+                    file_extension = tmp[tmp.length-1];
+                    file_extension = strtolower(file_extension);
+                    file_extension = trim(file_extension);
+                }
+
+                fancy_type = 'iframe';
+                // window.open(URL);
+                $.fancybox({
+                                href:URL,
+                                type: fancy_type,
+                                autoScale: false,
+                                centerOnScroll: true,
+                                hideOnOverlayClick: true,
+                                width: '95%',
+                                height: '95%'
+                });
+
             }
 
         },
@@ -358,6 +392,18 @@
                 uri += '&file='+urlencode(URL);
                 URL = uri;
             }
+            else
+            {
+                folder = urlencode($.MediaBrowser.currentFolder);
+                file = urlencode(basename(URL));
+
+                uri = getAjaxUri();
+                uri += '&action=download';
+                uri += '&folder='+folder;
+                uri += '&file='+file;
+                URL = uri;
+            }
+
 
             document.location.href = URL;
         },
@@ -404,8 +450,10 @@
             str += '</applet>';
 
             $('#EditLive_Applet').remove();
-            $('#EditLive_AppletContainer').html(str);
 
+            setTimeout(function(){
+            $('#EditLive_AppletContainer').html(str);
+            }, 800);
 
 
         },
@@ -620,7 +668,7 @@
             $('div#message').html(str);
             $('div#message').slideDown();
 
-            timeout = (type == "error") ? 15000 : 10000;
+            timeout = (type != "error") ? 5000 : 3000;
             if(type == 'special')
             {
                 $('div#message').addClass('error');

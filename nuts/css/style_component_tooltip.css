@@ -3,15 +3,17 @@
     position: absolute;
     z-index: 6666;
     background-color: #fff;
-
-    color: #000;
-
-    border: 0!important;
-    padding: 8px;
     opacity: 1;
-}
-#tooltip h3, #tooltip div { margin: 0; padding: 0; font-size: 11px; font-weight: normal;}
 
+    color: #333!important;
+    box-shadow: none!important;
+    border: 2px solid #000!important;
+    padding: 6px!important;
+
+    /*min-width: 180px;*/
+
+}
+#tooltip h3, #tooltip div { margin: 0; padding: 0; font-size: 11px; font-weight: normal; color: #333!important;}
 
 
 /** tooltip **/

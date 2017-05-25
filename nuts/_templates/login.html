@@ -1,42 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
-	<meta http-equiv="X-UA-Compatible" content="chrome=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="robots" content="noindex, nofollow" />
-
 	<title>{CONST::APP_TITLE} - Login</title>
-
-
-	<link rel="icon" href="favicon.ico" />
-
-	<script language="javascript" src="../library/js/php.js"></script>
-	<script language="javascript" src="nuts.js"></script>
-
-
-	<!-- ui -->
-	<script src="../library/js/jquery.js"  type="text/javascript"></script>
-	<script src="../library/js/jquery.form.js"  type="text/javascript"></script>
-	<script src="../library/js/jquery-ui/jquery-ui-personalized-1.5.1.js" type="text/javascript"></script>
-	<link rel="stylesheet" href="../library/js/jquery-ui/themes/custom/jquery-ui-themeroller.css" />
-
-	<script src="../library/js/jquery.cookie.js"  type="text/javascript"></script>
+	
+	{$NUTS_HTML_HEADERS}
+	
 	<script type="text/javascript">rememberMe(-1, '');</script>
-	<!-- ui -->
 
-
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <style type="text/css">
     body {background-image:linear-gradient(#eee, #fff); background-repeat: no-repeat;}
     </style>
-    <link rel="stylesheet" type="text/css" href="css/custom.css" />
-
-
+	
 </head>
 
 <body>
-
 
 <div id="content">
 <!-- ajax::content -->
@@ -74,8 +51,8 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
-            <input type="hidden" name="r" value="" />
-            <input type="submit" value="Login" id="btn_submit" />
+            <input type="hidden" name="r" value="{$_GET['r']}" >
+            <input type="submit" value="Login" id="btn_submit" >
 
 		</p>
 
@@ -105,9 +82,8 @@
     // error different
     if("{$_GET['error']}" == 'ip_different')
     {
-        msg = "{$nuts_lang_msg[92]}<br/><br/>";
-        $('p.error').eq(0).html(msg);
-        $('p.error').eq(0).slideDown('normal');
+        msg = "{$nuts_lang_msg[92]}<br><br>";
+        $('p.error').eq(0).html(msg).show();
     }
 
 	function xLogin()
@@ -131,8 +107,7 @@
 
 			if(resp != '')
 			{
-				$('p.error').eq(0).html(original__error_message);
-				$('p.error').eq(0).slideDown('fast');
+				$('p.error').eq(0).html(original__error_message).show();
 				$('#content').fadeTo(0.33, 1);
 				//$('#btn_submit').attr('value', "{$nuts_lang_msg[56]}");
 				$('#btn_submit').removeAttr("disabled");
@@ -143,7 +118,7 @@
 			}
 			else
 			{
-				$('p.error').eq(0).slideUp('fast');
+				$('p.error').eq(0).hide('fast');
 				if($('#Remember').attr('checked') == true)
 				{
 					rememberMe($('#NutsLogin').val(), $('#NutsPassword').val());
@@ -179,14 +154,16 @@
 	<div id="lp_error"><img src="img/icon-error.gif" align="absmiddle" /> {$nuts_lang_msg[46]}</div>
 	<div id="lp_error_mail"><img src="img/icon-error.gif" align="absmiddle" /></div>
 	<div id="lp_ok"><img src="img/icon-accept.gif" align="absmiddle" /> {$nuts_lang_msg[47]}</div>
-
+	
 	<form id="former_lp" name="former_lp" method="post">
-	<p>
-		<label>{$nuts_lang_msg[45]}</label>
-		<input type="text" name="Email" id="Email" value="" style="width:250px;" />
-		<input type="submit" value="{$nuts_lang_msg[56]}" id="btn_submit_lp" class="button" />
-	</p>
-	<input type="hidden" name="from" value="lp" />
+		<p>
+			<label>{$nuts_lang_msg[45]}</label>
+			<input type="text" name="Email" id="Email" value="">
+			<input type="submit" value="{$nuts_lang_msg[56]}" id="btn_submit_lp" class="button">
+		</p>
+		
+		<input type="hidden" name="from" value="lp" />
+		
 	</form>
 
 </div>
@@ -207,7 +184,7 @@ function lostPasswordInit()
 				},
 
                 open: function( event, ui ) {
-                    setTimeout(function(){$('.ui-dialog-container #form_window_lp #Email').focus()}, 100);
+                    setTimeout(function(){$('.ui-dialog-container #form_window_lp #Email').css('width', '350px').focus()}, 100);
                 }
 
 			});
@@ -270,18 +247,17 @@ function showResponse2(responseText, statusText)
 				   .css("padding-top", '20px')
 				   .css("padding-bottom", '20px')
 				   .css("margin-top", '20px')
-				   .slideDown('normal');
+				   .show();
 	}
 	else if(resp.indexOf('error_mail;') == 0)
     {
         msg = str_replace('error_mail;', '', resp);
 
-        $('#lp_error_mail').html(msg);
-        $('#lp_error_mail').slideDown('normal');
+        $('#lp_error_mail').html(msg).show();
     }
     else
     {
-        $('#lp_error').slideDown('normal');
+        $('#lp_error').show();
     }
 }
 
@@ -292,8 +268,6 @@ $('#former_lp').ajaxForm(options);
 
 </script>
 <!-- form window -->
-
-
 
 
 

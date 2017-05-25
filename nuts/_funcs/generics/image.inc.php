@@ -186,3 +186,24 @@ function createThumb($fname, $thumbWidth, $create_new = false, $create_new_heigh
 }
 
 
+
+/**
+ * Check base64 image string (useful for js canvas dataUri)
+ *
+ * @param string $base64Img
+ * @param array $mime_allowed (default 'image/png', 'image/jpg', 'image/jpeg', 'image/gif')
+ *
+ * @return bool
+ */
+function isBase64Image($base64Img, $mime_allowed=array('image/png', 'image/jpg', 'image/jpeg', 'image/gif'))
+{
+	// check image
+	$img_info = @getimagesize($base64Img);
+	if(!$img_info || !isset($img_info['mime']))return false;
+
+	// check mime
+	if(!in_array($img_info['mime'], $mime_allowed))
+		return false;
+
+	return true;
+}

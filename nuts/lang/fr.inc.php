@@ -25,10 +25,10 @@ $nuts_lang_msg[8] = "Visualiser cet enregistrement";
 $nuts_lang_msg[9] = "Modifier cet enregistrement";
 $nuts_lang_msg[10] = "Supprimer cet enregistrement";
 $nuts_lang_msg[11] = "Rechercher";
-$nuts_lang_msg[12] = "commence par";
-$nuts_lang_msg[13] = "ne commence pas par";
-$nuts_lang_msg[14] = "contient";
-$nuts_lang_msg[15] = "ne contient pas";
+$nuts_lang_msg[12] = "commence par (separateur ,)";
+$nuts_lang_msg[13] = "ne commence pas par (separateur ,)";
+$nuts_lang_msg[14] = "contient (separateur ,)";
+$nuts_lang_msg[15] = "ne contient pas (separateur ,)";
 $nuts_lang_msg[16] = "Rechercher";
 $nuts_lang_msg[17] = "Annuler";
 $nuts_lang_msg[18] = "Précédent";
@@ -99,7 +99,7 @@ $nuts_lang_msg[52] = "Imprimer";
 
 $nuts_lang_msg[53] = "Liste large/scroll";
 $nuts_lang_msg[54] = "L'utilisateur `%s` vient d'éditer cet enregistrement, merci d'attendre 2 minutes avant d'enregistrer";
-$nuts_lang_msg[55] = "Votre accès est bloqué (5 échecs de login),<br /> merci de recommencer dans 10 minutes";
+$nuts_lang_msg[55] = "Votre accès est bloqué (5 échecs de login),<br /> vos accès automatiquement sera réactivé dans 30 minutes";
 $nuts_lang_msg[56] = "Envoyer";
 $nuts_lang_msg[57] = "Enr./page";
 
@@ -139,13 +139,21 @@ $nuts_lang_msg[81] = "Sous-groupe";
 $nuts_lang_msg[82] = "Créer une page";
 $nuts_lang_msg[83] = "Créer une news";
 
-$nuts_lang_msg[84]['subject'] = "IP bloquée";
+$nuts_lang_msg[84]['subject'] = APP_TITLE."> IP bloquée";
 $nuts_lang_msg[84]['body'] = "
 Bonjour,
 
-IP `{IP}` est bloquée par le système après 5 tentatives de connexion (déblocage automatique après 15 minutes)
+IP `{IP}` a été bloquée par le système après 5 tentatives de connexions,
+celle-ci sera réactivée automatiquement après 30 minutes.
 
-Pour débloquer cette IP: {WEBSITE_URL}/nuts/?mod=_control-center&do=exec";
+Pour débloquer cette IP: {WEBSITE_URL}/nuts/?mod=_control-center&do=exec
+
+
+Whois information :
+===================
+{WhoisInformation}
+
+";
 
 
 $nuts_lang_msg[85] = "Visualiser";
@@ -180,6 +188,11 @@ $nuts_lang_msg[101] = "Executer";
 
 $nuts_lang_msg[102] = "colonnes";
 $nuts_lang_msg[103] = "Merci de copier cette ligne dans votre presse papier (Ctrl+C / Pomme+C) :";
+
+$nuts_lang_msg[104] = "visiteur(s) en ligne";
+
+$nuts_lang_msg[105] = "expression régulière";
+
 
 
 // main menu ***********************************************************************
@@ -251,7 +264,7 @@ $nuts_lang_options[] = array('value' => 'fr', 'label' => 'Français');
 $nuts_lang_options[] = array('value' => 'en', 'label' => 'Anglais');
 $nuts_lang_options[] = array('value' => 'de', 'label' => 'Allemand');
 $nuts_lang_options[] = array('value' => 'it', 'label' => 'Italien');
-$nuts_lang_options[] = array('value' => 'es', 'label' => 'Espangnol');
+$nuts_lang_options[] = array('value' => 'es', 'label' => 'Espagnol');
 $nuts_lang_options[] = array('value' => 'pt', 'label' => 'Portugais');
 $nuts_lang_options[] = array('value' => 'sw', 'label' => 'Suédois');
 $nuts_lang_options[] = array('value' => 'da', 'label' => 'Danish');

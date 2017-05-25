@@ -227,10 +227,10 @@ if($for == 'MAIN')
 
 	$help_menu = <<<EOF
 
-        <li class="parent" style=""><a>?</a>
+        <li class="parent menu_help"><a>?</a>
 
 		<!-- child -->
-		<ul style="border-color: #DC57B1;">
+		<ul>
 		<li>
 			<a target="_blank" href="https://github.com/h2lsoft/Nuts-CMS/issues"> <img src="/nuts/img/bug_48.png" align="bottom"> {$nuts_lang_msg[58]}</a>
 		</li>

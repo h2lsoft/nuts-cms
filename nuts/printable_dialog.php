@@ -1,3 +1,6 @@
+<?php
+@session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +11,26 @@
 	<link rel="stylesheet" type="text/css" href="css/print.css?t=<?php echo time(); ?>" />
 	<link rel="stylesheet" type="text/css" href="css/dialog_print.css?t=<?php echo time(); ?>" />
 
-	<script type="text/javascript" src="../library/js/php.js"></script>
+	<script>
+	var nutsUserLang  = "<?php echo $_SESSION['Language']; ?>";
+	</script>
 
-	<script type="text/javascript" src="../library/js/jquery.js"></script>
-	<script src="../library/js/jquery.form.js"  type="text/javascript"></script>
-	<script src="../library/js/jquery-ui/jquery-ui-personalized-1.5.1.js" type="text/javascript"></script>
-	<link rel="stylesheet" href="../library/js/jquery-ui/themes/custom/jquery-ui-themeroller.css" />
 
+	<script type="text/javascript" src="/library/js/php.js"></script>
+	<script type="text/javascript" src="nuts.js"></script>
+	<script src="../library/js/jscalendar/calendar.js" type="text/javascript"></script>
+	<script src="../library/js/jscalendar/lang/calendar-<?php echo $_SESSION['Language']; ?>.js" type="text/javascript"></script>
+	<script src="../library/js/jscalendar/calendar-setup.js" type="text/javascript"></script>
+
+
+
+	<script type="text/javascript" src="/library/js/jquery.js"></script>
+	<script type="text/javascript" src="/library/js/jquery.form.js"></script>
+
+	<!-- <script src="../library/js/jquery-ui/jquery-ui-personalized-1.5.1.js" type="text/javascript"></script> -->
+	<!-- <link rel="stylesheet" href="../library/js/jquery-ui/themes/custom/jquery-ui-themeroller.css" /> -->
+	<script src="/library/js/jquery-ui/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="/library/js/jquery-ui/themes/ui-lightness/jquery-ui-1.10.4.custom.min.css" />
 
 </head>
 <body>

@@ -89,8 +89,16 @@ $('#search_form select.ac').each(function(){
 
 // list
 // $("#search_form .tt[title!='']").css('text-decoration', 'underline');
-$("#search_form .tt[title!='']").append(' <img src="img/icon_help_mini.gif" align="absmiddle" />');
-$("#search_form .tt[title!='']").tooltip({track: true, delay: 0, showURL: false, showBody: " - ",opacity: 0.85});
+//$("#search_form .tt[title!='']").append(' <img src="img/icon_help_mini.gif" align="absmiddle" />')
+$("#search_form .tt[title!='']").append(' <i class="icon-help"></i>')
+                                .tooltip({
+                                           track: false,
+                                           delay: 0,
+                                           showURL: false,
+                                           showBody: " - ",
+                                           opacity: 0.85
+                                        });
+
 
 
 // image_preview

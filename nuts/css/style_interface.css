@@ -1,9 +1,13 @@
 /* header *************************************************************************************************************/
 #header {
-    height: 35px; padding: 0px; background-image: none;
+    height: 38px; padding: 0px; background-image: none;
+    background-color: white;
+    width: 100%;
+    position: relative;
+    top:0;
 }
 
-#header .bo_logo {max-height: 35px; padding: 0px; margin: 0; margin-top: 5px;}
+#header .bo_logo {max-height: 35px; padding: 0px; margin: 0; margin-top: 5px; margin-left: 0px;}
 
 #header_right {position: absolute; z-index: 2; right: 2px; top:2px; background: #fff;}
 
@@ -24,7 +28,7 @@
 #header_right #user_online #user_online_count {font-size: 16px; margin: 0; padding: 0; }
 
 #header_right #user_online-drop-down-menu {font-size:11px; padding: 0px; margin: 0;  width: 280px;}
-#header_right #user_online-drop-down-menu img {width: 30px; float: left; margin-right: 5px; vertical-align: middle; }
+#header_right #user_online-drop-down-menu img {width: 30px; border-radius: 50%; max-width: 26px; float: left; margin-right: 5px; vertical-align: middle; }
 #header_right #user_online-drop-down-menu li {line-height: 30px; white-space:nowrap; padding: 3px; width: 270px;}
 #header_right #user_online-drop-down-menu li span {color: #666; font-size: 10px;}
 #header_right #user_online-drop-down-menu li:hover {color:#1570B8;}
@@ -34,7 +38,10 @@
 #header_right #user_shortcuts a {display: block; height: 34px; line-height: 34px; color: #e5e5e5;}
 #header_right #user_shortcuts a:hover {color: #999;}
 #header_right #user_shortcuts a i {font-size: 20px; margin: 0; padding: 0; }
-#header_right #user_shortcuts .drop-down-arrow {}
+#header_right #user_shortcuts .drop-down-arrow {position: relative; top: 2px;}
+
+#header_right .icon-bookmark-2 {position: relative; top: 2px;}
+
 
 #header_right #user_shortcuts-drop-down-menu {font-size:11px; padding: 0px; margin: 0;  width: 280px;}
 
@@ -52,23 +59,20 @@
 #header_right #user_shortcuts-drop-down-menu li.add_new a i {font-size: 12px;}
 
 
-
-
-
-
 /** user badge **/
 #header_right #user_badge {white-space:nowrap; float: left;}
 #header_right #user_badge .avatar {padding: 2px; line-height: 35px; padding-right: 10px; cursor: pointer; display: block; height: 30px;}
 #header_right #user_badge .avatar:hover {color:#666;}
-#header_right #user_badge .avatar img {width: 30px; float: left; margin-right: 10px;}
+#header_right #user_badge .avatar img {width: 30px; max-height: 30px; float: left; margin-right: 10px;}
 #header_right #user_badge .drop-down-arrow {vertical-align: text-bottom;}
 #header_right #user_badge:hover .drop-down-arrow {border-top-color:#666;}
 #header_right #user_badge .drop-down-menu {right:0px;}
 
 
 /* top_search *********************************************************************************************************/
-#top_search {width: 150px; position: absolute; z-index: 2; left: 40%; top:10px;}
-#top_search #top_search_input {width: 200px; background-position: 2px center!important; padding-right: 0; padding-left: 20px; opacity: 0.7;}
+#top_search { padding: 20px; /*position: absolute; z-index: 2; left: 40%; top:10px;*/ }
+#top_search #top_search_input {width: 90%; background-position: 2px center!important; padding-right: 0; padding-left: 20px; opacity: 0.7;}
+#top_search_input::-webkit-search-cancel-button {display: none;}
 #top_search #top_search_input:hover {border-color: #ccc; opacity: 1;}
 #top_search #top_search_input:focus {border-color: #2d89ef; background-color: white; opacity: 1;}
 
@@ -97,10 +101,10 @@ ul#navbar {display: none;}
 #main_title .col_logo {width: 20px; white-space: nowrap; vertical-align: top; padding-left: 0px;}
 #main_title .col_logo .plugin_logo {width: 30px;}
 #main_title .col_title {padding-left: 0;  vertical-align: top;}
-#main_title .col_title a {color:#000; font-size:18px;}
+#main_title .col_title a {color:#1570B8; font-size:16px; letter-spacing: 1px; text-transform: uppercase}
 #main_title .col_title a:hover {text-decoration:none; color:#666;}
-#main_title .col_title a:active { color:#2d89ef;}
-#main_title .col_title span {font-size:10px; color:#aaa; display: block; margin-top: -3px;}
+#main_title .col_title a:active { color:#000;}
+#main_title .col_title span {font-size:12px; color:#aaa; display: block; margin-top: -3px;}
 
 #main_title .col_configuration a {color: #aaa; font-size: 20px;}
 #main_title .col_configuration a:hover {color: #000;}
@@ -112,17 +116,19 @@ ul#navbar {display: none;}
 
 
 /* bottom *************************************************************************************************************/
-#bottom {clear:both; width:99%; color:#999; text-align:center; font-size:11px; padding-bottom: 15px;}
+#bottom {clear:both; width:99%; color:#999; text-align:center; font-size:11px; padding-bottom: 15px; padding-top: 25px}
 #bottom a.gray {color: #666;}
 #bottom a:hover {color: #000;}
 #bottom a:active {color: #87cefa;}
 
 
 /* return top *********************************************************************************************************/
-#top_return {/*position: absolute; z-index: 3; */ position: fixed; bottom: 4px; right: 5px; float: right; }
-#top_return a { color: #fff; font-size: 14px; padding:4px 15px; background: #ccc;}
-#top_return a:hover { background: #2d89ef; color: white;  }
-#top_return a:active { background: #87cefa; color: white;    }
+#top_return {position: fixed; bottom: 25px; right: 5px; float: right; display: none; }
+#top_return:hover {bottom: 40px;}
+
+#top_return a { color: #fff; font-size: 14px; padding:4px 23px; padding-bottom: 50px; background: #2d89ef;}
+#top_return a:hover { background: #87cefa; color: white;}
+#top_return a:active { background: #2d89ef; color: white;    }
 
 
 
@@ -139,8 +145,6 @@ div#delete .delete_warning_message {color: red; margin-top: 0;}
 
 /** delete ************************************************************************************************************/
 #nuts_alert_window {text-align:center; font-size:14px; color: red;  padding-top:80px; width: 70%; margin:0 auto;}
-
-
 
 #error {width:99%; font-size:14px; height:310px; line-height:310px; text-align:center; /* background-color:#FFDEDE; */
     background-image: url(/plugins/_error/icon.png);
@@ -202,11 +206,10 @@ iframe.nuts_editor:focus {
 }
 
 
-
-
-
 /** code mirror */
 .CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
 .CodeMirror-scroll {height:99%; min-height: 650px;}
 span.cm-comment {color: black!important; background-color: #FFCC99;}
 .activeline {background: #E9EFF8 !important;}
+
+
