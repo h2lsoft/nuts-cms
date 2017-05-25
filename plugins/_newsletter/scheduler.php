@@ -1,21 +1,23 @@
 <?php
 
-// configuration *************************************************************************
-set_time_limit(0);
-error_reporting(E_ALL);
-ini_set('memory_limit', '4096M');
-
-
 // includes *************************************************************************
 include("../../nuts/config.inc.php");
 include(WEBSITE_PATH."/nuts/headers.inc.php");
+include("config.inc.php");
 
+
+// configuration *************************************************************************
+set_time_limit(0);
+error_reporting(E_ALL);
+
+if(isset($NEWSLETTER_MEMORY_LIMIT))
+	ini_set('memory_limit', $NEWSLETTER_MEMORY_LIMIT);
 
 // execution *************************************************************************
 $plugin = new NutsCore();
 $plugin->dbConnect();
 $nuts = &$plugin;
-include("config.inc.php");
+
 
 // execution
 $nuts->mailCharset('UTF-8');
