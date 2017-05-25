@@ -99,7 +99,7 @@ $nuts_lang_msg[52] = "Imprimer";
 
 $nuts_lang_msg[53] = "Liste large/scroll";
 $nuts_lang_msg[54] = "L'utilisateur `%s` vient d'éditer cet enregistrement, merci d'attendre 2 minutes avant d'enregistrer";
-$nuts_lang_msg[55] = "Votre accès est bloqué (5 échecs de login),<br /> merci de recommecer dans 10 minutes";
+$nuts_lang_msg[55] = "Votre accès est bloqué (5 échecs de login),<br /> merci de recommencer dans 10 minutes";
 $nuts_lang_msg[56] = "Envoyer";
 $nuts_lang_msg[57] = "Enr./page";
 
@@ -139,13 +139,13 @@ $nuts_lang_msg[81] = "Sous-groupe";
 $nuts_lang_msg[82] = "Créer une page";
 $nuts_lang_msg[83] = "Créer une news";
 
-$nuts_lang_msg[84]['subject'] = "IP blocked";
+$nuts_lang_msg[84]['subject'] = "IP bloquée";
 $nuts_lang_msg[84]['body'] = "
-Hi,
+Bonjour,
 
-IP `{IP}` is blocked by system after 5 times error login (automatically unblocked after 15 minutes)
+IP `{IP}` est bloquée par le système après 5 tentatives de connexion (déblocage automatique après 15 minutes)
 
-To unblock this IP: {WEBSITE_URL}/nuts/?mod=_control-center&do=exec";
+Pour débloquer cette IP: {WEBSITE_URL}/nuts/?mod=_control-center&do=exec";
 
 
 $nuts_lang_msg[85] = "Visualiser";
