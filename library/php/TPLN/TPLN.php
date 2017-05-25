@@ -727,7 +727,7 @@ class TPLN extends DB
 			$headers .= "From: ".TPLN_MAIL_EXPEDITOR."\n";
 			$headers .= 'X-Mailer: PHP/'.phpversion();
 
-			if(@mail(TPLN_MAIL_ADMIN, $subject, $body, $headers))
+			if(@mail(TPLN_MAIL_ADMIN, $subject, $body, $headers, "-f ".TPLN_MAIL_EXPEDITOR))
 			{
 				if(TPLN_LANG == 'en')
 					$msg = "<br><br><hr>An email has been sent to the webmaster $mail_admin";

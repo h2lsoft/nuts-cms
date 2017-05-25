@@ -281,7 +281,7 @@ class Mail extends Rss
 		}
 
 		// send
-		if(!@mail($this->to, $this->subject, $body, $headers))
+		if(!@mail($this->to, $this->subject, $body, $headers, "-f {$this->from}"))
 		{
 			$phperror = error_get_last();
 			$phperror = $phperror['message'];

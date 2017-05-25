@@ -47,21 +47,16 @@ function nutsSendEmail($msg, $data, $email, $ip_signature=true, $from_address=''
 Powered by Nuts
 User IP: ".$nuts->getIP();
 	}
-
-	if(empty($from_address))
-		$headers = 'From: '.NUTS_EMAIL_NO_REPLY."\n";
-	else
-		$headers = 'From: '.$from_address."\n";
+	
+	
+	$from = (empty($from_address)) ? NUTS_EMAIL_NO_REPLY : $from_address;
+	$headers = 'From: '.$from."\n";
+	
 
 	$headers .= "Content-Type: text/plain; charset=utf-8\n";
-	// $headers .= 'To: '.$email."\n";
-
-	// utf8_decode
-	// $subject = utf8_decode($subject);
-	// $body = utf8_decode($body);
 
 	$subject = html_entity_decode($subject);
-	if(!@mail($email, $subject, $body, $headers))
+	if(!@mail($email, $subject, $body, $headers, "-f $from"))
 		return false;
 
 	return true;
