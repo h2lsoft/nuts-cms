@@ -204,7 +204,9 @@ $nuts_lang_msg[103] = "Please copy this line to your clipboard  (Ctrl+C / Apple+
 $nuts_lang_msg[104] = "visitor(s) online";
 
 $nuts_lang_msg[105] = "regular expression";
-
+$nuts_lang_msg[106] = "Add/remove favorites";
+$nuts_lang_msg[107] = "favorite has been succefully added";
+$nuts_lang_msg[108] = "favorite has been succefully removed";
 
 // main menu ***********************************************************************
 $mods_group[0]['name'] = 'Administration';

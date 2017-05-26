@@ -16,7 +16,7 @@ include('_inc/session.inc.php');
 
 
 // ajax:action *************************************************************************************************
-if(isset($_GET['_action']) && in_array($_GET['_action'], ['users_online', 'rte_get-templates', 'rte_get-template', 'rte_get-link_list', 'list_search_users']))
+if(isset($_GET['_action']) && in_array($_GET['_action'], ['users_online', 'rte_get-templates', 'rte_get-template', 'rte_get-link_list', 'list_search_users', 'user_bookmark-toggle']))
 	include("ajax/{$_GET['_action']}.inc.php");
 
 
@@ -112,6 +112,17 @@ if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']) && !isset($_GET['target']))
 // execution ***********************************************************************************************************
 $current_theme = nutsGetTheme();
 $PHPSESSID = session_id();
+
+$nuts_lang_msgs_compiled = "";
+for($i=0; $i < count($nuts_lang_msg); $i++)
+{
+	if(!is_array($nuts_lang_msg[$i]))
+	{
+		$nuts_lang_msg[$i] = str_erase("\r", $nuts_lang_msg[$i]);
+		$nuts_lang_msg[$i] = str_replace("\n", '\n', $nuts_lang_msg[$i]);
+		$nuts_lang_msgs_compiled .= "var nuts_lang_msg_{$i} = \"{$nuts_lang_msg[$i]}\";";
+	}
+}
 
 $NUTS_HTML_HEADERS = $nuts->directIoOutput('_templates/_header.html');
 $nuts->open('_templates/all.html');

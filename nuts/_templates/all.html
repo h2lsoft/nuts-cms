@@ -20,18 +20,8 @@
     var popupMode = "{$_GET['popup']}";
     var parent_refresh = "{$_GET['parent_refresh']}";
 
-	var nuts_lang_msg_61 = "{$nuts_lang_msg[61]}";
-	var nuts_lang_msg_62 = "{$nuts_lang_msg[62]}";
-	var nuts_lang_msg_65 = "{$nuts_lang_msg[65]}";
-	var nuts_lang_msg_66 = "{$nuts_lang_msg[66]}";
-	var nuts_lang_msg_69 = "{$nuts_lang_msg[69]}";
-	var nuts_lang_msg_70 = "{$nuts_lang_msg[70]}";
-	var nuts_lang_msg_71 = "{$nuts_lang_msg[71]}";
-	var nuts_lang_msg_17 = "{$nuts_lang_msg[17]}";
-
-	var nuts_lang_msg_72 = "{$nuts_lang_msg[72]}";
-	var nuts_lang_msg_73 = "{$nuts_lang_msg[73]}";
-	var nuts_lang_msg_103 = "{$nuts_lang_msg[103]}";
+	{$nuts_lang_msgs_compiled}
+	
     var plugin_list_ac = '';
 
     var current_plugin_name = '';
@@ -218,12 +208,19 @@
 				<td class="col_title">
 
 					<a href="javascript:;" onclick="system_goto('?mod={$plugin->name}&do={$_GET['do']}&popup={$_GET['popup']}&parentID={$_GET['parentID']}{$plugin->url_tracked}', 'content');">{$plugin->real_name}</a>
+					
+					{#if(!isset($_GET['popup']) || empty($_GET['popup']))}
+					<a href="javascript:;" title="{$nuts_lang_msg[106]}" onclick="favoriteToggle('{$plugin->name}');"><i class="icon-bookmark-2"></i></a>
+					{#endif}
+					
 					<span>{$plugin->description}</span>
 				</td>
 				<td class="col_configuration">
+					
 					<bloc::admin_configuration_image>
 						<a href="javascript:popupModalV2('{config_url}&popup=1');" title="Configuration"><i class="icon-equalizer"></i></a>
 					</bloc::admin_configuration_image>
+					
 				</td>
 			</tr>
 		</table>

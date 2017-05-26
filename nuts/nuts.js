@@ -1451,18 +1451,18 @@ function notify(type, message)
     notify_displayed_nb += 1;
 	class_added = "";
 
-	if(type == '' || type == 'normal')
+	if(type == '' || type == 'normal' || type == 'info')
 	{
 		message = '<img src="img/icon-help.png" align="absmiddle" /> &nbsp;'+message;
 	}
 
-	if(type == 'ok')
+	if(type == 'ok' || type == 'success')
 	{
 		message = '<img src="img/icon-accept.gif" align="absmiddle" /> &nbsp;'+message;
 		class_added = 'notify_itOK';
 	}
 
-	if(type == 'error')
+	if(type == 'error' || type == 'danger')
 	{
 		message = '<img src="img/icon-error.gif" align="absmiddle" /> &nbsp;'+message;
 		class_added = 'notify_itKO';
@@ -2050,3 +2050,35 @@ function copy2Clipboard(text)
     prompt(nuts_lang_msg_103+"\n\n", text);
 
 }
+
+
+
+function favoriteToggle(plugin)
+{
+	uri = 'index.php?_action=user_bookmark-toggle&plugin='+plugin;
+	$.post(uri, {plugin:plugin}, function(response){
+	
+		if(response.error)
+        {
+            alert('Error: '+response.error_msg);
+            return;
+        }
+        
+        msg = nuts_lang_msg_107;
+		type = 'success';
+		if(response.action == 'delete')
+		{
+			msg = nuts_lang_msg_108;
+			type = 'danger';
+		}
+		
+		notify(type, msg);
+  
+	
+	}, 'json');
+	
+}
+
+
+
+

@@ -192,7 +192,9 @@ $nuts_lang_msg[103] = "Merci de copier cette ligne dans votre presse papier (Ctr
 $nuts_lang_msg[104] = "visiteur(s) en ligne";
 
 $nuts_lang_msg[105] = "expression régulière";
-
+$nuts_lang_msg[106] = "Ajouter/retirer de mes favoris";
+$nuts_lang_msg[107] = "le favori a bien été ajouté";
+$nuts_lang_msg[108] = "le favori a bien été retiré";
 
 
 // main menu ***********************************************************************
