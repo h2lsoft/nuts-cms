@@ -813,13 +813,12 @@ function initMainMenu()
     $('#header').mouseup(function(){
         $('#menu li.parent').removeClass('selected').css('background', 'none').css('border-color', '#ccc');
     });
-
-
+    
     // drop-down-menu **************************************************************************************************
 
     // resize badge menu
     $('#user-badge-drop-down-menu').width($('#user_badge').width()-2);
-
+    
     // drop-down-menu
     $('.has-drop-down-menu').mousedown(function(){
 
@@ -850,7 +849,7 @@ function initMainMenu()
 function initTopSearch()
 {
     /* customize menu autocomplete */
-    $("#top_search_input").keyup(function(){
+    $("#top_search_input").keyup(function(e){
 
         v = $(this).val();
         v = strtolower(v);
@@ -859,6 +858,9 @@ function initTopSearch()
         {
             $('#nav_menu li ul li').show();
             $('#nav_menu li ul').hide();
+            
+            if(e.keyCode === 27)mainMenuClose();
+            
             return;
         }
 
