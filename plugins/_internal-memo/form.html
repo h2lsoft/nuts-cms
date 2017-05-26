@@ -1,4 +1,4 @@
-<!-- <input id="saver" type="button" accesskey="S" value="{$nuts_lang_msg[49]} (Alt + S)" style="position: absolute; z-index: 55; right: 0; top:5px; margin-right: 10px;" /> -->
+<input id="saver" type="button" accesskey="S" value="{$nuts_lang_msg[49]} (Ctrl + S)" style="position: absolute; z-index: 55; right: 0; top:5px; margin-right: 10px;" />
 
 <div style="text-align: center;">
 
@@ -9,14 +9,8 @@
     <select id="nuts_my_notes_items" style="min-width: 250px;">
     </select>
 
-    <a href="javascript:;" id="reloader" class="button" style="margin-right: 10px;">ok</a>
-
-
-
-    <a href="javascript:;" id="saver" title="{$nuts_lang_msg[49]} (Ctrl + S)" accesskey="s"><i class="icon-save"></i></a>
-
-
-
+    <a href="javascript:;" id="reloader" class="button" style="margin-right: 10px; visibility: hidden">ok</a>
+ 
 </div>
 
 <textarea wrap="off" id="nuts_my_notes">{notes}</textarea>
@@ -29,10 +23,15 @@ $('body, #content').css('margin', 0)
                    .css('padding', 0);
 
 
+$('#nuts_my_notes_items').change(function(){
+	$('#reloader').click();
+});
+
+
 $(document).ready(function() {
     $('#nuts_my_notes').css('width', ($(window).width()-68)+'px')
                        .css('height', ($(window).height()-89)+'px')
-                       .tabby()
+                       .tabOverride()
                        .focus();
 
     $('#main_title').hide();
