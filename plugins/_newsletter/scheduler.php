@@ -213,12 +213,24 @@ foreach($newsletters as $n)
 		$message .= "<b>Total Email sent :</b> {$n['TotalSend']}<br>";
 		$message .= "<b>Total Email error:</b> {$n['TotalError']}<br>";
 		
-		$nuts->mailCharset('UTF-8');
-		$nuts->mailFrom(NUTS_EMAIL_NO_REPLY);
-		$nuts->mailTo($n['SchedulerFinishEmail']);
-		$nuts->mailSubject(WEBSITE_NAME."> Newsletter Reporting #{$n['ID']}");
-		$nuts->mailBody($message, 'HTML');
-		$nuts->mailSend();
+		$n['SchedulerFinishEmail'] = str_replace(' ', '', $n['SchedulerFinishEmail']);
+		$n['SchedulerFinishEmail'] = str_replace(',', ';', $n['SchedulerFinishEmail']);
+		$tos = explode(';', $n['SchedulerFinishEmail']);
+		
+		foreach($tos as $to)
+		{
+			$to = trim($to);
+			$to = strtolower($to);
+			if(!empty($to))
+			{
+				$nuts->mailCharset('UTF-8');
+				$nuts->mailFrom(NUTS_EMAIL_NO_REPLY);
+				$nuts->mailTo($to);
+				$nuts->mailSubject(WEBSITE_NAME."> Newsletter Reporting #{$n['ID']}");
+				$nuts->mailBody($message, 'HTML');
+				$nuts->mailSend();
+			}
+		}
 	}
 	
 	
