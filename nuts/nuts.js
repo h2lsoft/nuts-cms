@@ -156,6 +156,8 @@ function system_position(uri, list)
 
 		$("#ajax_loader").hide();
 		$('div#list').fadeTo(0.6, 1);
+		
+		$('body').css('cursor', 'default');
 
 		listTrColor();
 
