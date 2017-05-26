@@ -776,6 +776,7 @@ function initMainMenu()
         
         
         $('#menu li.parent').removeClass('selected').css('background', 'none').css('border-color', '#ccc');
+        $('#menu li.parent ul').hide();
         $(this).addClass('selected').children('ul').show();
         
 
