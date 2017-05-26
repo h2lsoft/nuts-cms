@@ -642,6 +642,11 @@
                 if(!window.opener.document.getElementById('iframe_'+returnID))
                 {
                     window.opener.document.getElementById(returnID).value = cur_uri;
+                    window.opener.document.getElementById(returnID).focus();
+                    
+                    event = new Event('change');
+					window.opener.document.getElementById(returnID).dispatchEvent(event);
+                
                 }
                 else
                 {
