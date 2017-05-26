@@ -1,6 +1,17 @@
 setPluginTitle();
 ajaxHistoricCheckChanges();
 
+// override tooltip to parse html
+$.widget("ui.tooltip", $.ui.tooltip, {
+    options: {
+        content: function () {
+            return $(this).prop('title');
+        }
+    }
+});
+
+
+
 // POPUP MODE : escape to close
 if(popupMode == 1)
 {
@@ -40,7 +51,14 @@ else
     initTopSearch();
     privateBoxRefresh();
 
-    shortcut.add('Ctrl+Alt', function(){$('#bo_menu_switch a').click();});
+    shortcut.add('Ctrl+Alt', function(){
+    	
+    	$('#bo_menu_switch a').click();
+    	
+    	if($('#menu').hasClass('main_menu_show'))
+    	    $('#top_search_input').focus();
+    
+    });
 
 
     // add scroll event

@@ -42,19 +42,26 @@ $plugin->listSetDbTable('NutsNewsletter',
 
 // search engine
 $plugin->listSearchAddFieldText('ID');
-$plugin->listSearchAddFieldDate('Date', '', '', '', '>=');
-$plugin->listSearchAddFieldDate('Date2', 'Date', 'Date', '', '<=');
+$plugin->listSearchAddFieldDate('DateCreate', 'Date', '', '', '>=');
+$plugin->listSearchAddFieldDate('DateCreate2', 'Date', 'DateCreate', '', '<=');
 $plugin->listSearchAddFieldSelectSql('Category', $lang_msg[19]);
 $plugin->listSearchAddFieldText('Subject', $lang_msg[1]);
 $plugin->listSearchAddFieldBoolean('Draft', $lang_msg[14]);
 
+
+
+
 // create fields
 $plugin->listAddCol('ID', '', 'center; width:30px', true);
 $plugin->listAddCol('Category', $lang_msg[19], '; width:10px; white-space: nowrap;', true);
-$plugin->listAddCol('Date', '', '; width:30px; white-space: nowrap;', false);
+$plugin->listAddCol('DateCreate', 'Date', '; width:30px; white-space: nowrap;', true);
 $plugin->listAddCol('uFrom', $lang_msg[2], '; width:30px; white-space: nowrap;', true);
 $plugin->listAddCol('Subject', $lang_msg[1], '', true);
+
+
 $plugin->listAddCol('Status', $lang_msg[22], 'center; width:60px; white-space: nowrap;', false);
+
+
 $plugin->listAddCol('TotalSend', $lang_msg[3], 'center; width:60px; white-space: nowrap;', true);
 $plugin->listAddCol('TotalError', $lang_msg[27], 'center; width:60px; white-space: nowrap;', true);
 $plugin->listAddCol('TotalViews', $lang_msg[4], 'center; width:10px; white-space: nowrap;', true);
@@ -62,9 +69,11 @@ $plugin->listAddCol('TotalUnsuscribe', $lang_msg[5], 'center; width:10px; white-
 $plugin->listAddCol('SchedulerDateStart', $lang_msg[25], 'center; width:10px; white-space: nowrap;', true);
 $plugin->listAddCol('SchedulerDateEnd', $lang_msg[26], 'center; width:10px; white-space: nowrap;', false);
 
-
 // render list
 $plugin->listCopyButton = false;
+$plugin->listAddSumRow($lang_msg[3], 'TotalSend');
+
+
 
 $plugin->listExportExcelModeApplyHookData = true;
 $plugin->listRender(20, 'hookData');
@@ -73,11 +82,11 @@ $plugin->listRender(20, 'hookData');
 function hookData($row)
 {
     global $nuts, $plugin, $lang_msg;
-
-	if($_SESSION['Language'] == 'fr')$row['Date'] = $nuts->db2Date($row['Date']);
 	
+    if(($_SESSION['Language'] == 'fr'))
+		$row['DateCreate'] = $nuts->db2Date($row['DateCreate']);
     
-    
+	
     if($row['Draft'] == 'YES')
 	{
 		$row['TotalSend'] = $row['TotalError'] = $row['TotalViews'] = $row['TotalUnsuscribe'] = $row['TotalViews'] = $row['TotalUnsuscribe'] = '-';

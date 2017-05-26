@@ -8,5 +8,5 @@ info: manage your newsletter
 info_fr: gérer vos newsletters
 langs: en, fr
 system required: >= 1.0
-actions: list, add, view
+actions: list, add, view, edit, delete
 default_action: list

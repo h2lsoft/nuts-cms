@@ -74,8 +74,7 @@
 
     <!-- header_right -->
     <div id="header_right">
-
-
+	    
         <!-- user_shortcuts -->
         <div id="user_shortcuts">
             <a class="has-drop-down-menu" data-drop-down-menu="user_shortcuts-drop-down-menu" href="javascript:;"><i class="icon-bookmark-2"></i>
@@ -95,7 +94,6 @@
                     <a href="{PluginUrl}"><img src="/plugins/{Plugin}/icon.png" />{PluginName}</a>
                 </li>
                 </bloc::shorcuts>
-
 
                 <li class="add_new">
                     <a href="javascript:;" onclick="popupModal('index.php?mod=_user-shortcuts&do=list&popup=1');"><i class="icon-plus"></i> {$nuts_lang_msg[100]}</a>
@@ -180,7 +178,7 @@
 
     <!-- top_search -->
     <div id="top_search" style="{popup_display}">
-        <input autocomplete="false" spellcheck="false" type="search" name="top_search" id="top_search_input">
+        <input autocomplete="false" spellcheck="false" type="search" name="top_search" id="top_search_input" placeholder="{$nuts_lang_msg[11]}...">
     </div>
     <!-- /top_search -->
 

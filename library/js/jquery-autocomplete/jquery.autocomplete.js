@@ -12,7 +12,7 @@
  */
 
 ;(function($) {
-	
+
 $.fn.extend({
 	autocomplete: function(urlOrData, options) {
 		var isUrl = typeof urlOrData == "string";
@@ -81,15 +81,16 @@ $.Autocompleter = function(input, options) {
 	var blockSubmit;
 	
 	// prevent form submit in opera when selecting with return key
-	$.browser.opera && $(input.form).bind("submit.autocomplete", function() {
+	/*$.browser.opera && $(input.form).bind("submit.autocomplete", function() {
 		if (blockSubmit) {
 			blockSubmit = false;
 			return false;
 		}
-	});
+	});*/
 	
 	// only opera doesn't trigger keydown multiple times while pressed, others don't work with keypress at all
-	$input.bind(($.browser.opera ? "keypress" : "keydown") + ".autocomplete", function(event) {
+	// $input.bind(($.browser.opera ? "keypress" : "keydown") + ".autocomplete", function(event) {
+	$input.bind("keydown" + ".autocomplete", function(event) {
 		// track last key pressed
 		lastKeyPressCode = event.keyCode;
 		switch(event.keyCode) {
@@ -418,7 +419,7 @@ $.Autocompleter.Cache = function(options) {
 	var length = 0;
 	
 	function matchSubset(s, sub) {
-		if (!options.matchCase) 
+		if (!options.matchCase)
 			s = s.toLowerCase();
 		var i = s.indexOf(sub);
 		if (i == -1) return false;
@@ -429,7 +430,7 @@ $.Autocompleter.Cache = function(options) {
 		if (length > options.cacheLength){
 			flush();
 		}
-		if (!data[q]){ 
+		if (!data[q]){
 			length++;
 		}
 		data[q] = value;
@@ -459,7 +460,7 @@ $.Autocompleter.Cache = function(options) {
 				
 			var firstChar = value.charAt(0).toLowerCase();
 			// if no lookup array for this character exists, look it up now
-			if( !stMatchSets[firstChar] ) 
+			if( !stMatchSets[firstChar] )
 				stMatchSets[firstChar] = [];
 
 			// if the match is a string
@@ -502,7 +503,7 @@ $.Autocompleter.Cache = function(options) {
 		load: function(q) {
 			if (!options.cacheLength || !length)
 				return null;
-			/* 
+			/*
 			 * if dealing w/local data and matchContains than we must make sure
 			 * to loop through all the data collections looking for matches
 			 */
@@ -522,9 +523,9 @@ $.Autocompleter.Cache = function(options) {
 							}
 						});
 					}
-				}				
+				}
 				return csub;
-			} else 
+			} else
 			// if the exact item exists, use it
 			if (data[q]){
 				return data[q];
@@ -574,7 +575,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 		list = $("<ul/>").appendTo(element).mouseover( function(event) {
 			if(target(event).nodeName && target(event).nodeName.toUpperCase() == 'LI') {
 	            active = $("li", list).removeClass(CLASSES.ACTIVE).index(target(event));
-			    $(target(event)).addClass(CLASSES.ACTIVE);            
+			    $(target(event)).addClass(CLASSES.ACTIVE);
 	        }
 		}).click(function(event) {
 			$(target(event)).addClass(CLASSES.ACTIVE);
@@ -592,7 +593,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			element.css("width", options.width);
 			
 		needsInit = false;
-	} 
+	}
 	
 	function target(event) {
 		var element = event.target;

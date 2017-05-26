@@ -1,3 +1,14 @@
+body .ui-tooltip {border-radius: 0px!important; border: 2px solid #666!important; box-shadow: none!important; background: #fff!important;}
+
+
+
+
+
+
+
+
+
+
 /** tooltip **/
 #tooltip {
     position: absolute;

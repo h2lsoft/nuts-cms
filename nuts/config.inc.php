@@ -3,7 +3,7 @@
 # configuration
 
 // website configuration **********************************************************************************************
-# if(is_dir('install')){header('location: install/'); die();} # remove this line after installation
+if(is_dir('install')){header('location: install/'); die();} # remove this line after installation
 
 // general
 define('WEBSITE_NAME', "Nuts Dev");

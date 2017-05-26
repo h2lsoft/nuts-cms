@@ -4,7 +4,7 @@
 	border: 1px solid #111;
 	/* background-color: #eee; */
 	background-color: #000;
-	color: white;	
+	color: white;
 
 	/*border: 5px solid #000;
 	-moz-border-radius: 5px;
@@ -19,3 +19,5 @@
 	opacity: 1;
 }
 #tooltip h3, #tooltip div { margin: 0; padding: 0; font-size: 11px;}
+
+

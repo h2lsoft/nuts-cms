@@ -1,5 +1,5 @@
 function trtUpdateMode(){
-	
+
 	v = $("#former #ModeTest").val();
 
 	if(v == 'YES'){
@@ -18,3 +18,46 @@ $("#former #ModeTest").change(function(){
 	trtUpdateMode();
 });
 
+
+function trtUpdateDraft(){
+
+	v = $("#former #Draft").val();
+
+	if(v == 'YES')
+	{
+		$('#fieldset_SchedulerDate').hide();
+	}
+	else{
+		$('#fieldset_SchedulerDate').show();
+	}
+}
+
+trtUpdateDraft();
+
+$("#former #Draft").change(function(){
+	trtUpdateDraft();
+});
+
+
+
+
+$('#former #TemplateMode').change(function(){
+
+	v = $(this).val();
+
+	$('#fieldset_Template').hide();
+	$('#fieldset_Body').hide();
+
+	if(v == 'YES')
+	{
+		$('#fieldset_Template').show();
+	}
+	else
+	{
+		$('#fieldset_Body').show();
+	}
+
+
+});
+
+$('#former #TemplateMode').change();
