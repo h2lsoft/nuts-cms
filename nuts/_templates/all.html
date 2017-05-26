@@ -95,7 +95,8 @@
 
         <!-- user_online -->
         <div id="user_online">
-            <a class="has-drop-down-menu" data-drop-down-menu="user_online-drop-down-menu" href="javascript:;"><i class="icon-user"></i>
+            <a class="has-drop-down-menu" data-drop-down-menu="user_online-drop-down-menu" href="javascript:;">
+	            <i class="icon-user"></i>
                 <span id="user_online_count">0</span>
                 <b class="drop-down-arrow drop-down-arrow-right"></b>
             </a>
@@ -108,7 +109,7 @@
         <!-- internal_message -->
         <div id="internal_message">
             <a href="javascript:;" onclick="popupModal('index.php?mod=_internal-messaging&do=list&popup=1&parent_refresh=0');"><i class="icon-mail"></i>
-                <span id="internal_message_count">0</span>
+                &nbsp;  <span id="internal_message_count">0</span>
             </a>
         </div>
         <!-- /internal_message -->
@@ -209,8 +210,10 @@
 
 					<a href="javascript:;" onclick="system_goto('?mod={$plugin->name}&do={$_GET['do']}&popup={$_GET['popup']}&parentID={$_GET['parentID']}{$plugin->url_tracked}', 'content');">{$plugin->real_name}</a>
 					
-					{#if(!isset($_GET['popup']) || empty($_GET['popup']))}
-					<a href="javascript:;" title="{$nuts_lang_msg[106]}" onclick="favoriteToggle('{$plugin->name}');"><i class="icon-bookmark-2"></i></a>
+					{#if((!isset($_GET['popup']) || empty($_GET['popup'])) && !in_array($_GET['mod'], array('_home')))}
+					<a href="javascript:;" title="{$nuts_lang_msg[106]}" onclick="favoriteToggle('{$plugin->name}');">
+						<i class="icon-bookmark-2"></i>
+					</a>
 					{#endif}
 					
 					<span>{$plugin->description}</span>

@@ -22,7 +22,7 @@ else
 	
 	if(!$nuts->dbFetch())
 	{
-		$response = ['error' => true, 'error_msg' => "Error: plugin nout found or not allowed"];
+		$response = ['error' => true, 'error_msg' => "Error: plugin not found or not allowed"];
 	}
 	else
 	{
