@@ -16,26 +16,7 @@
 <br />
 <br />
 
-<script>
 
-setTimeout(function(){
-v = "{$_GET['f']}";
-if(v != "")
-{
-	v = base64_decode(v);
-	$('#f').val(v);
-}
-}, 300);
-</script>
-
-<script>
-function updateCfFile()
-{
-	v = $('#f').val();
-	uri = "index.php?mod={$plugin->name}&do={$plugin->action}&_action2=get&f="+base64_encode(v);
-	system_goto(uri, 'content');
-}
-</script>
 
 
 <!-- border -->
@@ -44,55 +25,21 @@ function updateCfFile()
 </div>
 <!-- /border -->
 
-<script>
-initCodeEditor('Configuration', '{$Syntax}', 0);
-</script>
-
-
-<script>
-var options = {
-	beforeSubmit:  showRequest,  // pre-submit callback
-	success:       showResponse  // post-submit callback
-};
-$('#former').ajaxForm(options);
-
-
-// pre-submit callback
-function showRequest(formData, jqForm, options) {
-
-	var queryString = $.param(formData);
-
-	$('#btn_submit').attr('value', "{$nuts_lang_msg[23]}");
- 	$('#btn_submit').attr("disabled", true);
-	$('#Configuration').fadeTo(0, 0.33);
-
-    return true;
-}
-
-// post-submit callback
-function showResponse(responseText, statusText)  {
-
-	if(responseText == 'ok')
-	{
-		notify('ok', "{$lang_msg[2]}");
-	}
-	else
-	{
-		notify('error', "{$lang_msg[1]}");
-	}
-
-	$('#Configuration').fadeTo(0.33, 1);
-
-	$('#btn_submit').attr('value', "{$nuts_lang_msg[49]} - Alt+S");
- 	$('#btn_submit').removeAttr("disabled");
-}
-</script>
 
 
 
 </form>
 
+<script>
+Syntax = '{$Syntax}';
+nuts_lang_msg_23 = "{$nuts_lang_msg[23]}";
+lang_msg_1 = "{$lang_msg[1]}";
+lang_msg_2 = "{$lang_msg[2]}";
+nuts_lang_msg_49 =  "{$nuts_lang_msg[49]}";
+f = "{$_GET['f']}";
+</script>
 
+<script src="/plugins/_configuration/form.js"></script>
 
 
 
