@@ -194,7 +194,7 @@ function generateFromH1(){
 
 $('#VirtualPagename').after('<input class="button" type="button" onclick="generateFromH1();" value="'+lang_msg_82+'" /><input id="urlRewritingBtn" class="button" type="button" value="Url rewriting" onclick="openUrlRewriting()" style="display: none;" />');
 
-$('#Content, #ContentResume').tabby();
+$('#Content, #ContentResume').tabOverride();
 
 // autocomplete
 uri = 'index.php?mod=_page-manager&do=exec&_action=get_meta_keywords';
