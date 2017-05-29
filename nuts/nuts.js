@@ -770,6 +770,14 @@ function initMainMenu()
 
 function initTopSearch()
 {
+	$("#top_search_input").keydown(function(e){
+		if(e.keyCode === 27 && $(this).val() == '')
+		{
+			mainMenuClose();
+			e.preventDefault();
+		}
+	});
+	
     /* customize menu autocomplete */
     $("#top_search_input").keyup(function(e){
 
@@ -780,9 +788,6 @@ function initTopSearch()
         {
             $('#nav_menu li ul li').show();
             $('#nav_menu li ul').hide();
-            
-            if(e.keyCode === 27)mainMenuClose();
-            
             return;
         }
 
