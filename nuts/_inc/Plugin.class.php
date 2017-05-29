@@ -4612,19 +4612,23 @@ EOF;
 			{
 				if(!in_array($c['path'], array('fieldset_start', 'fieldset_end')))
 				{
+					// force value
+					if(!isset($row[$c['name']]) && isset($c['value']))
+						$row[$c['name']] = $c['value'];
+					
 					// auto conversion for dateGMT
 					if(preg_match('/^DateGMT/', $c['name']))
 					{
-						if($row[$c['name']] == '0000-00-00 00:00:00')
+						if($row[$c['name']] == '0000-00-00 00:00:00' || empty($row[$c['name']]))
 							$row[$c['name']] = '';
 						else
 							$row[$c['name']] = nutsGetGMTDateUser($row[$c['name']]);
 					}
 
 					// date french
-					if(preg_match('/^Date/', $c['name']) && $_SESSION['Language'] == "fr")
+					if(preg_match('/^Date/', $c['name']) && $_SESSION['Language'] == "fr" && preg_match('/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/', $row[$c['name']]))
 					{
-						if($row[$c['name']] == '0000-00-00 00:00:00')
+						if($row[$c['name']] == '0000-00-00 00:00:00' || empty($row[$c['name']]))
 							$row[$c['name']] = '';
 						else
 							$row[$c['name']] = $this->nuts->db2date($row[$c['name']]);
@@ -4637,10 +4641,6 @@ EOF;
 					}
 					
 					
-					// force value
-					if(isset($c['value']))
-						$row[$c['name']] = $c['value'];
-						
 					$row[$c['name']] = trim($row[$c['name']]);
 					$lbl = trim($c['label']);
 					if(empty($row[$c['name']]) && !empty($lbl))
