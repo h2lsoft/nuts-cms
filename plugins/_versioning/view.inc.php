@@ -20,8 +20,21 @@ else
 	foreach($data as $key => $val)
 	{
 		if($key[0] != '_')
-			$plugin->viewAddRow($key, $key, nl2br($nuts->xssProtect($val)));
+		{
+			// content
+			if(preg_match('/^(Content|Text)/', $key))
+			{
+				$plugin->viewAddFieldsetStart($key, fromCamelCase($key));
+				$plugin->viewAddRow($key, ' ', nl2br(trim($data[$key])));
+				$plugin->viewAddFieldsetEnd();
+			}
+			else
+				$plugin->viewAddRow($key, fromCamelCase($key, false), nl2br($nuts->xssProtect($val)));
+		}
+		
 	}
+	
+	
 }
 
 
