@@ -50,3 +50,51 @@ function nutsTrigger($name, $auto_register=false, $description="")
 		}
 	}
 }
+
+/**
+ * Add a new version of record
+ *
+ * @param $application
+ * @param $recordID
+ * @param $data (use _linked_[TABLE] to associate data)
+ * @param $NutsUserID
+ */
+function nutsVersioningAdd($application, $recordID, $data=[], $exceptions=[], $NutsUserID=0)
+{
+	global $nuts;
+	
+	$appX = sqlX($application);
+	$recordID = (int)$recordID;
+	
+	$data2 = [];
+	foreach($data as $key => $val)
+	{
+		if(!in_array($key, $exceptions))
+			$data2[$key] = $data[$key];
+	}
+	
+	$f = [];
+	$f['Date'] = 'NOW()';
+	$f['Application'] = $application;
+	$f['RecordID'] = $recordID;
+	$f['DataSerialized'] = serialize($data2);
+	$f['NutsUserID'] = $NutsUserID;
+	
+	$nuts->dbInsert('NutsVersion', $f);
+	
+	// clean table alst entries
+	include NUTS_PLUGINS_PATH.'/_versioning/config.inc.php';
+	
+	$count = Query::factory()->select('COUNT(*)')->from('NutsVersion')->whereEqualTo('Application', $application)->whereEqualTo('RecordID', $recordID)->executeAndGetOne();
+	if($count > $VERSIONING_MAX)
+	{
+		$diff = $count - $VERSIONING_MAX;
+		
+		$sql = "DELETE FROM NutsVersion WHERE Application = '$appX' AND RecordID=$recordID ORDER BY ID ASC LIMIT {$diff}";
+		$nuts->doQuery($sql);
+	}
+	
+	
+	
+}
+

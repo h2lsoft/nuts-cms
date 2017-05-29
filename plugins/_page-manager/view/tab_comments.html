@@ -1,0 +1,28 @@
+<div id="comment_new">
+	<input type="button" id="CommentNew" value="{$lang_msg[71]}" onclick="commentPostToggle()"/>
+
+	<!-- comment_post -->
+	<div id="comment_post">
+	<table id="comment_post_table" cellpadding="3" cellspacing="0">
+		<tr>
+			<td width="100">{$lang_msg[72]} <span class="required">*</span></td>
+			<td><input type="text" name="CommentName" id="CommentName" value="{$_SESSION['FirstName']} {$_SESSION['LastName']}" /></td>
+		</tr>
+		<tr>
+			<td valign="top">{$lang_msg[73]} <span class="required">*</span></td>
+			<td>
+				<textarea id="CommentText" name="CommentText"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="right">
+				<input type="button" id="CommentSubmit" value="{$nuts_lang_msg[21]}" onclick="commentPostSubmit();" />
+			</td>
+		</tr>
+	</table>
+	</div>
+	<!-- /comment_post -->
+
+</div>
+
+<div id="comments"></div>

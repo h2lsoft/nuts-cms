@@ -1,0 +1,31 @@
+<div id="page_options">
+	{$lang_msg[5]}
+	<select id="Language" name="Language" onchange="selectSetOptionStyle('Language'); $('#dID').val(''); reloadPage()">
+		{$select_language}
+	</select>
+
+	{$lang_msg[6]}
+	<select id="ZoneID" name="ZoneID" onchange="$('#dID').val(''); reloadPage()">
+		{$select_zone_id}
+	</select>
+
+	{$lang_msg[7]}
+	<select id="Status" name="Status" onchange="selectSetOptionClass('Status'); $('#dID').val(''); reloadPage();">
+		<option value="">{$lang_msg[54]} ()</option>
+		<option class="icon_published" value="PUBLISHED">{$lang_msg[27]} ()</option>
+		<option class="icon_draft" value="DRAFT">{$lang_msg[28]} ()</option>
+		<option class="icon_moderate" value="WAITING MODERATION">{$lang_msg[29]} ()</option>
+	</select>
+
+	#ID
+	<input type="text" name="dID" id="dID" style="text-align:center; width:3em;" value="{$_GET['pID']}" autocomplete="off" />
+	<a style="display:none;" id="a_dID_delete" href="javascript:$('#dID').val('');reloadPage();"><img src="img/list_delete.png" style="height: 16px;" align="absmiddle" alt="" /></a>
+
+	<br />
+	<br />
+
+    <a href="javascript:addPage(0);"><i class="icon-file"></i> {$lang_msg[8]}</a> <span class="separator">|</span>
+    <a href="javascript:reloadPage();"><i class="icon-spin"></i> {$lang_msg[9]}</a> <span class="separator">|</span>
+    <a href="javascript:dragPage();"><i class="icon-move"></i> <span id="a_tree_drag">drag off</span></a>
+
+</div>

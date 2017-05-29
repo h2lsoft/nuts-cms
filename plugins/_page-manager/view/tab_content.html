@@ -1,0 +1,40 @@
+<p>
+	<label>{$lang_msg[46]}</label>
+	<input type="text" name="H1" id="H1" value="" class="ucfirst"  autocomplete="off" />
+</p>
+<p>
+    <label>{$lang_msg[129]}</label>
+    <input type="text" name="H2" id="H2" value="" class="ucfirst"  autocomplete="off" />
+</p>
+
+<p>
+    <label>{$lang_msg[102]}</label>
+    <select name="NutsPageContentViewID" id="NutsPageContentViewID">
+        <option></option>
+        {$select_page_content_views}
+    </select>
+</p>
+
+<div class="content_view_wrapper" id="content_view_wrapper_0">
+
+    <p class="content_view content_view_0">
+        <label title="{$lang_msg[48]}">{$lang_msg[47]}</label>
+        <textarea name="ContentResume" id="ContentResume" class="mceEditor processed"></textarea>
+    </p>
+
+    <p class="content_view content_view_0">
+        <label>{$lang_msg[49]}</label>
+        <textarea style="height:350px;" name="Content" id="Content" class="mceEditor processed"></textarea>
+    </p>
+
+</div>
+
+
+<div id="content_view_wrapper_all">
+<!-- ajax::content_views -->
+{nuts_views_form}
+<!-- /ajax::content_views -->
+</div>
+
+
+<p>&nbsp;</p>

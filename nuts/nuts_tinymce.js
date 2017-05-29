@@ -11,12 +11,17 @@ function loadRichEditor(theme)
     $('textarea.mceEditor').each(function(){
 
         id = $(this).attr('id');
+        $(this).css('float', 'left');
+        
         width = $(this).width();
         
         tmp_lang = strtolower(nutsUserLang)+'_'+strtoupper(nutsUserLang);
         if(tmp_lang == 'en_EN')tmp_lang = '';
         
         tinyMCE.init({
+	            branding: false,
+	            browser_spellcheck : true,
+
                 language : tmp_lang,
                 content_css: theme_url,
                 document_base_url : WEBSITE_URL+"/",
@@ -37,15 +42,13 @@ function loadRichEditor(theme)
                 plugins: [
                     "advlist autolink lists link image charmap anchor preview",
                     "visualblocks code fullscreen wordcount template hr",
-                    "media table contextmenu directionality paste spellchecker searchreplace textcolor importcss"
+                    "media table contextmenu directionality paste searchreplace textcolor importcss"
                 ],
 
                 contextmenu: "link | formats | cell row column deletetable",
 
                 file_browser_callback :  function(field_name, url, type, win) {
-
                     fileBrowserURL = WEBSITE_URL+"/app/file_browser/index.php?editor=tinymce&filter="+type;
-
                     folder = '';
                     if(type == 'image')imgBrowser(field_name, folder);
                     else if(type == 'media')mediaBrowser(field_name, folder);
@@ -54,10 +57,9 @@ function loadRichEditor(theme)
                     return false;
 
                 },
-
-                spellchecker_rpc_url: 'spellchecker.php',
+	        
                 external_plugins: {},
-
+	        
                 plugin_preview_width : "1150",
                 plugin_preview_height : "750",
 
@@ -73,12 +75,12 @@ function loadRichEditor(theme)
                     file   : {title : 'File'  , items : 'preview xcode2 | fullscreen'},
                     edit   : {title : 'Edit'  , items : 'undo redo | cut copy paste pastetext | selectall | searchreplace'},
                     format : {title : 'Format', items : 'bold italic underline strikethrough superscript subscript | formats | removeformat'},
-                    insert : {title : 'Insert', items : 'image widget | youtube dailymotion video audio | iframe embed | hr template'},
+                    insert : {title : 'Insert', items : 'image widget | youtube dailymotion video audio | iframe embed | map | hr template'},
                     table  : {title : 'Table' , items : 'inserttable tableprops deletetable | cell row column'},
-                    tools  : {title : 'Tools' , items : 'visualaid visualblocks | charmap | spellchecker'}
+                    tools  : {title : 'Tools' , items : 'visualaid visualblocks | charmap | fullscreen '}
                 },
 
-                toolbar1: "bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | forecolor backcolor | outdent indent blockquote | link unlink | xcode2 fullscreen",
+                toolbar1: "bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | link unlink | xcode2",
 
                 setup: function(editor) {
 
@@ -185,6 +187,8 @@ function loadRichEditor(theme)
             });
 
     });
+    
+    // $('.mce-container, .mce-container-body').css('float', 'left!important');
 
 }
 

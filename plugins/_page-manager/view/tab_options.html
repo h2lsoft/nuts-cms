@@ -1,0 +1,250 @@
+<p>
+	<label>{$lang_msg[16]} <span class="required">*</span></label>
+	<select id="ContentType" name="ContentType">
+		{$select_content_type}
+	</select>
+</p>
+<p>
+	<label title="{$lang_msg[24]}">{$lang_msg[23]}</label>
+	<input type="text"  autocomplete="off" name="VirtualPagename" id="VirtualPagename" value="" />
+</p>
+<p>
+	<label title="{$lang_msg[26]}">{$lang_msg[25]}</label>
+	<select id="MenuVisible" name="MenuVisible">
+		<option value="YES">{$nuts_lang_msg[30]}</option>
+		<option value="NO">{$nuts_lang_msg[31]}</option>
+	</select>
+</p>
+<p>
+	<label title="{$lang_msg[20]}">{$lang_msg[19]}</label>
+	<select id="TopBar" name="TopBar">
+		<option value="YES">{$nuts_lang_msg[30]}</option>
+		<option value="NO">{$nuts_lang_msg[31]}</option>
+	</select>
+</p>
+<p>
+	<label title="{$lang_msg[22]}">{$lang_msg[21]}</label>
+	<select id="BottomBar" name="BottomBar">
+		<option value="YES">{$nuts_lang_msg[30]}</option>
+		<option value="NO">{$nuts_lang_msg[31]}</option>
+	</select>
+</p>
+
+<p>
+	<label title="{$lang_msg[31]}">{$lang_msg[30]}</label>
+	<textarea name="Tags" id="Tags"></textarea>
+</p>
+
+<p>
+	<label title="{$lang_msg[33]}">{$lang_msg[32]}</label>
+	<select id="Comments" name="Comments" onchange="updateCommentTab()">
+		<option value="YES">{$nuts_lang_msg[30]}</option>
+		<option value="NO">{$nuts_lang_msg[31]}</option>
+	</select>
+</p>
+<p>
+	<label title="{$lang_msg[70]}">{$lang_msg[69]}</label>
+	<input type="text"  autocomplete="off" name="CacheTime" id="CacheTime" value="" style="text-align: center; width: 65px;" />
+</p>
+<p>
+    <label title="{$lang_msg[106]}">{$lang_msg[105]}</label>
+    <select id="Locked" name="Locked">
+        <option value="YES">{$nuts_lang_msg[30]}</option>
+        <option value="NO">{$nuts_lang_msg[31]}</option>
+    </select>
+</p>
+
+
+
+
+<!-- media -->
+<fieldset id="fieldset_Media">
+	<legend>{$lang_msg[42]}</legend>
+	
+	<p>
+	    <label title="{$lang_msg[117]}">{$lang_msg[116]}</label>
+	    <input type="text" name="Thumbnail" id="Thumbnail" value="" /> <a class="tt" title="{$nuts_lang_msg[87]}" href="javascript:imageBrowser('Thumbnail', '');"><img src="/nuts/img/icon-folder.png" align="absmiddle" /></a>
+	    <a href="javascript:;" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('Thumbnail');"><img align="absmiddle" src="img/icon-preview-mini.gif" align="absmiddle" /></a>
+	</p>
+	<p>
+		<label title="{$lang_msg[44]}">{$lang_msg[43]}</label>
+		<select id="HeaderImage" name="HeaderImage" onchange="updateHeaderImg()">
+			<option value=""></option>
+			{$select_header_img}
+		</select>
+	
+	    <a href="javascript:headerImageReload();"><i class="icon-loop"></i></a>
+	    <a class="tt" title="{$nuts_lang_msg[87]}" href="javascript:imageBrowser('HeaderImage', 'header');"><img src="/nuts/img/icon-folder.png" align="absmiddle" /></a>
+	
+	</p>
+	
+	<div id="HeaderImagePreview"></div>
+</fieldset>
+<!-- /media -->
+
+
+<!-- variables -->
+<fieldset id="fieldset_Variables">
+	<legend>{$lang_msg[45]}</legend>
+	
+	<!-- variables -->
+	<bloc::custom_fields>
+		<p>
+		<label title="{custom_fields_help}">{custom_fields_label}</label>
+	
+		<bloc::custom_fields_text>
+			<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
+		</bloc::custom_fields_text>
+	
+		<bloc::custom_fields_date>
+			<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
+			<script>inputDate("cf{custom_fields_name}", 'date')</script>
+		</bloc::custom_fields_date>
+	
+		<bloc::custom_fields_datetime>
+			<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
+			<script>inputDate("cf{custom_fields_name}", 'datetime')</script>
+		</bloc::custom_fields_datetime>
+	
+		<bloc::custom_fields_textarea>
+			<textarea name="cf{custom_fields_name}" id="cf{custom_fields_name}" /></textarea>
+		</bloc::custom_fields_textarea>
+	
+		<bloc::custom_fields_select>
+			<select name="cf{custom_fields_name}" id="cf{custom_fields_name}">
+				<option value=""></option>
+				<bloc::custom_fields_select_options>
+				<option value="{custom_fields_opt}">{custom_fields_opt}</option>
+				</bloc::custom_fields_select_options>
+			</select>
+		</bloc::custom_fields_select>
+	
+		<bloc::custom_fields_boolean>
+			<select name="cf{custom_fields_name}" id="cf{custom_fields_name}">
+				<option value="YES">{$nuts_lang_msg[30]}</option>
+				<option value="NO">{$nuts_lang_msg[31]}</option>
+			</select>
+		</bloc::custom_fields_boolean>
+	
+		<bloc::custom_fields_booleanX>
+			<select name="cf{custom_fields_name}" id="cf{custom_fields_name}">
+				<option value="NO">{$nuts_lang_msg[31]}</option>
+				<option value="YES">{$nuts_lang_msg[30]}</option>
+			</select>
+		</bloc::custom_fields_booleanX>
+	
+		<bloc::custom_fields_image>
+			<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
+	
+			<a href="javascript:;" class="tt" title="{$nuts_lang_msg[87]}" onclick="imgBrowser('cf{custom_fields_name}','{custom_fields_folder}');"><img align="absmiddle" src="img/icon-folder.png"/></a>
+			<a href="javascript:;" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('cf{custom_fields_name}');"><img align="absmiddle" src="img/icon-preview-mini.gif"/></a>
+	
+		</bloc::custom_fields_image>
+	
+		<bloc::custom_fields_file>
+			<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
+			<a class="tt" title="{$nuts_lang_msg[87]}" href="javascript:allBrowser('cf{custom_fields_name}', '{custom_fields_folder}');"><img align="absmiddle" src="img/icon-folder.png"/></a>
+			<a href="javascript:;" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('cf{custom_fields_name}');"><img src="img/icon-file.png" align="absmiddle" /></a>
+		</bloc::custom_fields_file>
+	
+		<bloc::custom_fields_colorpicker>
+			<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" style="width:50px;"  maxlength="7" class="widget_colorpicker"  onclick="startColorPicker(this)" onkeyup="maskedHex(this)"  />
+		</bloc::custom_fields_colorpicker>
+		</p>
+	</bloc::custom_fields>
+	<!-- /variables -->
+
+</fieldset>
+<!-- /variables -->
+
+
+<!-- resticted access -->
+<fieldset id="fieldset_Access">
+	<legend>Front-office - {$lang_msg[80]}</legend>
+
+	<p>
+		<label title="{$lang_msg[84]}">{$lang_msg[80]}</label>
+		<select id="AccessRestricted" name="AccessRestricted">
+			<option value="NO">{$nuts_lang_msg[31]}</option>
+			<option value="YES">{$nuts_lang_msg[30]}</option>
+		</select>
+	</p>
+
+	<p>
+		<label>{$lang_msg[81]}</label>
+		<select id="PageAccess" name="PageAccess[]" multiple size="5" class="checkbox-list">
+
+			<bloc::page_access>
+			<option value="{GroupID}">{GroupName}</option>
+			</bloc::page_access>
+
+		</select>
+	</p>
+	
+</fieldset>
+<!-- /resticted access -->
+
+
+
+<fieldset id="fieldset_Sitemap">
+
+	<legend>Sitemap Generator</legend>
+	<p>
+		<label>Sitemap</label>
+		<select id="Sitemap" name="Sitemap">
+			<option value="YES">{$nuts_lang_msg[30]}</option>
+			<option value="NO">{$nuts_lang_msg[31]}</option>
+		</select>
+	</p>
+	<p>
+		<label>Changefreq</label>
+		<select id="SitemapChangefreq" name="SitemapChangefreq">
+			<option value="hourly">hourly</option>
+			<option value="daily">daily</option>
+			<option value="weekly">weekly</option>
+			<option value="monthly">monthly</option>
+			<option value="always">always</option>
+			<option value="never">never</option>
+		</select>
+	</p>
+	<p>
+		<label>Priority</label>
+		<select id="SitemapPriority" name="SitemapPriority">
+			<option value="0.1">0.1</option>
+			<option value="0.2">0.2</option>
+			<option value="0.3">0.3</option>
+			<option value="0.4">0.4</option>
+			<option value="0.5">0.5</option>
+			<option value="0.6">0.6</option>
+			<option value="0.7">0.7</option>
+			<option value="0.8">0.8</option>
+			<option value="0.9">0.9</option>
+			<option value="1.0">1.0</option>
+		</select>
+	</p>
+
+	<fieldset id="fieldset_SitemapOptions">
+		<legend>Options</legend>
+		<p>
+			<label title="{$lang_msg[86]}">Page Type</label>
+			<select id="SitemapPageType" name="SitemapPageType">
+				<option value="NORMAL">Normal</option>
+				<option value="TUNNEL">Tunnel</option>
+			</select>
+		</p>
+		<p>
+			<label title="{$lang_msg[87]}">Url Regex 1</label>
+			<input type="text" autocomplete="off" name="SitemapUrlRegex1" id="SitemapUrlRegex1" value="" />
+		</p>
+		<p>
+			<label title="{$lang_msg[88]}">Url Regex 2</label>
+			<input type="text" autocomplete="off" name="SitemapUrlRegex2" id="SitemapUrlRegex2" value="" />
+		</p>
+	</fieldset>
+
+
+</fieldset>
+
+
+
+

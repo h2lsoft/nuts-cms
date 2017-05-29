@@ -1,0 +1,106 @@
+<p>
+	<label>{$lang_msg[99]} <span class="required">*</span></label>
+	<input type="text" autocomplete="off" name="MenuName" id="MenuName" value="" />
+</p>
+
+<p>
+	<label title="{$lang_msg[18]}">{$lang_msg[17]}</label>
+
+    <input type="search" id="tpl_search" placeholder="{$nuts_lang_msg[11]}">
+
+	<!-- tpls -->
+	<div id="tpls_preview">
+
+        <!-- ajax::tpls -->
+
+		<bloc::tpls_preview>
+			<div title="{tpl_nameX}">
+				<img  title="{tpl_nameX}" src="/themes/{theme}/_preview/{tpl_preview}" val="{tpl_name_file}" onclick="$('#former #Template').val('{tpl_name_file}');$('#tpls_preview img').removeClass();$(this).addClass('tpl_selected')" />
+				<span>{tpl_nameX}</span>
+			</div>
+		</bloc::tpls_preview>
+
+        <!-- /ajax::tpls -->
+
+
+	</div>
+	<!-- /tpls -->
+
+	<select id="Template" name="Template" style="display: none;">
+		<option value=""></option>
+		{$select_tpls}
+	</select>
+
+</p>
+
+
+<p>
+	<label>{$lang_msg[7]} <span class="required">*</span></label>
+	<select id="State" name="State" onchange="selectSetOptionClass('State');">
+		<option class="icon_published" value="PUBLISHED">{$lang_msg[27]}</option>
+		<option class="icon_draft" value="DRAFT">{$lang_msg[28]}</option>
+		<option class="icon_moderate" value="WAITING MODERATION">{$lang_msg[29]}</option>
+	</select>
+</p>
+<p>
+	<label>{$lang_msg[6]}</label>
+
+	<select id="PageZoneID" name="PageZoneID">
+		{$select_zone_id}
+	</select>
+
+</p>
+
+
+<br />
+
+<fieldset id="fieldset_Dates">
+	<legend>{$lang_msg[89]}</legend>
+
+	<p>
+		<label title="{$lang_msg[92]}">{$lang_msg[90]}</label>
+		<select id="DateStartOption" name="DateStartOption" onchange="updatePublishingDate()">
+			<option value="YES">{$nuts_lang_msg[30]}</option>
+			<option value="NO">{$nuts_lang_msg[31]}</option>
+		</select>
+
+		<input type="text" id="DateStart" name="DateStart" value="" />
+		<script>inputDate('DateStart', 'datetime');</script>
+	</p>
+
+	<p>
+		<label title="{$lang_msg[93]}">{$lang_msg[91]}</label>
+		<select id="DateEndOption" name="DateEndOption"  onchange="updatePublishingDate()">
+			<option value="YES">{$nuts_lang_msg[30]}</option>
+			<option value="NO">{$nuts_lang_msg[31]}</option>
+		</select>
+
+		<input type="text" id="DateEnd" name="DateEnd" value="" />
+		<script>inputDate('DateEnd', 'datetime');</script>
+	</p>
+
+</fieldset>
+
+<p>
+	<label>Note</label>
+	<textarea id="Note" name="Note"></textarea>
+</p>
+<fieldset>
+	<legend>{$lang_msg[34]}</legend>
+	<p>
+		<label>{$lang_msg[35]}</label>
+		<span id="lAuthor"></span>
+	</p>
+
+	<p>
+		<label>{$lang_msg[36]}</label>
+		<span id="lDateCreation"></span>
+	</p>
+
+	<p>
+		<label>{$lang_msg[37]}</label>
+		<span id="lDateUpdate"></span>
+	</p>
+
+</fieldset>
+<p>&nbsp;</p>

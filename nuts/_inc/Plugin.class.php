@@ -3993,6 +3993,7 @@ EOF;
 	 * @param int ID
 	 * @return lastInsertID
      */
+    public $versioning_auto = true;
 	public function formInsert()
 	{
 		$excepts = array('btn_submit');
@@ -4014,6 +4015,15 @@ EOF;
 
 		$this->nuts->dbInsert($this->formDBTable[0], $_POST, $excepts);
 		$lastID = $this->nuts->getMaxID($this->formDBTable[0], 'ID');
+		
+		// add auto versioning
+		if($this->versioning_auto)
+		{
+			$tmp_data = $_POST;
+			$tmp_data['_table'] = $this->formDBTable[0];
+			nutsVersioningAdd(PLUGIN_NAME, $lastID, $tmp_data, $excepts, $_SESSION['NutsUserID']);
+		}
+		
 
 		$this->formLogDbColumns('INSERT', $lastID);
 
@@ -4254,6 +4264,15 @@ EOF;
 
 		$this->nuts->dbUpdate($this->formDBTable[0], $_POST, "ID={$_GET['ID']}", $excepts);
 		$this->trace('update', $_GET['ID']);
+		
+		// add auto versioning
+		if($this->versioning_auto)
+		{
+			$tmp_data = $_POST;
+			$tmp_data['_table'] = $this->formDBTable[0];
+			nutsVersioningAdd(PLUGIN_NAME, $_GET['ID'], $tmp_data, $excepts, $_SESSION['NutsUserID']);
+		}
+		
 
 		$this->formLogDbColumns('UPDATE', $_GET['ID']);
 
@@ -4449,6 +4468,18 @@ EOF;
 		if(empty($label))$label = $name;
 		$this->viewCols[] = array('name' => $name, 'label' => $label, 'path' => $path);
 	}
+	
+    /**
+     * Add a line in view mode
+     *
+     * @param string $label if empty $label = $name
+     * @param string $path image url
+     */
+	public function viewAddRow($name, $label='', $value)
+	{
+		if(empty($label))$label = $name;
+		$this->viewCols[] = array('name' => $name, 'label' => $label, 'value' => $value, 'path' => '');
+	}
 
 	/**
 	 * Add fieldset start
@@ -4604,8 +4635,12 @@ EOF;
 						$row[$c['name']] = strtolower($row[$c['name']]);
 						$row[$c['name']] = sprintf('<img src="%s/%s.gif" align="absmiddle" /> %s', NUTS_IMAGES_URL.'/flag', $row[$c['name']], strtoupper($row[$c['name']]));
 					}
-
-					// empty
+					
+					
+					// force value
+					if(isset($c['value']))
+						$row[$c['name']] = $c['value'];
+						
 					$row[$c['name']] = trim($row[$c['name']]);
 					$lbl = trim($c['label']);
 					if(empty($row[$c['name']]) && !empty($lbl))

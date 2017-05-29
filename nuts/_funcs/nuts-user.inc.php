@@ -569,7 +569,7 @@ function nutsGetGMTDateUser($date, $format='', $output='user')
 /**
  * Verify if user has right
  *
- * @param int $nutsUserID (empty = NutsGroupID in SESSION)
+ * @param int $NutsGroupID (empty = NutsGroupID in SESSION)
  * @return boolean
  */
 function nutsUserHasRight($NutsGroupID='', $plugin, $right)
@@ -578,6 +578,8 @@ function nutsUserHasRight($NutsGroupID='', $plugin, $right)
 
 	$NutsGroupID = (int)$NutsGroupID;
 	if(!$NutsGroupID)$NutsGroupID = $_SESSION['NutsGroupID'];
+	
+	if($NutsGroupID == 1)return true; # super admin all rights
 
 
 	$sql = "SELECT

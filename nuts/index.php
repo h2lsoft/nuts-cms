@@ -17,7 +17,10 @@ include('_inc/session.inc.php');
 
 // ajax:action *************************************************************************************************
 if(isset($_GET['_action']) && in_array($_GET['_action'], ['users_online', 'rte_get-templates', 'rte_get-template', 'rte_get-link_list', 'list_search_users', 'user_bookmark-toggle']))
+{
 	include("ajax/{$_GET['_action']}.inc.php");
+	die();
+}
 
 
 // execution *************************************************************************

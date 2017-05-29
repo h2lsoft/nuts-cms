@@ -1,0 +1,11 @@
+# General configuration
+version: 1.0
+author: H2lsoft
+website: http://www.h2lsoft.com
+email: contact@h2lsoft.com
+webupdate: no
+info: manage your versioning
+langs: en
+system required: >= 3.0
+actions: list, view, replace
+default_action: list

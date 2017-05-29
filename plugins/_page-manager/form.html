@@ -1,92 +1,16 @@
 <form id="former" action="index.php?mod={$plugin->name}&do={$plugin->action}&_action=save_page" method="post"  onsubmit="WYSIWYGhackSubmit();">
 
 <!-- pager_content -->
-<div id="pager_content" style="">
+<div id="pager_content">
 
 
 <!-- page -->
-<div id="page_tree_context">
-<ul>
-	<li id="page_tree_context_pID"></li>
-	<li><a href="javascript:previewPage(-1);"><i class="icon-new-tab"></i> {$lang_msg[14]}</a></li>
+[[ VIEW:context ]]
+[[ VIEW:loader ]]
+[[ VIEW:page_option ]]
 
-	<li><hr size="1" noshade="noshade" /></li>
-    <li><a href="javascript:addPage(-2);"><i class="icon-new"></i> {$lang_msg[131]} &ShortUpArrow;</a></li>
-    <li><a href="javascript:addPage(-1);"><i class="icon-new"></i> {$lang_msg[58]}  &ShortDownArrow;</a></li>
-    <li><hr size="1" noshade="noshade" /></li>
+<div id="page_tree" onclick="hideContext()"></div>
 
-	<li><a href="javascript:editPage(0);"><i class="icon-pencil"></i>  {$lang_msg[3]}</a></li>
-
-    <li class="folder"><hr size="1" noshade="noshade" /></li>
-    <li class="folder"><a href="javascript:refreshFolderNode();"><i class="icon-spin"></i>  {$lang_msg[100]}</a></li>
-
-	<li><hr size="1" noshade="noshade" /></li>
-	<li><a href="javascript:renamePage();"><i class="icon-console"></i> {$lang_msg[96]}</a></li>
-	<li><a href="javascript:duplicatePage();"><i class="icon-copy"></i> {$lang_msg[83]}</a></li>
-	<li><a href="javascript:deletePage();"><i class="icon-remove"></i>  {$lang_msg[4]}</a></li>
-
-	<li><hr size="1" noshade="noshade" /></li>
-	<li><a href="javascript:optionPage();"><i class="icon-cog"></i>  Options</a></li>
-	<li><hr size="1" noshade="noshade" /></li>
-
-	<li><a href="javascript:linkPageDirect();"><i class="icon-link"></i> {$lang_msg[55]}</a></li>
-	<li><a href="javascript:linkPage();"><i class="icon-link"></i> {$lang_msg[2]}</a></li>
-	<li><a href="javascript:linkPages();"><i class="icon-link"></i> {$lang_msg[59]}</a></li>
-
-    <li><a href="javascript:linkListImages();"><i class="icon-link"></i> {$lang_msg[118]}</a></li>
-
-	<li><a href="javascript:linkZone();"><i class="icon-link"></i> {$lang_msg[61]}</a></li>
-    <li><hr size="1" noshade="noshade" /></li>
-
-	<li><a href="javascript:" onclick="$('#page_tree_context').hide();"><i class="icon-cancel"></i> {$nuts_lang_msg[26]}</a></li>
-</ul>
-</div>
-
-<div id="page_tree_loader">
-	<img src="img/ajax-loader.gif" />
-</div>
-
-
-<!-- page tree -->
-<div id="page_options">
-	{$lang_msg[5]}
-	<select id="Language" name="Language" onchange="selectSetOptionStyle('Language'); $('#dID').val(''); reloadPage()">
-		{$select_language}
-	</select>
-
-	{$lang_msg[6]}
-	<select id="ZoneID" name="ZoneID" onchange="$('#dID').val(''); reloadPage()">
-		{$select_zone_id}
-	</select>
-
-	{$lang_msg[7]}
-	<select id="Status" name="Status" onchange="selectSetOptionClass('Status'); $('#dID').val(''); reloadPage();">
-		<option value="">{$lang_msg[54]} ()</option>
-		<option class="icon_published" value="PUBLISHED">{$lang_msg[27]} ()</option>
-		<option class="icon_draft" value="DRAFT">{$lang_msg[28]} ()</option>
-		<option class="icon_moderate" value="WAITING MODERATION">{$lang_msg[29]} ()</option>
-	</select>
-
-	#ID
-	<input type="text" name="dID" id="dID" style="text-align:center; width:3em;" value="{$_GET['pID']}" autocomplete="off" />
-	<a style="display:none;" id="a_dID_delete" href="javascript:$('#dID').val('');reloadPage();"><img src="img/list_delete.png" style="height: 16px;" align="absmiddle" alt="" /></a>
-
-	<br />
-	<br />
-
-    <a href="javascript:addPage(0);"><i class="icon-file"></i> {$lang_msg[8]}</a> <span class="separator">|</span>
-    <a href="javascript:reloadPage();"><i class="icon-spin"></i> {$lang_msg[9]}</a> <span class="separator">|</span>
-    <a href="javascript:dragPage();"><i class="icon-move"></i> <span id="a_tree_drag">drag off</span></a>
-
-</div>
-
-
-
-
-<!-- page tree -->
-<div id="page_tree" onclick="hideContext()">
-</div>
-<!-- /page tree -->
 
 <!-- page form -->
 <div id="page_form">
@@ -95,631 +19,73 @@
 		<a href="javascript:;" onclick="$('#Status').val(''); selectSetOptionClass('Status'); $('#dID').val(''); reloadPage();"><img src="img/icon-home.png" alt="Home" align="absmiddle" /></a>
 		<span id="page_navigation_urls"></span>
 	</p>
-
-
-	<ul class="ui-tabs-nav">
-		<li class="ui-tabs-nav-item ui-tabs-selected"><a href="#tab0" accesskey="i">{$lang_msg[10]}</a></li>
-		<li class="ui-tabs-nav-item"><a href="#tab1" accesskey="m">{$lang_msg[11]}</a></li>
-		<li class="ui-tabs-nav-item"><a href="#tab2"  accesskey="c">{$lang_msg[12]}</a></li>
-
-		<li class="ui-tabs-nav-item"><a href="#tab3" id="tab_blocks" date-name="{$lang_msg[62]}" accesskey="b">{$lang_msg[62]}</a></li>
-
-		<li class="ui-tabs-nav-item"><a href="#tab4" id="tab_variables" accesskey="v">{$lang_msg[45]}</a></li>
-		<li class="ui-tabs-nav-item"><a href="#tab6" id="tab_options" accesskey="o">Options</a></li>
-		<li class="ui-tabs-nav-item"><a href="#tab5" id="tab_comments" accesskey="t">{$lang_msg[13]}</a></li>
-
-
-        <li class="ui-tabs-nav-item"><a href="#tab7" id="tab_rights" accesskey="r">{$lang_msg[119]}</a></li>
-
+	
+	<ul id="ntabs0" class="ntabs ui-tabs-nav">
+		<li accesskey="i" class="selected">{$lang_msg[10]}</li>
+		<li accesskey="m">{$lang_msg[11]}</li>
+		<li accesskey="c">{$lang_msg[12]}</li>
+		<li accesskey="b" id="tab_blocks" data-name="{$lang_msg[62]}" >{$lang_msg[62]}</li>
+		<li accesskey="v" id="tab_variables">{$lang_msg[45]}</li>
+		<li accesskey="t" id="tab_comments">{$lang_msg[13]}</li>
+		<li accesskey="o" id="tab_options">Options</li>
+		<li accesskey="r" id="tab_rights">{$lang_msg[119]}</li>
 	</ul>
-    <div id="preview"> <a href="javascript:;" onclick="previewPage(0);"  accesskey="v">{$lang_msg[14]} <i class="icon-new-tab"></i></a></div>
-
-
-	<!-- information -->
-	<div id="tab0" class="ui-tabs-panel">
-		<p>
-			<label>{$lang_msg[99]} <span class="required">*</span></label>
-			<input type="text" autocomplete="off" name="MenuName" id="MenuName" value="" />
-		</p>
-
-		<p>
-			<label title="{$lang_msg[18]}">{$lang_msg[17]}</label>
-
-            <input type="search" id="tpl_search" placeholder="{$nuts_lang_msg[11]}">
-
-			<!-- tpls -->
-			<div id="tpls_preview">
-
-                <!-- ajax::tpls -->
-
-				<bloc::tpls_preview>
-					<div title="{tpl_nameX}">
-						<img  title="{tpl_nameX}" src="/themes/{theme}/_preview/{tpl_preview}" val="{tpl_name_file}" onclick="$('#former #Template').val('{tpl_name_file}');$('#tpls_preview img').removeClass();$(this).addClass('tpl_selected')" />
-						<span>{tpl_nameX}</span>
-					</div>
-				</bloc::tpls_preview>
-
-                <!-- /ajax::tpls -->
-
-
-			</div>
-			<!-- /tpls -->
-
-			<select id="Template" name="Template" style="display: none;">
-				<option value=""></option>
-				{$select_tpls}
-			</select>
-
-		</p>
-
-
-		<p>
-			<label>{$lang_msg[7]} <span class="required">*</span></label>
-			<select id="State" name="State" onchange="selectSetOptionClass('State');">
-				<option class="icon_published" value="PUBLISHED">{$lang_msg[27]}</option>
-				<option class="icon_draft" value="DRAFT">{$lang_msg[28]}</option>
-				<option class="icon_moderate" value="WAITING MODERATION">{$lang_msg[29]}</option>
-			</select>
-		</p>
-		<p>
-			<label>{$lang_msg[6]}</label>
-
-			<select id="PageZoneID" name="PageZoneID">
-				{$select_zone_id}
-			</select>
-
-		</p>
-
-
-		<br />
-
-		<fieldset id="fieldset_Dates">
-			<legend>{$lang_msg[89]}</legend>
-
-			<p>
-				<label title="{$lang_msg[92]}">{$lang_msg[90]}</label>
-				<select id="DateStartOption" name="DateStartOption" onchange="updatePublishingDate()">
-					<option value="YES">{$nuts_lang_msg[30]}</option>
-					<option value="NO">{$nuts_lang_msg[31]}</option>
-				</select>
-
-				<input type="text" id="DateStart" name="DateStart" value="" />
-				<script>inputDate('DateStart', 'datetime');</script>
-			</p>
-
-			<p>
-				<label title="{$lang_msg[93]}">{$lang_msg[91]}</label>
-				<select id="DateEndOption" name="DateEndOption"  onchange="updatePublishingDate()">
-					<option value="YES">{$nuts_lang_msg[30]}</option>
-					<option value="NO">{$nuts_lang_msg[31]}</option>
-				</select>
-
-				<input type="text" id="DateEnd" name="DateEnd" value="" />
-				<script>inputDate('DateEnd', 'datetime');</script>
-			</p>
-
-		</fieldset>
-
-		<p>
-			<label>Note</label>
-			<textarea id="Note" name="Note"></textarea>
-		</p>
-		<fieldset>
-			<legend>{$lang_msg[34]}</legend>
-			<p>
-				<label>{$lang_msg[35]}</label>
-				<span id="lAuthor"></span>
-			</p>
-
-			<p>
-				<label>{$lang_msg[36]}</label>
-				<span id="lDateCreation"></span>
-			</p>
-
-			<p>
-				<label>{$lang_msg[37]}</label>
-				<span id="lDateUpdate"></span>
-			</p>
-
-		</fieldset>
-		<p>&nbsp;</p>
-
-
-
-	</div>
-	<!-- /information -->
-
-	<!-- meta -->
-	<div id="tab1" class="ui-tabs-panel ui-tabs-hide">
-
-
-	<fieldset id="fieldset_Meta">
-		<legend>{$lang_msg[38]}</legend>
-
-		<p>
-			<label>{$lang_msg[39]}</label>
-			<input type="text"  autocomplete="off" name="MetaTitle" id="MetaTitle" value="" />
-		</p>
-		<p>
-			<label>{$lang_msg[40]}</label>
-			<input type="text"  autocomplete="off" name="MetaKeywords" id="MetaKeywords" value="" />
-		</p>
-		<p>
-			<label>{$lang_msg[41]}</label>
-			<textarea name="MetaDescription" id="MetaDescription"></textarea>
-		</p>
-		<p>
-			<label>Robots</label>
-
-			<select id="MetaRobots">
-				<option value=""></option>
-				<option value="noindex">noindex</option>
-				<option value="nofollow">nofollow</option>
-				<option value="noindex, nofollow">noindex, nofollow</option>
-				<option value="index, nofollow">index, nofollow</option>
-				<option value="noindex, follow">noindex, follow</option>
-			</select>
-
-		</p>
-
-	</fieldset>
-
-
-
-	</div>
-	<!-- /meta -->
-
-	<!-- content -->
-	<div id="tab2" class="ui-tabs-panel ui-tabs-hide">
-
-
-		<p>
-			<label>{$lang_msg[46]}</label>
-			<input type="text" name="H1" id="H1" value="" class="ucfirst"  autocomplete="off" />
-		</p>
-        <p>
-            <label>{$lang_msg[129]}</label>
-            <input type="text" name="H2" id="H2" value="" class="ucfirst"  autocomplete="off" />
-        </p>
-
-        <p>
-            <label>{$lang_msg[102]}</label>
-            <select name="NutsPageContentViewID" id="NutsPageContentViewID">
-                <option></option>
-                {$select_page_content_views}
-            </select>
-        </p>
-
-        <div class="content_view_wrapper" id="content_view_wrapper_0">
-
-            <p class="content_view content_view_0">
-                <label title="{$lang_msg[48]}">{$lang_msg[47]}</label>
-                <textarea name="ContentResume" id="ContentResume" class="mceEditor processed"></textarea>
-            </p>
-
-            <p class="content_view content_view_0">
-                <label>{$lang_msg[49]}</label>
-                <textarea style="height:350px;" name="Content" id="Content" class="mceEditor processed"></textarea>
-            </p>
-
-        </div>
-
-
-        <div id="content_view_wrapper_all">
-        <!-- ajax::content_views -->
-        {nuts_views_form}
-        <!-- /ajax::content_views -->
-
-        </div>
-
-		<p>&nbsp;</p>
-	</div>
-	<!-- /content -->
-
-	<!-- blocks -->
-	<div id="tab3" class="ui-tabs-panel ui-tabs-hide">
-	   <bloc::custom_blocks>
-	   <p>
-		   <label>{custom_block_nameX}</label>
-		   <select name="cf2Block{custom_block_name}[]" id="cf2Block{custom_block_name}" multiple title="{$lang_msg[63]}">
-
-		   <bloc::custom_block_options>
-			   <option value="{custom_block_val}" image_preview="{image_preview}">{custom_block_val_name}</option>
-		   </bloc::custom_block_options>
-
-		   </select>
-
-	   </p>
-	   </bloc::custom_blocks>
-
-		<script>
-		var page_manager_block_preview_url = {page_manager_block_preview_url};
-		</script>
-
-
-
-	</div>
-	<!-- /blocks -->
-
-	<!-- variables -->
-	<div id="tab4" class="ui-tabs-panel ui-tabs-hide"></div>
-	<!-- /variables -->
-
-
-	<!-- comments -->
-	<div id="tab5" class="ui-tabs-panel ui-tabs-hide">
-
-		<div id="comment_new">
-			<input type="button" id="CommentNew" value="{$lang_msg[71]}" onclick="commentPostToggle()"/>
-
-			<!-- comment_post -->
-			<div id="comment_post">
-			<table id="comment_post_table" cellpadding="3" cellspacing="0">
-				<tr>
-					<td width="100">{$lang_msg[72]} <span class="required">*</span></td>
-					<td><input type="text" name="CommentName" id="CommentName" value="{$_SESSION['FirstName']} {$_SESSION['LastName']}" /></td>
-				</tr>
-				<tr>
-					<td valign="top">{$lang_msg[73]} <span class="required">*</span></td>
-					<td>
-						<textarea id="CommentText" name="CommentText"></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="right">
-						<input type="button" id="CommentSubmit" value="{$nuts_lang_msg[21]}" onclick="commentPostSubmit();" />
-					</td>
-				</tr>
-			</table>
-			</div>
-			<!-- /comment_post -->
-
-		</div>
-
-		<div id="comments"></div>
-
-	</div>
-	<!-- /comments -->
-
-
-	<!-- options -->
-	<div id="tab6" class="ui-tabs-panel ui-tabs-hide">
-		<p>
-			<label>{$lang_msg[16]} <span class="required">*</span></label>
-			<select id="ContentType" name="ContentType">
-				{$select_content_type}
-			</select>
-		</p>
-		<p>
-			<label title="{$lang_msg[24]}">{$lang_msg[23]}</label>
-			<input type="text"  autocomplete="off" name="VirtualPagename" id="VirtualPagename" value="" />
-		</p>
-		<p>
-			<label title="{$lang_msg[26]}">{$lang_msg[25]}</label>
-			<select id="MenuVisible" name="MenuVisible">
-				<option value="YES">{$nuts_lang_msg[30]}</option>
-				<option value="NO">{$nuts_lang_msg[31]}</option>
-			</select>
-		</p>
-		<p>
-			<label title="{$lang_msg[20]}">{$lang_msg[19]}</label>
-			<select id="TopBar" name="TopBar">
-				<option value="YES">{$nuts_lang_msg[30]}</option>
-				<option value="NO">{$nuts_lang_msg[31]}</option>
-			</select>
-		</p>
-		<p>
-			<label title="{$lang_msg[22]}">{$lang_msg[21]}</label>
-			<select id="BottomBar" name="BottomBar">
-				<option value="YES">{$nuts_lang_msg[30]}</option>
-				<option value="NO">{$nuts_lang_msg[31]}</option>
-			</select>
-		</p>
-
-		<p>
-			<label title="{$lang_msg[31]}">{$lang_msg[30]}</label>
-			<textarea name="Tags" id="Tags"></textarea>
-		</p>
-
-		<p>
-			<label title="{$lang_msg[33]}">{$lang_msg[32]}</label>
-			<select id="Comments" name="Comments" onchange="updateCommentTab()">
-				<option value="YES">{$nuts_lang_msg[30]}</option>
-				<option value="NO">{$nuts_lang_msg[31]}</option>
-			</select>
-		</p>
-		<p>
-			<label title="{$lang_msg[70]}">{$lang_msg[69]}</label>
-			<input type="text"  autocomplete="off" name="CacheTime" id="CacheTime" value="" style="text-align: center; width: 65px;" />
-		</p>
-        <p>
-            <label title="{$lang_msg[106]}">{$lang_msg[105]}</label>
-            <select id="Locked" name="Locked">
-                <option value="YES">{$nuts_lang_msg[30]}</option>
-                <option value="NO">{$nuts_lang_msg[31]}</option>
-            </select>
-        </p>
-
-
-
-
-
-		<fieldset id="fieldset_Media">
-		<legend>{$lang_msg[42]}</legend>
-
-        <p>
-            <label title="{$lang_msg[117]}">{$lang_msg[116]}</label>
-            <input type="text" name="Thumbnail" id="Thumbnail" value="" /> <a class="tt" title="{$nuts_lang_msg[87]}" href="javascript:imageBrowser('Thumbnail', '');"><img src="/nuts/img/icon-folder.png" align="absmiddle" /></a>
-            <a href="javascript:;" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('Thumbnail');"><img align="absmiddle" src="img/icon-preview-mini.gif" align="absmiddle" /></a>
-        </p>
-		<p>
-			<label title="{$lang_msg[44]}">{$lang_msg[43]}</label>
-			<select id="HeaderImage" name="HeaderImage" onchange="updateHeaderImg()">
-				<option value=""></option>
-				{$select_header_img}
-			</select>
-
-            <a href="javascript:headerImageReload();"><i class="icon-loop"></i></a>
-            <a class="tt" title="{$nuts_lang_msg[87]}" href="javascript:imageBrowser('HeaderImage', 'header');"><img src="/nuts/img/icon-folder.png" align="absmiddle" /></a>
-
-		</p>
-
-		<div id="HeaderImagePreview"></div>
-		<script>
-		function updateHeaderImg()
-		{
-			v = $('#HeaderImage').val();
-
-			if(!$('#HeaderImage').is(":visible"))
-				v = "";
-
-			str = '';
-			if(v != '')
-			{
-				str = '<img src="{CONST::NUTS_HEADER_IMAGES_URL}/'+v+'" style="max-width:750px; max-height:100px;" />';
-			}
-
-			$('#HeaderImagePreview').html(str);
-
-		}
-		</script>
-		</fieldset>
-
-
-		<fieldset id="fieldset_Variables">
-			<legend>{$lang_msg[45]}</legend>
-
-
+	
+	<div id="preview"> <a href="javascript:;" onclick="previewPage(0);"  accesskey="v">{$lang_msg[14]} <i class="icon-new-tab"></i></a></div>
+	
+	<div id="ntabs0_content" class="ntabs_contents ui-tabs-panel">
+	
+		<!-- information -->
+		<div class="ntab_content">[[ VIEW:tab_information ]]</div>
+		<!-- /information -->
+		
+		<!-- meta -->
+		<div class="ntab_content">[[ VIEW:tab_meta ]]</div>
+		<!-- /meta -->
+		
+		<!-- content -->
+		<div class="ntab_content">[[ VIEW:tab_content ]]</div>
+		<!-- /content -->
+		
+		<!-- blocks -->
+		<div class="ntab_content" id="tab_content_blocks">[[ VIEW:tab_blocks ]]</div>
+		<!-- /blocks -->
+		
 		<!-- variables -->
-		<bloc::custom_fields>
-			<p>
-			<label title="{custom_fields_help}">{custom_fields_label}</label>
-
-			<bloc::custom_fields_text>
-				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
-			</bloc::custom_fields_text>
-
-			<bloc::custom_fields_date>
-				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
-				<script>inputDate("cf{custom_fields_name}", 'date')</script>
-			</bloc::custom_fields_date>
-
-			<bloc::custom_fields_datetime>
-				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
-				<script>inputDate("cf{custom_fields_name}", 'datetime')</script>
-			</bloc::custom_fields_datetime>
-
-			<bloc::custom_fields_textarea>
-				<textarea name="cf{custom_fields_name}" id="cf{custom_fields_name}" /></textarea>
-			</bloc::custom_fields_textarea>
-
-			<bloc::custom_fields_select>
-				<select name="cf{custom_fields_name}" id="cf{custom_fields_name}">
-					<option value=""></option>
-					<bloc::custom_fields_select_options>
-					<option value="{custom_fields_opt}">{custom_fields_opt}</option>
-					</bloc::custom_fields_select_options>
-				</select>
-			</bloc::custom_fields_select>
-
-			<bloc::custom_fields_boolean>
-				<select name="cf{custom_fields_name}" id="cf{custom_fields_name}">
-					<option value="YES">{$nuts_lang_msg[30]}</option>
-					<option value="NO">{$nuts_lang_msg[31]}</option>
-				</select>
-			</bloc::custom_fields_boolean>
-
-			<bloc::custom_fields_booleanX>
-				<select name="cf{custom_fields_name}" id="cf{custom_fields_name}">
-					<option value="NO">{$nuts_lang_msg[31]}</option>
-					<option value="YES">{$nuts_lang_msg[30]}</option>
-				</select>
-			</bloc::custom_fields_booleanX>
-
-			<bloc::custom_fields_image>
-				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
-
-				<a href="javascript:;" class="tt" title="{$nuts_lang_msg[87]}" onclick="imgBrowser('cf{custom_fields_name}','{custom_fields_folder}');"><img align="absmiddle" src="img/icon-folder.png"/></a>
-				<a href="javascript:;" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('cf{custom_fields_name}');"><img align="absmiddle" src="img/icon-preview-mini.gif"/></a>
-
-			</bloc::custom_fields_image>
-
-			<bloc::custom_fields_file>
-				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" />
-				<a class="tt" title="{$nuts_lang_msg[87]}" href="javascript:allBrowser('cf{custom_fields_name}', '{custom_fields_folder}');"><img align="absmiddle" src="img/icon-folder.png"/></a>
-				<a href="javascript:;" class="tt" title="{$nuts_lang_msg[86]}" onclick="openFile('cf{custom_fields_name}');"><img src="img/icon-file.png" align="absmiddle" /></a>
-			</bloc::custom_fields_file>
-
-			<bloc::custom_fields_colorpicker>
-				<input autocomplete="off" name="cf{custom_fields_name}" id="cf{custom_fields_name}" type="text" value="" style="width:50px;"  maxlength="7" class="widget_colorpicker"  onclick="startColorPicker(this)" onkeyup="maskedHex(this)"  />
-			</bloc::custom_fields_colorpicker>
-			</p>
-		</bloc::custom_fields>
+		<div class="ntab_content">[[ VIEW:tab_variables ]]</div>
 		<!-- /variables -->
 
-</fieldset>
-
-
-		<!-- resticted access -->
-		<fieldset id="fieldset_Access">
-			<legend>Front-office - {$lang_msg[80]}</legend>
-
-			<p>
-				<label title="{$lang_msg[84]}">{$lang_msg[80]}</label>
-				<select id="AccessRestricted" name="AccessRestricted">
-					<option value="NO">{$nuts_lang_msg[31]}</option>
-					<option value="YES">{$nuts_lang_msg[30]}</option>
-				</select>
-			</p>
-
-			<p>
-				<label>{$lang_msg[81]}</label>
-				<select id="PageAccess" name="PageAccess[]" multiple size="5" class="checkbox-list">
-
-					<bloc::page_access>
-					<option value="{GroupID}">{GroupName}</option>
-					</bloc::page_access>
-
-				</select>
-			</p>
-
-		</fieldset>
-		<!-- /resticted access -->
-
-
-
-		<fieldset id="fieldset_Sitemap">
-
-			<legend>Sitemap Generator</legend>
-			<p>
-				<label>Sitemap</label>
-				<select id="Sitemap" name="Sitemap">
-					<option value="YES">{$nuts_lang_msg[30]}</option>
-					<option value="NO">{$nuts_lang_msg[31]}</option>
-				</select>
-			</p>
-			<p>
-				<label>Changefreq</label>
-				<select id="SitemapChangefreq" name="SitemapChangefreq">
-					<option value="hourly">hourly</option>
-					<option value="daily">daily</option>
-					<option value="weekly">weekly</option>
-					<option value="monthly">monthly</option>
-					<option value="always">always</option>
-					<option value="never">never</option>
-				</select>
-			</p>
-			<p>
-				<label>Priority</label>
-				<select id="SitemapPriority" name="SitemapPriority">
-					<option value="0.1">0.1</option>
-					<option value="0.2">0.2</option>
-					<option value="0.3">0.3</option>
-					<option value="0.4">0.4</option>
-					<option value="0.5">0.5</option>
-					<option value="0.6">0.6</option>
-					<option value="0.7">0.7</option>
-					<option value="0.8">0.8</option>
-					<option value="0.9">0.9</option>
-					<option value="1.0">1.0</option>
-				</select>
-			</p>
-
-			<fieldset id="fieldset_SitemapOptions">
-				<legend>Options</legend>
-				<p>
-					<label title="{$lang_msg[86]}">Page Type</label>
-					<select id="SitemapPageType" name="SitemapPageType">
-						<option value="NORMAL">Normal</option>
-						<option value="TUNNEL">Tunnel</option>
-					</select>
-				</p>
-				<p>
-					<label title="{$lang_msg[87]}">Url Regex 1</label>
-					<input type="text" autocomplete="off" name="SitemapUrlRegex1" id="SitemapUrlRegex1" value="" />
-				</p>
-				<p>
-					<label title="{$lang_msg[88]}">Url Regex 2</label>
-					<input type="text" autocomplete="off" name="SitemapUrlRegex2" id="SitemapUrlRegex2" value="" />
-				</p>
-			</fieldset>
-
-
-	</fieldset>
-
-
-
-
-
+		<!-- comments -->
+		<div class="ntab_content">[[ VIEW:tab_comments ]]</div>
+		<!-- /comments -->
+		
+		<!-- options -->
+		<div class="ntab_content">[[ VIEW:tab_options ]]</div>
+		<!-- /options -->
+		
+		<!-- rights -->
+		<div class="ntab_content">[[ VIEW:tab_rights ]]</div>
+		<!-- /rights -->
+	
 	</div>
-	<!-- /options -->
-
-
-
-    <!-- rights -->
-    <div id="tab7" class="ui-tabs-panel ui-tabs-hide"  >
-
-        <table class="table" id="rights_matrix" cellpadding="5" cellspacing="0">
-        <tr>
-             <th>&nbsp;</th>
-             <th>{$lang_msg[121]}</th>
-             <th>{$lang_msg[122]}</th>
-             <th>{$lang_msg[123]}</th>
-             <th>{$lang_msg[128]}</th>
-             <th>{$lang_msg[124]}</th>
-             <th>{$lang_msg[125]}</th>
-             <th>{$lang_msg[126]}</th>
-        </tr>
-
-        <tbody>
-
-        <bloc::right_matrix>
-        <tr>
-            <td><input type="checkbox" onclick="if('{GroupID}' == 1)this.checked = true; $('#rights_matrix .rm_{GroupID}').attr('checked', this.checked);"> <b>{GroupName}</b></td>
-            <td class="center"><input type="checkbox" class="rm_{GroupID}" name="RightMatrix[{GroupID}][edit]" value="1"></td>
-            <td class="center"><input type="checkbox" class="rm_{GroupID}" name="RightMatrix[{GroupID}][delete]" value="1"></td>
-            <td class="center"><input type="checkbox" class="rm_{GroupID}" name="RightMatrix[{GroupID}][drag]" value="1"></td>
-            <td class="center"><input type="checkbox" class="rm_{GroupID}" name="RightMatrix[{GroupID}][lock]" value="1"></td>
-            <td class="center"><input type="checkbox" class="rm_{GroupID}" name="RightMatrix[{GroupID}][duplicate]" value="1"></td>
-            <td class="center"><input type="checkbox" class="rm_{GroupID}" name="RightMatrix[{GroupID}][subpages]" value="1"></td>
-            <td class="center"><input type="checkbox" class="rm_{GroupID}" name="RightMatrix[{GroupID}][comments]" value="1"></td>
-        </tr>
-        </bloc::right_matrix>
-
-        </tbody>
-
-        <tfoot>
-        <tr>
-            <td colspan="8" style="text-align: right">
-                {$lang_msg[127]} <input type="checkbox" name="RightMatrixApplySubPages" value="1" />
-            </td>
-        </tr>
-        </tfoot>
-
-
-        </table>
-
-    </div>
-    <!-- /rights -->
 
 
 </div>
 
-<div id="page_options_bottom">
 
-	<input id="btn_submit" type="submit" value="{$nuts_lang_msg[21]}" accesskey="s" title="Alt + S" />
-	<input type="checkbox" id="chk_Close" value="1" checked /> {$lang_msg[57]}
-
-	&nbsp; &nbsp;  &nbsp; &nbsp;
-	<input id="btn_cancel" type="button" value="{$nuts_lang_msg[26]}"  accesskey="w"  title="Alt + W" onclick="cancelPageVerification()" />
-</div>
-<!-- page form -->
+[[ VIEW:page_options_bottom ]]
+<!-- /page form -->
 
 </div>
 <!-- /pager_content -->
 
-<!-- page -->
 </form>
+
+
+<!-- block image preview -->
+<div id="image_preview" style="position: absolute; top:-150px; left:0; width: 150px; height: 100px;"></div>
+<!-- /block image preview -->
+
 
 
 <script>
@@ -755,8 +121,6 @@ var lang_msg_130 = "{$lang_msg[130]}";
 var nuts_lang_msg_21 = "{$nuts_lang_msg[21]}";
 var nuts_lang_msg_23 = "{$nuts_lang_msg[23]}";
 
-// var formerOnSubmit = "{$javascript_onsubmit_function}"; DEPRECATED user folder js_event_trigger
-
 var from_mode = "{$_GET['from']}";
 var from_mode_action = "{$_GET['from_action']}";
 var from_tab_selected = "{$_GET['tab_selected']}";
@@ -765,38 +129,21 @@ var userAllowedPluginUrlRewriting = "{userAllowedPluginUrlRewriting}";
 var userAllowedPluginBlockManager = "{userAllowedPluginBlockManager}";
 
 var pageIsLocked = false;
-
+var hfs = explode(',', "{$hidden_fields}");
+var page_manager_block_preview_url = {page_manager_block_preview_url};
 </script>
-
-<script>var hfs = explode(',', "{$hidden_fields}");</script>
 
 <script src="/plugins/_page-manager/custom.js"></script>
 <script src="/plugins/_page-manager/comments.js"></script>
 <script src="/plugins/_page-manager/tree_func.js"></script>
-
+<script src="/plugins/_page-manager/func.js"></script>
 <script src="/plugins/_page-manager/js_events_trigger/page-manager__load.js"></script>
 <script src="/plugins/_page-manager/js_events_trigger/page__onload.js"></script>
 <script src="/plugins/_page-manager/js_events_trigger/page__onsave.js"></script>
-
 <script src="/plugins/_page-manager/init.js"></script>
 
 
-<script>
-$('body').click(function(){
-    hideContext();
-})
-</script>
-
-<script>
-reloadPage();
-helperInit('#page_form');
-loadRichEditor(currentTheme);
 
 
 
-
-</script>
-
-<!-- for block image preview -->
-<div id="image_preview" style="position: absolute; top:-150px; left:0; width: 150px; height: 100px;"></div>
 

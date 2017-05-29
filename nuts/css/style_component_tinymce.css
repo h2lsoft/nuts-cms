@@ -1,3 +1,8 @@
+.mce-tinymce {
+	display: flow-root!important;
+	margin-bottom: 20px!important;
+}
+
 .mce-container, .mce-container *, .mce-widget, .mce-widget *, .mce-reset
 {
     font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif!important;

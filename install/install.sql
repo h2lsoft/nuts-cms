@@ -528,7 +528,6 @@ UPDATE NutsMenu SET ExternalUrl = 'http://www.nuts-cms.com/en/2-documentation.ht
 UPDATE NutsMenu SET BreakBefore = 1 WHERE Name = '_rte_template';
 UPDATE NutsMenu SET BreakBefore = 1 WHERE Name = '_group-manager';
 INSERT INTO NutsMenu (Category, Name, Position, BreakBefore) VALUES (1, '_page-versionning', 11, 1);
-
 INSERT INTO NutsMenu (Category, Name, Position, BreakBefore) VALUES (2, '_media', 9, 1);
 
 
@@ -1238,9 +1237,24 @@ ALTER TABLE `NutsNewsletter` ADD INDEX `SchedulerDate` (`SchedulerDate`);
 ALTER TABLE `NutsNewsletter` ADD INDEX `SchedulerStart` (`SchedulerStart`);
 ALTER TABLE `NutsNewsletter` ADD INDEX `SchedulerFinished` (`SchedulerFinished`);
 
+CREATE TABLE `NutsVersion` (
+	`ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`NutsUserID` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`Date` DATETIME NULL DEFAULT NULL,
+	`Application` VARCHAR(255) NOT NULL,
+	`RecordID` INT(11) NOT NULL,
+	`DataSerialized` LONGTEXT NOT NULL,
+	`Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO',
+	PRIMARY KEY (`ID`),
+	INDEX `Date` (`Date`),
+	INDEX `NutsUserID` (`NutsUserID`),
+	INDEX `Application` (`Application`),
+	INDEX `Deleted` (`Deleted`),
+	INDEX `RecordID` (`RecordID`)
+)
+COLLATE='utf8_general_ci' ENGINE=MyISAM;
 
-
-
+UPDATE NutsMenu SET name = '_versioning' WHERE Name IN('_page-versioning', '_page-versionning');
 
 
 

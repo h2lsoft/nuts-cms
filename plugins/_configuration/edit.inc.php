@@ -34,6 +34,11 @@ if($_POST)
 	}
 	else
 	{
+		$data = array();
+		$data['_file'] = $_POST['f'];
+		$data['Content'] = $_POST['Configuration'];
+		nutsVersioningAdd('_configuration::'.basename($_POST['f']), 0, $data, [], $_SESSION['NutsUserID']);
+		
 		$plugin->trace("`{$_POST['f']}` modified");
 		die('ok');
 	}

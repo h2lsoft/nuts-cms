@@ -1,0 +1,30 @@
+<fieldset id="fieldset_Meta">
+	<legend>{$lang_msg[38]}</legend>
+
+	<p>
+		<label>{$lang_msg[39]}</label>
+		<input type="text"  autocomplete="off" name="MetaTitle" id="MetaTitle" value="" />
+	</p>
+	<p>
+		<label>{$lang_msg[40]}</label>
+		<input type="text"  autocomplete="off" name="MetaKeywords" id="MetaKeywords" value="" />
+	</p>
+	<p>
+		<label>{$lang_msg[41]}</label>
+		<textarea name="MetaDescription" id="MetaDescription"></textarea>
+	</p>
+	<p>
+		<label>Robots</label>
+
+		<select id="MetaRobots">
+			<option value=""></option>
+			<option value="noindex">noindex</option>
+			<option value="nofollow">nofollow</option>
+			<option value="noindex, nofollow">noindex, nofollow</option>
+			<option value="index, nofollow">index, nofollow</option>
+			<option value="noindex, follow">noindex, follow</option>
+		</select>
+
+	</p>
+
+</fieldset>

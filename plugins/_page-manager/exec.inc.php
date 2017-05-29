@@ -22,7 +22,17 @@ foreach($recs as $rec)
 include(PLUGIN_PATH.'/config.inc.php');
 include(PLUGIN_PATH.'/actions.inc.php');
 
-$nuts->open(PLUGIN_PATH.'/form.html');
+$form = file_get_contents(PLUGIN_PATH.'/form.html');
+
+// create virtual view
+$views = array('page_option', 'context', 'loader', 'tab_information', 'tab_meta', 'tab_content', 'tab_blocks', 'tab_variables', 'tab_comments', 'tab_options', 'tab_rights', 'page_options_bottom');
+foreach($views as $view)
+{
+	$form = str_replace("[[ VIEW:$view ]]", file_get_contents(__DIR__."/view/$view.html"), $form);
+}
+
+$nuts->createVirtualTemplate($form);
+
 
 // rights matrix ******************************************************************************************
 
