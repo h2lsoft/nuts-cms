@@ -13,7 +13,8 @@ function loadRichEditor(theme)
         id = $(this).attr('id');
         $(this).css('float', 'left');
         
-        width = $(this).width();
+        // width = $(this).width();
+        width = $(this).actual( 'outerWidth', { includeMargin : true });
         
         tmp_lang = strtolower(nutsUserLang)+'_'+strtoupper(nutsUserLang);
         if(tmp_lang == 'en_EN')tmp_lang = '';
