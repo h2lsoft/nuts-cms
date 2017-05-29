@@ -1,15 +1,18 @@
 /* header *************************************************************************************************************/
 #header {
-    height: 38px; padding: 0px; background-image: none;
+    height: 45px; padding: 0px; background-image: none;
     background-color: white;
     width: 100%;
-    position: relative;
+    position: fixed;
     top:0;
+	z-index: 3;
 }
 
 #header .bo_logo {max-height: 35px; padding: 0px; margin: 0; margin-top: 5px; margin-left: 0px;}
 
-#header_right {position: absolute; z-index: 2; right: 2px; top:2px; background: #fff;}
+#header_right {position: absolute; z-index: 2; right: 2px; top:5px; background: #fff;}
+
+
 
 /** internal message **/
 #header_right #internal_message {float: left; margin-right: 15px; }
@@ -70,11 +73,23 @@
 
 
 /* top_search *********************************************************************************************************/
-#top_search { padding: 20px; /*position: absolute; z-index: 2; left: 40%; top:10px;*/ }
-#top_search #top_search_input {width: 100%; background-position: 2px center!important; padding-right: 0; padding-left: 20px; opacity: 0.7;  border: 0!important; font-size:14px!important;}
+#top_search {position: absolute; z-index:2;  top: 10px; left:calc(50% - 250px); }
+#top_search #top_search_input {
+								width: 250px;
+								background-position: 2px center!important;
+								padding-right: 0;
+								font-size: 16px;
+								border: 0!important;
+								opacity: 0.5;
+								padding-left: 25px;
+								
+}
+
+
 #top_search_input::-webkit-search-cancel-button {display: none;}
 #top_search #top_search_input:hover {border-color: #ccc; opacity: 1;}
 #top_search #top_search_input:focus {border-color: #2d89ef; background-color: white; opacity: 1;}
+
 
 
 

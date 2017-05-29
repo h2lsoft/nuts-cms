@@ -22,7 +22,7 @@
 
 	{$nuts_lang_msgs_compiled}
 	
-    var plugin_list_ac = '';
+    var plugin_list_ac = {plugin_list_ac};
 
     var current_plugin_name = '';
     var list_toggle_columns = [];
@@ -61,6 +61,14 @@
         <a href="index.php"><img src="{$nutsBackLogo}" alt="Nuts Cms" align="left" class="bo_logo" /></a>
     </div>
     <!-- /bo_logo -->
+	
+	
+	<!-- top_search -->
+    <div id="top_search" style="{popup_display}">
+        <input autocomplete="false" spellcheck="false" type="search" name="top_search" id="top_search_input" placeholder="{$nuts_lang_msg[11]}">
+    </div>
+	<!-- /top_search -->
+	
 
     <!-- header_right -->
     <div id="header_right">
@@ -167,11 +175,7 @@
 <!-- menu -->
 <div id="menu" style="{popup_display}">
 
-    <!-- top_search -->
-    <div id="top_search" style="{popup_display}">
-        <input autocomplete="false" spellcheck="false" type="search" name="top_search" id="top_search_input" placeholder="{$nuts_lang_msg[11]}...">
-    </div>
-    <!-- /top_search -->
+   
 
     {$menu}
 

@@ -198,7 +198,7 @@ if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']) && !isset($_GET['target']) &
             include(WEBSITE_PATH.'/plugins/'.$plugin_name.'/lang/'.$default_lang.'.inc.php');
         }
 
-        $plugin_label = str_replace_latin_accents($lang_msg[0]);
+        $plugin_label = str_replace_latin_accents($lang_msg[0])." (".trim(str_replace(array('-','_'), ' ', $plugin_name)).")";
         $plugin_url = $row['ExternalUrl'];
 
         $plugin_default_action = $plugin_info['default_action'];
@@ -207,8 +207,8 @@ if(!isset($_GET['ajax']) && !isset($_GET['ajaxer']) && !isset($_GET['target']) &
 	    $plugin_list[$plugin_name] = array('label' => $plugin_label, 'name' =>  $plugin_name, 'url' => $plugin_url, 'default_action' => $plugin_default_action);
     }
 
-    // $plugin_list_ac = json_encode($plugin_list_ac);
-    // @$nuts->parse('plugin_list_ac', $plugin_list_ac);
+    $plugin_list_ac = json_encode($plugin_list_ac);
+    $nuts->parse('plugin_list_ac', $plugin_list_ac);
 	
 
 	// listing favorite user shortcut

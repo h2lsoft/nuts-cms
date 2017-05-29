@@ -770,16 +770,83 @@ function initMainMenu()
 
 function initTopSearch()
 {
-	$("#top_search_input").keydown(function(e){
-		if(e.keyCode === 27 && $(this).val() == '')
-		{
-			mainMenuClose();
-			e.preventDefault();
-		}
+	shortcut.add('Ctrl+Q', function(){
+		$("#top_search_input").select().focus();
 	});
 	
-    /* customize menu autocomplete */
-    $("#top_search_input").keyup(function(e){
+	$("#top_search_input").keydown(function(e){
+		
+		// escape key
+		if(e.keyCode == 27)
+		 	$(this).val('');
+	});
+	
+	
+	$("#top_search_input").autocomplete(plugin_list_ac, {
+        width: 500,
+        max: 30,
+        highlight: false,
+        autoFill: false,
+        minChars: 0,
+        scroll: true,
+        matchContains: true,
+        scrollHeight: 300,
+
+        formatMatch: function(row, i, max) {
+            return row.label;
+        },
+
+        formatItem: function(row, i, max) {
+
+            plugin_label = row.label;
+            plugin_name = row.name;
+            plugin_url = row.url;
+
+            if(!empty(plugin_name) && !empty(plugin_label))
+                return "<img src=\"/plugins/"+plugin_name+"/icon.png\" style=\"height:24px; vertical-align:middle;\" /> " + plugin_label;
+        },
+
+        formatResult: function(row) {
+
+            return row.label;
+        }
+    });
+	
+	$("#top_search_input").result(function(event, row, formatted) {
+
+        plugin_label = row.label;
+        plugin_name = row.name;
+        plugin_url = row.url;
+        plugin_default_action = row.default_action;
+
+        if(!empty(plugin_url))
+        {
+            if(plugin_url.indexOf('http') == 0 ||  plugin_url.indexOf('ftp') == 0  ||  plugin_url.indexOf('mailto') == 0)
+                popupModal(plugin_url);
+            else
+                document.location.href = plugin_url;
+        }
+        else
+        {
+            system_goto('index.php?mod='+plugin_name+'&do='+plugin_default_action, 'content');
+        }
+
+        $("#top_search_input").val("").blur();
+
+        // hide main menu
+        // $('#menu li.parent').removeClass('selected').css('background', 'none').css('border-color', '#ccc');
+
+    });
+	
+	
+	
+	
+	
+	
+	
+	
+	/* customize menu autocomplete */
+    /*$("#top_search_input").keyup(function(e){
 
         v = $(this).val();
         v = strtolower(v);
@@ -818,7 +885,7 @@ function initTopSearch()
 
         });
 
-    });
+    });*/
 }
 
 

@@ -15,7 +15,9 @@ $.widget("ui.tooltip", $.ui.tooltip, {
 // POPUP MODE : escape to close
 if(popupMode == 1)
 {
-    $('body').css('background-image', 'none');
+    $('body').css('padding-top', '0px');
+	$('body').css('background-image', 'none');
+	
     $('#add').css('margin-top', '-10px');
 
     parent_refresh = "parent_refresh";
@@ -52,12 +54,7 @@ else
     privateBoxRefresh();
 
     shortcut.add('Ctrl+Alt', function(){
-    	
     	$('#bo_menu_switch a').click();
-    	
-    	if($('#menu').hasClass('main_menu_show'))
-    	    $('#top_search_input').focus();
-    
     });
 
 
@@ -67,26 +64,33 @@ else
         if($('#header').length == 1)
         {
             wtp = $(window).scrollTop();
-            if(wtp <= 130)
+            if(wtp <= 60)
             {
-                $('#header').css({top:'0px', 'border-bottom': '0', 'box-shadow': 'none'});
+                $('#header').css({'border-bottom': '0', 'box-shadow': 'none'});
                 // $('#header .user_login').show();
-                $('#header .bo_logo').css({'margin-top':'5px'});
-                $('#bo_menu_switch').css({'margin-top':'0px'});
-                $('#top_search').css('top', '10px');
+                // $('#header .bo_logo').css({'margin-top':'5px'});
+                // $('#bo_menu_switch').css({'margin-top':'0px'});
+                // $('#top_search').css('top', '10px');
                 $('#top_return').hide();
             }
             else
             {
-                $('#header').css({top:wtp+'px', 'border-bottom': '1px solid #ccc', 'box-shadow': '0 0 15px #ccc'});
+                $('#header').css({'border-bottom': '1px solid #ccc', 'box-shadow': '0 0 15px #ccc'});
                 // $('#header .user_login').hide();
-                $('#bo_menu_switch').css({'margin-top':'-4px'});
+                // $('#bo_menu_switch').css({'margin-top':'-4px'});
 
-                $('#header .bo_logo').css({'margin-top':'0px'});
-                $('#top_search').css('top', (wtp+10)+'px');
+                // $('#header .bo_logo').css({'margin-top':'0px'});
+                // $('#top_search').css('top', (wtp+10)+'px');
                 $('#top_return').show();
             }
         }
+        
     });
+    
+    setTimeout(function(){
+    	$(window).scroll();
+    }, 500);
+    
+    
 
 }
