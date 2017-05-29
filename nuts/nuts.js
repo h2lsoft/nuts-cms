@@ -778,7 +778,10 @@ function initTopSearch()
 		
 		// escape key
 		if(e.keyCode == 27)
-		 	$(this).val('');
+		{
+			$(this).val('');
+			e.preventDefault();
+		}
 	});
 	
 	
