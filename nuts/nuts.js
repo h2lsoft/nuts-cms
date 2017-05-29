@@ -321,52 +321,6 @@ function nutsAlert(message)
 var codemirror_editor = '';
 function initCodeEditor(objID, syntax, popup_version, url_added)
 {
-
-	/*
-	str = '';
-
-	if(popup_version == true)
-		str += '<div style="padding:5px; margin:0;">';
-	else
-		str += '<div id="code_editor_toolbar" style="padding:5px; margin:0; background-color:#e5e5e5; border:1px solid #ccc;">';
-
-	str += '<img src="img/icon-html_code_editor.png" align="absmiddle" /> ';
-
-	// popup_version for former
-	if(popup_version == true)
-		str += '<a href="javascript:;" onclick="codeEditor(\''+objID+'\', \''+syntax+'\', 0);"> Code Editor popup';
-	else
-		str += '<a id="code_editor_a" href="javascript:;" onclick="codeEditorInline(\''+objID+'\', \''+syntax+'\');"> Code Editor';
-
-	str += '</a>';
-	str += '</div>';
-
-	if(popup_version == false)
-		str += '<div id="code_editor_loader"><img src="img/ajax-loader.gif" align="absmiddle" /> loading ...</div>';
-
-	if(popup_version == true)
-	{
-		str += '<label>&nbsp;</label>';
-	}
-	else
-	{
-		$('#'+objID).fadeTo(0, 0.4);
-	}
-
-	$('#'+objID).before(''+str+'');
-
-
-	$('#form_content #'+objID).tabby();
-
-
-
-	// direct preview
-	setTimeout("$('#code_editor_a').click(); $('#code_editor_loader').remove(); $('#code_editor_toolbar').remove();", 3000);
-
-	return true;
-	*/
-
-
     // visual query builder
     vqb = '';
     if(AllowVisualQueryBuilder == '1' && syntax == 'sql')
@@ -451,27 +405,6 @@ function codeEditorInline(objID, syntax)
 
 	 // var hlLine = codemirror_editor.setLineClass(0, "activeline");
 
-
-/*
-	if(syntax == 'php')
-	{
-		codemirror_editor = CodeMirror.fromTextArea(objID, {
-			parserfile: ["../contrib/php/js/tokenizephp.js", "../contrib/php/js/parsephp.js"],
-			path: "/library/js/codemirror/js/",
-			height : "700px",
-			stylesheet: "/library/js/codemirror/contrib/php/css/phpcolors.css"
-		});
-	}
-	else if(syntax == 'css')
-	{
-		codemirror_editor = CodeMirror.fromTextArea(objID, {
-			parserfile: ["parsecss"],
-			path: "/library/js/codemirror/js/",
-			height: "700px",
-			stylesheet: "/library/js/codemirror/css/csscolors.css"
-		});
-	}
-*/
 	// hack on button submit
 	$("#btn_submit").click(function(){
 		$("#former #"+objID).val(codemirror_editor.getValue());
@@ -551,27 +484,13 @@ function inputDate(objID, type)
 function helperInit(objID)
 {
 	// label
-    $(objID+' label[title!=""]').append('  <i class="icon-help" style="color:#527BCE"></i>');
-	$(objID+' label[title!=""]').css('cursor', 'help');
-	$(objID+' label[title!=""]').tooltip({
+    $(objID+" label[title][title!=''], "+objID+" legend[title][title!='']").append('  <i class="icon-help" style="color:#527BCE"></i>').css('cursor', 'help').tooltip({
 	    track: false,
 	    delay: 0,
 	    showURL: false,
 	    showBody: " - ",
 	    opacity: 0.85
 	});
-
-	// legend
-	$(objID+' legend[title!=""]').append('  <i class="icon-help" style="color:#527BCE"></i>');
-	$(objID+' legend[title!=""]').css('cursor', 'help');
-	$(objID+' legend[title!=""]').tooltip({
-	    track: false,
-	    delay: 0,
-	    showURL: false,
-	    showBody: " - ",
-	    opacity: 0.85
-	});
-
 
 }
 
@@ -2055,7 +1974,7 @@ function copy2Clipboard(text)
 
 function favoriteToggle(plugin)
 {
-	uri = 'index.php?_action=user_bookmark-toggle&plugin='+plugin;
+	uri = 'index.php?_action=user_bookmark-toggle';
 	$.post(uri, {plugin:plugin}, function(response){
 	
 		if(response.error)
