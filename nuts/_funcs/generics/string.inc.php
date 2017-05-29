@@ -56,6 +56,8 @@ function fromCamelCase($str, $ucwords=true)
 
 	if($ucwords)$str = ucwords($str);
 
+	$str = str_replace(' I D', ' ID', $str);
+	
 	return $str;
 }
 
