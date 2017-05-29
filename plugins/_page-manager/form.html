@@ -15,7 +15,7 @@
 <!-- page form -->
 <div id="page_form">
 
-	<p id="page_navigation" style=" ">
+	<p id="page_navigation">
 		<a href="javascript:;" onclick="$('#Status').val(''); selectSetOptionClass('Status'); $('#dID').val(''); reloadPage();"><img src="img/icon-home.png" alt="Home" align="absmiddle" /></a>
 		<span id="page_navigation_urls"></span>
 	</p>
@@ -33,7 +33,7 @@
 	
 	<div id="preview"> <a href="javascript:;" onclick="previewPage(0);"  accesskey="v">{$lang_msg[14]} <i class="icon-new-tab"></i></a></div>
 	
-	<div id="ntabs0_content" class="ntabs_contents ui-tabs-panel">
+	<div id="ntabs0_content" class="ntabs_contents ui-tabs-panel" style="clear:left">
 	
 		<!-- information -->
 		<div class="ntab_content">[[ VIEW:tab_information ]]</div>
@@ -133,14 +133,19 @@ var hfs = explode(',', "{$hidden_fields}");
 var page_manager_block_preview_url = {page_manager_block_preview_url};
 </script>
 
-<script src="/plugins/_page-manager/custom.js"></script>
+
 <script src="/plugins/_page-manager/comments.js"></script>
-<script src="/plugins/_page-manager/tree_func.js"></script>
 <script src="/plugins/_page-manager/func.js"></script>
+<script src="/plugins/_page-manager/tree_func.js"></script>
+
 <script src="/plugins/_page-manager/js_events_trigger/page-manager__load.js"></script>
 <script src="/plugins/_page-manager/js_events_trigger/page__onload.js"></script>
 <script src="/plugins/_page-manager/js_events_trigger/page__onsave.js"></script>
+
+<script src="/plugins/_page-manager/custom.js"></script>
 <script src="/plugins/_page-manager/init.js"></script>
+
+
 
 
 
