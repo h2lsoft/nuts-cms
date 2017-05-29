@@ -234,7 +234,8 @@ else
 
 			$nuts->dbInsert('NutsPageContentViewFieldData', $f);
 			
-			@$data_save["_linked"]['NutsPageContentViewFieldData'][] = $f;
+			$f['_table'] = 'NutsPageContentViewFieldData';
+			@$data_save["_linked"][] = $f;
 		}
 	}
 	
