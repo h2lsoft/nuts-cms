@@ -260,6 +260,7 @@ else
 		                'Note' => $_POST['Note']
 	                ));*/
 	
+	$data_save = $_POST;
 	nutsVersioningAdd('page_manager', $_GET['ID'], $data_save, [], $_SESSION['NutsUserID']);
 	
 	
