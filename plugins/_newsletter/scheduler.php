@@ -5,10 +5,16 @@ include("../../nuts/config.inc.php");
 include(WEBSITE_PATH."/nuts/headers.inc.php");
 include("config.inc.php");
 
+// token checking + email prevent admin
+if(!isset($NEWSLETTER_SCHEDULER_TOKEN) || empty($NEWSLETTER_SCHEDULER_TOKEN) || @$_GET['token'] != $NEWSLETTER_SCHEDULER_TOKEN)
+{
+	die("Error: token not correct");
+}
 
 // configuration *************************************************************************
 set_time_limit(0);
 error_reporting(E_ALL);
+ignore_user_abort(true);
 
 if(isset($NEWSLETTER_MEMORY_LIMIT))
 	ini_set('memory_limit', $NEWSLETTER_MEMORY_LIMIT);
@@ -197,8 +203,6 @@ foreach($newsletters as $n)
 	
 	$nuts->dbUpdate('NutsNewsletter', $f, "ID={$n['ID']}");  # DEBUG
 	
-	
-	
 	echo "Finished $total_send sended - ".count($email_sended_error)." errors<br>";
 
 	// report AR
@@ -219,13 +223,13 @@ foreach($newsletters as $n)
 		
 		foreach($tos as $to)
 		{
-			$to = trim($to);
-			$to = strtolower($to);
+			$to = trim(strtolower($to));
+			
 			if(!empty($to))
 			{
+				$nuts->mailTo($to);
 				$nuts->mailCharset('UTF-8');
 				$nuts->mailFrom(NUTS_EMAIL_NO_REPLY);
-				$nuts->mailTo($to);
 				$nuts->mailSubject(WEBSITE_NAME."> Newsletter Reporting #{$n['ID']}");
 				$nuts->mailBody($message, 'HTML');
 				$nuts->mailSend();

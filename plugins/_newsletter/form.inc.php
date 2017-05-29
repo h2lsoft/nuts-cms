@@ -122,7 +122,6 @@ if($_POST)
 		$_POST['Body'] = str_replace('<br>', "<br>\n", $_POST['Body']);
 		$_POST['Body'] = str_replace('</p>', "\n</p>", $_POST['Body']);
 		
-		
 		$body = str_replace('src="/', 'src="'.WEBSITE_URL.'/', $_POST['Body']);
 		$body = str_replace('url(/', 'url('.WEBSITE_URL.'/', $body);
 		$body = str_replace('href="/', 'href="'.WEBSITE_URL.'/', $body);
@@ -137,10 +136,6 @@ if($_POST)
 	if(strpos($body, '[UNSUBSCRIBE_LINK]') === false)
 		$nuts->addError('Body', $lang_msg[10]);
 	
-	
-	
-	
-	
 
 	// mode test
 	if($_POST['ModeTest'] == 'YES')
@@ -149,7 +144,7 @@ if($_POST)
 	}
 	else
 	{
-		$nuts->notEmpty('MailingList[]');
+		$nuts->notEmpty('MailingList');
 	}
 
 	// alright *****************************************************************************************
@@ -184,11 +179,14 @@ if($_POST)
 			$nuts->addError('ModeTest', $lang_msg[24]);
 	}
 	
-	
-	
-	
-	
-	$_POST['MailinglistIDs'] = serialize($_POST['MailingList']);
+	if(isset($_POST['MailingList']))
+		$_POST['MailinglistIDs'] = serialize($_POST['MailingList']);
+		
+	// token verification
+	if(!isset($NEWSLETTER_SCHEDULER_TOKEN) || empty($NEWSLETTER_SCHEDULER_TOKEN))
+	{
+		$nuts->addError('ModeTest', "Please configure or add NEWSLETTER_SCHEDULER_TOKEN in configuration");
+	}
 	
 }
 
