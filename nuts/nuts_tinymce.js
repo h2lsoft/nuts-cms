@@ -20,7 +20,7 @@ function loadRichEditor(theme)
         
         tinyMCE.init({
 	            branding: false,
-	            browser_spellcheck : true,
+	            // browser_spellcheck : true,
 
                 language : tmp_lang,
                 content_css: theme_url,
@@ -42,7 +42,7 @@ function loadRichEditor(theme)
                 plugins: [
                     "advlist autolink lists link image charmap anchor preview",
                     "visualblocks code fullscreen wordcount template hr",
-                    "media table contextmenu directionality paste searchreplace textcolor importcss"
+                    "media table contextmenu directionality paste searchreplace textcolor importcss preview"
                 ],
 
                 contextmenu: "link | formats | cell row column deletetable",
@@ -77,10 +77,10 @@ function loadRichEditor(theme)
                     format : {title : 'Format', items : 'bold italic underline strikethrough superscript subscript | formats | removeformat'},
                     insert : {title : 'Insert', items : 'image widget | youtube dailymotion video audio | iframe embed | map | hr template'},
                     table  : {title : 'Table' , items : 'inserttable tableprops deletetable | cell row column'},
-                    tools  : {title : 'Tools' , items : 'visualaid visualblocks | charmap | fullscreen '}
+                    tools  : {title : 'Tools' , items : 'visualaid visualblocks | charmap | fullscreen | preview'}
                 },
 
-                toolbar1: "bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | link unlink | xcode2",
+                toolbar1: "bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | link unlink | preview |  xcode2 fullscreen",
 
                 setup: function(editor) {
 

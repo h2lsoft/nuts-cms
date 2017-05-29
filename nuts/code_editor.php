@@ -13,7 +13,7 @@ if(!isset($_GET['parent_target']))$_GET['parent_target'] = '';
 
         <script type="text/javascript" src="/library/js/jquery.js"></script>
 	    <script language="text/javascript" src="/library/js/php.js"></script>
-	    <script type="text/javascript" src="/library/js/jquery-htmlclean/jquery.htmlClean.min.js"></script>
+	    <script type="text/javascript" src="/library/js/jquery.htmlClean.js"></script>
 
 
         <link rel="stylesheet" href="/nuts/css/style.css" />
@@ -79,7 +79,7 @@ if(!isset($_GET['parent_target']))$_GET['parent_target'] = '';
 
 	        if(parent_target == 'tinymce')
 	        {
-		        tiny = window.opener.tinymce.activeEditor;
+		        tiny = window.opener.tinyMCE.activeEditor;
 		        tiny.focus();
 		        tiny.undoManager.transact(function() {
 			        tiny.setContent(val, {format : 'raw'});
@@ -114,7 +114,7 @@ if(!isset($_GET['parent_target']))$_GET['parent_target'] = '';
         <script>
 	    if(parent_target == 'tinymce')
 	    {
-		    new_value = window.opener.tinymce.activeEditor.getContent({raw: true});
+		    new_value = window.opener.tinyMCE.activeEditor.getContent({raw: true});
 		    new_value = $.htmlClean(new_value, { format: true})
 
 	    }
