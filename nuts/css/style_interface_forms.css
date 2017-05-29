@@ -57,8 +57,16 @@ input[type=button], button, input[type=submit]   {
 }
 
 /** button **/
-button:hover, input[type=button]:hover, input[type=submit]:hover {background-color: #ccc;}
-button:active, input[type=button]:active, input[type=submit]:active {background-color: white;}
+button:hover, input[type=button]:hover, input[type=submit]:hover, .button-primary:hover {background-color: #ccc;}
+button:active, input[type=button]:active, input[type=submit]:active, .button-primary:active {background-color: white;}
+
+.button-primary { border-color:#3399FE!important; background-color:#3399FE!important;; color: white!important;}
+.button-primary:hover {opacity: 0.7;}
+.button-primary:disabled {background-color: white!important; color: #353535!important;; border-color: #ccc!important;}
+
+
+
+
 
 input[type=submit]:hover {border-color:#3399FE; background-color:#3399FE; color: white;}
 input[type=submit]:active {background-color: white; color: #3399FE; border-color: #3399FE;}
