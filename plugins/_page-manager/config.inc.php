@@ -33,8 +33,5 @@ $custom_fields = array(); # do not touch this line
 $hidden_fields = "ContentType, TopBar, BottomBar"; # comma separated
 
 /** update 0.87 **/
-$allowed_groups_block = array("Right");
-
-/** update 0.92 **/
-$javascript_onsubmit_function = ""; // name of the js function to verify custom value
+$allowed_groups_block = array();
 
