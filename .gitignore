@@ -4,3 +4,4 @@ _tmp/*
 de
 nuts/config.inc.php
 
+/.htaccess
