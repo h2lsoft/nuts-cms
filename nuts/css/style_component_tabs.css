@@ -59,7 +59,7 @@
 input.ntabs_loading {background-image: url(/nuts/img/ajax-loader.gif)!important; background-position: right; background-repeat: no-repeat; background-color: #e5e5e5!important; padding-right: 20px;}
 select.ntabs_loading {background-image: url(/nuts/img/ajax-loader.gif)!important; background-position: right; background-repeat: no-repeat; background-color: #e5e5e5!important; padding-right: 20px;}
 
-.ntab_content p span {color: #666; font-style: italic; font-size: 10px}
+.ntab_content p span {color: #666; /*font-style: italic;*/ font-size: 10px}
 
 
 
