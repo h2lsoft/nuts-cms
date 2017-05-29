@@ -193,6 +193,7 @@ function loadRichEditor(theme)
 function forceWYSIWYGUpdate(){}
 function WYSIWYGhackSubmit() {}
 function initWYSIWYGIFrame() {}
+function RTERefresh() {}
 
 
 function WYSIWYGAddText(id, txt)
