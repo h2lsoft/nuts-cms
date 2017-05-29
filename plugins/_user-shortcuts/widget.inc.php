@@ -22,12 +22,12 @@ while($r = $nuts->dbFetch())
 
 
 
-if(count($shortcuts) > 0)
-{
+// if(count($shortcuts) > 0)
+// {
 
     // get plugin name translated
     include(Plugin::getIncludeUserLanguagePath('_user-shortcuts'));
-    $title = $lang_msg[0];
+    $title = $lang_msg[0]." <a title=\"{$nuts_lang_msg[100]}\" href=\"javascript:;\" onclick=\"popupModal('index.php?mod=_user-shortcuts&do=list&popup=1');\"><img src='/nuts/img/icon_add.png'></a>";
 
     $content = '';
     foreach($shortcuts as $shortcut)
@@ -58,9 +58,9 @@ if(count($shortcuts) > 0)
             </a>
 EOF;
 
-    }
+     }
 
     Plugin::dashboardAddWidget($title, 'high', 'shortcut', 'full', '', $content);
 
-}
+//}
 
