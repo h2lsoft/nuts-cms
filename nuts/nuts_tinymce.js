@@ -186,15 +186,13 @@ function loadRichEditor(theme)
                 }
 
             });
-
     });
     
-    // $('.mce-container, .mce-container-body').css('float', 'left!important');
-
 }
 
 function forceWYSIWYGUpdate(){}
 function WYSIWYGhackSubmit() {}
+function initWYSIWYGIFrame() {}
 
 
 function WYSIWYGAddText(id, txt)

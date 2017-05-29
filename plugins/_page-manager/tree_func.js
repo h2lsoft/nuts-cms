@@ -522,19 +522,22 @@ function editPage(nodeID, selectTabs)
 						data[key] = parse_nuts_tags(data[key]);
 					}
 
-					//{
-						// log('load key => '+key+' value => '+data[key]);
-						$('#former #'+key).val(data[key]);
-					//}
-					//else
-					//{
-						//ed = tinyMCE.getInstanceById(key)
-						//ed.setContent(data[key]);
-					//}
+					$('#former #'+key).val(data[key]);
 				}
 			}
 
 
+			// reload all tinymce
+			$('.mce-tinymce').each(function(){
+			
+				textarea = $(this).next('textarea.mceEditor').attr('id');
+				tmp_content = $(this).next('textarea.mceEditor').val();
+				tinyMCE.get(textarea).setContent(tmp_content);
+			
+			});
+			
+			
+			
 			// assign navigation
 			$('#page_navigation_urls').html(data['NavigationBar']);
 
@@ -542,8 +545,8 @@ function editPage(nodeID, selectTabs)
 			// change form paramater
 			var options = {
 							url: tree_static_url+'&_action=save_page&ID='+nodeID+'&language='+$('#Language').val(),
-							beforeSubmit:  showRequest,  // pre-submit callback
-							success:       showResponse  // post-submit callback
+							beforeSubmit:  showRequest2,  // pre-submit callback
+							success:       showResponse2  // post-submit callback
 			};
 			$('#former').ajaxForm(options);
 
@@ -653,7 +656,7 @@ function editPage(nodeID, selectTabs)
 
 // pre-submit callback
 var formData = null;
-function showRequest(formData, jqForm, options)
+function showRequest2(formData, jqForm, options)
 {
 	// verify group access
 	if($('#AccessRestricted').val() == 'YES')
@@ -705,30 +708,28 @@ function showRequest(formData, jqForm, options)
 	// add special MetaRobots because bug name=MetaRobots for jquery tabs
 	formData[formData.length] = {name:'MetaRobots', value:$('#MetaRobots').val()};
 
-
     var queryString = $.param(formData);
+    
 
     // jqForm is a jQuery object encapsulating the form element.  To access the
     // DOM element for the form do this:
     // var formElement = jqForm[0];
-	$('#btn_submit').attr('value', nuts_lang_msg_23);
- 	$('#btn_submit').attr("disabled", true);
+	$('#btn_submit').attr('value', nuts_lang_msg_23).attr("disabled", true);
 	$('#page_form').fadeTo(0, 0.33);
 
     return true;
 }
 
 // post-submit callback
-function showResponse(responseText, statusText)
+function showResponse2(responseText, statusText)
 {
 	$('#page_form').fadeTo(0.33, 1);
-	$('#btn_submit').attr('value', nuts_lang_msg_21);
- 	$('#btn_submit').removeAttr("disabled");
+	$('#btn_submit').attr('value', nuts_lang_msg_21).removeAttr("disabled");
+ 
 
 	if(responseText != 'ok')
 	{
 		nutsAlert(responseText);
-
 	}
 	else
 	{
@@ -741,7 +742,7 @@ function showResponse(responseText, statusText)
 		$('li#'+nodeID+' span:first').text($('#MenuName').val());
         updateStateIcon();
 
-		if($('#chk_Close').attr('checked') == true)
+		if($('#chk_Close').is(':checked') == true)
 		{
 			// iframe mode
 			if(from_mode == 'iframe')
@@ -779,10 +780,8 @@ function showResponse(responseText, statusText)
 		else
 		{
 			if(from_mode == 'iframe')
-			{
 				return;
-			}
-
+			
 			
 			// document.getElementById('_WYSIWYG_Content').click();
 			if(newwindow != undefined  && newwindow != false && !newwindow.closed)

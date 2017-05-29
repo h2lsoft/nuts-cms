@@ -188,7 +188,7 @@ else
 
 	// save content view
 	$nuts->dbDelete('NutsPageContentViewFieldData', "NutsPageID = ".(int)$_GET['ID']);
-	$_POST['NutsPageContentViewID'] = (int)$_POST['NutsPageContentViewID'];
+	$_POST['NutsPageContentViewID'] = (int)@$_POST['NutsPageContentViewID'];
 	if($_POST['NutsPageContentViewID'] != 0)
 	{
 		// get all field ID, Name, ID and Type
@@ -247,7 +247,7 @@ else
 	}*/
 
 	// add versionning
-	$nuts->dbInsert('NutsPageVersion',
+	/*$nuts->dbInsert('NutsPageVersion',
 	                array(
 		                'NutsUserID' => $_SESSION['NutsUserID'],
 		                'NutsPageID' => $_GET['ID'],
@@ -258,7 +258,11 @@ else
 		                'Content' => $_POST['Content'],
 		                'NutsPageContentViewID' => $_POST['NutsPageContentViewID'],
 		                'Note' => $_POST['Note']
-	                ));
+	                ));*/
+	
+	nutsVersioningAdd('page_manager', $_GET['ID'], $data_save, [], $_SESSION['NutsUserID']);
+	
+	
 
 	// add page access
 	$nuts->doQuery("DELETE FROM NutsPageAccess WHERE NutsPageID = {$_GET['ID']}");
