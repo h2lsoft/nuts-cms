@@ -56,7 +56,7 @@ function nutsTrigger($name, $auto_register=false, $description="")
  *
  * @param $application
  * @param $recordID
- * @param $data (use _linked_[TABLE] to associate data)
+ * @param $data (use _table our _file and use _linked array to associate data)
  * @param $NutsUserID
  */
 function nutsVersioningAdd($application, $recordID, $data=[], $exceptions=[], $NutsUserID=0)
@@ -69,7 +69,23 @@ function nutsVersioningAdd($application, $recordID, $data=[], $exceptions=[], $N
 	$data2 = [];
 	foreach($data as $key => $val)
 	{
-		if(!in_array($key, $exceptions))
+		$joker_found = false;
+		
+		foreach($exceptions as $exception)
+		{
+			$tmp = explode('*', $exception);
+			if(count($tmp) == 2)
+			{
+				$str = $tmp[0];
+				if(stripos($key, $str) !== false && stripos($key, $str) == 0)
+				{
+					$joker_found = true;
+					break;
+				}
+			}
+		}
+		
+		if(!in_array($key, $exceptions) && !$joker_found)
 			$data2[$key] = $data[$key];
 	}
 	

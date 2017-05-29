@@ -183,8 +183,14 @@ else
 
 
 	// save
-	$nuts->dbUpdate('NutsPage', $_POST, "ID = ".(int)$_GET['ID'], array('PageZoneID', 'cf*', 'Status', 'asm*', 'dID', 'CommentName', 'CommentText', 'PageAccess', 'PageAccessX', 'ContentView*', 'RightMatrix*'));
-
+	$except = ['PageZoneID', 'cf*', 'Status', 'asm*', 'dID', 'CommentName', 'CommentText', 'PageAccess', 'PageAccessX', 'ContentView*', 'RightMatrix*'];
+	$nuts->dbUpdate('NutsPage', $_POST, "ID = ".(int)$_GET['ID'], $except);
+	
+	$data_save = $_POST;
+	$data_save['_table'] = 'NutsPage';
+	$data_except = $except;
+	
+	
 
 	// save content view
 	$nuts->dbDelete('NutsPageContentViewFieldData', "NutsPageID = ".(int)$_GET['ID']);
@@ -227,13 +233,13 @@ else
 			$f['Value'] = $cur_val;
 
 			$nuts->dbInsert('NutsPageContentViewFieldData', $f);
+			
+			@$data_save["_linked"]['NutsPageContentViewFieldData'][] = $f;
 		}
 	}
-
-
-
-
-
+	
+	nutsVersioningAdd('page_manager', $_GET['ID'], $data_save, $data_except, $_SESSION['NutsUserID']);
+	
 
 	// tags
 	/*$nuts->doQuery("DELETE FROM NutsPageTag WHERE NutsPageID = {$_GET['ID']}");
@@ -259,11 +265,6 @@ else
 		                'NutsPageContentViewID' => $_POST['NutsPageContentViewID'],
 		                'Note' => $_POST['Note']
 	                ));*/
-	
-	$data_save = $_POST;
-	nutsVersioningAdd('page_manager', $_GET['ID'], $data_save, [], $_SESSION['NutsUserID']);
-	
-	
 
 	// add page access
 	$nuts->doQuery("DELETE FROM NutsPageAccess WHERE NutsPageID = {$_GET['ID']}");
