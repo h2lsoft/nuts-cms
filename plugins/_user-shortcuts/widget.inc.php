@@ -27,7 +27,7 @@ while($r = $nuts->dbFetch())
 
     // get plugin name translated
     include(Plugin::getIncludeUserLanguagePath('_user-shortcuts'));
-    $title = $lang_msg[0]." <a title=\"{$nuts_lang_msg[100]}\" href=\"javascript:;\" onclick=\"popupModal('index.php?mod=_user-shortcuts&do=list&popup=1');\"><img src='/nuts/img/icon_add.png'></a>";
+    $title = $lang_msg[0]." <a title=\"{$nuts_lang_msg[100]}\" href=\"javascript:;\" onclick=\"popupModal('index.php?mod=_user-shortcuts&do=list&popup=1');\"><i class=\"icon-bookmark-2\"></i></a>";
 
     $content = '';
     foreach($shortcuts as $shortcut)
