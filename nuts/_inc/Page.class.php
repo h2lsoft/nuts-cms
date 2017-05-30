@@ -889,7 +889,7 @@ class Page extends NutsCore
 						$rep .= "\n";
 						$rep .= '<script type="text/javascript">'."\n";
 						// $rep .= '$(document).ready(function() {'."\n";
-						$rep .= 'window.onload = function () {'."\n";
+						$rep .= 'window.onload = function() {'."\n";
 						$rep .= '	$(\'a.nuts_gallery_'.$nuts_gallery_id.'\').fancybox({\'centerOnScroll\':true});'."\n";
 						//$rep .= '});'."\n";
 						$rep .= '};'."\n";
@@ -2911,10 +2911,14 @@ $template = <<<EOF
 </form>
 
 <script type="text/javascript">
+window.onload = function(){
 $('#tpln_captcha').attr('autocomplete','off');
 if($('div#form_error p').length == 0)$('div#form_error').remove();
 
-{$form['JsCode']}
+	
+	{$form['JsCode']}
+
+};
 </script>
 
 <bloc::form_valid>
@@ -3239,7 +3243,8 @@ EOF;
 		$str .= <<<EOF
 
 		<script type="text/javascript">
-		$("#nuts_survey_$surveyID #NutsSurveyOkButton, #nuts_survey_$surveyID #NutsSurveyA").click(function(){
+		window.onload = function(){
+			$("#nuts_survey_$surveyID #NutsSurveyOkButton, #nuts_survey_$surveyID #NutsSurveyA").click(function(){
 			padding_val = $('#nuts_survey_$surveyID .nuts_survey_options').css('padding');
 
 			if($(this).attr('id') == 'NutsSurveyOkButton')
@@ -3281,6 +3286,7 @@ EOF;
 
 
 		});
+		}
 		</script>
 
 
@@ -3502,9 +3508,10 @@ EOF;
 		<div id="nuts_front_toolbar_button" style="user-select:none; webkit-user-select:none; border:1px solid #ccc; border-top:0; width:auto; position:fixed; z-index:570; right:0px; top:2px; padding:5px; text-align:center; color:black; background-color:#e5e5e5; margin-right:20px; margin-top:-4px;"><a style="letter-spacing:1px; color:#0000; text-transform:uppercase; user-select:none; webkit-user-select:none; font-size:10px;" href="javascript:nutsFrontToolbarOpenClose();">$open_close_lbl</a></div>
 
 		<script type="text/javascript">
-		$('#nuts_elements').attr('checked', false);
+		window.onload = function(){
+			$('#nuts_elements').attr('checked', false);
 
-		$('#nuts_page_link, #nuts_page_link2, #nuts_page_link3, #nuts_page_link4').fancybox({
+			$('#nuts_page_link, #nuts_page_link2, #nuts_page_link3, #nuts_page_link4').fancybox({
 									'width'				: '97%',
 									'height'			: '91%',
 									'autoScale'     	: true,
@@ -3518,7 +3525,7 @@ EOF;
 									'margin'			: 5,
 									'margin-top'		: 3
 								});
-
+		};
 
 		function nutsToggleElements(show)
 		{
