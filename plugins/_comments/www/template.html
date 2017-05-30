@@ -26,18 +26,13 @@
 
 </div>
 
+
+<script type="text/javascript" src="/plugins/_comments/www/func.js"></script>
+
 <script type="text/javascript">
-if($("#nuts_comments .comment").length == 0)
-	$("#nuts_comments").hide();
-
-function citeIt(ID, Author){
-
-	v = '[blockquote]';
-	v += '[span]'+Author+' : [/span]\n\n';
-	v += $('#comment'+ID+' .comment_text').text()+'\n';
-	v += '[/blockquote]\n\n';
-
-	$('#form_post_comment #Comment').val(v).focus();
+window.onload = function(){
+	if($("#nuts_comments .comment").length == 0)
+		$("#nuts_comments").hide();
 }
 </script>
 
@@ -89,29 +84,11 @@ function citeIt(ID, Author){
 </div>
 
 <script type="text/javascript">
-function createCommentCookie(name,value,days) {
-
-	if(days) {
-		var date = new Date();
-		date.setTime(date.getTime()+(days*24*60*60*1000));
-		var expires = "; expires="+date.toGMTString();
-	}
-	else var expires = "";
-	document.cookie = name+"="+value+expires+"; path=/";
+window.onload = function() {
+	createCommentCookie('nuts_suscriber[Author]', "{$_POST['Name']}", 365);
+	createCommentCookie('nuts_suscriber[Email]', "{$_POST['Email']}", 365);
+	createCommentCookie('nuts_suscriber[Website]', "{$_POST['Website']}", 365);
+	setTimeout('refreshCurrentPage();', 3000);
 }
-createCommentCookie('nuts_suscriber[Author]',"{$_POST['Name']}", 365);
-createCommentCookie('nuts_suscriber[Email]',"{$_POST['Email']}", 365);
-createCommentCookie('nuts_suscriber[Website]',"{$_POST['Website']}", 365);
-
-function refreshCurrentPage(){
-
-	uri = document.location.href;
-	if(uri.indexOf('#') != -1)
-		uri = uri.substr(0, uri.indexOf('#'));
-	document.location.href = uri;
-}
-
-setTimeout('refreshCurrentPage();', 3000);
-
 </script>
 </bloc::form_valid>
