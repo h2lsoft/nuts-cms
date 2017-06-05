@@ -97,7 +97,9 @@ function treeView()
 			//cancelPage();
 
 			//alert('R-click: '+$('span:first',node).text());
-			var offs = $(node).offset({scroll:false});
+			// var offs = $(node).offset({scroll:false});
+			var offs = $(node).offset();
+			console.log(offs.left, offs.top);
 
 
             // hide folder menu options
@@ -113,8 +115,8 @@ function treeView()
 
 			$('#page_tree_context').css( {'position':'absolute',
 								'z-index':'999999',
-								'left': (offs.left + 60),
-								'top': (offs.top + 10)} ).show();
+								'left': (offs.left + 70),
+								'top': (offs.top + 15)} ).show();
 		},
 
 		//animate:true
