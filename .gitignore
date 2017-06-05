@@ -2,6 +2,7 @@ _tmp/*
 .idea/*
 .DS_Store
 de
-nuts/config.inc.php
-
+/nuts/config.inc.php
+Thumbs.db
 /.htaccess
+
