@@ -1,13 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 	<head>
-		<meta http-equiv="X-UA-Compatible" content="chrome=1" />
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta charset="utf-8">
 		<meta name="robots" content="noindex, nofollow" />
-		<title>Nuts&#8482; CMS - Widgets</title>
+		<title>Widgets</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css?t={$timer}" media="all" />
-
-		<script type="text/javascript" src="/library/js/jquery.js"></script>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js" integrity="sha256-JklDYODbg0X+8sPiKkcFURb5z7RvlNMIaE3RA2z97vw=" crossorigin="anonymous"></script>
+		
 		<script type="text/javascript" src="/library/js/php.js"></script>
 		<script type="text/javascript" src="nuts.js?t={$timer}"></script>
 
@@ -15,10 +16,9 @@
 		var parentID = "{$_GET['parentID']}";
         var language = "{$_SESSION['Language']}";
 		</script>
-
-
+		
 	</head>
-	<body>
+	<body style="padding: 0">
 
 
 		<!-- w_left_menu -->
@@ -42,7 +42,8 @@
 
             <bloc::galleries>
                 <div class="w_item" onclick="addToText($(this));" item="{item}">
-                    <img class="logo" src="{img}" align="absmiddle" /> {name}
+                    <img class="logo" src="{img}" align="absmiddle" /> {name}<br />
+					<span class="description">{desc}</span>
                 </div>
             </bloc::galleries>
 

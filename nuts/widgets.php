@@ -29,6 +29,85 @@ $nuts->open(NUTS_PATH.'/_templates/widgets.html');
 $no_record = '<div class="w_item_no_record">'.$nuts_lang_msg[6].'</div>';
 
 
+// galleries *******************************************************************
+$sql = "SELECT ID, LogoImage, Name, Description FROM NutsGallery WHERE Deleted = 'NO' ORDER BY Position";
+$nuts->doQuery($sql);
+$res = $nuts->dbNumRows();
+$galleries = [];
+
+if(!$res)
+{
+	$nuts->parseBloc('galleries', $no_record);
+}
+else
+{
+	while($row = $nuts->dbFetch())
+	{
+		$row['Name'] = addslashes($row['Name']);
+		$item_c = "{@NUTS    TYPE='GALLERY'    NAME='{$row['Name']}'}";
+
+		
+		$img = '/nuts/img/no-preview.png';
+		if(!empty($row['LogoImage']))
+		{
+			$ext = explode('.', $row['LogoImage']);
+			$ext = $ext[count($ext) - 1];
+			
+			$img = NUTS_IMAGES_URL.'/gallery/thumb_'.$row['ID'].'.'.$ext;
+		}
+		
+		$nuts->parse('galleries.item', $item_c);
+		$nuts->parse('galleries.img', $img);
+		$nuts->parse('galleries.name', ucfirst($row['Name']));
+		$nuts->parse('galleries.desc', ucfirst($row['Description']));
+		$nuts->loop('galleries');
+		
+		$galleries[] = $row;
+	}
+}
+
+// title
+$img = NUTS_PLUGINS_URL.'/_gallery/icon.png';
+$nuts->parse('menu.img', $img);
+$nuts->parse('menu.name', $nuts_lang_msg[72]);
+$nuts->parse('menu.count', count($galleries));
+$nuts->loop('menu');
+
+// maps ***********************************************************************
+$sql = "SELECT ID, Name, Description FROM NutsGMaps WHERE Deleted = 'NO'";
+$nuts->doQuery($sql);
+$res = $nuts->dbNumRows();
+$maps = [];
+
+if(!$res)
+{
+	$nuts->parseBloc('maps', $no_record);
+}
+else
+{
+	$img = '/plugins/_gmaps/icon.png';
+	while($row = $nuts->dbFetch())
+	{
+		$map_name = addslashes($row['Name']);
+		$item_c = "{@NUTS    TYPE='PLUGIN'    NAME='_gmaps'    PARAMETERS='{$row['ID']};$map_name'}";
+		
+		$nuts->parse('maps.item', $item_c);
+		$nuts->parse('maps.img', $img);
+		$nuts->parse('maps.name', ucfirst($row['Name']));
+		$nuts->loop('maps');
+		
+		$maps[] = $row;
+	}
+}
+
+// title
+$img = NUTS_PLUGINS_URL.'/_gmaps/icon.png';
+$nuts->parse('menu.img', $img);
+$nuts->parse('menu.name', 'Maps');
+$nuts->parse('menu.count', count($maps));
+$nuts->loop('menu');
+
+
 // plugins ********************************************************************
 $dir_plugin = WEBSITE_PATH.'/plugins';
 $plugins = glob($dir_plugin.'/*', GLOB_ONLYDIR);
@@ -52,8 +131,7 @@ else
 		$img = '/plugins/_dropbox/icon.png';
 		if(file_exists(WEBSITE_PATH."/plugins/$item/icon.png"))
 			$img = "/plugins/$item/icon.png";
-
-
+		
 		$item_c = "{@NUTS    TYPE='PLUGIN'    NAME='$item'    PARAMETERS=''}";
 
 		$nuts->parse('plugins.item', $item_c);
@@ -62,6 +140,9 @@ else
 		$nuts->loop('plugins');
 	}
 }
+
+
+
 
 // title
 $img = NUTS_PLUGINS_URL.'/_dropbox/icon.png';
