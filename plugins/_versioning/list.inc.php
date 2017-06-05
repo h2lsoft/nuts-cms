@@ -40,7 +40,9 @@ function hookData($row)
 	$data = unserialize($row['DataSerialized']);
 	$row['File'] = (isset($data['_file'])) ? str_erase(WEBSITE_PATH, $data['_file']) : '';
 	
-	
+	$row['Replace'] = <<<EOF
+	<a href="javascript:if((c=confirm('Wold you like to replace this record ?')))popupModalV2('?mod=_versioning&do=replace&ID={$row['ID']}&popup=1', 'content');"><i class="icon-redo"></i> Replace</a>
+EOF;
 	
 
 
