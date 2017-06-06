@@ -3,6 +3,8 @@
 This component is included automatically, to dump variable properly
 
 ```php
+<?php
+
 $arr = ['name' => 'Test', 'lastname' => 'Test 2'];
 new dBug($arr); // or shortcut x($arr);
 ```
