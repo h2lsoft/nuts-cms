@@ -67,7 +67,9 @@ return media video
 
 ## Special commands
 
-```{#include('/path/_file.html');}```
+```
+{#include('/path/_file.html');}
+```
 
 include a file in template
 
