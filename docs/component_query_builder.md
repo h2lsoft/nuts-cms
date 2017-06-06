@@ -3,6 +3,8 @@
 This component helps you to create sql query faster
  
 ```php
+<?php
+
 $logs = Query::factory()->select("FirstName, Action, Resume")
                         ->from('NutsLog, NutsUser')
                         ->whereJoin() # auto join
@@ -12,9 +14,9 @@ $logs = Query::factory()->select("FirstName, Action, Resume")
 
 foreach($logs as $log)
 {
-    echo "ID: { $log['ID'] }<br>";
-    echo "Action: { $log['Action'] }<br>";
-    echo "Resume: { $log['Resume'] }<br>";
+    echo "ID: {$log['ID']}<br>";
+    echo "Action: {$log['Action']}<br>";
+    echo "Resume: {$log['Resume']}<br>";
     echo "<hr>";
 } 
 
