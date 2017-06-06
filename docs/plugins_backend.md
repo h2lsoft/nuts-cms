@@ -26,6 +26,7 @@ CREATE TABLE `MyTest`
 * Edit file *"/plugins/test/list.inc.php"*
 
 ```php
+<?php
 
 // assign table to db
 $plugin->listSetDbTable('MyTest');
@@ -52,6 +53,7 @@ function hookData($row){
 * Edit file *"/plugins/test/form.inc.php"*
 
 ```php
+<?php
 
 $plugin->formDBTable(array('MyTest'));
 
@@ -65,6 +67,7 @@ $plugin->formAddFieldText('Email', '', true, 'lower email');
 * Edit file *"/plugins/test/view.inc.php"*
 
 ```php
+<?php
 
 $plugin->viewDbTable(array('MyTest'));
 
