@@ -17,13 +17,8 @@
 	     
 	    <h1>Menu</h1>
 	    
-	      {% capture include_to_markdownify %}
-			{% include _toc.md %}
-		  {% endcapture %}
-			
-	      {{ include_to_markdownify | markdownify }}
+	    {% include _toc.md %}
 	      
-		
 	      
         {% if site.github.is_project_page %}
 	      <br>
