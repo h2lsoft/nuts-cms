@@ -207,6 +207,10 @@ $nuts_lang_msg[105] = "regular expression";
 $nuts_lang_msg[106] = "Add/remove favorites";
 $nuts_lang_msg[107] = "favorite has been succefully added";
 $nuts_lang_msg[108] = "favorite has been succefully removed";
+$nuts_lang_msg[109] = "Last connected";
+$nuts_lang_msg[110] = "Name";
+
+
 
 // main menu ***********************************************************************
 $mods_group[0]['name'] = 'Administration';

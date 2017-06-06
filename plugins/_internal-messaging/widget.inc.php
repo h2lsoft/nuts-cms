@@ -19,7 +19,7 @@ $subject = $lang_msg[1];
 $from = $lang_msg[3];
 $me = $lang_msg[19];
 
-$sql = "SELECT *, (SELECT Login FROM NutsUser WHERE ID = NutsUserIDFrom) AS Login FROM NutsIM WHERE Deleted = 'NO' AND Viewed = 'NO' AND NutsUserID = {$_SESSION['NutsUserID']} ORDER BY Date DESC LIMIT 50";
+$sql = "SELECT *, (SELECT Login FROM NutsUser WHERE ID = NutsUserIDFrom) AS Login FROM NutsIM WHERE Deleted = 'NO' AND Viewed = 'NO' AND NutsUserID = {$_SESSION['NutsUserID']} ORDER BY Date DESC LIMIT 20";
 $nuts->doQuery($sql);
 
 if(!$nuts->dbNumRows())
@@ -58,6 +58,53 @@ EOF;
     Plugin::dashboardAddWidget($title, 'medium', 'internal-messaging', 'full', 'max-height:120px; overflow:scroll;', $content);
 }
 
+// last connected users
+    $content = <<<EOF
+<table>
+<tr>
+    <th>Login</th>
+    <th>{$nuts_lang_msg[110]}</th>
+    <th>{$nuts_lang_msg[80]}</th>
+    <th>Date</th>
+</tr>
+EOF;
 
+$sql = "SELECT
+				*,
+				(SELECT Name FROM NutsGroup WHERE ID = NutsGroupID) AS NutsGroup
+		FROM
+				NutsUser
+		ORDER BY
+				LastConnection DESC
+		LIMIT 10";
+$nuts->doQuery($sql);
+while($r = $nuts->dbFetch())
+{
+	$date = ($_SESSION['Language'] == 'fr') ? $nuts->db2date($r['LastConnection']) : $r['LastConnection'];
+	
+	$full_name = $r['FirstName'].' '.$r['LastName'];
+	$full_name = ucfirst($full_name);
+	$login = $r['Login'];
+	$group = ucfirst($r['NutsGroup']);
+	
+	// avatar
+	$avatar_src = WEBSITE_URL.'/nuts/img/gravatar.jpg';
+	if(!empty($r['Avatar']))
+		$avatar_src = $r['Avatar'];
+	
+	
+	$content .= "<tr>
+                          <td style=\"white-space: nowrap; width: 30px;\">
+                            <img src='{$avatar_src}' class='img-avatar'> {$login}
+                          </td>
+                          <td style=\"text-align:left; white-space: nowrap; width: 30px;\">{$full_name}</td>
+                          <td style=\"text-align:left; white-space: nowrap; width: 30px;\">{$group}</td>
+                          <td style=\"\">{$date}</td>
+                    </tr>";
+	
+}
+$content .= "</table>";
+
+Plugin::dashboardAddWidget($nuts_lang_msg[109], 'low', 'last-connected', 'full', 'max-height:350px; overflow:scroll;', $content);
 
 
