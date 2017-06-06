@@ -25,6 +25,8 @@ Create a widget is simple :
 1. Edit file and place your content
 
 ```php
+<?php
+
 Plugin::dashboardAddWidget($widget_title, 'high', 'plugin_name', 'full', 'style', "hello from widget");
 ```
 
@@ -42,6 +44,8 @@ Create a notification is simple :
 1. Edit file and place your content
  
 ```php
+<?php
+
 Plugin::dashboardAddNotification('info|success|error', "Your message");
 ```
 
