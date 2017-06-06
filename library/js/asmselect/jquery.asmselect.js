@@ -106,10 +106,11 @@
 
 				// make any items in the selected list sortable
 				// requires jQuery UI sortables, draggables, droppables
-
 				$ol.sortable({
+					
 					items: 'li.' + options.listItemClass,
 					handle: '.' + options.listItemLabelClass,
+					forceHelperSize : true,
 					axis: 'y',
 					update: function(e, data) {
 
@@ -126,7 +127,8 @@
 
 							$original.append($option);
 						});
-
+						
+						
 						if(updatedOptionId) triggerOriginalChange(updatedOptionId, 'sort');
 					}
 
@@ -140,9 +142,12 @@
 
 				if($.browser.msie && $.browser.version < 7 && !ieClick) return;
 				var id = $(this).children("option:selected").slice(0,1).attr('rel');
-				addListItem(id);
-				ieClick = false;
-				triggerOriginalChange(id, 'add'); // for use by user-defined callbacks
+				if(id)
+				{
+					addListItem(id);
+					ieClick = false;
+					triggerOriginalChange(id, 'add'); // for use by user-defined callbacks
+				}
 			}
 
 			function selectClickEvent() {
@@ -181,22 +186,33 @@
 				buildingSelect = true;
 
 				// add a first option to be the home option / default selectLabel
-				$select.prepend("<option>" + $original.attr('title') + "</option>");
+				$select.prepend("<option value=''>" + $original.attr('title') + "</option>");
 
 				$original.children("option").each(function(n) {
 
 					var $t = $(this);
 					var id;
-
+					var isSelected = $t.is(":selected");
+					var isDisabled = $t.is(":disabled");
+					
 					if(!$t.attr('id')) $t.attr('id', 'asm' + index + 'option' + n);
 					id = $t.attr('id');
-
-					if($t.is(":selected")) {
+					
+					if(isSelected && !isDisabled)
+					{
 						addListItem(id);
 						addSelectOption(id, true);
-					} else {
+					}
+					else if(!isSelected && isDisabled)
+					{
+						addSelectOption(id, true);
+					}
+					else
+					{
 						addSelectOption(id);
 					}
+					
+					
 				});
 
 				if(!options.debugMode) $original.hide(); // IE6 requires this on every buildSelect()
@@ -212,32 +228,18 @@
 				if(disabled == undefined) var disabled = false;
 
 				var $O = $('#' + optionId);
-
-
-				if(!options.customized)
-				{
-					var $option = $("<option>" + $O.text() + "</option>")
-								.val($O.val())
-								.attr('rel', optionId);
-				}
-				else
-				{
-					var $option = $("<option onmouseover=\"blockPreview('"+$select.attr('id')+"', '"+$O.attr('image_preview')+"')\" onmouseout=\"$('#image_preview').hide();\">" + $O.text() + "</option>")
-								.val($O.val())
-								.attr('image_preview', $O.attr('image_preview'))
-								.attr('rel', optionId);
-				}
-
-
+				var $option = $("<option>" + $O.html() + "</option>")
+																		.val($O.val())
+																		.attr('rel', optionId);
+				
 				if(disabled) disableSelectOption($option);
-
 				$select.append($option);
+				
 			}
 
 			function selectFirstItem() {
 
 				// select the firm item from the regular select that we created
-
 				$select.children(":eq(0)").attr("selected", true);
 			}
 
@@ -249,6 +251,7 @@
 
 				$option.addClass(options.optionDisabledClass)
 					.attr("selected", false)
+					.removeAttr("selected")
 					.attr("disabled", true);
 
 				if(options.hideWhenAdded) $option.hide();
@@ -258,9 +261,9 @@
 			function enableSelectOption($option) {
 
 				// given an already disabled select option, enable it
-
 				$option.removeClass(options.optionDisabledClass)
-					.attr("disabled", false);
+																.attr("disabled", false)
+																.removeAttr('disabled');
 
 				if(options.hideWhenAdded) $option.show();
 				if($.browser.msie) $select.hide().show(); // this forces IE to update display
@@ -328,6 +331,8 @@
 					selectFirstItem();
 					if(options.sortable) $ol.sortable("refresh");
 				}
+				
+				
 
 			}
 
@@ -361,7 +366,7 @@
 				if(highlightItem == undefined) var highlightItem = true;
 				var $O = $('#' + optionId);
 
-				$O.attr('selected', false);
+				$O.removeAttr('selected');
 				$item = $ol.children("li[rel=" + optionId + "]");
 
 				dropListItemHide($item);
@@ -397,8 +402,10 @@
 					});
 
 				} else {
+					
 					$item.remove();
 				}
+				
 			}
 
 			function setHighlight($item, label) {

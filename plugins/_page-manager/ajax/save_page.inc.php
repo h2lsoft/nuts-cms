@@ -232,9 +232,11 @@ else
 			$f['NutsPageContentViewFieldID'] = $field['ID'];
 			$f['Value'] = $cur_val;
 
-			$nuts->dbInsert('NutsPageContentViewFieldData', $f);
+			$linkedID = $nuts->dbInsert('NutsPageContentViewFieldData', $f, [], true);
 			
+			$f['ID'] = $linkedID;
 			$f['_table'] = 'NutsPageContentViewFieldData';
+			
 			@$data_save["_linked"][] = $f;
 		}
 	}

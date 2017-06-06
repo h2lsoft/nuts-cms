@@ -114,18 +114,19 @@ $('#VirtualPagename').after('<input class="button" type="button" onclick="genera
 // $('#Content, #ContentResume').tabOverride();
 
 
-// @todo> block select multiple
-$("#tab_content_blocs select").asmSelect({
-	sortable: true,
+// block select multiple
+/*$("#tab_content_blocks select").asmSelect({
+	sortable: false,
 	animate: false,
 	highlight: false,
 	addItemTarget: 'bottom',
     hideWhenAdded: true,
 	customized: true
-});
+});*/
 
 
-// @todo> MetaKeywords autocomplete
+
+// MetaKeywords autocomplete
 uri = 'index.php?mod=_page-manager&do=exec&_action=get_meta_keywords';
 $("#MetaKeywords").autocomplete(uri, {
 		width: 300,
@@ -361,23 +362,9 @@ $('body').click(function(){
 });
 
 
+updateCommentTab();
+
 pageManagerInit();
 reloadPage();
 helperInit('#page_form');
 loadRichEditor(currentTheme);
-
-
-
-// initialize option after asmSelect
-setTimeout(function(){
-
-    // block_options = ' <a href="javascript:blockReload();"><i class="icon-loop"></i></a>';
-
-    block_options = '';
-    if(userAllowedPluginBlockManager == '1')
-        block_options = ' <a href="javascript:popupModal(\'index.php?mod=_block_builder&do=list&parent_refresh=0\', \'block builder\');"><img src="/nuts/img/icon-folder.png" align="absmiddle"></a>';
-
-    if(block_options != '')
-        $('.asmSelect').after(block_options);
-
-}, 500);

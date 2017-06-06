@@ -2073,6 +2073,3 @@ function favoriteToggle(plugin)
 	
 }
 
-
-
-

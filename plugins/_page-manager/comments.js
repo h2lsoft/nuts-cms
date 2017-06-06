@@ -197,21 +197,12 @@ function commentCite(cID){
 
 function updateCommentTab()
 {
-	if(!$('#Comments').parent('p').is(':visible'))
-		$('#Comments').val('NO');
+	// if(!$('#Comments').parent('p').is(':visible'))
+		// $('#Comments').val('NO');
 
-	if($('#Comments').val() == 'YES' && $('#Sitemap').val() == 'YES')
-	{
-		$('.ui-tabs-nav-item').eq(6).show();
-	}
-	else
-	{
-		$('.ui-tabs-nav-item').eq(6).hide();
-	}
-
-
-
-
-
+	$('#tab_comments').hide();
+	if($('#Comments').val() == 'YES')
+		$('#tab_comments').show();
+	
 }
 

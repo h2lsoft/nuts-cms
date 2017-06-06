@@ -180,6 +180,7 @@ else
 	{
 		$nuts->parse('custom_blocks.custom_block_nameX', $custom_block, '|toPascalCase');
 		$nuts->parse('custom_blocks.custom_block_name', $custom_block);
+		$nuts->parse('custom_blocks.custom_block_name_upper', $custom_block, '|strtoupper');
 
 
 		// load every lock by name
@@ -210,7 +211,9 @@ else
 
 				$nuts->parse('custom_blocks.custom_block_options.image_preview', $val['Preview']);
 				$nuts->parse('custom_blocks.custom_block_options.custom_block_val', $val['ID']);
-				$nuts->parse('custom_blocks.custom_block_options.custom_block_val_name', $val['SubGroupName'].'> '.$val['Name'], '|toPascalCase');
+				
+				$name = (!empty(trim($val['SubGroupName']))) ? $val['SubGroupName'].'>> '.$val['Name'] : $val['Name'];
+				$nuts->parse('custom_blocks.custom_block_options.custom_block_val_name', $name, '|toPascalCase');
 				$nuts->loop('custom_blocks.custom_block_options');
 
 				$block_preview[$val['ID']] = $val['Preview'];

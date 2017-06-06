@@ -513,6 +513,14 @@ function editPage(nodeID, selectTabs)
 
             lastPageData  = data;
 
+            // reset all blocks
+			block_names = array();
+			$("#tab_content_blocks select[multiple]").each(function(){
+				$("#"+this.id).val('');
+				array_push(block_names, this.id);
+			});
+   
+   
 			// load information
 			n = '';
 			for(key in data)
@@ -523,7 +531,6 @@ function editPage(nodeID, selectTabs)
 					{
 						data[key] = parse_nuts_tags(data[key]);
 					}
-
 					$('#former #'+key).val(data[key]);
 				}
 			}
@@ -571,38 +578,21 @@ function editPage(nodeID, selectTabs)
 			// document.getElementById('_WYSIWYG_Content').click();
 
             // no block no view
-            if(data["BlocksNb"] == 0)
-                $('#tab_blocks').html("<u>B</u>locks");
-		    else
-				 $('#tab_blocks').html("<u>B</u>locks ("+data["BlocksNb"]+")");
-
-		    // reset all blocks
+			$('#tab_blocks').html("<u>B</u>locks");
+            if(data["BlocksNb"] >= 1)
+				$('#tab_blocks').html("<u>B</u>locks ("+data["BlocksNb"]+")");
+			
+    
+			// blocks reload multiple
 			block_names = array();
-			$("#tab_content_blocks select[multiple]").each(function(obj){
-				$("#"+this.id+" option").attr("selected", false);
-				$("#"+this.id).change();
-				array_push(block_names, this.id);
+			$("#tab_content_blocks select[multiple]").each(function(){
+				blockSelectInit($(this).attr('id'));
 			});
-
-			for(k=0; k < data["BlocksNames"].length; k++)
-            {
-				bloc_name = "cf2Block"+data["BlocksNames"][k];
-				arr = data[bloc_name];
-                for(j=0; j < arr.length; j++)
-                {
-					// get parent name index
-					for(z=0; z < block_names.length; z++)
-					{
-						// log(block_names[z], bloc_name);
-						if(block_names[z] == bloc_name)
-						{
-							$("#asmSelect"+z).val(arr[j]);
-							$("#asmSelect"+z).change();
-						}
-					}
-				}
-            }
-
+			
+			
+			
+			
+			
 			// init access group
 			$('.checkbox_list input').attr('checked', false);
 			for(k=0; k < data["PageAccess"].length; k++)

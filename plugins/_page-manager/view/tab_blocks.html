@@ -1,13 +1,20 @@
 <bloc::custom_blocks>
 <p>
-   <label>{custom_block_nameX}</label>
+	<label>
+		{custom_block_nameX}
+		<a href="javascript:popupModal('index.php?mod=_block_builder&do=list&user_se=1&GroupName_operator=_equal_&GroupName={custom_block_name_upper}&parent_refresh=0', 'block builder');"><img src="/nuts/img/icon-folder.png" align="absmiddle"></a>
+	</label>
+	
    <select name="cf2Block{custom_block_name}[]" id="cf2Block{custom_block_name}" multiple title="{$lang_msg[63]}">
 
-   <bloc::custom_block_options>
+	   <bloc::custom_block_options>
 	   <option value="{custom_block_val}" image_preview="{image_preview}">{custom_block_val_name}</option>
-   </bloc::custom_block_options>
+	   </bloc::custom_block_options>
 
    </select>
+	
+	
+ 
 
 </p>
 </bloc::custom_blocks>
