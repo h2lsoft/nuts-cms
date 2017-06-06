@@ -1,8 +1,6 @@
 # Documentation
 
-
-{% include "_toc.md" %}
-
+{{ site.github.project_tagline }}
 
 
 
