@@ -7,7 +7,7 @@ Plugins allow you to extend your solution :
 
 <aside class="warning">
 
-Plugins, prefixed by underscore, are core plugin, for example : /plugins/_home/
+Plugins, prefixed by underscore, are core plugin, for example : *"/plugins/_home/"*
   
 </aside>
 
