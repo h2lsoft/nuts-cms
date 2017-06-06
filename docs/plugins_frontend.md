@@ -1,84 +1,17 @@
-# Plugins - Backend
+# Plugins - Frontend
 
-Backend plugins allow you to extend the system, based on user's rights.
+Frontend plugins allow to extend your website
 
-Create a simple plugin *"test"* :
+Let's create a simple plugin *"Test"*
 
+1. Go to forge plugin and create a frontend plugin called *"Test"*
+1. Download and extract zip file in folder *"/plugins"*
+1. Edit file *"/plugins/test/exec.inc.php"* and put your own code
+1. Go to plugin *"Page Manager""* edit a page and add your plugin in your content, select inster widget and choose Plugin the click on *"Test"*
 
-* Go to forge plugin forge and make a backend plugin call it *test* with these actions : *"list", "edit", "view", "delete"*
-* Download zip file and extract in directory *"/plugins"*
-* Go to *"plugin manager"* in adminitration menu and add *"test"* plugin
-* Create a table
-
-```sql
-CREATE TABLE `MyTest`
-(
-    `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `Name` VARCHAR(255) NULL,
-    `Email` VARCHAR(255) NULL,
-    `Deleted` ENUM('YES','NO') NOT NULL DEFAULT 'NO',
-    PRIMARY KEY (`ID`),
-    INDEX `Deleted` (`Deleted`)
-)
-```
-
-
-* Edit file *"/plugins/test/list.inc.php"*
-
-```php
-
-// assign table to db
-$plugin->listSetDbTable('MyTest');
-
-// search engine
-$plugin->listSearchAddFieldText('ID');
-$plugin->listSearchAddFieldTextAjaxAutoComplete('Name');
-
-// list
-$plugin->listAddCol('ID', '', 'center; width:30px', true); // with order by
-$plugin->listAddCol('Name', '', '', true);
-$plugin->listAddCol('Email', '', '', true);
-$plugin->listRender(20, 'hookData');
-
-function hookData($row){
-     global $nuts, $plugin;
-     
-     // hook data before display
-     
-     return $row;
-}
-```
-
-* Edit file *"/plugins/test/form.inc.php"*
-
-```php
-
-$plugin->formDBTable(array('MyTest'));
-
-// fields
-$plugin->formAddFieldText('Name', '', true);
-$plugin->formAddFieldText('Email', '', true, 'lower email');
-
-```
-
-
-* Edit file *"/plugins/test/view.inc.php"*
-
-```php
-
-$plugin->viewDbTable(array('MyTest'));
-
-$plugin->viewAddVar('Name', '');
-$plugin->viewAddVar('Email', '');
-
-$plugin->viewRender();
-
-```
-
-
-Et voilà !
-
+Et voilà ! You just create your first frontend plugin.
 
 <aside class="notice">
-Don't forget to add rights to user's group in plugin "Right Manager"
+[TPLN Php Template](http://tpln.h2lsoft.com) engine a php template engine used by default, 
+of course, you can use your own code or template engine. 
 </aside>
