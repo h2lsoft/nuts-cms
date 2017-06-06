@@ -11,7 +11,6 @@ Let's create a simple plugin *"Test"*
 
 Et voilà ! You just create your first frontend plugin.
 
-<aside class="notice">
+
 [TPLN Php Template](http://tpln.h2lsoft.com) engine a php template engine used by default, 
 of course, you can use your own code or template engine. 
-</aside>
