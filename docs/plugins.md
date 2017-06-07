@@ -3,6 +3,7 @@
 Plugins allow you to extend your solution :
 
 * for backend
+
 * for frontend
 
 <aside class="warning">
