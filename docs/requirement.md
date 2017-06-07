@@ -11,6 +11,8 @@
 * default_charset: UTF-8
 
 
+
+
 ## MYSQL CONFIGURATION
 
 * MySQL 5.0 or higher
