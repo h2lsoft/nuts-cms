@@ -2,11 +2,11 @@
 
 # Css
 
-You can add your own css by editing file #"/nuts/css/custom.css"#
+You can add your own css by editing file *"/nuts/css/custom.css"*
 
 # Header
 
-You can add javascript, css or what you want by editing file #"/nuts/_templates/_header_custom.html"#
+You can add javascript, css or what you want by editing file *"/nuts/_templates/_header_custom.html"*
 
 # Widgets
 
