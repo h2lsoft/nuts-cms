@@ -1,4 +1,4 @@
-aside .success {
+aside.success {
     color: #3c763d;
     background-color: #dff0d8;
     border-color: #d6e9c6;
@@ -6,14 +6,14 @@ aside .success {
 
 
 
-aside .notice, aside .info {
+aside.notice, aside.info {
 	
 	color: #31708f;
     background-color: #d9edf7;
     border-color: #bce8f1;
 }
 
-aside .warning {
+aside.warning {
 
 	color: #8a6d3b;
     background-color: #fcf8e3;
@@ -21,7 +21,7 @@ aside .warning {
 
 }
 
-aside .error, aside .danger {
+aside.error, aside.danger {
 
 	color: #a94442;
     background-color: #f2dede;
