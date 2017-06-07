@@ -8,9 +8,9 @@ Nuts is an open source solution that is freely available to everyone.
 
 
 
-#### Official website, examples and documentation :
+#### Official website :
 
 [http://www.nuts-cms.com](http://www.nuts-cms.com "Official website")
 
 
-
+[Documentation](http://h2lsoft.github.io/Nuts-CMS/)
