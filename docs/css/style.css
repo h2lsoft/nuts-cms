@@ -39,8 +39,7 @@ aside.error, aside.danger {
 }
 
 code .c1 {
-	color:black;
-	font-weight: bold;
+	color:black!important;
 	background: wheat;
 }
 
