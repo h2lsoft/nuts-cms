@@ -2,17 +2,17 @@
 
 ## Directory structure
 
-* /app
-* /cron *(cron task script folder)*
-* /nuts *(core folder)*
-* /library *(library folder js, php, media)*
-* /themes 	*(theme folder)*
-* /plugin   *(plugin folder)*
-* /uploads  *(plugin uploads folder)*
-* /vendor 	*(vendor folder for composer)*
-* /x_includes *(auto include files)*
-	* /nuts  *(auto include files only for backend)*
-	* /www *(auto include files only for frontend)*
+* **/app**
+* **/cron** *(cron task script folder)*
+* **/nuts** *(core folder)*
+* **/library** *(library folder js, php, media)*
+* **/themes** 	*(theme folder)*
+* **/plugin**   *(plugin folder)*
+* **/uploads**  *(plugin uploads folder)*
+* **/vendor** 	*(vendor folder for composer)*
+* **/x_includes** *(auto include files)*
+	* **/nuts**  *(auto include files only for backend)*
+	* **/www** *(auto include files only for frontend)*
 	
 	
 ## Database
