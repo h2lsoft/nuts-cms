@@ -43,3 +43,9 @@ code .c1 {
 	background: wheat;
 }
 
+em {
+    border: 1px solid #ccc;
+    background: white;
+    padding: 0px 5px;
+    border-radius: 5px;
+}
