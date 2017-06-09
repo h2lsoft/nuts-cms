@@ -193,7 +193,7 @@ function nWindowOpen(objId)
 
 
     $('#'+objId).css('position', 'absolute')
-                .css('top', '120px')
+                .css('top', '80px')
                 .css('left', left+'px')
                 .show();
 
