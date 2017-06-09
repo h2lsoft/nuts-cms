@@ -36,12 +36,12 @@ elseif($type == 'file')
     $fileext = @strtolower(@array_pop((@explode(".", $filename))));
 
 	// get image preview from google viewer
-	$file_uri = urlencode(WEBSITE_URL.'/'.$cur_path);
-	$uri_preview = "https://docs.google.com/viewer?a=bi&pagenumber=1&w=140&url=".$file_uri;
+	// $file_uri = urlencode(WEBSITE_URL.'/'.$cur_path);
+	// $uri_preview = "https://docs.google.com/viewer?a=bi&pagenumber=1&w=140&url=".$file_uri;
 
 
     // $html = '<div class="icon '.$fileext.'"></div>';
-    $html = '<div class="icon"><img src="'.$uri_preview.'"></div>';
+    $html = '<div class="icon '.$fileext.'"></div>';
     $html .= '<div class="filename">'.$filename.'</div>';
     $html .= '<div class="filetype">'.$file_type.'</div>';
     $html .= '<div class="filemodified"><span>'.translate('Modified on').':&nbsp;</span>'.$file_modified.'</div>';

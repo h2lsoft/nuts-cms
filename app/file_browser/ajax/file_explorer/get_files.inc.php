@@ -155,13 +155,14 @@ else
                         $ext3);*/
 
 	                // get image preview from google viewer
-	                $file_uri = urlencode(WEBSITE_URL.$pathX);
-	                $uri_preview = "https://docs.google.com/viewer?a=bi&pagenumber=1&w=90&url=".$file_uri;
+	                // $file_uri = urlencode(WEBSITE_URL.$pathX);
+	                // $uri_preview = "https://docs.google.com/viewer?a=bi&pagenumber=1&w=90&url=".$file_uri;
+	                $uri_preview = $ext3;
 	                $htmlFiles .= '<li>
                                             <a href="'.$pathX.'" title="'.$key.'" class="file">
                                                 <span class="begin"></span>
                                                 <span class="filename">'.$key.'</span>
-                                                <span class="icon" style="background:none;"><img src="'.$uri_preview.'" style="height:86px"></span>
+                                                <span class="icon '.$ext3.'"></span>
                                             </a>
                                         </li>'.CR;
                 }
