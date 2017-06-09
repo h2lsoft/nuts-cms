@@ -82,12 +82,12 @@
 								border: 0!important;
 								opacity: 0.5;
 								padding-left: 25px;
-								
+								background-color: white!important;
 }
 
 
 #top_search_input::-webkit-search-cancel-button {display: none;}
-#top_search #top_search_input:hover {border-color: #ccc; opacity: 1;}
+#top_search #top_search_input:hover {border-color: #ccc; /*opacity: 1;*/ }
 #top_search #top_search_input:focus {border-color: #2d89ef; background-color: white; opacity: 1;}
 
 
