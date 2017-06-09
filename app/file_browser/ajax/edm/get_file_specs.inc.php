@@ -42,7 +42,7 @@ elseif($type == 'file')
     $html .= '<div class="filetype">'.$file_type.'</div>';
     $html .= '<div class="filemodified"><span>'.translate('Modified on').':&nbsp;</span>'.$file_modified.'</div>';
     $html .= '<div class="filesize"><span>'.translate('Size').':&nbsp;</span>'.$file_size.'</div>';
-    $html .= '<div class="filecomments"><span>'.translate('Comments').':&nbsp;</span>'.'0'.'</div>';
+    // $html .= '<div class="filecomments"><span>'.translate('Comments').':&nbsp;</span>'.'0'.'</div>';
 
     if($file_locked)
     {
@@ -68,7 +68,7 @@ elseif($type == 'image')
     $html .= '<div class="filemodified"><span>'.translate('Modified on').':&nbsp;</span>'.$file_modified.'</div></div>';
     $html .= '<div class="filesize"><span>'.translate('Size').':&nbsp;</span>'.$file_size.'</div></div>';
     $html .= '<div class="filedim"><span>'.translate('Dimensions').':&nbsp;</span>'.$image_info[0].' x '.$image_info[1].'</div></div>';
-    $html .= '<div class="filecomments_img"><span>'.translate('Comments').':&nbsp;</span>'.'0'.'</div>';
+    // $html .= '<div class="filecomments_img"><span>'.translate('Comments').':&nbsp;</span>'.'0'.'</div>';
 
     if($file_locked)
     {
