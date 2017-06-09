@@ -105,7 +105,7 @@ $total_size = 0;
 foreach($files as $file)
 {
     $file = urldecode($file);
-    $ext = strtolower(end(explode('.', basename($file))));
+    $ext = strtolower(@end(explode('.', basename($file))));
     $is_dir = ($file[strlen($file)-1] == '/') ? true : false;
     if((!$is_dir && !is_file(WEBSITE_PATH.$file)) || ($is_dir && !is_dir(WEBSITE_PATH.$file)) || !preg_match("#^$upload_pathX#", $file) || (!$is_dir && !in_array($ext, $filetypes_exts)))
     {
@@ -195,9 +195,23 @@ $zip_file = $zip_path.'/'.$ZIP_ID.'.zip';
 
 // zip creation
 $zip = new ZipArchive();
-if(@$zip->open($zip_file, ZIPARCHIVE::OVERWRITE) === false)
+$result_code = @$zip->open($zip_file, ZIPARCHIVE::CREATE);
+if($result_code !== true)
 {
-    $msg = "Error: while zip creation";
+	$ZIP_ERROR = [
+					  ZipArchive::ER_EXISTS => 'File already exists',
+					  ZipArchive::ER_INCONS => 'Zip archive inconsistent',
+					  ZipArchive::ER_INVAL => 'Invalid argument',
+					  ZipArchive::ER_MEMORY => 'Malloc failure',
+					  ZipArchive::ER_NOENT => 'No such file',
+					  ZipArchive::ER_NOZIP => 'Not a zip archive',
+					  ZipArchive::ER_OPEN => "Can't open file",
+					  ZipArchive::ER_READ => 'Read error',
+					  ZipArchive::ER_SEEK => 'Seek error',
+	];
+	
+	$msg_zip = isset($ZIP_ERROR[$result_code])? $ZIP_ERROR[$result_code] : 'Unknown error';
+    $msg = "Error: while zip creation (".$msg_zip.")";
 
     // trigger
     nutsTrigger('edm::share_system_zip_error', true, "edm user action share files / folder");
@@ -208,7 +222,7 @@ if(@$zip->open($zip_file, ZIPARCHIVE::OVERWRITE) === false)
 
 foreach($correct_files as $file)
 {
-    $ext = strtolower(end(explode('.', basename($file))));
+    $ext = strtolower(@end(explode('.', basename($file))));
     $is_dir = ($file[strlen($file)-1] == '/') ? true : false;
 
     if($is_dir)
@@ -230,7 +244,7 @@ foreach($correct_files as $file)
     }
 }
 
-$zip->close();
+@$zip->close();
 
 // send email formated
 $f = array();
@@ -246,3 +260,4 @@ $resp['message'] = ($_SESSION['Language'] == 'fr') ? "Votre fichier a bien été
 edmLog('SHARE', 'SUCCESS', $folder, $resp['message'], join("\n", $correct_files));
 
 
+$resp['result'] = 'ok';
