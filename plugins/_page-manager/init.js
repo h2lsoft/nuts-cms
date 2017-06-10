@@ -16,37 +16,7 @@ $('.ui-tabs-panel').css('height', tab_height);
 $('#ntabs0_content').css('overflow', 'auto').css('overflow-x', 'hidden').scrollTop(0);
 
 
-// special for frontoffice toolbar
-if(from_mode == 'iframe')
-{
-	$('#btn_cancel').val(lang_msg_68);
-	$('#page_options').hide();
-	$('#page_tree').hide();
-	$('#preview').hide();
 
-	// resize element
-	$('div#page_form').height($(document).height()-30);
-	$('div#page_form').width($(document).width()-30);
-	
-	tab_height = $('div#page_form').height();
-	$('.ui-tabs-panel').css('height', tab_height);
-	$('div#page_options_bottom').width($('div#page_form').width()-15);
-
-	// update content
-	$('#Content').width($('#page_form').width() - 180);
-	$('#Content').height(tab_height - 165);
-    $('#ContentResume').width($('#page_form').width() - 180);
-
-
-    // hide main title
-    $('#main_title').hide();
-
-    // reload height
-    var tab_height = $('div#page_form').height()-$('#page_form .ui-tabs-nav').height()-$('#page_options_bottom').height()-60;
-    $('.ui-tabs-panel').css('height', tab_height);
-	
-	reloadPage($('#dID').val());
-}
 
 
 
@@ -368,3 +338,37 @@ pageManagerInit();
 reloadPage();
 helperInit('#page_form');
 loadRichEditor(currentTheme);
+
+// special for frontoffice toolbar
+if(from_mode == 'iframe')
+{
+	reloadPage($('#dID').val());
+	
+	$('#btn_cancel').val(lang_msg_68);
+	$('#page_options').hide();
+	$('#page_tree').hide();
+	$('#preview').hide();
+
+	// resize element
+	$('div#page_form').height($(document).height()-30);
+	$('div#page_form').width($(document).width()-30);
+	
+	tab_height = $('div#page_form').height();
+	$('.ui-tabs-panel').css('height', tab_height);
+	$('div#page_options_bottom').width($('div#page_form').width()-15);
+
+	// update content
+	$('#Content').width($('#page_form').width() - 180);
+	$('#Content').height(tab_height - 165);
+    $('#ContentResume').width($('#page_form').width() - 180);
+
+
+    // hide main title
+    $('#main_title').hide();
+
+    // reload height
+    var tab_height = $('div#page_form').height()-$('#page_form .ui-tabs-nav').height()-$('#page_options_bottom').height()-60;
+    $('.ui-tabs-panel').css('height', tab_height);
+	
+
+}
