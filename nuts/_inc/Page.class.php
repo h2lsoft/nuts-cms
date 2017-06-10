@@ -856,7 +856,7 @@ class Page extends NutsCore
 						}
 
 						$legend = ucfirst($row['Legend']);
-						$rep .= '<li><a class="nuts_gallery_'.$row['NutsGalleryID'].'" rel="nuts_gallery_'.$row['NutsGalleryID'].'" title="'.$legend.'" href="'.NUTS_GALLERY_IMAGES_URL.'/'.$row['MainImage'].'">';
+						$rep .= '<li><a class="nuts_gallery_'.$row['NutsGalleryID'].'" rel="nuts_gallery_'.$row['NutsGalleryID'].'" data-fancybox="images" data-caption="'.$legend.'" title="'.$legend.'" href="'.NUTS_GALLERY_IMAGES_URL.'/'.$row['MainImage'].'">';
 
 						$big_node = '';
 						if(!empty($row['BigImage']))
