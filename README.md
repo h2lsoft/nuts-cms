@@ -17,4 +17,4 @@ Nuts is an open source solution that is freely available to everyone.
 [http://h2lsoft.github.io/Nuts-CMS/](http://h2lsoft.github.io/Nuts-CMS/)
 
 
-Please go to website to donwload automatic installer
+Please go to official website to download automatic installer
