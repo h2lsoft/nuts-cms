@@ -156,6 +156,7 @@ div#delete p.bottom #confirm_btn:hover {border-color: red; background-color: red
 div#delete p.bottom #confirm_btn:active {border-color: red; background-color: white; color: red;}
 
 div#delete .delete_warning_message {color: red; margin-top: 0;}
+div#delete #error {margin-top:-60px;}
 
 
 /** delete ************************************************************************************************************/
