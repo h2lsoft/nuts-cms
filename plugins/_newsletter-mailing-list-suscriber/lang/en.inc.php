@@ -10,4 +10,6 @@ $lang_msg[3] = "Email already exists in this list";
 $lang_msg[4] = "Lastname";
 $lang_msg[5] = "Firstname";
 
+$lang_msg[6] = "Delete records";
+
 

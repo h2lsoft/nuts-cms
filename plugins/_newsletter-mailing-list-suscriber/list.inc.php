@@ -3,6 +3,19 @@
 /* @var $plugin Plugin */
 /* @var $nuts NutsCore */
 
+
+if(ajaxerRequested())
+{
+	if(ajaxerAction('deleted'))
+	{
+		$IDS = ajaxerGetIDS();
+		$nuts->dbUpdate('NutsNewsletterMailingListSuscriber', array('Deleted' => 'YES'), "ID IN($IDS)");
+		die('ok');
+	}
+}
+
+
+
 // assign table to db
 $plugin->listSetDbTable('NutsNewsletterMailingListSuscriber', "(SELECT Name FROM NutsNewsletterMailingList WHERE ID = NutsNewsletterMailingListSuscriber.NutsNewsletterMailingListID) AS MailingList");
 
@@ -25,6 +38,9 @@ $plugin->listAddCol('LastName', $lang_msg[4], '', true);
 $plugin->listAddCol('FirstName', $lang_msg[5], '', true);
 
 // render list
+$plugin->listAllowBatchActions = true;
+$plugin->listAddBatchAction($lang_msg[6], ajaxerUrlConstruct('deleted'));
+
 $plugin->listRender(20, 'hookData');
 
 

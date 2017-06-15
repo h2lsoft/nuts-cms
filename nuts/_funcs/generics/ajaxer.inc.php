@@ -53,13 +53,14 @@ function ajaxerGetIDS()
 {
 	$IDS = @explode(';', $_GET['IDS']);
 
-	$tmp = '';
+	$tmp = '0'; # to avoid bug in sql
 	foreach($IDS as $tmpID)
 	{
-		if(!empty($tmpID))
+		$tmpID = (int)$tmpID;
+		if($tmpID)
 		{
 			if(!empty($tmp))$tmp .= ',';
-			$tmp .= (int)$tmpID;
+			$tmp .= $tmpID;
 		}
 	}
 
