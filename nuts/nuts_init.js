@@ -53,7 +53,7 @@ else
     initTopSearch();
     privateBoxRefresh();
 
-    shortcut.add('Ctrl+Alt', function(){
+    shortcut.add('Ctrl+F1', function(){
     	$('#bo_menu_switch a').click();
     });
 
