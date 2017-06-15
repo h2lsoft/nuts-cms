@@ -49,7 +49,10 @@ div#form_content {height:450px; overflow:scroll; overflow-x:hidden; overflow-y:a
 div#form { width: 99%; }
 div#form label, div#form_content label {width:190px; display:block; float:left; clear:both; text-align:right; padding-right:10px;  padding-top: 3px; margin-top: 0px; }
 div#form p, div#form p {padding:0; margin:3px; margin-top: 8px; }
-div#form input[type=text], div#form input[type=password], div#form textarea {width:699px; }
+div#form input[type=text], div#form input[type=password], div#form textarea {width:699px;}
+
+div#form fieldset input[type=text], div#form fieldset input[type=password], div#form fieldset textarea {width:650px;}
+
 div#form textarea {height:80px;}
 div#form textarea.mceEditor {height:130px;}
 div#form_content p select {margin-left: 0px!important;}
@@ -98,7 +101,7 @@ div#form input[type=checkbox] {margin-left: 1px; top:0;}
 
 
 /** checkbox list **/
-div#form .checkbox_list, div#page_form .checkbox_list {overflow: scroll; height: 125px; overflow-x: hidden; width: 465px; padding-bottom: 10px;}
+div#form .checkbox_list, div#page_form .checkbox_list {overflow: scroll; height: 250px; overflow-x: hidden; width: 465px; padding-bottom: 10px;}
 div#form .checkbox_list label, div#page_form .checkbox_list label{margin-left: 0; padding-left: 0; text-align: left; display: block; float: none; font-weight: normal; white-space: nowrap; width: auto;}
 div#form .checkbox_list label:hover, div#page_form .checkbox_list label:hover {color:#666; cursor: pointer;}
 div#form .checkbox_list input[type=checkbox] {/* position: relative; top:3px;*/ margin-right: 5px; top:6px;}

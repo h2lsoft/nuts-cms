@@ -3,7 +3,6 @@
 /* @var $plugin Plugin */
 
 // sql table PLUGIN_PATH
-
 $plugin->formDBTable(array('NutsNewsletterMailingListSuscriber')); // put table here
 
 // fields

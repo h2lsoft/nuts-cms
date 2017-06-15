@@ -72,7 +72,7 @@ transformSelectToSwitch('#former', false, true);
 
 
 // transfrorm multiple select to checklist
-$('#former select[type=select-multiple].checkbox-list').each(function(){
+$('#former select.checkbox-list').each(function(){
 
 	id = $(this).attr('id');
     id = str_replace('[]', '', id);
@@ -128,7 +128,9 @@ function showRequest(formData, jqForm, options)
 	// WYSIWYG interception
 	for(l=0; l < formData.length; l++)
 	{
-		if($('#former #'+formData[l].name).hasClass('mceEditor'))
+		tmp_name = str_replace('[]', '', formData[l].name);
+		
+		if($('#former #'+tmp_name).hasClass('mceEditor'))
 			formData[l].value = remove_nuts_tags(formData[l].value);
 	}
 
@@ -197,6 +199,9 @@ function showResponse(responseText, statusText)
 		for(i=0; i < fields.length; i++)
 		{
 			f = fields[i];
+			f = str_replace('[]', '', f);
+			f = trim(f);
+			
 
 			t = $('#form #'+f).attr('type');
 			if(t == 'text' || t == 'textarea')

@@ -44,6 +44,8 @@ $lang_msg[26] = "Finish";
 $lang_msg[27] = "Total error";
 $lang_msg[28] = "From label";
 
+$lang_msg[29] = "Maximum email allowed by month exceeded";
+
 
 
 

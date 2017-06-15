@@ -37,12 +37,13 @@ img {border:0}
 <br>
 --
 <br>
-<a href="[UNSUSCRIBE_LINK]">Unsuscribe</a>
+<a href="[UNSUBSCRIBE_LINK]">Unsuscribe</a>
 EOF;
 
 // server configuration
 define('PLUGIN_NEWSLETTER_BREAK', 100); # make a pause each X send
 define('PLUGIN_NEWSLETTER_SLEEPTIME', 3); # pause in seconds
+define('PLUGIN_NEWSLETTER_MAXIMUM_SENT_BY_MONTH', 10000); # maximum email by month
 
 
 $newsletter_www_template = 'template.html'; // leave blank to use default plugin template

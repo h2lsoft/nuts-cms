@@ -31,7 +31,7 @@ $plugin->formAddFieldBoolean('TemplateMode', 'Template mode', true);
 // $plugin->formAddException('TemplateMode');
 
 $plugin->formAddFieldsetStart('Template');
-$plugin->formAddFieldFileBrowser('TemplateFile', 'Template', false, 'nuts_newsletter');
+$plugin->formAddFieldFileBrowser('TemplateFile', 'Template', false, 'nuts_newsletter', '', 'width:600px');
 $plugin->formAddFieldsetEnd();
 
 $plugin->formAddFieldsetStart('Body');
@@ -146,6 +146,30 @@ if($_POST)
 	{
 		$nuts->notEmpty('MailingList');
 	}
+	
+	
+	// check limit by month
+	if($_POST['ModeTest'] == 'NO')
+	{
+		$date = date('Y-m-%');
+		$count_month = (int)Query::factory()->select("SUM(TotalSend)")->from('NutsNewsletter')->whereLike('SchedulerDate', "{$date}")->executeAndGetOne();
+		
+		if(isset($_POST['MailingList']) && is_array($_POST['MailingList']) && count($_POST['MailingList']) > 0)
+		{
+			$count_current_email = (int)Query::factory()->select("COUNT(*)")->from('NutsNewsletterMailingListSuscriber')->whereIn('NutsNewsletterMailingListID', $_POST['MailingList'])->executeAndGetOne();
+			$count_month += $count_current_email;
+		}
+		
+		
+		if($count_month > PLUGIN_NEWSLETTER_MAXIMUM_SENT_BY_MONTH)
+		{
+			$nuts->addError('SchedulerDate', $lang_msg[29]." (max: ".PLUGIN_NEWSLETTER_MAXIMUM_SENT_BY_MONTH.")");
+		}
+	}
+	
+	
+	
+	
 
 	// alright *****************************************************************************************
 	if($nuts->formGetTotalError() == 0)

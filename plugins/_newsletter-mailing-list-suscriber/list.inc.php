@@ -14,8 +14,6 @@ if(ajaxerRequested())
 	}
 }
 
-
-
 // assign table to db
 $plugin->listSetDbTable('NutsNewsletterMailingListSuscriber', "(SELECT Name FROM NutsNewsletterMailingList WHERE ID = NutsNewsletterMailingListSuscriber.NutsNewsletterMailingListID) AS MailingList");
 

@@ -43,3 +43,5 @@ $lang_msg[26] = "Fin";
 
 $lang_msg[27] = "Total erreur";
 $lang_msg[28] = "Expéditeur étiquette";
+
+$lang_msg[29] = "Envois maximum autorisé par mois dépassé";
