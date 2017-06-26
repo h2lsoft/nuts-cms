@@ -74,6 +74,9 @@ $sql = "SELECT
 				(SELECT Name FROM NutsGroup WHERE ID = NutsGroupID) AS NutsGroup
 		FROM
 				NutsUser
+		WHERE
+				Deleted = 'NO' AND
+				LastConnection NOT IN('0000-00-00 00:00:00', '')
 		ORDER BY
 				LastConnection DESC
 		LIMIT 10";
