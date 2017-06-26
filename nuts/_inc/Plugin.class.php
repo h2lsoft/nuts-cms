@@ -2478,6 +2478,14 @@ EOF;
                     $required =  (!$required) ? 'onlyDigit(,1)' : 'notEmpty|onlyDigit(,1)';
                 }
             }
+            elseif(strpos($class, 'email') !== false || $name == 'Email')
+            {
+            	if(is_bool($required))
+	            {
+	            	$required =  (!$required) ? 'email' : 'notEmpty|email';
+	            }
+            }
+            
         }
 		
 		$options = array();
@@ -4221,10 +4229,22 @@ EOF;
      * add a Form field forbidden name put * to enclose generic (example Field*)
      *
      * @param string|array $name
+	 * @deprecated please use formAddFieldException() instead
      */
     public function formAddException($name)
     {
-	    if(is_array($name))
+	    $this->formAddFieldException($name);
+    }
+
+    /**
+     * add a Form field forbidden name put * to enclose generic (example Field*)
+     *
+     * @param string|array $name
+     *
+     */
+    public function formAddFieldException($name)
+    {
+    	if(is_array($name))
 	    {
 		    foreach($name as $n)
 			    $this->formFieldsForbidden[] = $n;

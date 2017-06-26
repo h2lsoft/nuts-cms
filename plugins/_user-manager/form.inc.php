@@ -24,7 +24,13 @@ $plugin->formAddFieldSelect('Timezone', $lang_msg[9], true, $time_options);
 // fieldset
 $plugin->formAddFieldsetStart('User identification', $lang_msg[10]);
 $plugin->formAddFieldText('Login', $lang_msg[5], 'unique|notEmpty', 'lower', 'width:10em', '', 'maxlength="15"');
-$plugin->formAddFieldText('Password', $lang_msg[6], 'notEmpty|minLength,5', '', 'width:10em', '', 'maxlength="15"');
+
+$plugin->formAddFieldText('Password', $lang_msg[6], 'minLength,5', '', 'width:10em', '', 'maxlength="15"' , "", "");
+$plugin->formAddFieldException('Password');
+
+$plugin->formAddFieldBooleanX('IdentificationEmail', $lang_msg[12], true, $lang_msg[14]);
+$plugin->formAddFieldException('IdentificationEmail');
+
 $plugin->formAddFieldsetEnd();
 // end of fieldset
 
@@ -41,8 +47,7 @@ $plugin->formAddFieldsetEnd();
 
 
 $plugin->formAddFieldBoolean('Active', $lang_msg[8], true);
-$plugin->formAddFieldBooleanX('IdentificationEmail', $lang_msg[12], true, $lang_msg[14]);
-$plugin->formAddException('IdentificationEmail');
+
 
 // info
 $plugin->formAddFieldsetStart('Information');
@@ -63,7 +68,10 @@ $plugin->formAddFieldTextArea('Note', '', false);
 $plugin->formAddFieldsetEnd();
 // end of info
 
+
 include(PLUGIN_PATH."/custom.inc.php");
+
+
 
 
 // options
@@ -84,8 +92,17 @@ if($_GET['ID'])
 
 if($_POST)
 {
+	
+	$nuts->email('Email');
 	$nuts->alphaNumeric('Login', '_');
+	$nuts->minLength('Login', 4);
+	
+	if($plugin->formModeIsAdding() || $_POST['IdentificationEmail'] == 'YES')
+		$nuts->notEmpty('Password');
+	
 	$nuts->alphaNumeric('Password', '_-');
+	
+	
 }
 
 $plugin->formAddEndText("<script>var lang_msg_11 = '{$lang_msg[11]}';</script>");

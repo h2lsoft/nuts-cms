@@ -12,7 +12,7 @@ $civs = array('Mr', 'Mme', 'Mlle', 'Miss', 'Pr', 'Dr');
 $plugin->formAddFieldSelect('Gender', $lang_msg[24], false, $civs, 'width:5em', '', 'maxlength="5"');
 $plugin->formAddFieldText('LastName', $lang_msg[2], true, 'ucfirst', 'width:40em', '', 'maxlength="50"');
 $plugin->formAddFieldText('FirstName', $lang_msg[3], true, 'ucfirst', 'width:40em', '', 'maxlength="50"');
-$plugin->formAddFieldText('Email', $lang_msg[4], 'unique|notEmpty', 'lower email', 'width:40em', '', 'maxlength="50"');
+$plugin->formAddFieldText('Email', $lang_msg[4], 'unique|email|notEmpty', 'lower email', 'width:40em', '', 'maxlength="50"');
 $plugin->formAddFieldSelect('Language', $lang_msg[7], true, $nuts_lang_options);
 
 foreach($nuts_timezone_options as $opt)
@@ -25,12 +25,12 @@ $plugin->formAddFieldText('Login', $lang_msg[5], false, 'lower', 'width:10em', '
 
 if($profile_enable_password_change)
 {
-    $plugin->formAddFieldText('Password', $lang_msg[6], 'notEmpty|minLength,5', '', 'width:10em', '', 'maxlength="15" ');
+    $plugin->formAddFieldText('Password', $lang_msg[6], 'minLength,5', '', 'width:10em', '', 'maxlength="15" ');
 }
 else
 {
     $plugin->formAddFieldText('Password', $lang_msg[6], false, '', 'width:10em', '', 'maxlength="15" disabled');
-    $plugin->formAddException('Password');
+    $plugin->formAddFieldException('Password');
 }
 
 
@@ -68,8 +68,8 @@ $plugin->formAddFieldsetEnd();
 // end of fieldset
 
 
-$plugin->formAddException('Login');
-$plugin->formAddException('AvatarFile');
+$plugin->formAddFieldException('Login');
+$plugin->formAddFieldException('AvatarFile');
 
 
 
@@ -102,7 +102,7 @@ if(!$_POST)
 }
 else
 {
-    if($profile_enable_password_change)
+    if($profile_enable_password_change && !empty($_POST['Password']))
         $nuts->alphaNumeric('Password', '_-');
 }
 

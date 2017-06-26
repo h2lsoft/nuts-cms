@@ -27,7 +27,7 @@ $plugin->listAddCol('GroupName', $lang_msg[1], '', true); // with order by
 $plugin->listAddCol('LastName', $lang_msg[2], '', true);
 // $plugin->listAddCol('FirstName', $lang_msg[3], '', true);
 $plugin->listAddCol('Login', $lang_msg[5], 'center', true);
-$plugin->listAddColImg('Password', $lang_msg[6], '', false, 'logon_password.png');
+// $plugin->listAddColImg('Password', $lang_msg[6], '', false, 'logon_password.png');
 $plugin->listAddCol('Timezone', $lang_msg[9], 'center; width:10px', false);
 $plugin->listAddColImg('Email', $lang_msg[4], '', false, 'email.png', 'mailto:{Email}');
 $plugin->listAddColImg('Language', $lang_msg[7], '', true, NUTS_IMAGES_URL.'/flag/{Language}.gif');
@@ -37,6 +37,7 @@ $plugin->listAddCol('LastConnection', $lang_msg[28], 'center; width:10px; white-
 include(PLUGIN_PATH."/custom.inc.php");
 
 // render list
+$plugin->listCopyButton = false;
 $plugin->listExportExcelModeApplyHookData = true;
 $plugin->listRender(20, 'hookData');
 
@@ -50,7 +51,7 @@ function hookData($row)
 
 	// $row['Password'] = nutsCrypt($row['Password'], false);
 	$qID = $nuts->dbGetQueryId();
-	$row['Password'] = nutsUserGetPassword($row['ID']);
+	// $row['Password'] = nutsUserGetPassword($row['ID']);
 	$nuts->dbSetQueryId($qID);
 
     // avatar
