@@ -17,7 +17,7 @@ define('BACKOFFICE_LOGO_URL', ''); # empty or absolute url for nuts logo
 define('NUTS_TRADEMARK', true);
 
 // security
-define('NUTS_CRYPT_KEY', "[[NUTS_CRYP_KEY]]"); # use to crypt in database (empty = no crypt)
+define('NUTS_CRYPT_KEY', "[[NUTS_CRYPT_KEY]]"); # use to crypt in database (empty = no crypt)
 define('NUTS_RTE_FILEBROWSER_OBFUSCATE_KEY', '[[NUTS_RTE_FILEBROWSER_OBFUSCATE_KEY]]'); // change this value to obfuscate file browser
 
 define('NUTS_LOG_ERROR_404', false); // log 404 error in control center (recommended for production false)
@@ -62,7 +62,7 @@ define('NUTS_DB_HOST', '[[DB_HOST]]');
 define('NUTS_DB_USER', '[[DB_LOGIN]]');
 define('NUTS_DB_PASSWORD', '[[DB_PASS]]');
 define('NUTS_DB_BASE', '[[DB_NAME]]');
-define('NUTS_DB_PORT', '');
+define('NUTS_DB_PORT', '[[DB_PORT]]');
 
 
 // misc ****************************************************************************************************************

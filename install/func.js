@@ -55,8 +55,10 @@ function stepNext()
 		arr['DB_HOST'] = $('#DB_HOST').val();
 		arr['DB_LOGIN'] = $('#DB_LOGIN').val();
 		arr['DB_PASS'] = $('#DB_PASS').val();
+		arr['DB_PORT'] = $('#DB_PORT').val();
 		arr['DB_NAME'] = $('#DB_NAME').val();
 		arr['DB_LANG'] = $('#DB_LANG').val();
+		
 	}
 
 	$('#btn_next').attr('disabled', true);
@@ -77,7 +79,7 @@ function stepNext()
 			msg = "<strong>Error(s) :</strong><br />=========<br />"+data.error_msg;
 
 			$.blockUI({
-								title:    'This is your title',
+								title:    'Error',
 								message: msg,
 								timeout:3000,
 								centerY:false,
@@ -120,8 +122,11 @@ function stepNext()
 				$('#btn_next').attr('disabled', true);
 			}
 
+			// final
 			if(wi_step == 5)
 			{
+				
+				
 				$('#ni_content_bottom_bar').hide();
 			}
 

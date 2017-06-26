@@ -84,14 +84,14 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 			$result .= msg($res, $msg);
 
 			// magic_quotes_gpc OFF
-			$msg = "Magic quotes gpc is Off";
+			/*$msg = "Magic quotes gpc is Off";
 			$res = (ini_get('magic_quotes_gpc')) ? 'error' : 'ok';
-			$result .= msg($res, $msg);
+			$result .= msg($res, $msg);*/
 
 			// register_globals
-			$msg = "Register globals is Off";
+			/*$msg = "Register globals is Off";
 			$res = (ini_get('register_globals')) ? 'error' : 'ok';
-			$result .= msg($res, $msg);
+			$result .= msg($res, $msg);*/
 		}
 	}
 	else
@@ -109,15 +109,16 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 
 		$files[] = WEBSITE_PATH.'/robots.txt';
 		$files[] = WEBSITE_PATH.'/.htaccess';
+		$files[] = WEBSITE_PATH.'/nuts/config.inc.php';
+		
 		// $files[] = WEBSITE_PATH.'/nuts_auto_compress.js';
         // $files[] = WEBSITE_PATH.'/nuts_auto_compress.css';
-		$files[] = WEBSITE_PATH.'/cache';
+		// $files[] = WEBSITE_PATH.'/cache';
 		// $files[] = WEBSITE_PATH.'/_tmp';
         $files[] = WEBSITE_PATH.'/app/file_browser/cache';
 		$files[] = WEBSITE_PATH.'/uploads';
 		$files[] = WEBSITE_PATH.'/plugins/_gallery/_tmp';
 		$files[] = WEBSITE_PATH.'/plugins/_dropbox/_files';
-		$files[] = WEBSITE_PATH.'/nuts/config.inc.php';
 		$files[] = WEBSITE_PATH.'/nuts/url_rewriting_rules.inc.php';
         $files[] = WEBSITE_PATH.'/plugins/_edm/_repository';
 
@@ -208,12 +209,13 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 				$arr['WEBSITE_URL'] = $_POST['WEBSITE_URL'];
 				$arr['ADMIN_EMAIL'] = $_POST['ADMIN_EMAIL'];
 				$arr['NO_REPLY_EMAIL'] = $_POST['NO_REPLY_EMAIL'];
-				$arr['NUTS_CRYP_KEY'] = utf8_decode(md5(uniqid('ncr')));
+				$arr['NUTS_CRYPT_KEY'] = utf8_decode(md5(uniqid('ncr')));
 				$arr['NUTS_RTE_FILEBROWSER_OBFUSCATE_KEY'] = md5(uniqid('nobf'));
 				$arr['DB_HOST'] = $_POST['DB_HOST'];
 				$arr['DB_LOGIN'] = $_POST['DB_LOGIN'];
 				$arr['DB_PASS'] = $_POST['DB_PASS'];
 				$arr['DB_NAME'] = $_POST['DB_NAME'];
+				$arr['DB_PORT'] = $_POST['DB_PORT'];
 				foreach($arr as $key => $val)
 				{
 					$cfg = str_replace("[[$key]]", $val, $cfg);
@@ -224,7 +226,7 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 				file_put_contents('../nuts/config.inc.php', $cfg);
 
 				// update crypt key ****************************************************************************
-				$pdo->query("UPDATE NutsUser SET `Password` = ENCODE('admin', '{$arr['NUTS_CRYP_KEY']}')");
+				$pdo->query("UPDATE NutsUser SET `Password` = ENCODE('admin', '{$arr['NUTS_CRYPT_KEY']}') WHERE ID = 1");
 
 				// writing file sitemap key ************************************************************************
 				$sub = 'adse861d2M1df3sdf55';
@@ -252,14 +254,14 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 				$pdo->query($sql);
 
 
-                // fr replace url_rewrint contents
+                // fr replace url_rewriter contents
                 if($_POST['DB_LANG'] == 'FR')
                 {
                     $f = file_get_contents('../nuts/url_rewriting_rules.inc.php');
                     $f = str_replace('/en/', '/fr/', $f);
                     file_put_contents('../nuts/url_rewriting_rules.inc.php', $f);
                 }
-
+                
 
 		} catch (PDOException $e) {
 
@@ -433,6 +435,10 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 					<input type="password" id="DB_PASS" name="DB_PASS" value="" />
 				</p>
 				<p>
+					<label>Port</label>
+					<input type="text" id="DB_PORT" name="DB_PORT" value="3306" />
+				</p>
+				<p>
 					<label>Database</label>
 					<input type="text" id="DB_NAME" name="DB_NAME" value="" />
 				</p>
@@ -477,9 +483,8 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 					<b>Login :</b> `admin`<br />
 					<b>Password :</b> `admin`<br />
 					<br />
-					<span>&bull; Don't forget to change your password</span><br />
-					<br />
-
+					<span>&bull; Don't forget to change your password !</span><br />
+					<br>
 					<input type="checkbox" id="Register" value="1" checked /> Allow registration installation: only admin email, website url and website name will be sended (recommanded)<br />
 					<span>No confidential data will be transmitted and we will not use or sell your details for unsolicited emails.</span>
 					<br />
@@ -525,7 +530,7 @@ if($_POST && @$_GET['ajax'] == 1 && @$_POST['wi_step'])
 
 			setTimeout(function(){
 				document.location.href = '/nuts/login.php';
-			}, 3000);
+			}, 7000);
 
 
 
