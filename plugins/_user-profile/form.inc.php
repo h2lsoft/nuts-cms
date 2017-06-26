@@ -30,8 +30,10 @@ if($profile_enable_password_change)
 else
 {
     $plugin->formAddFieldText('Password', $lang_msg[6], false, '', 'width:10em', '', 'maxlength="15" disabled');
-    $plugin->formAddFieldException('Password');
 }
+
+$plugin->formAddFieldException('Password');
+
 
 
 
