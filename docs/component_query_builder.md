@@ -1,4 +1,4 @@
-# Componant Query builder
+# Component Query builder
 
 This component helps you to create sql query faster
  

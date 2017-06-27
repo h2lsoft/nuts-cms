@@ -8,6 +8,6 @@
 1. [Variables](variables.md)
 1. [Commands](commands.md)
 1. [Ajax](ajax.md)
-1. [Componant Dbug](component_dbug.md)
-1. [Componant Query builder](component_query_builder.md)
+1. [Component Dbug](component_dbug.md)
+1. [Component Query builder](component_query_builder.md)
 1. [Extends Backend](backend_extends.md)
