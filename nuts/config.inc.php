@@ -102,4 +102,3 @@ $nuts_session_preserve_keys = array(); // preserve session keys in login mecanis
 
 # end of configuration
 
-?>
