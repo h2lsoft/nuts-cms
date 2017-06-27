@@ -81,7 +81,7 @@
 	<script type="text/javascript">
 	var login_uri = "/{@PAGE_LANGUAGE}/{@PAGE_ID}.html";
 	
-	window.onload = function(){
+	$(function(){
 
 		if($('div#form_error p').length == 0)
 			$('div#form_error').remove();
@@ -91,7 +91,7 @@
 			$('div#layout_form_form').remove();
 			$('div#nuts_login_lost_password').show();
 		}
-	}
+	});
 	</script>
 
 	<!-- /nuts form form -->

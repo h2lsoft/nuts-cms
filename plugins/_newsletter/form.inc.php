@@ -19,8 +19,8 @@ $plugin->formAddFieldTextAjaxAutoComplete('Category', $lang_msg[19], true);
 $plugin->formAddFieldsetStart('Info');
 // $plugin->formAddFieldText('uFrom', $lang_msg[2], true, '', '', '', '', '', $NEWSLETTER_EXPEDITOR);
 // $plugin->formAddFieldText('uFromLabel', $lang_msg[28], false, '', '', '', '', '', @$NEWSLETTER_EXPEDITOR_LABEL);
-$plugin->formAddFieldTextAjaxAutoComplete('uFrom', $lang_msg[2], true);
-$plugin->formAddFieldTextAjaxAutoComplete('uFromLabel', $lang_msg[28], false);
+$plugin->formAddFieldTextAjaxAutoComplete('uFrom', $lang_msg[2], true, '', '', '', '', '', '', '', '', '', '', $NEWSLETTER_EXPEDITOR);
+$plugin->formAddFieldTextAjaxAutoComplete('uFromLabel', $lang_msg[28], false, '', '', '', '', '', '', '', '', '', '', @$NEWSLETTER_EXPEDITOR_LABEL);
 
 
 $plugin->formAddFieldText('Subject', $lang_msg[1], true, 'ucfirst', '', '', '', '', mb_convert_encoding($NEWSLETTER_SUBJECT, 'utf-8'));

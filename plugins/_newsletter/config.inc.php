@@ -2,6 +2,7 @@
 
 // default configuration
 $NEWSLETTER_EXPEDITOR = 'newsletter@mydomain.com';
+$NEWSLETTER_EXPEDITOR_LABEL = '';
 $NEWSLETTER_TO_TEST = 'myemail@mydomain.com';
 
 $NEWSLETTER_SUBJECT = "Newsletter ".ucfirst(strftime('%B')).' '.date('Y');

@@ -30,10 +30,10 @@
 <script type="text/javascript" src="/plugins/_comments/www/func.js"></script>
 
 <script type="text/javascript">
-window.onload = function(){
+$(function(){
 	if($("#nuts_comments .comment").length == 0)
 		$("#nuts_comments").hide();
-}
+});
 </script>
 
 
@@ -84,11 +84,11 @@ window.onload = function(){
 </div>
 
 <script type="text/javascript">
-window.onload = function() {
+$(function() {
 	createCommentCookie('nuts_suscriber[Author]', "{$_POST['Name']}", 365);
 	createCommentCookie('nuts_suscriber[Email]', "{$_POST['Email']}", 365);
 	createCommentCookie('nuts_suscriber[Website]', "{$_POST['Website']}", 365);
 	setTimeout('refreshCurrentPage();', 3000);
-}
+});
 </script>
 </bloc::form_valid>
