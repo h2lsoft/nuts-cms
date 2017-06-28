@@ -19,8 +19,7 @@ if(popupMode == 1)
 	$('body').css('background-image', 'none');
 	
     $('#add').css('margin-top', '-10px');
-
-    parent_refresh = "parent_refresh";
+	
     if(parent_refresh != "0" &&  strtoupper(parent_refresh) != "NO" && window.opener != null && window.opener != undefined && typeof window.opener.system_refresh == 'function')
     {
         window.onbeforeunload = function() {
