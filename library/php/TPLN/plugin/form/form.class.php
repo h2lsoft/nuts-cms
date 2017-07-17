@@ -889,11 +889,13 @@ class Form extends Mail
 
 		if($_FILES)
 		{
-			if(empty($_FILES[$this->last_obj]))
+			if(!isset($_FILES[$this->last_obj]))return;
+			
+			if(isset($_FILES[$this->last_obj]) && empty($_FILES[$this->last_obj]))
 			{
 				// error arguments are missing
 				$obj_name = $this->formGetUserObjectName();
-				trigger_error($this->getMessage(13, array($obj_name)), E_USER_ERROR);
+				trigger_error($this->getMessage(13, array($obj_name, $obj_name)), E_USER_ERROR);
 			}
 			// Control of presence
 			if(!is_uploaded_file($_FILES[$this->last_obj]['tmp_name']))
