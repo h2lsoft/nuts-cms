@@ -41,7 +41,7 @@ function loadRichEditor(theme)
                 style_formats_merge: true,
 
                 plugins: [
-                    "advlist autolink lists link image charmap anchor preview",
+                    "advlist autolink lists link image charmap anchor preview emoticons",
                     "visualblocks code fullscreen wordcount template hr",
                     "media table contextmenu directionality paste searchreplace textcolor importcss preview"
                 ],
@@ -76,12 +76,12 @@ function loadRichEditor(theme)
                     file   : {title : 'File'  , items : 'preview xcode2 | fullscreen'},
                     edit   : {title : 'Edit'  , items : 'undo redo | cut copy paste pastetext | selectall | searchreplace'},
                     format : {title : 'Format', items : 'bold italic underline strikethrough superscript subscript | formats | removeformat'},
-                    insert : {title : 'Insert', items : 'image widget | youtube dailymotion video audio | iframe embed | map | hr template'},
+                    insert : {title : 'Insert', items : 'image widget | youtube dailymotion video audio | iframe embed | map | hr template | emoticons'},
                     table  : {title : 'Table' , items : 'inserttable tableprops deletetable | cell row column'},
                     tools  : {title : 'Tools' , items : 'visualaid visualblocks | charmap | fullscreen | preview'}
                 },
 
-                toolbar1: "bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | image | link unlink | preview |  xcode2 fullscreen",
+                toolbar1: "bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | image emoticons | link unlink | preview |  xcode2 fullscreen",
 
                 setup: function(editor) {
 
