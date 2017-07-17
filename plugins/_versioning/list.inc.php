@@ -3,7 +3,13 @@
 include __DIR__.'/config.inc.php';
 
 // assign table to db
-$plugin->listSetDbTable('NutsVersion', "(SELECT Login FROM NutsUser WHERE ID = NutsUserID) AS Login", "NutsUserID = {$_SESSION['NutsUserID']}", "ORDER BY ID DESC");
+$plugin->listSetDbTable('NutsVersion',
+		
+							"
+								(SELECT Login FROM NutsUser WHERE ID = NutsUserID) AS Login,
+								(SELECT Avatar FROM NutsUser WHERE ID = NutsUserID) AS Avatar
+							",
+							"", "ORDER BY ID DESC");
 
 // search
 $plugin->listSearchAddFieldSelectSql('Application');
@@ -16,6 +22,7 @@ $plugin->listAddCol('Application', '', '; width:30px; white-space:nowrap;', fals
 $plugin->listAddCol('RecordID', 'Record ID', 'center; width:30px', false);
 $plugin->listAddCol('File', '', '', false);
 $plugin->listAddCol('Date', '', 'center; width:30px; white-space:nowrap;', false);
+$plugin->listAddCol('Avatar', ' ', 'center; width:30px; white-space:nowrap;', false);
 $plugin->listAddCol('Login', '', 'center; width:30px; white-space:nowrap;', false);
 $plugin->listAddCol('Replace', ' ', 'center; width:30px; white-space:nowrap;', false);
 
@@ -43,6 +50,10 @@ function hookData($row)
 	$row['Replace'] = <<<EOF
 	<a href="javascript:if((c=confirm('Wold you like to replace this record ?')))popupModalV2('?mod=_versioning&do=replace&ID={$row['ID']}&popup=1', 'content');"><i class="icon-redo"></i> Replace</a>
 EOF;
+	
+	
+	 if(empty($row['Avatar']))$row['Avatar'] = WEBSITE_URL.'/nuts/img/gravatar.jpg';
+     $row['Avatar'] = "<a class='tt' title=\"{$row['Login']}\"><img src='{$row['Avatar']}' style='max-width:40px; max-height:40px;'></a>";
 	
 
 
