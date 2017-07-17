@@ -81,7 +81,7 @@ function loadRichEditor(theme)
                     tools  : {title : 'Tools' , items : 'visualaid visualblocks | charmap | fullscreen | preview'}
                 },
 
-                toolbar1: "bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | link unlink | preview |  xcode2 fullscreen",
+                toolbar1: "bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | image | link unlink | preview |  xcode2 fullscreen",
 
                 setup: function(editor) {
 
