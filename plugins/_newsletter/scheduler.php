@@ -71,7 +71,7 @@ foreach($newsletters as $n)
 	
 	
 	// mailing list treatment
-	$nuts->mailFrom($n['uFrom'], $n['uFromLabel']);
+	$nuts->mailFrom($n['uFrom']);
 	$nuts->mailSubject($n['Subject']);
 	
 	if($n['TemplateMode'] == 'NO')

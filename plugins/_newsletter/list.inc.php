@@ -135,12 +135,6 @@ function hookData($row)
 	$row['SchedulerDateEnd'] = $nuts->db2Date($row['SchedulerDateEnd']);
  
 	$row['Status'] = strtoupper(str_replace_latin_accents($row['Status']));
- 
-	
-	if(!empty($row['uFromLabel']))
-	{
-		$row['uFrom'] = $row['uFromLabel'].' &lt;'.$row['uFrom'].'&gt;';
-	}
 	
 	
 	if(!empty($row['TotalErrorEmail']))

@@ -20,7 +20,7 @@ $plugin->formAddFieldsetStart('Info');
 // $plugin->formAddFieldText('uFrom', $lang_msg[2], true, '', '', '', '', '', $NEWSLETTER_EXPEDITOR);
 // $plugin->formAddFieldText('uFromLabel', $lang_msg[28], false, '', '', '', '', '', @$NEWSLETTER_EXPEDITOR_LABEL);
 $plugin->formAddFieldTextAjaxAutoComplete('uFrom', $lang_msg[2], true, '', '', '', '', '', '', '', '', '', '', $NEWSLETTER_EXPEDITOR);
-$plugin->formAddFieldTextAjaxAutoComplete('uFromLabel', $lang_msg[28], false, '', '', '', '', '', '', '', '', '', '', @$NEWSLETTER_EXPEDITOR_LABEL);
+// $plugin->formAddFieldTextAjaxAutoComplete('uFromLabel', $lang_msg[28], false, '', '', '', '', '', '', '', '', '', '', @$NEWSLETTER_EXPEDITOR_LABEL);
 
 
 $plugin->formAddFieldText('Subject', $lang_msg[1], true, 'ucfirst', '', '', '', '', mb_convert_encoding($NEWSLETTER_SUBJECT, 'utf-8'));
@@ -175,7 +175,8 @@ if($_POST)
 	if($nuts->formGetTotalError() == 0)
 	{
 		$nuts->mailCharset('UTF-8');
-		$nuts->mailFrom($_POST['uFrom'], $_POST['uFromLabel']);
+		// $nuts->mailFrom($_POST['uFrom'], $_POST['uFromLabel']);
+		$nuts->mailFrom($_POST['uFrom']);
 		$nuts->mailSubject($_POST['Subject']);
 		
 		// send email test
