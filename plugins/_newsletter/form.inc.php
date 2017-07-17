@@ -27,7 +27,7 @@ $plugin->formAddFieldText('Subject', $lang_msg[1], true, 'ucfirst', '', '', '', 
 $plugin->formAddFieldsetEnd();
 
 
-$plugin->formAddFieldBoolean('TemplateMode', 'Template mode', true);
+$plugin->formAddFieldBooleanX('TemplateMode', 'Template mode', true);
 // $plugin->formAddException('TemplateMode');
 
 $plugin->formAddFieldsetStart('Template');
