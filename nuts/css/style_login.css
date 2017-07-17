@@ -91,3 +91,5 @@
 #lp_ok {width:485px; display:none; font-weight:bold; color:#009900; padding:10px; background-color:#DAF4D9; border:1px dashed #009900; margin-bottom:15px;}
 #former_lp label {width: 150px; padding-left: 40px; padding-right: 20px; text-align: right;}
 #former_lp p {}
+
+#former_lp #Email {width:250px;}
