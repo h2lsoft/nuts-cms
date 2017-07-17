@@ -5,6 +5,8 @@ header("content-type:text/html; charset=utf-8");
 include('config.inc.php');
 include('headers.inc.php');
 
+$timer = time();
+
 $nuts = new NutsCore();
 @session_start();
 

@@ -1,19 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="en">
 <head>
 	<title>{CONST::APP_TITLE} - Login</title>
 	
 	{$NUTS_HTML_HEADERS}
 	
 	<script type="text/javascript">rememberMe(-1, '');</script>
-
-    <style type="text/css">
-    body {background-image:linear-gradient(#eee, #fff); background-repeat: no-repeat;}
-    </style>
-	
 </head>
 
-<body>
+<body class="login-wrapper">
 
 <div id="content">
 <!-- ajax::content -->
@@ -109,6 +104,7 @@
 			{
 				$('p.error').eq(0).html(original__error_message).show();
 				$('#content').fadeTo(0.33, 1);
+				
 				//$('#btn_submit').attr('value', "{$nuts_lang_msg[56]}");
 				$('#btn_submit').removeAttr("disabled");
 
