@@ -7,7 +7,7 @@
  */
 
 if (!(typeof window.google === 'object' && window.google.maps)) {
-    throw 'Google Maps API is required. Please register the following JavaScript library http://maps.google.com/maps/api/js?sensor=true.'
+    throw 'Google Maps API is required. Please register the following JavaScript library https://maps.google.com/maps/api/js?sensor=true.'
 }
 
 var extend_object = function(obj, new_obj) {
@@ -1528,7 +1528,7 @@ GMaps.prototype.toImage = function(options) {
 GMaps.staticMapURL = function(options){
     var parameters = [],
         data,
-        static_root = 'http://maps.googleapis.com/maps/api/staticmap';
+        static_root = 'https://maps.googleapis.com/maps/api/staticmap';
 
     if (options.url) {
         static_root = options.url;

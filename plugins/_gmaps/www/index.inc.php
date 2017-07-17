@@ -26,7 +26,7 @@ else
 
 	if($include_plugin_js)
 	{
-		$plugin->addHeaderFile('js', 'http://maps.google.com/maps/api/js?sensor=true', false);
+		$plugin->addHeaderFile('js', 'https://maps.google.com/maps/api/js?sensor=true', false);
 		$plugin->addHeaderFile('js', '/plugins/_gmaps/www/gmaps.js', false);
 	}
 

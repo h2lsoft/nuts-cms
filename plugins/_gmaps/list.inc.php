@@ -15,7 +15,7 @@ if(@$_GET['ajaxer'] == 1)
 {
 	if(@$_GET['_action'] == 'geocoder')
 	{
-		$uri = "http://maps.googleapis.com/maps/api/geocode/json?address=".urlencode($_GET['address'])."&sensor=false";
+		$uri = "https://maps.googleapis.com/maps/api/geocode/json?address=".urlencode($_GET['address'])."&sensor=false";
 		$contents = file_get_contents($uri);
 		die($contents);
 	}
