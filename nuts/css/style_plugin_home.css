@@ -97,7 +97,8 @@
 
 
 /* list image used in shortcuts */
-.dashboard-widget .dashboard-widget-content .list-image {border:1px solid #ccc; background-color: #fff; display: block; float:left; width: 90px; height: 80px; text-align: center; overflow: hidden; color: #666; margin: 2px 2px; padding: 5px 10px; padding-top: 15px; margin-bottom: 8px; margin-left: 10px;}
+.dashboard-widget .dashboard-widget-content .list-image {border:1px solid #ccc; background-color: #fff; display: block; float:left; width: 90px; height: 80px; text-align: center; overflow: hidden; color: #666; margin: 2px 2px; padding: 5px 10px; padding-top: 15px; margin-bottom: 8px; margin-right: 10px;}
+.dashboard-widget .dashboard-widget-content .list-image:last-child {margin-right: 0;}
 .dashboard-widget .dashboard-widget-content .list-image:hover {background-color: #87cefa; color: white; border-color: cornflowerblue;}
 .dashboard-widget .dashboard-widget-content .list-image:active {background-color: cornflowerblue; border-color: #87cefa;}
 .dashboard-widget .dashboard-widget-content .list-image:first-child {margin-left: 0;}
