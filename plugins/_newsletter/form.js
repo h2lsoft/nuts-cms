@@ -1,3 +1,19 @@
+$(function(){
+	
+	
+	$('#former #p_MailingList label').remove();
+	
+	setTimeout(function(){
+	
+		$('#former #MailingList').multiSelect();
+		
+	}, 500)
+	
+});
+
+
+
+
 function trtUpdateMode(){
 
 	v = $("#former #ModeTest").val();

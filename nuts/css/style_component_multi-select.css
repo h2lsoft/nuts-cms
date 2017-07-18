@@ -1,0 +1,16 @@
+.ms-container {width: 80%; margin: auto;}
+.ms-container .ms-list {border-radius: 0; height: 250px;}
+
+.ms-container .ms-selectable, .ms-container .ms-selection
+{
+	width: 48%;
+}
+
+.ms-container .ms-selectable li.ms-elem-selectable,
+.ms-container .ms-selection li.ms-elem-selection{
+	font-size: 12px;
+	color: black;
+	
+	padding: 5px 10px;
+	
+}

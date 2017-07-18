@@ -68,7 +68,7 @@ while($ml = $nuts->dbFetch())
 	$ml_options[] = array('label' => $ml['Name']." ({$ml['Count']})", 'value' => $ml['ID']);
 }
 
-$plugin->formAddFieldSelectMultiple('MailingList[]', 'Mailing-List', false, $ml_options, '', '', 'multiple size="5"', true, $lang_msg[12]);
+$plugin->formAddFieldSelectMultiple('MailingList[]', ' ', false, $ml_options, '', '', 'multiple size="10"', false);
 $plugin->formAddFieldsetEnd();
 
 

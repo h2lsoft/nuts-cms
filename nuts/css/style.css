@@ -24,6 +24,7 @@
 @import url("style_component_datagrid.css");
 @import url("style_component_tinymce.css");
 @import url("style_component_codemirror.css");
+@import url("style_component_multi-select.css");
 
 /* plugins */
 @import url("style_plugin_home.css");
