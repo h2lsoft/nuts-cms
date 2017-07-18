@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
 	<title>{CONST::APP_TITLE} - Login</title>
-	
 	{$NUTS_HTML_HEADERS}
-	
 	<script type="text/javascript">rememberMe(-1, '');</script>
 </head>
 
 <body class="login-wrapper">
+
+<video playsinline autoplay muted loop>
+	<source src="/nuts/img/wallpaper/video.mp4" type="video/mp4">
+</video>
 
 <div id="content">
 <!-- ajax::content -->
@@ -98,6 +100,7 @@
 			if(resp == 'error_security')
 			{
 				document.location.href = "login.php";
+				return;
 			}
 
 			if(resp != '')

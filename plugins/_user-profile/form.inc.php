@@ -22,6 +22,7 @@ $plugin->formAddFieldSelect('Timezone', $lang_msg[9], true, $time_options);
 // fieldset
 $plugin->formAddFieldsetStart('User identification', $lang_msg[10]);
 $plugin->formAddFieldText('Login', $lang_msg[5], false, 'lower', 'width:10em', '', 'maxlength="15" disabled');
+$plugin->formAddFieldException('Login');
 
 if($profile_enable_password_change)
 {

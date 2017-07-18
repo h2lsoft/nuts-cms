@@ -1,7 +1,28 @@
 .login-wrapper {
-	background: url("../img/wallpaper/wallpaper.jpg") no-repeat center !important;
-    background-size: cover !important;
+	background: none;
+	overflow: hidden;
 }
+
+.login-wrapper #bottom {
+	display: none;
+}
+
+.login-wrapper video {
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+	background: #C7DDD1;
+    /* transition: 1s opacity; */
+	opacity: 0.2;
+}
+
 
 /** login */
 #login {
@@ -15,7 +36,7 @@
     border:1px solid #1570B8;
     background-color:#fff;
     padding:0px;
-    box-shadow: 0px 0px 30px #ccc;
+    box-shadow: 0px 0px 30px #666;
 }
 
 #login #login_title {

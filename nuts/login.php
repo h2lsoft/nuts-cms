@@ -15,11 +15,13 @@ $nuts = new NutsCore();
 if(@$_POST['redirect_index'] == 1)
 {
     $r = 'index.php';
-    if(isset($_POST['r']) && strpos($_POST['r'], '/nuts/') !== false)
+    
+    $_POST['r'] = rtrim($_POST['r'], '?');
+    if(isset($_POST['r']) && !empty($_POST['r']) && $_POST['r'] != '?')
     {
-        // $r = str_replace('/nuts/index.php', 'index.php', $_POST['r']);
+        $r = str_replace('/nuts/index.php', 'index.php', $_POST['r']);
     }
-
+    
 	$nuts->redirect($r);
 }
 
@@ -147,7 +149,10 @@ if($_POST)
 	{
 		$_SESSION['NutsGroupID'] = 0;
 		$_SESSION['ID'] = 0;
-		nutsTrace('_system', 'login', 'error => '.'`'.htmlentities($_POST['NutsLogin']).'`'."; ".'`'.htmlentities($_POST['NutsPassword']).'`', 0);
+		
+		$password_cutted = substr($_POST['NutsPassword'], 0, -3).'***';
+		
+		nutsTrace('_system', 'login', 'error => '.'`'.htmlentities($_POST['NutsLogin']).'`'."; ".'`'.htmlentities($password_cutted).'`', 0);
 		session_destroy();
 
 		die('error');
