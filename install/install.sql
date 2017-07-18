@@ -1257,5 +1257,6 @@ COLLATE='utf8_general_ci' ENGINE=MyISAM;
 UPDATE NutsMenu SET name = '_versioning' WHERE Name IN('_page-versioning', '_page-versionning');
 
 
-
+/* update v.5.1 */
+UPDATE NutsMenu SET ExternalUrl = 'https://analytics.google.com/analytics/web/' WHERE Name = '_analytics';
 
