@@ -2335,7 +2335,7 @@ EOF;
 		if($type == 'image' || $type == 'file')
 		{
 			// assign default path uploads/plugin_name
-			if(!isset($options['path']))$options['path'] = WEBSITE_PATH.'/uploads/'.$this->name;
+			if(!isset($options['path']))$options['path'] = NUTS_UPLOADS_PATH.'/'.$this->name;
 
 			// assign default url
 			if(!isset($options['url']))$options['url'] = str_replace(WEBSITE_PATH, '', $options['path']);
